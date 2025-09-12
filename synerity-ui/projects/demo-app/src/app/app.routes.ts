@@ -13,5 +13,6 @@ export const routes: Routes = [
   { path: 'components/checkbox', loadComponent: () => import('./pages/checkbox/checkbox').then(m => m.Checkbox) },
   { path: 'components/select', loadComponent: () => import('./pages/select/select').then(m => m.Select) },
   { path: 'components/textarea', loadComponent: () => import('./pages/textarea/textarea').then(m => m.Textarea) },
+  { path: 'components/radiobutton', loadComponent: () => import('./pages/radiobutton/radiobutton').then(m => m.Radiobutton) },
   { path: '**', redirectTo: '/home' }
 ];

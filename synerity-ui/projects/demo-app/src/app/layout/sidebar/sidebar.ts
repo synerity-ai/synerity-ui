@@ -34,7 +34,7 @@ export class Sidebar {
         { name: 'InputNumber', route: '/components/inputnumber', icon: '🔢', comingSoon: true },
         { name: 'MultiSelect', route: '/components/multiselect', icon: '📝', comingSoon: true },
         { name: 'Password', route: '/components/password', icon: '🔒', comingSoon: true },
-        { name: 'RadioButton', route: '/components/radiobutton', icon: '🔘', comingSoon: true },
+        { name: 'RadioButton', route: '/components/radiobutton', icon: '🔘', comingSoon: false },
         { name: 'Rating', route: '/components/rating', icon: '⭐', comingSoon: true },
         { name: 'Select', route: '/components/select', icon: '📋', comingSoon: false },
         { name: 'Slider', route: '/components/slider', icon: '🎚️', comingSoon: true },

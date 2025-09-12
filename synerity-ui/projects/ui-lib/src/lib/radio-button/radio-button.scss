@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:host {
+  @apply inline-block;
+}
+
+.sui-radio-container {
+  @apply relative inline-flex items-center;
+}
+
+.sui-radio-input {
+  @apply w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 focus:ring-primary-500 focus:ring-2;
+  border-radius: 50%;
+}
+
+.sui-radio-input:checked {
+  @apply bg-primary-600 border-primary-600;
+}
+
+.sui-radio-input:disabled {
+  @apply bg-gray-100 text-gray-400 cursor-not-allowed opacity-50;
+}
+
+.sui-radio-input:focus {
+  @apply ring-2 ring-primary-500 ring-offset-2;
+}

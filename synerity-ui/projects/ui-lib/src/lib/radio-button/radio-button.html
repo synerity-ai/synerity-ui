@@ -1,13 +1,12 @@
-<label [attr.for]="inputId" class="inline-flex items-center gap-2 cursor-pointer select-none">
-	<input
-		type="radio"
-		[class.opacity-50]="disabled"
-		[id]="inputId"
-		[name]="name"
-		[disabled]="disabled"
-		[checked]="checked"
-		(change)="onInputChange()"
-		(blur)="onInputBlur()"
-	/>
-	<ng-content />
-</label>
+<div class="sui-radio-container">
+  <input
+    type="radio"
+    class="sui-radio-input"
+    [id]="inputId"
+    [name]="name"
+    [disabled]="disabled"
+    [checked]="checked"
+    (change)="onInputChange()"
+    (blur)="onInputBlur()"
+  />
+</div>
