@@ -42,6 +42,16 @@ export class Checkbox {
     { label: 'Option 3', value: 'option3' }
   ];
   
+  // Interactive demo
+  interactiveChecked = false;
+  
+  // Code visibility states
+  showBasicUsageCode = false;
+  showCheckboxStatesCode = false;
+  showCheckboxLabelsCode = false;
+  showCheckboxGroupCode = false;
+  showInteractiveDemoCode = false;
+  
   // Event handlers
   onCheckboxChange(event: any) {
     console.log('Checkbox changed:', event);
@@ -57,5 +67,37 @@ export class Checkbox {
   
   onTabChange(tab: string) {
     this.activeTab = tab;
+  }
+  
+  // Checkbox group methods
+  toggleOption(value: string, checked: boolean) {
+    if (checked) {
+      if (!this.selectedOptions.includes(value)) {
+        this.selectedOptions.push(value);
+      }
+    } else {
+      this.selectedOptions = this.selectedOptions.filter(option => option !== value);
+    }
+  }
+  
+  // Code toggle methods
+  toggleCode(section: string) {
+    switch(section) {
+      case 'basicUsage':
+        this.showBasicUsageCode = !this.showBasicUsageCode;
+        break;
+      case 'checkboxStates':
+        this.showCheckboxStatesCode = !this.showCheckboxStatesCode;
+        break;
+      case 'checkboxLabels':
+        this.showCheckboxLabelsCode = !this.showCheckboxLabelsCode;
+        break;
+      case 'checkboxGroup':
+        this.showCheckboxGroupCode = !this.showCheckboxGroupCode;
+        break;
+      case 'interactiveDemo':
+        this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
+        break;
+    }
   }
 }

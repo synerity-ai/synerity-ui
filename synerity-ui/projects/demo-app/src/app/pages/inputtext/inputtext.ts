@@ -47,6 +47,19 @@ export class Inputtext {
   // Clearable
   clearableValue = 'Clearable text';
   
+  // Interactive demo
+  interactiveValue = '';
+  
+  // Code visibility states
+  showBasicUsageCode = false;
+  showInputTypesCode = false;
+  showInputStatesCode = false;
+  showInputSizesCode = false;
+  showInputVariantsCode = false;
+  showValidationStatesCode = false;
+  showInputConstraintsCode = false;
+  showInteractiveDemoCode = false;
+  
   // Event handlers
   onInputChange(event: any) {
     console.log('Input changed:', event);
@@ -67,5 +80,35 @@ export class Inputtext {
   
   onTabChange(tab: string) {
     this.activeTab = tab;
+  }
+  
+  // Code toggle methods
+  toggleCode(section: string) {
+    switch(section) {
+      case 'basicUsage':
+        this.showBasicUsageCode = !this.showBasicUsageCode;
+        break;
+      case 'inputTypes':
+        this.showInputTypesCode = !this.showInputTypesCode;
+        break;
+      case 'inputStates':
+        this.showInputStatesCode = !this.showInputStatesCode;
+        break;
+      case 'inputSizes':
+        this.showInputSizesCode = !this.showInputSizesCode;
+        break;
+      case 'inputVariants':
+        this.showInputVariantsCode = !this.showInputVariantsCode;
+        break;
+      case 'validationStates':
+        this.showValidationStatesCode = !this.showValidationStatesCode;
+        break;
+      case 'inputConstraints':
+        this.showInputConstraintsCode = !this.showInputConstraintsCode;
+        break;
+      case 'interactiveDemo':
+        this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
+        break;
+    }
   }
 }

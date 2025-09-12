@@ -14,135 +14,298 @@
         
         <!-- Basic Usage -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <div class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Basic Input</label>
-                <sui-input-text 
-                  [(ngModel)]="basicValue"
-                  placeholder="Enter text here"
-                  (input)="onInputChange($event)" />
-                <p class="text-sm text-gray-500 mt-1">Value: {{ basicValue || 'Empty' }}</p>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Usage</h3>
+            <button 
+              (click)="toggleCode('basicUsage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicUsageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Basic Input</label>
+                  <sui-input-text 
+                    [(ngModel)]="basicValue"
+                    placeholder="Enter text here"
+                    (input)="onInputChange($event)" />
+                  <p class="text-sm text-gray-500 mt-1">Value: {{ basicValue || 'Empty' }}</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
+                  <sui-input-text 
+                    [(ngModel)]="placeholderValue"
+                    placeholder="Type something..." />
+                  <p class="text-sm text-gray-500 mt-1">Value: {{ placeholderValue || 'Empty' }}</p>
+                </div>
               </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
-                <sui-input-text 
-                  [(ngModel)]="placeholderValue"
-                  placeholder="Type something..." />
-                <p class="text-sm text-gray-500 mt-1">Value: {{ placeholderValue || 'Empty' }}</p>
-              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showBasicUsageCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="space-y-4"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Basic Input&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="basicValue"
+      placeholder="Enter text here"
+      (input)="onInputChange($event)" /&gt;
+    &lt;p class="text-sm text-gray-500 mt-1"&gt;Value: {{ basicValue || 'Empty' }}&lt;/p&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;With Placeholder&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="placeholderValue"
+      placeholder="Type something..." /&gt;
+    &lt;p class="text-sm text-gray-500 mt-1"&gt;Value: {{ placeholderValue || 'Empty' }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </div>
         </div>
 
         <!-- Input Types -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Input Types</h3>
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                <sui-input-text 
-                  [(ngModel)]="emailValue"
-                  type="email"
-                  placeholder="Enter email address" />
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Input Types</h3>
+            <button 
+              (click)="toggleCode('inputTypes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInputTypesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                  <sui-input-text 
+                    [(ngModel)]="emailValue"
+                    type="email"
+                    placeholder="Enter email address" />
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                  <sui-input-text 
+                    [(ngModel)]="passwordValue"
+                    type="password"
+                    placeholder="Enter password" />
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Telephone</label>
+                  <sui-input-text 
+                    [(ngModel)]="telValue"
+                    type="tel"
+                    placeholder="Enter phone number" />
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">URL</label>
+                  <sui-input-text 
+                    [(ngModel)]="urlValue"
+                    type="url"
+                    placeholder="Enter website URL" />
+                </div>
               </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                <sui-input-text 
-                  [(ngModel)]="passwordValue"
-                  type="password"
-                  placeholder="Enter password" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Telephone</label>
-                <sui-input-text 
-                  [(ngModel)]="telValue"
-                  type="tel"
-                  placeholder="Enter phone number" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">URL</label>
-                <sui-input-text 
-                  [(ngModel)]="urlValue"
-                  type="url"
-                  placeholder="Enter website URL" />
-              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showInputTypesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Email&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="emailValue"
+      type="email"
+      placeholder="Enter email address" /&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Password&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="passwordValue"
+      type="password"
+      placeholder="Enter password" /&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Telephone&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="telValue"
+      type="tel"
+      placeholder="Enter phone number" /&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;URL&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="urlValue"
+      type="url"
+      placeholder="Enter website URL" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </div>
         </div>
 
         <!-- Input States -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Input States</h3>
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Disabled</label>
-                <sui-input-text 
-                  [(ngModel)]="disabledValue"
-                  [disabled]="true" />
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Input States</h3>
+            <button 
+              (click)="toggleCode('inputStates')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInputStatesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled</label>
+                  <sui-input-text 
+                    [(ngModel)]="disabledValue"
+                    [disabled]="true" />
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Read Only</label>
+                  <sui-input-text 
+                    [(ngModel)]="readonlyValue"
+                    [readonly]="true" />
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Required</label>
+                  <sui-input-text 
+                    [(ngModel)]="requiredValue"
+                    [required]="true"
+                    placeholder="This field is required" />
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Clearable</label>
+                  <sui-input-text 
+                    [(ngModel)]="clearableValue"
+                    [clearable]="true"
+                    (clear)="onClear()" />
+                </div>
               </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Read Only</label>
-                <sui-input-text 
-                  [(ngModel)]="readonlyValue"
-                  [readonly]="true" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Required</label>
-                <sui-input-text 
-                  [(ngModel)]="requiredValue"
-                  [required]="true"
-                  placeholder="This field is required" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Clearable</label>
-                <sui-input-text 
-                  [(ngModel)]="clearableValue"
-                  [clearable]="true"
-                  (clear)="onClear()" />
-              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showInputStatesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Disabled&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="disabledValue"
+      [disabled]="true" /&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Read Only&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="readonlyValue"
+      [readonly]="true" /&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Required&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="requiredValue"
+      [required]="true"
+      placeholder="This field is required" /&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Clearable&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="clearableValue"
+      [clearable]="true"
+      (clear)="onClear()" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </div>
         </div>
 
         <!-- Input Sizes -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Input Sizes</h3>
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <div class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Small</label>
-                <sui-input-text 
-                  [(ngModel)]="smallValue"
-                  size="sm"
-                  placeholder="Small input" />
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Input Sizes</h3>
+            <button 
+              (click)="toggleCode('inputSizes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInputSizesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Small</label>
+                  <sui-input-text 
+                    [(ngModel)]="smallValue"
+                    size="sm"
+                    placeholder="Small input" />
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Medium (Default)</label>
+                  <sui-input-text 
+                    [(ngModel)]="mediumValue"
+                    size="md"
+                    placeholder="Medium input" />
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Large</label>
+                  <sui-input-text 
+                    [(ngModel)]="largeValue"
+                    size="lg"
+                    placeholder="Large input" />
+                </div>
               </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Medium (Default)</label>
-                <sui-input-text 
-                  [(ngModel)]="mediumValue"
-                  size="md"
-                  placeholder="Medium input" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Large</label>
-                <sui-input-text 
-                  [(ngModel)]="largeValue"
-                  size="lg"
-                  placeholder="Large input" />
-              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showInputSizesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="space-y-4"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Small&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="smallValue"
+      size="sm"
+      placeholder="Small input" /&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Medium (Default)&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="mediumValue"
+      size="md"
+      placeholder="Medium input" /&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Large&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="largeValue"
+      size="lg"
+      placeholder="Large input" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -206,25 +369,106 @@
 
         <!-- Input with Constraints -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Input Constraints</h3>
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Max Length (10)</label>
-                <sui-input-text 
-                  [(ngModel)]="maxLengthValue"
-                  [maxlength]="10"
-                  placeholder="Max 10 characters" />
-                <p class="text-sm text-gray-500 mt-1">{{ maxLengthValue.length }}/10 characters</p>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Input Constraints</h3>
+            <button 
+              (click)="toggleCode('inputConstraints')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInputConstraintsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Max Length (10)</label>
+                  <sui-input-text 
+                    [(ngModel)]="maxLengthValue"
+                    [maxlength]="10"
+                    placeholder="Max 10 characters" />
+                  <p class="text-sm text-gray-500 mt-1">{{ maxLengthValue.length }}/10 characters</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Pattern (Numbers only)</label>
+                  <sui-input-text 
+                    [(ngModel)]="patternValue"
+                    pattern="[0-9]*"
+                    placeholder="Numbers only" />
+                </div>
               </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Pattern (Numbers only)</label>
-                <sui-input-text 
-                  [(ngModel)]="patternValue"
-                  pattern="[0-9]*"
-                  placeholder="Numbers only" />
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showInputConstraintsCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Max Length (10)&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="maxLengthValue"
+      [maxlength]="10"
+      placeholder="Max 10 characters" /&gt;
+    &lt;p class="text-sm text-gray-500 mt-1"&gt;{{ maxLengthValue.length }}/10 characters&lt;/p&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Pattern (Numbers only)&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="patternValue"
+      pattern="[0-9]*"
+      placeholder="Numbers only" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+            <button 
+              (click)="toggleCode('interactiveDemo')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Try it out</label>
+                  <sui-input-text 
+                    [(ngModel)]="interactiveValue"
+                    placeholder="Type something to see it in action..."
+                    [clearable]="true"
+                    (input)="onInputChange($event)"
+                    (focus)="onInputFocus($event)"
+                    (blur)="onInputBlur($event)" />
+                  <p class="text-sm text-gray-500 mt-1">Current value: "{{ interactiveValue || 'Empty' }}"</p>
+                  <p class="text-sm text-gray-500">Character count: {{ interactiveValue.length }}</p>
+                </div>
               </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="space-y-4"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Try it out&lt;/label&gt;
+    &lt;sui-input-text 
+      [(ngModel)]="interactiveValue"
+      placeholder="Type something to see it in action..."
+      [clearable]="true"
+      (input)="onInputChange($event)"
+      (focus)="onInputFocus($event)"
+      (blur)="onInputBlur($event)" /&gt;
+    &lt;p class="text-sm text-gray-500 mt-1"&gt;Current value: "{{ interactiveValue || 'Empty' }}"&lt;/p&gt;
+    &lt;p class="text-sm text-gray-500"&gt;Character count: {{ interactiveValue.length }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -232,90 +476,85 @@
       </div>
     </div>
 
-    <!-- Usage Tab -->
+    <!-- How to Use Tab -->
     <div *ngIf="activeTab === 'usage'">
       <div class="space-y-8">
         
-        <!-- Form Integration -->
+        <!-- Installation -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Form Integration</h3>
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <form class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                <sui-input-text 
-                  name="firstName"
-                  placeholder="Enter your first name"
-                  [required]="true" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                <sui-input-text 
-                  name="lastName"
-                  placeholder="Enter your last name"
-                  [required]="true" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                <sui-input-text 
-                  name="email"
-                  type="email"
-                  placeholder="Enter your email"
-                  [required]="true" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Company</label>
-                <sui-input-text 
-                  name="company"
-                  placeholder="Enter your company name" />
-              </div>
-              
-              <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                Submit Form
-              </button>
-            </form>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+            <div>npm install @synerity/ui</div>
           </div>
         </div>
 
-        <!-- Search Input -->
+        <!-- Basic Usage -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Search Input</h3>
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <div class="relative">
-              <sui-input-text 
-                placeholder="Search for products, users, or content..."
-                [clearable]="true"
-                class="w-full" />
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <pre class="text-sm"><code>&lt;sui-input-text placeholder="Enter text here"&gt;&lt;/sui-input-text&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Import -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <pre class="text-sm"><code>import {{ '{' }} InputText {{ '}' }} from '@synerity/ui';</code></pre>
+          </div>
+        </div>
+
+        <!-- Examples -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
+          
+          <div class="space-y-6">
+            <!-- Basic Input -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Basic Input</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-input-text placeholder="Enter text here"&gt;&lt;/sui-input-text&gt;</code></pre>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Input with Helper Text -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Input with Helper Text</h3>
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <div class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
-                <sui-input-text 
-                  placeholder="Enter your username"
-                  helperText="Username must be 3-20 characters long and contain only letters, numbers, and underscores." />
+            <!-- Input with ngModel -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Input with ngModel</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-input-text [(ngModel)]="value" placeholder="Enter text"&gt;&lt;/sui-input-text&gt;</code></pre>
               </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                <sui-input-text 
-                  type="password"
-                  placeholder="Enter your password"
-                  helperText="Password must be at least 8 characters long and contain uppercase, lowercase, and numbers." />
+            </div>
+
+            <!-- Disabled Input -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Disabled Input</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-input-text [disabled]="true" placeholder="Disabled input"&gt;&lt;/sui-input-text&gt;</code></pre>
+              </div>
+            </div>
+
+            <!-- Required Input -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Required Input</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-input-text [required]="true" placeholder="Required field"&gt;&lt;/sui-input-text&gt;</code></pre>
+              </div>
+            </div>
+
+            <!-- Input with Events -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Input with Events</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-input-text 
+  [(ngModel)]="value"
+  (input)="onInput($event)"
+  (focus)="onFocus($event)"
+  (blur)="onBlur($event)"&gt;
+&lt;/sui-input-text&gt;</code></pre>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
