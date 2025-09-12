@@ -14,7 +14,16 @@
         
         <!-- Basic Cards -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Cards</h3>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Cards</h3>
+            <button 
+              (click)="toggleCode('basicCards')"
+              class="flex items-center space-x-2 px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors">
+              <span>{{ showBasicCardsCode ? 'Hide' : 'Show' }} Code</span>
+              <span class="text-lg">&lt;/&gt;</span>
+            </button>
+          </div>
+          
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <sui-card>
               <h3 class="text-lg font-semibold text-gray-900 mb-2">Simple Card</h3>
@@ -30,11 +39,39 @@
               <button class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700">Action</button>
             </sui-card>
           </div>
+          
+          <div *ngIf="showBasicCardsCode" class="mt-4">
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Simple Card --&gt;
+&lt;sui-card&gt;
+  &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Simple Card&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;This is a basic card with simple content.&lt;/p&gt;
+&lt;/sui-card&gt;
+
+&lt;!-- Card with Header --&gt;
+&lt;sui-card header="Card with Header"&gt;
+  &lt;p class="text-gray-600"&gt;This card has a header and content area.&lt;/p&gt;
+&lt;/sui-card&gt;
+
+&lt;!-- Complete Card --&gt;
+&lt;sui-card header="Complete Card" subheader="With subheader"&gt;
+  &lt;p class="text-gray-600 mb-4"&gt;This card includes both header and subheader.&lt;/p&gt;
+  &lt;button class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700"&gt;Action&lt;/button&gt;
+&lt;/sui-card&gt;</code></pre>
+          </div>
         </div>
 
         <!-- Card Variants -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Card Variants</h3>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Card Variants</h3>
+            <button 
+              (click)="toggleCode('cardVariants')"
+              class="flex items-center space-x-2 px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors">
+              <span>{{ showCardVariantsCode ? 'Hide' : 'Show' }} Code</span>
+              <span class="text-lg">&lt;/&gt;</span>
+            </button>
+          </div>
+          
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <sui-card variant="default">
               <h3 class="text-lg font-semibold text-gray-900 mb-2">Default</h3>
@@ -51,11 +88,40 @@
               <p class="text-gray-600">Card with border outline styling.</p>
             </sui-card>
           </div>
+          
+          <div *ngIf="showCardVariantsCode" class="mt-4">
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Default Variant --&gt;
+&lt;sui-card variant="default"&gt;
+  &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Default&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;Standard card with default styling.&lt;/p&gt;
+&lt;/sui-card&gt;
+
+&lt;!-- Elevated Variant --&gt;
+&lt;sui-card variant="elevated"&gt;
+  &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Elevated&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;Card with elevated shadow for emphasis.&lt;/p&gt;
+&lt;/sui-card&gt;
+
+&lt;!-- Outlined Variant --&gt;
+&lt;sui-card variant="outlined"&gt;
+  &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Outlined&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;Card with border outline styling.&lt;/p&gt;
+&lt;/sui-card&gt;</code></pre>
+          </div>
         </div>
 
         <!-- Card States -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Card States</h3>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Card States</h3>
+            <button 
+              (click)="toggleCode('cardStates')"
+              class="flex items-center space-x-2 px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors">
+              <span>{{ showCardStatesCode ? 'Hide' : 'Show' }} Code</span>
+              <span class="text-lg">&lt;/&gt;</span>
+            </button>
+          </div>
+          
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <sui-card>
               <h3 class="text-lg font-semibold text-gray-900 mb-2">Normal Card</h3>
@@ -72,11 +138,40 @@
               <p class="text-gray-600">This card is disabled and non-interactive.</p>
             </sui-card>
           </div>
+          
+          <div *ngIf="showCardStatesCode" class="mt-4">
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Normal Card --&gt;
+&lt;sui-card&gt;
+  &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Normal Card&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;This is a normal, interactive card.&lt;/p&gt;
+&lt;/sui-card&gt;
+
+&lt;!-- Loading Card --&gt;
+&lt;sui-card [loading]="true"&gt;
+  &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Loading Card&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;This card is in a loading state.&lt;/p&gt;
+&lt;/sui-card&gt;
+
+&lt;!-- Disabled Card --&gt;
+&lt;sui-card [disabled]="true"&gt;
+  &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Disabled Card&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;This card is disabled and non-interactive.&lt;/p&gt;
+&lt;/sui-card&gt;</code></pre>
+          </div>
         </div>
 
         <!-- Clickable Cards -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Clickable Cards</h3>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Clickable Cards</h3>
+            <button 
+              (click)="toggleCode('clickableCards')"
+              class="flex items-center space-x-2 px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors">
+              <span>{{ showClickableCardsCode ? 'Hide' : 'Show' }} Code</span>
+              <span class="text-lg">&lt;/&gt;</span>
+            </button>
+          </div>
+          
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <sui-card [clickable]="true" (click)="onCardClick('Card 1')">
               <h3 class="text-lg font-semibold text-gray-900 mb-2">Clickable Card</h3>
@@ -92,6 +187,26 @@
               <h3 class="text-lg font-semibold text-gray-900 mb-2">Interactive</h3>
               <p class="text-gray-600">Fully interactive card with click handling.</p>
             </sui-card>
+          </div>
+          
+          <div *ngIf="showClickableCardsCode" class="mt-4">
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Basic Clickable Card --&gt;
+&lt;sui-card [clickable]="true" (click)="onCardClick('Card 1')"&gt;
+  &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Clickable Card&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;Click this card to see the action.&lt;/p&gt;
+&lt;/sui-card&gt;
+
+&lt;!-- Clickable Card with Hover Effect --&gt;
+&lt;sui-card [clickable]="true" [hoverable]="true" (click)="onCardClick('Card 2')"&gt;
+  &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Hover Effect&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;This card has hover effects when clickable.&lt;/p&gt;
+&lt;/sui-card&gt;
+
+&lt;!-- Interactive Card --&gt;
+&lt;sui-card [clickable]="true" (click)="onCardClick('Card 3')"&gt;
+  &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Interactive&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;Fully interactive card with click handling.&lt;/p&gt;
+&lt;/sui-card&gt;</code></pre>
           </div>
         </div>
       </div>
