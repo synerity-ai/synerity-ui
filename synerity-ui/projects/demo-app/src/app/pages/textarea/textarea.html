@@ -1,1 +1,489 @@
-<p>textarea works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Textarea</h1>
+    <p class="text-lg text-gray-600">Multi-line text input components with support for auto-sizing, placeholders, and various configurations.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Usage -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Usage</h3>
+            <button 
+              (click)="toggleCode('basicUsage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicUsageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Basic Textarea</label>
+                  <sui-textarea 
+                    [(ngModel)]="basicValue"
+                    placeholder="Enter your text here..."
+                    name="basicTextarea">
+                  </sui-textarea>
+                  <p class="text-sm text-gray-500 mt-2">Characters: {{ basicValue.length }}</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
+                  <sui-textarea 
+                    [(ngModel)]="placeholderValue"
+                    placeholder="Type your message here..."
+                    name="placeholderTextarea">
+                  </sui-textarea>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Custom Rows</label>
+                  <sui-textarea 
+                    [(ngModel)]="rowsValue"
+                    [rows]="5"
+                    placeholder="5 rows textarea..."
+                    name="rowsTextarea">
+                  </sui-textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="showBasicUsageCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Basic Textarea --&gt;
+&lt;sui-textarea 
+  [(ngModel)]="basicValue"
+  placeholder="Enter your text here..."
+  name="basicTextarea"&gt;
+&lt;/sui-textarea&gt;
+
+&lt;!-- With Placeholder --&gt;
+&lt;sui-textarea 
+  [(ngModel)]="placeholderValue"
+  placeholder="Type your message here..."
+  name="placeholderTextarea"&gt;
+&lt;/sui-textarea&gt;
+
+&lt;!-- Custom Rows --&gt;
+&lt;sui-textarea 
+  [(ngModel)]="rowsValue"
+  [rows]="5"
+  placeholder="5 rows textarea..."
+  name="rowsTextarea"&gt;
+&lt;/sui-textarea&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Textarea Features -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Textarea Features</h3>
+            <button 
+              (click)="toggleCode('textareaFeatures')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showTextareaFeaturesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Auto-sizing Textarea</label>
+                  <sui-textarea 
+                    [(ngModel)]="autosizeValue"
+                    [autosize]="true"
+                    placeholder="This textarea grows with content..."
+                    name="autosizeTextarea">
+                  </sui-textarea>
+                  <p class="text-sm text-gray-500 mt-2">Auto-expands as you type</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Large Textarea</label>
+                  <sui-textarea 
+                    [(ngModel)]="rowsValue"
+                    [rows]="8"
+                    placeholder="Large textarea for longer content..."
+                    name="largeTextarea">
+                  </sui-textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="showTextareaFeaturesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Auto-sizing Textarea --&gt;
+&lt;sui-textarea 
+  [(ngModel)]="autosizeValue"
+  [autosize]="true"
+  placeholder="This textarea grows with content..."
+  name="autosizeTextarea"&gt;
+&lt;/sui-textarea&gt;
+
+&lt;!-- Large Textarea --&gt;
+&lt;sui-textarea 
+  [(ngModel)]="rowsValue"
+  [rows]="8"
+  placeholder="Large textarea for longer content..."
+  name="largeTextarea"&gt;
+&lt;/sui-textarea&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Textarea States -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Textarea States</h3>
+            <button 
+              (click)="toggleCode('textareaStates')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showTextareaStatesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
+                  <sui-textarea 
+                    [(ngModel)]="basicValue"
+                    placeholder="Normal textarea"
+                    name="normalTextarea">
+                  </sui-textarea>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
+                  <sui-textarea 
+                    [(ngModel)]="disabledValue"
+                    [disabled]="true"
+                    placeholder="Disabled textarea"
+                    name="disabledTextarea">
+                  </sui-textarea>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">With Content</label>
+                  <sui-textarea 
+                    [(ngModel)]="basicValue"
+                    placeholder="Pre-filled content"
+                    name="filledTextarea">
+                  </sui-textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="showTextareaStatesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Normal State --&gt;
+&lt;sui-textarea 
+  [(ngModel)]="basicValue"
+  placeholder="Normal textarea"
+  name="normalTextarea"&gt;
+&lt;/sui-textarea&gt;
+
+&lt;!-- Disabled State --&gt;
+&lt;sui-textarea 
+  [(ngModel)]="disabledValue"
+  [disabled]="true"
+  placeholder="Disabled textarea"
+  name="disabledTextarea"&gt;
+&lt;/sui-textarea&gt;
+
+&lt;!-- With Content --&gt;
+&lt;sui-textarea 
+  [(ngModel)]="basicValue"
+  placeholder="Pre-filled content"
+  name="filledTextarea"&gt;
+&lt;/sui-textarea&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+            <button 
+              (click)="toggleCode('interactiveDemo')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Message Composer</label>
+                  <sui-textarea 
+                    [(ngModel)]="interactiveValue"
+                    [autosize]="true"
+                    placeholder="Write your message here..."
+                    name="interactiveTextarea"
+                    (change)="onTextareaChange($event, 'message')">
+                  </sui-textarea>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Comments</label>
+                  <sui-textarea 
+                    [(ngModel)]="basicValue"
+                    [rows]="6"
+                    placeholder="Add your comments..."
+                    name="commentsTextarea"
+                    (change)="onTextareaChange($event, 'comments')">
+                  </sui-textarea>
+                </div>
+              </div>
+              
+              <div class="mt-6 p-4 bg-gray-50 rounded-lg border">
+                <h4 class="font-medium text-gray-900 mb-2">Content Preview:</h4>
+                <p class="text-sm text-gray-600 mb-2">Message: {{ interactiveValue || 'No message yet' }}</p>
+                <p class="text-sm text-gray-600">Comments: {{ basicValue || 'No comments yet' }}</p>
+                <div class="mt-2 text-xs text-gray-500">
+                  <span>Message length: {{ interactiveValue.length }} characters</span>
+                  <span class="ml-4">Comments length: {{ basicValue.length }} characters</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Interactive Demo --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Message Composer&lt;/label&gt;
+    &lt;sui-textarea 
+      [(ngModel)]="interactiveValue"
+      [autosize]="true"
+      placeholder="Write your message here..."
+      name="interactiveTextarea"
+      (change)="onTextareaChange($event, 'message')"&gt;
+    &lt;/sui-textarea&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Comments&lt;/label&gt;
+    &lt;sui-textarea 
+      [(ngModel)]="basicValue"
+      [rows]="6"
+      placeholder="Add your comments..."
+      name="commentsTextarea"
+      (change)="onTextareaChange($event, 'comments')"&gt;
+    &lt;/sui-textarea&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Content Preview --&gt;
+&lt;div class="mt-6 p-4 bg-gray-50 rounded-lg border"&gt;
+  &lt;h4 class="font-medium text-gray-900 mb-2"&gt;Content Preview:&lt;/h4&gt;
+  &lt;p class="text-sm text-gray-600 mb-2"&gt;Message: {{ "{{" }} interactiveValue || 'No message yet' {{ "}}" }}&lt;/p&gt;
+  &lt;p class="text-sm text-gray-600"&gt;Comments: {{ "{{" }} basicValue || 'No comments yet' {{ "}}" }}&lt;/p&gt;
+  &lt;div class="mt-2 text-xs text-gray-500"&gt;
+    &lt;span&gt;Message length: {{ "{{" }} interactiveValue.length {{ "}}" }} characters&lt;/span&gt;
+    &lt;span class="ml-4"&gt;Comments length: {{ "{{" }} basicValue.length {{ "}}" }} characters&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-8">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+            <div>npm install @synerity/ui</div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <pre class="text-sm"><code>&lt;sui-textarea 
+  [(ngModel)]="value"
+  placeholder="Enter your text here..."&gt;
+&lt;/sui-textarea&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Import -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <pre class="text-sm"><code>import {{ '{' }} Textarea {{ '}' }} from '@synerity/ui';
+import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';</code></pre>
+          </div>
+        </div>
+
+        <!-- Examples -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
+          
+          <div class="space-y-6">
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Basic Textarea</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-textarea 
+  [(ngModel)]="message"
+  placeholder="Enter your message..."&gt;
+&lt;/sui-textarea&gt;</code></pre>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Auto-sizing Textarea</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-textarea 
+  [(ngModel)]="content"
+  [autosize]="true"
+  placeholder="This grows with content..."&gt;
+&lt;/sui-textarea&gt;</code></pre>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Custom Rows</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-textarea 
+  [(ngModel)]="comments"
+  [rows]="5"
+  placeholder="5 rows textarea..."&gt;
+&lt;/sui-textarea&gt;</code></pre>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Disabled Textarea</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-textarea 
+  [(ngModel)]="value"
+  [disabled]="true"
+  placeholder="Disabled textarea"&gt;
+&lt;/sui-textarea&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-8">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Placeholder text when textarea is empty</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">rows</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Number of visible text lines</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the textarea is disabled</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">autosize</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the textarea auto-resizes based on content</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">name</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Name attribute for form handling</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">inputId</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">ID attribute for the textarea element</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">change</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;string&gt;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the textarea value changes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <ul class="text-sm text-blue-800 space-y-2">
+              <li>• Proper ARIA attributes for form controls</li>
+              <li>• Keyboard navigation support</li>
+              <li>• Screen reader announcements for value changes</li>
+              <li>• Focus management and visual focus indicators</li>
+              <li>• Support for disabled state with proper accessibility</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:host {
+  @apply block;
+}
+
+.sui-textarea-container {
+  @apply relative inline-flex flex-col gap-2 w-full;
+}
+
+.sui-textarea-input {
+  @apply block w-full px-3 py-2 text-base text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
+  min-height: 2.5rem;
+  resize: vertical;
+}
+
+.sui-textarea-input:disabled {
+  @apply bg-gray-100 text-gray-500 cursor-not-allowed opacity-75;
+}
+
+.sui-textarea-input::placeholder {
+  @apply text-gray-400;
+}

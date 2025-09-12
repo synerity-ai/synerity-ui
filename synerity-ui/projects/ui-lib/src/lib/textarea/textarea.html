@@ -1,13 +1,14 @@
-<textarea
-	#ta
-	[class.opacity-50]="disabled"
-	[id]="inputId"
-	[name]="name"
-	[disabled]="disabled"
-	[placeholder]="placeholder"
-	[rows]="rows"
-	(value)="value"
-	(input)="onInput($event)"
-	(blur)="onBlur()"
-	class="px-2 py-1 outline-none w-full"
-></textarea>
+<div class="sui-textarea-container">
+  <textarea
+    #ta
+    [id]="inputId"
+    [name]="name"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [rows]="rows"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+    class="sui-textarea-input">
+  </textarea>
+</div>

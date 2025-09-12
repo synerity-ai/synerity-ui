@@ -1,0 +1,12 @@
+/* Textarea Demo Page Styles - Minimal overrides like Button page */
+
+/* Textarea component spacing overrides */
+sui-textarea {
+  display: block;
+  margin-bottom: 0.5rem; /* 8px spacing for vertical layouts */
+}
+
+/* Ensure proper spacing in flex layouts */
+.flex-wrap gap-6 sui-textarea {
+  margin-bottom: 0;
+}
