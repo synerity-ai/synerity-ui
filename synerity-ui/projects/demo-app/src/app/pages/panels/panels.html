@@ -1,0 +1,178 @@
+<div class="panels-page">
+  <!-- Page Header -->
+  <div class="component-showcase">
+    <h1 class="showcase-header">Panel Components</h1>
+    <p class="showcase-description">
+      Comprehensive collection of panel and layout components for organizing content and creating structured interfaces.
+    </p>
+    <div class="status-badge">9 Components</div>
+  </div>
+
+  <!-- Basic Panels -->
+  <div class="space-y-6">
+    <h2 class="section-header">Basic Panels</h2>
+    <p class="section-description">Fundamental panel components for content organization and layout structure.</p>
+    
+    <div class="component-grid">
+      <!-- Panel -->
+      <div class="enhanced-component">
+        <h3 class="component-header">Panel</h3>
+        <p class="component-description">Basic panel for content grouping and visual separation</p>
+        <div class="component-preview">
+          <sui-panel [header]="'Sample Panel'">
+            <p>{{ panelContent }}</p>
+          </sui-panel>
+        </div>
+        <div class="form-data-display">
+          <div class="form-data-title">Type:</div>
+          <div class="form-data-content">Content container with header</div>
+        </div>
+      </div>
+
+      <!-- Fieldset -->
+      <div class="enhanced-component">
+        <h3 class="component-header">Fieldset</h3>
+        <p class="component-description">Grouped form elements with legend</p>
+        <div class="component-preview">
+          <sui-fieldset [legend]="fieldsetData.legend">
+            <p>{{ fieldsetData.content }}</p>
+          </sui-fieldset>
+        </div>
+        <div class="form-data-display">
+          <div class="form-data-title">Type:</div>
+          <div class="form-data-content">Form grouping with legend</div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="enhanced-component">
+        <h3 class="component-header">Divider</h3>
+        <p class="component-description">Visual separator for content sections</p>
+        <div class="component-preview">
+          <p>Content above divider</p>
+          <sui-divider></sui-divider>
+          <p>Content below divider</p>
+        </div>
+        <div class="form-data-display">
+          <div class="form-data-title">Type:</div>
+          <div class="form-data-content">Visual content separator</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Panels -->
+  <div class="space-y-6">
+    <h2 class="section-header">Interactive Panels</h2>
+    <p class="section-description">Panel components with interactive functionality and user engagement.</p>
+    
+    <div class="component-grid">
+      <!-- Accordion -->
+      <div class="enhanced-component">
+        <h3 class="component-header">Accordion</h3>
+        <p class="component-description">Collapsible content sections with expand/collapse functionality</p>
+        <div class="component-preview">
+          <sui-accordion 
+            [tabs]="accordionItems"
+            (onActiveIndexChange)="onAccordionChange($event)" />
+        </div>
+        <div class="form-data-display">
+          <div class="form-data-title">Sections:</div>
+          <div class="form-data-content">{{ accordionItems.length }} collapsible sections</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="enhanced-component">
+        <h3 class="component-header">Tabs</h3>
+        <p class="component-description">Tabbed interface for organizing related content</p>
+        <div class="component-preview">
+          <sui-tabs 
+            (onActiveIndexChange)="onTabChange($event)" />
+        </div>
+        <div class="form-data-display">
+          <div class="form-data-title">Tabs:</div>
+          <div class="form-data-content">{{ tabsItems.length }} tab sections</div>
+        </div>
+      </div>
+
+      <!-- Stepper -->
+      <div class="enhanced-component">
+        <h3 class="component-header">Stepper</h3>
+        <p class="component-description">Step-by-step process navigation</p>
+        <div class="component-preview">
+          <sui-stepper 
+            (onActiveIndexChange)="onStepperChange($event)" />
+        </div>
+        <div class="form-data-display">
+          <div class="form-data-title">Steps:</div>
+          <div class="form-data-content">{{ stepperSteps.length }} process steps</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layout Panels -->
+  <div class="space-y-6">
+    <h2 class="section-header">Layout Panels</h2>
+    <p class="section-description">Advanced panel components for complex layouts and content organization.</p>
+    
+    <div class="component-grid">
+      <!-- Scroll Panel -->
+      <div class="enhanced-component">
+        <h3 class="component-header">Scroll Panel</h3>
+        <p class="component-description">Panel with scrollable content area</p>
+        <div class="component-preview">
+          <sui-scroll-panel [scrollHeight]="'200px'">
+            <div [innerHTML]="scrollPanelContent"></div>
+          </sui-scroll-panel>
+        </div>
+        <div class="form-data-display">
+          <div class="form-data-title">Type:</div>
+          <div class="form-data-content">Scrollable content container</div>
+        </div>
+      </div>
+
+      <!-- Splitter -->
+      <div class="enhanced-component">
+        <h3 class="component-header">Splitter</h3>
+        <p class="component-description">Resizable panel splitter for layout management</p>
+        <div class="component-preview">
+          <sui-splitter />
+        </div>
+        <div class="form-data-display">
+          <div class="form-data-title">Panels:</div>
+          <div class="form-data-content">{{ splitterPanels.length }} resizable panels</div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="enhanced-component">
+        <h3 class="component-header">Toolbar</h3>
+        <p class="component-description">Action toolbar with buttons and commands</p>
+        <div class="component-preview">
+          <sui-toolbar />
+        </div>
+        <div class="form-data-display">
+          <div class="form-data-title">Actions:</div>
+          <div class="form-data-content">{{ toolbarItems.length }} toolbar items</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Demo -->
+  <div class="interactive-demo">
+    <h2 class="demo-title">Interactive Panel Demo</h2>
+    <p class="text-gray-600 mb-6">Try interacting with the panel components above to see their functionality in action.</p>
+    
+    <div class="form-actions">
+      <button class="form-button primary" (click)="onSave()">
+        Save Changes
+      </button>
+      <button class="form-button secondary" (click)="onEdit()">
+        Edit Content
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+// Data component specific styles - minimal for budget compliance
+.data-component {
+  .component-demo {
+    @apply border border-gray-200 rounded-lg p-4;
+  }
+
+  .component-header {
+    @apply text-lg font-medium mb-4;
+  }
+
+  .data-table {
+    @apply w-full;
+    
+    th {
+      @apply bg-gray-50 px-4 py-2 text-left font-medium text-gray-900;
+    }
+    
+    td {
+      @apply px-4 py-2 border-b border-gray-200;
+    }
+    
+    tr:hover {
+      @apply bg-gray-50;
+    }
+  }
+
+  .timeline-item {
+    @apply flex items-start space-x-4 pb-4;
+    
+    .timeline-icon {
+      @apply w-8 h-8 rounded-full flex items-center justify-center text-white;
+    }
+    
+    .timeline-content {
+      @apply flex-1;
+      
+      .timeline-title {
+        @apply font-medium text-gray-900;
+      }
+      
+      .timeline-date {
+        @apply text-sm text-gray-500;
+      }
+    }
+  }
+
+  .virtual-scroller {
+    @apply h-64 overflow-auto border border-gray-300 rounded;
+    
+    .virtual-item {
+      @apply p-3 border-b border-gray-200 hover:bg-gray-50;
+    }
+  }
+}

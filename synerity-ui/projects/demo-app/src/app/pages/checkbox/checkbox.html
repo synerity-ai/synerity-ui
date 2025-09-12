@@ -1,0 +1,263 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Checkbox</h1>
+    <p class="text-lg text-gray-600">Checkbox component for binary choices with various states, sizes, and styling options.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <sui-checkbox 
+                  [(ngModel)]="basicChecked"
+                  (change)="onCheckboxChange($event)" />
+                <label class="text-sm font-medium text-gray-700">Basic checkbox</label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <sui-checkbox 
+                  [(ngModel)]="labeledChecked"
+                  name="labeled" />
+                <label class="text-sm font-medium text-gray-700">Checkbox with label</label>
+              </div>
+              
+              <p class="text-sm text-gray-500 mt-2">Basic checked: {{ basicChecked }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox States -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Checkbox States</h3>
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <sui-checkbox 
+                  [(ngModel)]="disabledChecked"
+                  [disabled]="true"
+                  name="disabled" />
+                <label class="text-sm font-medium text-gray-700">Disabled (checked)</label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <sui-checkbox 
+                  [(ngModel)]="readonlyChecked"
+                  [disabled]="true"
+                  name="readonly" />
+                <label class="text-sm font-medium text-gray-700">Read-only (checked)</label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <sui-checkbox 
+                  [(ngModel)]="requiredChecked"
+                  name="required" />
+                <label class="text-sm font-medium text-gray-700">Required checkbox</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox with Labels -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Checkbox with Labels</h3>
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <sui-checkbox 
+                  [(ngModel)]="smallChecked"
+                  name="small" />
+                <label class="text-sm font-medium text-gray-700">Small checkbox</label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <sui-checkbox 
+                  [(ngModel)]="mediumChecked"
+                  name="medium" />
+                <label class="text-sm font-medium text-gray-700">Medium checkbox (default)</label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <sui-checkbox 
+                  [(ngModel)]="largeChecked"
+                  name="large" />
+                <label class="text-sm font-medium text-gray-700">Large checkbox</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Usage Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-8">
+        
+        <!-- Form Integration -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Form Integration</h3>
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <form class="space-y-4">
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-3">Newsletter Preferences</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <sui-checkbox 
+                      name="newsletter"
+                      value="weekly" />
+                    <label class="text-sm font-medium text-gray-700">Weekly Newsletter</label>
+                  </div>
+                  
+                  <div class="flex items-center space-x-3">
+                    <sui-checkbox 
+                      name="newsletter"
+                      value="monthly" />
+                    <label class="text-sm font-medium text-gray-700">Monthly Newsletter</label>
+                  </div>
+                  
+                  <div class="flex items-center space-x-3">
+                    <sui-checkbox 
+                      name="newsletter"
+                      value="promotions" />
+                    <label class="text-sm font-medium text-gray-700">Promotional Emails</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-3">Terms and Conditions</h4>
+                <div class="flex items-center space-x-3">
+                  <sui-checkbox 
+                    name="terms" />
+                  <label class="text-sm font-medium text-gray-700">I agree to the terms and conditions</label>
+                </div>
+              </div>
+              
+              <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                Submit Preferences
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-8">
+        
+        <!-- Properties -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Properties</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">label</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Label text for the checkbox</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Disables the checkbox</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">readonly</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Makes the checkbox read-only</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">required</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Makes the checkbox required</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Size of the checkbox</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">change</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Event</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Fired when the checkbox value changes</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">focus</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">FocusEvent</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Fired when the checkbox receives focus</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">blur</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">FocusEvent</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Fired when the checkbox loses focus</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Usage Example -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Usage Example</h3>
+          <div class="bg-gray-900 rounded-lg p-6 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;sui-checkbox
+  [(ngModel)]="checked"
+  label="Accept terms and conditions"
+  [required]="true"
+  [disabled]="false"
+  size="md"
+  (change)="onCheckboxChange($event)"
+  (focus)="onFocus($event)"
+  (blur)="onBlur($event)"&gt;
+&lt;/sui-checkbox&gt;</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </app-tabs>
+</div>

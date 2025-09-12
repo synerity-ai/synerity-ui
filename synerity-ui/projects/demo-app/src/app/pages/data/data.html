@@ -1,0 +1,203 @@
+<section class="p-6 space-y-8">
+  <!-- Header -->
+  <div class="space-y-4">
+    <h1 class="text-3xl font-bold text-gray-900">Data Components</h1>
+    <p class="text-lg text-gray-600">
+      Comprehensive showcase of data display and management components for tables, trees, timelines, and more.
+    </p>
+  </div>
+
+  <!-- Table Component -->
+  <div class="space-y-6">
+    <h2 class="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Table Component</h2>
+    
+    <div class="space-y-4">
+      <div class="p-4 border border-gray-200 rounded-lg">
+        <h3 class="text-lg font-medium mb-4">Data Table with Sorting and Selection</h3>
+        <sui-table 
+          [value]="tableData"
+          [columns]="tableColumns"
+          [paginator]="true"
+          [rows]="5"
+          [selectionMode]="'multiple'"
+          (onRowSelect)="onRowSelect($event)"
+          (onSort)="onSort($event)">
+        </sui-table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tree Component -->
+  <div class="space-y-6">
+    <h2 class="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Tree Component</h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="p-4 border border-gray-200 rounded-lg">
+        <h3 class="text-lg font-medium mb-4">File Tree</h3>
+        <sui-tree 
+          [value]="treeData"
+          (onNodeSelect)="onNodeSelect($event)">
+        </sui-tree>
+      </div>
+
+      <div class="p-4 border border-gray-200 rounded-lg">
+        <h3 class="text-lg font-medium mb-4">Tree Table</h3>
+        <sui-tree-table 
+          [value]="treeData"
+          (onNodeSelect)="onNodeSelect($event)">
+        </sui-tree-table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline Component -->
+  <div class="space-y-6">
+    <h2 class="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Timeline Component</h2>
+    
+    <div class="p-4 border border-gray-200 rounded-lg">
+      <h3 class="text-lg font-medium mb-4">Order Timeline</h3>
+      <sui-timeline 
+        [value]="timelineData"
+        (onEvent)="onTimelineEvent($event)">
+      </sui-timeline>
+    </div>
+  </div>
+
+  <!-- Data View Component -->
+  <div class="space-y-6">
+    <h2 class="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Data View Component</h2>
+    
+    <div class="p-4 border border-gray-200 rounded-lg">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-medium">Product Catalog</h3>
+        <div class="flex space-x-2">
+          <button 
+            (click)="onDataViewLayoutChange('list')"
+            [class]="dataViewLayout === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'"
+            class="px-3 py-1 rounded text-sm">
+            List
+          </button>
+          <button 
+            (click)="onDataViewLayoutChange('grid')"
+            [class]="dataViewLayout === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'"
+            class="px-3 py-1 rounded text-sm">
+            Grid
+          </button>
+        </div>
+      </div>
+      <sui-data-view 
+        [value]="dataViewData"
+        [layout]="dataViewLayout">
+      </sui-data-view>
+    </div>
+  </div>
+
+  <!-- Paginator Component -->
+  <div class="space-y-6">
+    <h2 class="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Paginator Component</h2>
+    
+    <div class="p-4 border border-gray-200 rounded-lg">
+      <h3 class="text-lg font-medium mb-4">Standalone Paginator</h3>
+      <div class="space-y-4">
+        <p class="text-sm text-gray-600">
+          Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to {{ Math.min(currentPage * itemsPerPage, totalItems) }} of {{ totalItems }} entries
+        </p>
+        <sui-paginator 
+          [rows]="itemsPerPage"
+          [totalRecords]="totalItems"
+          (onPageChange)="onPageChange($event)">
+        </sui-paginator>
+      </div>
+    </div>
+  </div>
+
+  <!-- Virtual Scroller Component -->
+  <div class="space-y-6">
+    <h2 class="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Virtual Scroller Component</h2>
+    
+    <div class="p-4 border border-gray-200 rounded-lg">
+      <h3 class="text-lg font-medium mb-4">Large Dataset (1000 items)</h3>
+      <div class="h-64 border border-gray-300 rounded">
+        <sui-virtual-scroller 
+          [value]="virtualScrollerData"
+          [itemSize]="50">
+          <ng-template let-item>
+            <div class="p-3 border-b border-gray-200 hover:bg-gray-50">
+              <div class="font-medium">{{ item.name }}</div>
+              <div class="text-sm text-gray-600">{{ item.description }}</div>
+            </div>
+          </ng-template>
+        </sui-virtual-scroller>
+      </div>
+    </div>
+  </div>
+
+  <!-- Organization Chart Component -->
+  <div class="space-y-6">
+    <h2 class="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Organization Chart Component</h2>
+    
+    <div class="p-4 border border-gray-200 rounded-lg">
+      <h3 class="text-lg font-medium mb-4">Company Structure</h3>
+      <div class="h-96 overflow-auto">
+        <sui-org-chart 
+          [value]="orgChartData">
+        </sui-org-chart>
+      </div>
+    </div>
+  </div>
+
+  <!-- List Management Components -->
+  <div class="space-y-6">
+    <h2 class="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-2">List Management Components</h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Order List -->
+      <div class="p-4 border border-gray-200 rounded-lg">
+        <h3 class="text-lg font-medium mb-4">Order List</h3>
+        <sui-order-list 
+          [value]="orderListData">
+        </sui-order-list>
+      </div>
+
+      <!-- Pick List -->
+      <div class="p-4 border border-gray-200 rounded-lg">
+        <h3 class="text-lg font-medium mb-4">Pick List</h3>
+        <sui-pick-list 
+          [source]="sourceItems"
+          [target]="targetItems">
+        </sui-pick-list>
+      </div>
+    </div>
+  </div>
+
+  <!-- Component Features Summary -->
+  <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+    <h3 class="text-lg font-medium text-blue-800 mb-2">🚀 Data Component Features</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-blue-700">
+      <ul class="space-y-1">
+        <li>✅ Sortable and filterable tables</li>
+        <li>✅ Hierarchical tree structures</li>
+        <li>✅ Interactive timelines</li>
+        <li>✅ List and grid data views</li>
+        <li>✅ Advanced pagination</li>
+      </ul>
+      <ul class="space-y-1">
+        <li>✅ Virtual scrolling for performance</li>
+        <li>✅ Organization charts</li>
+        <li>✅ Reorderable lists</li>
+        <li>✅ Dual list selection</li>
+        <li>✅ Real-time data binding</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Implementation Status -->
+  <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+    <h3 class="text-lg font-medium text-green-800 mb-2">✅ Implementation Status</h3>
+    <p class="text-green-700">
+      All 10 data components are now integrated with comprehensive demos, interactive examples, 
+      and real-time data binding. Each component includes proper TypeScript interfaces, 
+      accessibility features, and Tailwind CSS styling.
+    </p>
+  </div>
+</section>

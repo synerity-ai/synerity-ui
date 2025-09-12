@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild, ElementRef, HostListener, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild, ElementRef, HostListener, OnDestroy, forwardRef } from '@angular/core';
 import { NgIf, CommonModule } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription, fromEvent } from 'rxjs';
 
 @Component({
@@ -7,9 +8,16 @@ import { Subscription, fromEvent } from 'rxjs';
   imports: [CommonModule, NgIf],
   templateUrl: './date-picker.html',
   styleUrl: './date-picker.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DatePicker),
+      multi: true
+    }
+  ]
 })
-export class DatePicker implements OnDestroy {
+export class DatePicker implements ControlValueAccessor, OnDestroy {
   @Input() value: Date | null = null;
   @Input() placeholder = 'Select date';
   @Input() disabled = false;
@@ -28,6 +36,10 @@ export class DatePicker implements OnDestroy {
 
   visible = false;
   private documentClickListener!: Subscription;
+
+  // ControlValueAccessor implementation
+  private onValueChange = (value: Date | null) => {};
+  private onTouched = () => {};
 
   ngOnDestroy(): void {
     this.unbindDocumentClickListener();
@@ -53,12 +65,16 @@ export class DatePicker implements OnDestroy {
     const target = event.target as HTMLInputElement;
     const dateValue = target.value ? new Date(target.value) : null;
     this.value = dateValue;
+    this.onValueChange(this.value);
+    this.onTouched();
     this.onChange.emit(this.value);
     this.onSelect.emit(this.value);
   }
 
   onDateSelect(date: Date): void {
     this.value = date;
+    this.onValueChange(this.value);
+    this.onTouched();
     this.onChange.emit(this.value);
     this.onSelect.emit(this.value);
     this.visible = false;
@@ -67,6 +83,8 @@ export class DatePicker implements OnDestroy {
 
   clear(): void {
     this.value = null;
+    this.onValueChange(this.value);
+    this.onTouched();
     this.onChange.emit(this.value);
   }
 
@@ -114,5 +132,22 @@ export class DatePicker implements OnDestroy {
 
   hasValue(): boolean {
     return this.value !== null;
+  }
+
+  // ControlValueAccessor methods
+  writeValue(value: Date | null): void {
+    this.value = value;
+  }
+
+  registerOnChange(fn: (value: Date | null) => void): void {
+    this.onValueChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }

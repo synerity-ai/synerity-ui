@@ -18,7 +18,7 @@ export class Sidebar {
       title: 'Foundation',
       items: [
         { name: 'Button', route: '/components/button', icon: '🔘', comingSoon: false },
-        { name: 'Input Text', route: '/components/input', icon: '📝', comingSoon: false },
+        { name: 'InputText', route: '/components/inputtext', icon: '📝', comingSoon: false },
         { name: 'Card', route: '/components/card', icon: '🃏', comingSoon: false }
       ]
     },
@@ -27,7 +27,7 @@ export class Sidebar {
       items: [
         { name: 'All Forms', route: '/components/forms', icon: '📋', comingSoon: false },
         { name: 'AutoComplete', route: '/components/autocomplete', icon: '🔍', comingSoon: true },
-        { name: 'Checkbox', route: '/components/checkbox', icon: '☑️', comingSoon: true },
+        { name: 'Checkbox', route: '/components/checkbox', icon: '☑️', comingSoon: false },
         { name: 'ColorPicker', route: '/components/colorpicker', icon: '🎨', comingSoon: true },
         { name: 'DatePicker', route: '/components/datepicker', icon: '📅', comingSoon: true },
         { name: 'Editor', route: '/components/editor', icon: '✏️', comingSoon: true },
@@ -52,6 +52,7 @@ export class Sidebar {
     {
       title: 'Data Components',
       items: [
+        { name: 'All Data Components', route: '/components/data', icon: '📊', comingSoon: false },
         { name: 'DataView', route: '/components/dataview', icon: '📊', comingSoon: true },
         { name: 'OrderList', route: '/components/orderlist', icon: '📋', comingSoon: true },
         { name: 'OrgChart', route: '/components/orgchart', icon: '🏢', comingSoon: true },
@@ -67,6 +68,7 @@ export class Sidebar {
     {
       title: 'Panel Components',
       items: [
+        { name: 'All Panel Components', route: '/components/panels', icon: '🪟', comingSoon: false },
         { name: 'Accordion', route: '/components/accordion', icon: '📁', comingSoon: true },
         { name: 'Divider', route: '/components/divider', icon: '➖', comingSoon: true },
         { name: 'Fieldset', route: '/components/fieldset', icon: '📦', comingSoon: true },

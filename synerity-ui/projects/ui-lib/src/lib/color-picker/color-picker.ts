@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild, ElementRef, HostListener, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild, ElementRef, HostListener, OnDestroy, forwardRef } from '@angular/core';
 import { NgIf, CommonModule } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription, fromEvent } from 'rxjs';
 
 @Component({
@@ -7,9 +8,16 @@ import { Subscription, fromEvent } from 'rxjs';
   imports: [CommonModule, NgIf],
   templateUrl: './color-picker.html',
   styleUrl: './color-picker.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ColorPicker),
+      multi: true
+    }
+  ]
 })
-export class ColorPicker implements OnDestroy {
+export class ColorPicker implements ControlValueAccessor, OnDestroy {
   @Input() value = '#000000';
   @Input() format: 'hex' | 'rgb' | 'hsl' = 'hex';
   @Input() inline = false;
@@ -24,6 +32,10 @@ export class ColorPicker implements OnDestroy {
 
   visible = false;
   private documentClickListener!: Subscription;
+
+  // ControlValueAccessor implementation
+  private onValueChange = (value: string) => {};
+  private onTouched = () => {};
 
   ngOnDestroy(): void {
     this.unbindDocumentClickListener();
@@ -48,12 +60,16 @@ export class ColorPicker implements OnDestroy {
   onColorChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.value = target.value;
+    this.onValueChange(this.value);
+    this.onTouched();
     this.onChange.emit(this.value);
     this.onSelect.emit(this.value);
   }
 
   onColorSelect(color: string): void {
     this.value = color;
+    this.onValueChange(this.value);
+    this.onTouched();
     this.onChange.emit(this.value);
     this.onSelect.emit(this.value);
     this.visible = false;
@@ -101,5 +117,22 @@ export class ColorPicker implements OnDestroy {
 
   isInline(): boolean {
     return this.inline;
+  }
+
+  // ControlValueAccessor methods
+  writeValue(value: string): void {
+    this.value = value || '#000000';
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onValueChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }
