@@ -17,5 +17,11 @@ export const routes: Routes = [
   { path: 'components/password', loadComponent: () => import('./pages/password/password').then(m => m.Password) },
   { path: 'components/inputnumber', loadComponent: () => import('./pages/inputnumber/inputnumber').then(m => m.Inputnumber) },
   { path: 'components/datepicker', loadComponent: () => import('./pages/datepicker/datepicker').then(m => m.Datepicker) },
+  { path: 'components/colorpicker', loadComponent: () => import('./pages/colorpicker/colorpicker').then(m => m.Colorpicker) },
+  { path: 'components/slider', loadComponent: () => import('./pages/slider/slider').then(m => m.Slider) },
+  { path: 'components/rating', loadComponent: () => import('./pages/rating/rating').then(m => m.Rating) },
+  { path: 'components/toggleswitch', loadComponent: () => import('./pages/toggleswitch/toggleswitch').then(m => m.Toggleswitch) },
+  { path: 'components/multiselect', loadComponent: () => import('./pages/multiselect/multiselect').then(m => m.Multiselect) },
+  { path: 'components/autocomplete', loadComponent: () => import('./pages/autocomplete/autocomplete').then(m => m.Autocomplete) },
   { path: '**', redirectTo: '/home' }
 ];

@@ -26,20 +26,20 @@ export class Sidebar {
       title: 'Form Components',
       items: [
         { name: 'All Forms', route: '/components/forms', icon: '📋', comingSoon: false },
-        { name: 'AutoComplete', route: '/components/autocomplete', icon: '🔍', comingSoon: true },
+        { name: 'AutoComplete', route: '/components/autocomplete', icon: '🔍', comingSoon: false },
         { name: 'Checkbox', route: '/components/checkbox', icon: '☑️', comingSoon: false },
-        { name: 'ColorPicker', route: '/components/colorpicker', icon: '🎨', comingSoon: true },
+        { name: 'ColorPicker', route: '/components/colorpicker', icon: '🎨', comingSoon: false },
         { name: 'DatePicker', route: '/components/datepicker', icon: '📅', comingSoon: false },
         { name: 'Editor', route: '/components/editor', icon: '✏️', comingSoon: true },
         { name: 'InputNumber', route: '/components/inputnumber', icon: '🔢', comingSoon: false },
-        { name: 'MultiSelect', route: '/components/multiselect', icon: '📝', comingSoon: true },
+        { name: 'MultiSelect', route: '/components/multiselect', icon: '📝', comingSoon: false },
         { name: 'Password', route: '/components/password', icon: '🔒', comingSoon: false },
         { name: 'RadioButton', route: '/components/radiobutton', icon: '🔘', comingSoon: false },
-        { name: 'Rating', route: '/components/rating', icon: '⭐', comingSoon: true },
+        { name: 'Rating', route: '/components/rating', icon: '⭐', comingSoon: false },
         { name: 'Select', route: '/components/select', icon: '📋', comingSoon: false },
-        { name: 'Slider', route: '/components/slider', icon: '🎚️', comingSoon: true },
+        { name: 'Slider', route: '/components/slider', icon: '🎚️', comingSoon: false },
         { name: 'Textarea', route: '/components/textarea', icon: '📄', comingSoon: false },
-        { name: 'ToggleSwitch', route: '/components/toggleswitch', icon: '🔄', comingSoon: true }
+        { name: 'ToggleSwitch', route: '/components/toggleswitch', icon: '🔄', comingSoon: false }
       ]
     },
     {

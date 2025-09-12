@@ -1,1 +1,216 @@
-<p>colorpicker works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">ColorPicker</h1>
+    <p class="text-lg text-gray-600">Color selection components with visual preview, format support, and form integration.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Usage -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Usage</h3>
+            <button 
+              (click)="toggleCode('basicUsage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicUsageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Basic Color</label>
+                  <sui-color-picker 
+                    [(ngModel)]="basicColor"
+                    (onChange)="onColorChange($event, 'basic')">
+                  </sui-color-picker>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Primary Color</label>
+                  <sui-color-picker 
+                    [(ngModel)]="primaryColor"
+                    (onChange)="onColorChange($event, 'primary')">
+                  </sui-color-picker>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Secondary Color</label>
+                  <sui-color-picker 
+                    [(ngModel)]="secondaryColor"
+                    (onChange)="onColorChange($event, 'secondary')">
+                  </sui-color-picker>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="showBasicUsageCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Basic Color --&gt;
+&lt;sui-color-picker 
+  [(ngModel)]="basicColor"
+  (onChange)="onColorChange($event, 'basic')"&gt;
+&lt;/sui-color-picker&gt;
+
+&lt;!-- Primary Color --&gt;
+&lt;sui-color-picker 
+  [(ngModel)]="primaryColor"
+  (onChange)="onColorChange($event, 'primary')"&gt;
+&lt;/sui-color-picker&gt;
+
+&lt;!-- Secondary Color --&gt;
+&lt;sui-color-picker 
+  [(ngModel)]="secondaryColor"
+  (onChange)="onColorChange($event, 'secondary')"&gt;
+&lt;/sui-color-picker&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Color States -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Color States</h3>
+            <button 
+              (click)="toggleCode('colorStates')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showColorStatesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
+                  <sui-color-picker 
+                    [(ngModel)]="basicColor">
+                  </sui-color-picker>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
+                  <sui-color-picker 
+                    [(ngModel)]="disabledColor"
+                    [disabled]="true">
+                  </sui-color-picker>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">With Value</label>
+                  <sui-color-picker 
+                    [(ngModel)]="customColor">
+                  </sui-color-picker>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="showColorStatesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Normal State --&gt;
+&lt;sui-color-picker 
+  [(ngModel)]="basicColor"&gt;
+&lt;/sui-color-picker&gt;
+
+&lt;!-- Disabled State --&gt;
+&lt;sui-color-picker 
+  [(ngModel)]="disabledColor"
+  [disabled]="true"&gt;
+&lt;/sui-color-picker&gt;
+
+&lt;!-- With Value --&gt;
+&lt;sui-color-picker 
+  [(ngModel)]="customColor"&gt;
+&lt;/sui-color-picker&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+            <button 
+              (click)="toggleCode('interactiveDemo')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Theme Color</label>
+                  <sui-color-picker 
+                    [(ngModel)]="interactiveColor"
+                    (onChange)="onColorChange($event, 'theme')">
+                  </sui-color-picker>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Accent Color</label>
+                  <sui-color-picker 
+                    [(ngModel)]="basicColor"
+                    (onChange)="onColorChange($event, 'accent')">
+                  </sui-color-picker>
+                </div>
+              </div>
+              
+              <div class="mt-6 p-4 bg-gray-50 rounded-lg border">
+                <h4 class="font-medium text-gray-900 mb-2">Color Preview:</h4>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 rounded-lg border-2 border-gray-300" [style.background-color]="interactiveColor"></div>
+                  <div class="w-12 h-12 rounded-lg border-2 border-gray-300" [style.background-color]="basicColor"></div>
+                </div>
+                <div class="mt-2 text-sm text-gray-600">
+                  <p>Theme: {{ interactiveColor }}</p>
+                  <p>Accent: {{ basicColor }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Interactive Demo --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Theme Color&lt;/label&gt;
+    &lt;sui-color-picker 
+      [(ngModel)]="interactiveColor"
+      (onChange)="onColorChange($event, 'theme')"&gt;
+    &lt;/sui-color-picker&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Accent Color&lt;/label&gt;
+    &lt;sui-color-picker 
+      [(ngModel)]="basicColor"
+      (onChange)="onColorChange($event, 'accent')"&gt;
+    &lt;/sui-color-picker&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Color Preview --&gt;
+&lt;div class="mt-6 p-4 bg-gray-50 rounded-lg border"&gt;
+  &lt;h4 class="font-medium text-gray-900 mb-2"&gt;Color Preview:&lt;/h4&gt;
+  &lt;div class="flex items-center gap-4"&gt;
+    &lt;div class="w-12 h-12 rounded-lg border-2 border-gray-300" [style.background-color]="interactiveColor"&gt;&lt;/div&gt;
+    &lt;div class="w-12 h-12 rounded-lg border-2 border-gray-300" [style.background-color]="basicColor"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>
