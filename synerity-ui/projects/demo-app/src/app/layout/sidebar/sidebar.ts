@@ -36,7 +36,7 @@ export class Sidebar {
         { name: 'Password', route: '/components/password', icon: '🔒', comingSoon: true },
         { name: 'RadioButton', route: '/components/radiobutton', icon: '🔘', comingSoon: true },
         { name: 'Rating', route: '/components/rating', icon: '⭐', comingSoon: true },
-        { name: 'Select', route: '/components/select', icon: '📋', comingSoon: true },
+        { name: 'Select', route: '/components/select', icon: '📋', comingSoon: false },
         { name: 'Slider', route: '/components/slider', icon: '🎚️', comingSoon: true },
         { name: 'Textarea', route: '/components/textarea', icon: '📄', comingSoon: true },
         { name: 'ToggleSwitch', route: '/components/toggleswitch', icon: '🔄', comingSoon: true }
