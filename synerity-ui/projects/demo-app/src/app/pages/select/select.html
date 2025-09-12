@@ -24,42 +24,46 @@
             </button>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Basic Select</label>
-              <sui-select 
-                [options]="basicOptions" 
-                [(ngModel)]="selectedValue"
-                placeholder="Choose an option"
-                name="basicSelect">
-              </sui-select>
-              <p class="text-sm text-gray-500 mt-2">Selected: {{ selectedValue || 'None' }}</p>
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
-              <sui-select 
-                [options]="countryOptions" 
-                [(ngModel)]="selectedCountry"
-                placeholder="Select a country"
-                name="countrySelect">
-              </sui-select>
-              <p class="text-sm text-gray-500 mt-2">Selected: {{ selectedCountry || 'None' }}</p>
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Required Field</label>
-              <sui-select 
-                [options]="basicOptions" 
-                [(ngModel)]="selectedValue"
-                placeholder="Please select"
-                name="requiredSelect">
-              </sui-select>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Basic Select</label>
+                  <sui-select 
+                    [options]="basicOptions" 
+                    [(ngModel)]="selectedValue"
+                    placeholder="Choose an option"
+                    name="basicSelect">
+                  </sui-select>
+                  <p class="text-sm text-gray-500 mt-2">Selected: {{ selectedValue || 'None' }}</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
+                  <sui-select 
+                    [options]="countryOptions" 
+                    [(ngModel)]="selectedCountry"
+                    placeholder="Select a country"
+                    name="countrySelect">
+                  </sui-select>
+                  <p class="text-sm text-gray-500 mt-2">Selected: {{ selectedCountry || 'None' }}</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Required Field</label>
+                  <sui-select 
+                    [options]="basicOptions" 
+                    [(ngModel)]="selectedValue"
+                    placeholder="Please select"
+                    name="requiredSelect">
+                  </sui-select>
+                </div>
+              </div>
             </div>
           </div>
           
-          <div *ngIf="showBasicUsageCode" class="mt-4">
-            <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Basic Select --&gt;
+          <div *ngIf="showBasicUsageCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Basic Select --&gt;
 &lt;sui-select 
   [options]="basicOptions" 
   [(ngModel)]="selectedValue"
@@ -97,46 +101,50 @@
             </button>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Searchable Select</label>
-              <sui-select 
-                [options]="countryOptions" 
-                [(ngModel)]="selectedSearchable"
-                [searchable]="true"
-                placeholder="Search countries..."
-                name="searchableSelect">
-              </sui-select>
-              <p class="text-sm text-gray-500 mt-2">Selected: {{ selectedSearchable || 'None' }}</p>
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Clearable Select</label>
-              <sui-select 
-                [options]="basicOptions" 
-                [(ngModel)]="selectedClearable"
-                [clearable]="true"
-                placeholder="Select and clear"
-                name="clearableSelect">
-              </sui-select>
-              <p class="text-sm text-gray-500 mt-2">Selected: {{ selectedClearable || 'None' }}</p>
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Searchable & Clearable</label>
-              <sui-select 
-                [options]="countryOptions" 
-                [(ngModel)]="selectedSearchable"
-                [searchable]="true"
-                [clearable]="true"
-                placeholder="Search and clear"
-                name="advancedSelect">
-              </sui-select>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Searchable Select</label>
+                  <sui-select 
+                    [options]="countryOptions" 
+                    [(ngModel)]="selectedSearchable"
+                    [searchable]="true"
+                    placeholder="Search countries..."
+                    name="searchableSelect">
+                  </sui-select>
+                  <p class="text-sm text-gray-500 mt-2">Selected: {{ selectedSearchable || 'None' }}</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Clearable Select</label>
+                  <sui-select 
+                    [options]="basicOptions" 
+                    [(ngModel)]="selectedClearable"
+                    [clearable]="true"
+                    placeholder="Select and clear"
+                    name="clearableSelect">
+                  </sui-select>
+                  <p class="text-sm text-gray-500 mt-2">Selected: {{ selectedClearable || 'None' }}</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Searchable & Clearable</label>
+                  <sui-select 
+                    [options]="countryOptions" 
+                    [(ngModel)]="selectedSearchable"
+                    [searchable]="true"
+                    [clearable]="true"
+                    placeholder="Search and clear"
+                    name="advancedSelect">
+                  </sui-select>
+                </div>
+              </div>
             </div>
           </div>
           
-          <div *ngIf="showSelectFeaturesCode" class="mt-4">
-            <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Searchable Select --&gt;
+          <div *ngIf="showSelectFeaturesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Searchable Select --&gt;
 &lt;sui-select 
   [options]="countryOptions" 
   [(ngModel)]="selectedSearchable"
@@ -178,41 +186,45 @@
             </button>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
-              <sui-select 
-                [options]="basicOptions" 
-                [(ngModel)]="selectedValue"
-                placeholder="Normal select"
-                name="normalSelect">
-              </sui-select>
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
-              <sui-select 
-                [options]="basicOptions" 
-                [(ngModel)]="selectedDisabled"
-                [disabled]="true"
-                placeholder="Disabled select"
-                name="disabledSelect">
-              </sui-select>
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">With Selected Value</label>
-              <sui-select 
-                [options]="basicOptions" 
-                [(ngModel)]="selectedValue"
-                placeholder="Pre-selected"
-                name="preselectedSelect">
-              </sui-select>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
+                  <sui-select 
+                    [options]="basicOptions" 
+                    [(ngModel)]="selectedValue"
+                    placeholder="Normal select"
+                    name="normalSelect">
+                  </sui-select>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
+                  <sui-select 
+                    [options]="basicOptions" 
+                    [(ngModel)]="selectedDisabled"
+                    [disabled]="true"
+                    placeholder="Disabled select"
+                    name="disabledSelect">
+                  </sui-select>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">With Selected Value</label>
+                  <sui-select 
+                    [options]="basicOptions" 
+                    [(ngModel)]="selectedValue"
+                    placeholder="Pre-selected"
+                    name="preselectedSelect">
+                  </sui-select>
+                </div>
+              </div>
             </div>
           </div>
           
-          <div *ngIf="showSelectStatesCode" class="mt-4">
-            <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Normal State --&gt;
+          <div *ngIf="showSelectStatesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Normal State --&gt;
 &lt;sui-select 
   [options]="basicOptions" 
   [(ngModel)]="selectedValue"
@@ -251,42 +263,44 @@
             </button>
           </div>
           
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Choose Your Country</label>
-                <sui-select 
-                  [options]="countryOptions" 
-                  [(ngModel)]="selectedCountry"
-                  [searchable]="true"
-                  [clearable]="true"
-                  placeholder="Search for your country..."
-                  name="interactiveCountry"
-                  (change)="onSelectChange($event, 'country')">
-                </sui-select>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Choose Your Country</label>
+                  <sui-select 
+                    [options]="countryOptions" 
+                    [(ngModel)]="selectedCountry"
+                    [searchable]="true"
+                    [clearable]="true"
+                    placeholder="Search for your country..."
+                    name="interactiveCountry"
+                    (change)="onSelectChange($event, 'country')">
+                  </sui-select>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Select Option</label>
+                  <sui-select 
+                    [options]="basicOptions" 
+                    [(ngModel)]="selectedValue"
+                    placeholder="Choose an option"
+                    name="interactiveOption"
+                    (change)="onSelectChange($event, 'option')">
+                  </sui-select>
+                </div>
               </div>
               
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Select Option</label>
-                <sui-select 
-                  [options]="basicOptions" 
-                  [(ngModel)]="selectedValue"
-                  placeholder="Choose an option"
-                  name="interactiveOption"
-                  (change)="onSelectChange($event, 'option')">
-                </sui-select>
+              <div class="mt-6 p-4 bg-gray-50 rounded-lg border">
+                <h4 class="font-medium text-gray-900 mb-2">Current Selection:</h4>
+                <p class="text-sm text-gray-600">Country: {{ selectedCountry || 'None selected' }}</p>
+                <p class="text-sm text-gray-600">Option: {{ selectedValue || 'None selected' }}</p>
               </div>
-            </div>
-            
-            <div class="mt-4 p-4 bg-white rounded border">
-              <h4 class="font-medium text-gray-900 mb-2">Current Selection:</h4>
-              <p class="text-sm text-gray-600">Country: {{ selectedCountry || 'None selected' }}</p>
-              <p class="text-sm text-gray-600">Option: {{ selectedValue || 'None selected' }}</p>
             </div>
           </div>
           
-          <div *ngIf="showInteractiveDemoCode" class="mt-4">
-            <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Interactive Demo --&gt;
+          <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Interactive Demo --&gt;
 &lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;
   &lt;div&gt;
     &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Choose Your Country&lt;/label&gt;
