@@ -1,0 +1,12 @@
+/* InputNumber Demo Page Styles - Minimal overrides like Button page */
+
+/* InputNumber component spacing overrides */
+sui-input-number {
+  display: block;
+  margin-bottom: 0.5rem; /* 8px spacing for vertical layouts */
+}
+
+/* Ensure proper spacing in flex layouts */
+.flex-wrap gap-6 sui-input-number {
+  margin-bottom: 0;
+}

@@ -1,1 +1,243 @@
-<p>datepicker works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">DatePicker</h1>
+    <p class="text-lg text-gray-600">Date selection components with calendar popup, validation, and form integration.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Usage -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Usage</h3>
+            <button 
+              (click)="toggleCode('basicUsage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicUsageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Basic Date</label>
+                  <sui-date-picker 
+                    [(ngModel)]="basicDate"
+                    placeholder="Select date"
+                    name="basicDate"
+                    (onChange)="onDateChange($event, 'basic')">
+                  </sui-date-picker>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
+                  <sui-date-picker 
+                    [(ngModel)]="placeholderDate"
+                    placeholder="Choose a date..."
+                    name="placeholderDate">
+                  </sui-date-picker>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">With Icon</label>
+                  <sui-date-picker 
+                    [(ngModel)]="basicDate"
+                    [showIcon]="true"
+                    placeholder="Date with icon"
+                    name="iconDate">
+                  </sui-date-picker>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="showBasicUsageCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Basic Date --&gt;
+&lt;sui-date-picker 
+  [(ngModel)]="basicDate"
+  placeholder="Select date"
+  name="basicDate"
+  (onChange)="onDateChange($event, 'basic')"&gt;
+&lt;/sui-date-picker&gt;
+
+&lt;!-- With Placeholder --&gt;
+&lt;sui-date-picker 
+  [(ngModel)]="placeholderDate"
+  placeholder="Choose a date..."
+  name="placeholderDate"&gt;
+&lt;/sui-date-picker&gt;
+
+&lt;!-- With Icon --&gt;
+&lt;sui-date-picker 
+  [(ngModel)]="basicDate"
+  [showIcon]="true"
+  placeholder="Date with icon"
+  name="iconDate"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Date States -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Date States</h3>
+            <button 
+              (click)="toggleCode('dateStates')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showDateStatesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
+                  <sui-date-picker 
+                    [(ngModel)]="basicDate"
+                    placeholder="Normal date"
+                    name="normalDate">
+                  </sui-date-picker>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
+                  <sui-date-picker 
+                    [(ngModel)]="disabledDate"
+                    [disabled]="true"
+                    placeholder="Disabled date"
+                    name="disabledDate">
+                  </sui-date-picker>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Readonly State</label>
+                  <sui-date-picker 
+                    [(ngModel)]="readonlyDate"
+                    [readonly]="true"
+                    placeholder="Readonly date"
+                    name="readonlyDate">
+                  </sui-date-picker>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="showDateStatesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Normal State --&gt;
+&lt;sui-date-picker 
+  [(ngModel)]="basicDate"
+  placeholder="Normal date"
+  name="normalDate"&gt;
+&lt;/sui-date-picker&gt;
+
+&lt;!-- Disabled State --&gt;
+&lt;sui-date-picker 
+  [(ngModel)]="disabledDate"
+  [disabled]="true"
+  placeholder="Disabled date"
+  name="disabledDate"&gt;
+&lt;/sui-date-picker&gt;
+
+&lt;!-- Readonly State --&gt;
+&lt;sui-date-picker 
+  [(ngModel)]="readonlyDate"
+  [readonly]="true"
+  placeholder="Readonly date"
+  name="readonlyDate"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+            <button 
+              (click)="toggleCode('interactiveDemo')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+                  <sui-date-picker 
+                    [(ngModel)]="interactiveDate"
+                    placeholder="Select start date"
+                    name="startDate"
+                    (onChange)="onDateChange($event, 'start')">
+                  </sui-date-picker>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">End Date</label>
+                  <sui-date-picker 
+                    [(ngModel)]="basicDate"
+                    placeholder="Select end date"
+                    name="endDate"
+                    (onChange)="onDateChange($event, 'end')">
+                  </sui-date-picker>
+                </div>
+              </div>
+              
+              <div class="mt-6 p-4 bg-gray-50 rounded-lg border">
+                <h4 class="font-medium text-gray-900 mb-2">Date Range:</h4>
+                <p class="text-sm text-gray-600 mb-2">Start: {{ interactiveDate ? (interactiveDate | date:'mediumDate') : 'Not selected' }}</p>
+                <p class="text-sm text-gray-600">End: {{ basicDate ? (basicDate | date:'mediumDate') : 'Not selected' }}</p>
+                <div class="mt-2 text-xs text-gray-500">
+                  <span>Days between: {{ getDaysBetween() }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;!-- Interactive Demo --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Start Date&lt;/label&gt;
+    &lt;sui-date-picker 
+      [(ngModel)]="interactiveDate"
+      placeholder="Select start date"
+      name="startDate"
+      (onChange)="onDateChange($event, 'start')"&gt;
+    &lt;/sui-date-picker&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;End Date&lt;/label&gt;
+    &lt;sui-date-picker 
+      [(ngModel)]="basicDate"
+      placeholder="Select end date"
+      name="endDate"
+      (onChange)="onDateChange($event, 'end')"&gt;
+    &lt;/sui-date-picker&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Date Range --&gt;
+&lt;div class="mt-6 p-4 bg-gray-50 rounded-lg border"&gt;
+  &lt;h4 class="font-medium text-gray-900 mb-2"&gt;Date Range:&lt;/h4&gt;
+  &lt;p class="text-sm text-gray-600 mb-2"&gt;Start: {{ "{{" }} interactiveDate ? (interactiveDate | date:'mediumDate') : 'Not selected' {{ "}}" }}&lt;/p&gt;
+  &lt;p class="text-sm text-gray-600"&gt;End: {{ "{{" }} basicDate ? (basicDate | date:'mediumDate') : 'Not selected' {{ "}}" }}&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

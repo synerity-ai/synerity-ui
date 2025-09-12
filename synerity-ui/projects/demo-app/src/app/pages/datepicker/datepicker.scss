@@ -1,0 +1,12 @@
+/* DatePicker Demo Page Styles - Minimal overrides like Button page */
+
+/* DatePicker component spacing overrides */
+sui-date-picker {
+  display: block;
+  margin-bottom: 0.5rem; /* 8px spacing for vertical layouts */
+}
+
+/* Ensure proper spacing in flex layouts */
+.flex-wrap gap-6 sui-date-picker {
+  margin-bottom: 0;
+}

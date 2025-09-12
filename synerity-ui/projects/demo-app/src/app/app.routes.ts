@@ -14,5 +14,8 @@ export const routes: Routes = [
   { path: 'components/select', loadComponent: () => import('./pages/select/select').then(m => m.Select) },
   { path: 'components/textarea', loadComponent: () => import('./pages/textarea/textarea').then(m => m.Textarea) },
   { path: 'components/radiobutton', loadComponent: () => import('./pages/radiobutton/radiobutton').then(m => m.Radiobutton) },
+  { path: 'components/password', loadComponent: () => import('./pages/password/password').then(m => m.Password) },
+  { path: 'components/inputnumber', loadComponent: () => import('./pages/inputnumber/inputnumber').then(m => m.Inputnumber) },
+  { path: 'components/datepicker', loadComponent: () => import('./pages/datepicker/datepicker').then(m => m.Datepicker) },
   { path: '**', redirectTo: '/home' }
 ];
