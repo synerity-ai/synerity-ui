@@ -11,5 +11,6 @@ export const routes: Routes = [
   { path: 'components/panels', loadComponent: () => import('./pages/panels/panels').then(m => m.Panels) },
   { path: 'components/inputtext', loadComponent: () => import('./pages/inputtext/inputtext').then(m => m.Inputtext) },
   { path: 'components/checkbox', loadComponent: () => import('./pages/checkbox/checkbox').then(m => m.Checkbox) },
+  { path: 'components/select', loadComponent: () => import('./pages/select/select').then(m => m.Select) },
   { path: '**', redirectTo: '/home' }
 ];
