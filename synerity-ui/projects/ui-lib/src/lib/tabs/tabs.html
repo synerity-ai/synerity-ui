@@ -1,0 +1,24 @@
+<div class="sui-tabs" [class]="getTabsClass()" [style]="getTabsStyle()">
+  <div class="sui-tabs-nav">
+    <div 
+      *ngFor="let tab of tabs; let i = index" 
+      class="sui-tabs-tab" 
+      [class]="getTabClass(i)"
+      (click)="setActiveIndex(i)"
+    >
+      <span *ngIf="tab.icon" class="sui-tabs-tab-icon">{{ tab.icon }}</span>
+      <span class="sui-tabs-tab-label">{{ tab.header }}</span>
+      <span 
+        *ngIf="tab.closable" 
+        class="sui-tabs-tab-close"
+        (click)="closeTab(i); $event.stopPropagation()"
+      >
+        ×
+      </span>
+    </div>
+  </div>
+  
+  <div *ngIf="tabs[activeIndex]" class="sui-tabs-content">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="sui-panel" [class]="getPanelClass()" [style]="getPanelStyle()">
+  <div 
+    *ngIf="showHeader && header" 
+    class="sui-panel-header"
+    [class.sui-panel-header-toggleable]="toggleable"
+    (click)="toggle()"
+  >
+    <span class="sui-panel-header-text">{{ header }}</span>
+    <span *ngIf="toggleable" class="sui-panel-header-icon">
+      {{ collapsed ? '▶' : '▼' }}
+    </span>
+  </div>
+  <div 
+    *ngIf="!collapsed" 
+    class="sui-panel-content"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

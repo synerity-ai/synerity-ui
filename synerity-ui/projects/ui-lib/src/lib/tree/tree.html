@@ -1,0 +1,52 @@
+<div class="sui-tree">
+  <div *ngIf="filter" class="sui-tree-filter">
+    <input
+      type="text"
+      [placeholder]="filterPlaceholder"
+      (input)="onFilter($event)"
+      class="sui-tree-filter-input"
+    />
+  </div>
+  
+  <div class="sui-tree-container">
+    <div *ngFor="let node of filteredValue" class="sui-tree-node">
+      <div 
+        class="sui-tree-node-content"
+        [class.sui-tree-node-selected]="isNodeSelected(node)"
+        (click)="onNodeClick(node, $event)"
+      >
+        <span 
+          *ngIf="hasChildren(node)" 
+          (click)="toggleNode(node)" 
+          class="sui-tree-node-toggle"
+        >
+          {{ node.expanded ? '▼' : '▶' }}
+        </span>
+        <span *ngIf="!hasChildren(node)" class="sui-tree-node-spacer"></span>
+        <span class="sui-tree-node-label">{{ node.label }}</span>
+      </div>
+      
+      <div *ngIf="hasChildren(node) && node.expanded" class="sui-tree-node-children">
+        <ng-container *ngFor="let child of node.children">
+          <div class="sui-tree-node-child">
+            <div 
+              class="sui-tree-node-content"
+              [class.sui-tree-node-selected]="isNodeSelected(child)"
+              (click)="onNodeClick(child, $event)"
+            >
+              <span 
+                *ngIf="hasChildren(child)" 
+                (click)="toggleNode(child)" 
+                class="sui-tree-node-toggle"
+              >
+                {{ child.expanded ? '▼' : '▶' }}
+              </span>
+              <span *ngIf="!hasChildren(child)" class="sui-tree-node-spacer"></span>
+              <span class="sui-tree-node-label">{{ child.label }}</span>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

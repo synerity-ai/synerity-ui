@@ -1,0 +1,27 @@
+<div class="sui-terminal" [class]="getTerminalClass()" [style]="getTerminalStyle()">
+  <div class="sui-terminal-header">
+    <div class="sui-terminal-title">{{ welcomeMessage }}</div>
+  </div>
+  
+  <div class="sui-terminal-content" #terminalContent>
+    <div *ngFor="let cmd of commands" class="sui-terminal-command">
+      <div class="sui-terminal-command-line">
+        <span class="sui-terminal-prompt">{{ prompt }}</span>
+        <span class="sui-terminal-command-text">{{ cmd.command }}</span>
+      </div>
+      <div *ngIf="cmd.output" class="sui-terminal-output">{{ cmd.output }}</div>
+    </div>
+  </div>
+  
+  <div class="sui-terminal-input-line">
+    <span class="sui-terminal-prompt">{{ prompt }}</span>
+    <input
+      #terminalInput
+      type="text"
+      class="sui-terminal-input"
+      [(ngModel)]="currentCommand"
+      (keydown)="onKeyDown($event)"
+      placeholder="Type a command..."
+    />
+  </div>
+</div>

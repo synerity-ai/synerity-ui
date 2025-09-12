@@ -1,0 +1,38 @@
+<div class="sui-confirm-popup-wrapper">
+  <div #targetElement class="sui-confirm-popup-target" (click)="show()">
+    <ng-content></ng-content>
+  </div>
+  
+  <div 
+    *ngIf="visible" 
+    #popupElement
+    class="sui-confirm-popup" 
+    [class]="getPopupClass()"
+    [style]="getPopupStyle()"
+  >
+    <div class="sui-confirm-popup-content">
+      <p class="sui-confirm-popup-message">{{ message }}</p>
+    </div>
+    
+    <div class="sui-confirm-popup-footer">
+      <button 
+        type="button" 
+        class="sui-confirm-popup-button sui-confirm-popup-reject"
+        (click)="reject()"
+      >
+        <span *ngIf="rejectIcon" class="sui-confirm-popup-button-icon">{{ rejectIcon }}</span>
+        {{ rejectLabel }}
+      </button>
+      <button 
+        type="button" 
+        class="sui-confirm-popup-button sui-confirm-popup-accept"
+        (click)="accept()"
+      >
+        <span *ngIf="acceptIcon" class="sui-confirm-popup-button-icon">{{ acceptIcon }}</span>
+        {{ acceptLabel }}
+      </button>
+    </div>
+    
+    <div class="sui-confirm-popup-arrow"></div>
+  </div>
+</div>

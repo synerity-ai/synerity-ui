@@ -1,0 +1,38 @@
+<div class="sui-org-chart" [class]="getOrientationClass()">
+  <div *ngFor="let node of value" class="sui-org-chart-node" [class]="getNodeTypeClass(node)">
+    <div 
+      class="sui-org-chart-node-content"
+      [class.sui-org-chart-node-selected]="isNodeSelected(node)"
+      (click)="onNodeClick(node)"
+    >
+      <div class="sui-org-chart-node-label">{{ node.label }}</div>
+      <div *ngIf="node.data" class="sui-org-chart-node-data">
+        <div *ngFor="let key of getObjectKeys(node.data)" class="sui-org-chart-node-field">
+          <span class="sui-org-chart-field-label">{{ key }}:</span>
+          <span class="sui-org-chart-field-value">{{ node.data[key] }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="hasChildren(node)" class="sui-org-chart-children">
+      <div class="sui-org-chart-connector"></div>
+      <div class="sui-org-chart-children-container">
+        <div *ngFor="let child of node.children" class="sui-org-chart-child">
+          <div 
+            class="sui-org-chart-node-content"
+            [class.sui-org-chart-node-selected]="isNodeSelected(child)"
+            (click)="onNodeClick(child)"
+          >
+            <div class="sui-org-chart-node-label">{{ child.label }}</div>
+            <div *ngIf="child.data" class="sui-org-chart-node-data">
+              <div *ngFor="let key of getObjectKeys(child.data)" class="sui-org-chart-node-field">
+                <span class="sui-org-chart-field-label">{{ key }}:</span>
+                <span class="sui-org-chart-field-value">{{ child.data[key] }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

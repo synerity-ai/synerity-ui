@@ -1,0 +1,24 @@
+<div *ngIf="visible" class="sui-dynamic-dialog-mask" (click)="hide()">
+  <div 
+    #dialogElement
+    class="sui-dynamic-dialog" 
+    [class]="getDialogClass()"
+    [style]="getDialogStyle()"
+    (click)="$event.stopPropagation()"
+  >
+    <div *ngIf="header || closable" class="sui-dynamic-dialog-header">
+      <span *ngIf="header" class="sui-dynamic-dialog-header-title">{{ header }}</span>
+      <button 
+        *ngIf="closable" 
+        type="button" 
+        class="sui-dynamic-dialog-close"
+        (click)="close()"
+      >
+        ×
+      </button>
+    </div>
+    <div class="sui-dynamic-dialog-content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

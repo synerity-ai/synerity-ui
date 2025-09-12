@@ -1,0 +1,62 @@
+<div 
+  class="sui-upload" 
+  [class]="getUploadClass()"
+  [style]="getUploadStyle()"
+  [class.sui-upload-drag-over]="dragOver"
+  [class.sui-upload-disabled]="disabled"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+  (click)="choose()"
+>
+  <input 
+    #fileInput
+    type="file" 
+    [multiple]="multiple"
+    [accept]="accept"
+    [disabled]="disabled"
+    (change)="onFileSelect($event)"
+    class="sui-upload-input"
+  />
+  
+  <div class="sui-upload-content">
+    <div class="sui-upload-icon">📁</div>
+    <div class="sui-upload-text">
+      <span class="sui-upload-primary">Drop files here or click to upload</span>
+      <span *ngIf="accept" class="sui-upload-secondary">Accepted formats: {{ accept }}</span>
+    </div>
+  </div>
+  
+  <div *ngIf="files.length > 0" class="sui-upload-files">
+    <div *ngFor="let file of files; let i = index" class="sui-upload-file">
+      <div class="sui-upload-file-info">
+        <span class="sui-upload-file-name">{{ file.name }}</span>
+        <span class="sui-upload-file-size">{{ formatFileSize(file.size) }}</span>
+      </div>
+      <button 
+        type="button" 
+        class="sui-upload-file-remove"
+        (click)="removeFile(i); $event.stopPropagation()"
+      >
+        ×
+      </button>
+    </div>
+  </div>
+  
+  <div *ngIf="files.length > 0 && !auto" class="sui-upload-actions">
+    <button 
+      type="button" 
+      class="sui-upload-button sui-upload-upload"
+      (click)="upload(); $event.stopPropagation()"
+    >
+      Upload
+    </button>
+    <button 
+      type="button" 
+      class="sui-upload-button sui-upload-clear"
+      (click)="clear(); $event.stopPropagation()"
+    >
+      Clear
+    </button>
+  </div>
+</div>

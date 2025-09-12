@@ -1,0 +1,22 @@
+<div class="sui-accordion" [class]="getAccordionClass()" [style]="style">
+  <div *ngFor="let tab of tabs; let i = index" class="sui-accordion-tab">
+    <div 
+      class="sui-accordion-tab-header"
+      [class.sui-accordion-tab-header-active]="isActive(i)"
+      (click)="toggle(i)"
+    >
+      <span class="sui-accordion-tab-header-label">{{ tab.header }}</span>
+      <span class="sui-accordion-tab-header-icon">
+        {{ isActive(i) ? '▼' : '▶' }}
+      </span>
+    </div>
+    <div 
+      *ngIf="isActive(i)" 
+      class="sui-accordion-tab-content"
+    >
+      <div class="sui-accordion-tab-content-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

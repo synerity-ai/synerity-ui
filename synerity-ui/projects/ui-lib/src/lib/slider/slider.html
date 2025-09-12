@@ -1,0 +1,13 @@
+<input
+	[type]="'range'"
+	[class.opacity-50]="disabled"
+	[id]="inputId"
+	[name]="name"
+	[disabled]="disabled"
+	[min]="min"
+	[max]="max"
+	[step]="step"
+	[value]="value"
+	(input)="onInput($event)"
+	(blur)="onBlur()"
+/>

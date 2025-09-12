@@ -1,0 +1,15 @@
+<div class="sui-block-ui" [class]="getBlockUiClass()" [style]="getBlockUiStyle()">
+  <ng-content></ng-content>
+  
+  <div 
+    *ngIf="isBlocked()" 
+    class="sui-block-ui-overlay" 
+    [class]="getOverlayClass()" 
+    [style]="getOverlayStyle()"
+  >
+    <div class="sui-block-ui-content">
+      <div *ngIf="shouldShowSpinner()" class="sui-block-ui-spinner"></div>
+      <div *ngIf="hasMessage()" class="sui-block-ui-message">{{ message }}</div>
+    </div>
+  </div>
+</div>

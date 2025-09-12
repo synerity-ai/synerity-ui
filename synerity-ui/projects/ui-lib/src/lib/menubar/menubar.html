@@ -1,0 +1,27 @@
+<div class="sui-menubar" [class]="getMenubarClass()" [style]="getMenubarStyle()">
+  <ul class="sui-menubar-list">
+    <li 
+      *ngFor="let item of model" 
+      class="sui-menubar-item"
+      [class.sui-menubar-item-disabled]="item.disabled"
+      (click)="onItemClickHandler(item)"
+      (mouseenter)="onItemMouseEnter(item)"
+      (mouseleave)="onItemMouseLeave()"
+    >
+      <div class="sui-menubar-item-content">
+        <span *ngIf="item.icon" class="sui-menubar-item-icon">{{ item.icon }}</span>
+        <span class="sui-menubar-item-label">{{ item.label }}</span>
+        <span *ngIf="hasSubmenu(item)" class="sui-menubar-item-arrow">▼</span>
+      </div>
+      
+      <div *ngIf="hasSubmenu(item) && activeItem === item" class="sui-menubar-submenu">
+        <div class="sui-menubar-submenu-items">
+          <div *ngFor="let subItem of item.items" class="sui-menubar-submenu-item" (click)="onItemClickHandler(subItem)">
+            <span *ngIf="subItem.icon" class="sui-menubar-submenu-item-icon">{{ subItem.icon }}</span>
+            <span class="sui-menubar-submenu-item-label">{{ subItem.label }}</span>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

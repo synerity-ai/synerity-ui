@@ -1,0 +1,30 @@
+<div class="sui-speed-dial" [class]="getDirectionClass()">
+  <!-- Speed dial items -->
+  <div *ngIf="open" class="sui-speed-dial-items">
+    <button
+      *ngFor="let item of items; let i = index"
+      type="button"
+      [disabled]="item.disabled"
+      (click)="onItemClick(item)"
+      class="sui-speed-dial-item"
+      [class.sui-speed-dial-item-disabled]="item.disabled"
+      [style.animation-delay]="(i * 0.1) + 's'"
+    >
+      <span *ngIf="item.icon" class="sui-speed-dial-item-icon">{{ item.icon }}</span>
+      <span *ngIf="item.label" class="sui-speed-dial-item-label">{{ item.label }}</span>
+    </button>
+  </div>
+  
+  <!-- Main toggle button -->
+  <button
+    type="button"
+    [disabled]="disabled"
+    (click)="toggle()"
+    class="sui-speed-dial-button"
+    [class.sui-speed-dial-button-open]="open"
+    [class.sui-speed-dial-button-disabled]="disabled"
+  >
+    <span class="sui-speed-dial-button-icon">{{ buttonIcon }}</span>
+    <span *ngIf="buttonLabel" class="sui-speed-dial-button-label">{{ buttonLabel }}</span>
+  </button>
+</div>

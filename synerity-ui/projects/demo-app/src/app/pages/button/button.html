@@ -1,0 +1,284 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Button</h1>
+    <p class="text-lg text-gray-600">Interactive buttons with multiple variants, sizes, and states for user actions.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Variants -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Variants</h3>
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <div class="flex flex-wrap gap-4 sm:gap-6">
+              <sui-button variant="primary" (click)="onButtonClick()">Primary</sui-button>
+              <sui-button variant="secondary" (click)="onButtonClick()">Secondary</sui-button>
+              <sui-button variant="outline" (click)="onButtonClick()">Outline</sui-button>
+              <sui-button variant="ghost" (click)="onButtonClick()">Ghost</sui-button>
+              <sui-button variant="danger" (click)="onButtonClick()">Danger</sui-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Button Sizes -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Button Sizes</h3>
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <div class="flex flex-wrap items-center gap-6">
+              <sui-button size="sm" variant="primary">Small</sui-button>
+              <sui-button size="md" variant="primary">Medium</sui-button>
+              <sui-button size="lg" variant="primary">Large</sui-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Button States -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Button States</h3>
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <div class="flex flex-wrap gap-6">
+              <sui-button variant="primary">Normal</sui-button>
+              <sui-button variant="primary" [loading]="true">Loading</sui-button>
+              <sui-button variant="primary" [disabled]="true">Disabled</sui-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons with Icons -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Buttons with Icons</h3>
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <div class="flex flex-wrap gap-6">
+              <sui-button variant="primary" icon="💾" (click)="onButtonClick()">Save</sui-button>
+              <sui-button variant="secondary" icon="📤" (click)="onButtonClick()">Export</sui-button>
+              <sui-button variant="outline" icon="🗑️" (click)="onButtonClick()">Delete</sui-button>
+              <sui-button variant="ghost" icon="⚙️" (click)="onButtonClick()">Settings</sui-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full Width Buttons -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Full Width Buttons</h3>
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <div class="space-y-4">
+              <sui-button variant="primary" [fullWidth]="true" (click)="onButtonClick()">Full Width Primary</sui-button>
+              <sui-button variant="outline" [fullWidth]="true" (click)="onButtonClick()">Full Width Outline</sui-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h3>
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Button Text</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="buttonText"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+              </div>
+              <div>
+                <sui-button variant="primary" (click)="onButtonClick()">{{ buttonText }}</sui-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-8">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+            <div>npm install @synerity/ui</div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <pre class="text-sm"><code>&lt;sui-button variant="primary"&gt;Click me&lt;/sui-button&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Import -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <pre class="text-sm"><code>import {{ '{' }} Button {{ '}' }} from '@synerity/ui';</code></pre>
+          </div>
+        </div>
+
+        <!-- Examples -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
+          
+          <div class="space-y-6">
+            <!-- Primary Button -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Primary Button</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-button variant="primary"&gt;Primary&lt;/sui-button&gt;</code></pre>
+              </div>
+            </div>
+
+            <!-- Loading Button -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Loading Button</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-button variant="primary" [loading]="true"&gt;Loading&lt;/sui-button&gt;</code></pre>
+              </div>
+            </div>
+
+            <!-- Disabled Button -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Disabled Button</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-button variant="primary" [disabled]="true"&gt;Disabled&lt;/sui-button&gt;</code></pre>
+              </div>
+            </div>
+
+            <!-- Button with Icon -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Button with Icon</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-button variant="primary" icon="💾"&gt;Save&lt;/sui-button&gt;</code></pre>
+              </div>
+            </div>
+
+            <!-- Full Width Button -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Full Width Button</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-button variant="primary" [fullWidth]="true"&gt;Full Width&lt;/sui-button&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-8">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Visual style variant of the button</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Size of the button</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the button is disabled</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">loading</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the button shows loading state</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">type</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'button' | 'submit' | 'reset'</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'button'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">HTML button type</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">fullWidth</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the button takes full width of its container</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">icon</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string | null</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Icon to display in the button (emoji or icon name)</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">iconPosition</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'left' | 'right'</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'left'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Position of the icon relative to the text</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">click</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MouseEvent</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the button is clicked</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <ul class="text-sm text-blue-800 space-y-2">
+              <li>• Full keyboard navigation support</li>
+              <li>• WCAG 2.1 AA compliant color contrast</li>
+              <li>• Proper ARIA attributes for screen readers</li>
+              <li>• Focus management and visual focus indicators</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

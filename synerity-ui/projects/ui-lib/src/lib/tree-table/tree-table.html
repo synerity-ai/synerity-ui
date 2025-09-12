@@ -1,0 +1,62 @@
+<div class="sui-tree-table">
+  <div *ngIf="value.length === 0" class="sui-tree-table-empty">
+    {{ emptyMessage }}
+  </div>
+  
+  <table *ngIf="value.length > 0" class="sui-tree-table-table">
+    <thead class="sui-tree-table-header">
+      <tr class="sui-tree-table-header-row">
+        <th *ngFor="let col of columns" class="sui-tree-table-header-cell" [class.sui-tree-table-sortable]="col.sortable">
+          <div class="sui-tree-table-header-content">
+            <span class="sui-tree-table-header-label">{{ col.header }}</span>
+            <span *ngIf="col.sortable" (click)="onSortColumn(col)" class="sui-tree-table-sort-icon">
+              {{ getSortIcon(col) }}
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="sui-tree-table-body">
+      <ng-container *ngFor="let node of value">
+        <tr 
+          class="sui-tree-table-row" 
+          [class.sui-tree-table-row-selected]="isNodeSelected(node)"
+          (click)="onNodeClick(node, $event)"
+        >
+          <td class="sui-tree-table-cell sui-tree-table-cell-expand">
+            <span 
+              *ngIf="hasChildren(node)" 
+              (click)="toggleNode(node)" 
+              class="sui-tree-table-toggle"
+            >
+              {{ node.expanded ? '▼' : '▶' }}
+            </span>
+            <span *ngIf="!hasChildren(node)" class="sui-tree-table-spacer"></span>
+          </td>
+          <td *ngFor="let col of columns" class="sui-tree-table-cell">
+            {{ getNodeValue(node, col.field) }}
+          </td>
+        </tr>
+        
+        <!-- Child rows -->
+        <tr *ngIf="hasChildren(node) && node.expanded" class="sui-tree-table-child-row">
+          <td [attr.colspan]="columns.length + 1" class="sui-tree-table-child-cell">
+            <ng-container *ngFor="let child of node.children">
+              <div class="sui-tree-table-child-content">
+                <span 
+                  *ngIf="hasChildren(child)" 
+                  (click)="toggleNode(child)" 
+                  class="sui-tree-table-toggle"
+                >
+                  {{ child.expanded ? '▼' : '▶' }}
+                </span>
+                <span *ngIf="!hasChildren(child)" class="sui-tree-table-spacer"></span>
+                <span class="sui-tree-table-child-label">{{ getNodeValue(child, columns[0].field || '') || child.key }}</span>
+              </div>
+            </ng-container>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

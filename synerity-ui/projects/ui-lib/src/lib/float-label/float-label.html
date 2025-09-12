@@ -1,0 +1,11 @@
+<div class="sui-float-label" [class]="getFloatLabelClass()" [style]="getFloatLabelStyle()">
+  <label 
+    class="sui-float-label-text"
+    [attr.for]="getForAttribute()"
+  >
+    {{ getLabelText() }}
+    <span *ngIf="isRequired()" class="sui-float-label-required-mark">*</span>
+  </label>
+  
+  <ng-content></ng-content>
+</div>

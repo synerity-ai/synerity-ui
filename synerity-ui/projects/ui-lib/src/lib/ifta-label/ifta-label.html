@@ -1,0 +1,5 @@
+<span class="sui-ifta-label" [class]="getIftaLabelClass()" [style]="getIftaLabelStyle()">
+  <span *ngIf="shouldShowTrue()" class="sui-ifta-label-true">{{ trueLabel }}</span>
+  <span *ngIf="shouldShowFalse()" class="sui-ifta-label-false">{{ falseLabel }}</span>
+  <span *ngIf="shouldShowAlt()" class="sui-ifta-label-alt">{{ altLabel }}</span>
+</span>

@@ -1,0 +1,16 @@
+<div *ngIf="visible" class="sui-drawer-mask" (click)="hide()">
+  <div 
+    #drawerElement
+    class="sui-drawer" 
+    [class]="getDrawerClass()"
+    [style]="getDrawerStyle()"
+    (click)="$event.stopPropagation()"
+  >
+    <div *ngIf="closable" class="sui-drawer-header">
+      <button type="button" class="sui-drawer-close" (click)="hide()">×</button>
+    </div>
+    <div class="sui-drawer-content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

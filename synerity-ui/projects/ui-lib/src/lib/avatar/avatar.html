@@ -1,0 +1,20 @@
+<div class="sui-avatar" [class]="getAvatarClass()" [style]="getAvatarStyle()">
+  <img 
+    *ngIf="hasImage()" 
+    [src]="image" 
+    [alt]="label" 
+    class="sui-avatar-image"
+  />
+  <span 
+    *ngIf="hasIcon() && !hasImage()" 
+    class="sui-avatar-icon"
+  >
+    {{ icon }}
+  </span>
+  <span 
+    *ngIf="hasLabel() && !hasImage() && !hasIcon()" 
+    class="sui-avatar-label"
+  >
+    {{ getInitials() }}
+  </span>
+</div>

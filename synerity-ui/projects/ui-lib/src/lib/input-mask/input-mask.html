@@ -1,0 +1,12 @@
+<input
+	[type]="'text'"
+	[class.opacity-50]="disabled"
+	[id]="inputId"
+	[name]="name"
+	[disabled]="disabled"
+	[placeholder]="placeholder"
+	[value]="viewValue"
+	(input)="onInput($event)"
+	(blur)="onBlur()"
+	class="px-2 py-1 outline-none"
+/>

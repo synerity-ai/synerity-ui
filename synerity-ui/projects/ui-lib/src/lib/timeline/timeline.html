@@ -1,0 +1,18 @@
+<div class="sui-timeline" [class]="getLayoutClass()">
+  <div 
+    *ngFor="let event of value; let i = index" 
+    class="sui-timeline-event" 
+    [class]="getAlignmentClass(i) + ' ' + getStatusClass(event)"
+    (click)="onEventClickHandler(event)"
+  >
+    <div class="sui-timeline-marker">
+      <span *ngIf="event.icon" class="sui-timeline-icon">{{ event.icon }}</span>
+      <span *ngIf="!event.icon" class="sui-timeline-dot"></span>
+    </div>
+    <div class="sui-timeline-content">
+      <div *ngIf="event.date" class="sui-timeline-date">{{ event.date }}</div>
+      <div *ngIf="event.content" class="sui-timeline-text">{{ event.content }}</div>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

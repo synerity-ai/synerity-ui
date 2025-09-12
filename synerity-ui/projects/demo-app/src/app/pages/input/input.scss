@@ -1,0 +1,9 @@
+/* Input spacing overrides */
+sui-input-text {
+  display: block;
+  margin-bottom: 1.5rem; /* 24px spacing */
+}
+
+sui-input-text:last-child {
+  margin-bottom: 0;
+}

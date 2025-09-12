@@ -1,0 +1,19 @@
+<div class="sui-icon-field" [class]="getIconFieldClass()" [style]="getIconFieldStyle()">
+  <span 
+    *ngIf="hasIcon() && isLeftPosition()" 
+    class="sui-icon-field-icon" 
+    [class]="getIconClass()"
+  >
+    {{ getIcon() }}
+  </span>
+  
+  <ng-content></ng-content>
+  
+  <span 
+    *ngIf="hasIcon() && isRightPosition()" 
+    class="sui-icon-field-icon" 
+    [class]="getIconClass()"
+  >
+    {{ getIcon() }}
+  </span>
+</div>

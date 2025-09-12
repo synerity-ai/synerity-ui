@@ -1,0 +1,34 @@
+<div class="sui-image-compare" [class]="getImageCompareClass()" [style]="getImageCompareStyle()">
+  <div #container class="sui-image-compare-container">
+    <div class="sui-image-compare-images">
+      <div class="sui-image-compare-before">
+        <img 
+          *ngIf="hasBeforeImage()"
+          [src]="beforeSrc" 
+          [alt]="beforeAlt" 
+          class="sui-image-compare-before-image"
+          [style]="getBeforeImageStyle()"
+        />
+        <div class="sui-image-compare-label sui-image-compare-label-before">{{ beforeAlt }}</div>
+      </div>
+      
+      <div class="sui-image-compare-after">
+        <img 
+          *ngIf="hasAfterImage()"
+          [src]="afterSrc" 
+          [alt]="afterAlt" 
+          class="sui-image-compare-after-image"
+        />
+        <div class="sui-image-compare-label sui-image-compare-label-after">{{ afterAlt }}</div>
+      </div>
+    </div>
+
+    <div #slider class="sui-image-compare-slider" [style]="getSliderStyle()">
+      <div class="sui-image-compare-slider-line"></div>
+      <div class="sui-image-compare-slider-handle">
+        <div class="sui-image-compare-slider-arrow sui-image-compare-slider-arrow-left">‹</div>
+        <div class="sui-image-compare-slider-arrow sui-image-compare-slider-arrow-right">›</div>
+      </div>
+    </div>
+  </div>
+</div>

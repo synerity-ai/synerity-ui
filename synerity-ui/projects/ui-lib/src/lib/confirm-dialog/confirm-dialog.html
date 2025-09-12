@@ -1,0 +1,35 @@
+<div *ngIf="visible" class="sui-confirm-dialog-mask" (click)="hide()">
+  <div 
+    class="sui-confirm-dialog" 
+    [class]="getDialogClass()"
+    [style]="getDialogStyle()"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="sui-confirm-dialog-header">
+      <h3 class="sui-confirm-dialog-title">{{ header }}</h3>
+    </div>
+    
+    <div class="sui-confirm-dialog-content">
+      <p class="sui-confirm-dialog-message">{{ message }}</p>
+    </div>
+    
+    <div class="sui-confirm-dialog-footer">
+      <button 
+        type="button" 
+        class="sui-confirm-dialog-button sui-confirm-dialog-reject"
+        (click)="reject()"
+      >
+        <span *ngIf="rejectIcon" class="sui-confirm-dialog-button-icon">{{ rejectIcon }}</span>
+        {{ rejectLabel }}
+      </button>
+      <button 
+        type="button" 
+        class="sui-confirm-dialog-button sui-confirm-dialog-accept"
+        (click)="accept()"
+      >
+        <span *ngIf="acceptIcon" class="sui-confirm-dialog-button-icon">{{ acceptIcon }}</span>
+        {{ acceptLabel }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="relative inline-block w-64">
+	<button
+		type="button"
+		[disabled]="disabled"
+		(click)="toggle()"
+		(blur)="onBlur()"
+		class="w-full px-3 py-2 text-left border rounded bg-white"
+	>
+		{{ displayValue() }}
+	</button>
+	<div *ngIf="open" class="absolute z-10 mt-1 w-full bg-white border rounded shadow max-h-60 overflow-auto">
+		<div *ngFor="let item of options" class="px-3 py-2">
+			<button
+				type="button"
+				[disabled]="item.children?.length"
+				(click)="select(item)"
+				[class.cursor-pointer]="!item.children?.length"
+				[class.cursor-default]="item.children?.length"
+				class="w-full text-left"
+			>
+				{{ item.label }}
+			</button>
+			<div *ngIf="item.children?.length" class="ml-4">
+				<div *ngFor="let child of item.children" class="px-3 py-1">
+					<button
+						type="button"
+						(click)="select(child)"
+						class="w-full text-left text-sm"
+					>
+						{{ child.label }}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

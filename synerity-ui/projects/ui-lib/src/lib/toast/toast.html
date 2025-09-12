@@ -1,0 +1,33 @@
+<div 
+  #toastContainer
+  class="sui-toast" 
+  [class]="getToastClass()"
+  [style]="getToastStyle()"
+>
+  <div 
+    *ngFor="let message of messages" 
+    class="sui-toast-message" 
+    [class]="getMessageClass(message)"
+  >
+    <div class="sui-toast-message-content">
+      <div class="sui-toast-message-icon">
+        <span *ngIf="message.severity === 'success'">✓</span>
+        <span *ngIf="message.severity === 'info'">ℹ</span>
+        <span *ngIf="message.severity === 'warn'">⚠</span>
+        <span *ngIf="message.severity === 'error'">✗</span>
+      </div>
+      <div class="sui-toast-message-text">
+        <div class="sui-toast-message-summary">{{ message.summary }}</div>
+        <div *ngIf="message.detail" class="sui-toast-message-detail">{{ message.detail }}</div>
+      </div>
+      <button 
+        *ngIf="message.closable" 
+        type="button" 
+        class="sui-toast-message-close"
+        (click)="remove(message.id)"
+      >
+        ×
+      </button>
+    </div>
+  </div>
+</div>

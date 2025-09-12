@@ -1,0 +1,38 @@
+<div class="sui-split-button">
+  <!-- Main button -->
+  <button
+    type="button"
+    [disabled]="disabled"
+    (click)="onMainClick()"
+    [class]="getButtonClass()"
+    [class.sui-split-button-disabled]="disabled"
+  >
+    <span *ngIf="icon" class="sui-split-button-icon">{{ icon }}</span>
+    <span *ngIf="label" class="sui-split-button-label">{{ label }}</span>
+  </button>
+  
+  <!-- Dropdown toggle -->
+  <button
+    type="button"
+    [disabled]="disabled"
+    (click)="toggleDropdown()"
+    class="sui-split-button-dropdown"
+    [class.sui-split-button-disabled]="disabled"
+  >
+    <span class="sui-split-button-dropdown-icon">▼</span>
+  </button>
+  
+  <!-- Dropdown menu -->
+  <div *ngIf="open" class="sui-split-button-menu">
+    <div
+      *ngFor="let item of items"
+      (click)="onItemClick(item)"
+      class="sui-split-button-item"
+      [class.sui-split-button-item-disabled]="item.disabled"
+      [class.sui-split-button-separator]="item.separator"
+    >
+      <span *ngIf="item.icon" class="sui-split-button-item-icon">{{ item.icon }}</span>
+      <span class="sui-split-button-item-label">{{ item.label }}</span>
+    </div>
+  </div>
+</div>

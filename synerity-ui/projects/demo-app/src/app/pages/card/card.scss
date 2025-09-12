@@ -1,0 +1,9 @@
+/* Card spacing overrides */
+sui-card {
+  display: block;
+  margin-bottom: 1.5rem; /* 24px spacing */
+}
+
+sui-card:last-child {
+  margin-bottom: 0;
+}

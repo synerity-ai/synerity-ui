@@ -1,0 +1,52 @@
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+
+@Component({
+  selector: 'sui-toolbar',
+  imports: [NgFor, NgIf],
+  templateUrl: './toolbar.html',
+  styleUrl: './toolbar.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class Toolbar {
+  @Input() style: any = {};
+  @Input() styleClass = '';
+  @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Output() onItemClick = new EventEmitter<any>();
+
+  leftItems: Array<{ 
+    label?: string; 
+    icon?: string; 
+    command?: () => void;
+    disabled?: boolean;
+    separator?: boolean;
+  }> = [];
+
+  rightItems: Array<{ 
+    label?: string; 
+    icon?: string; 
+    command?: () => void;
+    disabled?: boolean;
+    separator?: boolean;
+  }> = [];
+
+  onItemClickHandler(item: any): void {
+    if (item.disabled || item.separator) return;
+    
+    if (item.command) {
+      item.command();
+    }
+    
+    this.onItemClick.emit(item);
+  }
+
+  getToolbarClass(): string {
+    return `sui-toolbar sui-toolbar-${this.orientation} ${this.styleClass}`.trim();
+  }
+
+  getToolbarStyle(): any {
+    return {
+      ...this.style
+    };
+  }
+}

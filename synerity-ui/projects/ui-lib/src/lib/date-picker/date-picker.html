@@ -1,0 +1,34 @@
+<div class="sui-date-picker" [class]="getDatePickerClass()" [style]="getDatePickerStyle()">
+  <div class="sui-date-picker-input" (click)="toggle()">
+    <input 
+      #dateInput
+      type="date" 
+      [value]="value ? value.toISOString().split('T')[0] : ''"
+      [placeholder]="placeholder"
+      [disabled]="isDisabled()"
+      [readonly]="isReadonly()"
+      (change)="onDateChange($event)"
+      class="sui-date-picker-input-native"
+    />
+    <span *ngIf="!hasValue()" class="sui-date-picker-placeholder">{{ placeholder }}</span>
+    <span *ngIf="hasValue()" class="sui-date-picker-value">{{ getDisplayValue() }}</span>
+    <span *ngIf="showIcon" class="sui-date-picker-icon">📅</span>
+    <button 
+      *ngIf="hasValue() && !isDisabled() && !isReadonly()" 
+      type="button" 
+      class="sui-date-picker-clear"
+      (click)="clear()"
+    >
+      ×
+    </button>
+  </div>
+
+  <div *ngIf="isVisible()" #datePicker class="sui-date-picker-panel">
+    <div class="sui-date-picker-calendar">
+      <!-- Calendar implementation would go here -->
+      <div class="sui-date-picker-calendar-placeholder">
+        Calendar view (implementation needed)
+      </div>
+    </div>
+  </div>
+</div>

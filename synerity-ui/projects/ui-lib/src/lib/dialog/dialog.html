@@ -1,0 +1,38 @@
+<div *ngIf="visible" class="sui-dialog-mask" (click)="close()">
+  <div 
+    #dialogElement
+    class="sui-dialog" 
+    [class]="getDialogClass()"
+    [style]="getDialogStyle()"
+    [class.sui-dialog-maximized]="maximized"
+    (click)="$event.stopPropagation()"
+  >
+    <div *ngIf="header || closable || maximizable" class="sui-dialog-header">
+      <span *ngIf="header" class="sui-dialog-header-title">{{ header }}</span>
+      <div class="sui-dialog-header-controls">
+        <button 
+          *ngIf="maximizable" 
+          type="button" 
+          class="sui-dialog-header-button"
+          (click)="maximize()"
+        >
+          {{ maximized ? '⧉' : '⧈' }}
+        </button>
+        <button 
+          *ngIf="closable" 
+          type="button" 
+          class="sui-dialog-header-button"
+          (click)="close()"
+        >
+          ×
+        </button>
+      </div>
+    </div>
+    
+    <div class="sui-dialog-content">
+      <ng-content></ng-content>
+    </div>
+    
+    <div *ngIf="resizable" class="sui-dialog-resize-handle"></div>
+  </div>
+</div>

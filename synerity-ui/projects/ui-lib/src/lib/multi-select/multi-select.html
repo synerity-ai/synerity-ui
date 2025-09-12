@@ -1,0 +1,7 @@
+<div class="inline-flex flex-col gap-2">
+	<label *ngFor="let opt of options" class="inline-flex items-center gap-2">
+		<input type="checkbox" [disabled]="disabled || opt.disabled" [checked]="isChecked(opt.value)" (change)="toggleOption(opt)" />
+		<span>{{ opt.label }}</span>
+	</label>
+	<div class="text-sm text-gray-500">Selected: {{ value | json }}</div>
+</div>

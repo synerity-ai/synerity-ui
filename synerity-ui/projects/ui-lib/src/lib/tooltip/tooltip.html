@@ -1,0 +1,18 @@
+<div class="sui-tooltip-wrapper">
+  <div #targetElement class="sui-tooltip-target">
+    <ng-content></ng-content>
+  </div>
+  
+  <div 
+    *ngIf="visible && tooltip" 
+    #tooltipElement
+    class="sui-tooltip" 
+    [class]="getTooltipClass()"
+    [style]="getTooltipStyle()"
+  >
+    <div class="sui-tooltip-content">
+      {{ tooltip }}
+    </div>
+    <div class="sui-tooltip-arrow"></div>
+  </div>
+</div>

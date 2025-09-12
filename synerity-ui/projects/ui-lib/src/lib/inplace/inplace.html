@@ -1,0 +1,17 @@
+<div class="sui-inplace" [class]="getInplaceClass()" [style]="getInplaceStyle()">
+  <div *ngIf="!isActive()" class="sui-inplace-display" (click)="activate()">
+    <ng-content select="[slot='display']"></ng-content>
+  </div>
+  
+  <div *ngIf="isActive()" class="sui-inplace-content">
+    <ng-content select="[slot='content']"></ng-content>
+    <button 
+      *ngIf="isClosable()" 
+      type="button" 
+      class="sui-inplace-close"
+      (click)="deactivate()"
+    >
+      ×
+    </button>
+  </div>
+</div>

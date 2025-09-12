@@ -1,0 +1,71 @@
+<div class="sui-paginator" *ngIf="totalRecords > 0">
+  <div class="sui-paginator-left">
+    <select
+      *ngIf="showRowsPerPageOptions"
+      [value]="rows"
+      (change)="changeRowsPerPage(+$any($event.target).value)"
+      class="sui-paginator-rows-per-page"
+    >
+      <option *ngFor="let option of rowsPerPageOptions" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+    
+    <span *ngIf="showCurrentPageReport" class="sui-paginator-current-page-report">
+      {{ currentPageReport }}
+    </span>
+  </div>
+  
+  <div class="sui-paginator-center">
+    <button
+      *ngIf="showFirstLastIcon"
+      type="button"
+      (click)="firstPage()"
+      [disabled]="page === 0"
+      class="sui-paginator-first"
+      title="First Page"
+    >
+      ⟪
+    </button>
+    
+    <button
+      type="button"
+      (click)="prevPage()"
+      [disabled]="page === 0"
+      class="sui-paginator-prev"
+      title="Previous Page"
+    >
+      ‹
+    </button>
+    
+    <span
+      *ngFor="let pageLink of pageLinks"
+      (click)="changePage(pageLink)"
+      class="sui-paginator-page"
+      [class.sui-paginator-page-active]="pageLink === page"
+    >
+      {{ pageLink + 1 }}
+    </span>
+    
+    <button
+      type="button"
+      (click)="nextPage()"
+      [disabled]="page === totalPages - 1"
+      class="sui-paginator-next"
+      title="Next Page"
+    >
+      ›
+    </button>
+    
+    <button
+      *ngIf="showFirstLastIcon"
+      type="button"
+      (click)="lastPage()"
+      [disabled]="page === totalPages - 1"
+      class="sui-paginator-last"
+      title="Last Page"
+    >
+      ⟫
+    </button>
+  </div>
+</div>

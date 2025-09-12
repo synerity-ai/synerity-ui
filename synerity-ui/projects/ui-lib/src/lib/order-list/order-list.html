@@ -1,0 +1,41 @@
+<div class="sui-order-list">
+  <div *ngIf="header" class="sui-order-list-header">{{ header }}</div>
+  
+  <div *ngIf="filter" class="sui-order-list-filter">
+    <input
+      type="text"
+      [placeholder]="filterPlaceholder"
+      (input)="onFilter($event)"
+      class="sui-order-list-filter-input"
+    />
+  </div>
+  
+  <div class="sui-order-list-content" [style]="listStyle">
+    <div *ngFor="let item of filteredValue; let i = index" class="sui-order-list-item">
+      <div class="sui-order-list-item-content" (click)="onItemSelect(item)">
+        <span class="sui-order-list-item-label">{{ item.label || item.name || item }}</span>
+      </div>
+      
+      <div class="sui-order-list-item-controls">
+        <button
+          type="button"
+          (click)="moveUp(i)"
+          [disabled]="i === 0"
+          class="sui-order-list-control-btn"
+          title="Move Up"
+        >
+          ↑
+        </button>
+        <button
+          type="button"
+          (click)="moveDown(i)"
+          [disabled]="i === filteredValue.length - 1"
+          class="sui-order-list-control-btn"
+          title="Move Down"
+        >
+          ↓
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

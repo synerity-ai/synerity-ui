@@ -1,0 +1,22 @@
+<div 
+  #scrollElement
+  class="sui-virtual-scroller" 
+  [class]="'sui-virtual-scroller-' + orientation"
+  [style.height]="scrollHeight"
+  [style.width]="scrollWidth"
+  (scroll)="onScrollEvent($event)"
+>
+  <div 
+    class="sui-virtual-scroller-content"
+    [style.height]="getTotalHeight()"
+    [style.width]="getTotalWidth()"
+  >
+    <div 
+      *ngFor="let item of visibleItems; let i = index"
+      class="sui-virtual-scroller-item"
+      [style]="getItemStyle(i)"
+    >
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

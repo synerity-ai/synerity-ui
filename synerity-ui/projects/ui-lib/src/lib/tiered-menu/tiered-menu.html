@@ -1,0 +1,24 @@
+<div class="sui-tiered-menu" [class]="getMenuClass()" [style]="getMenuStyle()">
+  <ul class="sui-tiered-menu-list">
+    <li 
+      *ngFor="let item of model" 
+      class="sui-tiered-menu-item" 
+      [class]="getItemClass(item)"
+    >
+      <div class="sui-tiered-menu-item-content" (click)="onItemClickHandler($event, item)">
+        <span *ngIf="item.icon" class="sui-tiered-menu-item-icon">{{ item.icon }}</span>
+        <span class="sui-tiered-menu-item-label">{{ item.label }}</span>
+        <span *ngIf="hasSubmenu(item)" class="sui-tiered-menu-item-arrow">▶</span>
+      </div>
+
+      <div *ngIf="hasSubmenu(item) && activeItem === item" class="sui-tiered-menu-submenu">
+        <div class="sui-tiered-menu-submenu-items">
+          <div *ngFor="let subItem of item.items" class="sui-tiered-menu-submenu-item" (click)="onItemClickHandler($event, subItem)">
+            <span *ngIf="subItem.icon" class="sui-tiered-menu-submenu-item-icon">{{ subItem.icon }}</span>
+            <span class="sui-tiered-menu-submenu-item-label">{{ subItem.label }}</span>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

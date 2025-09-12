@@ -1,0 +1,19 @@
+<fieldset class="sui-fieldset" [class]="getFieldsetClass()" [style]="getFieldsetStyle()">
+  <legend 
+    *ngIf="legend" 
+    class="sui-fieldset-legend"
+    [class.sui-fieldset-legend-toggleable]="toggleable"
+    (click)="toggle()"
+  >
+    <span class="sui-fieldset-legend-text">{{ legend }}</span>
+    <span *ngIf="toggleable" class="sui-fieldset-legend-icon">
+      {{ collapsed ? '▶' : '▼' }}
+    </span>
+  </legend>
+  <div 
+    *ngIf="!collapsed" 
+    class="sui-fieldset-content"
+  >
+    <ng-content></ng-content>
+  </div>
+</fieldset>

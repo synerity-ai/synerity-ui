@@ -1,0 +1,48 @@
+<nav class="sui-breadcrumb" [class]="getBreadcrumbClass()" [style]="getBreadcrumbStyle()">
+  <ol class="sui-breadcrumb-list">
+    <li class="sui-breadcrumb-item sui-breadcrumb-home">
+      <a 
+        *ngIf="home.url" 
+        [href]="home.url" 
+        class="sui-breadcrumb-link"
+        (click)="onHomeClick()"
+      >
+        <span *ngIf="home.icon" class="sui-breadcrumb-icon">{{ home.icon }}</span>
+        <span class="sui-breadcrumb-label">{{ home.label }}</span>
+      </a>
+      <span 
+        *ngIf="!home.url" 
+        class="sui-breadcrumb-link sui-breadcrumb-link-clickable"
+        (click)="onHomeClick()"
+      >
+        <span *ngIf="home.icon" class="sui-breadcrumb-icon">{{ home.icon }}</span>
+        <span class="sui-breadcrumb-label">{{ home.label }}</span>
+      </span>
+    </li>
+    
+    <li *ngFor="let item of model; let i = index" class="sui-breadcrumb-item">
+      <span class="sui-breadcrumb-separator">/</span>
+      <a 
+        *ngIf="item.url && !isLastItem(i)" 
+        [href]="item.url" 
+        class="sui-breadcrumb-link"
+        [class.sui-breadcrumb-link-disabled]="item.disabled"
+        (click)="onItemClickHandler(item, i)"
+      >
+        <span *ngIf="item.icon" class="sui-breadcrumb-icon">{{ item.icon }}</span>
+        <span class="sui-breadcrumb-label">{{ item.label }}</span>
+      </a>
+      <span 
+        *ngIf="!item.url || isLastItem(i)" 
+        class="sui-breadcrumb-link"
+        [class.sui-breadcrumb-link-current]="isLastItem(i)"
+        [class.sui-breadcrumb-link-disabled]="item.disabled"
+        [class.sui-breadcrumb-link-clickable]="!isLastItem(i) && !item.disabled"
+        (click)="!isLastItem(i) && !item.disabled && onItemClickHandler(item, i)"
+      >
+        <span *ngIf="item.icon" class="sui-breadcrumb-icon">{{ item.icon }}</span>
+        <span class="sui-breadcrumb-label">{{ item.label }}</span>
+      </span>
+    </li>
+  </ol>
+</nav>

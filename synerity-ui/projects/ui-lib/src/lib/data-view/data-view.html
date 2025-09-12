@@ -1,0 +1,19 @@
+<div class="sui-data-view" [class]="getLayoutClass()">
+  <div *ngIf="paginatedValue.length === 0" class="sui-data-view-empty">
+    {{ emptyMessage }}
+  </div>
+  
+  <div *ngIf="layout === 'list'" class="sui-data-view-list">
+    <div *ngFor="let item of paginatedValue; let i = index" class="sui-data-view-list-item">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  
+  <div *ngIf="layout === 'grid'" class="sui-data-view-grid">
+    <div *ngFor="let item of paginatedValue; let i = index" class="sui-data-view-grid-item">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  
+  <!-- Pagination controls would be implemented separately to avoid circular dependency -->
+</div>

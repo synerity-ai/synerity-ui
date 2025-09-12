@@ -1,0 +1,14 @@
+<div class="sui-meter-group" [class]="getMeterGroupClass()" [style]="getMeterGroupStyle()">
+  <div 
+    *ngFor="let item of value" 
+    class="sui-meter-item" 
+    [class]="getMeterItemClass(item)" 
+    [style]="getMeterItemStyle(item)"
+  >
+    <div class="sui-meter-item-content">
+      <span *ngIf="hasIcon(item)" class="sui-meter-item-icon">{{ item.icon }}</span>
+      <span *ngIf="showLabel" class="sui-meter-item-label">{{ getMeterLabel(item) }}</span>
+      <span *ngIf="showValue" class="sui-meter-item-value">{{ getMeterValue(item) }}</span>
+    </div>
+  </div>
+</div>

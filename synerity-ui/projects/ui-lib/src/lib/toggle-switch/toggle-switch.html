@@ -1,0 +1,14 @@
+<button
+	type="button"
+	[disabled]="disabled"
+	[attr.id]="inputId"
+	(name)="name"
+	[class.opacity-50]="disabled"
+	(click)="toggle()"
+	(blur)="onBlur()"
+	class="inline-flex items-center w-12 h-6 rounded-full border px-1 transition-colors"
+	[class.bg-green-500]="checked"
+>
+	<span class="inline-block w-4 h-4 rounded-full bg-white transition-transform" [style.transform]="checked ? 'translateX(1.5rem)' : 'translateX(0)'">
+	</span>
+</button>

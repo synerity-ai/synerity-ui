@@ -1,0 +1,16 @@
+<div class="sui-progress-spinner" [class]="getSpinnerClass()" [style]="getSpinnerStyle()">
+  <svg 
+    [attr.width]="getSize()" 
+    [attr.height]="getSize()" 
+    [attr.viewBox]="'0 0 ' + getSize() + ' ' + getSize()"
+    class="sui-progress-spinner-svg"
+  >
+    <circle
+      [attr.cx]="getSize() / 2"
+      [attr.cy]="getSize() / 2"
+      [attr.r]="getRadius()"
+      [style]="getCircleStyle()"
+      class="sui-progress-spinner-circle"
+    />
+  </svg>
+</div>

@@ -1,0 +1,92 @@
+<div class="sui-pick-list">
+  <div class="sui-pick-list-source">
+    <div class="sui-pick-list-header">{{ sourceHeader }}</div>
+    
+    <div *ngIf="filter" class="sui-pick-list-filter">
+      <input
+        type="text"
+        [placeholder]="filterPlaceholder"
+        (input)="onSourceFilter($event)"
+        class="sui-pick-list-filter-input"
+      />
+    </div>
+    
+    <div class="sui-pick-list-list">
+      <div
+        *ngFor="let item of filteredSource; let i = index"
+        (click)="selectSourceItem(item)"
+        class="sui-pick-list-item"
+        [class.sui-pick-list-item-selected]="isSourceSelected(item)"
+      >
+        {{ item.label || item.name || item }}
+      </div>
+    </div>
+  </div>
+  
+  <div class="sui-pick-list-buttons">
+    <button
+      *ngIf="showSourceControls"
+      type="button"
+      (click)="moveToTarget()"
+      [disabled]="selectedSourceItems.length === 0"
+      class="sui-pick-list-button"
+      title="Move to Target"
+    >
+      ›
+    </button>
+    <button
+      *ngIf="showSourceControls"
+      type="button"
+      (click)="moveAllToTarget()"
+      [disabled]="source.length === 0"
+      class="sui-pick-list-button"
+      title="Move All to Target"
+    >
+      »
+    </button>
+    <button
+      *ngIf="showTargetControls"
+      type="button"
+      (click)="moveToSource()"
+      [disabled]="selectedTargetItems.length === 0"
+      class="sui-pick-list-button"
+      title="Move to Source"
+    >
+      ‹
+    </button>
+    <button
+      *ngIf="showTargetControls"
+      type="button"
+      (click)="moveAllToSource()"
+      [disabled]="target.length === 0"
+      class="sui-pick-list-button"
+      title="Move All to Source"
+    >
+      «
+    </button>
+  </div>
+  
+  <div class="sui-pick-list-target">
+    <div class="sui-pick-list-header">{{ targetHeader }}</div>
+    
+    <div *ngIf="filter" class="sui-pick-list-filter">
+      <input
+        type="text"
+        [placeholder]="filterPlaceholder"
+        (input)="onTargetFilter($event)"
+        class="sui-pick-list-filter-input"
+      />
+    </div>
+    
+    <div class="sui-pick-list-list">
+      <div
+        *ngFor="let item of filteredTarget; let i = index"
+        (click)="selectTargetItem(item)"
+        class="sui-pick-list-item"
+        [class.sui-pick-list-item-selected]="isTargetSelected(item)"
+      >
+        {{ item.label || item.name || item }}
+      </div>
+    </div>
+  </div>
+</div>

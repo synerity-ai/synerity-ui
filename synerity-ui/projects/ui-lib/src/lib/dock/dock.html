@@ -1,0 +1,14 @@
+<div class="sui-dock" [class]="getDockClass()" [style]="getDockStyle()">
+  <div class="sui-dock-items">
+    <div 
+      *ngFor="let item of model" 
+      class="sui-dock-item" 
+      [class]="getItemClass(item)"
+      [title]="item.tooltip || item.label"
+      (click)="onItemClickHandler($event, item)"
+    >
+      <span *ngIf="item.icon" class="sui-dock-item-icon">{{ item.icon }}</span>
+      <span *ngIf="item.label" class="sui-dock-item-label">{{ item.label }}</span>
+    </div>
+  </div>
+</div>

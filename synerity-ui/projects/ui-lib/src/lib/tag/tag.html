@@ -1,0 +1,13 @@
+<div class="sui-tag" [class]="getTagClass()" [style]="getTagStyle()">
+  <span *ngIf="hasIcon()" class="sui-tag-icon">{{ icon }}</span>
+  <span *ngIf="hasValue()" class="sui-tag-value">{{ value }}</span>
+  <button 
+    *ngIf="removable" 
+    type="button" 
+    class="sui-tag-remove"
+    [disabled]="disabled"
+    (click)="remove()"
+  >
+    ×
+  </button>
+</div>

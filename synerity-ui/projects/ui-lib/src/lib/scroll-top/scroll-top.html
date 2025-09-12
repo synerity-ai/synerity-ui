@@ -1,0 +1,12 @@
+<button 
+  *ngIf="isVisible()"
+  #scrollButton
+  type="button"
+  class="sui-scroll-top" 
+  [class]="getScrollTopClass()" 
+  [style]="getScrollTopStyle()"
+  (click)="scrollToTop()"
+  [attr.aria-label]="'Scroll to top'"
+>
+  <span class="sui-scroll-top-icon">{{ getIcon() }}</span>
+</button>

@@ -1,0 +1,17 @@
+<div class="inline-flex flex-col gap-2">
+  <input *ngIf="searchable" type="text" [disabled]="disabled" [placeholder]="'Search...'" (input)="onSearchInput($event)" class="px-2 py-1 border rounded" />
+  <select
+	[class.opacity-50]="disabled"
+	[id]="inputId"
+	[name]="name"
+	[disabled]="disabled"
+	(change)="onSelectChange($event)"
+	(blur)="onBlur()"
+>
+	<option *ngIf="placeholder != null" [selected]="value == null" [value]="''" disabled>{{ placeholder }}</option>
+	<option *ngFor="let opt of filteredOptions; let i = index" [disabled]="opt.disabled" [selected]="opt.value === value">
+		{{ opt.label }}
+	</option>
+  </select>
+  <button *ngIf="clearable && value != null" type="button" class="text-sm underline self-start" (click)="clearSelection()">Clear</button>
+</div>

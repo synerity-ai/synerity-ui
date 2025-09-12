@@ -1,0 +1,39 @@
+<div class="sui-table">
+  <div *ngIf="paginatedValue.length === 0" class="sui-table-empty">
+    {{ emptyMessage }}
+  </div>
+  
+  <table *ngIf="paginatedValue.length > 0" class="sui-table-table">
+    <thead class="sui-table-header">
+      <tr class="sui-table-header-row">
+        <th *ngFor="let col of columns" class="sui-table-header-cell" [class.sui-table-sortable]="col.sortable">
+          <div class="sui-table-header-content">
+            <span class="sui-table-header-label">{{ col.header }}</span>
+            <span *ngIf="col.sortable" (click)="onSortColumn(col)" class="sui-table-sort-icon">
+              {{ getSortIcon(col) }}
+            </span>
+          </div>
+          <input 
+            *ngIf="col.filterable" 
+            type="text" 
+            (input)="onFilterColumn(col, $any($event.target).value)"
+            class="sui-table-filter-input"
+            placeholder="Filter"
+          />
+        </th>
+      </tr>
+    </thead>
+    <tbody class="sui-table-body">
+      <tr 
+        *ngFor="let row of paginatedValue; let i = index" 
+        class="sui-table-row" 
+        [class.sui-table-row-selected]="isRowSelected(row)"
+        (click)="onRowClick(row)"
+      >
+        <td *ngFor="let col of columns" class="sui-table-cell">
+          {{ row[col.field] }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

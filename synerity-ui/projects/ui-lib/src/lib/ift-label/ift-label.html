@@ -1,0 +1,4 @@
+<span class="sui-ift-label" [class]="getLabelClass()" [style]="getLabelStyle()">
+  <span *ngIf="shouldShowTrue()" class="sui-ift-label-true">{{ trueLabel }}</span>
+  <span *ngIf="shouldShowFalse()" class="sui-ift-label-false">{{ falseLabel }}</span>
+</span>

@@ -1,0 +1,31 @@
+<div class="sui-toolbar" [class]="getToolbarClass()" [style]="getToolbarStyle()">
+  <div class="sui-toolbar-left">
+    <div 
+      *ngFor="let item of leftItems" 
+      class="sui-toolbar-item"
+      [class.sui-toolbar-item-disabled]="item.disabled"
+      [class.sui-toolbar-separator]="item.separator"
+      (click)="onItemClickHandler(item)"
+    >
+      <span *ngIf="item.icon" class="sui-toolbar-item-icon">{{ item.icon }}</span>
+      <span *ngIf="item.label" class="sui-toolbar-item-label">{{ item.label }}</span>
+    </div>
+  </div>
+  
+  <div class="sui-toolbar-center">
+    <ng-content></ng-content>
+  </div>
+  
+  <div class="sui-toolbar-right">
+    <div 
+      *ngFor="let item of rightItems" 
+      class="sui-toolbar-item"
+      [class.sui-toolbar-item-disabled]="item.disabled"
+      [class.sui-toolbar-separator]="item.separator"
+      (click)="onItemClickHandler(item)"
+    >
+      <span *ngIf="item.icon" class="sui-toolbar-item-icon">{{ item.icon }}</span>
+      <span *ngIf="item.label" class="sui-toolbar-item-label">{{ item.label }}</span>
+    </div>
+  </div>
+</div>

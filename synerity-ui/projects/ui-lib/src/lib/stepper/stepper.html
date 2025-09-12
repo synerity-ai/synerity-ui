@@ -1,0 +1,20 @@
+<div class="sui-stepper" [class]="getStepperClass()" [style]="getStepperStyle()">
+  <div 
+    *ngFor="let step of steps; let i = index" 
+    class="sui-stepper-step" 
+    [class]="getStepClass(i)"
+    (click)="setActiveIndex(i)"
+  >
+    <div class="sui-stepper-step-indicator">
+      <span *ngIf="!isStepCompleted(i)" class="sui-stepper-step-number">{{ i + 1 }}</span>
+      <span *ngIf="isStepCompleted(i)" class="sui-stepper-step-check">✓</span>
+    </div>
+    <div class="sui-stepper-step-content">
+      <div class="sui-stepper-step-label">{{ step.label }}</div>
+    </div>
+  </div>
+  
+  <div *ngIf="steps[activeIndex]" class="sui-stepper-content">
+    <ng-content></ng-content>
+  </div>
+</div>

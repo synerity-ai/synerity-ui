@@ -1,0 +1,21 @@
+<div class="sui-popover-wrapper">
+  <div #targetElement class="sui-popover-target" (click)="toggle()">
+    <ng-content></ng-content>
+  </div>
+  
+  <div 
+    *ngIf="visible" 
+    #popoverElement
+    class="sui-popover" 
+    [class]="getPopoverClass()"
+    [style]="getPopoverStyle()"
+  >
+    <div *ngIf="showCloseIcon" class="sui-popover-header">
+      <button type="button" class="sui-popover-close" (click)="hide()">×</button>
+    </div>
+    <div class="sui-popover-content">
+      <ng-content select="[slot='content']"></ng-content>
+    </div>
+    <div class="sui-popover-arrow"></div>
+  </div>
+</div>

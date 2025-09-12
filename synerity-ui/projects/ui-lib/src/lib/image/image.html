@@ -1,0 +1,31 @@
+<div class="sui-image" [class]="getImageClass()" [style]="getImageStyle()">
+  <img 
+    *ngIf="hasSrc() && !hasError()"
+    [src]="src" 
+    [alt]="alt" 
+    [loading]="loading"
+    [class.sui-image-zoom]="isZoomEnabled()"
+    (click)="togglePreview()"
+    (load)="onImageLoad($event)"
+    (error)="onImageError($event)"
+  />
+  
+  <div *ngIf="hasError()" class="sui-image-error-placeholder">
+    <span class="sui-image-error-icon">⚠️</span>
+    <span class="sui-image-error-text">Failed to load image</span>
+  </div>
+
+  <div *ngIf="!hasSrc()" class="sui-image-placeholder">
+    <span class="sui-image-placeholder-icon">🖼️</span>
+    <span class="sui-image-placeholder-text">No image source</span>
+  </div>
+
+  <div *ngIf="isPreviewEnabled() && showPreview" class="sui-image-preview" [class]="getPreviewClass()">
+    <div class="sui-image-preview-overlay" (click)="closePreview()">
+      <div class="sui-image-preview-content" (click)="$event.stopPropagation()">
+        <img [src]="src" [alt]="alt" class="sui-image-preview-image" />
+        <button type="button" class="sui-image-preview-close" (click)="closePreview()">×</button>
+      </div>
+    </div>
+  </div>
+</div>

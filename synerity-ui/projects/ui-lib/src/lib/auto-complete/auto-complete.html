@@ -1,0 +1,27 @@
+<div class="relative inline-block w-64">
+	<input
+		[type]="'text'"
+		[class.opacity-50]="disabled"
+		[id]="inputId"
+		[name]="name"
+		[disabled]="disabled"
+		[placeholder]="placeholder"
+		[value]="term"
+		(input)="onInput($event)"
+		(focus)="onFocus()"
+		(blur)="onBlur()"
+		(keydown)="onKeyDown($event)"
+		class="px-2 py-1 border rounded w-full"
+	/>
+	<button *ngIf="term" type="button" (click)="clear()" class="absolute right-2 top-1/2 -translate-y-1/2 text-sm">×</button>
+	<ul *ngIf="open" class="absolute z-10 mt-1 w-full bg-white border rounded shadow max-h-60 overflow-auto">
+		<li
+			*ngFor="let item of filtered; let i = index"
+			(click)="select(item)"
+			[class.bg-gray-100]="i === activeIndex"
+			class="px-3 py-2 cursor-pointer"
+		>
+			{{ displayItem(item) }}
+		</li>
+	</ul>
+</div>

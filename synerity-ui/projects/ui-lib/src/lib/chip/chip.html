@@ -1,0 +1,29 @@
+<div class="sui-chip" [class]="getChipClass()" [style]="getChipStyle()">
+  <img 
+    *ngIf="hasImage()" 
+    [src]="image" 
+    [alt]="label" 
+    class="sui-chip-image"
+  />
+  <span 
+    *ngIf="hasIcon() && !hasImage()" 
+    class="sui-chip-icon"
+  >
+    {{ icon }}
+  </span>
+  <span 
+    *ngIf="hasLabel()" 
+    class="sui-chip-label"
+  >
+    {{ label }}
+  </span>
+  <button 
+    *ngIf="removable" 
+    type="button" 
+    class="sui-chip-remove"
+    [disabled]="disabled"
+    (click)="remove()"
+  >
+    ×
+  </button>
+</div>

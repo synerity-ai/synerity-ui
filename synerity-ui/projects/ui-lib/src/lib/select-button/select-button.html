@@ -1,0 +1,12 @@
+<div class="inline-flex border rounded overflow-hidden">
+	<button
+		*ngFor="let opt of options"
+		type="button"
+		[disabled]="disabled || opt.disabled"
+		[class.bg-gray-200]="opt.value === value"
+		(click)="onOptionClick(opt)"
+		class="px-3 py-1"
+	>
+		{{ opt.label }}
+	</button>
+</div>

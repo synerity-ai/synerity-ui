@@ -1,0 +1,11 @@
+<div class="sui-chart" [class]="getChartClass()" [style]="getChartStyle()">
+  <canvas 
+    #chartCanvas
+    [width]="width" 
+    [height]="height"
+    class="sui-chart-canvas"
+  ></canvas>
+  <div *ngIf="!data || data.datasets.length === 0" class="sui-chart-placeholder">
+    No chart data available
+  </div>
+</div>

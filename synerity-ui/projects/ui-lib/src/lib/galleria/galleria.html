@@ -1,0 +1,66 @@
+<div class="sui-galleria" [class]="getGalleriaClass()" [style]="getGalleriaStyle()">
+  <div #galleriaContainer class="sui-galleria-container">
+    <div class="sui-galleria-content">
+      <div 
+        *ngFor="let item of value; let i = index" 
+        class="sui-galleria-item" 
+        [class.sui-galleria-item-active]="i === activeIndex"
+      >
+        <img [src]="item.src" [alt]="item.alt" class="sui-galleria-image" />
+        <div *ngIf="item.title || item.caption" class="sui-galleria-caption">
+          <h3 *ngIf="item.title" class="sui-galleria-title">{{ item.title }}</h3>
+          <p *ngIf="item.caption" class="sui-galleria-text">{{ item.caption }}</p>
+        </div>
+      </div>
+    </div>
+
+    <button 
+      *ngIf="(circular || !isFirstImage())" 
+      type="button" 
+      class="sui-galleria-prev"
+      (click)="prev()"
+      [attr.aria-label]="'Previous image'"
+    >
+      ‹
+    </button>
+    <button 
+      *ngIf="(circular || !isLastImage())" 
+      type="button" 
+      class="sui-galleria-next"
+      (click)="next()"
+      [attr.aria-label]="'Next image'"
+    >
+      ›
+    </button>
+    <button 
+      type="button" 
+      class="sui-galleria-close"
+      (click)="hide()"
+      [attr.aria-label]="'Close gallery'"
+    >
+      ×
+    </button>
+  </div>
+
+  <div *ngIf="showIndicators && value.length > 1" class="sui-galleria-indicators">
+    <button 
+      *ngFor="let item of value; let i = index" 
+      type="button" 
+      class="sui-galleria-indicator" 
+      [class.sui-galleria-indicator-active]="i === activeIndex"
+      (click)="goToImage(i)"
+      [attr.aria-label]="'Go to image ' + (i + 1)"
+    ></button>
+  </div>
+
+  <div *ngIf="showThumbnails && value.length > 1" class="sui-galleria-thumbnails">
+    <div 
+      *ngFor="let item of value; let i = index" 
+      class="sui-galleria-thumbnail" 
+      [class.sui-galleria-thumbnail-active]="i === activeIndex"
+      (click)="goToImage(i)"
+    >
+      <img [src]="item.thumbnailSrc || item.src" [alt]="item.alt" class="sui-galleria-thumbnail-image" />
+    </div>
+  </div>
+</div>

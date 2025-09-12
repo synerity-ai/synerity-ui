@@ -1,0 +1,14 @@
+<div class="sui-toggle-button-group">
+  <button
+    *ngFor="let option of options"
+    type="button"
+    [disabled]="disabled"
+    (click)="select(option)"
+    [class.sui-toggle-button]="true"
+    [class.sui-toggle-button-selected]="isSelected(option)"
+    [class.sui-toggle-button-disabled]="disabled"
+  >
+    <span *ngIf="option.icon" class="sui-toggle-button-icon">{{ option.icon }}</span>
+    <span class="sui-toggle-button-label">{{ option.label }}</span>
+  </button>
+</div>

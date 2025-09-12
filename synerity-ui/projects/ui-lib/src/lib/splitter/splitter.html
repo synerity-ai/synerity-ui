@@ -1,0 +1,26 @@
+<div 
+  #splitterElement
+  class="sui-splitter" 
+  [class]="getSplitterClass()"
+  [style]="getSplitterStyle()"
+>
+  <div 
+    class="sui-splitter-panel sui-splitter-panel-1"
+    [style]="getPanelStyle(0)"
+  >
+    <ng-content select="[slot='panel1']"></ng-content>
+  </div>
+  
+  <div 
+    class="sui-splitter-gutter"
+    [style]="getGutterStyle()"
+    (mousedown)="onGutterMouseDown($event, 0)"
+  ></div>
+  
+  <div 
+    class="sui-splitter-panel sui-splitter-panel-2"
+    [style]="getPanelStyle(1)"
+  >
+    <ng-content select="[slot='panel2']"></ng-content>
+  </div>
+</div>

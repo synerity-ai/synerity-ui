@@ -1,0 +1,47 @@
+<div class="sui-carousel" [class]="getCarouselClass()" [style]="getCarouselStyle()">
+  <div #carouselContainer class="sui-carousel-container">
+    <div class="sui-carousel-content">
+      <div 
+        *ngFor="let item of value; let i = index" 
+        class="sui-carousel-item" 
+        [class.sui-carousel-item-active]="i === activeIndex"
+      >
+        <img [src]="item.src" [alt]="item.alt" class="sui-carousel-image" />
+        <div *ngIf="item.title || item.caption" class="sui-carousel-caption">
+          <h3 *ngIf="item.title" class="sui-carousel-title">{{ item.title }}</h3>
+          <p *ngIf="item.caption" class="sui-carousel-text">{{ item.caption }}</p>
+        </div>
+      </div>
+    </div>
+
+    <button 
+      *ngIf="showNavigators && (circular || !isFirstPage())" 
+      type="button" 
+      class="sui-carousel-prev"
+      (click)="prev()"
+      [attr.aria-label]="'Previous slide'"
+    >
+      ‹
+    </button>
+    <button 
+      *ngIf="showNavigators && (circular || !isLastPage())" 
+      type="button" 
+      class="sui-carousel-next"
+      (click)="next()"
+      [attr.aria-label]="'Next slide'"
+    >
+      ›
+    </button>
+  </div>
+
+  <div *ngIf="showIndicators && value.length > 1" class="sui-carousel-indicators">
+    <button 
+      *ngFor="let item of value; let i = index" 
+      type="button" 
+      class="sui-carousel-indicator" 
+      [class.sui-carousel-indicator-active]="i === activeIndex"
+      (click)="goToPage(i)"
+      [attr.aria-label]="'Go to slide ' + (i + 1)"
+    ></button>
+  </div>
+</div>

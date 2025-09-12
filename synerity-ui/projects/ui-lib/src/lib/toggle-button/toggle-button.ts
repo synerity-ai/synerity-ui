@@ -1,0 +1,74 @@
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
+
+@Component({
+  selector: 'sui-toggle-button',
+  imports: [FormsModule, NgFor, NgIf],
+  templateUrl: './toggle-button.html',
+  styleUrl: './toggle-button.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ToggleButton),
+      multi: true
+    }
+  ]
+})
+export class ToggleButton implements ControlValueAccessor {
+  @Input() disabled = false;
+  @Input() multiple = false;
+  @Input() options: Array<{ label: string; value: unknown; icon?: string }> = [];
+  @Output() change = new EventEmitter<unknown | unknown[]>();
+
+  value: unknown | unknown[] = null;
+  private onChange: (val: unknown | unknown[]) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  writeValue(val: unknown | unknown[]): void { 
+    this.value = val ?? (this.multiple ? [] : null); 
+  }
+
+  registerOnChange(fn: (val: unknown | unknown[]) => void): void { 
+    this.onChange = fn; 
+  }
+
+  registerOnTouched(fn: () => void): void { 
+    this.onTouched = fn; 
+  }
+
+  setDisabledState(isDisabled: boolean): void { 
+    this.disabled = isDisabled; 
+  }
+
+  select(option: { label: string; value: unknown; icon?: string }): void {
+    if (this.disabled) return;
+
+    if (this.multiple) {
+      const currentValues = Array.isArray(this.value) ? this.value : [];
+      const index = currentValues.indexOf(option.value);
+      
+      if (index > -1) {
+        currentValues.splice(index, 1);
+      } else {
+        currentValues.push(option.value);
+      }
+      
+      this.value = [...currentValues];
+    } else {
+      this.value = option.value;
+    }
+
+    this.onChange(this.value);
+    this.change.emit(this.value);
+    this.onTouched();
+  }
+
+  isSelected(option: { label: string; value: unknown; icon?: string }): boolean {
+    if (this.multiple) {
+      return Array.isArray(this.value) && this.value.includes(option.value);
+    }
+    return this.value === option.value;
+  }
+}

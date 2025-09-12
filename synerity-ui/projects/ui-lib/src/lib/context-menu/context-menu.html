@@ -1,0 +1,30 @@
+<div
+  *ngIf="visible"
+  #menuElement
+  class="sui-context-menu"
+  [ngClass]="styleClass"
+  [ngStyle]="style"
+  (click)="$event.stopPropagation()"
+>
+  <ul class="sui-context-menu-list">
+    <ng-container *ngFor="let item of model">
+      <li *ngIf="!item.separator" class="sui-context-menu-item" [class.sui-context-menu-item-disabled]="item.disabled">
+        <div class="sui-context-menu-item-content" (click)="onItemClick($event, item)">
+          <span *ngIf="item.icon" class="sui-context-menu-item-icon">{{ item.icon }}</span>
+          <span class="sui-context-menu-item-label">{{ item.label }}</span>
+          <span *ngIf="hasSubmenu(item)" class="sui-context-menu-item-arrow">▶</span>
+        </div>
+
+        <div *ngIf="hasSubmenu(item) && activeItem === item" class="sui-context-menu-submenu">
+          <div class="sui-context-menu-submenu-items">
+            <div *ngFor="let subItem of item.items" class="sui-context-menu-submenu-item" (click)="onItemClick($event, subItem)">
+              <span *ngIf="subItem.icon" class="sui-context-menu-submenu-item-icon">{{ subItem.icon }}</span>
+              <span class="sui-context-menu-submenu-item-label">{{ subItem.label }}</span>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li *ngIf="item.separator" class="sui-context-menu-separator"></li>
+    </ng-container>
+  </ul>
+</div>

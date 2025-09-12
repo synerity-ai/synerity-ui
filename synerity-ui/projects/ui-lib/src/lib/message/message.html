@@ -1,0 +1,23 @@
+<div 
+  *ngIf="visible" 
+  class="sui-message" 
+  [class]="getMessageClass()"
+  [style]="getMessageStyle()"
+>
+  <div class="sui-message-content">
+    <div class="sui-message-icon">
+      {{ getIcon() }}
+    </div>
+    <div class="sui-message-text">
+      {{ text }}
+    </div>
+    <button 
+      *ngIf="closable" 
+      type="button" 
+      class="sui-message-close"
+      (click)="close()"
+    >
+      ×
+    </button>
+  </div>
+</div>

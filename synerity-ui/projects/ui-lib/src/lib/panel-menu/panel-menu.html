@@ -1,0 +1,24 @@
+<div class="sui-panel-menu" [class]="getMenuClass()" [style]="getMenuStyle()">
+  <div class="sui-panel-menu-items">
+    <div 
+      *ngFor="let item of model" 
+      class="sui-panel-menu-item" 
+      [class]="getItemClass(item)"
+    >
+      <div class="sui-panel-menu-item-content" (click)="onItemClickHandler($event, item)">
+        <span *ngIf="item.icon" class="sui-panel-menu-item-icon">{{ item.icon }}</span>
+        <span class="sui-panel-menu-item-label">{{ item.label }}</span>
+        <span *ngIf="hasSubmenu(item)" class="sui-panel-menu-item-arrow" [class.sui-panel-menu-item-arrow-expanded]="item.expanded">▶</span>
+      </div>
+
+      <div *ngIf="hasSubmenu(item) && item.expanded" class="sui-panel-menu-submenu">
+        <div class="sui-panel-menu-submenu-items">
+          <div *ngFor="let subItem of item.items" class="sui-panel-menu-submenu-item" (click)="onItemClickHandler($event, subItem)">
+            <span *ngIf="subItem.icon" class="sui-panel-menu-submenu-item-icon">{{ subItem.icon }}</span>
+            <span class="sui-panel-menu-submenu-item-label">{{ subItem.label }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
