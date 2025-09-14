@@ -1,0 +1,52 @@
+// Galleria Demo Page Styles
+
+.galleria-demo {
+  .demo-container {
+    min-height: 200px;
+    position: relative;
+  }
+  
+  .thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  
+  .thumbnail-item {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  
+  .controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .action-log {
+    max-height: 120px;
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 2px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 2px;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+  }
+}

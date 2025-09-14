@@ -1,0 +1,406 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Galleria</h1>
+    <p class="text-gray-600">A galleria component for displaying images in a full-screen gallery with thumbnails and navigation.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    <!-- Basic Galleria -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic Galleria</h3>
+        <button
+          (click)="toggleCode('basicGalleria')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicGalleriaCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">A galleria with thumbnails and indicators. Click on an image to open the gallery.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-2 gap-4">
+          <div *ngFor="let item of basicGalleriaItems; let i = index" 
+               (click)="openGallery(i)"
+               class="cursor-pointer hover:opacity-80 transition-opacity">
+            <img [src]="item.thumbnailSrc || item.src" 
+                 [alt]="item.alt" 
+                 class="w-full h-24 object-cover rounded-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Galleria Component -->
+      <sui-galleria
+        [value]="basicGalleriaItems"
+        [visible]="false"
+        [showThumbnails]="true"
+        [showIndicators]="true"
+        [circular]="true"
+        (onImageChange)="onGalleriaImageChange($event)"
+        (onShow)="onGalleriaShow()"
+        (onHide)="onGalleriaHide()">
+      </sui-galleria>
+
+      <!-- Code Block -->
+      <div *ngIf="showBasicGalleriaCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-galleria
+  [value]="basicGalleriaItems"
+  [visible]="false"
+  [showThumbnails]="true"
+  [showIndicators]="true"
+  [circular]="true"
+  (onImageChange)="onGalleriaImageChange($event)"
+  (onShow)="onGalleriaShow()"
+  (onHide)="onGalleriaHide()"&gt;
+&lt;/sui-galleria&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- No Thumbnails Galleria -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">No Thumbnails Galleria</h3>
+        <button
+          (click)="toggleCode('noThumbnailsGalleria')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showNoThumbnailsGalleriaCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Galleria without thumbnail navigation.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-2 gap-4">
+          <div *ngFor="let item of noThumbnailsGalleriaItems; let i = index" 
+               (click)="openGallery(i)"
+               class="cursor-pointer hover:opacity-80 transition-opacity">
+            <img [src]="item.src" 
+                 [alt]="item.alt" 
+                 class="w-full h-24 object-cover rounded-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Galleria Component -->
+      <sui-galleria
+        [value]="noThumbnailsGalleriaItems"
+        [visible]="false"
+        [showThumbnails]="false"
+        [showIndicators]="true"
+        [circular]="true"
+        (onImageChange)="onGalleriaImageChange($event)"
+        (onShow)="onGalleriaShow()"
+        (onHide)="onGalleriaHide()">
+      </sui-galleria>
+
+      <!-- Code Block -->
+      <div *ngIf="showNoThumbnailsGalleriaCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-galleria
+  [value]="noThumbnailsGalleriaItems"
+  [visible]="false"
+  [showThumbnails]="false"
+  [showIndicators]="true"
+  [circular]="true"
+  (onImageChange)="onGalleriaImageChange($event)"
+  (onShow)="onGalleriaShow()"
+  (onHide)="onGalleriaHide()"&gt;
+&lt;/sui-galleria&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- No Indicators Galleria -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">No Indicators Galleria</h3>
+        <button
+          (click)="toggleCode('noIndicatorsGalleria')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showNoIndicatorsGalleriaCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Galleria without page indicators.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-2 gap-4">
+          <div *ngFor="let item of noIndicatorsGalleriaItems; let i = index" 
+               (click)="openGallery(i)"
+               class="cursor-pointer hover:opacity-80 transition-opacity">
+            <img [src]="item.thumbnailSrc || item.src" 
+                 [alt]="item.alt" 
+                 class="w-full h-24 object-cover rounded-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Galleria Component -->
+      <sui-galleria
+        [value]="noIndicatorsGalleriaItems"
+        [visible]="false"
+        [showThumbnails]="true"
+        [showIndicators]="false"
+        [circular]="true"
+        (onImageChange)="onGalleriaImageChange($event)"
+        (onShow)="onGalleriaShow()"
+        (onHide)="onGalleriaHide()">
+      </sui-galleria>
+
+      <!-- Code Block -->
+      <div *ngIf="showNoIndicatorsGalleriaCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-galleria
+  [value]="noIndicatorsGalleriaItems"
+  [visible]="false"
+  [showThumbnails]="true"
+  [showIndicators]="false"
+  [circular]="true"
+  (onImageChange)="onGalleriaImageChange($event)"
+  (onShow)="onGalleriaShow()"
+  (onHide)="onGalleriaHide()"&gt;
+&lt;/sui-galleria&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Interactive Demo</h3>
+        <button
+          (click)="toggleCode('interactiveDemo')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Interactive galleria with customizable options.</p>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <button
+          (click)="toggleThumbnails()"
+          [class]="interactiveShowThumbnails ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveShowThumbnails ? 'Thumbnails: On' : 'Thumbnails: Off' }}
+        </button>
+        <button
+          (click)="toggleIndicators()"
+          [class]="interactiveShowIndicators ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveShowIndicators ? 'Indicators: On' : 'Indicators: Off' }}
+        </button>
+        <button
+          (click)="toggleCircular()"
+          [class]="interactiveCircular ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveCircular ? 'Circular: On' : 'Circular: Off' }}
+        </button>
+        <button
+          (click)="toggleFullScreen()"
+          [class]="interactiveFullScreen ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveFullScreen ? 'FullScreen: On' : 'FullScreen: Off' }}
+        </button>
+      </div>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg mb-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div *ngFor="let item of interactiveItems; let i = index" 
+               (click)="openGallery(i)"
+               class="cursor-pointer hover:opacity-80 transition-opacity">
+            <img [src]="item.thumbnailSrc || item.src" 
+                 [alt]="item.alt" 
+                 class="w-full h-24 object-cover rounded-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Galleria Component -->
+      <sui-galleria
+        [value]="interactiveItems"
+        [visible]="interactiveVisible"
+        [activeIndex]="interactiveActiveIndex"
+        [showThumbnails]="interactiveShowThumbnails"
+        [showIndicators]="interactiveShowIndicators"
+        [circular]="interactiveCircular"
+        [fullScreen]="interactiveFullScreen"
+        (onImageChange)="onGalleriaImageChange($event)"
+        (onShow)="onGalleriaShow()"
+        (onHide)="onGalleriaHide()">
+      </sui-galleria>
+
+      <!-- Action Log -->
+      <div class="bg-gray-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-sm font-medium text-gray-700">Action Log</h4>
+          <button
+            (click)="clearActionLog()"
+            class="text-xs text-blue-600 hover:text-blue-800">
+            Clear
+          </button>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1 max-h-20 overflow-y-auto">
+          <div *ngFor="let action of actionLog">{{ action }}</div>
+          <div *ngIf="actionLog.length === 0" class="text-gray-400">No actions yet...</div>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showInteractiveDemoCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-galleria
+  [value]="interactiveItems"
+  [visible]="interactiveVisible"
+  [activeIndex]="interactiveActiveIndex"
+  [showThumbnails]="interactiveShowThumbnails"
+  [showIndicators]="interactiveShowIndicators"
+  [circular]="interactiveCircular"
+  [fullScreen]="interactiveFullScreen"
+  (onImageChange)="onGalleriaImageChange($event)"
+  (onShow)="onGalleriaShow()"
+  (onHide)="onGalleriaHide()"&gt;
+&lt;/sui-galleria&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      <div class="space-y-4 text-gray-600">
+        <p>Import the Galleria component and add it to your template:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>import {{ '{' }} Galleria {{ '}' }} from 'ui-lib';
+
+&lt;sui-galleria [value]="galleriaItems"&gt;&lt;/sui-galleria&gt;</code></pre>
+        
+        <p>Define your galleria items:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>galleriaItems = [
+  {{ '{' }} 
+    src: 'image1.jpg', 
+    alt: 'Image 1', 
+    title: 'First Image',
+    thumbnailSrc: 'thumb1.jpg'
+  {{ '}' }},
+  {{ '{' }} 
+    src: 'image2.jpg', 
+    alt: 'Image 2', 
+    title: 'Second Image',
+    thumbnailSrc: 'thumb2.jpg'
+  {{ '}' }}
+];</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Properties</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">GalleriaItem[]</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Array of galleria items</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">activeIndex</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Index of the active image</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">visible</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the galleria is visible</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showThumbnails</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to show thumbnails</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showIndicators</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to show page indicators</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">circular</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to loop infinitely</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">fullScreen</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to display in full screen</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Events</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onImageChange</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the active image changes</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onShow</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">void</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the galleria is shown</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onHide</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">void</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the galleria is hidden</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

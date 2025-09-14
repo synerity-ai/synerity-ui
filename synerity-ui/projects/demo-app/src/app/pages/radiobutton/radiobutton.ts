@@ -10,40 +10,80 @@ import { Tabs } from '../../shared/tabs/tabs';
   templateUrl: './radiobutton.html',
   styleUrl: './radiobutton.scss'
 })
-export class Radiobutton {
+export class RadioButtonPage {
   activeTab = 'demo';
   
   // Demo data
-  selectedColor = '';
-  selectedSize = '';
-  selectedPayment = '';
-  selectedLanguage = '';
-  selectedDisabled = '';
+  selectedColor = 'blue';
+  selectedSize = 'medium';
+  selectedPayment = 'credit';
+  selectedLanguage = 'typescript';
+  selectedDisabled = 'option1';
   interactiveSelection = '';
+  interactiveName = 'demo-radio';
+  interactiveDisabled = false;
+  
+  // Options for different groups
+  colorOptions = [
+    { value: 'red', label: 'Red' },
+    { value: 'blue', label: 'Blue' },
+    { value: 'green', label: 'Green' },
+    { value: 'yellow', label: 'Yellow' }
+  ];
+  
+  sizeOptions = [
+    { value: 'small', label: 'Small' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'large', label: 'Large' },
+    { value: 'xlarge', label: 'Extra Large' }
+  ];
+  
+  paymentOptions = [
+    { value: 'credit', label: 'Credit Card' },
+    { value: 'debit', label: 'Debit Card' },
+    { value: 'paypal', label: 'PayPal' },
+    { value: 'bank', label: 'Bank Transfer' }
+  ];
+  
+  languageOptions = [
+    { value: 'javascript', label: 'JavaScript' },
+    { value: 'typescript', label: 'TypeScript' },
+    { value: 'python', label: 'Python' },
+    { value: 'java', label: 'Java' }
+  ];
   
   // Code visibility states
-  showBasicUsageCode = false;
+  showBasicRadioCode = false;
   showRadioGroupCode = false;
-  showRadioStatesCode = false;
-  showRadioFeaturesCode = false;
+  showDisabledRadioCode = false;
+  showRadioVariantsCode = false;
   showInteractiveDemoCode = false;
   
   onTabChange(tab: string) {
     this.activeTab = tab;
   }
   
-  onRadioChange(value: any, field: string) {
-    console.log(`${field} changed to:`, value);
+  toggleCode(example: string) {
+    switch (example) {
+      case 'basicRadio':
+        this.showBasicRadioCode = !this.showBasicRadioCode;
+        break;
+      case 'radioGroup':
+        this.showRadioGroupCode = !this.showRadioGroupCode;
+        break;
+      case 'disabledRadio':
+        this.showDisabledRadioCode = !this.showDisabledRadioCode;
+        break;
+      case 'radioVariants':
+        this.showRadioVariantsCode = !this.showRadioVariantsCode;
+        break;
+      case 'interactiveDemo':
+        this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
+        break;
+    }
   }
   
-  // Code toggle methods
-  toggleCode(section: string) {
-    switch(section) {
-      case 'basicUsage': this.showBasicUsageCode = !this.showBasicUsageCode; break;
-      case 'radioGroup': this.showRadioGroupCode = !this.showRadioGroupCode; break;
-      case 'radioStates': this.showRadioStatesCode = !this.showRadioStatesCode; break;
-      case 'radioFeatures': this.showRadioFeaturesCode = !this.showRadioFeaturesCode; break;
-      case 'interactiveDemo': this.showInteractiveDemoCode = !this.showInteractiveDemoCode; break;
-    }
+  onRadioChange(value: any, field: string) {
+    console.log(`${field} changed to:`, value);
   }
 }

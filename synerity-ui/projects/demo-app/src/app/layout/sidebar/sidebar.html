@@ -1,12 +1,33 @@
 <div class="bg-gray-50 h-full border-r border-gray-200 overflow-y-auto" role="navigation" aria-label="Main navigation">
   <div class="p-4">
     <!-- Navigation Groups -->
-    <nav class="space-y-6" role="menubar">
+    <nav class="space-y-4" role="menubar">
       <div *ngFor="let group of navigationGroups" class="space-y-2">
-        <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-          {{ group.title }}
-        </h3>
-        <div class="space-y-1">
+        <!-- Collapsible Category Header -->
+        <button
+          (click)="toggleCategory(group.title)"
+          class="flex items-center justify-between w-full px-2 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50"
+          [attr.aria-expanded]="isCategoryExpanded(group.title)"
+          [attr.aria-controls]="getCategoryId(group.title)"
+          type="button">
+          <span>{{ group.title }}</span>
+          <svg 
+            class="w-4 h-4 transition-transform duration-200"
+            [class.rotate-180]="isCategoryExpanded(group.title)"
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        
+        <!-- Collapsible Category Content -->
+        <div 
+          [id]="getCategoryId(group.title)"
+          class="space-y-1 overflow-hidden transition-all duration-300 ease-in-out"
+          [class.max-h-0]="!isCategoryExpanded(group.title)"
+          [class.max-h-screen]="isCategoryExpanded(group.title)"
+          [attr.aria-hidden]="!isCategoryExpanded(group.title)">
           <a
             *ngFor="let item of group.items"
             [routerLink]="item.route"
@@ -28,10 +49,29 @@
 
     <!-- Getting Started Section -->
     <div class="mt-8 pt-6 border-t border-gray-200">
-      <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-        Getting Started
-      </h3>
-      <div class="space-y-2">
+      <button
+        (click)="toggleCategory('Getting Started')"
+        class="flex items-center justify-between w-full px-2 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50"
+        [attr.aria-expanded]="isCategoryExpanded('Getting Started')"
+        [attr.aria-controls]="'category-getting-started'"
+        type="button">
+        <span>Getting Started</span>
+        <svg 
+          class="w-4 h-4 transition-transform duration-200"
+          [class.rotate-180]="isCategoryExpanded('Getting Started')"
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      
+      <div 
+        id="category-getting-started"
+        class="space-y-2 overflow-hidden transition-all duration-300 ease-in-out"
+        [class.max-h-0]="!isCategoryExpanded('Getting Started')"
+        [class.max-h-screen]="isCategoryExpanded('Getting Started')"
+        [attr.aria-hidden]="!isCategoryExpanded('Getting Started')">
         <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
           <span class="mr-3">📖</span>
           Installation

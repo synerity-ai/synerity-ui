@@ -1,0 +1,52 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">ContextMenu</h1>
+    <p class="text-gray-600">A context menu component for right-click interactions.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Basic ContextMenu</h3>
+      <p class="text-gray-600 mb-4">Right-click on the area below to see the context menu.</p>
+      
+      <div class="flex items-center justify-center h-32 bg-gray-50 rounded-lg">
+        <sui-context-menu 
+          [model]="basicContextMenuItems"
+          (onShow)="onContextMenuShow()"
+          (onHide)="onContextMenuHide()">
+          <div class="text-center text-gray-600">
+            <p>Right-click here to open context menu</p>
+          </div>
+        </sui-context-menu>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      <p class="text-gray-600">Context menu implementation guide.</p>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      <p class="text-gray-600">Context menu API documentation.</p>
+    </div>
+  </div>
+</div>

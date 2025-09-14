@@ -1,1 +1,374 @@
-<p>dialog works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Dialog</h1>
+    <p class="text-lg text-gray-600">Modal dialogs with customizable headers, content, and interactive features like dragging and resizing.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Dialog -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Dialog</h3>
+            <button 
+              (click)="toggleCode('basicDialog')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicDialogCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <button 
+                (click)="basicDialogVisible = true"
+                class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                Show Basic Dialog
+              </button>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showBasicDialogCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;button (click)="dialogVisible = true"&gt;Show Dialog&lt;/button&gt;
+
+&lt;sui-dialog 
+  [visible]="dialogVisible"
+  header="Dialog Title"
+  (onHide)="dialogVisible = false"&gt;
+  &lt;p&gt;This is the dialog content.&lt;/p&gt;
+&lt;/sui-dialog&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Dialog -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Modal Dialog</h3>
+            <button 
+              (click)="toggleCode('modalDialog')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showModalDialogCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <button 
+                (click)="modalDialogVisible = true"
+                class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors">
+                Show Modal Dialog
+              </button>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showModalDialogCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-dialog 
+  [visible]="modalVisible"
+  [modal]="true"
+  header="Modal Dialog"
+  (onHide)="modalVisible = false"&gt;
+  &lt;p&gt;This is a modal dialog with backdrop.&lt;/p&gt;
+&lt;/sui-dialog&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resizable Dialog -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Resizable Dialog</h3>
+            <button 
+              (click)="toggleCode('resizableDialog')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showResizableDialogCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <button 
+                (click)="resizableDialogVisible = true"
+                class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors">
+                Show Resizable Dialog
+              </button>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showResizableDialogCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-dialog 
+  [visible]="resizableVisible"
+  [resizable]="true"
+  [width]="'500px'"
+  [height]="'400px'"
+  header="Resizable Dialog"
+  (onHide)="resizableVisible = false"&gt;
+  &lt;p&gt;Drag the bottom-right corner to resize this dialog.&lt;/p&gt;
+&lt;/sui-dialog&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>npm install @synerity/ui</code></pre>
+          </div>
+        </div>
+
+        <!-- Import -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>import &#123; Dialog &#125; from '@synerity/ui';
+
+@Component(&#123;
+  imports: [Dialog],
+  // ...
+&#125;)</code></pre>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;sui-dialog 
+  [visible]="dialogVisible"
+  header="Dialog Title"
+  (onHide)="dialogVisible = false"&gt;
+  &lt;p&gt;Dialog content goes here.&lt;/p&gt;
+&lt;/sui-dialog&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">Modal Support</h4>
+              <p class="text-blue-800 text-sm">Block interaction with the rest of the page</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Draggable</h4>
+              <p class="text-green-800 text-sm">Drag the dialog by its header</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">Resizable</h4>
+              <p class="text-purple-800 text-sm">Resize the dialog by dragging corners</p>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-orange-900 mb-2">Maximizable</h4>
+              <p class="text-orange-800 text-sm">Maximize to full screen</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full border border-gray-200 rounded-lg">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Prop</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Type</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Default</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">visible</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">false</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Specifies the visibility of the dialog</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">modal</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">true</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Defines if background should be blocked</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">header</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">''</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Title text of the dialog</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">draggable</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">true</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Enables dragging to reposition the dialog</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">resizable</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">false</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Enables resizing of the dialog</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">maximizable</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">false</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Shows the maximize icon</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">width</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">'auto'</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Width of the dialog</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">height</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">'auto'</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Height of the dialog</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">position</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">'center'</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Position of the dialog</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">closable</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">true</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Adds a close icon to the header</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full border border-gray-200 rounded-lg">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Event</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Parameters</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">onShow</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">void</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when dialog becomes visible</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">onHide</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">void</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when dialog becomes hidden</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">onMaximize</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">void</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when dialog is maximized</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">onUnmaximize</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">void</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when dialog is unmaximized</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <ul class="space-y-2 text-blue-800">
+              <li>• Focus management when dialog opens/closes</li>
+              <li>• ESC key support for closing dialog</li>
+              <li>• ARIA roles and labels for screen readers</li>
+              <li>• Keyboard navigation support</li>
+              <li>• Focus trap within modal dialogs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+
+  <!-- Dialog Components -->
+  <sui-dialog 
+    [visible]="basicDialogVisible"
+    header="Basic Dialog"
+    (onHide)="basicDialogVisible = false"
+    (onShow)="onDialogShow()">
+    <p class="mb-4">This is a basic dialog with simple content.</p>
+    <div class="flex justify-end gap-2">
+      <button 
+        (click)="basicDialogVisible = false"
+        class="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors">
+        Cancel
+      </button>
+      <button 
+        (click)="basicDialogVisible = false"
+        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+        Confirm
+      </button>
+    </div>
+  </sui-dialog>
+
+  <sui-dialog 
+    [visible]="modalDialogVisible"
+    [modal]="true"
+    header="Modal Dialog"
+    (onHide)="modalDialogVisible = false"
+    (onShow)="onDialogShow()">
+    <p class="mb-4">This is a modal dialog that blocks interaction with the background.</p>
+    <div class="flex justify-end gap-2">
+      <button 
+        (click)="modalDialogVisible = false"
+        class="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors">
+        Close
+      </button>
+    </div>
+  </sui-dialog>
+
+  <sui-dialog 
+    [visible]="resizableDialogVisible"
+    [resizable]="true"
+    [width]="'500px'"
+    [height]="'400px'"
+    header="Resizable Dialog"
+    (onHide)="resizableDialogVisible = false"
+    (onShow)="onDialogShow()">
+    <p class="mb-4">This dialog can be resized by dragging the bottom-right corner.</p>
+    <div class="flex justify-end gap-2">
+      <button 
+        (click)="resizableDialogVisible = false"
+        class="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors">
+        Close
+      </button>
+    </div>
+  </sui-dialog>
+</div>

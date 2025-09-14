@@ -1,8 +1,8 @@
 <div class="max-w-6xl mx-auto">
   <!-- Page Header -->
   <div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">InputNumber</h1>
-    <p class="text-lg text-gray-600">Numeric input components with increment/decrement controls, validation, and form integration.</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Input Number</h1>
+    <p class="text-lg text-gray-600">Numeric input components with increment/decrement controls, validation, and range constraints.</p>
   </div>
 
   <!-- Tabs -->
@@ -12,147 +12,184 @@
     <div *ngIf="activeTab === 'demo'">
       <div class="space-y-8">
         
-        <!-- Basic Usage -->
+        <!-- Basic Number Input -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Basic Usage</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Basic Number Input</h3>
             <button 
-              (click)="toggleCode('basicUsage')"
+              (click)="toggleCode('basicNumber')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showBasicUsageCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showBasicNumberCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          
           <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
             <div class="p-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Basic Number</label>
-                  <sui-input-number 
-                    [(ngModel)]="basicNumber"
-                    placeholder="Enter number"
-                    name="basicNumber"
-                    (change)="onNumberChange($event, 'basic')">
-                  </sui-input-number>
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
-                  <sui-input-number 
-                    [(ngModel)]="placeholderNumber"
-                    placeholder="Type a number here..."
-                    name="placeholderNumber">
-                  </sui-input-number>
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">With Step</label>
-                  <sui-input-number 
-                    [(ngModel)]="stepNumber"
-                    [step]="5"
-                    placeholder="Step by 5"
-                    name="stepNumber">
-                  </sui-input-number>
-                </div>
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Enter a number</label>
+                <sui-input-number 
+                  [(ngModel)]="basicNumber"
+                  placeholder="Enter a number">
+                </sui-input-number>
+                <p class="mt-2 text-sm text-gray-600">Value: {{ basicNumber ?? 'None' }}</p>
               </div>
             </div>
-          </div>
-          
-          <div *ngIf="showBasicUsageCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-            <pre class="text-green-400 text-sm"><code>&lt;!-- Basic Number --&gt;
-&lt;sui-input-number 
-  [(ngModel)]="basicNumber"
-  placeholder="Enter number"
-  name="basicNumber"
-  (change)="onNumberChange($event, 'basic')"&gt;
-&lt;/sui-input-number&gt;
-
-&lt;!-- With Placeholder --&gt;
-&lt;sui-input-number 
-  [(ngModel)]="placeholderNumber"
-  placeholder="Type a number here..."
-  name="placeholderNumber"&gt;
-&lt;/sui-input-number&gt;
-
-&lt;!-- With Step --&gt;
-&lt;sui-input-number 
-  [(ngModel)]="stepNumber"
-  [step]="5"
-  placeholder="Step by 5"
-  name="stepNumber"&gt;
+            
+            <!-- Code Block -->
+            <div *ngIf="showBasicNumberCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-input-number 
+  [(ngModel)]="number"
+  placeholder="Enter a number"&gt;
 &lt;/sui-input-number&gt;</code></pre>
+            </div>
           </div>
         </div>
 
-        <!-- Number States -->
+        <!-- Min/Max Number Input -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Number States</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Min/Max Number Input</h3>
             <button 
-              (click)="toggleCode('numberStates')"
+              (click)="toggleCode('minMaxNumber')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showNumberStatesCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showMinMaxNumberCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          
           <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
             <div class="p-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
-                  <sui-input-number 
-                    [(ngModel)]="basicNumber"
-                    placeholder="Normal number"
-                    name="normalNumber">
-                  </sui-input-number>
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
-                  <sui-input-number 
-                    [(ngModel)]="disabledNumber"
-                    [disabled]="true"
-                    placeholder="Disabled number"
-                    name="disabledNumber">
-                  </sui-input-number>
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">With Value</label>
-                  <sui-input-number 
-                    [(ngModel)]="basicNumber"
-                    placeholder="Pre-filled number"
-                    name="filledNumber">
-                  </sui-input-number>
-                </div>
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Number (0-100)</label>
+                <sui-input-number 
+                  [(ngModel)]="minMaxNumber"
+                  [min]="0"
+                  [max]="100"
+                  placeholder="Enter number between 0-100">
+                </sui-input-number>
+                <p class="mt-2 text-sm text-gray-600">Value: {{ minMaxNumber ?? 'None' }}</p>
+                <p class="mt-1 text-sm" [ngClass]="getNumberStatus(minMaxNumber, 0, 100).color">
+                  Status: {{ getNumberStatus(minMaxNumber, 0, 100).status }}
+                </p>
               </div>
             </div>
-          </div>
-          
-          <div *ngIf="showNumberStatesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-            <pre class="text-green-400 text-sm"><code>&lt;!-- Normal State --&gt;
-&lt;sui-input-number 
-  [(ngModel)]="basicNumber"
-  placeholder="Normal number"
-  name="normalNumber"&gt;
-&lt;/sui-input-number&gt;
-
-&lt;!-- Disabled State --&gt;
-&lt;sui-input-number 
-  [(ngModel)]="disabledNumber"
-  [disabled]="true"
-  placeholder="Disabled number"
-  name="disabledNumber"&gt;
-&lt;/sui-input-number&gt;
-
-&lt;!-- With Value --&gt;
-&lt;sui-input-number 
-  [(ngModel)]="basicNumber"
-  placeholder="Pre-filled number"
-  name="filledNumber"&gt;
+            
+            <!-- Code Block -->
+            <div *ngIf="showMinMaxNumberCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-input-number 
+  [(ngModel)]="number"
+  [min]="0"
+  [max]="100"
+  placeholder="Enter number between 0-100"&gt;
 &lt;/sui-input-number&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step Number Input -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Step Number Input</h3>
+            <button 
+              (click)="toggleCode('stepNumber')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showStepNumberCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Number (step: 5)</label>
+                <sui-input-number 
+                  [(ngModel)]="stepNumber"
+                  [step]="5"
+                  placeholder="Increments by 5">
+                </sui-input-number>
+                <p class="mt-2 text-sm text-gray-600">Value: {{ stepNumber ?? 'None' }}</p>
+                <p class="mt-1 text-sm text-gray-500">Use the +/- buttons or arrow keys to increment by 5</p>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showStepNumberCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-input-number 
+  [(ngModel)]="number"
+  [step]="5"
+  placeholder="Increments by 5"&gt;
+&lt;/sui-input-number&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disabled Number Input -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Disabled Number Input</h3>
+            <button 
+              (click)="toggleCode('disabledNumber')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showDisabledNumberCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Disabled Number</label>
+                <sui-input-number 
+                  [(ngModel)]="disabledNumber"
+                  [disabled]="true"
+                  placeholder="Cannot edit this number">
+                </sui-input-number>
+                <p class="mt-2 text-sm text-gray-600">Value: {{ disabledNumber ?? 'None' }}</p>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showDisabledNumberCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-input-number 
+  [(ngModel)]="number"
+  [disabled]="true"
+  placeholder="Cannot edit this number"&gt;
+&lt;/sui-input-number&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder Number Input -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Placeholder Number Input</h3>
+            <button 
+              (click)="toggleCode('placeholderNumber')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showPlaceholderNumberCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                <sui-input-number 
+                  [(ngModel)]="placeholderNumber"
+                  placeholder="Enter your age"
+                  [min]="0"
+                  [max]="120">
+                </sui-input-number>
+                <p class="mt-2 text-sm text-gray-600">Age: {{ placeholderNumber ?? 'Not specified' }}</p>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showPlaceholderNumberCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-input-number 
+  [(ngModel)]="age"
+  placeholder="Enter your age"
+  [min]="0"
+  [max]="120"&gt;
+&lt;/sui-input-number&gt;</code></pre>
+            </div>
           </div>
         </div>
 
@@ -167,85 +204,77 @@
               <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          
           <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
             <div class="p-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
-                  <sui-input-number 
-                    [(ngModel)]="interactiveNumber"
-                    [min]="0"
-                    [max]="100"
-                    [step]="1"
-                    placeholder="Enter quantity"
-                    name="quantityNumber"
-                    (change)="onNumberChange($event, 'quantity')">
-                  </sui-input-number>
+              <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Minimum Value</label>
+                    <input 
+                      type="number"
+                      [(ngModel)]="interactiveMin"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Maximum Value</label>
+                    <input 
+                      type="number"
+                      [(ngModel)]="interactiveMax"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Step Value</label>
+                    <input 
+                      type="number"
+                      [(ngModel)]="interactiveStep"
+                      min="0.1"
+                      step="0.1"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Disabled</label>
+                    <input 
+                      type="checkbox"
+                      [(ngModel)]="interactiveDisabled"
+                      class="mt-2">
+                  </div>
                 </div>
                 
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Price</label>
+                <div class="max-w-md">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Interactive Number Input</label>
                   <sui-input-number 
-                    [(ngModel)]="basicNumber"
-                    [min]="0"
-                    [step]="0.01"
-                    placeholder="Enter price"
-                    name="priceNumber"
-                    (change)="onNumberChange($event, 'price')">
+                    [(ngModel)]="interactiveNumber"
+                    [min]="interactiveMin"
+                    [max]="interactiveMax"
+                    [step]="interactiveStep"
+                    [disabled]="interactiveDisabled"
+                    [placeholder]="interactivePlaceholder">
                   </sui-input-number>
-                </div>
-              </div>
-              
-              <div class="mt-6 p-4 bg-gray-50 rounded-lg border">
-                <h4 class="font-medium text-gray-900 mb-2">Calculation:</h4>
-                <p class="text-sm text-gray-600 mb-2">Quantity: {{ interactiveNumber || 0 }}</p>
-                <p class="text-sm text-gray-600">Price: ${{ basicNumber || 0 }}</p>
-                <div class="mt-2 text-sm font-medium text-gray-900">
-                  Total: ${{ ((interactiveNumber || 0) * (basicNumber || 0)).toFixed(2) }}
+                  
+                  <div class="mt-3 space-y-1">
+                    <p class="text-sm text-gray-600">Value: {{ interactiveNumber ?? 'None' }}</p>
+                    <p class="text-sm" [ngClass]="getNumberStatus(interactiveNumber, interactiveMin, interactiveMax).color">
+                      Status: {{ getNumberStatus(interactiveNumber, interactiveMin, interactiveMax).status }}
+                    </p>
+                    <p class="text-sm text-gray-500">
+                      Range: {{ interactiveMin }} - {{ interactiveMax }} (step: {{ interactiveStep }})
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-            <pre class="text-green-400 text-sm"><code>&lt;!-- Interactive Demo --&gt;
-&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Quantity&lt;/label&gt;
-    &lt;sui-input-number 
-      [(ngModel)]="interactiveNumber"
-      [min]="0"
-      [max]="100"
-      [step]="1"
-      placeholder="Enter quantity"
-      name="quantityNumber"
-      (change)="onNumberChange($event, 'quantity')"&gt;
-    &lt;/sui-input-number&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Price&lt;/label&gt;
-    &lt;sui-input-number 
-      [(ngModel)]="basicNumber"
-      [min]="0"
-      [step]="0.01"
-      placeholder="Enter price"
-      name="priceNumber"
-      (change)="onNumberChange($event, 'price')"&gt;
-    &lt;/sui-input-number&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Calculation --&gt;
-&lt;div class="mt-6 p-4 bg-gray-50 rounded-lg border"&gt;
-  &lt;h4 class="font-medium text-gray-900 mb-2"&gt;Calculation:&lt;/h4&gt;
-  &lt;p class="text-sm text-gray-600 mb-2"&gt;Quantity: {{ "{{" }} interactiveNumber || 0 {{ "}}" }}&lt;/p&gt;
-  &lt;p class="text-sm text-gray-600"&gt;Price: ${{ "{{" }} basicNumber || 0 {{ "}}" }}&lt;/p&gt;
-  &lt;div class="mt-2 text-sm font-medium text-gray-900"&gt;
-    Total: ${{ "{{" }} ((interactiveNumber || 0) * (basicNumber || 0)).toFixed(2) {{ "}}" }}
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+            
+            <!-- Code Block -->
+            <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-input-number 
+  [(ngModel)]="interactiveNumber"
+  [min]="interactiveMin"
+  [max]="interactiveMax"
+  [step]="interactiveStep"
+  [disabled]="interactiveDisabled"
+  [placeholder]="interactivePlaceholder"&gt;
+&lt;/sui-input-number&gt;</code></pre>
+            </div>
           </div>
         </div>
       </div>
@@ -253,72 +282,59 @@
 
     <!-- How to Use Tab -->
     <div *ngIf="activeTab === 'usage'">
-      <div class="space-y-8">
+      <div class="space-y-6">
         
         <!-- Installation -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
-          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-            <div>npm install @synerity/ui</div>
-          </div>
-        </div>
-
-        <!-- Basic Usage -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <pre class="text-sm"><code>&lt;sui-input-number 
-  [(ngModel)]="number"
-  placeholder="Enter number"&gt;
-&lt;/sui-input-number&gt;</code></pre>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>npm install @synerity/ui</code></pre>
           </div>
         </div>
 
         <!-- Import -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <pre class="text-sm"><code>import {{ '{' }} InputNumber {{ '}' }} from '@synerity/ui';
-import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';</code></pre>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>import {{ '{' }} InputNumber {{ '}' }} from '@synerity/ui';
+
+@Component({{ '{' }}
+  imports: [InputNumber],
+  // ...
+{{ '}' }})</code></pre>
           </div>
         </div>
 
-        <!-- Examples -->
+        <!-- Basic Usage -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
-          
-          <div class="space-y-6">
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Basic Number</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-input-number 
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;sui-input-number 
   [(ngModel)]="number"
-  placeholder="Enter your number"&gt;
+  placeholder="Enter a number"&gt;
 &lt;/sui-input-number&gt;</code></pre>
-              </div>
-            </div>
+          </div>
+        </div>
 
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Number with Min/Max</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-input-number 
-  [(ngModel)]="number"
-  [min]="0"
-  [max]="100"
-  placeholder="Number between 0-100"&gt;
-&lt;/sui-input-number&gt;</code></pre>
-              </div>
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">Increment/Decrement</h4>
+              <p class="text-blue-800 text-sm">Built-in +/- buttons for easy value adjustment</p>
             </div>
-
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Number with Step</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-input-number 
-  [(ngModel)]="number"
-  [step]="0.5"
-  placeholder="Step by 0.5"&gt;
-&lt;/sui-input-number&gt;</code></pre>
-              </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Validation</h4>
+              <p class="text-green-800 text-sm">Min/max constraints and step validation</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">Form Integration</h4>
+              <p class="text-purple-800 text-sm">Full Angular forms support with validation</p>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-orange-900 mb-2">Keyboard Support</h4>
+              <p class="text-orange-800 text-sm">Arrow keys for increment/decrement</p>
             </div>
           </div>
         </div>
@@ -327,63 +343,69 @@ import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';</code></pre>
 
     <!-- Documentation Tab -->
     <div *ngIf="activeTab === 'docs'">
-      <div class="space-y-8">
+      <div class="space-y-6">
         
         <!-- Props -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
-          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
-            <table class="min-w-full divide-y divide-gray-300">
+          <div class="overflow-x-auto">
+            <table class="w-full border border-gray-200 rounded-lg">
               <thead class="bg-gray-50">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Prop</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Type</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Default</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Description</th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="divide-y divide-gray-200">
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Placeholder text when number is empty</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">ngModel</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">number | null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Two-way binding for number value</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Whether the number input is disabled</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">min</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">number | null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Minimum allowed value</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">min</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Minimum allowed value</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">max</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">number | null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Maximum allowed value</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">max</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Maximum allowed value</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">step</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">number</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">1</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Increment/decrement step value</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">step</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Step value for increment/decrement</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">disabled</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">false</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Disable the input</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">name</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Name attribute for form handling</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">placeholder</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">''</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Placeholder text to display</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">inputId</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">ID attribute for the number input element</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">name</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">''</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Name attribute for form submission</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">inputId</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">''</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">ID attribute for the input</td>
                 </tr>
               </tbody>
             </table>
@@ -393,20 +415,20 @@ import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';</code></pre>
         <!-- Events -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
-          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
-            <table class="min-w-full divide-y divide-gray-300">
+          <div class="overflow-x-auto">
+            <table class="w-full border border-gray-200 rounded-lg">
               <thead class="bg-gray-50">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Event</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Parameters</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Description</th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="divide-y divide-gray-200">
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">change</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;number | null&gt;</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the number value changes</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">change</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">number | null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when value changes</td>
                 </tr>
               </tbody>
             </table>
@@ -416,14 +438,13 @@ import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';</code></pre>
         <!-- Accessibility -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
-          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <ul class="text-sm text-blue-800 space-y-2">
-              <li>• Proper ARIA attributes for number inputs</li>
-              <li>• Keyboard navigation support (arrow keys, tab)</li>
-              <li>• Screen reader announcements for value changes</li>
-              <li>• Focus management and visual focus indicators</li>
-              <li>• Support for disabled state with proper accessibility</li>
-              <li>• Increment/decrement buttons with proper labeling</li>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <ul class="space-y-2 text-blue-800">
+              <li>• Proper labeling with placeholder text</li>
+              <li>• Keyboard navigation support (Arrow keys)</li>
+              <li>• Screen reader compatibility</li>
+              <li>• ARIA attributes for form integration</li>
+              <li>• Focus management and visual indicators</li>
             </ul>
           </div>
         </div>

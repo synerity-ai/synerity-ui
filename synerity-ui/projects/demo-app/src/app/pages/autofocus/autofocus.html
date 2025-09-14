@@ -1,0 +1,303 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">AutoFocus</h1>
+    <p class="text-gray-600">A component that automatically focuses an element when it becomes visible or meets certain conditions.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    <!-- Basic AutoFocus -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic AutoFocus</h3>
+        <button
+          (click)="toggleCode('basicAutoFocus')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicAutoFocusCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">A basic auto-focus that triggers immediately when the component loads.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg flex items-center justify-center">
+        <sui-auto-focus
+          [delay]="basicDelay"
+          [condition]="basicCondition">
+          <input
+            type="text"
+            placeholder="This input will be focused automatically"
+            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </sui-auto-focus>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showBasicAutoFocusCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-auto-focus [delay]="basicDelay" [condition]="basicCondition"&gt;
+  &lt;input
+    type="text"
+    placeholder="This input will be focused automatically"
+    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"&gt;
+&lt;/sui-auto-focus&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Delay AutoFocus -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Delay AutoFocus</h3>
+        <button
+          (click)="toggleCode('delayAutoFocus')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showDelayAutoFocusCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Auto-focus with a delay to allow for smooth transitions.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg flex items-center justify-center">
+        <sui-auto-focus
+          [delay]="1000"
+          [condition]="true">
+          <input
+            type="text"
+            placeholder="This input will be focused after 1 second"
+            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+        </sui-auto-focus>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showDelayAutoFocusCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-auto-focus [delay]="1000" [condition]="true"&gt;
+  &lt;input
+    type="text"
+    placeholder="This input will be focused after 1 second"
+    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"&gt;
+&lt;/sui-auto-focus&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Conditional AutoFocus -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Conditional AutoFocus</h3>
+        <button
+          (click)="toggleCode('conditionalAutoFocus')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showConditionalAutoFocusCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Auto-focus that only triggers when a condition is met.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg flex items-center justify-center">
+        <sui-auto-focus
+          [delay]="0"
+          [condition]="true">
+          <input
+            type="text"
+            placeholder="This input will be focused when condition is true"
+            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+        </sui-auto-focus>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showConditionalAutoFocusCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-auto-focus [delay]="0" [condition]="true"&gt;
+  &lt;input
+    type="text"
+    placeholder="This input will be focused when condition is true"
+    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"&gt;
+&lt;/sui-auto-focus&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Interactive Demo</h3>
+        <button
+          (click)="toggleCode('interactiveDemo')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Interactive auto-focus with customizable options.</p>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <button
+          (click)="setRandomDelay()"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+          Random Delay
+        </button>
+        <button
+          (click)="toggleCondition()"
+          [class]="interactiveCondition ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveCondition ? 'Condition: On' : 'Condition: Off' }}
+        </button>
+        <button
+          (click)="clearInputs()"
+          class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 transition-colors">
+          Clear Inputs
+        </button>
+        <button
+          (click)="setRandomText()"
+          class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+          Random Text
+        </button>
+      </div>
+
+      <div class="space-y-4">
+        <div class="h-20 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-auto-focus
+            [delay]="interactiveDelay"
+            [condition]="interactiveCondition">
+            <input
+              type="text"
+              [(ngModel)]="interactiveInputValue"
+              (focus)="onFocus()"
+              (blur)="onBlur()"
+              (input)="onInputChange()"
+              placeholder="Interactive input with auto-focus"
+              class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </sui-auto-focus>
+        </div>
+        
+        <div class="h-20 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-auto-focus
+            [delay]="interactiveDelay + 500"
+            [condition]="interactiveCondition">
+            <textarea
+              [(ngModel)]="interactiveTextareaValue"
+              (focus)="onFocus()"
+              (blur)="onBlur()"
+              (input)="onTextareaChange()"
+              placeholder="Interactive textarea with auto-focus"
+              class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+              rows="2">
+            </textarea>
+          </sui-auto-focus>
+        </div>
+      </div>
+
+      <!-- Action Log -->
+      <div class="bg-gray-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-sm font-medium text-gray-700">Action Log</h4>
+          <button
+            (click)="clearActionLog()"
+            class="text-xs text-blue-600 hover:text-blue-800">
+            Clear
+          </button>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1 max-h-20 overflow-y-auto">
+          <div *ngFor="let action of actionLog">{{ action }}</div>
+          <div *ngIf="actionLog.length === 0" class="text-gray-400">No actions yet...</div>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showInteractiveDemoCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-auto-focus [delay]="interactiveDelay" [condition]="interactiveCondition"&gt;
+  &lt;input
+    type="text"
+    [(ngModel)]="interactiveInputValue"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    (input)="onInputChange()"
+    placeholder="Interactive input with auto-focus"
+    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"&gt;
+&lt;/sui-auto-focus&gt;
+
+&lt;sui-auto-focus [delay]="interactiveDelay + 500" [condition]="interactiveCondition"&gt;
+  &lt;textarea
+    [(ngModel)]="interactiveTextareaValue"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    (input)="onTextareaChange()"
+    placeholder="Interactive textarea with auto-focus"
+    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+    rows="2"&gt;
+  &lt;/textarea&gt;
+&lt;/sui-auto-focus&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      <div class="space-y-4 text-gray-600">
+        <p>Import the AutoFocus component and add it to your template:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>import {{ '{' }} AutoFocus {{ '}' }} from 'ui-lib';
+
+&lt;sui-auto-focus [delay]="0" [condition]="true"&gt;
+  &lt;input type="text" placeholder="This will be focused"&gt;
+&lt;/sui-auto-focus&gt;</code></pre>
+        
+        <p>Basic auto-focus usage:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>&lt;sui-auto-focus
+  [delay]="0"
+  [condition]="true"&gt;
+  &lt;input
+    type="text"
+    placeholder="This input will be focused automatically"
+    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"&gt;
+&lt;/sui-auto-focus&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Properties</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">delay</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Delay in milliseconds before focusing</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">condition</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to trigger auto-focus</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,211 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Accordion</h1>
+    <p class="text-lg text-gray-600">Collapsible content panels that allow users to expand and collapse sections of information.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Accordion -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Accordion</h3>
+            <button 
+              (click)="toggleCode('basicAccordion')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicAccordionCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-accordion 
+                [tabs]="accordionTabs"
+                [activeIndex]="singleActiveIndex"
+                [multiple]="false"
+                (onOpen)="onAccordionOpen($event)"
+                (onClose)="onAccordionClose($event)"
+                (onActiveIndexChange)="onActiveIndexChange($event)">
+              </sui-accordion>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showBasicAccordionCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-accordion 
+  [tabs]="accordionTabs"
+  [activeIndex]="singleActiveIndex"
+  [multiple]="false"
+  (onOpen)="onAccordionOpen($event)"
+  (onClose)="onAccordionClose($event)"
+  (onActiveIndexChange)="onActiveIndexChange($event)"&gt;
+&lt;/sui-accordion&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multiple Accordion -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Multiple Accordion</h3>
+            <button 
+              (click)="toggleCode('multipleAccordion')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showMultipleAccordionCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-accordion 
+                [tabs]="accordionTabs"
+                [activeIndex]="multipleActiveIndex"
+                [multiple]="true"
+                (onOpen)="onAccordionOpen($event)"
+                (onClose)="onAccordionClose($event)"
+                (onActiveIndexChange)="onActiveIndexChange($event)">
+              </sui-accordion>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showMultipleAccordionCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-accordion 
+  [tabs]="accordionTabs"
+  [activeIndex]="multipleActiveIndex"
+  [multiple]="true"
+  (onOpen)="onAccordionOpen($event)"
+  (onClose)="onAccordionClose($event)"
+  (onActiveIndexChange)="onActiveIndexChange($event)"&gt;
+&lt;/sui-accordion&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-8">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+            <div>npm install @synerity/ui</div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <pre class="text-sm"><code>&lt;sui-accordion [tabs]="accordionTabs"&gt;&lt;/sui-accordion&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Import -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <pre class="text-sm"><code>import &#123; Accordion &#125; from '@synerity/ui';</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-8">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">tabs</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Array&lt;{ header: string; content?: any }&gt;</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Array of accordion tab objects</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">multiple</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether multiple tabs can be open at once</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">activeIndex</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number | number[]</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Index of active tab(s)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onOpen</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;any&gt;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when an accordion tab is opened</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onClose</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;any&gt;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when an accordion tab is closed</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onActiveIndexChange</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;number | number[]&gt;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the active index changes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <ul class="text-sm text-blue-800 space-y-2">
+              <li>• Full keyboard navigation support (Arrow keys, Enter, Space)</li>
+              <li>• WCAG 2.1 AA compliant color contrast</li>
+              <li>• Proper ARIA attributes for screen readers</li>
+              <li>• Focus management and visual focus indicators</li>
+              <li>• Expandable/collapsible state announcements</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

@@ -1,0 +1,365 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Tag</h1>
+    <p class="text-gray-600">A component for displaying labels, categories, or status information.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🏷️' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    <!-- Basic Tag -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic Tag</h3>
+        <button
+          (click)="toggleCode('basicTag')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicTagCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">A basic tag with different severity levels.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 flex items-center justify-center">
+        <sui-tag
+          [value]="basicValue"
+          [severity]="basicSeverity"
+          [icon]="basicIcon"
+          [removable]="basicRemovable"
+          [disabled]="basicDisabled"
+          (onRemove)="onBasicTagRemove()">
+        </sui-tag>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <span class="text-sm text-gray-500">Basic tag component</span>
+        <span class="text-sm text-gray-500">Severity: {{ basicSeverity }}</span>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showBasicTagCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm" ngNonBindable><code>&lt;sui-tag
+  [value]="basicValue"
+  [severity]="basicSeverity"
+  [icon]="basicIcon"
+  [removable]="basicRemovable"
+  [disabled]="basicDisabled"
+  (onRemove)="onBasicTagRemove()"&gt;
+&lt;/sui-tag&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Custom Tag -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Custom Tag</h3>
+        <button
+          (click)="toggleCode('customTag')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showCustomTagCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Custom tag with different styling and configuration.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 flex items-center justify-center">
+        <sui-tag
+          [value]="customValue"
+          [severity]="customSeverity"
+          [icon]="customIcon"
+          [removable]="customRemovable"
+          [disabled]="customDisabled"
+          [style]="customStyle"
+          [styleClass]="customStyleClass"
+          (onRemove)="onCustomTagRemove()">
+        </sui-tag>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <span class="text-sm text-gray-500">Custom styling and icon</span>
+        <span class="text-sm text-gray-500">Icon: {{ customIcon || 'None' }}</span>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showCustomTagCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm" ngNonBindable><code>&lt;sui-tag
+  [value]="customValue"
+  [severity]="customSeverity"
+  [icon]="customIcon"
+  [removable]="customRemovable"
+  [disabled]="customDisabled"
+  [style]="customStyle"
+  [styleClass]="customStyleClass"
+  (onRemove)="onCustomTagRemove()"&gt;
+&lt;/sui-tag&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Multiple Tags -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Multiple Tags</h3>
+        <button
+          (click)="toggleCode('multipleTags')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showMultipleTagsCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Different tag variants for various use cases.</p>
+
+      <div class="h-48 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4">
+        <div class="flex flex-wrap gap-2">
+          <sui-tag
+            *ngFor="let tag of tags"
+            [value]="tag.value"
+            [severity]="tag.severity"
+            [icon]="tag.icon"
+            [removable]="tag.removable"
+            [disabled]="tag.disabled"
+            (onRemove)="onTagRemove(tag)">
+          </sui-tag>
+        </div>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <button
+          (click)="toggleAllRemovable()"
+          class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700">
+          Toggle Removable
+        </button>
+        <span class="text-sm text-gray-500">Tag Collection</span>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showMultipleTagsCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm" ngNonBindable><code>&lt;div class="flex flex-wrap gap-2"&gt;
+  &lt;sui-tag
+    *ngFor="let tag of tags"
+    [value]="tag.value"
+    [severity]="tag.severity"
+    [icon]="tag.icon"
+    [removable]="tag.removable"
+    [disabled]="tag.disabled"
+    (onRemove)="onTagRemove(tag)"&gt;
+  &lt;/sui-tag&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Interactive Demo</h3>
+        <button
+          (click)="toggleCode('interactiveDemo')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Interactive tag with customizable options.</p>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <button
+          (click)="setRandomSeverity()"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+          Random Severity
+        </button>
+        <button
+          (click)="setRandomIcon()"
+          class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
+          Random Icon
+        </button>
+        <button
+          (click)="toggleRemovable()"
+          class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+          Toggle Removable
+        </button>
+        <button
+          (click)="setRandomStyle()"
+          class="px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700 transition-colors">
+          Random Style
+        </button>
+      </div>
+
+      <div class="h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 flex items-center justify-center">
+        <sui-tag
+          [value]="interactiveValue"
+          [severity]="interactiveSeverity"
+          [icon]="interactiveIcon"
+          [removable]="interactiveRemovable"
+          [disabled]="interactiveDisabled"
+          [style]="interactiveStyle"
+          [styleClass]="interactiveStyleClass"
+          (onRemove)="onInteractiveTagRemove()">
+        </sui-tag>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <button
+          (click)="toggleDisabled()"
+          class="px-4 py-2 bg-gray-600 text-white rounded-lg text-sm font-medium hover:bg-gray-700">
+          Toggle Disabled
+        </button>
+        <span class="text-sm text-gray-500">Removable: {{ interactiveRemovable ? 'Yes' : 'No' }}</span>
+      </div>
+
+      <!-- Action Log -->
+      <div class="bg-gray-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-sm font-medium text-gray-700">Action Log</h4>
+          <button
+            (click)="clearActionLog()"
+            class="text-xs text-blue-600 hover:text-blue-800">
+            Clear
+          </button>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1 max-h-20 overflow-y-auto">
+          <div *ngFor="let action of actionLog">{{ action }}</div>
+          <div *ngIf="actionLog.length === 0" class="text-gray-400">No actions yet...</div>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showInteractiveDemoCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm" ngNonBindable><code>&lt;sui-tag
+  [value]="interactiveValue"
+  [severity]="interactiveSeverity"
+  [icon]="interactiveIcon"
+  [removable]="interactiveRemovable"
+  [disabled]="interactiveDisabled"
+  [style]="interactiveStyle"
+  [styleClass]="interactiveStyleClass"
+  (onRemove)="onInteractiveTagRemove()"&gt;
+&lt;/sui-tag&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      <div class="space-y-4 text-gray-600">
+        <p>Import the Tag component and add it to your template:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm" ngNonBindable><code>import &#123; Tag &#125; from 'ui-lib';
+
+&lt;sui-tag [value]="New" [severity]="success"&gt;
+&lt;/sui-tag&gt;</code></pre>
+        
+        <p>Basic tag usage:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm" ngNonBindable><code>&lt;sui-tag
+  [value]="Important"
+  [severity]="danger"
+  [icon]="⚠️"
+  [removable]="true"
+  [disabled]="false"
+  (onRemove)="onTagRemove()"&gt;
+&lt;/sui-tag&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Properties</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Text content of the tag</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">severity</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'info'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Severity level (info, success, warning, danger, contrast)</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">icon</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Icon to display in the tag</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">removable</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the tag can be removed</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the tag is disabled</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">object</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the tag</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">CSS class for the tag</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Events</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onRemove</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;void&gt;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the remove button is clicked</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

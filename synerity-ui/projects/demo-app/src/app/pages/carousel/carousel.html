@@ -1,0 +1,349 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Carousel</h1>
+    <p class="text-gray-600">A carousel component for displaying multiple images or content in a rotating slideshow.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    <!-- Basic Carousel -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic Carousel</h3>
+        <button
+          (click)="toggleCode('basicCarousel')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicCarouselCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">A simple carousel with navigation and indicators.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <sui-carousel
+          [value]="basicCarouselItems"
+          [showIndicators]="true"
+          [showNavigators]="true"
+          [circular]="true"
+          (onPageChange)="onCarouselPageChange($event)">
+        </sui-carousel>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showBasicCarouselCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-carousel
+  [value]="basicCarouselItems"
+  [showIndicators]="true"
+  [showNavigators]="true"
+  [circular]="true"
+  (onPageChange)="onCarouselPageChange($event)"&gt;
+&lt;/sui-carousel&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Autoplay Carousel -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Autoplay Carousel</h3>
+        <button
+          (click)="toggleCode('autoplayCarousel')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showAutoplayCarouselCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Carousel with automatic rotation every 3 seconds.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <sui-carousel
+          [value]="autoplayCarouselItems"
+          [autoplayInterval]="3000"
+          [showIndicators]="true"
+          [showNavigators]="true"
+          [circular]="true"
+          (onPageChange)="onCarouselPageChange($event)">
+        </sui-carousel>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showAutoplayCarouselCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-carousel
+  [value]="autoplayCarouselItems"
+  [autoplayInterval]="3000"
+  [showIndicators]="true"
+  [showNavigators]="true"
+  [circular]="true"
+  (onPageChange)="onCarouselPageChange($event)"&gt;
+&lt;/sui-carousel&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- No Indicators Carousel -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">No Indicators Carousel</h3>
+        <button
+          (click)="toggleCode('noIndicatorsCarousel')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showNoIndicatorsCarouselCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Carousel without page indicators.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <sui-carousel
+          [value]="noIndicatorsCarouselItems"
+          [showIndicators]="false"
+          [showNavigators]="true"
+          [circular]="true"
+          (onPageChange)="onCarouselPageChange($event)">
+        </sui-carousel>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showNoIndicatorsCarouselCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-carousel
+  [value]="noIndicatorsCarouselItems"
+  [showIndicators]="false"
+  [showNavigators]="true"
+  [circular]="true"
+  (onPageChange)="onCarouselPageChange($event)"&gt;
+&lt;/sui-carousel&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- No Navigators Carousel -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">No Navigators Carousel</h3>
+        <button
+          (click)="toggleCode('noNavigatorsCarousel')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showNoNavigatorsCarouselCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Carousel without navigation arrows.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <sui-carousel
+          [value]="noNavigatorsCarouselItems"
+          [showIndicators]="true"
+          [showNavigators]="false"
+          [circular]="true"
+          (onPageChange)="onCarouselPageChange($event)">
+        </sui-carousel>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showNoNavigatorsCarouselCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-carousel
+  [value]="noNavigatorsCarouselItems"
+  [showIndicators]="true"
+  [showNavigators]="false"
+  [circular]="true"
+  (onPageChange)="onCarouselPageChange($event)"&gt;
+&lt;/sui-carousel&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Interactive Demo</h3>
+        <button
+          (click)="toggleCode('interactiveDemo')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Interactive carousel with customizable options.</p>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <button
+          (click)="toggleCircular()"
+          [class]="interactiveCircular ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveCircular ? 'Circular: On' : 'Circular: Off' }}
+        </button>
+        <button
+          (click)="toggleAutoplay()"
+          [class]="interactiveAutoplayInterval > 0 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveAutoplayInterval > 0 ? 'Autoplay: On' : 'Autoplay: Off' }}
+        </button>
+        <button
+          (click)="toggleIndicators()"
+          [class]="interactiveShowIndicators ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveShowIndicators ? 'Indicators: On' : 'Indicators: Off' }}
+        </button>
+        <button
+          (click)="toggleNavigators()"
+          [class]="interactiveShowNavigators ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveShowNavigators ? 'Navigators: On' : 'Navigators: Off' }}
+        </button>
+      </div>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg mb-4">
+        <sui-carousel
+          [value]="interactiveItems"
+          [activeIndex]="interactiveActiveIndex"
+          [circular]="interactiveCircular"
+          [autoplayInterval]="interactiveAutoplayInterval"
+          [showIndicators]="interactiveShowIndicators"
+          [showNavigators]="interactiveShowNavigators"
+          (onPageChange)="onCarouselPageChange($event)">
+        </sui-carousel>
+      </div>
+
+      <!-- Action Log -->
+      <div class="bg-gray-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-sm font-medium text-gray-700">Action Log</h4>
+          <button
+            (click)="clearActionLog()"
+            class="text-xs text-blue-600 hover:text-blue-800">
+            Clear
+          </button>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1 max-h-20 overflow-y-auto">
+          <div *ngFor="let action of actionLog">{{ action }}</div>
+          <div *ngIf="actionLog.length === 0" class="text-gray-400">No actions yet...</div>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showInteractiveDemoCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-carousel
+  [value]="interactiveItems"
+  [activeIndex]="interactiveActiveIndex"
+  [circular]="interactiveCircular"
+  [autoplayInterval]="interactiveAutoplayInterval"
+  [showIndicators]="interactiveShowIndicators"
+  [showNavigators]="interactiveShowNavigators"
+  (onPageChange)="onCarouselPageChange($event)"&gt;
+&lt;/sui-carousel&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      <div class="space-y-4 text-gray-600">
+        <p>Import the Carousel component and add it to your template:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>import {{ '{' }} Carousel {{ '}' }} from 'ui-lib';
+
+&lt;sui-carousel [value]="carouselItems"&gt;&lt;/sui-carousel&gt;</code></pre>
+        
+        <p>Define your carousel items:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>carouselItems = [
+  {{ '{' }} src: 'image1.jpg', alt: 'Image 1', title: 'First Image' {{ '}' }},
+  {{ '{' }} src: 'image2.jpg', alt: 'Image 2', title: 'Second Image' {{ '}' }}
+];</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Properties</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">CarouselItem[]</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Array of carousel items</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">activeIndex</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Index of the active item</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">circular</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to loop infinitely</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">autoplayInterval</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Autoplay interval in milliseconds</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showIndicators</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to show page indicators</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showNavigators</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to show navigation arrows</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Events</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onPageChange</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the active page changes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

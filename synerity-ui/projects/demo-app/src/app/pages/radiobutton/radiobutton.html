@@ -1,8 +1,8 @@
 <div class="max-w-6xl mx-auto">
   <!-- Page Header -->
   <div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">RadioButton</h1>
-    <p class="text-lg text-gray-600">Single-choice selection components with support for radio groups, disabled states, and form integration.</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Radio Button</h1>
+    <p class="text-lg text-gray-600">Single selection input components that allow users to choose one option from a set of mutually exclusive choices.</p>
   </div>
 
   <!-- Tabs -->
@@ -12,286 +12,222 @@
     <div *ngIf="activeTab === 'demo'">
       <div class="space-y-8">
         
-        <!-- Basic Usage -->
+        <!-- Basic Radio Button -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Basic Usage</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Basic Radio Button</h3>
             <button 
-              (click)="toggleCode('basicUsage')"
+              (click)="toggleCode('basicRadio')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showBasicUsageCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showBasicRadioCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          
           <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
             <div class="p-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-3">Color Selection</label>
-                  <div class="space-y-2">
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="color"
-                        value="red"
-                        [(ngModel)]="selectedColor"
-                        (change)="onRadioChange($event, 'color')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Red</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="color"
-                        value="blue"
-                        [(ngModel)]="selectedColor"
-                        (change)="onRadioChange($event, 'color')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Blue</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="color"
-                        value="green"
-                        [(ngModel)]="selectedColor"
-                        (change)="onRadioChange($event, 'color')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Green</span>
-                    </label>
-                  </div>
-                  <p class="text-sm text-gray-500 mt-2">Selected: {{ selectedColor || 'None' }}</p>
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-3">Size Selection</label>
-                  <div class="space-y-2">
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="size"
-                        value="small"
-                        [(ngModel)]="selectedSize"
-                        (change)="onRadioChange($event, 'size')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Small</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="size"
-                        value="medium"
-                        [(ngModel)]="selectedSize"
-                        (change)="onRadioChange($event, 'size')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Medium</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="size"
-                        value="large"
-                        [(ngModel)]="selectedSize"
-                        (change)="onRadioChange($event, 'size')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Large</span>
-                    </label>
-                  </div>
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-3">Payment Method</label>
-                  <div class="space-y-2">
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="payment"
-                        value="credit"
-                        [(ngModel)]="selectedPayment"
-                        (change)="onRadioChange($event, 'payment')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Credit Card</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="payment"
-                        value="paypal"
-                        [(ngModel)]="selectedPayment"
-                        (change)="onRadioChange($event, 'payment')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">PayPal</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="payment"
-                        value="bank"
-                        [(ngModel)]="selectedPayment"
-                        (change)="onRadioChange($event, 'payment')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Bank Transfer</span>
-                    </label>
-                  </div>
-                </div>
+              <div class="space-y-3">
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <sui-radio-button 
+                    name="basic-radio"
+                    value="option1"
+                    [(ngModel)]="selectedColor">
+                  </sui-radio-button>
+                  <span>Option 1</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <sui-radio-button 
+                    name="basic-radio"
+                    value="option2"
+                    [(ngModel)]="selectedColor">
+                  </sui-radio-button>
+                  <span>Option 2</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <sui-radio-button 
+                    name="basic-radio"
+                    value="option3"
+                    [(ngModel)]="selectedColor">
+                  </sui-radio-button>
+                  <span>Option 3</span>
+                </label>
               </div>
+              <p class="mt-4 text-sm text-gray-600">Selected: {{ selectedColor }}</p>
             </div>
-          </div>
-          
-          <div *ngIf="showBasicUsageCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-            <pre class="text-green-400 text-sm"><code>&lt;!-- Color Selection --&gt;
-&lt;label class="flex items-center"&gt;
+            
+            <!-- Code Block -->
+            <div *ngIf="showBasicRadioCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;label class="flex items-center gap-3 cursor-pointer"&gt;
   &lt;sui-radio-button 
-    name="color"
-    value="red"
-    [(ngModel)]="selectedColor"
-    (change)="onRadioChange($event, 'color')"&gt;
+    name="basic-radio"
+    value="option1"
+    [(ngModel)]="selectedValue"&gt;
   &lt;/sui-radio-button&gt;
-  &lt;span class="ml-2 text-sm text-gray-700"&gt;Red&lt;/span&gt;
-&lt;/label&gt;
-
-&lt;!-- Size Selection --&gt;
-&lt;label class="flex items-center"&gt;
-  &lt;sui-radio-button 
-    name="size"
-    value="medium"
-    [(ngModel)]="selectedSize"
-    (change)="onRadioChange($event, 'size')"&gt;
-  &lt;/sui-radio-button&gt;
-  &lt;span class="ml-2 text-sm text-gray-700"&gt;Medium&lt;/span&gt;
-&lt;/label&gt;
-
-&lt;!-- Payment Method --&gt;
-&lt;label class="flex items-center"&gt;
-  &lt;sui-radio-button 
-    name="payment"
-    value="credit"
-    [(ngModel)]="selectedPayment"
-    (change)="onRadioChange($event, 'payment')"&gt;
-  &lt;/sui-radio-button&gt;
-  &lt;span class="ml-2 text-sm text-gray-700"&gt;Credit Card&lt;/span&gt;
+  &lt;span&gt;Option 1&lt;/span&gt;
 &lt;/label&gt;</code></pre>
+            </div>
           </div>
         </div>
 
-        <!-- RadioButton States -->
+        <!-- Radio Button Group -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">RadioButton States</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Radio Button Group</h3>
             <button 
-              (click)="toggleCode('radioStates')"
+              (click)="toggleCode('radioGroup')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showRadioStatesCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showRadioGroupCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          
           <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
             <div class="p-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div class="space-y-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-3">Normal State</label>
+                  <h4 class="font-medium text-gray-900 mb-3">Choose your preferred programming language:</h4>
                   <div class="space-y-2">
-                    <label class="flex items-center">
+                    <label *ngFor="let option of languageOptions" class="flex items-center gap-3 cursor-pointer">
                       <sui-radio-button 
-                        name="normal"
-                        value="option1"
-                        [(ngModel)]="selectedLanguage"
-                        (change)="onRadioChange($event, 'normal')">
+                        name="language-radio"
+                        [value]="option.value"
+                        [(ngModel)]="selectedLanguage">
                       </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Option 1</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="normal"
-                        value="option2"
-                        [(ngModel)]="selectedLanguage"
-                        (change)="onRadioChange($event, 'normal')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Option 2</span>
+                      <span>{{ option.label }}</span>
                     </label>
                   </div>
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-3">Disabled State</label>
-                  <div class="space-y-2">
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="disabled"
-                        value="disabled1"
-                        [disabled]="true"
-                        [(ngModel)]="selectedDisabled"
-                        (change)="onRadioChange($event, 'disabled')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-500">Disabled Option 1</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="disabled"
-                        value="disabled2"
-                        [disabled]="true"
-                        [(ngModel)]="selectedDisabled"
-                        (change)="onRadioChange($event, 'disabled')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-500">Disabled Option 2</span>
-                    </label>
-                  </div>
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-3">Selected State</label>
-                  <div class="space-y-2">
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="selected"
-                        value="selected1"
-                        [(ngModel)]="selectedLanguage"
-                        (change)="onRadioChange($event, 'selected')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Pre-selected</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="selected"
-                        value="selected2"
-                        [(ngModel)]="selectedLanguage"
-                        (change)="onRadioChange($event, 'selected')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Another Option</span>
-                    </label>
-                  </div>
+                  <p class="mt-3 text-sm text-gray-600">Selected: {{ selectedLanguage }}</p>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <div *ngIf="showRadioStatesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-            <pre class="text-green-400 text-sm"><code>&lt;!-- Normal State --&gt;
-&lt;label class="flex items-center"&gt;
+            
+            <!-- Code Block -->
+            <div *ngIf="showRadioGroupCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;label *ngFor="let option of languageOptions" class="flex items-center gap-3 cursor-pointer"&gt;
   &lt;sui-radio-button 
-    name="normal"
-    value="option1"
-    [(ngModel)]="selectedValue"
-    (change)="onRadioChange($event, 'normal')"&gt;
+    name="language-radio"
+    [value]="option.value"
+    [(ngModel)]="selectedLanguage"&gt;
   &lt;/sui-radio-button&gt;
-  &lt;span class="ml-2 text-sm text-gray-700"&gt;Option 1&lt;/span&gt;
-&lt;/label&gt;
-
-&lt;!-- Disabled State --&gt;
-&lt;label class="flex items-center"&gt;
-  &lt;sui-radio-button 
-    name="disabled"
-    value="disabled1"
-    [disabled]="true"
-    [(ngModel)]="selectedValue"
-    (change)="onRadioChange($event, 'disabled')"&gt;
-  &lt;/sui-radio-button&gt;
-  &lt;span class="ml-2 text-sm text-gray-500"&gt;Disabled Option&lt;/span&gt;
-&lt;/label&gt;
-
-&lt;!-- Selected State --&gt;
-&lt;label class="flex items-center"&gt;
-  &lt;sui-radio-button 
-    name="selected"
-    value="selected1"
-    [(ngModel)]="selectedValue"
-    (change)="onRadioChange($event, 'selected')"&gt;
-  &lt;/sui-radio-button&gt;
-  &lt;span class="ml-2 text-sm text-gray-700"&gt;Pre-selected&lt;/span&gt;
+  &lt;span&gt;{{ "{{" }} option.label {{ "}}" }}&lt;/span&gt;
 &lt;/label&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disabled Radio Buttons -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Disabled Radio Buttons</h3>
+            <button 
+              (click)="toggleCode('disabledRadio')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showDisabledRadioCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="space-y-3">
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <sui-radio-button 
+                    name="disabled-radio"
+                    value="enabled"
+                    [(ngModel)]="selectedDisabled">
+                  </sui-radio-button>
+                  <span>Enabled Option</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer opacity-50">
+                  <sui-radio-button 
+                    name="disabled-radio"
+                    value="disabled"
+                    [(ngModel)]="selectedDisabled"
+                    [disabled]="true">
+                  </sui-radio-button>
+                  <span>Disabled Option</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <sui-radio-button 
+                    name="disabled-radio"
+                    value="another"
+                    [(ngModel)]="selectedDisabled">
+                  </sui-radio-button>
+                  <span>Another Option</span>
+                </label>
+              </div>
+              <p class="mt-4 text-sm text-gray-600">Selected: {{ selectedDisabled }}</p>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showDisabledRadioCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;label class="flex items-center gap-3 cursor-pointer opacity-50"&gt;
+  &lt;sui-radio-button 
+    name="disabled-radio"
+    value="disabled"
+    [(ngModel)]="selectedValue"
+    [disabled]="true"&gt;
+  &lt;/sui-radio-button&gt;
+  &lt;span&gt;Disabled Option&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Radio Button Variants -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Radio Button Variants</h3>
+            <button 
+              (click)="toggleCode('radioVariants')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showRadioVariantsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-medium text-gray-900 mb-3">Payment Method:</h4>
+                  <div class="space-y-2">
+                    <label *ngFor="let option of paymentOptions" class="flex items-center gap-3 cursor-pointer">
+                      <sui-radio-button 
+                        name="payment-radio"
+                        [value]="option.value"
+                        [(ngModel)]="selectedPayment">
+                      </sui-radio-button>
+                      <span>{{ option.label }}</span>
+                    </label>
+                  </div>
+                  <p class="mt-3 text-sm text-gray-600">Selected: {{ selectedPayment }}</p>
+                </div>
+                
+                <div>
+                  <h4 class="font-medium text-gray-900 mb-3">T-Shirt Size:</h4>
+                  <div class="space-y-2">
+                    <label *ngFor="let option of sizeOptions" class="flex items-center gap-3 cursor-pointer">
+                      <sui-radio-button 
+                        name="size-radio"
+                        [value]="option.value"
+                        [(ngModel)]="selectedSize">
+                      </sui-radio-button>
+                      <span>{{ option.label }}</span>
+                    </label>
+                  </div>
+                  <p class="mt-3 text-sm text-gray-600">Selected: {{ selectedSize }}</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showRadioVariantsCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;label *ngFor="let option of paymentOptions" class="flex items-center gap-3 cursor-pointer"&gt;
+  &lt;sui-radio-button 
+    name="payment-radio"
+    [value]="option.value"
+    [(ngModel)]="selectedPayment"&gt;
+  &lt;/sui-radio-button&gt;
+  &lt;span&gt;{{ "{{" }} option.label {{ "}}" }}&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+            </div>
           </div>
         </div>
 
@@ -306,146 +242,73 @@
               <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          
           <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
             <div class="p-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-3">Language Preference</label>
-                  <div class="space-y-2">
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="language"
-                        value="english"
-                        [(ngModel)]="interactiveSelection"
-                        (change)="onRadioChange($event, 'language')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">English</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="language"
-                        value="spanish"
-                        [(ngModel)]="interactiveSelection"
-                        (change)="onRadioChange($event, 'language')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Spanish</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="language"
-                        value="french"
-                        [(ngModel)]="interactiveSelection"
-                        (change)="onRadioChange($event, 'language')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">French</span>
-                    </label>
-                    <label class="flex items-center">
-                      <sui-radio-button 
-                        name="language"
-                        value="german"
-                        [(ngModel)]="interactiveSelection"
-                        (change)="onRadioChange($event, 'language')">
-                      </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">German</span>
-                    </label>
+              <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                    <input 
+                      [(ngModel)]="interactiveName"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Disabled</label>
+                    <input 
+                      type="checkbox"
+                      [(ngModel)]="interactiveDisabled"
+                      class="mt-2">
                   </div>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-3">Notification Settings</label>
+                  <h4 class="font-medium text-gray-900 mb-3">Choose an option:</h4>
                   <div class="space-y-2">
-                    <label class="flex items-center">
+                    <label class="flex items-center gap-3 cursor-pointer" [class.opacity-50]="interactiveDisabled">
                       <sui-radio-button 
-                        name="notifications"
-                        value="all"
-                        [(ngModel)]="selectedLanguage"
-                        (change)="onRadioChange($event, 'notifications')">
+                        [name]="interactiveName"
+                        value="interactive1"
+                        [(ngModel)]="interactiveSelection"
+                        [disabled]="interactiveDisabled">
                       </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">All Notifications</span>
+                      <span>Interactive Option 1</span>
                     </label>
-                    <label class="flex items-center">
+                    <label class="flex items-center gap-3 cursor-pointer" [class.opacity-50]="interactiveDisabled">
                       <sui-radio-button 
-                        name="notifications"
-                        value="important"
-                        [(ngModel)]="selectedLanguage"
-                        (change)="onRadioChange($event, 'notifications')">
+                        [name]="interactiveName"
+                        value="interactive2"
+                        [(ngModel)]="interactiveSelection"
+                        [disabled]="interactiveDisabled">
                       </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">Important Only</span>
+                      <span>Interactive Option 2</span>
                     </label>
-                    <label class="flex items-center">
+                    <label class="flex items-center gap-3 cursor-pointer" [class.opacity-50]="interactiveDisabled">
                       <sui-radio-button 
-                        name="notifications"
-                        value="none"
-                        [(ngModel)]="selectedLanguage"
-                        (change)="onRadioChange($event, 'notifications')">
+                        [name]="interactiveName"
+                        value="interactive3"
+                        [(ngModel)]="interactiveSelection"
+                        [disabled]="interactiveDisabled">
                       </sui-radio-button>
-                      <span class="ml-2 text-sm text-gray-700">No Notifications</span>
+                      <span>Interactive Option 3</span>
                     </label>
                   </div>
-                </div>
-              </div>
-              
-              <div class="mt-6 p-4 bg-gray-50 rounded-lg border">
-                <h4 class="font-medium text-gray-900 mb-2">Selection Summary:</h4>
-                <p class="text-sm text-gray-600 mb-2">Language: {{ interactiveSelection || 'None selected' }}</p>
-                <p class="text-sm text-gray-600">Notifications: {{ selectedLanguage || 'None selected' }}</p>
-                <div class="mt-2 text-xs text-gray-500">
-                  <span>Total selections: {{ (interactiveSelection ? 1 : 0) + (selectedLanguage ? 1 : 0) }}</span>
+                  <p class="mt-3 text-sm text-gray-600">Selected: {{ interactiveSelection || 'None' }}</p>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-            <pre class="text-green-400 text-sm"><code>&lt;!-- Interactive Demo --&gt;
-&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-3"&gt;Language Preference&lt;/label&gt;
-    &lt;div class="space-y-2"&gt;
-      &lt;label class="flex items-center"&gt;
-        &lt;sui-radio-button 
-          name="language"
-          value="english"
-          [(ngModel)]="interactiveSelection"
-          (change)="onRadioChange($event, 'language')"&gt;
-        &lt;/sui-radio-button&gt;
-        &lt;span class="ml-2 text-sm text-gray-700"&gt;English&lt;/span&gt;
-      &lt;/label&gt;
-      &lt;label class="flex items-center"&gt;
-        &lt;sui-radio-button 
-          name="language"
-          value="spanish"
-          [(ngModel)]="interactiveSelection"
-          (change)="onRadioChange($event, 'language')"&gt;
-        &lt;/sui-radio-button&gt;
-        &lt;span class="ml-2 text-sm text-gray-700"&gt;Spanish&lt;/span&gt;
-      &lt;/label&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-3"&gt;Notification Settings&lt;/label&gt;
-    &lt;div class="space-y-2"&gt;
-      &lt;label class="flex items-center"&gt;
-        &lt;sui-radio-button 
-          name="notifications"
-          value="all"
-          [(ngModel)]="selectedLanguage"
-          (change)="onRadioChange($event, 'notifications')"&gt;
-        &lt;/sui-radio-button&gt;
-        &lt;span class="ml-2 text-sm text-gray-700"&gt;All Notifications&lt;/span&gt;
-      &lt;/label&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Selection Summary --&gt;
-&lt;div class="mt-6 p-4 bg-gray-50 rounded-lg border"&gt;
-  &lt;h4 class="font-medium text-gray-900 mb-2"&gt;Selection Summary:&lt;/h4&gt;
-  &lt;p class="text-sm text-gray-600 mb-2"&gt;Language: {{ "{{" }} interactiveSelection || 'None selected' {{ "}}" }}&lt;/p&gt;
-  &lt;p class="text-sm text-gray-600"&gt;Notifications: {{ "{{" }} selectedLanguage || 'None selected' {{ "}}" }}&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+            
+            <!-- Code Block -->
+            <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;label class="flex items-center gap-3 cursor-pointer" [class.opacity-50]="interactiveDisabled"&gt;
+  &lt;sui-radio-button 
+    [name]="interactiveName"
+    value="interactive1"
+    [(ngModel)]="interactiveSelection"
+    [disabled]="interactiveDisabled"&gt;
+  &lt;/sui-radio-button&gt;
+  &lt;span&gt;Interactive Option 1&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+            </div>
           </div>
         </div>
       </div>
@@ -453,78 +316,63 @@
 
     <!-- How to Use Tab -->
     <div *ngIf="activeTab === 'usage'">
-      <div class="space-y-8">
+      <div class="space-y-6">
         
         <!-- Installation -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
-          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-            <div>npm install @synerity/ui</div>
-          </div>
-        </div>
-
-        <!-- Basic Usage -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <pre class="text-sm"><code>&lt;sui-radio-button 
-  name="group"
-  value="option1"
-  [(ngModel)]="selectedValue"&gt;
-&lt;/sui-radio-button&gt;</code></pre>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>npm install @synerity/ui</code></pre>
           </div>
         </div>
 
         <!-- Import -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <pre class="text-sm"><code>import {{ '{' }} RadioButton {{ '}' }} from '@synerity/ui';
-import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';</code></pre>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>import {{ '{' }} RadioButton {{ '}' }} from '@synerity/ui';
+
+@Component({{ '{' }}
+  imports: [RadioButton],
+  // ...
+{{ '}' }})</code></pre>
           </div>
         </div>
 
-        <!-- Examples -->
+        <!-- Basic Usage -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
-          
-          <div class="space-y-6">
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Basic Radio Group</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;label class="flex items-center"&gt;
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;label class="flex items-center gap-3 cursor-pointer"&gt;
   &lt;sui-radio-button 
-    name="color"
-    value="red"
-    [(ngModel)]="selectedColor"&gt;
+    name="my-radio"
+    value="option1"
+    [(ngModel)]="selectedValue"&gt;
   &lt;/sui-radio-button&gt;
-  &lt;span class="ml-2"&gt;Red&lt;/span&gt;
+  &lt;span&gt;Option 1&lt;/span&gt;
 &lt;/label&gt;</code></pre>
-              </div>
-            </div>
+          </div>
+        </div>
 
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Disabled Radio Button</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-radio-button 
-  name="group"
-  value="disabled"
-  [disabled]="true"
-  [(ngModel)]="selectedValue"&gt;
-&lt;/sui-radio-button&gt;</code></pre>
-              </div>
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">Form Integration</h4>
+              <p class="text-blue-800 text-sm">Full Angular forms support with validation</p>
             </div>
-
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Radio Group with Change Event</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-radio-button 
-  name="payment"
-  value="credit"
-  [(ngModel)]="paymentMethod"
-  (change)="onPaymentChange($event)"&gt;
-&lt;/sui-radio-button&gt;</code></pre>
-              </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Accessibility</h4>
+              <p class="text-green-800 text-sm">Built with ARIA labels and keyboard navigation</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">Customizable</h4>
+              <p class="text-purple-800 text-sm">Configurable values, names, and disabled states</p>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-orange-900 mb-2">Group Support</h4>
+              <p class="text-orange-800 text-sm">Mutually exclusive selection within groups</p>
             </div>
           </div>
         </div>
@@ -533,45 +381,51 @@ import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';</code></pre>
 
     <!-- Documentation Tab -->
     <div *ngIf="activeTab === 'docs'">
-      <div class="space-y-8">
+      <div class="space-y-6">
         
         <!-- Props -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
-          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
-            <table class="min-w-full divide-y divide-gray-300">
+          <div class="overflow-x-auto">
+            <table class="w-full border border-gray-200 rounded-lg">
               <thead class="bg-gray-50">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Prop</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Type</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Default</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Description</th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="divide-y divide-gray-200">
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">name</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Name attribute for radio group identification</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">ngModel</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">any</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Two-way binding for radio button value</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">unknown</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Value of the radio button when selected</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">name</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">''</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Name attribute for grouping radio buttons</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Whether the radio button is disabled</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">value</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">any</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Value of the radio button</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">inputId</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">ID attribute for the radio button element</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">disabled</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">false</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Disable the radio button</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">inputId</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">''</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">ID attribute for the radio button</td>
                 </tr>
               </tbody>
             </table>
@@ -581,20 +435,20 @@ import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';</code></pre>
         <!-- Events -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
-          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
-            <table class="min-w-full divide-y divide-gray-300">
+          <div class="overflow-x-auto">
+            <table class="w-full border border-gray-200 rounded-lg">
               <thead class="bg-gray-50">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Event</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Parameters</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Description</th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="divide-y divide-gray-200">
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">change</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;unknown&gt;</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the radio button value changes</td>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">change</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">any</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when selection changes</td>
                 </tr>
               </tbody>
             </table>
@@ -604,14 +458,13 @@ import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';</code></pre>
         <!-- Accessibility -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
-          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <ul class="text-sm text-blue-800 space-y-2">
-              <li>• Proper ARIA attributes for radio button groups</li>
-              <li>• Keyboard navigation support (arrow keys, tab)</li>
-              <li>• Screen reader announcements for selection changes</li>
-              <li>• Focus management and visual focus indicators</li>
-              <li>• Support for disabled state with proper accessibility</li>
-              <li>• Radio group semantics for single selection</li>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <ul class="space-y-2 text-blue-800">
+              <li>• Proper labeling with associated text</li>
+              <li>• Keyboard navigation support (Arrow keys)</li>
+              <li>• Screen reader compatibility</li>
+              <li>• ARIA attributes for form integration</li>
+              <li>• Focus management and visual indicators</li>
             </ul>
           </div>
         </div>

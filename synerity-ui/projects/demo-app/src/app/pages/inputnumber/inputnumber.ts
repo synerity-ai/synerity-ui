@@ -10,40 +10,72 @@ import { Tabs } from '../../shared/tabs/tabs';
   templateUrl: './inputnumber.html',
   styleUrl: './inputnumber.scss'
 })
-export class Inputnumber {
+export class InputNumberPage {
   activeTab = 'demo';
   
   // Demo data
   basicNumber: number | null = null;
-  minMaxNumber: number | null = null;
-  stepNumber: number | null = null;
-  disabledNumber: number | null = null;
+  minMaxNumber: number | null = 50;
+  stepNumber: number | null = 5;
+  disabledNumber: number | null = 100;
   placeholderNumber: number | null = null;
   interactiveNumber: number | null = null;
+  interactiveMin = 0;
+  interactiveMax = 100;
+  interactiveStep = 1;
+  interactivePlaceholder = 'Enter a number...';
+  interactiveDisabled = false;
   
   // Code visibility states
-  showBasicUsageCode = false;
-  showNumberFeaturesCode = false;
-  showNumberStatesCode = false;
-  showNumberValidationCode = false;
+  showBasicNumberCode = false;
+  showMinMaxNumberCode = false;
+  showStepNumberCode = false;
+  showDisabledNumberCode = false;
+  showPlaceholderNumberCode = false;
   showInteractiveDemoCode = false;
   
   onTabChange(tab: string) {
     this.activeTab = tab;
   }
   
+  toggleCode(example: string) {
+    switch (example) {
+      case 'basicNumber':
+        this.showBasicNumberCode = !this.showBasicNumberCode;
+        break;
+      case 'minMaxNumber':
+        this.showMinMaxNumberCode = !this.showMinMaxNumberCode;
+        break;
+      case 'stepNumber':
+        this.showStepNumberCode = !this.showStepNumberCode;
+        break;
+      case 'disabledNumber':
+        this.showDisabledNumberCode = !this.showDisabledNumberCode;
+        break;
+      case 'placeholderNumber':
+        this.showPlaceholderNumberCode = !this.showPlaceholderNumberCode;
+        break;
+      case 'interactiveDemo':
+        this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
+        break;
+    }
+  }
+  
   onNumberChange(value: number | null, field: string) {
     console.log(`${field} changed to:`, value);
   }
   
-  // Code toggle methods
-  toggleCode(section: string) {
-    switch(section) {
-      case 'basicUsage': this.showBasicUsageCode = !this.showBasicUsageCode; break;
-      case 'numberFeatures': this.showNumberFeaturesCode = !this.showNumberFeaturesCode; break;
-      case 'numberStates': this.showNumberStatesCode = !this.showNumberStatesCode; break;
-      case 'numberValidation': this.showNumberValidationCode = !this.showNumberValidationCode; break;
-      case 'interactiveDemo': this.showInteractiveDemoCode = !this.showInteractiveDemoCode; break;
-    }
+  // Helper methods for validation
+  isValidNumber(value: number | null): boolean {
+    return value !== null && !isNaN(value);
+  }
+  
+  getNumberStatus(value: number | null, min?: number, max?: number): { status: string; color: string } {
+    if (!this.isValidNumber(value)) return { status: 'Invalid', color: 'text-red-600' };
+    
+    if (min !== undefined && value! < min) return { status: 'Below minimum', color: 'text-red-600' };
+    if (max !== undefined && value! > max) return { status: 'Above maximum', color: 'text-red-600' };
+    
+    return { status: 'Valid', color: 'text-green-600' };
   }
 }

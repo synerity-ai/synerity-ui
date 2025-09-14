@@ -1,0 +1,332 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">ImageCompare</h1>
+    <p class="text-gray-600">An image comparison component that allows users to compare two images using a draggable slider.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    <!-- Basic ImageCompare -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic ImageCompare</h3>
+        <button
+          (click)="toggleCode('basicImageCompare')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicImageCompareCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">A basic image comparison with horizontal orientation.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <sui-image-compare
+          [beforeSrc]="basicBeforeSrc"
+          [afterSrc]="basicAfterSrc"
+          [beforeAlt]="basicBeforeAlt"
+          [afterAlt]="basicAfterAlt"
+          [orientation]="'horizontal'"
+          [sliderPosition]="50">
+        </sui-image-compare>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showBasicImageCompareCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-image-compare
+  [beforeSrc]="basicBeforeSrc"
+  [afterSrc]="basicAfterSrc"
+  [beforeAlt]="basicBeforeAlt"
+  [afterAlt]="basicAfterAlt"
+  [orientation]="'horizontal'"
+  [sliderPosition]="50"&gt;
+&lt;/sui-image-compare&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Horizontal ImageCompare -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Horizontal ImageCompare</h3>
+        <button
+          (click)="toggleCode('horizontalImageCompare')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showHorizontalImageCompareCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Horizontal image comparison with custom labels.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <sui-image-compare
+          [beforeSrc]="horizontalBeforeSrc"
+          [afterSrc]="horizontalAfterSrc"
+          [beforeAlt]="horizontalBeforeAlt"
+          [afterAlt]="horizontalAfterAlt"
+          [orientation]="'horizontal'"
+          [sliderPosition]="50">
+        </sui-image-compare>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showHorizontalImageCompareCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-image-compare
+  [beforeSrc]="horizontalBeforeSrc"
+  [afterSrc]="horizontalAfterSrc"
+  [beforeAlt]="horizontalBeforeAlt"
+  [afterAlt]="horizontalAfterAlt"
+  [orientation]="'horizontal'"
+  [sliderPosition]="50"&gt;
+&lt;/sui-image-compare&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Vertical ImageCompare -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Vertical ImageCompare</h3>
+        <button
+          (click)="toggleCode('verticalImageCompare')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showVerticalImageCompareCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Vertical image comparison with different orientation.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <sui-image-compare
+          [beforeSrc]="verticalBeforeSrc"
+          [afterSrc]="verticalAfterSrc"
+          [beforeAlt]="verticalBeforeAlt"
+          [afterAlt]="verticalAfterAlt"
+          [orientation]="'vertical'"
+          [sliderPosition]="50">
+        </sui-image-compare>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showVerticalImageCompareCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-image-compare
+  [beforeSrc]="verticalBeforeSrc"
+  [afterSrc]="verticalAfterSrc"
+  [beforeAlt]="verticalBeforeAlt"
+  [afterAlt]="verticalAfterAlt"
+  [orientation]="'vertical'"
+  [sliderPosition]="50"&gt;
+&lt;/sui-image-compare&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Custom ImageCompare -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Custom ImageCompare</h3>
+        <button
+          (click)="toggleCode('customImageCompare')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showCustomImageCompareCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Custom image comparison with different dimensions and labels.</p>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+        <sui-image-compare
+          [beforeSrc]="customBeforeSrc"
+          [afterSrc]="customAfterSrc"
+          [beforeAlt]="customBeforeAlt"
+          [afterAlt]="customAfterAlt"
+          [orientation]="'horizontal'"
+          [sliderPosition]="50">
+        </sui-image-compare>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showCustomImageCompareCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-image-compare
+  [beforeSrc]="customBeforeSrc"
+  [afterSrc]="customAfterSrc"
+  [beforeAlt]="customBeforeAlt"
+  [afterAlt]="customAfterAlt"
+  [orientation]="'horizontal'"
+  [sliderPosition]="50"&gt;
+&lt;/sui-image-compare&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Interactive Demo</h3>
+        <button
+          (click)="toggleCode('interactiveDemo')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Interactive image comparison with customizable options.</p>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <button
+          (click)="toggleOrientation()"
+          [class]="interactiveOrientation === 'horizontal' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveOrientation === 'horizontal' ? 'Horizontal' : 'Vertical' }}
+        </button>
+        <button
+          (click)="resetSlider()"
+          class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
+          Reset Slider
+        </button>
+        <button
+          (click)="setRandomImages()"
+          class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+          Random Images
+        </button>
+        <button
+          (click)="setSliderPosition(25)"
+          class="px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700 transition-colors">
+          Set 25%
+        </button>
+      </div>
+
+      <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg mb-4">
+        <sui-image-compare
+          [beforeSrc]="interactiveBeforeSrc"
+          [afterSrc]="interactiveAfterSrc"
+          [beforeAlt]="interactiveBeforeAlt"
+          [afterAlt]="interactiveAfterAlt"
+          [orientation]="interactiveOrientation"
+          [sliderPosition]="interactiveSliderPosition">
+        </sui-image-compare>
+      </div>
+
+      <!-- Action Log -->
+      <div class="bg-gray-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-sm font-medium text-gray-700">Action Log</h4>
+          <button
+            (click)="clearActionLog()"
+            class="text-xs text-blue-600 hover:text-blue-800">
+            Clear
+          </button>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1 max-h-20 overflow-y-auto">
+          <div *ngFor="let action of actionLog">{{ action }}</div>
+          <div *ngIf="actionLog.length === 0" class="text-gray-400">No actions yet...</div>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showInteractiveDemoCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-image-compare
+  [beforeSrc]="interactiveBeforeSrc"
+  [afterSrc]="interactiveAfterSrc"
+  [beforeAlt]="interactiveBeforeAlt"
+  [afterAlt]="interactiveAfterAlt"
+  [orientation]="interactiveOrientation"
+  [sliderPosition]="interactiveSliderPosition"&gt;
+&lt;/sui-image-compare&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      <div class="space-y-4 text-gray-600">
+        <p>Import the ImageCompare component and add it to your template:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>import {{ '{' }} ImageCompare {{ '}' }} from 'ui-lib';
+
+&lt;sui-image-compare [beforeSrc]="beforeImage" [afterSrc]="afterImage"&gt;&lt;/sui-image-compare&gt;</code></pre>
+        
+        <p>Basic image comparison usage:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>&lt;sui-image-compare
+  [beforeSrc]="'path/to/before.jpg'"
+  [afterSrc]="'path/to/after.jpg'"
+  [beforeAlt]="'Before Image'"
+  [afterAlt]="'After Image'"
+  [orientation]="'horizontal'"
+  [sliderPosition]="50"&gt;
+&lt;/sui-image-compare&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Properties</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">beforeSrc</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Source URL of the before image</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">afterSrc</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Source URL of the after image</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">beforeAlt</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'Before'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Alternative text for the before image</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">afterAlt</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'After'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Alternative text for the after image</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">orientation</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'horizontal' | 'vertical'</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'horizontal'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Orientation of the comparison slider</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">sliderPosition</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">50</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Initial position of the slider (0-100)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

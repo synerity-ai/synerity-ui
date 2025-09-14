@@ -9,13 +9,12 @@ import { CommonModule } from '@angular/common';
 })
 export class Tabs {
   @Input() activeTab: string = 'demo';
-  @Output() tabChange = new EventEmitter<string>();
-
-  tabs = [
+  @Input() tabs: Array<{ id: string; label: string; icon: string }> = [
     { id: 'demo', label: 'Demo', icon: '🎮' },
     { id: 'usage', label: 'How to Use', icon: '📖' },
     { id: 'docs', label: 'Documentation', icon: '📚' }
   ];
+  @Output() tabChange = new EventEmitter<string>();
 
   setActiveTab(tabId: string) {
     this.activeTab = tabId;

@@ -1,0 +1,412 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">BlockUI</h1>
+    <p class="text-gray-600">A component that blocks user interaction with an overlay and optional loading message.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🔒' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    <!-- Basic BlockUI -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic BlockUI</h3>
+        <button
+          (click)="toggleCode('basicBlockUi')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicBlockUiCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">A basic block UI with default styling and spinner.</p>
+
+      <div class="flex items-center justify-between mb-4">
+        <button
+          (click)="toggleBasicBlock()"
+          [class]="basicBlocked ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ basicBlocked ? 'Unblock' : 'Block' }} UI
+        </button>
+        <span class="text-sm text-gray-500">Status: {{ basicBlocked ? 'Blocked' : 'Unblocked' }}</span>
+      </div>
+
+      <div class="relative h-64 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+        <sui-block-ui
+          [blocked]="basicBlocked"
+          [message]="basicMessage"
+          [showSpinner]="basicShowSpinner">
+          <div class="p-6">
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Content Area</h4>
+            <p class="text-gray-600 mb-4">This content will be blocked when the overlay is active.</p>
+            <div class="space-y-2">
+              <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Button 1</button>
+              <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Button 2</button>
+              <button class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">Button 3</button>
+            </div>
+          </div>
+        </sui-block-ui>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showBasicBlockUiCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-block-ui
+  [blocked]="basicBlocked"
+  [message]="basicMessage"
+  [showSpinner]="basicShowSpinner"&gt;
+  &lt;div class="p-6"&gt;
+    &lt;h4 class="text-lg font-semibold text-gray-900 mb-2"&gt;Content Area&lt;/h4&gt;
+    &lt;p class="text-gray-600 mb-4"&gt;This content will be blocked when the overlay is active.&lt;/p&gt;
+    &lt;div class="space-y-2"&gt;
+      &lt;button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"&gt;Button 1&lt;/button&gt;
+      &lt;button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"&gt;Button 2&lt;/button&gt;
+      &lt;button class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"&gt;Button 3&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/sui-block-ui&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Custom BlockUI -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Custom BlockUI</h3>
+        <button
+          (click)="toggleCode('customBlockUi')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showCustomBlockUiCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Custom block UI with different message and styling.</p>
+
+      <div class="flex items-center justify-between mb-4">
+        <button
+          (click)="toggleCustomBlock()"
+          [class]="customBlocked ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ customBlocked ? 'Unblock' : 'Block' }} UI
+        </button>
+        <span class="text-sm text-gray-500">Status: {{ customBlocked ? 'Blocked' : 'Unblocked' }}</span>
+      </div>
+
+      <div class="relative h-64 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+        <sui-block-ui
+          [blocked]="customBlocked"
+          [message]="customMessage"
+          [showSpinner]="customShowSpinner">
+          <div class="p-6">
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Custom Content</h4>
+            <p class="text-gray-600 mb-4">This area has custom blocking behavior.</p>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-4 bg-blue-100 rounded-lg">
+                <h5 class="font-medium text-blue-900">Section 1</h5>
+                <p class="text-blue-700 text-sm">Custom content area</p>
+              </div>
+              <div class="p-4 bg-green-100 rounded-lg">
+                <h5 class="font-medium text-green-900">Section 2</h5>
+                <p class="text-green-700 text-sm">Another content area</p>
+              </div>
+            </div>
+          </div>
+        </sui-block-ui>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showCustomBlockUiCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-block-ui
+  [blocked]="customBlocked"
+  [message]="customMessage"
+  [showSpinner]="customShowSpinner"&gt;
+  &lt;div class="p-6"&gt;
+    &lt;h4 class="text-lg font-semibold text-gray-900 mb-2"&gt;Custom Content&lt;/h4&gt;
+    &lt;p class="text-gray-600 mb-4"&gt;This area has custom blocking behavior.&lt;/p&gt;
+    &lt;div class="grid grid-cols-2 gap-4"&gt;
+      &lt;div class="p-4 bg-blue-100 rounded-lg"&gt;
+        &lt;h5 class="font-medium text-blue-900"&gt;Section 1&lt;/h5&gt;
+        &lt;p class="text-blue-700 text-sm"&gt;Custom content area&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="p-4 bg-green-100 rounded-lg"&gt;
+        &lt;h5 class="font-medium text-green-900"&gt;Section 2&lt;/h5&gt;
+        &lt;p class="text-green-700 text-sm"&gt;Another content area&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/sui-block-ui&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Overlay BlockUI -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Overlay BlockUI</h3>
+        <button
+          (click)="toggleCode('overlayBlockUi')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showOverlayBlockUiCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Block UI with custom overlay styling and behavior.</p>
+
+      <div class="flex items-center justify-between mb-4">
+        <button
+          (click)="toggleOverlayBlock()"
+          [class]="overlayBlocked ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ overlayBlocked ? 'Unblock' : 'Block' }} UI
+        </button>
+        <span class="text-sm text-gray-500">Status: {{ overlayBlocked ? 'Blocked' : 'Unblocked' }}</span>
+      </div>
+
+      <div class="relative h-64 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+        <sui-block-ui
+          [blocked]="overlayBlocked"
+          [message]="overlayMessage"
+          [showSpinner]="overlayShowSpinner">
+          <div class="p-6">
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Overlay Content</h4>
+            <p class="text-gray-600 mb-4">This area demonstrates overlay blocking.</p>
+            <div class="flex space-x-4">
+              <input type="text" placeholder="Input field" class="px-3 py-2 border border-gray-300 rounded-lg">
+              <select class="px-3 py-2 border border-gray-300 rounded-lg">
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+              </select>
+              <button class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600">Submit</button>
+            </div>
+          </div>
+        </sui-block-ui>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showOverlayBlockUiCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-block-ui
+  [blocked]="overlayBlocked"
+  [message]="overlayMessage"
+  [showSpinner]="overlayShowSpinner"&gt;
+  &lt;div class="p-6"&gt;
+    &lt;h4 class="text-lg font-semibold text-gray-900 mb-2"&gt;Overlay Content&lt;/h4&gt;
+    &lt;p class="text-gray-600 mb-4"&gt;This area demonstrates overlay blocking.&lt;/p&gt;
+    &lt;div class="flex space-x-4"&gt;
+      &lt;input type="text" placeholder="Input field" class="px-3 py-2 border border-gray-300 rounded-lg"&gt;
+      &lt;select class="px-3 py-2 border border-gray-300 rounded-lg"&gt;
+        &lt;option&gt;Option 1&lt;/option&gt;
+        &lt;option&gt;Option 2&lt;/option&gt;
+        &lt;option&gt;Option 3&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;button class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/sui-block-ui&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Interactive Demo</h3>
+        <button
+          (click)="toggleCode('interactiveDemo')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Interactive block UI with customizable options.</p>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <button
+          (click)="toggleInteractiveBlock()"
+          [class]="interactiveBlocked ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveBlocked ? 'Unblock' : 'Block' }} UI
+        </button>
+        <button
+          (click)="setRandomMessage()"
+          class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
+          Random Message
+        </button>
+        <button
+          (click)="toggleSpinner()"
+          [class]="interactiveShowSpinner ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveShowSpinner ? 'Spinner: On' : 'Spinner: Off' }}
+        </button>
+        <button
+          (click)="setRandomOverlayStyle()"
+          class="px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700 transition-colors">
+          Random Style
+        </button>
+      </div>
+
+      <div class="relative h-64 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+        <sui-block-ui
+          [blocked]="interactiveBlocked"
+          [message]="interactiveMessage"
+          [showSpinner]="interactiveShowSpinner"
+          [overlayStyle]="interactiveOverlayStyle"
+          [overlayClass]="interactiveOverlayClass">
+          <div class="p-6">
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Interactive Content</h4>
+            <p class="text-gray-600 mb-4">This area demonstrates interactive blocking behavior.</p>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="p-4 bg-blue-100 rounded-lg text-center">
+                <h5 class="font-medium text-blue-900">Card 1</h5>
+                <p class="text-blue-700 text-sm">Interactive content</p>
+              </div>
+              <div class="p-4 bg-green-100 rounded-lg text-center">
+                <h5 class="font-medium text-green-900">Card 2</h5>
+                <p class="text-green-700 text-sm">Interactive content</p>
+              </div>
+              <div class="p-4 bg-purple-100 rounded-lg text-center">
+                <h5 class="font-medium text-purple-900">Card 3</h5>
+                <p class="text-purple-700 text-sm">Interactive content</p>
+              </div>
+            </div>
+          </div>
+        </sui-block-ui>
+      </div>
+
+      <!-- Action Log -->
+      <div class="bg-gray-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-sm font-medium text-gray-700">Action Log</h4>
+          <button
+            (click)="clearActionLog()"
+            class="text-xs text-blue-600 hover:text-blue-800">
+            Clear
+          </button>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1 max-h-20 overflow-y-auto">
+          <div *ngFor="let action of actionLog">{{ action }}</div>
+          <div *ngIf="actionLog.length === 0" class="text-gray-400">No actions yet...</div>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showInteractiveDemoCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-block-ui
+  [blocked]="interactiveBlocked"
+  [message]="interactiveMessage"
+  [showSpinner]="interactiveShowSpinner"
+  [overlayStyle]="interactiveOverlayStyle"
+  [overlayClass]="interactiveOverlayClass"&gt;
+  &lt;div class="p-6"&gt;
+    &lt;h4 class="text-lg font-semibold text-gray-900 mb-2"&gt;Interactive Content&lt;/h4&gt;
+    &lt;p class="text-gray-600 mb-4"&gt;This area demonstrates interactive blocking behavior.&lt;/p&gt;
+    &lt;div class="grid grid-cols-3 gap-4"&gt;
+      &lt;div class="p-4 bg-blue-100 rounded-lg text-center"&gt;
+        &lt;h5 class="font-medium text-blue-900"&gt;Card 1&lt;/h5&gt;
+        &lt;p class="text-blue-700 text-sm"&gt;Interactive content&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="p-4 bg-green-100 rounded-lg text-center"&gt;
+        &lt;h5 class="font-medium text-green-900"&gt;Card 2&lt;/h5&gt;
+        &lt;p class="text-green-700 text-sm"&gt;Interactive content&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="p-4 bg-purple-100 rounded-lg text-center"&gt;
+        &lt;h5 class="font-medium text-purple-900"&gt;Card 3&lt;/h5&gt;
+        &lt;p class="text-purple-700 text-sm"&gt;Interactive content&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/sui-block-ui&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      <div class="space-y-4 text-gray-600">
+        <p>Import the BlockUI component and add it to your template:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>import &#123; BlockUi &#125; from 'ui-lib';
+
+&lt;sui-block-ui [blocked]="isBlocked" [message]="'Loading...'"&gt;
+  &lt;div&gt;Content to block&lt;/div&gt;
+&lt;/sui-block-ui&gt;</code></pre>
+        
+        <p>Basic block UI usage:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>&lt;sui-block-ui
+  [blocked]="isBlocked"
+  [message]="'Loading...'"
+  [showSpinner]="true"&gt;
+  &lt;div class="p-6"&gt;
+    &lt;h4&gt;Content Area&lt;/h4&gt;
+    &lt;p&gt;This content will be blocked when the overlay is active.&lt;/p&gt;
+    &lt;button&gt;Click me&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/sui-block-ui&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Properties</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">blocked</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to block the UI</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">message</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'Loading...'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Message to display in the overlay</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showSpinner</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to show the loading spinner</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">overlayStyle</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Custom styles for the overlay</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">overlayClass</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Custom CSS classes for the overlay</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

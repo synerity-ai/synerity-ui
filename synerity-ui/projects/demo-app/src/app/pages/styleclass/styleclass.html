@@ -1,0 +1,372 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">StyleClass</h1>
+    <p class="text-gray-600">A utility component for managing CSS classes on DOM elements.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎨' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    <!-- Basic StyleClass -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic StyleClass</h3>
+        <button
+          (click)="toggleCode('basicStyleClass')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicStyleClassCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Basic style class management with enter/leave animations.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 flex items-center justify-center">
+        <div 
+          #basicTarget
+          class="w-20 h-20 bg-blue-500 rounded-lg transition-all duration-300 basic-target"
+          [class.bg-red-500]="basicActive"
+          [class.scale-110]="basicActive"
+          [class.rotate-12]="basicActive">
+        </div>
+        <sui-style-class
+          [target]="'.basic-target'"
+          [enterClass]="basicEnterClass"
+          [leaveClass]="basicLeaveClass"
+          [toggleClass]="basicToggleClass">
+        </sui-style-class>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <button
+          (click)="toggleBasicStyle()"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">
+          Toggle Style
+        </button>
+        <span class="text-sm text-gray-500">Active: {{ basicActive ? 'Yes' : 'No' }}</span>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showBasicStyleClassCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm" ngNonBindable><code>&lt;div #basicTarget class="w-20 h-20 bg-blue-500 rounded-lg"&gt;&lt;/div&gt;
+&lt;sui-style-class
+  [target]="basicTarget"
+  [enterClass]="basicEnterClass"
+  [leaveClass]="basicLeaveClass"
+  [toggleClass]="basicToggleClass"&gt;
+&lt;/sui-style-class&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Custom StyleClass -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Custom StyleClass</h3>
+        <button
+          (click)="toggleCode('customStyleClass')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showCustomStyleClassCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Custom style class with different animations and effects.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 flex items-center justify-center">
+        <div 
+          #customTarget
+          class="w-24 h-24 bg-green-500 rounded-full transition-all duration-500 custom-target"
+          [class.bg-purple-500]="customActive"
+          [class.scale-125]="customActive"
+          [class.rotate-45]="customActive"
+          [class.shadow-lg]="customActive">
+        </div>
+        <sui-style-class
+          [target]="'.custom-target'"
+          [enterClass]="customEnterClass"
+          [leaveClass]="customLeaveClass"
+          [toggleClass]="customToggleClass"
+          [style]="customStyle"
+          [styleClass]="customStyleClass">
+        </sui-style-class>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <button
+          (click)="toggleCustomStyle()"
+          class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700">
+          Toggle Custom Style
+        </button>
+        <span class="text-sm text-gray-500">Active: {{ customActive ? 'Yes' : 'No' }}</span>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showCustomStyleClassCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm" ngNonBindable><code>&lt;div #customTarget class="w-24 h-24 bg-green-500 rounded-full"&gt;&lt;/div&gt;
+&lt;sui-style-class
+  [target]="customTarget"
+  [enterClass]="customEnterClass"
+  [leaveClass]="customLeaveClass"
+  [toggleClass]="customToggleClass"
+  [style]="customStyle"
+  [styleClass]="customStyleClass"&gt;
+&lt;/sui-style-class&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Multiple StyleClasses -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Multiple StyleClasses</h3>
+        <button
+          (click)="toggleCode('multipleStyleClasses')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showMultipleStyleClassesCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Multiple elements with different style class effects.</p>
+
+      <div class="h-48 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div *ngFor="let styleClass of styleClasses" class="flex flex-col items-center space-y-2">
+            <div 
+              class="w-16 h-16 rounded-lg transition-all duration-300"
+              [class]="styleClass.baseClass"
+              [class.bg-red-500]="styleClass.active"
+              [class.scale-110]="styleClass.active"
+              [class.rotate-12]="styleClass.active">
+            </div>
+            <sui-style-class
+              [target]="'.w-16'"
+              [enterClass]="styleClass.enterClass"
+              [leaveClass]="styleClass.leaveClass"
+              [toggleClass]="styleClass.toggleClass">
+            </sui-style-class>
+            <button
+              (click)="toggleStyleClass(styleClass)"
+              class="px-3 py-1 bg-gray-600 text-white rounded text-xs hover:bg-gray-700">
+              {{ styleClass.label }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <button
+          (click)="toggleAllStyleClasses()"
+          class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700">
+          Toggle All
+        </button>
+        <span class="text-sm text-gray-500">Multiple Elements</span>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showMultipleStyleClassesCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm" ngNonBindable><code>&lt;div *ngFor="let styleClass of styleClasses"&gt;
+  &lt;div #target [class]="styleClass.baseClass"&gt;&lt;/div&gt;
+  &lt;sui-style-class
+    [target]="target"
+    [enterClass]="styleClass.enterClass"
+    [leaveClass]="styleClass.leaveClass"
+    [toggleClass]="styleClass.toggleClass"&gt;
+  &lt;/sui-style-class&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Interactive Demo</h3>
+        <button
+          (click)="toggleCode('interactiveDemo')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Interactive style class with customizable options.</p>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <button
+          (click)="setRandomEnterClass()"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+          Random Enter
+        </button>
+        <button
+          (click)="setRandomLeaveClass()"
+          class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
+          Random Leave
+        </button>
+        <button
+          (click)="setRandomToggleClass()"
+          class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+          Random Toggle
+        </button>
+        <button
+          (click)="setRandomStyle()"
+          class="px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700 transition-colors">
+          Random Style
+        </button>
+      </div>
+
+      <div class="h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 flex items-center justify-center">
+        <div 
+          #interactiveTarget
+          class="w-20 h-20 bg-indigo-500 rounded-lg transition-all duration-300 interactive-target"
+          [class]="interactiveActive ? 'bg-pink-500 scale-110 rotate-12' : ''">
+        </div>
+        <sui-style-class
+          [target]="'.interactive-target'"
+          [enterClass]="interactiveEnterClass"
+          [leaveClass]="interactiveLeaveClass"
+          [toggleClass]="interactiveToggleClass"
+          [style]="interactiveStyle"
+          [styleClass]="interactiveStyleClass">
+        </sui-style-class>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <button
+          (click)="toggleInteractiveStyle()"
+          class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700">
+          Toggle Interactive Style
+        </button>
+        <span class="text-sm text-gray-500">Active: {{ interactiveActive ? 'Yes' : 'No' }}</span>
+      </div>
+
+      <!-- Action Log -->
+      <div class="bg-gray-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-sm font-medium text-gray-700">Action Log</h4>
+          <button
+            (click)="clearActionLog()"
+            class="text-xs text-blue-600 hover:text-blue-800">
+            Clear
+          </button>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1 max-h-20 overflow-y-auto">
+          <div *ngFor="let action of actionLog">{{ action }}</div>
+          <div *ngIf="actionLog.length === 0" class="text-gray-400">No actions yet...</div>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showInteractiveDemoCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm" ngNonBindable><code>&lt;div #interactiveTarget class="w-20 h-20 bg-indigo-500 rounded-lg"&gt;&lt;/div&gt;
+&lt;sui-style-class
+  [target]="interactiveTarget"
+  [enterClass]="interactiveEnterClass"
+  [leaveClass]="interactiveLeaveClass"
+  [toggleClass]="interactiveToggleClass"
+  [style]="interactiveStyle"
+  [styleClass]="interactiveStyleClass"&gt;
+&lt;/sui-style-class&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      <div class="space-y-4 text-gray-600">
+        <p>Import the StyleClass component and add it to your template:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm" ngNonBindable><code>import &#123; StyleClass &#125; from 'ui-lib';
+
+&lt;div #target class="my-element"&gt;&lt;/div&gt;
+&lt;sui-style-class [target]="target" [toggleClass]="active"&gt;
+&lt;/sui-style-class&gt;</code></pre>
+        
+        <p>Basic style class usage:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm" ngNonBindable><code>&lt;div #target class="w-20 h-20 bg-blue-500 rounded-lg"&gt;&lt;/div&gt;
+&lt;sui-style-class
+  [target]="target"
+  [enterClass]="fade-in"
+  [leaveClass]="fade-out"
+  [toggleClass]="active"
+  [style]="&#123; transition: 'all 0.3s' &#125;"&gt;
+&lt;/sui-style-class&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Properties</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">selector</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'body'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">CSS selector for the target element</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">enterClass</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">CSS class to add on enter</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">leaveClass</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">CSS class to add on leave</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">toggleClass</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">CSS class to toggle</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">target</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">ElementRef | string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'body'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Target element reference or selector</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">object</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the component</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">CSS class for the component</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

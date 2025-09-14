@@ -1,0 +1,520 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">SpeedDial</h1>
+    <p class="text-gray-600">A floating action button that reveals additional actions when clicked.</p>
+    
+    <!-- Status indicator -->
+    <div class="mt-4 flex items-center space-x-2">
+      <span class="text-sm font-medium text-gray-500">Status:</span>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+        <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5"></span>
+        Ready
+      </span>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    
+    <!-- Basic SpeedDial -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic SpeedDial</h3>
+        <button 
+          (click)="toggleCode('basicSpeedDial')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicSpeedDialCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <p class="text-gray-600 mb-4">A simple speed dial with basic actions.</p>
+      
+      <div class="flex items-center justify-center h-32 bg-gray-50 rounded-lg relative">
+        <sui-speed-dial 
+          [items]="basicSpeedDialItems"
+          [direction]="'up'"
+          buttonIcon="+"
+          (itemClick)="onSpeedDialItemClick($event)">
+        </sui-speed-dial>
+      </div>
+      
+      <!-- Code Block -->
+      <div *ngIf="showBasicSpeedDialCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-speed-dial 
+  [items]="basicSpeedDialItems"
+  [direction]="'up'"
+  buttonIcon="+"
+  (itemClick)="onSpeedDialItemClick($event)"&gt;
+&lt;/sui-speed-dial&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Direction SpeedDial -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Direction SpeedDial</h3>
+        <button 
+          (click)="toggleCode('directionSpeedDial')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showDirectionSpeedDialCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <p class="text-gray-600 mb-4">Speed dial with different directions (up, down, left, right).</p>
+      
+      <div class="grid grid-cols-2 gap-6">
+        <div class="text-center">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Up Direction</h4>
+          <div class="flex items-center justify-center h-24 bg-gray-50 rounded-lg relative">
+            <sui-speed-dial 
+              [items]="directionSpeedDialItems"
+              [direction]="'up'"
+              buttonIcon="⬆️"
+              (itemClick)="onSpeedDialItemClick($event)">
+            </sui-speed-dial>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Down Direction</h4>
+          <div class="flex items-center justify-center h-24 bg-gray-50 rounded-lg relative">
+            <sui-speed-dial 
+              [items]="directionSpeedDialItems"
+              [direction]="'down'"
+              buttonIcon="⬇️"
+              (itemClick)="onSpeedDialItemClick($event)">
+            </sui-speed-dial>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Left Direction</h4>
+          <div class="flex items-center justify-center h-24 bg-gray-50 rounded-lg relative">
+            <sui-speed-dial 
+              [items]="directionSpeedDialItems"
+              [direction]="'left'"
+              buttonIcon="⬅️"
+              (itemClick)="onSpeedDialItemClick($event)">
+            </sui-speed-dial>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Right Direction</h4>
+          <div class="flex items-center justify-center h-24 bg-gray-50 rounded-lg relative">
+            <sui-speed-dial 
+              [items]="directionSpeedDialItems"
+              [direction]="'right'"
+              buttonIcon="➡️"
+              (itemClick)="onSpeedDialItemClick($event)">
+            </sui-speed-dial>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Code Block -->
+      <div *ngIf="showDirectionSpeedDialCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-speed-dial 
+  [items]="directionSpeedDialItems"
+  [direction]="'up'"
+  buttonIcon="⬆️"
+  (itemClick)="onSpeedDialItemClick($event)"&gt;
+&lt;/sui-speed-dial&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Custom SpeedDial -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Custom SpeedDial</h3>
+        <button 
+          (click)="toggleCode('customSpeedDial')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showCustomSpeedDialCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <p class="text-gray-600 mb-4">Speed dial with custom icons and labels.</p>
+      
+      <div class="flex items-center justify-center h-32 bg-gray-50 rounded-lg relative">
+        <sui-speed-dial 
+          [items]="customSpeedDialItems"
+          [direction]="'up'"
+          buttonIcon="📤"
+          buttonLabel="Actions"
+          (itemClick)="onSpeedDialItemClick($event)">
+        </sui-speed-dial>
+      </div>
+      
+      <!-- Code Block -->
+      <div *ngIf="showCustomSpeedDialCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-speed-dial 
+  [items]="customSpeedDialItems"
+  [direction]="'up'"
+  buttonIcon="📤"
+  buttonLabel="Actions"
+  (itemClick)="onSpeedDialItemClick($event)"&gt;
+&lt;/sui-speed-dial&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Disabled SpeedDial -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Disabled SpeedDial</h3>
+        <button 
+          (click)="toggleCode('disabledSpeedDial')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showDisabledSpeedDialCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <p class="text-gray-600 mb-4">Speed dial with some disabled items.</p>
+      
+      <div class="flex items-center justify-center h-32 bg-gray-50 rounded-lg relative">
+        <sui-speed-dial 
+          [items]="disabledSpeedDialItems"
+          [direction]="'up'"
+          buttonIcon="⚡"
+          (itemClick)="onSpeedDialItemClick($event)">
+        </sui-speed-dial>
+      </div>
+      
+      <!-- Code Block -->
+      <div *ngIf="showDisabledSpeedDialCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-speed-dial 
+  [items]="disabledSpeedDialItems"
+  [direction]="'up'"
+  buttonIcon="⚡"
+  (itemClick)="onSpeedDialItemClick($event)"&gt;
+&lt;/sui-speed-dial&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Interactive Demo</h3>
+        <button 
+          (click)="toggleCode('interactiveDemo')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <p class="text-gray-600 mb-4">Interactive speed dial with customizable properties.</p>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Controls -->
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Direction</label>
+            <select 
+              [(ngModel)]="interactiveDirection"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="up">Up</option>
+              <option value="down">Down</option>
+              <option value="left">Left</option>
+              <option value="right">Right</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Button Icon</label>
+            <input 
+              [(ngModel)]="interactiveButtonIcon"
+              type="text"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter icon">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Button Label</label>
+            <input 
+              [(ngModel)]="interactiveButtonLabel"
+              type="text"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter label">
+          </div>
+          
+          <div class="flex items-center">
+            <input 
+              [(ngModel)]="interactiveDisabled"
+              type="checkbox"
+              id="interactiveDisabled"
+              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+            <label for="interactiveDisabled" class="ml-2 block text-sm text-gray-700">
+              Disabled
+            </label>
+          </div>
+          
+          <!-- Quick Actions -->
+          <div class="space-y-2">
+            <button 
+              (click)="setRandomDirection()"
+              class="w-full px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+              Random Direction
+            </button>
+            <button 
+              (click)="setRandomIcon()"
+              class="w-full px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
+              Random Icon
+            </button>
+            <button 
+              (click)="toggleInteractiveDisabled()"
+              class="w-full px-3 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm">
+              Toggle Disabled
+            </button>
+          </div>
+        </div>
+        
+        <!-- Speed Dial Demo -->
+        <div class="flex items-center justify-center h-64 bg-gray-50 rounded-lg relative">
+          <sui-speed-dial 
+            [items]="interactiveItems"
+            [direction]="interactiveDirection"
+            [disabled]="interactiveDisabled"
+            [buttonIcon]="interactiveButtonIcon"
+            [buttonLabel]="interactiveButtonLabel"
+            (itemClick)="onSpeedDialItemClick($event)">
+          </sui-speed-dial>
+        </div>
+      </div>
+      
+      <!-- Action Log -->
+      <div class="mt-6">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-sm font-medium text-gray-700">Action Log</h4>
+          <button 
+            (click)="clearActionLog()"
+            class="text-xs text-red-600 hover:text-red-800">
+            Clear Log
+          </button>
+        </div>
+        <div class="bg-gray-50 rounded-lg p-3 max-h-32 overflow-y-auto">
+          <div *ngIf="actionLog.length === 0" class="text-sm text-gray-500 italic">
+            No actions yet. Click on speed dial items to see actions here.
+          </div>
+          <div *ngFor="let action of actionLog" class="text-sm text-gray-700 py-1">
+            {{ action }}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Code Block -->
+      <div *ngIf="showInteractiveDemoCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-speed-dial 
+  [items]="interactiveItems"
+  [direction]="interactiveDirection"
+  [disabled]="interactiveDisabled"
+  [buttonIcon]="interactiveButtonIcon"
+  [buttonLabel]="interactiveButtonLabel"
+  (itemClick)="onSpeedDialItemClick($event)"&gt;
+&lt;/sui-speed-dial&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      
+      <div class="space-y-4">
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">1. Import the Component</h4>
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>import {{ '{' }} SpeedDial {{ '}' }} from 'ui-lib';
+
+@Component({{ '{' }}
+  imports: [SpeedDial],
+  // ...
+{{ '}' }})</code></pre>
+        </div>
+        
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">2. Define Speed Dial Items</h4>
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>speedDialItems = [
+  {{ '{' }} label: 'Add', icon: '➕', command: () => this.onAdd() {{ '}' }},
+  {{ '{' }} label: 'Edit', icon: '✏️', command: () => this.onEdit() {{ '}' }},
+  {{ '{' }} label: 'Delete', icon: '🗑️', command: () => this.onDelete() {{ '}' }}
+];</code></pre>
+        </div>
+        
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">3. Use in Template</h4>
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-speed-dial 
+  [items]="speedDialItems"
+  [direction]="'up'"
+  buttonIcon="+"
+  (itemClick)="onItemClick($event)"&gt;
+&lt;/sui-speed-dial&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Best Practices</h3>
+      
+      <ul class="space-y-3 text-gray-700">
+        <li class="flex items-start">
+          <span class="text-green-500 mr-2">✓</span>
+          <span>Keep the number of actions limited (3-5 items) for better UX</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-green-500 mr-2">✓</span>
+          <span>Use clear, intuitive icons and labels for actions</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-green-500 mr-2">✓</span>
+          <span>Position the speed dial where it won't obstruct important content</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-green-500 mr-2">✓</span>
+          <span>Consider the direction based on available screen space</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-green-500 mr-2">✓</span>
+          <span>Provide visual feedback when actions are performed</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">items</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Array&lt;SpeedDialItem&gt;</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+              <td class="px-6 py-4 text-sm text-gray-500">Array of speed dial items to display</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">direction</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'up' | 'down' | 'left' | 'right'</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'up'</td>
+              <td class="px-6 py-4 text-sm text-gray-500">Direction in which items expand</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">buttonIcon</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'+'</td>
+              <td class="px-6 py-4 text-sm text-gray-500">Icon for the main speed dial button</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">buttonLabel</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+              <td class="px-6 py-4 text-sm text-gray-500">Label for the main speed dial button</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+              <td class="px-6 py-4 text-sm text-gray-500">Whether the speed dial is disabled</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Events</h3>
+      
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">itemClick</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;SpeedDialItem&gt;</td>
+              <td class="px-6 py-4 text-sm text-gray-500">Emitted when a speed dial item is clicked</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">SpeedDialItem Interface</h3>
+      
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">label</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string (optional)</td>
+              <td class="px-6 py-4 text-sm text-gray-500">Label text for the item</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">icon</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string (optional)</td>
+              <td class="px-6 py-4 text-sm text-gray-500">Icon for the item</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">command</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">() => void (optional)</td>
+              <td class="px-6 py-4 text-sm text-gray-500">Function to execute when item is clicked</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean (optional)</td>
+              <td class="px-6 py-4 text-sm text-gray-500">Whether the item is disabled</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Accessibility</h3>
+      
+      <div class="space-y-3 text-gray-700">
+        <p>The SpeedDial component includes the following accessibility features:</p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>Keyboard navigation support</li>
+          <li>ARIA labels and roles for screen readers</li>
+          <li>Focus management for better keyboard interaction</li>
+          <li>High contrast support for better visibility</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

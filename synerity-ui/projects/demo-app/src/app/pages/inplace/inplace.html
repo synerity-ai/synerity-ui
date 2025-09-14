@@ -1,0 +1,466 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Inplace</h1>
+    <p class="text-gray-600">A component that allows inline editing of content with a simple click.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '✏️' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    <!-- Basic Inplace -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic Inplace</h3>
+        <button
+          (click)="toggleCode('basicInplace')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicInplaceCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">A basic inplace component for inline editing.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 flex items-center justify-center">
+        <sui-inplace
+          [active]="basicActive"
+          (onActivate)="onBasicActivate()"
+          (onDeactivate)="onBasicDeactivate()">
+          <div slot="display" class="text-lg font-medium text-gray-700 cursor-pointer hover:text-blue-600 transition-colors">
+            {{ basicValue }}
+          </div>
+          <div slot="content">
+            <input
+              type="text"
+              [(ngModel)]="basicValue"
+              class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+        </sui-inplace>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <button
+          (click)="basicActive ? onBasicDeactivate() : onBasicActivate()"
+          [class]="basicActive ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700'"
+          class="px-4 py-2 text-white rounded-lg text-sm font-medium transition-colors">
+          {{ basicActive ? 'Deactivate' : 'Activate' }}
+        </button>
+        <span class="text-sm text-gray-500">Status: {{ basicActive ? 'Active' : 'Display' }}</span>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showBasicInplaceCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-inplace
+  [active]="basicActive"
+  (onActivate)="onBasicActivate()"
+  (onDeactivate)="onBasicDeactivate()"&gt;
+  &lt;div slot="display" class="text-lg font-medium text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"&gt;
+    {{ basicValue }}
+  &lt;/div&gt;
+  &lt;div slot="content"&gt;
+    &lt;input
+      type="text"
+      [(ngModel)]="basicValue"
+      class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"&gt;
+  &lt;/div&gt;
+&lt;/sui-inplace&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Custom Inplace -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Custom Inplace</h3>
+        <button
+          (click)="toggleCode('customInplace')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showCustomInplaceCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Custom inplace with styled display and content templates.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 flex items-center justify-center">
+        <sui-inplace
+          [active]="customActive"
+          (onActivate)="onCustomActivate()"
+          (onDeactivate)="onCustomDeactivate()">
+          <div slot="display" class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-200 transition-colors">
+            <i class="fas fa-edit mr-2"></i>
+            {{ customValue }}
+          </div>
+          <div slot="content">
+            <div class="flex items-center space-x-2">
+              <input
+                type="text"
+                [(ngModel)]="customValue"
+                class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+              <button
+                (click)="onCustomDeactivate()"
+                class="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                <i class="fas fa-check"></i>
+              </button>
+            </div>
+          </div>
+        </sui-inplace>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <button
+          (click)="customActive ? onCustomDeactivate() : onCustomActivate()"
+          [class]="customActive ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700'"
+          class="px-4 py-2 text-white rounded-lg text-sm font-medium transition-colors">
+          {{ customActive ? 'Deactivate' : 'Activate' }}
+        </button>
+        <span class="text-sm text-gray-500">Status: {{ customActive ? 'Active' : 'Display' }}</span>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showCustomInplaceCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-inplace
+  [active]="customActive"
+  (onActivate)="onCustomActivate()"
+  (onDeactivate)="onCustomDeactivate()"&gt;
+  &lt;div slot="display" class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-200 transition-colors"&gt;
+    &lt;i class="fas fa-edit mr-2"&gt;&lt;/i&gt;
+    {{ customValue }}
+  &lt;/div&gt;
+  &lt;div slot="content"&gt;
+    &lt;div class="flex items-center space-x-2"&gt;
+      &lt;input
+        type="text"
+        [(ngModel)]="customValue"
+        class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"&gt;
+      &lt;button
+        (click)="onCustomDeactivate()"
+        class="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"&gt;
+        &lt;i class="fas fa-check"&gt;&lt;/i&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/sui-inplace&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Form Inplace -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Form Inplace</h3>
+        <button
+          (click)="toggleCode('formInplace')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showFormInplaceCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Inplace component integrated with form elements.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 flex items-center justify-center">
+        <sui-inplace
+          [active]="formActive"
+          (onActivate)="onFormActivate()"
+          (onDeactivate)="onFormDeactivate()">
+          <div slot="display" class="bg-green-100 text-green-800 px-4 py-2 rounded-lg cursor-pointer hover:bg-green-200 transition-colors">
+            <i class="fas fa-user mr-2"></i>
+            {{ formValue }}
+          </div>
+          <div slot="content">
+            <div class="flex items-center space-x-2">
+              <input
+                type="text"
+                [(ngModel)]="formValue"
+                placeholder="Enter name"
+                class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              <button
+                (click)="onFormDeactivate()"
+                class="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                Save
+              </button>
+            </div>
+          </div>
+        </sui-inplace>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <button
+          (click)="formActive ? onFormDeactivate() : onFormActivate()"
+          [class]="formActive ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700'"
+          class="px-4 py-2 text-white rounded-lg text-sm font-medium transition-colors">
+          {{ formActive ? 'Deactivate' : 'Activate' }}
+        </button>
+        <span class="text-sm text-gray-500">Status: {{ formActive ? 'Active' : 'Display' }}</span>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showFormInplaceCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-inplace
+  [active]="formActive"
+  (onActivate)="onFormActivate()"
+  (onDeactivate)="onFormDeactivate()"&gt;
+  &lt;div slot="display" class="bg-green-100 text-green-800 px-4 py-2 rounded-lg cursor-pointer hover:bg-green-200 transition-colors"&gt;
+    &lt;i class="fas fa-user mr-2"&gt;&lt;/i&gt;
+    {{ formValue }}
+  &lt;/div&gt;
+  &lt;div slot="content"&gt;
+    &lt;div class="flex items-center space-x-2"&gt;
+      &lt;input
+        type="text"
+        [(ngModel)]="formValue"
+        placeholder="Enter name"
+        class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"&gt;
+      &lt;button
+        (click)="onFormDeactivate()"
+        class="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"&gt;
+        Save
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/sui-inplace&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Interactive Demo</h3>
+        <button
+          (click)="toggleCode('interactiveDemo')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Interactive inplace with customizable options.</p>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <button
+          (click)="toggleDisabled()"
+          [class]="interactiveDisabled ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveDisabled ? 'Disabled' : 'Enabled' }}
+        </button>
+        <button
+          (click)="toggleClosable()"
+          [class]="interactiveClosable ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveClosable ? 'Closable: On' : 'Closable: Off' }}
+        </button>
+        <button
+          (click)="setRandomValue()"
+          class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+          Random Value
+        </button>
+        <button
+          (click)="clearInputs()"
+          class="px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700 transition-colors">
+          Clear
+        </button>
+      </div>
+
+      <div class="h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 flex items-center justify-center">
+        <sui-inplace
+          [active]="interactiveActive"
+          [disabled]="interactiveDisabled"
+          [closable]="interactiveClosable"
+          (onActivate)="onInteractiveActivate()"
+          (onDeactivate)="onInteractiveDeactivate()">
+          <div slot="display" class="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 px-4 py-2 rounded-lg cursor-pointer hover:from-purple-200 hover:to-pink-200 transition-all">
+            <i class="fas fa-magic mr-2"></i>
+            {{ interactiveValue || 'Click to edit' }}
+          </div>
+          <div slot="content">
+            <div class="flex items-center space-x-2">
+              <input
+                type="text"
+                [(ngModel)]="interactiveValue"
+                placeholder="Enter text"
+                class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+              <button
+                (click)="onInteractiveDeactivate()"
+                class="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                <i class="fas fa-check"></i>
+              </button>
+            </div>
+          </div>
+        </sui-inplace>
+      </div>
+
+      <!-- Action Log -->
+      <div class="bg-gray-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-sm font-medium text-gray-700">Action Log</h4>
+          <button
+            (click)="clearActionLog()"
+            class="text-xs text-blue-600 hover:text-blue-800">
+            Clear
+          </button>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1 max-h-20 overflow-y-auto">
+          <div *ngFor="let action of actionLog">{{ action }}</div>
+          <div *ngIf="actionLog.length === 0" class="text-gray-400">No actions yet...</div>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showInteractiveDemoCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-inplace
+  [active]="interactiveActive"
+  [disabled]="interactiveDisabled"
+  [closable]="interactiveClosable"
+  (onActivate)="onInteractiveActivate()"
+  (onDeactivate)="onInteractiveDeactivate()"&gt;
+  &lt;div slot="display" class="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 px-4 py-2 rounded-lg cursor-pointer hover:from-purple-200 hover:to-pink-200 transition-all"&gt;
+    &lt;i class="fas fa-magic mr-2"&gt;&lt;/i&gt;
+    {{ interactiveValue || 'Click to edit' }}
+  &lt;/div&gt;
+  &lt;div slot="content"&gt;
+    &lt;div class="flex items-center space-x-2"&gt;
+      &lt;input
+        type="text"
+        [(ngModel)]="interactiveValue"
+        placeholder="Enter text"
+        class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"&gt;
+      &lt;button
+        (click)="onInteractiveDeactivate()"
+        class="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"&gt;
+        &lt;i class="fas fa-check"&gt;&lt;/i&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/sui-inplace&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      <div class="space-y-4 text-gray-600">
+        <p>Import the Inplace component and add it to your template:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>import &#123; Inplace &#125; from 'ui-lib';
+
+&lt;sui-inplace [active]="false" (onActivate)="onActivate()" (onDeactivate)="onDeactivate()"&gt;
+  &lt;div slot="display"&gt;Display content&lt;/div&gt;
+  &lt;div slot="content"&gt;
+    &lt;input type="text" [(ngModel)]="value"&gt;
+  &lt;/div&gt;
+&lt;/sui-inplace&gt;</code></pre>
+        
+        <p>Basic inplace usage:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>&lt;sui-inplace
+  [active]="active"
+  [disabled]="false"
+  [closable]="true"
+  (onActivate)="onActivate()"
+  (onDeactivate)="onDeactivate()"&gt;
+  &lt;div slot="display" class="cursor-pointer hover:text-blue-600"&gt;
+    {{ displayValue }}
+  &lt;/div&gt;
+  &lt;div slot="content"&gt;
+    &lt;input
+      type="text"
+      [(ngModel)]="displayValue"
+      class="px-3 py-2 border rounded-lg"&gt;
+  &lt;/div&gt;
+&lt;/sui-inplace&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Properties</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">active</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the component is in active mode</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the component is disabled</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">closable</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether the component can be closed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Events</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onActivate</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;void&gt;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Fired when component is activated</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onDeactivate</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;void&gt;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Fired when component is deactivated</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Templates</h4>
+          <div class="space-y-4">
+            <div>
+              <h5 class="text-sm font-medium text-gray-700 mb-2">slot="display"</h5>
+              <p class="text-sm text-gray-600">Content slot for the display state of the inplace component.</p>
+            </div>
+            <div>
+              <h5 class="text-sm font-medium text-gray-700 mb-2">slot="content"</h5>
+              <p class="text-sm text-gray-600">Content slot for the active state of the inplace component.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

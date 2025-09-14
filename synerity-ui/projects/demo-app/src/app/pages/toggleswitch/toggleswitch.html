@@ -1,1 +1,519 @@
-<p>toggleswitch works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Toggle Switch</h1>
+    <p class="text-lg text-gray-600">Toggle switch components for enabling/disabling features and settings with smooth animations.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Toggle Switch -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Toggle Switch</h3>
+            <button 
+              (click)="toggleCode('basicToggle')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicToggleCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Enable Feature</label>
+                <sui-toggle-switch 
+                  [(ngModel)]="basicToggle"
+                  (change)="onToggleChange($event, 'basicToggle')">
+                </sui-toggle-switch>
+                <div class="mt-3 p-3 bg-gray-50 rounded-md">
+                  <div class="flex items-center gap-3">
+                    <span class="text-sm font-medium text-gray-900">{{ getToggleStatus(basicToggle).status }}</span>
+                    <span class="text-sm" [ngClass]="getToggleStatus(basicToggle).color">{{ getToggleStatus(basicToggle).icon }}</span>
+                  </div>
+                  <p class="text-sm text-gray-600 mt-1">{{ getToggleDescription(basicToggle) }}</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showBasicToggleCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-toggle-switch 
+  [(ngModel)]="enabled"
+  (change)="onToggleChange($event, 'feature')"&gt;
+&lt;/sui-toggle-switch&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enabled Toggle Switch -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Enabled Toggle Switch</h3>
+            <button 
+              (click)="toggleCode('enabledToggle')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showEnabledToggleCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Auto-save</label>
+                <sui-toggle-switch 
+                  [(ngModel)]="enabledToggle"
+                  (change)="onToggleChange($event, 'enabledToggle')">
+                </sui-toggle-switch>
+                <div class="mt-3 p-3 bg-gray-50 rounded-md">
+                  <div class="flex items-center gap-3">
+                    <span class="text-sm font-medium text-gray-900">{{ getToggleStatus(enabledToggle).status }}</span>
+                    <span class="text-sm" [ngClass]="getToggleStatus(enabledToggle).color">{{ getToggleStatus(enabledToggle).icon }}</span>
+                  </div>
+                  <p class="text-sm text-gray-600 mt-1">{{ getToggleDescription(enabledToggle) }}</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showEnabledToggleCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-toggle-switch 
+  [(ngModel)]="autoSave"
+  (change)="onToggleChange($event, 'autoSave')"&gt;
+&lt;/sui-toggle-switch&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disabled Toggle Switch -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Disabled Toggle Switch</h3>
+            <button 
+              (click)="toggleCode('disabledToggle')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showDisabledToggleCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Premium Feature (Disabled)</label>
+                <sui-toggle-switch 
+                  [(ngModel)]="disabledToggle"
+                  [disabled]="true"
+                  (change)="onToggleChange($event, 'disabledToggle')">
+                </sui-toggle-switch>
+                <div class="mt-3 p-3 bg-gray-50 rounded-md">
+                  <div class="flex items-center gap-3">
+                    <span class="text-sm font-medium text-gray-900">Disabled</span>
+                    <span class="text-sm text-gray-500">🔒</span>
+                  </div>
+                  <p class="text-sm text-gray-600 mt-1">This feature requires a premium subscription</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showDisabledToggleCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-toggle-switch 
+  [(ngModel)]="premiumFeature"
+  [disabled]="true"
+  (change)="onToggleChange($event, 'premiumFeature')"&gt;
+&lt;/sui-toggle-switch&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Toggle Switch -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Custom Toggle Switch</h3>
+            <button 
+              (click)="toggleCode('customToggle')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCustomToggleCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Dark Mode</label>
+                <sui-toggle-switch 
+                  [(ngModel)]="customToggle"
+                  (change)="onToggleChange($event, 'customToggle')">
+                </sui-toggle-switch>
+                <div class="mt-3 p-3 bg-gray-50 rounded-md">
+                  <div class="flex items-center gap-3">
+                    <span class="text-sm font-medium text-gray-900">{{ getToggleStatus(customToggle).status }}</span>
+                    <span class="text-sm" [ngClass]="getToggleStatus(customToggle).color">{{ getToggleStatus(customToggle).icon }}</span>
+                  </div>
+                  <p class="text-sm text-gray-600 mt-1">{{ getToggleDescription(customToggle) }}</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showCustomToggleCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-toggle-switch 
+  [(ngModel)]="darkMode"
+  (change)="onToggleChange($event, 'darkMode')"&gt;
+&lt;/sui-toggle-switch&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Settings Panel</h3>
+            <button 
+              (click)="toggleCode('settingsToggle')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showSettingsToggleCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="max-w-md">
+                <h4 class="text-lg font-medium text-gray-900 mb-4">Application Settings</h4>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <label class="text-sm font-medium text-gray-700">Push Notifications</label>
+                      <p class="text-xs text-gray-500">Receive notifications for important updates</p>
+                    </div>
+                    <sui-toggle-switch 
+                      [(ngModel)]="notificationsToggle"
+                      (change)="onToggleChange($event, 'notificationsToggle')">
+                    </sui-toggle-switch>
+                  </div>
+                  
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <label class="text-sm font-medium text-gray-700">Dark Mode</label>
+                      <p class="text-xs text-gray-500">Switch to dark theme</p>
+                    </div>
+                    <sui-toggle-switch 
+                      [(ngModel)]="darkModeToggle"
+                      (change)="onToggleChange($event, 'darkModeToggle')">
+                    </sui-toggle-switch>
+                  </div>
+                  
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <label class="text-sm font-medium text-gray-700">Auto-save</label>
+                      <p class="text-xs text-gray-500">Automatically save your work</p>
+                    </div>
+                    <sui-toggle-switch 
+                      [(ngModel)]="autoSaveToggle"
+                      (change)="onToggleChange($event, 'autoSaveToggle')">
+                    </sui-toggle-switch>
+                  </div>
+                  
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <label class="text-sm font-medium text-gray-700">Email Alerts</label>
+                      <p class="text-xs text-gray-500">Get notified via email</p>
+                    </div>
+                    <sui-toggle-switch 
+                      [(ngModel)]="emailAlertsToggle"
+                      (change)="onToggleChange($event, 'emailAlertsToggle')">
+                    </sui-toggle-switch>
+                  </div>
+                  
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <label class="text-sm font-medium text-gray-700">Privacy Mode</label>
+                      <p class="text-xs text-gray-500">Enhanced privacy protection</p>
+                    </div>
+                    <sui-toggle-switch 
+                      [(ngModel)]="privacyToggle"
+                      (change)="onToggleChange($event, 'privacyToggle')">
+                    </sui-toggle-switch>
+                  </div>
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-gray-200">
+                  <div class="flex gap-2">
+                    <button 
+                      (click)="enableAll()"
+                      class="px-3 py-1 text-sm bg-green-100 text-green-800 rounded-md hover:bg-green-200 transition-colors">
+                      Enable All
+                    </button>
+                    <button 
+                      (click)="disableAll()"
+                      class="px-3 py-1 text-sm bg-red-100 text-red-800 rounded-md hover:bg-red-200 transition-colors">
+                      Disable All
+                    </button>
+                    <button 
+                      (click)="resetToDefaults()"
+                      class="px-3 py-1 text-sm bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors">
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showSettingsToggleCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="flex items-center justify-between"&gt;
+  &lt;div&gt;
+    &lt;label class="text-sm font-medium text-gray-700"&gt;Push Notifications&lt;/label&gt;
+    &lt;p class="text-xs text-gray-500"&gt;Receive notifications for important updates&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;sui-toggle-switch 
+    [(ngModel)]="notificationsToggle"
+    (change)="onToggleChange($event, 'notificationsToggle')"&gt;
+  &lt;/sui-toggle-switch&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+            <button 
+              (click)="toggleCode('interactiveDemo')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
+                    <input 
+                      type="checkbox"
+                      [(ngModel)]="interactiveDisabled"
+                      class="mt-2">
+                  </div>
+                </div>
+                
+                <div class="max-w-md">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Interactive Toggle Switch</label>
+                  <sui-toggle-switch 
+                    [(ngModel)]="interactiveToggle"
+                    [disabled]="interactiveDisabled"
+                    (change)="onToggleChange($event, 'interactiveToggle')">
+                  </sui-toggle-switch>
+                  
+                  <div class="mt-4 space-y-3">
+                    <div class="p-3 bg-gray-50 rounded-md">
+                      <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-900">Current State</span>
+                        <span class="text-sm" [ngClass]="getToggleStatus(interactiveToggle).color">{{ getToggleStatus(interactiveToggle).status }}</span>
+                      </div>
+                      <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div>
+                          <p class="font-medium text-gray-700">Value</p>
+                          <p class="text-gray-600">{{ interactiveToggle ? 'true' : 'false' }}</p>
+                        </div>
+                        <div>
+                          <p class="font-medium text-gray-700">Status</p>
+                          <p class="text-gray-600">{{ getToggleStatus(interactiveToggle).status }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div>
+                      <p class="text-sm font-medium text-gray-700 mb-2">Quick Actions</p>
+                      <div class="flex gap-2 flex-wrap">
+                        <button 
+                          (click)="interactiveToggle = true"
+                          class="px-3 py-1 text-sm bg-green-100 text-green-800 rounded-md hover:bg-green-200 transition-colors">
+                          Enable
+                        </button>
+                        <button 
+                          (click)="interactiveToggle = false"
+                          class="px-3 py-1 text-sm bg-red-100 text-red-800 rounded-md hover:bg-red-200 transition-colors">
+                          Disable
+                        </button>
+                        <button 
+                          (click)="interactiveToggle = !interactiveToggle"
+                          class="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition-colors">
+                          Toggle
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-toggle-switch 
+  [(ngModel)]="interactiveToggle"
+  [disabled]="interactiveDisabled"
+  (change)="onToggleChange($event, 'interactiveToggle')"&gt;
+&lt;/sui-toggle-switch&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>npm install @synerity/ui</code></pre>
+          </div>
+        </div>
+
+        <!-- Import -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>import {{ '{' }} ToggleSwitch {{ '}' }} from '@synerity/ui';
+
+@Component({{ '{' }}
+  imports: [ToggleSwitch],
+  // ...
+{{ '}' }})</code></pre>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;sui-toggle-switch 
+  [(ngModel)]="enabled"
+  (change)="onToggleChange($event)"&gt;
+&lt;/sui-toggle-switch&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">Smooth Animation</h4>
+              <p class="text-blue-800 text-sm">Smooth toggle animation with visual feedback</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Form Integration</h4>
+              <p class="text-green-800 text-sm">Full Angular forms support with validation</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">Accessibility</h4>
+              <p class="text-purple-800 text-sm">Keyboard navigation and screen reader support</p>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-orange-900 mb-2">Disabled State</h4>
+              <p class="text-orange-800 text-sm">Support for disabled state with visual indication</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full border border-gray-200 rounded-lg">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Prop</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Type</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Default</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">ngModel</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">false</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Two-way binding for toggle state</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">disabled</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">false</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Disable the toggle switch</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">name</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">''</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Name attribute for form submission</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">inputId</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">''</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">ID attribute for the input</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full border border-gray-200 rounded-lg">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Event</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Parameters</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">change</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when toggle state changes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <ul class="space-y-2 text-blue-800">
+              <li>• Proper labeling and state announcements</li>
+              <li>• Keyboard navigation support (Space, Enter)</li>
+              <li>• Screen reader compatibility</li>
+              <li>• ARIA attributes for toggle state</li>
+              <li>• Focus management and visual indicators</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

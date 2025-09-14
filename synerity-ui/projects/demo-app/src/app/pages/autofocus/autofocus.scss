@@ -1,0 +1,215 @@
+// AutoFocus Demo Page Styles
+
+.auto-focus-demo {
+  .demo-container {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    border: 2px dashed #d1d5db;
+  }
+
+  .input-container {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .action-log {
+    max-height: 120px;
+    overflow-y: auto;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 0.75rem;
+  }
+
+  .code-block {
+    background: #1f2937;
+    color: #f9fafb;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .status-ready {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .quick-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .quick-action-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+
+    &.primary {
+      background: #3b82f6;
+      color: white;
+
+      &:hover {
+        background: #2563eb;
+      }
+    }
+
+    &.secondary {
+      background: #6b7280;
+      color: white;
+
+      &:hover {
+        background: #4b5563;
+      }
+    }
+
+    &.success {
+      background: #10b981;
+      color: white;
+
+      &:hover {
+        background: #059669;
+      }
+    }
+
+    &.warning {
+      background: #f59e0b;
+      color: white;
+
+      &:hover {
+        background: #d97706;
+      }
+    }
+  }
+
+  // Input styling
+  .demo-input {
+    padding: 0.75rem 1rem;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    outline: none;
+
+    &:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    &.basic {
+      &:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+    }
+
+    &.delay {
+      &:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+      }
+    }
+
+    &.conditional {
+      &:focus {
+        border-color: #8b5cf6;
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+      }
+    }
+
+    &.interactive {
+      &:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+    }
+  }
+
+  .demo-textarea {
+    padding: 0.75rem 1rem;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    outline: none;
+    resize: none;
+
+    &:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+  }
+
+  // Focus states
+  .focus-indicator {
+    position: relative;
+    
+    &::after {
+      content: '🎯';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    &.focused::after {
+      opacity: 1;
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .controls-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .quick-actions {
+      flex-direction: column;
+    }
+
+    .quick-action-btn {
+      width: 100%;
+    }
+
+    .demo-input,
+    .demo-textarea {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+}

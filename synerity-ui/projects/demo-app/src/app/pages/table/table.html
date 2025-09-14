@@ -1,1 +1,327 @@
-<p>table works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Table</h1>
+    <p class="text-lg text-gray-600">Data tables with sorting, filtering, pagination, and selection capabilities.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Table -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Table</h3>
+            <button 
+              (click)="toggleCode('basicTable')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicTableCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-table 
+                [value]="tableData"
+                [columns]="tableColumns"
+                (onSort)="onSort($event)"
+                (onFilter)="onFilter($event)">
+              </sui-table>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showBasicTableCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-table 
+  [value]="tableData"
+  [columns]="tableColumns"
+  (onSort)="onSort($event)"
+  (onFilter)="onFilter($event)"&gt;
+&lt;/sui-table&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sortable Table -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Sortable Table</h3>
+            <button 
+              (click)="toggleCode('sortableTable')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showSortableTableCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-table 
+                [value]="tableData"
+                [columns]="sortableColumns"
+                sortMode="multiple"
+                (onSort)="onSort($event)">
+              </sui-table>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showSortableTableCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-table 
+  [value]="tableData"
+  [columns]="sortableColumns"
+  sortMode="multiple"
+  (onSort)="onSort($event)"&gt;
+&lt;/sui-table&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Selectable Table -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Selectable Table</h3>
+            <button 
+              (click)="toggleCode('selectableTable')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showSelectableTableCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="mb-4">
+                <p class="text-sm text-gray-600">
+                  Selected rows: {{ selectedRows.length }}
+                </p>
+              </div>
+              <sui-table 
+                [value]="tableData"
+                [columns]="tableColumns"
+                [selectionMode]="'multiple'"
+                (onRowSelect)="onRowSelect($event)"
+                (onRowUnselect)="onRowUnselect($event)"
+                (onSelectionChange)="onSelectionChange($event)">
+              </sui-table>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showSelectableTableCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;sui-table 
+  [value]="tableData"
+  [columns]="tableColumns"
+  [selectionMode]="'multiple'"
+  (onRowSelect)="onRowSelect($event)"
+  (onRowUnselect)="onRowUnselect($event)"
+  (onSelectionChange)="onSelectionChange($event)"&gt;
+&lt;/sui-table&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>npm install @synerity/ui</code></pre>
+          </div>
+        </div>
+
+        <!-- Import -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>import &#123; Table &#125; from '@synerity/ui';
+
+@Component(&#123;
+  imports: [Table],
+  // ...
+&#125;)</code></pre>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>&lt;sui-table 
+  [value]="data"
+  [columns]="columns"&gt;
+&lt;/sui-table&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Component Properties -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Properties</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-green-400 text-sm"><code>// In your component
+data = [
+  &#123; id: 1, name: 'John Doe', email: 'john@example.com' &#125;,
+  &#123; id: 2, name: 'Jane Smith', email: 'jane@example.com' &#125;
+];
+
+columns = [
+  &#123; field: 'name', header: 'Name' &#125;,
+  &#123; field: 'email', header: 'Email' &#125;
+];</code></pre>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">Sorting</h4>
+              <p class="text-blue-800 text-sm">Enable column sorting with sortable property</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Filtering</h4>
+              <p class="text-green-800 text-sm">Add filtering capabilities to columns</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">Selection</h4>
+              <p class="text-purple-800 text-sm">Single or multiple row selection</p>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-orange-900 mb-2">Pagination</h4>
+              <p class="text-orange-800 text-sm">Built-in pagination support</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full border border-gray-200 rounded-lg">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Prop</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Type</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Default</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">value</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Array</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">[]</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Array of objects to display</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">columns</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Array</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">[]</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Column definitions</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">sortMode</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">'single'</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Sorting mode: 'single' or 'multiple'</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">selectionMode</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">string</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Selection mode: 'single' or 'multiple'</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">selection</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">any</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">null</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Selected row(s)</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">paginator</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">boolean</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">false</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Whether to show paginator</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">rows</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">number</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">0</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Number of rows per page</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full border border-gray-200 rounded-lg">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Event</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Parameters</th>
+                  <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">onSort</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">SortEvent</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when a column is sorted</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">onFilter</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">FilterEvent</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when data is filtered</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">onRowSelect</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">RowSelectEvent</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when a row is selected</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">onRowUnselect</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">RowUnselectEvent</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when a row is unselected</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-sm text-gray-900 font-mono">onSelectionChange</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">SelectionChangeEvent</td>
+                  <td class="px-4 py-3 text-sm text-gray-700">Callback to invoke when selection changes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <ul class="space-y-2 text-blue-800">
+              <li>• Built with semantic HTML table elements</li>
+              <li>• Keyboard navigation support</li>
+              <li>• ARIA labels for screen readers</li>
+              <li>• Focus management for interactive elements</li>
+              <li>• High contrast support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

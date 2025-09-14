@@ -1,0 +1,261 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">SplitButton</h1>
+    <p class="text-gray-600">A button with a dropdown menu that provides additional actions.</p>
+    
+    <!-- Status indicator -->
+    <div class="mt-4 flex items-center space-x-2">
+      <span class="text-sm font-medium text-gray-500">Status:</span>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+        <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5"></span>
+        Ready
+      </span>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    
+    <!-- Basic SplitButton -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic SplitButton</h3>
+        <button 
+          (click)="toggleCode('basicSplitButton')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicSplitButtonCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <p class="text-gray-600 mb-4">A simple split button with basic actions.</p>
+      
+      <div class="flex items-center justify-center h-20 bg-gray-50 rounded-lg">
+        <sui-split-button 
+          label="Save"
+          icon="💾"
+          [items]="basicSplitButtonItems"
+          (onClick)="onSplitButtonClick()"
+          (itemClick)="onSplitButtonItemClick($event)">
+        </sui-split-button>
+      </div>
+      
+      <!-- Code Block -->
+      <div *ngIf="showBasicSplitButtonCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-split-button 
+  label="Save"
+  icon="💾"
+  [items]="basicSplitButtonItems"
+  (onClick)="onSplitButtonClick()"
+  (itemClick)="onSplitButtonItemClick($event)"&gt;
+&lt;/sui-split-button&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Style SplitButton -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Style SplitButton</h3>
+        <button 
+          (click)="toggleCode('styleSplitButton')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showStyleSplitButtonCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <p class="text-gray-600 mb-4">Split buttons with different styles and separators.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="text-center">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Primary</h4>
+          <div class="flex items-center justify-center h-16 bg-gray-50 rounded-lg">
+            <sui-split-button 
+              label="Primary"
+              icon="⭐"
+              buttonStyle="primary"
+              [items]="styleSplitButtonItems"
+              (onClick)="onSplitButtonClick()"
+              (itemClick)="onSplitButtonItemClick($event)">
+            </sui-split-button>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Secondary</h4>
+          <div class="flex items-center justify-center h-16 bg-gray-50 rounded-lg">
+            <sui-split-button 
+              label="Secondary"
+              icon="🔧"
+              buttonStyle="secondary"
+              [items]="styleSplitButtonItems"
+              (onClick)="onSplitButtonClick()"
+              (itemClick)="onSplitButtonItemClick($event)">
+            </sui-split-button>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Success</h4>
+          <div class="flex items-center justify-center h-16 bg-gray-50 rounded-lg">
+            <sui-split-button 
+              label="Success"
+              icon="✅"
+              buttonStyle="success"
+              [items]="styleSplitButtonItems"
+              (onClick)="onSplitButtonClick()"
+              (itemClick)="onSplitButtonItemClick($event)">
+            </sui-split-button>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Warning</h4>
+          <div class="flex items-center justify-center h-16 bg-gray-50 rounded-lg">
+            <sui-split-button 
+              label="Warning"
+              icon="⚠️"
+              buttonStyle="warning"
+              [items]="styleSplitButtonItems"
+              (onClick)="onSplitButtonClick()"
+              (itemClick)="onSplitButtonItemClick($event)">
+            </sui-split-button>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Danger</h4>
+          <div class="flex items-center justify-center h-16 bg-gray-50 rounded-lg">
+            <sui-split-button 
+              label="Danger"
+              icon="🚨"
+              buttonStyle="danger"
+              [items]="styleSplitButtonItems"
+              (onClick)="onSplitButtonClick()"
+              (itemClick)="onSplitButtonItemClick($event)">
+            </sui-split-button>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Info</h4>
+          <div class="flex items-center justify-center h-16 bg-gray-50 rounded-lg">
+            <sui-split-button 
+              label="Info"
+              icon="ℹ️"
+              buttonStyle="info"
+              [items]="styleSplitButtonItems"
+              (onClick)="onSplitButtonClick()"
+              (itemClick)="onSplitButtonItemClick($event)">
+            </sui-split-button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Code Block -->
+      <div *ngIf="showStyleSplitButtonCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-split-button 
+  label="Primary"
+  icon="⭐"
+  buttonStyle="primary"
+  [items]="styleSplitButtonItems"
+  (onClick)="onSplitButtonClick()"
+  (itemClick)="onSplitButtonItemClick($event)"&gt;
+&lt;/sui-split-button&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Icon SplitButton -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Icon SplitButton</h3>
+        <button 
+          (click)="toggleCode('iconSplitButton')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showIconSplitButtonCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <p class="text-gray-600 mb-4">Split buttons with different icons and actions.</p>
+      
+      <div class="flex items-center justify-center h-20 bg-gray-50 rounded-lg space-x-4">
+        <sui-split-button 
+          label="Download"
+          icon="⬇️"
+          [items]="iconSplitButtonItems"
+          (onClick)="onSplitButtonClick()"
+          (itemClick)="onSplitButtonItemClick($event)">
+        </sui-split-button>
+        
+        <sui-split-button 
+          label="Upload"
+          icon="⬆️"
+          [items]="iconSplitButtonItems"
+          (onClick)="onSplitButtonClick()"
+          (itemClick)="onSplitButtonItemClick($event)">
+        </sui-split-button>
+        
+        <sui-split-button 
+          label="Share"
+          icon="🔗"
+          [items]="iconSplitButtonItems"
+          (onClick)="onSplitButtonClick()"
+          (itemClick)="onSplitButtonItemClick($event)">
+        </sui-split-button>
+      </div>
+      
+      <!-- Code Block -->
+      <div *ngIf="showIconSplitButtonCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-split-button 
+  label="Download"
+  icon="⬇️"
+  [items]="iconSplitButtonItems"
+  (onClick)="onSplitButtonClick()"
+  (itemClick)="onSplitButtonItemClick($event)"&gt;
+&lt;/sui-split-button&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Disabled SplitButton -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Disabled SplitButton</h3>
+        <button 
+          (click)="toggleCode('disabledSplitButton')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showDisabledSplitButtonCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <p class="text-gray-600 mb-4">Split button with some disabled items.</p>
+      
+      <div class="flex items-center justify-center h-20 bg-gray-50 rounded-lg">
+        <sui-split-button 
+          label="Actions"
+          icon="⚡"
+          [items]="disabledSplitButtonItems"
+          (onClick)="onSplitButtonClick()"
+          (itemClick)="onSplitButtonItemClick($event)">
+        </sui-split-button>
+      </div>
+      
+      <!-- Code Block -->
+      <div *ngIf="showDisabledSplitButtonCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-split-button 
+  label="Actions"
+  icon="⚡"
+  [items]="disabledSplitButtonItems"
+  (onClick)="onSplitButtonClick()"
+  (itemClick)="onSplitButtonItemClick($event)"&gt;
+&lt;/sui-split-button&gt;</code></pre>
+      </div>
+    </div>

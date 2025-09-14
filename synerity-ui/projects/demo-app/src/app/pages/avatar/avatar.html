@@ -1,1 +1,310 @@
-<p>avatar works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Avatar</h1>
+    <p class="text-lg text-gray-600">User profile images with support for images, initials, and icons.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Avatars -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Avatars</h3>
+            <button 
+              (click)="toggleCode('basicAvatars')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicAvatarsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="flex flex-wrap gap-6">
+                <sui-avatar [image]="avatarImage"></sui-avatar>
+                <sui-avatar [label]="avatarLabel"></sui-avatar>
+                <sui-avatar icon="👤"></sui-avatar>
+                <sui-avatar label="AB" styleClass="bg-blue-500 text-white"></sui-avatar>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showBasicAvatarsCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="flex flex-wrap gap-6"&gt;
+  &lt;sui-avatar [image]="avatarImage"&gt;&lt;/sui-avatar&gt;
+  &lt;sui-avatar [label]="avatarLabel"&gt;&lt;/sui-avatar&gt;
+  &lt;sui-avatar icon="👤"&gt;&lt;/sui-avatar&gt;
+  &lt;sui-avatar label="AB" styleClass="bg-blue-500 text-white"&gt;&lt;/sui-avatar&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar Sizes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Avatar Sizes</h3>
+            <button 
+              (click)="toggleCode('avatarSizes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showAvatarSizesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="flex flex-wrap items-center gap-6">
+                <sui-avatar [label]="avatarLabel" size="small"></sui-avatar>
+                <sui-avatar [label]="avatarLabel" size="normal"></sui-avatar>
+                <sui-avatar [label]="avatarLabel" size="large"></sui-avatar>
+                <sui-avatar [label]="avatarLabel" size="xlarge"></sui-avatar>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showAvatarSizesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="flex flex-wrap items-center gap-6"&gt;
+  &lt;sui-avatar [label]="avatarLabel" size="small"&gt;&lt;/sui-avatar&gt;
+  &lt;sui-avatar [label]="avatarLabel" size="normal"&gt;&lt;/sui-avatar&gt;
+  &lt;sui-avatar [label]="avatarLabel" size="large"&gt;&lt;/sui-avatar&gt;
+  &lt;sui-avatar [label]="avatarLabel" size="xlarge"&gt;&lt;/sui-avatar&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar Shapes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Avatar Shapes</h3>
+            <button 
+              (click)="toggleCode('avatarShapes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showAvatarShapesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="flex flex-wrap gap-6">
+                <sui-avatar [label]="avatarLabel" shape="circle"></sui-avatar>
+                <sui-avatar [label]="avatarLabel" shape="square"></sui-avatar>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showAvatarShapesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="flex flex-wrap gap-6"&gt;
+  &lt;sui-avatar [label]="avatarLabel" shape="circle"&gt;&lt;/sui-avatar&gt;
+  &lt;sui-avatar [label]="avatarLabel" shape="square"&gt;&lt;/sui-avatar&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+            <button 
+              (click)="toggleCode('interactiveDemo')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Avatar Label</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="avatarLabel"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                </div>
+                <div>
+                  <sui-avatar [label]="avatarLabel" size="large"></sui-avatar>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;div class="space-y-4"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Avatar Label&lt;/label&gt;
+    &lt;input 
+      type="text" 
+      [(ngModel)]="avatarLabel"
+      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;sui-avatar [label]="avatarLabel" size="large"&gt;&lt;/sui-avatar&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-8">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+            <div>npm install @synerity/ui</div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <pre class="text-sm"><code>&lt;sui-avatar [label]="'John Doe'"&gt;&lt;/sui-avatar&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Import -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <pre class="text-sm"><code>import &#123; Avatar &#125; from '@synerity/ui';</code></pre>
+          </div>
+        </div>
+
+        <!-- Examples -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
+          
+          <div class="space-y-6">
+            <!-- Image Avatar -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Image Avatar</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-avatar [image]="'path/to/image.jpg'"&gt;&lt;/sui-avatar&gt;</code></pre>
+              </div>
+            </div>
+
+            <!-- Label Avatar -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Label Avatar</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-avatar [label]="'John Doe'"&gt;&lt;/sui-avatar&gt;</code></pre>
+              </div>
+            </div>
+
+            <!-- Icon Avatar -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Icon Avatar</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-avatar icon="👤"&gt;&lt;/sui-avatar&gt;</code></pre>
+              </div>
+            </div>
+
+            <!-- Custom Styled Avatar -->
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Custom Styled Avatar</h4>
+              <div class="bg-gray-50 p-4 rounded-lg mb-2">
+                <pre class="text-sm"><code>&lt;sui-avatar 
+  [label]="'AB'"
+  styleClass="bg-blue-500 text-white"
+  size="large"&gt;
+&lt;/sui-avatar&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-8">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">image</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">URL of the avatar image</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">label</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Text to display as initials or label</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">icon</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Icon to display in the avatar</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'small' | 'normal' | 'large' | 'xlarge'</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'normal'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Size of the avatar</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">shape</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'square' | 'circle'</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'circle'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Shape of the avatar</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the avatar</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">CSS class name for custom styling</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <ul class="text-sm text-blue-800 space-y-2">
+              <li>• Proper alt text for images</li>
+              <li>• WCAG 2.1 AA compliant color contrast</li>
+              <li>• Screen reader support for text content</li>
+              <li>• Proper ARIA attributes when used in interactive contexts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

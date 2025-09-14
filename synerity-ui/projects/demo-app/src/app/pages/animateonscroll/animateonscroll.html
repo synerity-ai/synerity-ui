@@ -1,0 +1,532 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">AnimateOnScroll</h1>
+    <p class="text-gray-600">A component that animates elements when they come into view during scrolling.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '✨' },
+      { id: 'how-to-use', label: 'How to Use', icon: '📖' },
+      { id: 'documentation', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+  </app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="mt-6 space-y-8">
+    <!-- Basic AnimateOnScroll -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Basic AnimateOnScroll</h3>
+        <button
+          (click)="toggleCode('basicAnimateOnScroll')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showBasicAnimateOnScrollCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">A basic animation that triggers when the element comes into view.</p>
+
+      <div class="h-32 bg-gray-50 rounded-lg flex items-center justify-center">
+        <sui-animate-on-scroll
+          [animation]="basicAnimation"
+          [threshold]="basicThreshold"
+          [delay]="basicDelay"
+          [duration]="basicDuration"
+          [once]="basicOnce">
+          <div class="bg-blue-500 text-white px-6 py-3 rounded-lg font-medium">
+            Scroll to see me animate!
+          </div>
+        </sui-animate-on-scroll>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showBasicAnimateOnScrollCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-animate-on-scroll
+  [animation]="basicAnimation"
+  [threshold]="basicThreshold"
+  [delay]="basicDelay"
+  [duration]="basicDuration"
+  [once]="basicOnce"&gt;
+  &lt;div class="bg-blue-500 text-white px-6 py-3 rounded-lg font-medium"&gt;
+    Scroll to see me animate!
+  &lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Animation Types -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Animation Types</h3>
+        <button
+          (click)="toggleCode('animationTypes')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showAnimationTypesCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Different animation types available for various effects.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div *ngFor="let anim of animationTypes" class="h-24 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="anim.value"
+            [threshold]="0.1"
+            [delay]="0"
+            [duration]="1000"
+            [once]="true">
+            <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              {{ anim.label }}
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showAnimationTypesCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-animate-on-scroll [animation]="'fadeInUp'"&gt;
+  &lt;div&gt;Content to animate&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;
+
+&lt;sui-animate-on-scroll [animation]="'slideInLeft'"&gt;
+  &lt;div&gt;Content to animate&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;
+
+&lt;sui-animate-on-scroll [animation]="'zoomIn'"&gt;
+  &lt;div&gt;Content to animate&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Threshold Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Threshold Demo</h3>
+        <button
+          (click)="toggleCode('threshold')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showThresholdCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Different threshold values control when the animation triggers.</p>
+
+      <div class="space-y-4">
+        <div class="h-20 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.1"
+            [delay]="0"
+            [duration]="1000"
+            [once]="true">
+            <div class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Threshold: 0.1 (Early trigger)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+        
+        <div class="h-20 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.5"
+            [delay]="0"
+            [duration]="1000"
+            [once]="true">
+            <div class="bg-yellow-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Threshold: 0.5 (Medium trigger)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+        
+        <div class="h-20 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.9"
+            [delay]="0"
+            [duration]="1000"
+            [once]="true">
+            <div class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Threshold: 0.9 (Late trigger)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showThresholdCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-animate-on-scroll [threshold]="0.1"&gt;
+  &lt;div&gt;Early trigger&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;
+
+&lt;sui-animate-on-scroll [threshold]="0.5"&gt;
+  &lt;div&gt;Medium trigger&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;
+
+&lt;sui-animate-on-scroll [threshold]="0.9"&gt;
+  &lt;div&gt;Late trigger&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Delay Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Delay Demo</h3>
+        <button
+          (click)="toggleCode('delay')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showDelayCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Different delay values create staggered animations.</p>
+
+      <div class="space-y-4">
+        <div class="h-16 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.1"
+            [delay]="0"
+            [duration]="1000"
+            [once]="true">
+            <div class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              No Delay (0ms)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+        
+        <div class="h-16 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.1"
+            [delay]="200"
+            [duration]="1000"
+            [once]="true">
+            <div class="bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Small Delay (200ms)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+        
+        <div class="h-16 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.1"
+            [delay]="500"
+            [duration]="1000"
+            [once]="true">
+            <div class="bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Medium Delay (500ms)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showDelayCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-animate-on-scroll [delay]="0"&gt;
+  &lt;div&gt;No delay&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;
+
+&lt;sui-animate-on-scroll [delay]="200"&gt;
+  &lt;div&gt;Small delay&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;
+
+&lt;sui-animate-on-scroll [delay]="500"&gt;
+  &lt;div&gt;Medium delay&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Duration Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Duration Demo</h3>
+        <button
+          (click)="toggleCode('duration')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showDurationCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Different duration values control animation speed.</p>
+
+      <div class="space-y-4">
+        <div class="h-16 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.1"
+            [delay]="0"
+            [duration]="500"
+            [once]="true">
+            <div class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Fast (500ms)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+        
+        <div class="h-16 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.1"
+            [delay]="0"
+            [duration]="1000"
+            [once]="true">
+            <div class="bg-yellow-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Normal (1000ms)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+        
+        <div class="h-16 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.1"
+            [delay]="0"
+            [duration]="2000"
+            [once]="true">
+            <div class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Slow (2000ms)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showDurationCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-animate-on-scroll [duration]="500"&gt;
+  &lt;div&gt;Fast animation&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;
+
+&lt;sui-animate-on-scroll [duration]="1000"&gt;
+  &lt;div&gt;Normal animation&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;
+
+&lt;sui-animate-on-scroll [duration]="2000"&gt;
+  &lt;div&gt;Slow animation&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Once Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Once Demo</h3>
+        <button
+          (click)="toggleCode('once')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showOnceCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Control whether animations trigger once or repeatedly.</p>
+
+      <div class="space-y-4">
+        <div class="h-16 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.1"
+            [delay]="0"
+            [duration]="1000"
+            [once]="true">
+            <div class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Once: True (Animate once)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+        
+        <div class="h-16 bg-gray-50 rounded-lg flex items-center justify-center">
+          <sui-animate-on-scroll
+            [animation]="'fadeInUp'"
+            [threshold]="0.1"
+            [delay]="0"
+            [duration]="1000"
+            [once]="false">
+            <div class="bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+              Once: False (Animate repeatedly)
+            </div>
+          </sui-animate-on-scroll>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showOnceCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-animate-on-scroll [once]="true"&gt;
+  &lt;div&gt;Animate once&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;
+
+&lt;sui-animate-on-scroll [once]="false"&gt;
+  &lt;div&gt;Animate repeatedly&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Interactive Demo</h3>
+        <button
+          (click)="toggleCode('interactiveDemo')"
+          class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          {{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+
+      <p class="text-gray-600 mb-4">Interactive animation with customizable options.</p>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <button
+          (click)="setRandomAnimation()"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+          Random Animation
+        </button>
+        <button
+          (click)="setRandomDelay()"
+          class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
+          Random Delay
+        </button>
+        <button
+          (click)="setRandomDuration()"
+          class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+          Random Duration
+        </button>
+        <button
+          (click)="toggleOnce()"
+          [class]="interactiveOnce ? 'bg-orange-600 text-white' : 'bg-gray-200 text-gray-700'"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          {{ interactiveOnce ? 'Once: On' : 'Once: Off' }}
+        </button>
+      </div>
+
+      <div class="h-32 bg-gray-50 rounded-lg flex items-center justify-center mb-4">
+        <sui-animate-on-scroll
+          [animation]="interactiveAnimation"
+          [threshold]="interactiveThreshold"
+          [delay]="interactiveDelay"
+          [duration]="interactiveDuration"
+          [once]="interactiveOnce">
+          <div class="bg-gradient-to-r from-pink-500 to-violet-500 text-white px-6 py-3 rounded-lg font-medium">
+            Interactive Animation
+          </div>
+        </sui-animate-on-scroll>
+      </div>
+
+      <!-- Action Log -->
+      <div class="bg-gray-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-sm font-medium text-gray-700">Action Log</h4>
+          <button
+            (click)="clearActionLog()"
+            class="text-xs text-blue-600 hover:text-blue-800">
+            Clear
+          </button>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1 max-h-20 overflow-y-auto">
+          <div *ngFor="let action of actionLog">{{ action }}</div>
+          <div *ngIf="actionLog.length === 0" class="text-gray-400">No actions yet...</div>
+        </div>
+      </div>
+
+      <!-- Code Block -->
+      <div *ngIf="showInteractiveDemoCode" class="mt-4">
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;sui-animate-on-scroll
+  [animation]="interactiveAnimation"
+  [threshold]="interactiveThreshold"
+  [delay]="interactiveDelay"
+  [duration]="interactiveDuration"
+  [once]="interactiveOnce"&gt;
+  &lt;div class="bg-gradient-to-r from-pink-500 to-violet-500 text-white px-6 py-3 rounded-lg font-medium"&gt;
+    Interactive Animation
+  &lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'how-to-use'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
+      <div class="space-y-4 text-gray-600">
+        <p>Import the AnimateOnScroll component and add it to your template:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>import {{ '{' }} AnimateOnScroll {{ '}' }} from 'ui-lib';
+
+&lt;sui-animate-on-scroll [animation]="'fadeInUp'"&gt;
+  &lt;div&gt;Content to animate&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;</code></pre>
+        
+        <p>Basic animation usage:</p>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm"><code>&lt;sui-animate-on-scroll
+  [animation]="'fadeInUp'"
+  [threshold]="0.1"
+  [delay]="0"
+  [duration]="1000"
+  [once]="true"&gt;
+  &lt;div&gt;Content to animate&lt;/div&gt;
+&lt;/sui-animate-on-scroll&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'documentation'" class="mt-6 space-y-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">API Reference</h3>
+      
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-md font-medium text-gray-800 mb-2">Properties</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">animation</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'fadeInUp'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Animation type to apply</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">threshold</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0.1</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Visibility threshold (0-1)</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">delay</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Animation delay in milliseconds</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">duration</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1000</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Animation duration in milliseconds</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">once</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether to animate only once</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

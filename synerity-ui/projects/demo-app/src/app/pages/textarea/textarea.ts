@@ -10,40 +10,59 @@ import { Tabs } from '../../shared/tabs/tabs';
   templateUrl: './textarea.html',
   styleUrl: './textarea.scss'
 })
-export class Textarea {
+export class TextareaPage {
   activeTab = 'demo';
   
   // Demo data
   basicValue = '';
   placeholderValue = '';
-  disabledValue = '';
+  disabledValue = 'This textarea is disabled';
+  readonlyValue = 'This textarea is read-only';
   autosizeValue = '';
   rowsValue = '';
   interactiveValue = '';
+  interactiveRows = 4;
+  interactivePlaceholder = 'Enter your message...';
+  interactiveDisabled = false;
+  interactiveReadonly = false;
+  interactiveAutosize = false;
   
   // Code visibility states
-  showBasicUsageCode = false;
-  showTextareaVariantsCode = false;
-  showTextareaStatesCode = false;
-  showTextareaFeaturesCode = false;
+  showBasicTextareaCode = false;
+  showPlaceholderTextareaCode = false;
+  showDisabledTextareaCode = false;
+  showReadonlyTextareaCode = false;
+  showAutosizeTextareaCode = false;
   showInteractiveDemoCode = false;
   
   onTabChange(tab: string) {
     this.activeTab = tab;
   }
   
-  onTextareaChange(value: string, field: string) {
-    console.log(`${field} changed to:`, value);
+  toggleCode(example: string) {
+    switch (example) {
+      case 'basicTextarea':
+        this.showBasicTextareaCode = !this.showBasicTextareaCode;
+        break;
+      case 'placeholderTextarea':
+        this.showPlaceholderTextareaCode = !this.showPlaceholderTextareaCode;
+        break;
+      case 'disabledTextarea':
+        this.showDisabledTextareaCode = !this.showDisabledTextareaCode;
+        break;
+      case 'readonlyTextarea':
+        this.showReadonlyTextareaCode = !this.showReadonlyTextareaCode;
+        break;
+      case 'autosizeTextarea':
+        this.showAutosizeTextareaCode = !this.showAutosizeTextareaCode;
+        break;
+      case 'interactiveDemo':
+        this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
+        break;
+    }
   }
   
-  // Code toggle methods
-  toggleCode(section: string) {
-    switch(section) {
-      case 'basicUsage': this.showBasicUsageCode = !this.showBasicUsageCode; break;
-      case 'textareaVariants': this.showTextareaVariantsCode = !this.showTextareaVariantsCode; break;
-      case 'textareaStates': this.showTextareaStatesCode = !this.showTextareaStatesCode; break;
-      case 'textareaFeatures': this.showTextareaFeaturesCode = !this.showTextareaFeaturesCode; break;
-      case 'interactiveDemo': this.showInteractiveDemoCode = !this.showInteractiveDemoCode; break;
-    }
+  onTextareaChange(value: string, field: string) {
+    console.log(`${field} changed to:`, value);
   }
 }
