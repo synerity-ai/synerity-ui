@@ -1,7 +1,38 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild, ElementRef, HostListener, OnDestroy, forwardRef } from '@angular/core';
+import { 
+  ChangeDetectionStrategy, 
+  Component, 
+  EventEmitter, 
+  Input, 
+  Output, 
+  ViewChild, 
+  ElementRef, 
+  OnDestroy, 
+  forwardRef,
+  ChangeDetectorRef,
+  OnInit,
+  HostListener
+} from '@angular/core';
 import { NgIf, CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription, fromEvent } from 'rxjs';
+
+export interface DatePickerConfig {
+  format: string;
+  minDate?: Date;
+  maxDate?: Date;
+  disabledDates?: Date[];
+  disabledDays?: number[];
+  firstDayOfWeek?: number;
+  showWeekNumbers?: boolean;
+  showTodayButton?: boolean;
+  showClearButton?: boolean;
+  showTime?: boolean;
+  timeFormat?: '12' | '24';
+  placeholder?: string;
+  size?: 'small' | 'medium' | 'large';
+  variant?: 'default' | 'compact' | 'inline';
+  theme?: 'light' | 'dark';
+}
 
 @Component({
   selector: 'sui-date-picker',
@@ -17,126 +48,498 @@ import { Subscription, fromEvent } from 'rxjs';
     }
   ]
 })
-export class DatePicker implements ControlValueAccessor, OnDestroy {
+export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
+  // Core Inputs
   @Input() value: Date | null = null;
   @Input() placeholder = 'Select date';
   @Input() disabled = false;
   @Input() readonly = false;
+  @Input() required = false;
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() variant: 'default' | 'compact' | 'inline' = 'default';
+  @Input() theme: 'light' | 'dark' = 'light';
+  
+  // Date Constraints
   @Input() minDate: Date | null = null;
   @Input() maxDate: Date | null = null;
+  @Input() disabledDates: Date[] = [];
+  @Input() disabledDays: number[] = []; // 0 = Sunday, 1 = Monday, etc.
+  
+  // Calendar Configuration
+  @Input() firstDayOfWeek = 0; // 0 = Sunday, 1 = Monday
+  @Input() showWeekNumbers = false;
+  @Input() showTodayButton = true;
+  @Input() showClearButton = true;
+  @Input() showTime = false;
+  @Input() timeFormat: '12' | '24' = '24';
+  
+  // Formatting
   @Input() dateFormat = 'MM/dd/yyyy';
-  @Input() showIcon = true;
+  @Input() timeFormatString = 'HH:mm';
+  
+  // Styling
   @Input() style: any = {};
   @Input() styleClass = '';
+  
+  // Events
   @Output() onChange = new EventEmitter<Date | null>();
   @Output() onSelect = new EventEmitter<Date | null>();
+  @Output() onOpen = new EventEmitter<void>();
+  @Output() onClose = new EventEmitter<void>();
+  @Output() onFocus = new EventEmitter<void>();
+  @Output() onBlur = new EventEmitter<void>();
 
+  // ViewChild References
+  @ViewChild('triggerElement') triggerElement!: ElementRef;
+  @ViewChild('calendarPanel') calendarPanel!: ElementRef;
   @ViewChild('dateInput') dateInput!: ElementRef;
-  @ViewChild('datePicker') datePicker!: ElementRef;
 
-  visible = false;
+  // Component State
+  isOpen = false;
+  isFocused = false;
+  currentView: 'calendar' | 'months' | 'years' = 'calendar';
+  currentMonth = new Date().getMonth();
+  currentYear = new Date().getFullYear();
+  selectedTime = { hours: 0, minutes: 0 };
+  
+  // Calendar Data
+  weekDays: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  monthNames: string[] = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  yearRange: number[] = [];
+  
+  // Event Subscriptions
   private documentClickListener!: Subscription;
-
+  private windowResizeListener!: Subscription;
+  private windowScrollListener!: Subscription;
+  private escapeKeyListener!: Subscription;
+  
   // ControlValueAccessor implementation
   private onValueChange = (value: Date | null) => {};
   private onTouched = () => {};
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    this.initializeYearRange();
+    this.updateCurrentDate();
+  }
+
   ngOnDestroy(): void {
-    this.unbindDocumentClickListener();
+    this.cleanupEventListeners();
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: Event): void {
-    if (!this.disabled && !this.readonly) {
-      this.toggle();
-    }
-  }
-
+  // Public Methods
   toggle(): void {
-    this.visible = !this.visible;
-    if (this.visible) {
-      this.bindDocumentClickListener();
+    if (this.disabled || this.readonly) return;
+    
+    if (this.isOpen) {
+      this.close();
     } else {
-      this.unbindDocumentClickListener();
+      this.open();
     }
   }
 
-  onDateChange(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const dateValue = target.value ? new Date(target.value) : null;
-    this.value = dateValue;
+  open(): void {
+    if (this.disabled || this.readonly || this.isOpen) return;
+    
+    this.isOpen = true;
+    this.updateCurrentDate();
+    this.bindEventListeners();
+    this.onOpen.emit();
+    this.cdr.detectChanges();
+    
+    // Position the calendar after it's rendered
+    setTimeout(() => this.positionCalendar(), 0);
+  }
+
+  close(): void {
+    if (!this.isOpen) return;
+    
+    this.isOpen = false;
+    this.currentView = 'calendar';
+    this.cleanupEventListeners();
+    this.onClose.emit();
+    this.cdr.detectChanges();
+  }
+
+  selectDate(date: Date): void {
+    if (this.isDateDisabled(date)) return;
+    
+    let selectedDate = new Date(date);
+    
+    // Preserve time if showTime is enabled and we have an existing value
+    if (this.showTime && this.value) {
+      selectedDate.setHours(this.value.getHours(), this.value.getMinutes());
+    } else if (this.showTime) {
+      selectedDate.setHours(this.selectedTime.hours, this.selectedTime.minutes);
+    }
+    
+    this.value = selectedDate;
     this.onValueChange(this.value);
     this.onTouched();
     this.onChange.emit(this.value);
     this.onSelect.emit(this.value);
+    
+    if (!this.showTime) {
+      this.close();
+    }
   }
 
-  onDateSelect(date: Date): void {
-    this.value = date;
-    this.onValueChange(this.value);
-    this.onTouched();
-    this.onChange.emit(this.value);
-    this.onSelect.emit(this.value);
-    this.visible = false;
-    this.unbindDocumentClickListener();
+  selectToday(): void {
+    this.selectDate(new Date());
   }
 
-  clear(): void {
+  clear(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
     this.value = null;
     this.onValueChange(this.value);
     this.onTouched();
     this.onChange.emit(this.value);
+    this.close();
   }
 
-  private bindDocumentClickListener(): void {
-    this.documentClickListener = fromEvent(document, 'click').subscribe((event: any) => {
-      if (this.datePicker && !this.datePicker.nativeElement.contains(event.target)) {
-        this.visible = false;
-        this.unbindDocumentClickListener();
-      }
-    });
-  }
-
-  private unbindDocumentClickListener(): void {
-    if (this.documentClickListener) {
-      this.documentClickListener.unsubscribe();
+  // Navigation Methods
+  previousMonth(): void {
+    if (this.currentMonth === 0) {
+      this.currentMonth = 11;
+      this.currentYear--;
+    } else {
+      this.currentMonth--;
     }
+    this.cdr.detectChanges();
   }
 
-  getDatePickerClass(): string {
-    return `sui-date-picker ${this.disabled ? 'sui-date-picker-disabled' : ''} ${this.readonly ? 'sui-date-picker-readonly' : ''} ${this.styleClass}`.trim();
+  nextMonth(): void {
+    if (this.currentMonth === 11) {
+      this.currentMonth = 0;
+      this.currentYear++;
+    } else {
+      this.currentMonth++;
+    }
+    this.cdr.detectChanges();
   }
 
-  getDatePickerStyle(): any {
-    return {
-      ...this.style
-    };
+  goToMonth(month: number): void {
+    this.currentMonth = month;
+    this.currentView = 'calendar';
+    this.cdr.detectChanges();
+  }
+
+  goToYear(year: number): void {
+    this.currentYear = year;
+    this.currentView = 'calendar';
+    this.cdr.detectChanges();
+  }
+
+  // Calendar Data Methods
+  getCalendarDays(): any[] {
+    const days: any[] = [];
+    const firstDay = new Date(this.currentYear, this.currentMonth, 1);
+    const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
+    const startDate = new Date(firstDay);
+    
+    // Adjust start date based on firstDayOfWeek
+    const dayOffset = (firstDay.getDay() - this.firstDayOfWeek + 7) % 7;
+    startDate.setDate(startDate.getDate() - dayOffset);
+
+    const today = new Date();
+    const selectedDate = this.value;
+
+    // Generate 42 days (6 weeks) to ensure full calendar view
+    for (let i = 0; i < 42; i++) {
+      const date = new Date(startDate);
+      date.setDate(startDate.getDate() + i);
+      
+      const isCurrentMonth = date.getMonth() === this.currentMonth;
+      const isToday = this.isSameDay(date, today);
+      const isSelected = selectedDate && this.isSameDay(date, selectedDate);
+      const isDisabled = this.isDateDisabled(date);
+      const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+
+      days.push({
+        date: date,
+        day: date.getDate(),
+        isCurrentMonth,
+        isToday,
+        isSelected,
+        isDisabled,
+        isWeekend,
+        weekNumber: this.getWeekNumber(date)
+      });
+    }
+
+    return days;
+  }
+
+  getMonthNames(): string[] {
+    return this.monthNames;
+  }
+
+  getYearRange(): number[] {
+    return this.yearRange;
+  }
+
+  // Utility Methods
+  isDateDisabled(date: Date): boolean {
+    // Check min/max dates
+    if (this.minDate && date < this.minDate) return true;
+    if (this.maxDate && date > this.maxDate) return true;
+    
+    // Check disabled dates
+    if (this.disabledDates.some(d => this.isSameDay(date, d))) return true;
+    
+    // Check disabled days of week
+    if (this.disabledDays.includes(date.getDay())) return true;
+    
+    return false;
+  }
+
+  isSameDay(date1: Date, date2: Date): boolean {
+    return date1.getFullYear() === date2.getFullYear() &&
+           date1.getMonth() === date2.getMonth() &&
+           date1.getDate() === date2.getDate();
+  }
+
+  getWeekNumber(date: Date): number {
+    const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+    const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;
+    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
   }
 
   getDisplayValue(): string {
     if (!this.value) return '';
+    
+    if (this.showTime) {
+      return `${this.value.toLocaleDateString()} ${this.formatTime(this.value)}`;
+    }
+    
     return this.value.toLocaleDateString();
   }
 
-  isVisible(): boolean {
-    return this.visible;
+  formatTime(date: Date): string {
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    
+    if (this.timeFormat === '12') {
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      const displayHours = hours % 12 || 12;
+      return `${displayHours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+    }
+    
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
   }
 
-  isDisabled(): boolean {
-    return this.disabled;
+  // Event Handlers
+  onInputFocus(): void {
+    this.isFocused = true;
+    this.onFocus.emit();
   }
 
-  isReadonly(): boolean {
-    return this.readonly;
+  onInputBlur(): void {
+    this.isFocused = false;
+    this.onBlur.emit();
   }
 
-  hasValue(): boolean {
-    return this.value !== null;
+  onInputChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const dateValue = target.value ? new Date(target.value) : null;
+    
+    if (dateValue && !isNaN(dateValue.getTime())) {
+      this.value = dateValue;
+      this.onValueChange(this.value);
+      this.onChange.emit(this.value);
+    }
   }
 
-  // ControlValueAccessor methods
+  onTimeFormatChange(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    const isPM = target.value === 'PM';
+    
+    if (isPM && this.selectedTime.hours < 12) {
+      this.selectedTime.hours += 12;
+    } else if (!isPM && this.selectedTime.hours >= 12) {
+      this.selectedTime.hours -= 12;
+    }
+  }
+
+  // Keyboard Navigation
+  @HostListener('keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent): void {
+    if (!this.isOpen) return;
+    
+    switch (event.key) {
+      case 'Escape':
+        this.close();
+        event.preventDefault();
+        break;
+      case 'Enter':
+        if (this.value) {
+          this.close();
+        }
+        event.preventDefault();
+        break;
+      case 'ArrowLeft':
+        this.previousMonth();
+        event.preventDefault();
+        break;
+      case 'ArrowRight':
+        this.nextMonth();
+        event.preventDefault();
+        break;
+    }
+  }
+
+  // Styling Methods
+  getComponentClass(): string {
+    const classes = [
+      'sui-date-picker',
+      `sui-date-picker-${this.size}`,
+      `sui-date-picker-${this.variant}`,
+      `sui-date-picker-${this.theme}`
+    ];
+    
+    if (this.disabled) classes.push('sui-date-picker-disabled');
+    if (this.readonly) classes.push('sui-date-picker-readonly');
+    if (this.isOpen) classes.push('sui-date-picker-open');
+    if (this.isFocused) classes.push('sui-date-picker-focused');
+    if (this.required && !this.value) classes.push('sui-date-picker-required');
+    
+    return classes.join(' ');
+  }
+
+  getTriggerClass(): string {
+    return `sui-date-picker-trigger sui-date-picker-trigger-${this.size}`;
+  }
+
+  getCalendarClass(): string {
+    return `sui-date-picker-calendar sui-date-picker-calendar-${this.size} sui-date-picker-calendar-${this.theme}`;
+  }
+
+  getCalendarStyle(): any {
+    if (!this.isOpen) return {};
+    
+    const triggerRect = this.triggerElement?.nativeElement?.getBoundingClientRect();
+    if (!triggerRect) return { zIndex: 999999 };
+    
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    const calendarHeight = 400; // Approximate calendar height
+    const calendarWidth = 320; // Approximate calendar width
+    
+    let top = triggerRect.bottom + window.scrollY + 8;
+    let left = triggerRect.left + window.scrollX;
+    
+    // Adjust position if calendar would go off screen
+    if (top + calendarHeight > viewportHeight + window.scrollY) {
+      top = triggerRect.top + window.scrollY - calendarHeight - 8;
+    }
+    
+    if (left + calendarWidth > viewportWidth + window.scrollX) {
+      left = viewportWidth + window.scrollX - calendarWidth - 16;
+    }
+    
+    return {
+      position: 'fixed',
+      top: `${top}px`,
+      left: `${left}px`,
+      zIndex: 999999
+    };
+  }
+
+  // Private Methods
+  private initializeYearRange(): void {
+    const currentYear = new Date().getFullYear();
+    const startYear = currentYear - 50;
+    const endYear = currentYear + 50;
+    
+    for (let year = startYear; year <= endYear; year++) {
+      this.yearRange.push(year);
+    }
+  }
+
+  private updateCurrentDate(): void {
+    if (this.value) {
+      this.currentMonth = this.value.getMonth();
+      this.currentYear = this.value.getFullYear();
+      
+      if (this.showTime) {
+        this.selectedTime = {
+          hours: this.value.getHours(),
+          minutes: this.value.getMinutes()
+        };
+      }
+    } else {
+      const today = new Date();
+      this.currentMonth = today.getMonth();
+      this.currentYear = today.getFullYear();
+    }
+  }
+
+  private positionCalendar(): void {
+    // This method is called after the calendar is rendered
+    // The actual positioning is handled by getCalendarStyle()
+    this.cdr.detectChanges();
+  }
+
+  private bindEventListeners(): void {
+    // Document click listener
+    setTimeout(() => {
+      this.documentClickListener = fromEvent(document, 'click').subscribe((event: any) => {
+        if (!this.triggerElement?.nativeElement?.contains(event.target) && 
+            !this.calendarPanel?.nativeElement?.contains(event.target)) {
+          this.close();
+        }
+      });
+    }, 100);
+    
+    // Window resize listener
+    this.windowResizeListener = fromEvent(window, 'resize').subscribe(() => {
+      if (this.isOpen) {
+        this.positionCalendar();
+      }
+    });
+    
+    // Window scroll listener
+    this.windowScrollListener = fromEvent(window, 'scroll').subscribe(() => {
+      if (this.isOpen) {
+        this.positionCalendar();
+      }
+    });
+    
+    // Escape key listener
+    this.escapeKeyListener = fromEvent(document, 'keydown').subscribe((event: Event) => {
+      const keyboardEvent = event as KeyboardEvent;
+      if (keyboardEvent.key === 'Escape' && this.isOpen) {
+        this.close();
+      }
+    });
+  }
+
+  private cleanupEventListeners(): void {
+    if (this.documentClickListener) {
+      this.documentClickListener.unsubscribe();
+    }
+    if (this.windowResizeListener) {
+      this.windowResizeListener.unsubscribe();
+    }
+    if (this.windowScrollListener) {
+      this.windowScrollListener.unsubscribe();
+    }
+    if (this.escapeKeyListener) {
+      this.escapeKeyListener.unsubscribe();
+    }
+  }
+
+  // ControlValueAccessor Methods
   writeValue(value: Date | null): void {
     this.value = value;
+    this.updateCurrentDate();
+    this.cdr.detectChanges();
   }
 
   registerOnChange(fn: (value: Date | null) => void): void {
@@ -149,5 +552,6 @@ export class DatePicker implements ControlValueAccessor, OnDestroy {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    this.cdr.detectChanges();
   }
 }

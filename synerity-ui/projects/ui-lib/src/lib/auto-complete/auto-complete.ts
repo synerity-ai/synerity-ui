@@ -54,8 +54,10 @@ export class AutoComplete implements ControlValueAccessor {
 
   onBlur(): void {
     this.onTouched();
-    // Keep dropdown open logic simple: close on blur
-    this.open = false;
+    // Add a small delay to allow click events to be processed before closing
+    setTimeout(() => {
+      this.open = false;
+    }, 150);
   }
 
   onKeyDown(event: KeyboardEvent): void {

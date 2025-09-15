@@ -1,4 +1,4 @@
-<div class="relative inline-block w-64">
+<div class="relative w-full">
 	<input
 		[type]="'text'"
 		[class.opacity-50]="disabled"
@@ -11,15 +11,16 @@
 		(focus)="onFocus()"
 		(blur)="onBlur()"
 		(keydown)="onKeyDown($event)"
-		class="px-2 py-1 border rounded w-full"
+		class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 	/>
-	<button *ngIf="term" type="button" (click)="clear()" class="absolute right-2 top-1/2 -translate-y-1/2 text-sm">×</button>
-	<ul *ngIf="open" class="absolute z-10 mt-1 w-full bg-white border rounded shadow max-h-60 overflow-auto">
+	<button *ngIf="term" type="button" (click)="clear()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-lg leading-none">×</button>
+	<ul *ngIf="open" class="absolute z-50 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
 		<li
 			*ngFor="let item of filtered; let i = index"
 			(click)="select(item)"
-			[class.bg-gray-100]="i === activeIndex"
-			class="px-3 py-2 cursor-pointer"
+			(mousedown)="$event.preventDefault()"
+			[class.bg-blue-50]="i === activeIndex"
+			class="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
 		>
 			{{ displayItem(item) }}
 		</li>

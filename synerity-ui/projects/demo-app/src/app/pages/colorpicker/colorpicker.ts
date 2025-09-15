@@ -23,6 +23,7 @@ export class ColorPickerPage {
   interactiveFormat: 'hex' | 'rgb' | 'hsl' = 'hex';
   interactiveInline = false;
   interactiveDisabled = false;
+  compactColor = '#EF4444';
   
   // Predefined color palette
   predefinedColors = [
@@ -39,6 +40,7 @@ export class ColorPickerPage {
   showDisabledColorCode = false;
   showInlineColorCode = false;
   showInteractiveDemoCode = false;
+  showCompactColorCode = false;
   
   onTabChange(tab: string) {
     this.activeTab = tab;
@@ -64,6 +66,9 @@ export class ColorPickerPage {
       case 'interactiveDemo':
         this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
         break;
+      case 'compactColor':
+        this.showCompactColorCode = !this.showCompactColorCode;
+        break;
     }
   }
   
@@ -84,6 +89,33 @@ export class ColorPickerPage {
       hsl: `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`,
       name
     };
+  }
+
+  getColorInFormat(color: string, format: 'hex' | 'rgb' | 'hsl'): string {
+    const colorInfo = this.getColorInfo(color);
+    switch (format) {
+      case 'hex':
+        return colorInfo.hex;
+      case 'rgb':
+        return colorInfo.rgb;
+      case 'hsl':
+        return colorInfo.hsl;
+      default:
+        return colorInfo.hex;
+    }
+  }
+
+  getFormatLabel(format: 'hex' | 'rgb' | 'hsl'): string {
+    switch (format) {
+      case 'hex':
+        return 'HEX';
+      case 'rgb':
+        return 'RGB';
+      case 'hsl':
+        return 'HSL';
+      default:
+        return 'HEX';
+    }
   }
   
   private hexToRgb(hex: string): { r: number; g: number; b: number } {

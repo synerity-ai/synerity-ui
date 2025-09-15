@@ -23,13 +23,13 @@
               <span>{{ showBasicColorCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div class="bg-white rounded-lg border border-gray-200">
             <div class="p-6">
               <div class="max-w-md">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Choose a Color</label>
                 <sui-color-picker 
-                  [value]="basicColor"
-                  (onChange)="basicColor = $event">
+                  [(ngModel)]="basicColor"
+                  (onChange)="onColorChange($event, 'basicColor')">
                 </sui-color-picker>
                 <div class="mt-3 p-3 bg-gray-50 rounded-md">
                   <div class="flex items-center gap-3">
@@ -53,6 +53,129 @@
           </div>
         </div>
 
+        <!-- Compact Color Picker -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Compact Color Picker</h3>
+            <button 
+              (click)="toggleCode('compactColor')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCompactColorCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200">
+            <div class="p-6">
+              <div class="space-y-6">
+                <!-- Size Variants -->
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-4">Size Variants</h4>
+                  <div class="flex items-center gap-6">
+                    <div class="text-center">
+                      <sui-color-picker 
+                        [(ngModel)]="compactColor"
+                        size="small"
+                        (onChange)="onColorChange($event, 'compactColor')">
+                      </sui-color-picker>
+                      <p class="text-xs text-gray-600 mt-2">Small (32px)</p>
+                    </div>
+                    <div class="text-center">
+                      <sui-color-picker 
+                        [(ngModel)]="compactColor"
+                        size="medium"
+                        (onChange)="onColorChange($event, 'compactColor')">
+                      </sui-color-picker>
+                      <p class="text-xs text-gray-600 mt-2">Medium (40px)</p>
+                    </div>
+                    <div class="text-center">
+                      <sui-color-picker 
+                        [(ngModel)]="compactColor"
+                        size="large"
+                        (onChange)="onColorChange($event, 'compactColor')">
+                      </sui-color-picker>
+                      <p class="text-xs text-gray-600 mt-2">Large (48px)</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Usage Examples -->
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-4">Usage Examples</h4>
+                  <div class="space-y-4">
+                    <!-- Toolbar Example -->
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                      <p class="text-sm font-medium text-gray-700 mb-3">In a Toolbar</p>
+                      <div class="flex items-center gap-2 p-2 bg-white rounded border">
+                        <button class="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600">Bold</button>
+                        <button class="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300">Italic</button>
+                        <sui-color-picker 
+                          [(ngModel)]="compactColor"
+                          size="small"
+                          (onChange)="onColorChange($event, 'compactColor')">
+                        </sui-color-picker>
+                        <button class="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300">Size</button>
+                      </div>
+                    </div>
+
+                    <!-- Form Example -->
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                      <p class="text-sm font-medium text-gray-700 mb-3">In a Form</p>
+                      <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                          <label class="text-sm text-gray-700 w-20">Theme:</label>
+                          <sui-color-picker 
+                            [(ngModel)]="compactColor"
+                            size="medium"
+                            (onChange)="onColorChange($event, 'compactColor')">
+                          </sui-color-picker>
+                          <span class="text-sm text-gray-600 font-mono">{{ compactColor }}</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <label class="text-sm text-gray-700 w-20">Accent:</label>
+                          <sui-color-picker 
+                            [(ngModel)]="compactColor"
+                            size="medium"
+                            (onChange)="onColorChange($event, 'compactColor')">
+                          </sui-color-picker>
+                          <span class="text-sm text-gray-600 font-mono">{{ compactColor }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Current Value -->
+                <div class="p-3 bg-blue-50 rounded-md">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded border border-gray-300" [style.background-color]="compactColor"></div>
+                    <div>
+                      <p class="text-sm font-medium text-blue-900">Selected Color</p>
+                      <p class="text-sm text-blue-800 font-mono">{{ compactColor }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="showCompactColorCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;!-- Size Variants --&gt;
+&lt;sui-color-picker 
+  [(ngModel)]="compactColor"
+  size="small"&gt;
+&lt;/sui-color-picker&gt;
+
+&lt;sui-color-picker 
+  [(ngModel)]="compactColor"
+  size="medium"&gt;
+&lt;/sui-color-picker&gt;
+
+&lt;sui-color-picker 
+  [(ngModel)]="compactColor"
+  size="large"&gt;
+&lt;/sui-color-picker&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
         <!-- Primary Color Picker -->
         <div>
           <div class="flex items-center justify-between mb-4">
@@ -64,13 +187,13 @@
               <span>{{ showPrimaryColorCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div class="bg-white rounded-lg border border-gray-200">
             <div class="p-6">
               <div class="max-w-md">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Primary Brand Color</label>
                 <sui-color-picker 
-                  [value]="primaryColor"
-                  (onChange)="primaryColor = $event"
+                  [(ngModel)]="primaryColor"
+                  (onChange)="onColorChange($event, 'primaryColor')"
                   format="hex">
                 </sui-color-picker>
                 <div class="mt-3 p-3 bg-gray-50 rounded-md">
@@ -107,13 +230,13 @@
               <span>{{ showSecondaryColorCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div class="bg-white rounded-lg border border-gray-200">
             <div class="p-6">
               <div class="max-w-md">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Secondary Brand Color</label>
                 <sui-color-picker 
-                  [value]="secondaryColor"
-                  (onChange)="secondaryColor = $event"
+                  [(ngModel)]="secondaryColor"
+                  (onChange)="onColorChange($event, 'secondaryColor')"
                   format="rgb">
                 </sui-color-picker>
                 <div class="mt-3 p-3 bg-gray-50 rounded-md">
@@ -150,13 +273,13 @@
               <span>{{ showDisabledColorCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div class="bg-white rounded-lg border border-gray-200">
             <div class="p-6">
               <div class="max-w-md">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Disabled Color</label>
                 <sui-color-picker 
-                  [value]="disabledColor"
-                  (onChange)="disabledColor = $event"
+                  [(ngModel)]="disabledColor"
+                  (onChange)="onColorChange($event, 'disabledColor')"
                   [disabled]="true">
                 </sui-color-picker>
                 <div class="mt-3 p-3 bg-gray-50 rounded-md">
@@ -193,13 +316,13 @@
               <span>{{ showInlineColorCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div class="bg-white rounded-lg border border-gray-200">
             <div class="p-6">
               <div class="max-w-md">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Inline Color Picker</label>
                 <sui-color-picker 
-                  [value]="customColor"
-                  (onChange)="customColor = $event"
+                  [(ngModel)]="customColor"
+                  (onChange)="onColorChange($event, 'customColor')"
                   [inline]="true"
                   format="hsl">
                 </sui-color-picker>
@@ -238,7 +361,7 @@
               <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div class="bg-white rounded-lg border border-gray-200">
             <div class="p-6">
               <div class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -286,8 +409,8 @@
                 <div class="max-w-md">
                   <label class="block text-sm font-medium text-gray-700 mb-2">Interactive Color Picker</label>
                   <sui-color-picker 
-                    [value]="interactiveColor"
-                    (onChange)="interactiveColor = $event"
+                    [(ngModel)]="interactiveColor"
+                    (onChange)="onColorChange($event, 'interactiveColor')"
                     [format]="interactiveFormat"
                     [inline]="interactiveInline"
                     [disabled]="interactiveDisabled">
@@ -299,7 +422,7 @@
                         <div class="w-12 h-12 rounded-lg border border-gray-300" [style.background-color]="interactiveColor"></div>
                         <div>
                           <p class="text-sm font-medium text-gray-900">{{ getColorInfo(interactiveColor).name }}</p>
-                          <p class="text-sm text-gray-600">{{ getColorInfo(interactiveColor).hex }}</p>
+                          <p class="text-sm text-gray-600">{{ getColorInFormat(interactiveColor, interactiveFormat) }}</p>
                         </div>
                       </div>
                       <div class="grid grid-cols-3 gap-2 text-xs">
@@ -315,6 +438,10 @@
                           <p class="font-medium text-gray-700">HSL</p>
                           <p class="text-gray-600">{{ getColorInfo(interactiveColor).hsl }}</p>
                         </div>
+                      </div>
+                      <div class="mt-2 p-2 bg-blue-50 rounded-md">
+                        <p class="text-xs font-medium text-blue-900">Selected Format ({{ getFormatLabel(interactiveFormat) }}):</p>
+                        <p class="text-sm text-blue-800 font-mono">{{ getColorInFormat(interactiveColor, interactiveFormat) }}</p>
                       </div>
                     </div>
                     

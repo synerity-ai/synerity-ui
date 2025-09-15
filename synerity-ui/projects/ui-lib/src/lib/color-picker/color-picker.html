@@ -1,8 +1,11 @@
-<div class="sui-color-picker" [class]="getColorPickerClass()" [style]="getColorPickerStyle()">
-  <div class="sui-color-picker-input" (click)="toggle()">
+<div class="sui-color-picker" [class]="getColorPickerClass()" [style]="getColorPickerStyle()" #colorPickerContainer>
+  <div class="sui-color-picker-trigger" (click)="toggle()" [title]="value">
     <div class="sui-color-picker-preview" [style]="getPreviewStyle()"></div>
-    <span class="sui-color-picker-value">{{ value }}</span>
-    <span class="sui-color-picker-icon">🎨</span>
+    <div class="sui-color-picker-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+      </svg>
+    </div>
   </div>
 
   <div *ngIf="isVisible() && !isInline()" #colorPicker class="sui-color-picker-panel">
@@ -10,6 +13,7 @@
       #colorInput
       type="color" 
       [value]="value" 
+      [disabled]="disabled"
       (change)="onColorChange($event)"
       class="sui-color-picker-input-native"
     />
@@ -29,6 +33,7 @@
       #colorInput
       type="color" 
       [value]="value" 
+      [disabled]="disabled"
       (change)="onColorChange($event)"
       class="sui-color-picker-input-native"
     />

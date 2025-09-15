@@ -54,7 +54,6 @@ export class Sidebar {
     {
       title: 'Form Components',
       items: [
-        { name: 'All Forms', route: '/components/forms', icon: '📋', comingSoon: false },
         { name: 'AutoComplete', route: '/components/autocomplete', icon: '🔍', comingSoon: false },
         { name: 'Checkbox', route: '/components/checkbox', icon: '☑️', comingSoon: false },
         { name: 'ColorPicker', route: '/components/colorpicker', icon: '🎨', comingSoon: false },
@@ -95,7 +94,6 @@ export class Sidebar {
     {
       title: 'Data Components',
       items: [
-        { name: 'All Data Components', route: '/components/data', icon: '📊', comingSoon: false },
         { name: 'DataView', route: '/components/dataview', icon: '📊', comingSoon: false },
         { name: 'OrderList', route: '/components/orderlist', icon: '📋', comingSoon: false },
         { name: 'OrgChart', route: '/components/orgchart', icon: '🏢', comingSoon: false },
@@ -111,7 +109,6 @@ export class Sidebar {
     {
       title: 'Panel Components',
       items: [
-        { name: 'All Panel Components', route: '/components/panels', icon: '🪟', comingSoon: false },
         { name: 'Accordion', route: '/components/accordion', icon: '📁', comingSoon: false },
         { name: 'Divider', route: '/components/divider', icon: '➖', comingSoon: false },
         { name: 'Fieldset', route: '/components/fieldset', icon: '📦', comingSoon: false },

@@ -1,0 +1,670 @@
+// Enterprise Date Picker Styles
+.sui-date-picker {
+  position: relative;
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+  
+  // Size Variants
+  &-small {
+    font-size: 12px;
+    
+    .sui-date-picker-trigger {
+      height: 32px;
+      padding: 0 8px;
+    }
+    
+    .sui-date-picker-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+    
+    .sui-date-picker-clear svg {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  
+  &-medium {
+    font-size: 14px;
+    
+    .sui-date-picker-trigger {
+      height: 40px;
+      padding: 0 12px;
+    }
+    
+    .sui-date-picker-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .sui-date-picker-clear svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  
+  &-large {
+    font-size: 16px;
+    
+    .sui-date-picker-trigger {
+      height: 48px;
+      padding: 0 16px;
+    }
+    
+    .sui-date-picker-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .sui-date-picker-clear svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+  
+  // Variant Styles
+  &-compact {
+    .sui-date-picker-trigger {
+      min-width: 100px;
+    }
+  }
+  
+  &-inline {
+    .sui-date-picker-trigger {
+      border: none;
+      background: transparent;
+      cursor: default;
+      
+      &:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+  }
+  
+  // Theme Variants
+  &-light {
+    --sui-bg-primary: #ffffff;
+    --sui-bg-secondary: #f9fafb;
+    --sui-bg-hover: #f3f4f6;
+    --sui-bg-selected: #3b82f6;
+    --sui-bg-today: #dbeafe;
+    --sui-text-primary: #374151;
+    --sui-text-secondary: #6b7280;
+    --sui-text-disabled: #9ca3af;
+    --sui-text-selected: #ffffff;
+    --sui-border-primary: #d1d5db;
+    --sui-border-focus: #3b82f6;
+    --sui-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  &-dark {
+    --sui-bg-primary: #1f2937;
+    --sui-bg-secondary: #374151;
+    --sui-bg-hover: #4b5563;
+    --sui-bg-selected: #3b82f6;
+    --sui-bg-today: #1e40af;
+    --sui-text-primary: #f9fafb;
+    --sui-text-secondary: #d1d5db;
+    --sui-text-disabled: #6b7280;
+    --sui-text-selected: #ffffff;
+    --sui-border-primary: #4b5563;
+    --sui-border-focus: #3b82f6;
+    --sui-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Trigger Element
+.sui-date-picker-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 140px;
+  border: 2px solid var(--sui-border-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--sui-bg-primary);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 8px;
+  
+  &:hover {
+    border-color: var(--sui-border-focus);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:focus-within {
+    outline: none;
+    border-color: var(--sui-border-focus);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+}
+
+// Input Field
+.sui-date-picker-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--sui-text-primary);
+  font-size: inherit;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  
+  &::placeholder {
+    color: var(--sui-text-disabled);
+    font-style: italic;
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// Icon
+.sui-date-picker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sui-text-secondary);
+  flex-shrink: 0;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Clear Button
+.sui-date-picker-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--sui-text-secondary);
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  
+  &:hover {
+    color: var(--sui-text-primary);
+    background-color: var(--sui-bg-hover);
+  }
+  
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+// Calendar Panel
+.sui-date-picker-calendar {
+  position: fixed;
+  z-index: 999999;
+  width: 320px;
+  background: var(--sui-bg-primary);
+  border: 1px solid var(--sui-border-primary);
+  border-radius: 12px;
+  box-shadow: var(--sui-shadow);
+  overflow: hidden;
+  
+  // Ensure calendar is always visible
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: var(--sui-bg-primary);
+    border-radius: 12px;
+    z-index: -1;
+  }
+}
+
+// Calendar Header
+.sui-date-picker-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--sui-border-primary);
+  background: var(--sui-bg-secondary);
+}
+
+.sui-date-picker-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sui-date-picker-nav-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--sui-text-secondary);
+  transition: all 0.15s ease;
+  
+  &:hover {
+    background-color: var(--sui-bg-hover);
+    color: var(--sui-text-primary);
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.sui-date-picker-month-year {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--sui-text-primary);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  
+  &:hover {
+    background-color: var(--sui-bg-hover);
+  }
+  
+  &:first-child {
+    text-align: left;
+  }
+  
+  &:last-child {
+    text-align: right;
+  }
+}
+
+// Calendar Content
+.sui-date-picker-content {
+  padding: 16px;
+}
+
+// Week Days Header
+.sui-date-picker-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.sui-date-picker-weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sui-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// Calendar Days
+.sui-date-picker-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.sui-date-picker-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--sui-text-primary);
+  transition: all 0.15s ease;
+  position: relative;
+  
+  &:hover:not(:disabled) {
+    background-color: var(--sui-bg-hover);
+    transform: scale(1.05);
+  }
+  
+  &-other-month {
+    color: var(--sui-text-disabled);
+  }
+  
+  &-today {
+    background-color: var(--sui-bg-today);
+    color: var(--sui-border-focus);
+    font-weight: 600;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      background: var(--sui-border-focus);
+      border-radius: 50%;
+    }
+  }
+  
+  &-selected {
+    background-color: var(--sui-bg-selected);
+    color: var(--sui-text-selected);
+    font-weight: 600;
+    
+    &:hover {
+      background-color: var(--sui-bg-selected);
+      transform: scale(1.05);
+    }
+  }
+  
+  &-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    
+    &:hover {
+      background: none;
+      transform: none;
+    }
+  }
+  
+  &-weekend {
+    color: var(--sui-text-secondary);
+  }
+}
+
+// Month/Year Selection Views
+.sui-date-picker-months,
+.sui-date-picker-years {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.sui-date-picker-month-grid,
+.sui-date-picker-year-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.sui-date-picker-month,
+.sui-date-picker-year {
+  padding: 12px 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--sui-text-primary);
+  font-size: 14px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  text-align: center;
+  
+  &:hover {
+    background-color: var(--sui-bg-hover);
+  }
+  
+  &-selected {
+    background-color: var(--sui-bg-selected);
+    color: var(--sui-text-selected);
+    font-weight: 600;
+  }
+}
+
+// Calendar Footer
+.sui-date-picker-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid var(--sui-border-primary);
+  background: var(--sui-bg-secondary);
+}
+
+.sui-date-picker-today,
+.sui-date-picker-clear-footer {
+  flex: 1;
+  padding: 8px 16px;
+  border: 1px solid var(--sui-border-primary);
+  border-radius: 6px;
+  background: var(--sui-bg-primary);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--sui-text-primary);
+  transition: all 0.15s ease;
+  
+  &:hover {
+    background-color: var(--sui-bg-hover);
+    border-color: var(--sui-border-focus);
+  }
+}
+
+.sui-date-picker-today {
+  color: var(--sui-border-focus);
+  border-color: var(--sui-border-focus);
+  
+  &:hover {
+    background-color: var(--sui-bg-today);
+  }
+}
+
+// Time Picker
+.sui-date-picker-time {
+  padding: 16px;
+  border-top: 1px solid var(--sui-border-primary);
+  background: var(--sui-bg-secondary);
+}
+
+.sui-date-picker-time-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sui-date-picker-time-input {
+  flex: 1;
+  
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--sui-text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.sui-date-picker-time-field {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--sui-border-primary);
+  border-radius: 4px;
+  background: var(--sui-bg-primary);
+  color: var(--sui-text-primary);
+  font-size: 14px;
+  text-align: center;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--sui-border-focus);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+  }
+}
+
+.sui-date-picker-time-separator {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--sui-text-secondary);
+  margin-top: 20px;
+}
+
+// State Classes
+.sui-date-picker-disabled {
+  .sui-date-picker-trigger {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--sui-bg-secondary);
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--sui-border-primary);
+    }
+  }
+  
+  .sui-date-picker-icon {
+    opacity: 0.3;
+  }
+  
+  .sui-date-picker-clear {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.sui-date-picker-readonly {
+  .sui-date-picker-trigger {
+    cursor: default;
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+  
+  .sui-date-picker-clear {
+    display: none;
+  }
+}
+
+.sui-date-picker-open {
+  .sui-date-picker-trigger {
+    border-color: var(--sui-border-focus);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+}
+
+.sui-date-picker-focused {
+  .sui-date-picker-trigger {
+    border-color: var(--sui-border-focus);
+  }
+}
+
+.sui-date-picker-required {
+  .sui-date-picker-trigger {
+    border-color: #ef4444;
+  }
+  
+  &:not(.sui-date-picker-focused) .sui-date-picker-trigger {
+    border-color: #ef4444;
+  }
+}
+
+// Responsive Design
+@media (max-width: 480px) {
+  .sui-date-picker-calendar {
+    width: 280px;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+  
+  .sui-date-picker-month-grid,
+  .sui-date-picker-year-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// High Contrast Mode Support
+@media (prefers-contrast: high) {
+  .sui-date-picker {
+    --sui-border-primary: #000000;
+    --sui-text-primary: #000000;
+    --sui-text-secondary: #000000;
+  }
+  
+  .sui-date-picker-dark {
+    --sui-border-primary: #ffffff;
+    --sui-text-primary: #ffffff;
+    --sui-text-secondary: #ffffff;
+  }
+}
+
+// Reduced Motion Support
+@media (prefers-reduced-motion: reduce) {
+  .sui-date-picker-trigger,
+  .sui-date-picker-day,
+  .sui-date-picker-nav-button,
+  .sui-date-picker-month,
+  .sui-date-picker-year {
+    transition: none;
+  }
+  
+  .sui-date-picker-day:hover {
+    transform: none;
+  }
+}
+
+// Print Styles
+@media print {
+  .sui-date-picker-calendar {
+    display: none !important;
+  }
+}
+
+// Focus Visible Support
+.sui-date-picker-trigger:focus-visible,
+.sui-date-picker-day:focus-visible,
+.sui-date-picker-nav-button:focus-visible {
+  outline: 2px solid var(--sui-border-focus);
+  outline-offset: 2px;
+}
+
+// Ensure calendar is always on top
+.sui-date-picker-calendar {
+  position: fixed !important;
+  z-index: 999999 !important;
+}
+
+// Override any parent container constraints
+:host {
+  overflow: visible !important;
+  position: relative;
+  z-index: 1;
+}
+
+:host-context(.overflow-hidden) {
+  overflow: visible !important;
+}
+
+:host-context(.overflow-auto) {
+  overflow: visible !important;
+}

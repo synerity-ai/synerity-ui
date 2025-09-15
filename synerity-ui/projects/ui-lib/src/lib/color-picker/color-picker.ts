@@ -22,6 +22,7 @@ export class ColorPicker implements ControlValueAccessor, OnDestroy {
   @Input() format: 'hex' | 'rgb' | 'hsl' = 'hex';
   @Input() inline = false;
   @Input() disabled = false;
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() style: any = {};
   @Input() styleClass = '';
   @Output() onChange = new EventEmitter<string>();
@@ -29,6 +30,7 @@ export class ColorPicker implements ControlValueAccessor, OnDestroy {
 
   @ViewChild('colorInput') colorInput!: ElementRef;
   @ViewChild('colorPicker') colorPicker!: ElementRef;
+  @ViewChild('colorPickerContainer') colorPickerContainer!: ElementRef;
 
   visible = false;
   private documentClickListener!: Subscription;
@@ -41,14 +43,11 @@ export class ColorPicker implements ControlValueAccessor, OnDestroy {
     this.unbindDocumentClickListener();
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: Event): void {
-    if (!this.disabled) {
-      this.toggle();
-    }
-  }
 
   toggle(): void {
+    if (this.disabled) {
+      return; // Don't open panel if disabled
+    }
     this.visible = !this.visible;
     if (this.visible) {
       this.bindDocumentClickListener();
@@ -58,6 +57,9 @@ export class ColorPicker implements ControlValueAccessor, OnDestroy {
   }
 
   onColorChange(event: Event): void {
+    if (this.disabled) {
+      return; // Don't change color if disabled
+    }
     const target = event.target as HTMLInputElement;
     this.value = target.value;
     this.onValueChange(this.value);
@@ -67,6 +69,9 @@ export class ColorPicker implements ControlValueAccessor, OnDestroy {
   }
 
   onColorSelect(color: string): void {
+    if (this.disabled) {
+      return; // Don't change color if disabled
+    }
     this.value = color;
     this.onValueChange(this.value);
     this.onTouched();
@@ -78,7 +83,7 @@ export class ColorPicker implements ControlValueAccessor, OnDestroy {
 
   private bindDocumentClickListener(): void {
     this.documentClickListener = fromEvent(document, 'click').subscribe((event: any) => {
-      if (this.colorPicker && !this.colorPicker.nativeElement.contains(event.target)) {
+      if (this.colorPickerContainer && !this.colorPickerContainer.nativeElement.contains(event.target)) {
         this.visible = false;
         this.unbindDocumentClickListener();
       }
@@ -92,7 +97,7 @@ export class ColorPicker implements ControlValueAccessor, OnDestroy {
   }
 
   getColorPickerClass(): string {
-    return `sui-color-picker ${this.inline ? 'sui-color-picker-inline' : ''} ${this.disabled ? 'sui-color-picker-disabled' : ''} ${this.styleClass}`.trim();
+    return `sui-color-picker ${this.inline ? 'sui-color-picker-inline' : ''} ${this.disabled ? 'sui-color-picker-disabled' : ''} sui-color-picker-${this.size} ${this.styleClass}`.trim();
   }
 
   getColorPickerStyle(): any {

@@ -53,6 +53,11 @@
               {
                 "glob": "**/*",
                 "input": "projects/demo-app/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/demo-app/src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
@@ -111,6 +116,11 @@
               {
                 "glob": "**/*",
                 "input": "projects/demo-app/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/demo-app/src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
