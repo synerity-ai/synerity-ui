@@ -1,10 +1,53 @@
-/* Button spacing overrides */
-sui-button {
-  display: inline-block;
-  margin-bottom: 0.5rem; /* 8px spacing for vertical layouts */
+// Button component styles
+// This file is intentionally minimal as we use Tailwind CSS for styling
+
+// Custom animations for button interactions
+@keyframes button-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-/* Ensure proper spacing in flex layouts */
-.flex-wrap gap-6 sui-button {
-  margin-bottom: 0;
+// Loading spinner animation
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Button loading state
+.button-loading {
+  position: relative;
+  color: transparent !important;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+// Focus ring enhancement
+.button-focus-ring {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+  }
 }

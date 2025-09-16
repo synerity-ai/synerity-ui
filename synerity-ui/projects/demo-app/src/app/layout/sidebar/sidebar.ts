@@ -48,6 +48,7 @@ export class Sidebar {
       items: [
         { name: 'Button', route: '/components/button', icon: '🔘', comingSoon: false },
         { name: 'InputText', route: '/components/inputtext', icon: '📝', comingSoon: false },
+        { name: 'InputTextarea', route: '/components/inputtextarea', icon: '📄', comingSoon: false },
         { name: 'Card', route: '/components/card', icon: '🃏', comingSoon: false }
       ]
     },

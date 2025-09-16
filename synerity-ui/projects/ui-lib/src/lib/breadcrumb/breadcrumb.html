@@ -1,47 +1,71 @@
-<nav class="sui-breadcrumb" [class]="getBreadcrumbClass()" [style]="getBreadcrumbStyle()">
-  <ol class="sui-breadcrumb-list">
-    <li class="sui-breadcrumb-item sui-breadcrumb-home">
+<nav 
+  class="flex items-center space-x-1 text-sm"
+  [class]="getBreadcrumbClass()" 
+  [style]="getBreadcrumbStyle()"
+  aria-label="Breadcrumb"
+>
+  <ol class="flex items-center space-x-1">
+    <li class="flex items-center">
       <a 
         *ngIf="home.url" 
         [href]="home.url" 
-        class="sui-breadcrumb-link"
+        class="flex items-center text-gray-500 hover:text-gray-700 transition-colors"
         (click)="onHomeClick()"
+        [attr.aria-label]="'Go to ' + home.label"
       >
-        <span *ngIf="home.icon" class="sui-breadcrumb-icon">{{ home.icon }}</span>
-        <span class="sui-breadcrumb-label">{{ home.label }}</span>
+        <span *ngIf="home.icon" class="mr-1 text-sm">{{ home.icon }}</span>
+        <span>{{ home.label }}</span>
       </a>
       <span 
         *ngIf="!home.url" 
-        class="sui-breadcrumb-link sui-breadcrumb-link-clickable"
+        class="flex items-center text-gray-500 hover:text-gray-700 cursor-pointer transition-colors"
         (click)="onHomeClick()"
+        [attr.aria-label]="'Go to ' + home.label"
+        role="button"
+        tabindex="0"
       >
-        <span *ngIf="home.icon" class="sui-breadcrumb-icon">{{ home.icon }}</span>
-        <span class="sui-breadcrumb-label">{{ home.label }}</span>
+        <span *ngIf="home.icon" class="mr-1 text-sm">{{ home.icon }}</span>
+        <span>{{ home.label }}</span>
       </span>
     </li>
     
-    <li *ngFor="let item of model; let i = index" class="sui-breadcrumb-item">
-      <span class="sui-breadcrumb-separator">/</span>
+    <li *ngFor="let item of model; let i = index" class="flex items-center">
+      <svg class="w-4 h-4 text-gray-400 mx-1" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+      </svg>
       <a 
         *ngIf="item.url && !isLastItem(i)" 
         [href]="item.url" 
-        class="sui-breadcrumb-link"
-        [class.sui-breadcrumb-link-disabled]="item.disabled"
+        class="flex items-center text-gray-500 hover:text-gray-700 transition-colors"
+        [class.opacity-50]="item.disabled"
+        [class.cursor-not-allowed]="item.disabled"
+        [class.pointer-events-none]="item.disabled"
         (click)="onItemClickHandler(item, i)"
+        [attr.aria-label]="'Go to ' + item.label"
       >
-        <span *ngIf="item.icon" class="sui-breadcrumb-icon">{{ item.icon }}</span>
-        <span class="sui-breadcrumb-label">{{ item.label }}</span>
+        <span *ngIf="item.icon" class="mr-1 text-sm">{{ item.icon }}</span>
+        <span>{{ item.label }}</span>
       </a>
       <span 
         *ngIf="!item.url || isLastItem(i)" 
-        class="sui-breadcrumb-link"
-        [class.sui-breadcrumb-link-current]="isLastItem(i)"
-        [class.sui-breadcrumb-link-disabled]="item.disabled"
-        [class.sui-breadcrumb-link-clickable]="!isLastItem(i) && !item.disabled"
+        class="flex items-center"
+        [class.text-gray-900]="isLastItem(i)"
+        [class.font-medium]="isLastItem(i)"
+        [class.text-gray-500]="!isLastItem(i)"
+        [class.hover:text-gray-700]="!isLastItem(i)"
+        [class.cursor-pointer]="!isLastItem(i) && !item.disabled"
+        [class.opacity-50]="item.disabled"
+        [class.cursor-not-allowed]="item.disabled"
+        [class.pointer-events-none]="item.disabled"
+        [class.transition-colors]="!isLastItem(i)"
         (click)="!isLastItem(i) && !item.disabled && onItemClickHandler(item, i)"
+        [attr.aria-label]="isLastItem(i) ? 'Current page: ' + item.label : 'Go to ' + item.label"
+        [attr.aria-current]="isLastItem(i) ? 'page' : null"
+        [attr.role]="!isLastItem(i) && !item.disabled ? 'button' : null"
+        [attr.tabindex]="!isLastItem(i) && !item.disabled ? '0' : null"
       >
-        <span *ngIf="item.icon" class="sui-breadcrumb-icon">{{ item.icon }}</span>
-        <span class="sui-breadcrumb-label">{{ item.label }}</span>
+        <span *ngIf="item.icon" class="mr-1 text-sm">{{ item.icon }}</span>
+        <span>{{ item.label }}</span>
       </span>
     </li>
   </ol>

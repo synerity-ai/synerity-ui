@@ -1,30 +1,33 @@
 <div 
   #toastContainer
-  class="sui-toast" 
+  class="fixed z-50 space-y-2 pointer-events-none"
   [class]="getToastClass()"
   [style]="getToastStyle()"
 >
   <div 
-    *ngFor="let message of messages" 
-    class="sui-toast-message" 
+    *ngFor="let message of messages; trackBy: trackByMessageId" 
+    class="flex items-start p-4 rounded-lg shadow-lg border pointer-events-auto transform transition-all duration-300 ease-in-out"
     [class]="getMessageClass(message)"
+    role="alert"
+    [attr.aria-live]="message.severity === 'error' ? 'assertive' : 'polite'"
   >
-    <div class="sui-toast-message-content">
-      <div class="sui-toast-message-icon">
+    <div class="flex items-start w-full">
+      <div class="flex-shrink-0 mr-3 text-lg">
         <span *ngIf="message.severity === 'success'">✓</span>
         <span *ngIf="message.severity === 'info'">ℹ</span>
         <span *ngIf="message.severity === 'warn'">⚠</span>
         <span *ngIf="message.severity === 'error'">✗</span>
       </div>
-      <div class="sui-toast-message-text">
-        <div class="sui-toast-message-summary">{{ message.summary }}</div>
-        <div *ngIf="message.detail" class="sui-toast-message-detail">{{ message.detail }}</div>
+      <div class="flex-1 min-w-0">
+        <div class="text-sm font-medium">{{ message.summary }}</div>
+        <div *ngIf="message.detail" class="text-sm opacity-90 mt-1">{{ message.detail }}</div>
       </div>
       <button 
         *ngIf="message.closable" 
         type="button" 
-        class="sui-toast-message-close"
+        class="flex-shrink-0 ml-3 text-lg font-bold hover:opacity-70 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded"
         (click)="remove(message.id)"
+        [attr.aria-label]="'Close notification'"
       >
         ×
       </button>

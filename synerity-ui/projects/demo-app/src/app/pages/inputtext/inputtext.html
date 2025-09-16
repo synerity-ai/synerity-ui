@@ -2,156 +2,72 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">InputText</h1>
-    <p class="text-lg text-gray-600">Text input component with validation, sizing, and various input types for user data entry.</p>
+    <p class="text-lg text-gray-600">Text input components with validation states, sizes, and interactive features.</p>
   </div>
 
   <!-- Tabs -->
-  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
     
     <!-- Demo Tab -->
     <div *ngIf="activeTab === 'demo'">
       <div class="space-y-8">
         
-        <!-- Basic Usage -->
+        <!-- Basic Input -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Basic Usage</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Basic Input</h3>
             <button 
-              (click)="toggleCode('basicUsage')"
+              (click)="toggleCode('basicInput')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showBasicUsageCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showBasicInputCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
-              <div class="space-y-4">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Basic Input</label>
-                  <sui-input-text 
-                    [(ngModel)]="basicValue"
-                    placeholder="Enter text here"
-                    (input)="onInputChange($event)" />
-                  <p class="text-sm text-gray-500 mt-1">Value: {{ basicValue || 'Empty' }}</p>
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
-                  <sui-input-text 
-                    [(ngModel)]="placeholderValue"
-                    placeholder="Type something..." />
-                  <p class="text-sm text-gray-500 mt-1">Value: {{ placeholderValue || 'Empty' }}</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Code Block -->
-            <div *ngIf="showBasicUsageCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="space-y-4"&gt;
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Basic Input&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="basicValue"
-      placeholder="Enter text here"
-      (input)="onInputChange($event)" /&gt;
-    &lt;p class="text-sm text-gray-500 mt-1"&gt;Value: {{ basicValue || 'Empty' }}&lt;/p&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;With Placeholder&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="placeholderValue"
-      placeholder="Type something..." /&gt;
-    &lt;p class="text-sm text-gray-500 mt-1"&gt;Value: {{ placeholderValue || 'Empty' }}&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Input Types -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Input Types</h3>
-            <button 
-              (click)="toggleCode('inputTypes')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showInputTypesCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                  <sui-input-text 
-                    [(ngModel)]="emailValue"
-                    type="email"
-                    placeholder="Enter email address" />
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Basic Text Input</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="basicInput"
+                    (input)="onInputChange($event.target.value)"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="Enter text here...">
                 </div>
-                
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                  <sui-input-text 
-                    [(ngModel)]="passwordValue"
-                    type="password"
-                    placeholder="Enter password" />
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Telephone</label>
-                  <sui-input-text 
-                    [(ngModel)]="telValue"
-                    type="tel"
-                    placeholder="Enter phone number" />
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">URL</label>
-                  <sui-input-text 
-                    [(ngModel)]="urlValue"
-                    type="url"
-                    placeholder="Enter website URL" />
+                  <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="placeholderInput"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="This is a placeholder text">
                 </div>
               </div>
             </div>
             
-            <!-- Code Block -->
-            <div *ngIf="showInputTypesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Email&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="emailValue"
-      type="email"
-      placeholder="Enter email address" /&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Password&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="passwordValue"
-      type="password"
-      placeholder="Enter password" /&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Telephone&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="telValue"
-      type="tel"
-      placeholder="Enter phone number" /&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;URL&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="urlValue"
-      type="url"
-      placeholder="Enter website URL" /&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+            <!-- Code Example -->
+            <div *ngIf="showBasicInputCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Basic Text Input --&gt;
+&lt;input 
+  type="text" 
+  [(ngModel)]="inputValue"
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+  placeholder="Enter text here..."&gt;
+
+&lt;!-- With Placeholder --&gt;
+&lt;input 
+  type="text" 
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+  placeholder="This is a placeholder text"&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -167,308 +83,63 @@
               <span>{{ showInputStatesCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled</label>
-                  <sui-input-text 
-                    [(ngModel)]="disabledValue"
-                    [disabled]="true" />
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Read Only</label>
-                  <sui-input-text 
-                    [(ngModel)]="readonlyValue"
-                    [readonly]="true" />
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Required</label>
-                  <sui-input-text 
-                    [(ngModel)]="requiredValue"
-                    [required]="true"
-                    placeholder="This field is required" />
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Clearable</label>
-                  <sui-input-text 
-                    [(ngModel)]="clearableValue"
-                    [clearable]="true"
-                    (clear)="onClear()" />
-                </div>
-              </div>
-            </div>
-            
-            <!-- Code Block -->
-            <div *ngIf="showInputStatesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Disabled&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="disabledValue"
-      [disabled]="true" /&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Read Only&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="readonlyValue"
-      [readonly]="true" /&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Required&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="requiredValue"
-      [required]="true"
-      placeholder="This field is required" /&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Clearable&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="clearableValue"
-      [clearable]="true"
-      (clear)="onClear()" /&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Input Sizes -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Input Sizes</h3>
-            <button 
-              (click)="toggleCode('inputSizes')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showInputSizesCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
-              <div class="space-y-4">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Small</label>
-                  <sui-input-text 
-                    [(ngModel)]="smallValue"
-                    size="sm"
-                    placeholder="Small input" />
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Medium (Default)</label>
-                  <sui-input-text 
-                    [(ngModel)]="mediumValue"
-                    size="md"
-                    placeholder="Medium input" />
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Large</label>
-                  <sui-input-text 
-                    [(ngModel)]="largeValue"
-                    size="lg"
-                    placeholder="Large input" />
-                </div>
-              </div>
-            </div>
-            
-            <!-- Code Block -->
-            <div *ngIf="showInputSizesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="space-y-4"&gt;
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Small&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="smallValue"
-      size="sm"
-      placeholder="Small input" /&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Medium (Default)&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="mediumValue"
-      size="md"
-      placeholder="Medium input" /&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Large&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="largeValue"
-      size="lg"
-      placeholder="Large input" /&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Input Variants -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Input Variants</h3>
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Default</label>
-                <sui-input-text 
-                  [(ngModel)]="defaultValue"
-                  variant="default"
-                  placeholder="Default variant" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Filled</label>
-                <sui-input-text 
-                  [(ngModel)]="filledValue"
-                  variant="filled"
-                  placeholder="Filled variant" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Outlined</label>
-                <sui-input-text 
-                  [(ngModel)]="outlinedValue"
-                  variant="outlined"
-                  placeholder="Outlined variant" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Validation States -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Validation States</h3>
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Valid State</label>
-                <sui-input-text 
-                  [(ngModel)]="validValue"
-                  validationState="valid"
-                  placeholder="Valid input" />
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Invalid State</label>
-                <sui-input-text 
-                  [(ngModel)]="invalidValue"
-                  validationState="invalid"
-                  errorMessage="This field has an error"
-                  placeholder="Invalid input" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Input with Constraints -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Input Constraints</h3>
-            <button 
-              (click)="toggleCode('inputConstraints')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showInputConstraintsCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Max Length (10)</label>
-                  <sui-input-text 
-                    [(ngModel)]="maxLengthValue"
-                    [maxlength]="10"
-                    placeholder="Max 10 characters" />
-                  <p class="text-sm text-gray-500 mt-1">{{ maxLengthValue.length }}/10 characters</p>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
+                  <input 
+                    type="text" 
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="Normal input field">
                 </div>
-                
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Pattern (Numbers only)</label>
-                  <sui-input-text 
-                    [(ngModel)]="patternValue"
-                    pattern="[0-9]*"
-                    placeholder="Numbers only" />
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="disabledInput"
+                    disabled
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-500 cursor-not-allowed">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Read-only State</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="readonlyInput"
+                    readonly
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-700">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Required Field</label>
+                  <input 
+                    type="text" 
+                    required
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="This field is required">
                 </div>
               </div>
             </div>
             
-            <!-- Code Block -->
-            <div *ngIf="showInputConstraintsCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Max Length (10)&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="maxLengthValue"
-      [maxlength]="10"
-      placeholder="Max 10 characters" /&gt;
-    &lt;p class="text-sm text-gray-500 mt-1"&gt;{{ maxLengthValue.length }}/10 characters&lt;/p&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Pattern (Numbers only)&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="patternValue"
-      pattern="[0-9]*"
-      placeholder="Numbers only" /&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-            </div>
-          </div>
-        </div>
+            <!-- Code Example -->
+            <div *ngIf="showInputStatesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Normal State --&gt;
+&lt;input 
+  type="text" 
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+  placeholder="Normal input field"&gt;
 
-        <!-- Interactive Demo -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
-            <button 
-              (click)="toggleCode('interactiveDemo')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
-              <div class="space-y-4">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Try it out</label>
-                  <sui-input-text 
-                    [(ngModel)]="interactiveValue"
-                    placeholder="Type something to see it in action..."
-                    [clearable]="true"
-                    (input)="onInputChange($event)"
-                    (focus)="onInputFocus($event)"
-                    (blur)="onInputBlur($event)" />
-                  <p class="text-sm text-gray-500 mt-1">Current value: "{{ interactiveValue || 'Empty' }}"</p>
-                  <p class="text-sm text-gray-500">Character count: {{ interactiveValue.length }}</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Code Block -->
-            <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="space-y-4"&gt;
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Try it out&lt;/label&gt;
-    &lt;sui-input-text 
-      [(ngModel)]="interactiveValue"
-      placeholder="Type something to see it in action..."
-      [clearable]="true"
-      (input)="onInputChange($event)"
-      (focus)="onInputFocus($event)"
-      (blur)="onInputBlur($event)" /&gt;
-    &lt;p class="text-sm text-gray-500 mt-1"&gt;Current value: "{{ interactiveValue || 'Empty' }}"&lt;/p&gt;
-    &lt;p class="text-sm text-gray-500"&gt;Character count: {{ interactiveValue.length }}&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;!-- Disabled State --&gt;
+&lt;input 
+  type="text" 
+  disabled
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-500 cursor-not-allowed"&gt;
+
+&lt;!-- Read-only State --&gt;
+&lt;input 
+  type="text" 
+  readonly
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-700"&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -478,166 +149,128 @@
 
     <!-- How to Use Tab -->
     <div *ngIf="activeTab === 'usage'">
-      <div class="space-y-8">
+      <div class="space-y-6">
         
         <!-- Installation -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
-          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-            <div>npm install @synerity/ui</div>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The InputText component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
           </div>
         </div>
 
         <!-- Basic Usage -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <pre class="text-sm"><code>&lt;sui-input-text placeholder="Enter text here"&gt;&lt;/sui-input-text&gt;</code></pre>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the InputText component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} InputText {{ '}' }} from '@synerity/ui';
+
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;input 
+      type="text" 
+      [(ngModel)]="inputValue"
+      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+      placeholder="Enter text here..."&gt;
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}
+  inputValue = '';
+{{ '}' }}</code></pre>
+            </div>
           </div>
         </div>
 
-        <!-- Import -->
+        <!-- Styling -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <pre class="text-sm"><code>import {{ '{' }} InputText {{ '}' }} from '@synerity/ui';</code></pre>
-          </div>
-        </div>
-
-        <!-- Examples -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
-          
-          <div class="space-y-6">
-            <!-- Basic Input -->
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Basic Input</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-input-text placeholder="Enter text here"&gt;&lt;/sui-input-text&gt;</code></pre>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">InputText uses Tailwind CSS classes for styling. Here are the key classes:</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">w-full</span>
+                <span class="text-gray-600">Full width</span>
               </div>
-            </div>
-
-            <!-- Input with ngModel -->
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Input with ngModel</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-input-text [(ngModel)]="value" placeholder="Enter text"&gt;&lt;/sui-input-text&gt;</code></pre>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">px-3 py-2</span>
+                <span class="text-gray-600">Horizontal and vertical padding</span>
               </div>
-            </div>
-
-            <!-- Disabled Input -->
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Disabled Input</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-input-text [disabled]="true" placeholder="Disabled input"&gt;&lt;/sui-input-text&gt;</code></pre>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">border border-gray-300</span>
+                <span class="text-gray-600">Border styling</span>
               </div>
-            </div>
-
-            <!-- Required Input -->
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Required Input</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-input-text [required]="true" placeholder="Required field"&gt;&lt;/sui-input-text&gt;</code></pre>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">rounded-md</span>
+                <span class="text-gray-600">Border radius</span>
               </div>
-            </div>
-
-            <!-- Input with Events -->
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Input with Events</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-input-text 
-  [(ngModel)]="value"
-  (input)="onInput($event)"
-  (focus)="onFocus($event)"
-  (blur)="onBlur($event)"&gt;
-&lt;/sui-input-text&gt;</code></pre>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">focus:ring-2 focus:ring-blue-500</span>
+                <span class="text-gray-600">Focus ring</span>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
     <!-- Documentation Tab -->
     <div *ngIf="activeTab === 'docs'">
-      <div class="space-y-8">
+      <div class="space-y-6">
         
-        <!-- Properties -->
+        <!-- Props -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Properties</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
           <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200">
-              <thead class="bg-gray-50">
-                <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                </tr>
-              </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Placeholder text for the input</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Disables the input</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">readonly</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Makes the input read-only</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">required</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Makes the input required</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Size of the input</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'default' | 'filled' | 'outlined'</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'default'</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Visual variant of the input</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">type</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'text' | 'email' | 'password' | 'tel' | 'url'</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'text'</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Input type</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">maxlength</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Maximum number of characters</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">pattern</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Regex pattern for validation</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">clearable</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Shows clear button when input has value</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">type</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'text'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">HTML input type attribute</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Placeholder text for the input</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the input is disabled</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">readonly</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the input is read-only</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">required</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the input is required</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
@@ -645,61 +278,67 @@
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
           <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200">
-              <thead class="bg-gray-50">
-                <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                </tr>
-              </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">input</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Event</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Fired when the input value changes</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">focus</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">FocusEvent</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Fired when the input receives focus</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">blur</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">FocusEvent</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Fired when the input loses focus</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">clear</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">void</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Fired when the clear button is clicked</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onInput</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;string&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the input value changes</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onFocus</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;FocusEvent&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the input receives focus</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onBlur</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;FocusEvent&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the input loses focus</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
-        <!-- Usage Example -->
+        <!-- Accessibility -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Usage Example</h3>
-          <div class="bg-gray-900 rounded-lg p-6 overflow-x-auto">
-            <pre class="text-green-400 text-sm"><code>&lt;sui-input-text
-  [(ngModel)]="value"
-  placeholder="Enter text here"
-  [required]="true"
-  [clearable]="true"
-  size="md"
-  variant="outlined"
-  (input)="onInputChange($event)"
-  (focus)="onFocus($event)"
-  (blur)="onBlur($event)"
-  (clear)="onClear()"&gt;
-&lt;/sui-input-text&gt;</code></pre>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation support with Tab key</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Focus indicators for keyboard users</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Proper labeling with associated labels</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>ARIA attributes for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Disabled and readonly states properly communicated</span>
+              </li>
+            </ul>
           </div>
         </div>
 
       </div>
     </div>
-
   </app-tabs>
 </div>

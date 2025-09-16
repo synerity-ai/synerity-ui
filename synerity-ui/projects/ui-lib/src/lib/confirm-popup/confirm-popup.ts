@@ -106,7 +106,21 @@ export class ConfirmPopup implements AfterViewInit, OnDestroy {
   }
 
   getPopupClass(): string {
-    return `sui-confirm-popup sui-confirm-popup-${this.position} ${this.styleClass}`.trim();
+    const baseClasses = 'absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-4 min-w-64';
+    return `${baseClasses} ${this.styleClass}`.trim();
+  }
+
+  getArrowClass(): string {
+    const baseClasses = 'absolute w-2 h-2 bg-white border border-gray-200 transform rotate-45';
+    
+    const positionClasses = {
+      'top': '-bottom-1 left-1/2 transform -translate-x-1/2 border-t-0 border-l-0',
+      'bottom': '-top-1 left-1/2 transform -translate-x-1/2 border-b-0 border-r-0',
+      'left': '-right-1 top-1/2 transform -translate-y-1/2 border-l-0 border-b-0',
+      'right': '-left-1 top-1/2 transform -translate-y-1/2 border-r-0 border-t-0'
+    };
+    
+    return `${baseClasses} ${positionClasses[this.position]}`;
   }
 
   getPopupStyle(): any {

@@ -1,0 +1,550 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">InputTextarea</h1>
+    <p class="text-lg text-gray-600">Multi-line text input components with auto-resize, validation states, and character limits.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Textarea -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Textarea</h3>
+            <button 
+              (click)="toggleCode('basicTextarea')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicTextareaCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Basic Textarea</label>
+                  <textarea 
+                    [(ngModel)]="basicTextarea"
+                    (input)="onTextareaChange(basicTextarea)"
+                    rows="4"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+                    placeholder="Enter your text here..."></textarea>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
+                  <textarea 
+                    [(ngModel)]="placeholderTextarea"
+                    rows="4"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+                    placeholder="This is a placeholder text for the textarea field. You can type multiple lines here."></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicTextareaCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Basic Textarea --&gt;
+&lt;textarea 
+  [(ngModel)]="textareaValue"
+  rows="4"
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+  placeholder="Enter your text here..."&gt;&lt;/textarea&gt;
+
+&lt;!-- With Placeholder --&gt;
+&lt;textarea 
+  rows="4"
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+  placeholder="This is a placeholder text for the textarea field."&gt;&lt;/textarea&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Textarea States -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Textarea States</h3>
+            <button 
+              (click)="toggleCode('textareaStates')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showTextareaStatesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
+                  <textarea 
+                    rows="3"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+                    placeholder="Normal textarea field"></textarea>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
+                  <textarea 
+                    [(ngModel)]="disabledTextarea"
+                    disabled
+                    rows="3"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-500 cursor-not-allowed resize-none"></textarea>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Read-only State</label>
+                  <textarea 
+                    [(ngModel)]="readonlyTextarea"
+                    readonly
+                    rows="3"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-700 resize-none"></textarea>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Required Field</label>
+                  <textarea 
+                    required
+                    rows="3"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+                    placeholder="This field is required"></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showTextareaStatesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Normal State --&gt;
+&lt;textarea 
+  rows="3"
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+  placeholder="Normal textarea field"&gt;&lt;/textarea&gt;
+
+&lt;!-- Disabled State --&gt;
+&lt;textarea 
+  disabled
+  rows="3"
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-500 cursor-not-allowed resize-none"&gt;&lt;/textarea&gt;
+
+&lt;!-- Read-only State --&gt;
+&lt;textarea 
+  readonly
+  rows="3"
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-700 resize-none"&gt;&lt;/textarea&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Auto-resize Textarea -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Auto-resize Textarea</h3>
+            <button 
+              (click)="toggleCode('autoResize')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showAutoResizeCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Auto-resize Textarea</label>
+                <textarea 
+                  [(ngModel)]="autoResizeValue"
+                  (input)="autoResizeTextarea($event)"
+                  rows="3"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none overflow-hidden"
+                  placeholder="Type here and watch the textarea grow automatically..."></textarea>
+                <p class="text-sm text-gray-500 mt-2">This textarea automatically adjusts its height based on content.</p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showAutoResizeCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Auto-resize Textarea --&gt;
+&lt;textarea 
+  [(ngModel)]="textareaValue"
+  (input)="autoResizeTextarea($event)"
+  rows="3"
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none overflow-hidden"
+  placeholder="Type here and watch the textarea grow automatically..."&gt;&lt;/textarea&gt;
+
+// Component method
+autoResizeTextarea(event: Event) {{ '{' }}
+  const textarea = event.target as HTMLTextAreaElement;
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+{{ '}' }}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+            <button 
+              (click)="toggleCode('interactiveDemo')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Rows</label>
+                  <select [(ngModel)]="interactiveRows" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="2">2 rows</option>
+                    <option value="3">3 rows</option>
+                    <option value="4">4 rows</option>
+                    <option value="5">5 rows</option>
+                    <option value="6">6 rows</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Max Length</label>
+                  <select [(ngModel)]="interactiveMaxLength" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="100">100 characters</option>
+                    <option value="250">250 characters</option>
+                    <option value="500">500 characters</option>
+                    <option value="1000">1000 characters</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="flex flex-wrap gap-4">
+                <label class="flex items-center">
+                  <input type="checkbox" [(ngModel)]="interactiveDisabled" class="form-checkbox h-4 w-4 text-blue-600">
+                  <span class="ml-2 text-sm text-gray-900">Disabled</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" [(ngModel)]="interactiveReadonly" class="form-checkbox h-4 w-4 text-blue-600">
+                  <span class="ml-2 text-sm text-gray-900">Read-only</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" [(ngModel)]="interactiveRequired" class="form-checkbox h-4 w-4 text-blue-600">
+                  <span class="ml-2 text-sm text-gray-900">Required</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" [(ngModel)]="interactiveAutoResize" class="form-checkbox h-4 w-4 text-blue-600">
+                  <span class="ml-2 text-sm text-gray-900">Auto-resize</span>
+                </label>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Interactive Textarea</label>
+                <textarea 
+                  [(ngModel)]="interactiveValue"
+                  [rows]="interactiveRows"
+                  [maxlength]="interactiveMaxLength"
+                  [disabled]="interactiveDisabled"
+                  [readonly]="interactiveReadonly"
+                  [required]="interactiveRequired"
+                  [class.resize-none]="interactiveAutoResize"
+                  [class.overflow-hidden]="interactiveAutoResize"
+                  (input)="interactiveAutoResize ? autoResizeTextarea($event) : onTextareaChange(interactiveValue)"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  [class.bg-gray-100]="interactiveDisabled"
+                  [class.text-gray-500]="interactiveDisabled"
+                  [class.cursor-not-allowed]="interactiveDisabled"
+                  [class.bg-gray-50]="interactiveReadonly"
+                  [class.text-gray-700]="interactiveReadonly"
+                  [placeholder]="interactivePlaceholder"></textarea>
+                
+                <div class="flex justify-between items-center mt-2">
+                  <div class="text-sm text-gray-500">
+                    <span [class.text-red-500]="isCharacterLimitReached()">
+                      {{ getCharacterCount() }}/{{ interactiveMaxLength }} characters
+                    </span>
+                    <span *ngIf="getRemainingCharacters() < 50 && !isCharacterLimitReached()" class="text-yellow-600 ml-2">
+                      ({{ getRemainingCharacters() }} remaining)
+                    </span>
+                  </div>
+                  <div class="flex gap-2">
+                    <button 
+                      (click)="clearTextarea()"
+                      class="px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                      Clear
+                    </button>
+                    <button 
+                      (click)="setSampleText()"
+                      class="px-3 py-1 text-sm text-blue-600 hover:text-blue-900 hover:bg-blue-50 rounded-md transition-colors">
+                      Sample Text
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showInteractiveDemoCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Interactive Textarea Code --&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The InputTextarea component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the InputTextarea component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} InputTextarea {{ '}' }} from '@synerity/ui';
+
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;textarea 
+      [(ngModel)]="textareaValue"
+      rows="4"
+      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+      placeholder="Enter your text here..."&gt;&lt;/textarea&gt;
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}
+  textareaValue = '';
+{{ '}' }}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Auto-resize Implementation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Auto-resize Implementation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">To implement auto-resize functionality:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>// In your component
+autoResizeTextarea(event: Event) {{ '{' }}
+  const textarea = event.target as HTMLTextAreaElement;
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+{{ '}' }}
+
+// In your template
+&lt;textarea 
+  [(ngModel)]="value"
+  (input)="autoResizeTextarea($event)"
+  rows="3"
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none overflow-hidden"
+  placeholder="Auto-resizing textarea..."&gt;&lt;/textarea&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Character Count -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Character Count</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Implement character counting and limits:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>// In your component
+getCharacterCount(): number {{ '{' }}
+  return this.textareaValue.length;
+{{ '}' }}
+
+isCharacterLimitReached(): boolean {{ '{' }}
+  return this.getCharacterCount() >= this.maxLength;
+{{ '}' }}
+
+// In your template
+&lt;textarea 
+  [(ngModel)]="textareaValue"
+  [maxlength]="maxLength"
+  rows="4"
+  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+  placeholder="Enter your text here..."&gt;&lt;/textarea&gt;
+
+&lt;div class="text-sm text-gray-500 mt-2"&gt;
+  &lt;span [class.text-red-500]="isCharacterLimitReached()"&gt;
+    {{ '{{' }} getCharacterCount() {{ '}}' }}/{{ '{{' }} maxLength {{ '}}' }} characters
+  &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">rows</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Number of visible text lines</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">cols</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">50</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Number of visible character widths</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Placeholder text for the textarea</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the textarea is disabled</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">readonly</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the textarea is read-only</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">required</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the textarea is required</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">maxlength</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">undefined</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Maximum number of characters allowed</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">autoResize</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the textarea should auto-resize</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onInput</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;string&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the textarea value changes</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onFocus</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;FocusEvent&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the textarea receives focus</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onBlur</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;FocusEvent&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the textarea loses focus</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onResize</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;Event&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the textarea is resized</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation support with Tab key</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Focus indicators for keyboard users</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Proper labeling with associated labels</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>ARIA attributes for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Character count announcements for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Disabled and readonly states properly communicated</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </app-tabs>
+</div>

@@ -143,7 +143,8 @@ export class Upload {
   }
 
   getUploadClass(): string {
-    return `sui-upload ${this.styleClass}`.trim();
+    const baseClasses = 'relative border-2 border-dashed rounded-lg p-6 transition-colors cursor-pointer';
+    return `${baseClasses} ${this.styleClass}`.trim();
   }
 
   getUploadStyle(): any {

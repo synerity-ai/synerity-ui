@@ -105,7 +105,8 @@ export class Menu implements AfterViewInit, OnDestroy {
   }
 
   getMenuClass(): string {
-    return `sui-menu ${this.styleClass}`.trim();
+    const baseClasses = 'bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-48 z-50';
+    return `${baseClasses} ${this.styleClass}`.trim();
   }
 
   getMenuStyle(): any {

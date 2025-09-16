@@ -1,38 +1,45 @@
-<div class="sui-confirm-popup-wrapper">
-  <div #targetElement class="sui-confirm-popup-target" (click)="show()">
+<div class="relative inline-block">
+  <div #targetElement class="cursor-pointer" (click)="show()">
     <ng-content></ng-content>
   </div>
   
   <div 
     *ngIf="visible" 
     #popupElement
-    class="sui-confirm-popup" 
+    class="absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-4 min-w-64"
     [class]="getPopupClass()"
     [style]="getPopupStyle()"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-labelledby]="'confirm-popup-title'"
   >
-    <div class="sui-confirm-popup-content">
-      <p class="sui-confirm-popup-message">{{ message }}</p>
+    <div class="mb-4">
+      <p id="confirm-popup-title" class="text-sm font-medium text-gray-900">{{ message }}</p>
     </div>
     
-    <div class="sui-confirm-popup-footer">
+    <div class="flex justify-end space-x-3">
       <button 
         type="button" 
-        class="sui-confirm-popup-button sui-confirm-popup-reject"
+        class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors"
         (click)="reject()"
       >
-        <span *ngIf="rejectIcon" class="sui-confirm-popup-button-icon">{{ rejectIcon }}</span>
+        <span *ngIf="rejectIcon" class="mr-2">{{ rejectIcon }}</span>
         {{ rejectLabel }}
       </button>
       <button 
         type="button" 
-        class="sui-confirm-popup-button sui-confirm-popup-accept"
+        class="px-3 py-2 text-sm font-medium text-white bg-primary-600 border border-transparent rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors"
         (click)="accept()"
       >
-        <span *ngIf="acceptIcon" class="sui-confirm-popup-button-icon">{{ acceptIcon }}</span>
+        <span *ngIf="acceptIcon" class="mr-2">{{ acceptIcon }}</span>
         {{ acceptLabel }}
       </button>
     </div>
     
-    <div class="sui-confirm-popup-arrow"></div>
+    <!-- Arrow -->
+    <div 
+      class="absolute w-2 h-2 bg-white border border-gray-200 transform rotate-45"
+      [class]="getArrowClass()">
+    </div>
   </div>
 </div>

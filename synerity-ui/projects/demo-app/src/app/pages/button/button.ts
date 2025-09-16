@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Button as SuiButton } from 'ui-lib';
 import { Tabs } from '../../shared/tabs/tabs';
 
 @Component({
   selector: 'app-button',
-  imports: [CommonModule, FormsModule, SuiButton, Tabs],
+  imports: [CommonModule, FormsModule, Tabs],
   templateUrl: './button.html',
   styleUrl: './button.scss'
 })
@@ -15,6 +14,8 @@ export class Button {
   
   // Demo data
   buttonText = 'Click me!';
+  buttonDisabled = false;
+  buttonLoading = false;
   
   // Code visibility states
   showBasicVariantsCode = false;
@@ -24,19 +25,12 @@ export class Button {
   showButtonGroupsCode = false;
   showInteractiveDemoCode = false;
   
-  // Button demo
-  onButtonClick() {
-    console.log('Button clicked!');
-    alert('Button clicked!');
-  }
-
   onTabChange(tab: string) {
     this.activeTab = tab;
   }
   
-  // Code toggle methods
-  toggleCode(section: string) {
-    switch(section) {
+  toggleCode(example: string) {
+    switch (example) {
       case 'basicVariants':
         this.showBasicVariantsCode = !this.showBasicVariantsCode;
         break;
@@ -56,5 +50,23 @@ export class Button {
         this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
         break;
     }
+  }
+  
+  // Button demo methods
+  onButtonClick() {
+    console.log('Button clicked!');
+    alert('Button clicked!');
+  }
+  
+  onLoadingClick() {
+    this.buttonLoading = true;
+    setTimeout(() => {
+      this.buttonLoading = false;
+      alert('Loading completed!');
+    }, 2000);
+  }
+  
+  toggleDisabled() {
+    this.buttonDisabled = !this.buttonDisabled;
   }
 }

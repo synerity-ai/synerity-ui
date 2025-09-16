@@ -1,4 +1,4 @@
-<div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-6xl mx-auto">
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Button</h1>
@@ -6,7 +6,14 @@
   </div>
 
   <!-- Tabs -->
-  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
     
     <!-- Demo Tab -->
     <div *ngIf="activeTab === 'demo'">
@@ -23,26 +30,50 @@
               <span>{{ showBasicVariantsCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
-              <div class="flex flex-wrap gap-4 sm:gap-6">
-                <sui-button variant="primary" (click)="onButtonClick()">Primary</sui-button>
-                <sui-button variant="secondary" (click)="onButtonClick()">Secondary</sui-button>
-                <sui-button variant="outline" (click)="onButtonClick()">Outline</sui-button>
-                <sui-button variant="ghost" (click)="onButtonClick()">Ghost</sui-button>
-                <sui-button variant="danger" (click)="onButtonClick()">Danger</sui-button>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex flex-wrap gap-4">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                  Primary
+                </button>
+                <button class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+                  Secondary
+                </button>
+                <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
+                  Success
+                </button>
+                <button class="px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors">
+                  Warning
+                </button>
+                <button class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
+                  Danger
+                </button>
+                <button class="px-4 py-2 bg-blue-100 text-blue-700 border border-blue-300 rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                  Outline
+                </button>
+                <button class="px-4 py-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                  Text
+                </button>
               </div>
             </div>
             
-            <!-- Code Block -->
-            <div *ngIf="showBasicVariantsCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="flex flex-wrap gap-4 sm:gap-6"&gt;
-  &lt;sui-button variant="primary" (click)="onButtonClick()"&gt;Primary&lt;/sui-button&gt;
-  &lt;sui-button variant="secondary" (click)="onButtonClick()"&gt;Secondary&lt;/sui-button&gt;
-  &lt;sui-button variant="outline" (click)="onButtonClick()"&gt;Outline&lt;/sui-button&gt;
-  &lt;sui-button variant="ghost" (click)="onButtonClick()"&gt;Ghost&lt;/sui-button&gt;
-  &lt;sui-button variant="danger" (click)="onButtonClick()"&gt;Danger&lt;/sui-button&gt;
-&lt;/div&gt;</code></pre>
+            <!-- Code Example -->
+            <div *ngIf="showBasicVariantsCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Primary Button --&gt;
+&lt;button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
+  Primary
+&lt;/button&gt;
+
+&lt;!-- Secondary Button --&gt;
+&lt;button class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"&gt;
+  Secondary
+&lt;/button&gt;
+
+&lt;!-- Success Button --&gt;
+&lt;button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"&gt;
+  Success
+&lt;/button&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -58,349 +89,213 @@
               <span>{{ showButtonSizesCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
-              <div class="flex flex-wrap items-center gap-6">
-                <sui-button size="sm" variant="primary">Small</sui-button>
-                <sui-button size="md" variant="primary">Medium</sui-button>
-                <sui-button size="lg" variant="primary">Large</sui-button>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex flex-wrap items-center gap-4">
+                <button class="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                  Small
+                </button>
+                <button class="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                  Medium
+                </button>
+                <button class="px-6 py-3 text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                  Large
+                </button>
+                <button class="px-8 py-4 text-lg bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                  Extra Large
+                </button>
               </div>
             </div>
             
-            <!-- Code Block -->
-            <div *ngIf="showButtonSizesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="flex flex-wrap items-center gap-6"&gt;
-  &lt;sui-button size="sm" variant="primary"&gt;Small&lt;/sui-button&gt;
-  &lt;sui-button size="md" variant="primary"&gt;Medium&lt;/sui-button&gt;
-  &lt;sui-button size="lg" variant="primary"&gt;Large&lt;/sui-button&gt;
-&lt;/div&gt;</code></pre>
+            <!-- Code Example -->
+            <div *ngIf="showButtonSizesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Small Button --&gt;
+&lt;button class="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
+  Small
+&lt;/button&gt;
+
+&lt;!-- Medium Button --&gt;
+&lt;button class="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
+  Medium
+&lt;/button&gt;
+
+&lt;!-- Large Button --&gt;
+&lt;button class="px-6 py-3 text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
+  Large
+&lt;/button&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Button States -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Button States</h3>
-            <button 
-              (click)="toggleCode('buttonStates')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showButtonStatesCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
-              <div class="flex flex-wrap gap-6">
-                <sui-button variant="primary">Normal</sui-button>
-                <sui-button variant="primary" [loading]="true">Loading</sui-button>
-                <sui-button variant="primary" [disabled]="true">Disabled</sui-button>
-              </div>
-            </div>
-            
-            <!-- Code Block -->
-            <div *ngIf="showButtonStatesCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="flex flex-wrap gap-6"&gt;
-  &lt;sui-button variant="primary"&gt;Normal&lt;/sui-button&gt;
-  &lt;sui-button variant="primary" [loading]="true"&gt;Loading&lt;/sui-button&gt;
-  &lt;sui-button variant="primary" [disabled]="true"&gt;Disabled&lt;/sui-button&gt;
-&lt;/div&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Buttons with Icons -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Buttons with Icons</h3>
-            <button 
-              (click)="toggleCode('buttonIcons')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showButtonIconsCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
-              <div class="flex flex-wrap gap-6">
-                <sui-button variant="primary" icon="💾" (click)="onButtonClick()">Save</sui-button>
-                <sui-button variant="secondary" icon="📤" (click)="onButtonClick()">Export</sui-button>
-                <sui-button variant="outline" icon="🗑️" (click)="onButtonClick()">Delete</sui-button>
-                <sui-button variant="ghost" icon="⚙️" (click)="onButtonClick()">Settings</sui-button>
-              </div>
-            </div>
-            
-            <!-- Code Block -->
-            <div *ngIf="showButtonIconsCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="flex flex-wrap gap-6"&gt;
-  &lt;sui-button variant="primary" icon="💾" (click)="onButtonClick()"&gt;Save&lt;/sui-button&gt;
-  &lt;sui-button variant="secondary" icon="📤" (click)="onButtonClick()"&gt;Export&lt;/sui-button&gt;
-  &lt;sui-button variant="outline" icon="🗑️" (click)="onButtonClick()"&gt;Delete&lt;/sui-button&gt;
-  &lt;sui-button variant="ghost" icon="⚙️" (click)="onButtonClick()"&gt;Settings&lt;/sui-button&gt;
-&lt;/div&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Full Width Buttons -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Full Width Buttons</h3>
-            <button 
-              (click)="toggleCode('buttonGroups')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showButtonGroupsCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
-              <div class="space-y-4">
-                <sui-button variant="primary" [fullWidth]="true" (click)="onButtonClick()">Full Width Primary</sui-button>
-                <sui-button variant="outline" [fullWidth]="true" (click)="onButtonClick()">Full Width Outline</sui-button>
-              </div>
-            </div>
-            
-            <!-- Code Block -->
-            <div *ngIf="showButtonGroupsCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="space-y-4"&gt;
-  &lt;sui-button variant="primary" [fullWidth]="true" (click)="onButtonClick()"&gt;Full Width Primary&lt;/sui-button&gt;
-  &lt;sui-button variant="outline" [fullWidth]="true" (click)="onButtonClick()"&gt;Full Width Outline&lt;/sui-button&gt;
-&lt;/div&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Interactive Demo -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
-            <button 
-              (click)="toggleCode('interactiveDemo')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="p-6">
-              <div class="space-y-4">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Button Text</label>
-                  <input 
-                    type="text" 
-                    [(ngModel)]="buttonText"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
-                </div>
-                <div>
-                  <sui-button variant="primary" (click)="onButtonClick()">{{ buttonText }}</sui-button>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Code Block -->
-            <div *ngIf="showInteractiveDemoCode" class="border-t border-gray-200 bg-gray-900 p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>&lt;div class="space-y-4"&gt;
-  &lt;div&gt;
-    &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Button Text&lt;/label&gt;
-    &lt;input 
-      type="text" 
-      [(ngModel)]="buttonText"
-      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;sui-button variant="primary" (click)="onButtonClick()"&gt;{{ buttonText }}&lt;/sui-button&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
     <!-- How to Use Tab -->
     <div *ngIf="activeTab === 'usage'">
-      <div class="space-y-8">
+      <div class="space-y-6">
         
         <!-- Installation -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
-          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-            <div>npm install @synerity/ui</div>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Button component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
           </div>
         </div>
 
         <!-- Basic Usage -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <pre class="text-sm"><code>&lt;sui-button variant="primary"&gt;Click me&lt;/sui-button&gt;</code></pre>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the Button component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} Button {{ '}' }} from '@synerity/ui';
+
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"&gt;
+      Click me!
+    &lt;/button&gt;
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
+            </div>
           </div>
         </div>
 
-        <!-- Import -->
+        <!-- Styling -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <pre class="text-sm"><code>import {{ '{' }} Button {{ '}' }} from '@synerity/ui';</code></pre>
-          </div>
-        </div>
-
-        <!-- Examples -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
-          
-          <div class="space-y-6">
-            <!-- Primary Button -->
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Primary Button</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-button variant="primary"&gt;Primary&lt;/sui-button&gt;</code></pre>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Buttons use Tailwind CSS classes for styling. Here are the key classes:</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">px-4 py-2</span>
+                <span class="text-gray-600">Horizontal and vertical padding</span>
               </div>
-            </div>
-
-            <!-- Loading Button -->
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Loading Button</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-button variant="primary" [loading]="true"&gt;Loading&lt;/sui-button&gt;</code></pre>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">bg-blue-600</span>
+                <span class="text-gray-600">Background color</span>
               </div>
-            </div>
-
-            <!-- Disabled Button -->
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Disabled Button</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-button variant="primary" [disabled]="true"&gt;Disabled&lt;/sui-button&gt;</code></pre>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">text-white</span>
+                <span class="text-gray-600">Text color</span>
               </div>
-            </div>
-
-            <!-- Button with Icon -->
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Button with Icon</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-button variant="primary" icon="💾"&gt;Save&lt;/sui-button&gt;</code></pre>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">rounded-md</span>
+                <span class="text-gray-600">Border radius</span>
               </div>
-            </div>
-
-            <!-- Full Width Button -->
-            <div>
-              <h4 class="text-lg font-medium text-gray-900 mb-2">Full Width Button</h4>
-              <div class="bg-gray-50 p-4 rounded-lg mb-2">
-                <pre class="text-sm"><code>&lt;sui-button variant="primary" [fullWidth]="true"&gt;Full Width&lt;/sui-button&gt;</code></pre>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">hover:bg-blue-700</span>
+                <span class="text-gray-600">Hover state</span>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
     <!-- Documentation Tab -->
     <div *ngIf="activeTab === 'docs'">
-      <div class="space-y-8">
+      <div class="space-y-6">
         
         <!-- Props -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
-          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
-            <table class="min-w-full divide-y divide-gray-300">
-              <thead class="bg-gray-50">
-                <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                </tr>
-              </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary'</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Visual style variant of the button</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Size of the button</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Whether the button is disabled</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">loading</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Whether the button shows loading state</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">type</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'button' | 'submit' | 'reset'</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'button'</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">HTML button type</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">fullWidth</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Whether the button takes full width of its container</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">icon</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string | null</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Icon to display in the button (emoji or icon name)</td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">iconPosition</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'left' | 'right'</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'left'</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Position of the icon relative to the text</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">type</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'button'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">HTML button type attribute</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the button is disabled</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">loading</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the button is in loading state</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
         <!-- Events -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
-          <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
-            <table class="min-w-full divide-y divide-gray-300">
-              <thead class="bg-gray-50">
-                <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                </tr>
-              </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">click</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MouseEvent</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Emitted when the button is clicked</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onClick</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;MouseEvent&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the button is clicked</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
         <!-- Accessibility -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
-          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <ul class="text-sm text-blue-800 space-y-2">
-              <li>• Full keyboard navigation support</li>
-              <li>• WCAG 2.1 AA compliant color contrast</li>
-              <li>• Proper ARIA attributes for screen readers</li>
-              <li>• Focus management and visual focus indicators</li>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation support with Tab key</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Enter and Space key activation</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Focus indicators for keyboard users</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>ARIA attributes for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Disabled state properly communicated</span>
+              </li>
             </ul>
           </div>
         </div>
+
       </div>
     </div>
   </app-tabs>

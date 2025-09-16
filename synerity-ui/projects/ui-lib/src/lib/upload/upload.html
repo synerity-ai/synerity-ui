@@ -1,13 +1,21 @@
 <div 
-  class="sui-upload" 
+  class="relative border-2 border-dashed rounded-lg p-6 transition-colors cursor-pointer"
   [class]="getUploadClass()"
   [style]="getUploadStyle()"
-  [class.sui-upload-drag-over]="dragOver"
-  [class.sui-upload-disabled]="disabled"
+  [class.border-primary-400]="dragOver"
+  [class.bg-primary-50]="dragOver"
+  [class.border-gray-300]="!dragOver"
+  [class.border-gray-200]="disabled"
+  [class.bg-gray-50]="disabled"
+  [class.cursor-not-allowed]="disabled"
+  [class.opacity-50]="disabled"
   (dragover)="onDragOver($event)"
   (dragleave)="onDragLeave($event)"
   (drop)="onDrop($event)"
   (click)="choose()"
+  role="button"
+  [attr.aria-label]="'File upload area'"
+  tabindex="0"
 >
   <input 
     #fileInput
@@ -16,47 +24,69 @@
     [accept]="accept"
     [disabled]="disabled"
     (change)="onFileSelect($event)"
-    class="sui-upload-input"
+    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+    [class.cursor-not-allowed]="disabled"
   />
   
-  <div class="sui-upload-content">
-    <div class="sui-upload-icon">📁</div>
-    <div class="sui-upload-text">
-      <span class="sui-upload-primary">Drop files here or click to upload</span>
-      <span *ngIf="accept" class="sui-upload-secondary">Accepted formats: {{ accept }}</span>
+  <div class="text-center">
+    <div class="mx-auto w-12 h-12 text-gray-400 mb-4">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+      </svg>
+    </div>
+    <div class="space-y-2">
+      <p class="text-sm font-medium text-gray-900">
+        Drop files here or click to upload
+      </p>
+      <p *ngIf="accept" class="text-xs text-gray-500">
+        Accepted formats: {{ accept }}
+      </p>
+      <p *ngIf="maxFileSize > 0" class="text-xs text-gray-500">
+        Maximum file size: {{ formatFileSize(maxFileSize) }}
+      </p>
     </div>
   </div>
   
-  <div *ngIf="files.length > 0" class="sui-upload-files">
-    <div *ngFor="let file of files; let i = index" class="sui-upload-file">
-      <div class="sui-upload-file-info">
-        <span class="sui-upload-file-name">{{ file.name }}</span>
-        <span class="sui-upload-file-size">{{ formatFileSize(file.size) }}</span>
+  <div *ngIf="files.length > 0" class="mt-6 space-y-2">
+    <div *ngFor="let file of files; let i = index" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
+      <div class="flex items-center space-x-3">
+        <div class="flex-shrink-0">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900 truncate">{{ file.name }}</p>
+          <p class="text-xs text-gray-500">{{ formatFileSize(file.size) }}</p>
+        </div>
       </div>
       <button 
         type="button" 
-        class="sui-upload-file-remove"
+        class="flex-shrink-0 ml-3 text-gray-400 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
         (click)="removeFile(i); $event.stopPropagation()"
+        [attr.aria-label]="'Remove ' + file.name"
       >
-        ×
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
       </button>
     </div>
   </div>
   
-  <div *ngIf="files.length > 0 && !auto" class="sui-upload-actions">
+  <div *ngIf="files.length > 0 && !auto" class="mt-6 flex justify-center space-x-3">
     <button 
       type="button" 
-      class="sui-upload-button sui-upload-upload"
+      class="px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
       (click)="upload(); $event.stopPropagation()"
     >
-      Upload
+      Upload Files
     </button>
     <button 
       type="button" 
-      class="sui-upload-button sui-upload-clear"
+      class="px-4 py-2 bg-gray-600 text-white text-sm font-medium rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
       (click)="clear(); $event.stopPropagation()"
     >
-      Clear
+      Clear All
     </button>
   </div>
 </div>

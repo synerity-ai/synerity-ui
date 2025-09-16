@@ -49,7 +49,8 @@ export class Breadcrumb {
   }
 
   getBreadcrumbClass(): string {
-    return `sui-breadcrumb ${this.styleClass}`.trim();
+    const baseClasses = 'flex items-center space-x-1 text-sm';
+    return `${baseClasses} ${this.styleClass}`.trim();
   }
 
   getBreadcrumbStyle(): any {

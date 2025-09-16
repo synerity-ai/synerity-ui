@@ -75,7 +75,18 @@ export class Toast implements AfterViewInit, OnDestroy {
   }
 
   getToastClass(): string {
-    return `sui-toast sui-toast-${this.position} ${this.styleClass}`.trim();
+    const baseClasses = 'fixed z-50 space-y-2 pointer-events-none';
+    
+    const positionClasses = {
+      'top-right': 'top-4 right-4',
+      'top-left': 'top-4 left-4',
+      'bottom-right': 'bottom-4 right-4',
+      'bottom-left': 'bottom-4 left-4',
+      'top-center': 'top-4 left-1/2 transform -translate-x-1/2',
+      'bottom-center': 'bottom-4 left-1/2 transform -translate-x-1/2'
+    };
+    
+    return `${baseClasses} ${positionClasses[this.position]} ${this.styleClass}`.trim();
   }
 
   getToastStyle(): any {
@@ -84,7 +95,20 @@ export class Toast implements AfterViewInit, OnDestroy {
     };
   }
 
-  getMessageClass(message: any): string {
-    return `sui-toast-message sui-toast-message-${message.severity}`;
+  getMessageClass(message: { severity: 'success' | 'info' | 'warn' | 'error' }): string {
+    const baseClasses = 'flex items-start p-4 rounded-lg shadow-lg border pointer-events-auto transform transition-all duration-300 ease-in-out';
+    
+    const severityClasses = {
+      success: 'bg-green-50 border-green-200 text-green-800',
+      info: 'bg-blue-50 border-blue-200 text-blue-800',
+      warn: 'bg-yellow-50 border-yellow-200 text-yellow-800',
+      error: 'bg-red-50 border-red-200 text-red-800'
+    };
+    
+    return `${baseClasses} ${severityClasses[message.severity]}`;
+  }
+
+  trackByMessageId(index: number, message: any): string {
+    return message.id;
   }
 }
