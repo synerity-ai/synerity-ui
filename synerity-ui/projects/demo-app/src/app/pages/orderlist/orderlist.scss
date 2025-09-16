@@ -1,0 +1,193 @@
+// OrderList Demo Page Styles
+
+// Basic order list styling
+.sui-order-list {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  .sui-order-list-header {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+  }
+  
+  .sui-order-list-filter {
+    margin-bottom: 1rem;
+    
+    .sui-order-list-filter-input {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      transition: border-color 0.2s ease;
+      
+      &:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+      
+      &::placeholder {
+        color: #9ca3af;
+      }
+    }
+  }
+  
+  .sui-order-list-content {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  
+  .sui-order-list-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.2s ease;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    &:hover {
+      background-color: #f9fafb;
+    }
+    
+    &.selected {
+      background-color: #eff6ff;
+      border-color: #3b82f6;
+    }
+  }
+  
+  .sui-order-list-item-content {
+    flex: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    
+    .sui-order-list-item-label {
+      font-size: 0.875rem;
+      color: #374151;
+      font-weight: 500;
+    }
+  }
+  
+  .sui-order-list-item-controls {
+    display: flex;
+    gap: 0.25rem;
+    margin-left: 0.5rem;
+  }
+  
+  .sui-order-list-control-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    background: #ffffff;
+    color: #6b7280;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover:not(:disabled) {
+      background-color: #f3f4f6;
+      border-color: #9ca3af;
+      color: #374151;
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    &:active:not(:disabled) {
+      background-color: #e5e7eb;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .sui-order-list {
+    .sui-order-list-item {
+      padding: 0.5rem 0.75rem;
+    }
+    
+    .sui-order-list-control-btn {
+      width: 1.75rem;
+      height: 1.75rem;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+// Dark theme support
+@media (prefers-color-scheme: dark) {
+  .sui-order-list {
+    .sui-order-list-header {
+      color: #f9fafb;
+      border-bottom-color: #4b5563;
+    }
+    
+    .sui-order-list-filter-input {
+      background-color: #1f2937;
+      border-color: #4b5563;
+      color: #f9fafb;
+      
+      &:focus {
+        border-color: #60a5fa;
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+      }
+      
+      &::placeholder {
+        color: #6b7280;
+      }
+    }
+    
+    .sui-order-list-content {
+      background: #1f2937;
+      border-color: #4b5563;
+    }
+    
+    .sui-order-list-item {
+      border-bottom-color: #374151;
+      
+      &:hover {
+        background-color: #374151;
+      }
+      
+      &.selected {
+        background-color: #1e3a8a;
+        border-color: #60a5fa;
+      }
+    }
+    
+    .sui-order-list-item-label {
+      color: #d1d5db;
+    }
+    
+    .sui-order-list-control-btn {
+      background: #374151;
+      border-color: #4b5563;
+      color: #d1d5db;
+      
+      &:hover:not(:disabled) {
+        background-color: #4b5563;
+        border-color: #6b7280;
+        color: #f9fafb;
+      }
+      
+      &:active:not(:disabled) {
+        background-color: #4b5563;
+      }
+    }
+  }
+}

@@ -1,0 +1,262 @@
+// Tooltip Demo Page Styles
+
+// Basic tooltip styling
+.sui-tooltip {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  .sui-tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .sui-tooltip-target {
+    cursor: pointer;
+  }
+  
+  .sui-tooltip {
+    position: absolute;
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    z-index: 1000;
+    max-width: 200px;
+    word-wrap: break-word;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    animation: tooltipFadeIn 0.2s ease-out;
+    
+    .sui-tooltip-content {
+      margin: 0;
+    }
+    
+    .sui-tooltip-arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 4px solid transparent;
+      
+      &.sui-tooltip-arrow-top {
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-top-color: #1f2937;
+        border-bottom: none;
+      }
+      
+      &.sui-tooltip-arrow-bottom {
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-bottom-color: #1f2937;
+        border-top: none;
+      }
+      
+      &.sui-tooltip-arrow-left {
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-left-color: #1f2937;
+        border-right: none;
+      }
+      
+      &.sui-tooltip-arrow-right {
+        left: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-right-color: #1f2937;
+        border-left: none;
+      }
+    }
+  }
+}
+
+// Animation for tooltip appearance
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .sui-tooltip {
+    .sui-tooltip {
+      max-width: 150px;
+      font-size: 0.625rem;
+      padding: 0.375rem 0.5rem;
+      
+      .sui-tooltip-arrow {
+        border-width: 3px;
+        
+        &.sui-tooltip-arrow-top {
+          bottom: -6px;
+        }
+        
+        &.sui-tooltip-arrow-bottom {
+          top: -6px;
+        }
+        
+        &.sui-tooltip-arrow-left {
+          right: -6px;
+        }
+        
+        &.sui-tooltip-arrow-right {
+          left: -6px;
+        }
+      }
+    }
+  }
+}
+
+// Dark theme support
+@media (prefers-color-scheme: dark) {
+  .sui-tooltip {
+    .sui-tooltip {
+      background-color: #374151;
+      color: #f9fafb;
+      
+      .sui-tooltip-arrow {
+        &.sui-tooltip-arrow-top {
+          border-top-color: #374151;
+        }
+        
+        &.sui-tooltip-arrow-bottom {
+          border-bottom-color: #374151;
+        }
+        
+        &.sui-tooltip-arrow-left {
+          border-left-color: #374151;
+        }
+        
+        &.sui-tooltip-arrow-right {
+          border-right-color: #374151;
+        }
+      }
+    }
+  }
+}
+
+// Accessibility improvements
+.sui-tooltip {
+  .sui-tooltip-target {
+    // Ensure proper focus management
+    &:focus-within {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+      border-radius: 0.375rem;
+    }
+  }
+  
+  .sui-tooltip {
+    // Screen reader support
+    &[role="tooltip"] {
+      // Tooltip role for screen readers
+    }
+    
+    &[aria-hidden="false"] {
+      // Visible tooltip with ARIA support
+    }
+  }
+}
+
+// Custom styling support
+.sui-tooltip {
+  // Allow custom styles to override defaults
+  &[style*="background-color"] {
+    .sui-tooltip {
+      background-color: inherit !important;
+    }
+  }
+  
+  &[style*="color"] {
+    .sui-tooltip {
+      color: inherit !important;
+    }
+  }
+}
+
+// Performance optimizations
+.sui-tooltip {
+  // Enable hardware acceleration for smooth animations
+  .sui-tooltip {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  .sui-tooltip-content {
+    // Optimize content rendering
+    contain: layout style paint;
+  }
+}
+
+// Special styling for different element types
+.sui-tooltip {
+  // Input field tooltips
+  input[type="text"] {
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+  }
+  
+  // Link tooltips
+  a {
+    text-decoration: underline;
+    color: #2563eb;
+    
+    &:hover {
+      color: #1d4ed8;
+    }
+  }
+  
+  // Icon tooltips
+  span {
+    cursor: pointer;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: #6b7280;
+    }
+  }
+  
+  // Button tooltips
+  button {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+}
+
+// Long tooltip styling
+.sui-tooltip {
+  .sui-tooltip {
+    &[data-long="true"] {
+      max-width: 300px;
+      font-size: 0.875rem;
+      padding: 0.75rem 1rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+// Delayed tooltip styling
+.sui-tooltip {
+  .sui-tooltip {
+    &[data-delayed="true"] {
+      animation-delay: 0.5s;
+    }
+  }
+}

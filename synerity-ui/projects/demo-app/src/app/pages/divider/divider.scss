@@ -1,0 +1,189 @@
+// Divider Demo Page Styles
+
+// Basic divider styling
+.sui-divider {
+  display: block;
+  margin: 1rem 0;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  &.sui-divider-horizontal {
+    width: 100%;
+    height: 1px;
+    
+    .sui-divider-line {
+      width: 100%;
+      height: 1px;
+      border: none;
+      background-color: #e5e7eb;
+      margin: 0;
+    }
+    
+    &.sui-divider-solid .sui-divider-line {
+      border-top: 1px solid #e5e7eb;
+      background: none;
+    }
+    
+    &.sui-divider-dashed .sui-divider-line {
+      border-top: 1px dashed #e5e7eb;
+      background: none;
+    }
+    
+    &.sui-divider-dotted .sui-divider-line {
+      border-top: 1px dotted #e5e7eb;
+      background: none;
+    }
+    
+    &.sui-divider-left .sui-divider-line {
+      width: 30%;
+      margin-right: auto;
+      margin-left: 0;
+    }
+    
+    &.sui-divider-center .sui-divider-line {
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    &.sui-divider-right .sui-divider-line {
+      width: 30%;
+      margin-left: auto;
+      margin-right: 0;
+    }
+  }
+  
+  &.sui-divider-vertical {
+    display: inline-block;
+    width: 1px;
+    height: 100%;
+    margin: 0 1rem;
+    vertical-align: middle;
+    
+    .sui-divider-line {
+      width: 1px;
+      height: 100%;
+      border: none;
+      background-color: #e5e7eb;
+      margin: 0;
+    }
+    
+    &.sui-divider-solid .sui-divider-line {
+      border-left: 1px solid #e5e7eb;
+      background: none;
+    }
+    
+    &.sui-divider-dashed .sui-divider-line {
+      border-left: 1px dashed #e5e7eb;
+      background: none;
+    }
+    
+    &.sui-divider-dotted .sui-divider-line {
+      border-left: 1px dotted #e5e7eb;
+      background: none;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .sui-divider {
+    &.sui-divider-horizontal {
+      margin: 0.75rem 0;
+      
+      &.sui-divider-left .sui-divider-line,
+      &.sui-divider-right .sui-divider-line {
+        width: 50%;
+      }
+    }
+    
+    &.sui-divider-vertical {
+      margin: 0 0.75rem;
+    }
+  }
+}
+
+// Dark theme support
+@media (prefers-color-scheme: dark) {
+  .sui-divider {
+    &.sui-divider-horizontal {
+      .sui-divider-line {
+        background-color: #4b5563;
+      }
+      
+      &.sui-divider-solid .sui-divider-line {
+        border-top-color: #4b5563;
+      }
+      
+      &.sui-divider-dashed .sui-divider-line {
+        border-top-color: #4b5563;
+      }
+      
+      &.sui-divider-dotted .sui-divider-line {
+        border-top-color: #4b5563;
+      }
+    }
+    
+    &.sui-divider-vertical {
+      .sui-divider-line {
+        background-color: #4b5563;
+      }
+      
+      &.sui-divider-solid .sui-divider-line {
+        border-left-color: #4b5563;
+      }
+      
+      &.sui-divider-dashed .sui-divider-line {
+        border-left-color: #4b5563;
+      }
+      
+      &.sui-divider-dotted .sui-divider-line {
+        border-left-color: #4b5563;
+      }
+    }
+  }
+}
+
+// Animation for smooth transitions
+.sui-divider {
+  transition: all 0.2s ease;
+  
+  .sui-divider-line {
+    transition: all 0.2s ease;
+  }
+}
+
+// Accessibility improvements
+.sui-divider {
+  // Ensure screen readers understand this is a separator
+  &[role="separator"] {
+    .sui-divider-line {
+      // Add aria-hidden to the visual line since it's decorative
+      &[aria-hidden="true"] {
+        // Visual line is hidden from screen readers
+      }
+    }
+  }
+}
+
+// Custom styling support
+.sui-divider {
+  // Allow custom styles to override defaults
+  &[style*="border-color"] {
+    .sui-divider-line {
+      border-color: inherit !important;
+    }
+  }
+  
+  &[style*="border-width"] {
+    .sui-divider-line {
+      border-width: inherit !important;
+    }
+  }
+  
+  &[style*="border-image"] {
+    .sui-divider-line {
+      border-image: inherit !important;
+      background: none !important;
+    }
+  }
+}

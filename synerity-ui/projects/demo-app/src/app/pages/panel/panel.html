@@ -1,1 +1,60 @@
-<p>panel works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Panel</h1>
+    <p class="text-lg text-gray-600">Panel components for creating content containers with optional headers and collapsible functionality.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Panel -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Panel</h3>
+            <button 
+              (click)="toggleCode('basicPanel')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicPanelCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-panel header="Basic Panel">
+                <div class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Panel Content</h4>
+                  <p class="text-gray-600">
+                    This is a basic panel with a header. The panel provides a clean container for your content 
+                    with consistent styling and spacing.
+                  </p>
+                  <div class="bg-blue-50 p-4 rounded-md">
+                    <p class="text-blue-800 text-sm">
+                      <strong>Tip:</strong> Panels are great for organizing related content and providing visual separation.
+                    </p>
+                  </div>
+                </div>
+              </sui-panel>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showBasicPanelCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-panel header="Basic Panel"&gt;
+  &lt;div class="space-y-4"&gt;
+    &lt;h4 class="text-lg font-medium text-gray-900"&gt;Panel Content&lt;/h4&gt;
+    &lt;p class="text-gray-600"&gt;
+      This is a basic panel with a header. The panel provides a clean container for your content.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-panel&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

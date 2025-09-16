@@ -1,1 +1,110 @@
-<p>tabs works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Tabs</h1>
+    <p class="text-lg text-gray-600">Tabs components for organizing content into multiple panels with navigation controls and customizable options.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Tabs -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Tabs</h3>
+            <button 
+              (click)="toggleCode('basicTabs')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicTabsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-tabs 
+                [activeIndex]="currentBasicTabIndex"
+                [tabs]="basicTabs"
+                (onActiveIndexChange)="onBasicActiveIndexChange($event)">
+                
+                <div class="mt-6 p-4 bg-blue-50 rounded-md">
+                  <h4 class="text-lg font-medium text-blue-900 mb-2">Tab {{ currentBasicTabIndex + 1 }} Content</h4>
+                  <p class="text-blue-700">
+                    This is the content for tab {{ currentBasicTabIndex + 1 }}: {{ basicTabs[currentBasicTabIndex].header }}
+                  </p>
+                </div>
+              </sui-tabs>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showBasicTabsCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-tabs 
+  [activeIndex]="currentBasicTabIndex"
+  [tabs]="basicTabs"
+  (onActiveIndexChange)="onBasicActiveIndexChange($event)"&gt;
+  
+  &lt;div class="mt-6 p-4 bg-blue-50 rounded-md"&gt;
+    &lt;h4&gt;Tab Content&lt;/h4&gt;
+    &lt;p&gt;This is the content for the current tab.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-tabs&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Closable Tabs -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Closable Tabs</h3>
+            <button 
+              (click)="toggleCode('closableTabs')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showClosableTabsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-tabs 
+                [activeIndex]="currentClosableTabIndex"
+                [tabs]="closableTabs"
+                (onActiveIndexChange)="onClosableActiveIndexChange($event)"
+                (onTabClose)="onTabClose($event)">
+                
+                <div class="mt-6 p-4 bg-green-50 rounded-md">
+                  <h4 class="text-lg font-medium text-green-900 mb-2">Tab {{ currentClosableTabIndex + 1 }} Content</h4>
+                  <p class="text-green-700">
+                    This is the content for tab {{ currentClosableTabIndex + 1 }}: {{ closableTabs[currentClosableTabIndex].header }}
+                  </p>
+                  <button 
+                    (click)="addNewTab()"
+                    class="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                    Add New Tab
+                  </button>
+                </div>
+              </sui-tabs>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showClosableTabsCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-tabs 
+  [activeIndex]="currentClosableTabIndex"
+  [tabs]="closableTabs"
+  (onActiveIndexChange)="onClosableActiveIndexChange($event)"
+  (onTabClose)="onTabClose($event)"&gt;
+  
+  &lt;div class="mt-6 p-4 bg-green-50 rounded-md"&gt;
+    &lt;h4&gt;Tab Content&lt;/h4&gt;
+    &lt;p&gt;This is the content for the current tab.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-tabs&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

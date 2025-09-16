@@ -1,1 +1,66 @@
-<p>divider works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Divider</h1>
+    <p class="text-lg text-gray-600">Divider components for creating visual separators between content sections with customizable styles and layouts.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Divider -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Divider</h3>
+            <button 
+              (click)="toggleCode('basicDivider')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicDividerCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6 space-y-4">
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">Section 1</h4>
+                <p class="text-gray-600">This is the first section of content. It contains some text to demonstrate the divider component.</p>
+              </div>
+              
+              <sui-divider></sui-divider>
+              
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">Section 2</h4>
+                <p class="text-gray-600">This is the second section of content, separated by a divider from the first section.</p>
+              </div>
+              
+              <sui-divider type="dashed"></sui-divider>
+              
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">Section 3</h4>
+                <p class="text-gray-600">This is the third section with a dashed divider above it.</p>
+              </div>
+              
+              <sui-divider type="dotted"></sui-divider>
+              
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">Section 4</h4>
+                <p class="text-gray-600">This is the final section with a dotted divider above it.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showBasicDividerCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-divider&gt;&lt;/sui-divider&gt;
+&lt;sui-divider type="dashed"&gt;&lt;/sui-divider&gt;
+&lt;sui-divider type="dotted"&gt;&lt;/sui-divider&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

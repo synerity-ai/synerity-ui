@@ -14,10 +14,11 @@ export class EditorPage {
   activeTab = 'demo';
   
   // Demo data
-  basicEditor = '<p>This is a basic rich text editor. You can format text, add links, and more!</p>';
+  basicEditor = '<h2>Welcome to the Rich Text Editor</h2><p>This is a professional rich text editor with <strong>bold</strong>, <em>italic</em>, and <u>underlined</u> text support.</p><ul><li>Bullet lists</li><li>Numbered lists</li><li>Links and images</li></ul><blockquote>This is a blockquote example with professional styling.</blockquote>';
   readonlyEditor = '<h2>Read-only Content</h2><p>This content cannot be edited. It\'s perfect for displaying formatted text that users should only view.</p><ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>';
   disabledEditor = '<h3>Disabled Editor</h3><p>This editor is disabled and cannot be interacted with.</p>';
-  customEditor = '<h1>Custom Styled Editor</h1><p>This editor has custom height and styling.</p><blockquote>This is a blockquote example.</blockquote>';
+  lightThemeEditor = '<h3>Light Theme Editor</h3><p>This editor uses the light theme with clean, modern styling. Perfect for bright interfaces.</p><p>Try using the <strong>toolbar</strong> to format your text!</p>';
+  darkThemeEditor = '<h3>Dark Theme Editor</h3><p>This editor uses the dark theme with professional dark styling. Perfect for dark interfaces.</p><p>All formatting options work seamlessly in both themes.</p>';
   interactiveEditor = '<p>Start typing here to see the editor in action!</p>';
   
   // Interactive settings

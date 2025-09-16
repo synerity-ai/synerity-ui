@@ -1,46 +1,78 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Dialog as SuiDialog } from 'ui-lib';
 import { Tabs } from '../../shared/tabs/tabs';
+import { Dialog } from 'ui-lib';
 
 @Component({
   selector: 'app-dialog',
-  imports: [CommonModule, FormsModule, SuiDialog, Tabs],
+  imports: [CommonModule, FormsModule, Tabs, Dialog],
   templateUrl: './dialog.html',
   styleUrl: './dialog.scss'
 })
 export class DialogPage {
   activeTab = 'demo';
-  
+
+  // Code visibility toggles
+  showBasicDialogCode = false;
+  showModalDialogCode = false;
+  showResizableDialogCode = false;
+  showCustomStylingCode = false;
+
   // Dialog states
   basicDialogVisible = false;
   modalDialogVisible = false;
   resizableDialogVisible = false;
-  draggableDialogVisible = false;
   maximizableDialogVisible = false;
-  customDialogVisible = false;
-  
+  maximizedDialogVisible = false;
+
   // Dialog configurations
-  dialogHeader = 'Dialog Title';
-  dialogWidth = '400px';
-  dialogHeight = '300px';
-  dialogPosition: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' = 'center';
-  
-  // Code visibility states
-  showBasicDialogCode = false;
-  showModalDialogCode = false;
-  showResizableDialogCode = false;
-  showDraggableDialogCode = false;
-  showMaximizableDialogCode = false;
-  showCustomDialogCode = false;
-  
-  onTabChange(tab: string) {
+  basicDialogConfig = {
+    header: 'Basic Dialog',
+    modal: false,
+    closable: true,
+    draggable: true,
+    resizable: false,
+    maximizable: false
+  };
+
+  modalDialogConfig = {
+    header: 'Modal Dialog',
+    modal: true,
+    closable: true,
+    draggable: true,
+    resizable: false,
+    maximizable: false
+  };
+
+  resizableDialogConfig = {
+    header: 'Resizable Dialog',
+    modal: true,
+    closable: true,
+    draggable: true,
+    resizable: true,
+    maximizable: false,
+    width: '400px',
+    height: '300px'
+  };
+
+  maximizableDialogConfig = {
+    header: 'Maximizable Dialog',
+    modal: true,
+    closable: true,
+    draggable: true,
+    resizable: false,
+    maximizable: true,
+    width: '500px',
+    height: '400px'
+  };
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
+
+  toggleCode(section: string): void {
+    switch (section) {
       case 'basicDialog':
         this.showBasicDialogCode = !this.showBasicDialogCode;
         break;
@@ -50,32 +82,61 @@ export class DialogPage {
       case 'resizableDialog':
         this.showResizableDialogCode = !this.showResizableDialogCode;
         break;
-      case 'draggableDialog':
-        this.showDraggableDialogCode = !this.showDraggableDialogCode;
-        break;
-      case 'maximizableDialog':
-        this.showMaximizableDialogCode = !this.showMaximizableDialogCode;
-        break;
-      case 'customDialog':
-        this.showCustomDialogCode = !this.showCustomDialogCode;
+      case 'customStyling':
+        this.showCustomStylingCode = !this.showCustomStylingCode;
         break;
     }
   }
-  
-  // Dialog event handlers
-  onDialogShow() {
+
+  // Dialog actions
+  showBasicDialog(): void {
+    this.basicDialogVisible = true;
+  }
+
+  showModalDialog(): void {
+    this.modalDialogVisible = true;
+  }
+
+  showResizableDialog(): void {
+    this.resizableDialogVisible = true;
+  }
+
+  showMaximizableDialog(): void {
+    this.maximizableDialogVisible = true;
+  }
+
+  onDialogShow(): void {
     console.log('Dialog shown');
   }
-  
-  onDialogHide() {
+
+  onDialogHide(): void {
     console.log('Dialog hidden');
   }
-  
-  onDialogMaximize() {
+
+  onDialogMaximize(): void {
     console.log('Dialog maximized');
+    this.maximizedDialogVisible = true;
   }
-  
-  onDialogUnmaximize() {
+
+  onDialogUnmaximize(): void {
     console.log('Dialog unmaximized');
+    this.maximizedDialogVisible = false;
+  }
+
+  closeDialog(dialogType: string): void {
+    switch (dialogType) {
+      case 'basic':
+        this.basicDialogVisible = false;
+        break;
+      case 'modal':
+        this.modalDialogVisible = false;
+        break;
+      case 'resizable':
+        this.resizableDialogVisible = false;
+        break;
+      case 'maximizable':
+        this.maximizableDialogVisible = false;
+        break;
+    }
   }
 }

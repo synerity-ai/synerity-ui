@@ -1,0 +1,395 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">OrgChart</h1>
+    <p class="text-lg text-gray-600">Hierarchical organization chart components for displaying company structures, family trees, and other tree-like data relationships.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic OrgChart -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic OrgChart</h3>
+            <button 
+              (click)="toggleCode('basicOrgChart')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicOrgChartCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-org-chart 
+                [value]="basicOrgData"
+                (onNodeSelect)="onNodeSelect($event)"
+                (onNodeExpand)="onNodeExpand($event)"
+                (onNodeCollapse)="onNodeCollapse($event)">
+              </sui-org-chart>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showBasicOrgChartCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-org-chart 
+  [value]="basicOrgData"
+  (onNodeSelect)="onNodeSelect($event)"
+  (onNodeExpand)="onNodeExpand($event)"
+  (onNodeCollapse)="onNodeCollapse($event)"&gt;
+&lt;/sui-org-chart&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Selection Modes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Selection Modes</h3>
+            <button 
+              (click)="toggleCode('selectionModes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showSelectionModesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Single Selection -->
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Single Selection</h4>
+                  <sui-org-chart 
+                    [value]="basicOrgData"
+                    selectionMode="single"
+                    (onNodeSelect)="onNodeSelect($event)">
+                  </sui-org-chart>
+                </div>
+                
+                <!-- Multiple Selection -->
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Multiple Selection</h4>
+                  <sui-org-chart 
+                    [value]="basicOrgData"
+                    selectionMode="multiple"
+                    (onNodeSelect)="onNodeSelect($event)"
+                    (onNodeUnselect)="onNodeUnselect($event)">
+                  </sui-org-chart>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showSelectionModesCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;!-- Single Selection --&gt;
+&lt;sui-org-chart 
+  [value]="basicOrgData"
+  selectionMode="single"
+  (onNodeSelect)="onNodeSelect($event)"&gt;
+&lt;/sui-org-chart&gt;
+
+&lt;!-- Multiple Selection --&gt;
+&lt;sui-org-chart 
+  [value]="basicOrgData"
+  selectionMode="multiple"
+  (onNodeSelect)="onNodeSelect($event)"
+  (onNodeUnselect)="onNodeUnselect($event)"&gt;
+&lt;/sui-org-chart&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Orientation -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Orientation</h3>
+            <button 
+              (click)="toggleCode('orientation')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showOrientationCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Vertical -->
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Vertical (Default)</h4>
+                  <sui-org-chart 
+                    [value]="basicOrgData"
+                    orientation="vertical">
+                  </sui-org-chart>
+                </div>
+                
+                <!-- Horizontal -->
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Horizontal</h4>
+                  <sui-org-chart 
+                    [value]="basicOrgData"
+                    orientation="horizontal">
+                  </sui-org-chart>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showOrientationCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;!-- Vertical --&gt;
+&lt;sui-org-chart 
+  [value]="basicOrgData"
+  orientation="vertical"&gt;
+&lt;/sui-org-chart&gt;
+
+&lt;!-- Horizontal --&gt;
+&lt;sui-org-chart 
+  [value]="basicOrgData"
+  orientation="horizontal"&gt;
+&lt;/sui-org-chart&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Complex Data -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Complex Data Structure</h3>
+            <button 
+              (click)="toggleCode('complexData')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showComplexDataCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-org-chart 
+                [value]="complexOrgData"
+                selectionMode="single"
+                (onNodeSelect)="onNodeSelect($event)">
+              </sui-org-chart>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showComplexDataCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-org-chart 
+  [value]="complexOrgData"
+  selectionMode="single"
+  (onNodeSelect)="onNodeSelect($event)"&gt;
+&lt;/sui-org-chart&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Usage Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-8">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>npm install @synerity/ui-lib</code></pre>
+          </div>
+        </div>
+
+        <!-- Import -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Import</h3>
+          <div class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>import {{ '{' }} OrgChart {{ '}' }} from '@synerity/ui-lib';
+
+@Component({{ '{' }}
+  imports: [OrgChart],
+  // ...
+{{ '}' }})</code></pre>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-org-chart [value]="orgData"&gt;&lt;/sui-org-chart&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Data Structure -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Data Structure</h3>
+          <div class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>interface OrgChartNode {{ '{' }}
+  key: string;
+  label: string;
+  data?: any;
+  children?: OrgChartNode[];
+  expanded?: boolean;
+  type?: string;
+{{ '}' }}
+
+const orgData: OrgChartNode[] = [
+  {{ '{' }}
+    key: 'ceo',
+    label: 'CEO',
+    data: {{ '{' }} department: 'Executive', role: 'Chief Executive Officer' {{ '}' }},
+    children: [
+      {{ '{' }}
+        key: 'cto',
+        label: 'CTO',
+        data: {{ '{' }} department: 'Technology', role: 'Chief Technology Officer' {{ '}' }},
+        children: [
+          {{ '{' }} key: 'dev1', label: 'Senior Developer', data: {{ '{' }} role: 'Developer' {{ '}' }} {{ '}' }},
+          {{ '{' }} key: 'dev2', label: 'Junior Developer', data: {{ '{' }} role: 'Developer' {{ '}' }} {{ '}' }}
+        ]
+      {{ '}' }}
+    ]
+  {{ '}' }}
+];</code></pre>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Hierarchical data display with parent-child relationships</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Single and multiple selection modes</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Vertical and horizontal orientations</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Collapsible nodes with expand/collapse functionality</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Custom node data display</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Event handling for node interactions</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'documentation'">
+      <div class="space-y-8">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">OrgChartNode[]</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Array of organization chart nodes</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">selectionMode</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'single' | 'multiple' | null</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Selection mode for nodes</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">collapsible</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Whether nodes can be collapsed/expanded</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">orientation</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'vertical' | 'horizontal'</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'vertical'</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Chart orientation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Parameters</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onNodeSelect</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">node: OrgChartNode</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Fired when a node is selected</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onNodeUnselect</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">node: OrgChartNode</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Fired when a node is unselected</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onNodeExpand</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">node: OrgChartNode</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Fired when a node is expanded</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onNodeCollapse</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">node: OrgChartNode</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">Fired when a node is collapsed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">ℹ</span>
+              <span>Keyboard navigation support for node selection</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">ℹ</span>
+              <span>ARIA labels for screen readers</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">ℹ</span>
+              <span>Focus management for interactive elements</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

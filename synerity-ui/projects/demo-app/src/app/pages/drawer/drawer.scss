@@ -1,0 +1,298 @@
+// Drawer Demo Page Styles
+
+// Basic drawer styling
+.sui-drawer {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  .sui-drawer-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+  }
+  
+  .sui-drawer {
+    position: fixed;
+    background-color: #ffffff;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    animation: drawerSlideIn 0.3s ease-out;
+    
+    &.sui-drawer-left {
+      top: 0;
+      left: 0;
+      height: 100%;
+      transform: translateX(-100%);
+      animation: drawerSlideInLeft 0.3s ease-out forwards;
+    }
+    
+    &.sui-drawer-right {
+      top: 0;
+      right: 0;
+      height: 100%;
+      transform: translateX(100%);
+      animation: drawerSlideInRight 0.3s ease-out forwards;
+    }
+    
+    &.sui-drawer-top {
+      top: 0;
+      left: 0;
+      width: 100%;
+      transform: translateY(-100%);
+      animation: drawerSlideInTop 0.3s ease-out forwards;
+    }
+    
+    &.sui-drawer-bottom {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      transform: translateY(100%);
+      animation: drawerSlideInBottom 0.3s ease-out forwards;
+    }
+  }
+  
+  .sui-drawer-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+    
+    .sui-drawer-close {
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      background: none;
+      font-size: 1.5rem;
+      color: #6b7280;
+      cursor: pointer;
+      border-radius: 0.375rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: #f3f4f6;
+        color: #374151;
+      }
+    }
+  }
+  
+  .sui-drawer-content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    height: calc(100% - 4rem);
+    
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #111827;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+      color: #6b7280;
+      line-height: 1.6;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    ul, ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      
+      li {
+        margin-bottom: 0.5rem;
+        color: #6b7280;
+      }
+    }
+  }
+}
+
+// Animations for drawer appearance
+@keyframes drawerSlideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawerSlideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawerSlideInTop {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawerSlideInBottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .sui-drawer {
+    .sui-drawer {
+      &.sui-drawer-left,
+      &.sui-drawer-right {
+        width: 85%;
+      }
+      
+      &.sui-drawer-top,
+      &.sui-drawer-bottom {
+        height: 60%;
+      }
+    }
+    
+    .sui-drawer-header {
+      padding: 0.75rem 1rem;
+      
+      .sui-drawer-close {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 1.25rem;
+      }
+    }
+    
+    .sui-drawer-content {
+      padding: 1rem;
+      height: calc(100% - 3.5rem);
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+      }
+      
+      p {
+        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+}
+
+// Dark theme support
+@media (prefers-color-scheme: dark) {
+  .sui-drawer {
+    .sui-drawer-mask {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .sui-drawer {
+      background-color: #1f2937;
+      border: 1px solid #374151;
+    }
+    
+    .sui-drawer-header {
+      border-bottom-color: #374151;
+      
+      .sui-drawer-close {
+        color: #d1d5db;
+        
+        &:hover {
+          background-color: #374151;
+          color: #f9fafb;
+        }
+      }
+    }
+    
+    .sui-drawer-content {
+      h1, h2, h3, h4, h5, h6 {
+        color: #f9fafb;
+      }
+      
+      p {
+        color: #d1d5db;
+      }
+      
+      ul, ol {
+        li {
+          color: #d1d5db;
+        }
+      }
+    }
+  }
+}
+
+// Accessibility improvements
+.sui-drawer {
+  .sui-drawer-mask {
+    // Ensure proper focus management
+    &:focus-within {
+      outline: none;
+    }
+  }
+  
+  .sui-drawer {
+    // Screen reader support
+    &[role="dialog"] {
+      // Dialog role for screen readers
+    }
+    
+    &[aria-modal="true"] {
+      // Modal drawer with ARIA support
+    }
+  }
+  
+  .sui-drawer-close {
+    // Ensure proper focus management
+    &:focus-within {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Custom styling support
+.sui-drawer {
+  // Allow custom styles to override defaults
+  &[style*="background-color"] {
+    .sui-drawer {
+      background-color: inherit !important;
+    }
+  }
+  
+  &[style*="border-color"] {
+    .sui-drawer {
+      border-color: inherit !important;
+    }
+  }
+}
+
+// Performance optimizations
+.sui-drawer {
+  // Enable hardware acceleration for smooth animations
+  .sui-drawer {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  .sui-drawer-content {
+    // Optimize content rendering
+    contain: layout style paint;
+  }
+}

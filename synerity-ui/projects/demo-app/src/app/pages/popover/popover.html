@@ -1,1 +1,176 @@
-<p>popover works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Popover</h1>
+    <p class="text-lg text-gray-600">Contextual popup content that appears relative to a target element with customizable positioning and behavior.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Popover -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Popover</h3>
+            <button 
+              (click)="toggleCode('basicPopover')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicPopoverCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-popover 
+                [visible]="basicPopoverVisible"
+                [position]="basicPopoverConfig.position"
+                [dismissible]="basicPopoverConfig.dismissible"
+                [showCloseIcon]="basicPopoverConfig.showCloseIcon"
+                (onShow)="onPopoverShow()"
+                (onHide)="onPopoverHide()">
+                
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                  Show Popover
+                </button>
+                
+                <div slot="content" class="p-4">
+                  <h4 class="font-semibold text-gray-900 mb-2">Popover Content</h4>
+                  <p class="text-gray-600 mb-3">This is a basic popover with some content.</p>
+                  <div class="flex gap-2">
+                    <button 
+                      (click)="onEditClick()"
+                      class="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700">
+                      Edit
+                    </button>
+                    <button 
+                      (click)="onDeleteClick()"
+                      class="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </sui-popover>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showBasicPopoverCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-popover
+  [visible]="basicPopoverVisible"
+  [position]="basicPopoverConfig.position"
+  [dismissible]="basicPopoverConfig.dismissible"
+  [showCloseIcon]="basicPopoverConfig.showCloseIcon"
+  (onShow)="onPopoverShow()"
+  (onHide)="onPopoverHide()"&gt;
+  
+  &lt;button&gt;Show Popover&lt;/button&gt;
+  
+  &lt;div slot="content"&gt;
+    &lt;h4&gt;Popover Content&lt;/h4&gt;
+    &lt;p&gt;This is a basic popover with some content.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-popover&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Positioned Popovers -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Positioned Popovers</h3>
+            <button 
+              (click)="toggleCode('positionedPopover')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showPositionedPopoverCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <sui-popover 
+                  [visible]="topPopoverVisible"
+                  [position]="topPopoverConfig.position"
+                  [dismissible]="topPopoverConfig.dismissible"
+                  [showCloseIcon]="topPopoverConfig.showCloseIcon">
+                  
+                  <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                    Top
+                  </button>
+                  
+                  <div slot="content" class="p-3">
+                    <p class="text-sm text-gray-600">Popover on top</p>
+                  </div>
+                </sui-popover>
+
+                <sui-popover 
+                  [visible]="bottomPopoverVisible"
+                  [position]="bottomPopoverConfig.position"
+                  [dismissible]="bottomPopoverConfig.dismissible"
+                  [showCloseIcon]="bottomPopoverConfig.showCloseIcon">
+                  
+                  <button class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors">
+                    Bottom
+                  </button>
+                  
+                  <div slot="content" class="p-3">
+                    <p class="text-sm text-gray-600">Popover on bottom</p>
+                  </div>
+                </sui-popover>
+
+                <sui-popover 
+                  [visible]="leftPopoverVisible"
+                  [position]="leftPopoverConfig.position"
+                  [dismissible]="leftPopoverConfig.dismissible"
+                  [showCloseIcon]="leftPopoverConfig.showCloseIcon">
+                  
+                  <button class="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors">
+                    Left
+                  </button>
+                  
+                  <div slot="content" class="p-3">
+                    <p class="text-sm text-gray-600">Popover on left</p>
+                  </div>
+                </sui-popover>
+
+                <sui-popover 
+                  [visible]="rightPopoverVisible"
+                  [position]="rightPopoverConfig.position"
+                  [dismissible]="rightPopoverConfig.dismissible"
+                  [showCloseIcon]="rightPopoverConfig.showCloseIcon">
+                  
+                  <button class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                    Right
+                  </button>
+                  
+                  <div slot="content" class="p-3">
+                    <p class="text-sm text-gray-600">Popover on right</p>
+                  </div>
+                </sui-popover>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showPositionedPopoverCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-popover
+  [visible]="topPopoverVisible"
+  [position]="'top'"
+  [dismissible]="true"
+  [showCloseIcon]="false"&gt;
+  
+  &lt;button&gt;Top&lt;/button&gt;
+  
+  &lt;div slot="content"&gt;
+    &lt;p&gt;Popover on top&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-popover&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

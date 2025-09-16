@@ -1,1 +1,124 @@
-<p>drawer works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Drawer</h1>
+    <p class="text-lg text-gray-600">Slide-out panels that can be positioned on any side of the screen with customizable content and behavior.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Drawer -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Drawer</h3>
+            <button 
+              (click)="toggleCode('basicDrawer')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicDrawerCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button 
+                  (click)="showLeftDrawer()"
+                  class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                  Left Drawer
+                </button>
+                <button 
+                  (click)="showRightDrawer()"
+                  class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                  Right Drawer
+                </button>
+                <button 
+                  (click)="showTopDrawer()"
+                  class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors">
+                  Top Drawer
+                </button>
+                <button 
+                  (click)="showBottomDrawer()"
+                  class="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors">
+                  Bottom Drawer
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showBasicDrawerCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-drawer
+  [visible]="leftDrawerVisible"
+  [position]="leftDrawerConfig.position"
+  [modal]="leftDrawerConfig.modal"
+  [closable]="leftDrawerConfig.closable"
+  [width]="leftDrawerConfig.width"
+  (onShow)="onDrawerShow()"
+  (onHide)="onDrawerHide()"&gt;
+  
+  &lt;div class="p-6"&gt;
+    &lt;h3&gt;Left Drawer Content&lt;/h3&gt;
+    &lt;p&gt;This is the content of the left drawer.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-drawer&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Modal vs Non-Modal -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Modal vs Non-Modal</h3>
+            <button 
+              (click)="toggleCode('positionedDrawer')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showPositionedDrawerCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="flex gap-4">
+                <button 
+                  (click)="showModalDrawer()"
+                  class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                  Modal Drawer
+                </button>
+                <button 
+                  (click)="showNonModalDrawer()"
+                  class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
+                  Non-Modal Drawer
+                </button>
+              </div>
+              <p class="mt-4 text-sm text-gray-600">
+                Modal drawer blocks interaction with the background, while non-modal allows interaction with the main content.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showPositionedDrawerCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-drawer
+  [visible]="modalDrawerVisible"
+  [position]="modalDrawerConfig.position"
+  [modal]="modalDrawerConfig.modal"
+  [closable]="modalDrawerConfig.closable"
+  [width]="modalDrawerConfig.width"
+  (onShow)="onDrawerShow()"
+  (onHide)="onDrawerHide()"&gt;
+  
+  &lt;div class="p-6"&gt;
+    &lt;h3&gt;Modal Drawer Content&lt;/h3&gt;
+    &lt;p&gt;This drawer blocks interaction with the background.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-drawer&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

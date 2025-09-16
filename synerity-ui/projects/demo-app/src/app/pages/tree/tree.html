@@ -1,1 +1,48 @@
-<p>tree works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Tree</h1>
+    <p class="text-lg text-gray-600">Tree components for displaying hierarchical data with expandable nodes, selection, and filtering capabilities.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Tree -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Tree</h3>
+            <button 
+              (click)="toggleCode('basicTree')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicTreeCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-tree 
+                [value]="basicTreeData"
+                (onNodeExpand)="onNodeExpand($event)"
+                (onNodeCollapse)="onNodeCollapse($event)">
+              </sui-tree>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showBasicTreeCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-tree 
+  [value]="basicTreeData"
+  (onNodeExpand)="onNodeExpand($event)"
+  (onNodeCollapse)="onNodeCollapse($event)"&gt;
+&lt;/sui-tree&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

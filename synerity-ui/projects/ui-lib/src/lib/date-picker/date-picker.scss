@@ -213,8 +213,8 @@
 
 // Calendar Panel
 .sui-date-picker-calendar {
-  position: fixed;
-  z-index: 999999;
+  position: fixed !important;
+  z-index: 999999 !important;
   width: 320px;
   background: var(--sui-bg-primary);
   border: 1px solid var(--sui-border-primary);
@@ -222,7 +222,7 @@
   box-shadow: var(--sui-shadow);
   overflow: hidden;
   
-  // Ensure calendar is always visible
+  // Ensure calendar is always visible and on top
   &::before {
     content: '';
     position: absolute;
@@ -233,6 +233,18 @@
     background: var(--sui-bg-primary);
     border-radius: 12px;
     z-index: -1;
+  }
+  
+  // Force calendar to be above all other elements
+  &::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+    pointer-events: none;
   }
 }
 
@@ -651,7 +663,8 @@
 // Ensure calendar is always on top
 .sui-date-picker-calendar {
   position: fixed !important;
-  z-index: 999999 !important;
+  // z-index will be set dynamically via inline styles
+  isolation: isolate !important;
 }
 
 // Override any parent container constraints
@@ -667,4 +680,10 @@
 
 :host-context(.overflow-auto) {
   overflow: visible !important;
+}
+
+// Additional specificity for multiple datepickers
+.sui-date-picker-open .sui-date-picker-calendar {
+  position: fixed !important;
+  isolation: isolate !important;
 }

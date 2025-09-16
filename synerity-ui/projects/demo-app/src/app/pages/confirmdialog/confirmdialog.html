@@ -1,1 +1,53 @@
-<p>confirmdialog works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Confirm Dialog</h1>
+    <p class="text-lg text-gray-600">Modal confirmation dialogs for user actions with customizable messages and buttons.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Confirm Dialog -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Confirm Dialog</h3>
+            <button 
+              (click)="toggleCode('basicDialog')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicDialogCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <button 
+                (click)="showBasicDialog()"
+                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                Show Basic Dialog
+              </button>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showBasicDialogCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-confirm-dialog
+  [visible]="basicDialogVisible"
+  [header]="basicDialogConfig.header"
+  [message]="basicDialogConfig.message"
+  [acceptLabel]="basicDialogConfig.acceptLabel"
+  [rejectLabel]="basicDialogConfig.rejectLabel"
+  (onAccept)="onBasicAccept()"
+  (onReject)="onBasicReject()"
+  (onHide)="onDialogHide()"&gt;
+&lt;/sui-confirm-dialog&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

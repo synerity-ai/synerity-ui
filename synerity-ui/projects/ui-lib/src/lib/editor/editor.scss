@@ -1,0 +1,426 @@
+// Enterprise Editor Styles
+.sui-editor {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+  overflow: hidden;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #9ca3af;
+  }
+
+  &:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  // Toolbar
+  &-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    padding: 8px 12px;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+
+    &-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      position: relative;
+
+      &:hover {
+        background: #e5e7eb;
+        color: #374151;
+      }
+
+      &:active {
+        background: #d1d5db;
+        transform: translateY(1px);
+      }
+
+      &.active {
+        background: #3b82f6;
+        color: #ffffff;
+      }
+
+      // Toolbar button icons
+      &[title="Bold"] {
+        font-weight: 700;
+      }
+
+      &[title="Italic"] {
+        font-style: italic;
+      }
+
+      &[title="Underline"] {
+        text-decoration: underline;
+      }
+
+      &[title="Bullet List"] {
+        font-size: 16px;
+        line-height: 1;
+      }
+
+      &[title="Numbered List"] {
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      &[title="Link"] {
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      &[title="Image"] {
+        font-size: 16px;
+        line-height: 1;
+      }
+
+      &[title="Code"] {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 12px;
+        background: #f3f4f6;
+        border-radius: 3px;
+        padding: 2px 4px;
+      }
+
+      &[title="Quote"] {
+        font-size: 16px;
+        line-height: 1;
+      }
+
+      &[title="Undo"] {
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      &[title="Redo"] {
+        font-size: 12px;
+        font-weight: 400;
+      }
+    }
+
+    // Separator
+    &-separator {
+      width: 1px;
+      height: 20px;
+      background: #d1d5db;
+      margin: 0 4px;
+    }
+
+    // Select dropdown
+    &-select {
+      height: 32px;
+      padding: 0 8px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      background: #ffffff;
+      color: #374151;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+
+      &:hover {
+        border-color: #9ca3af;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+      }
+    }
+  }
+
+  // Content area
+  &-content {
+    flex: 1;
+    padding: 12px 16px;
+    min-height: 100px;
+    outline: none;
+    overflow-y: auto;
+    background: #ffffff;
+    color: #374151;
+    font-size: 14px;
+    line-height: 1.6;
+
+    // Placeholder styling
+    &:empty:before {
+      content: attr(placeholder);
+      color: #9ca3af;
+      pointer-events: none;
+      position: absolute;
+    }
+
+    // Content styling
+    p {
+      margin: 0 0 8px 0;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 16px 0 8px 0;
+      font-weight: 600;
+      line-height: 1.3;
+      
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
+    h3 { font-size: 18px; }
+    h4 { font-size: 16px; }
+    h5 { font-size: 14px; }
+    h6 { font-size: 12px; }
+
+    ul, ol {
+      margin: 8px 0;
+      padding-left: 24px;
+      
+      li {
+        margin: 4px 0;
+      }
+    }
+
+    blockquote {
+      margin: 16px 0;
+      padding: 12px 16px;
+      border-left: 4px solid #3b82f6;
+      background: #f8fafc;
+      border-radius: 0 4px 4px 0;
+      font-style: italic;
+      color: #64748b;
+    }
+
+    code {
+      background: #f1f5f9;
+      color: #e11d48;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 13px;
+    }
+
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 16px 0;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 13px;
+      line-height: 1.5;
+
+      code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+        border-radius: 0;
+      }
+    }
+
+    a {
+      color: #3b82f6;
+      text-decoration: underline;
+      
+      &:hover {
+        color: #1d4ed8;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin: 8px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      
+      th, td {
+        border: 1px solid #e5e7eb;
+        padding: 8px 12px;
+        text-align: left;
+      }
+      
+      th {
+        background: #f9fafb;
+        font-weight: 600;
+      }
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 24px 0;
+    }
+  }
+
+  // States
+  &-disabled {
+    background: #f9fafb;
+    border-color: #e5e7eb;
+    cursor: not-allowed;
+    
+    .sui-editor-toolbar {
+      background: #f3f4f6;
+      
+      &-button {
+        cursor: not-allowed;
+        opacity: 0.5;
+        
+        &:hover {
+          background: transparent;
+          color: #6b7280;
+        }
+      }
+    }
+    
+    .sui-editor-content {
+      background: #f9fafb;
+      color: #9ca3af;
+      cursor: not-allowed;
+    }
+  }
+
+  &-readonly {
+    .sui-editor-toolbar {
+      display: none;
+    }
+    
+    .sui-editor-content {
+      background: #f9fafb;
+      cursor: default;
+    }
+  }
+
+  // Focus state
+  &:focus-within {
+    .sui-editor-toolbar {
+      border-bottom-color: #3b82f6;
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    &-toolbar {
+      padding: 6px 8px;
+      gap: 2px;
+      
+      &-button {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+      }
+    }
+    
+    &-content {
+      padding: 8px 12px;
+      font-size: 16px; // Prevent zoom on iOS
+    }
+  }
+
+  // Dark theme support
+  &.sui-editor-dark {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+
+    .sui-editor-toolbar {
+      background: #111827;
+      border-bottom-color: #374151;
+      
+      &-button {
+        color: #9ca3af;
+        
+        &:hover {
+          background: #374151;
+          color: #f9fafb;
+        }
+        
+        &.active {
+          background: #3b82f6;
+          color: #ffffff;
+        }
+      }
+    }
+
+    .sui-editor-content {
+      background: #1f2937;
+      color: #f9fafb;
+
+      &:empty:before {
+        color: #6b7280;
+      }
+
+      blockquote {
+        background: #111827;
+        border-left-color: #3b82f6;
+        color: #9ca3af;
+      }
+
+      code {
+        background: #374151;
+        color: #fbbf24;
+      }
+
+      pre {
+        background: #000000;
+        color: #e5e7eb;
+      }
+
+      table {
+        th, td {
+          border-color: #374151;
+        }
+        
+        th {
+          background: #111827;
+        }
+      }
+
+      hr {
+        border-top-color: #374151;
+      }
+    }
+
+    &.sui-editor-disabled {
+      background: #111827;
+      border-color: #374151;
+      
+      .sui-editor-content {
+        background: #111827;
+        color: #6b7280;
+      }
+    }
+  }
+}

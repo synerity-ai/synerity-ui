@@ -1,1 +1,107 @@
-<p>toolbar works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Toolbar</h1>
+    <p class="text-lg text-gray-600">Toolbar components for creating action bars with buttons, icons, and customizable layouts.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Horizontal Toolbar -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Horizontal Toolbar</h3>
+            <button 
+              (click)="toggleCode('basicToolbar')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicToolbarCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-toolbar 
+                orientation="horizontal"
+                [leftItems]="basicLeftItems"
+                [rightItems]="basicRightItems"
+                (onItemClick)="onItemClick($event)">
+                
+                <div class="flex-1 text-center">
+                  <span class="text-sm text-gray-500">Document Editor</span>
+                </div>
+              </sui-toolbar>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showBasicToolbarCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-toolbar 
+  orientation="horizontal"
+  [leftItems]="basicLeftItems"
+  [rightItems]="basicRightItems"
+  (onItemClick)="onItemClick($event)"&gt;
+  
+  &lt;div class="flex-1 text-center"&gt;
+    &lt;span class="text-sm text-gray-500"&gt;Document Editor&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/sui-toolbar&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Vertical Toolbar -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Vertical Toolbar</h3>
+            <button 
+              (click)="toggleCode('verticalToolbar')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showVerticalToolbarCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <div class="flex gap-6">
+                <sui-toolbar 
+                  orientation="vertical"
+                  [leftItems]="verticalLeftItems"
+                  [rightItems]="verticalRightItems"
+                  (onItemClick)="onItemClick($event)">
+                </sui-toolbar>
+                
+                <div class="flex-1 p-4 bg-gray-50 rounded-md">
+                  <h4 class="text-lg font-medium text-gray-900 mb-2">Content Area</h4>
+                  <p class="text-gray-600">
+                    This is the main content area. The vertical toolbar on the left provides navigation and tools.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showVerticalToolbarCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;div class="flex gap-6"&gt;
+  &lt;sui-toolbar 
+    orientation="vertical"
+    [leftItems]="verticalLeftItems"
+    [rightItems]="verticalRightItems"
+    (onItemClick)="onItemClick($event)"&gt;
+  &lt;/sui-toolbar&gt;
+  
+  &lt;div class="flex-1 p-4 bg-gray-50 rounded-md"&gt;
+    &lt;h4&gt;Content Area&lt;/h4&gt;
+    &lt;p&gt;This is the main content area.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

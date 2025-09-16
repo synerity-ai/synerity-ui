@@ -16,6 +16,38 @@ import { NgIf, CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription, fromEvent } from 'rxjs';
 
+// Global z-index manager for datepicker calendars
+class DatePickerZIndexManager {
+  private static instance: DatePickerZIndexManager;
+  private baseZIndex = 999999;
+  private currentZIndex = 999999;
+  private openCalendars = new Set<DatePicker>();
+
+  static getInstance(): DatePickerZIndexManager {
+    if (!DatePickerZIndexManager.instance) {
+      DatePickerZIndexManager.instance = new DatePickerZIndexManager();
+    }
+    return DatePickerZIndexManager.instance;
+  }
+
+  registerCalendar(calendar: DatePicker): number {
+    this.openCalendars.add(calendar);
+    this.currentZIndex += 10;
+    return this.currentZIndex;
+  }
+
+  unregisterCalendar(calendar: DatePicker): void {
+    this.openCalendars.delete(calendar);
+    if (this.openCalendars.size === 0) {
+      this.currentZIndex = this.baseZIndex;
+    }
+  }
+
+  getCurrentZIndex(): number {
+    return this.currentZIndex;
+  }
+}
+
 export interface DatePickerConfig {
   format: string;
   minDate?: Date;
@@ -101,6 +133,8 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   currentMonth = new Date().getMonth();
   currentYear = new Date().getFullYear();
   selectedTime = { hours: 0, minutes: 0 };
+  private calendarZIndex = 999999;
+  private calendarElement: HTMLElement | null = null;
   
   // Calendar Data
   weekDays: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -128,6 +162,12 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   }
 
   ngOnDestroy(): void {
+    // Ensure calendar is unregistered if component is destroyed while open
+    if (this.isOpen) {
+      const zIndexManager = DatePickerZIndexManager.getInstance();
+      zIndexManager.unregisterCalendar(this);
+      this.removeCalendarFromBody();
+    }
     this.cleanupEventListeners();
   }
 
@@ -145,18 +185,27 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   open(): void {
     if (this.disabled || this.readonly || this.isOpen) return;
     
+    // Register with z-index manager to get highest z-index
+    const zIndexManager = DatePickerZIndexManager.getInstance();
+    this.calendarZIndex = zIndexManager.registerCalendar(this);
+    
     this.isOpen = true;
     this.updateCurrentDate();
+    this.createCalendarInBody();
     this.bindEventListeners();
     this.onOpen.emit();
     this.cdr.detectChanges();
-    
-    // Position the calendar after it's rendered
-    setTimeout(() => this.positionCalendar(), 0);
   }
 
   close(): void {
     if (!this.isOpen) return;
+    
+    // Unregister from z-index manager
+    const zIndexManager = DatePickerZIndexManager.getInstance();
+    zIndexManager.unregisterCalendar(this);
+    
+    // Remove calendar from body
+    this.removeCalendarFromBody();
     
     this.isOpen = false;
     this.currentView = 'calendar';
@@ -424,7 +473,14 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     if (!this.isOpen) return {};
     
     const triggerRect = this.triggerElement?.nativeElement?.getBoundingClientRect();
-    if (!triggerRect) return { zIndex: 999999 };
+    if (!triggerRect) return { 
+      position: 'fixed',
+      zIndex: this.calendarZIndex,
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      isolation: 'isolate'
+    };
     
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
@@ -447,8 +503,339 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       position: 'fixed',
       top: `${top}px`,
       left: `${left}px`,
-      zIndex: 999999
+      zIndex: this.calendarZIndex,
+      // Ensure calendar is always on top
+      isolation: 'isolate',
+      // Force hardware acceleration
+      transform: 'translateZ(0)',
+      willChange: 'transform'
     };
+  }
+
+  // Calendar Body Management
+  private createCalendarInBody(): void {
+    if (this.calendarElement) {
+      this.removeCalendarFromBody();
+    }
+
+    // Create calendar element
+    this.calendarElement = document.createElement('div');
+    this.calendarElement.className = this.getCalendarClass();
+    this.calendarElement.setAttribute('role', 'dialog');
+    this.calendarElement.setAttribute('aria-label', 'Date picker calendar');
+    
+    // Set styles
+    const styles = this.getCalendarStyle();
+    Object.assign(this.calendarElement.style, styles);
+    
+    // Add calendar content
+    this.renderCalendarContent();
+    
+    // Append to body
+    document.body.appendChild(this.calendarElement);
+    
+    // Ensure CSS is available globally
+    this.ensureGlobalStyles();
+  }
+
+  private removeCalendarFromBody(): void {
+    if (this.calendarElement && this.calendarElement.parentNode) {
+      this.calendarElement.parentNode.removeChild(this.calendarElement);
+      this.calendarElement = null;
+    }
+  }
+
+  private renderCalendarContent(): void {
+    if (!this.calendarElement) return;
+
+    const calendarHTML = `
+      <div class="sui-date-picker-header">
+        <div class="sui-date-picker-nav">
+          <button type="button" class="sui-date-picker-nav-button" data-action="prev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15,18 9,12 15,6"></polyline>
+            </svg>
+          </button>
+          <button type="button" class="sui-date-picker-month-year" data-action="month">${this.monthNames[this.currentMonth]}</button>
+          <button type="button" class="sui-date-picker-month-year" data-action="year">${this.currentYear}</button>
+          <button type="button" class="sui-date-picker-nav-button" data-action="next">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9,18 15,12 9,6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="sui-date-picker-content">
+        <div class="sui-date-picker-calendar-view">
+          <div class="sui-date-picker-weekdays">
+            ${this.weekDays.map(day => `<div class="sui-date-picker-weekday">${day}</div>`).join('')}
+          </div>
+          <div class="sui-date-picker-days">
+            ${this.getCalendarDays().map(day => `
+              <button type="button" class="sui-date-picker-day ${day.isCurrentMonth ? '' : 'sui-date-picker-day-other-month'} ${day.isToday ? 'sui-date-picker-day-today' : ''} ${day.isSelected ? 'sui-date-picker-day-selected' : ''} ${day.isDisabled ? 'sui-date-picker-day-disabled' : ''} ${day.isWeekend ? 'sui-date-picker-day-weekend' : ''}" ${day.isDisabled ? 'disabled' : ''} data-date="${day.date.toISOString()}">
+                ${day.day}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="sui-date-picker-footer">
+        <button type="button" class="sui-date-picker-today" data-action="today">Today</button>
+        <button type="button" class="sui-date-picker-clear-footer" data-action="clear">Clear</button>
+      </div>
+    `;
+
+    this.calendarElement.innerHTML = calendarHTML;
+    this.bindCalendarEvents();
+  }
+
+  private bindCalendarEvents(): void {
+    if (!this.calendarElement) return;
+
+    // Navigation buttons
+    this.calendarElement.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      const action = target.getAttribute('data-action');
+      
+      if (action === 'prev') {
+        this.previousMonth();
+        this.renderCalendarContent();
+      } else if (action === 'next') {
+        this.nextMonth();
+        this.renderCalendarContent();
+      } else if (action === 'month') {
+        this.currentView = this.currentView === 'months' ? 'calendar' : 'months';
+        this.renderCalendarContent();
+      } else if (action === 'year') {
+        this.currentView = this.currentView === 'years' ? 'calendar' : 'years';
+        this.renderCalendarContent();
+      } else if (action === 'today') {
+        this.selectToday();
+      } else if (action === 'clear') {
+        this.clear();
+      } else if (target.classList.contains('sui-date-picker-day') && !target.hasAttribute('disabled')) {
+        const dateStr = target.getAttribute('data-date');
+        if (dateStr) {
+          this.selectDate(new Date(dateStr));
+        }
+      }
+    });
+  }
+
+  private ensureGlobalStyles(): void {
+    // Check if styles are already injected
+    if (document.getElementById('sui-date-picker-global-styles')) {
+      return;
+    }
+
+    // Create style element with all datepicker styles
+    const styleElement = document.createElement('style');
+    styleElement.id = 'sui-date-picker-global-styles';
+    styleElement.textContent = `
+      /* Global Datepicker Styles */
+      .sui-date-picker-calendar {
+        position: fixed !important;
+        z-index: 999999 !important;
+        width: 320px;
+        background: #ffffff;
+        border: 1px solid #d1d5db;
+        border-radius: 12px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #374151;
+        isolation: isolate !important;
+      }
+
+      .sui-date-picker-header {
+        padding: 16px;
+        border-bottom: 1px solid #d1d5db;
+        background: #f9fafb;
+      }
+
+      .sui-date-picker-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .sui-date-picker-nav-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: none;
+        border-radius: 6px;
+        cursor: pointer;
+        color: #6b7280;
+        transition: all 0.15s ease;
+      }
+
+      .sui-date-picker-nav-button:hover {
+        background-color: #f3f4f6;
+        color: #374151;
+      }
+
+      .sui-date-picker-month-year {
+        flex: 1;
+        padding: 8px 12px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: #374151;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        border-radius: 6px;
+        transition: all 0.15s ease;
+      }
+
+      .sui-date-picker-month-year:hover {
+        background-color: #f3f4f6;
+      }
+
+      .sui-date-picker-content {
+        padding: 16px;
+      }
+
+      .sui-date-picker-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        margin-bottom: 12px;
+      }
+
+      .sui-date-picker-weekday {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .sui-date-picker-days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        margin-bottom: 16px;
+      }
+
+      .sui-date-picker-day {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border: none;
+        background: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #374151;
+        transition: all 0.15s ease;
+        position: relative;
+      }
+
+      .sui-date-picker-day:hover:not(:disabled) {
+        background-color: #f3f4f6;
+        transform: scale(1.05);
+      }
+
+      .sui-date-picker-day-other-month {
+        color: #9ca3af;
+      }
+
+      .sui-date-picker-day-today {
+        background-color: #dbeafe;
+        color: #3b82f6;
+        font-weight: 600;
+      }
+
+      .sui-date-picker-day-today::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        background: #3b82f6;
+        border-radius: 50%;
+      }
+
+      .sui-date-picker-day-selected {
+        background-color: #3b82f6;
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      .sui-date-picker-day-selected:hover {
+        background-color: #3b82f6;
+        transform: scale(1.05);
+      }
+
+      .sui-date-picker-day-disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      .sui-date-picker-day-disabled:hover {
+        background: none;
+        transform: none;
+      }
+
+      .sui-date-picker-day-weekend {
+        color: #6b7280;
+      }
+
+      .sui-date-picker-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 16px;
+        border-top: 1px solid #d1d5db;
+        background: #f9fafb;
+      }
+
+      .sui-date-picker-today,
+      .sui-date-picker-clear-footer {
+        flex: 1;
+        padding: 8px 16px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        background: #ffffff;
+        cursor: pointer;
+        font-size: 14px;
+        color: #374151;
+        transition: all 0.15s ease;
+      }
+
+      .sui-date-picker-today:hover,
+      .sui-date-picker-clear-footer:hover {
+        background-color: #f3f4f6;
+        border-color: #3b82f6;
+      }
+
+      .sui-date-picker-today {
+        color: #3b82f6;
+        border-color: #3b82f6;
+      }
+
+      .sui-date-picker-today:hover {
+        background-color: #dbeafe;
+      }
+    `;
+
+    document.head.appendChild(styleElement);
   }
 
   // Private Methods

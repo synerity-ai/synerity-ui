@@ -14,16 +14,15 @@ export class Tabs {
   @Input() scrollable = false;
   @Input() style: any = {};
   @Input() styleClass = '';
-  @Output() onActiveIndexChange = new EventEmitter<number>();
-  @Output() onTabClose = new EventEmitter<number>();
-
-  tabs: Array<{ 
+  @Input() tabs: Array<{ 
     header: string; 
     content?: any; 
     disabled?: boolean;
     closable?: boolean;
     icon?: string;
   }> = [];
+  @Output() onActiveIndexChange = new EventEmitter<number>();
+  @Output() onTabClose = new EventEmitter<number>();
 
   setActiveIndex(index: number): void {
     if (!this.tabs[index]?.disabled) {

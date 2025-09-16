@@ -14,14 +14,13 @@ export class Stepper {
   @Input() linear = false;
   @Input() style: any = {};
   @Input() styleClass = '';
-  @Output() onActiveIndexChange = new EventEmitter<number>();
-
-  steps: Array<{ 
+  @Input() steps: Array<{ 
     label: string; 
     content?: any; 
     disabled?: boolean;
     completed?: boolean;
   }> = [];
+  @Output() onActiveIndexChange = new EventEmitter<number>();
 
   setActiveIndex(index: number): void {
     if (this.canNavigateToStep(index)) {

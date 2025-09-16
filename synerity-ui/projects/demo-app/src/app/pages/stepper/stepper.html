@@ -1,1 +1,84 @@
-<p>stepper works!</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Stepper</h1>
+    <p class="text-lg text-gray-600">Stepper components for creating step-by-step workflows with navigation controls and progress indicators.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs [activeTab]="activeTab" (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Stepper -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Stepper</h3>
+            <button 
+              (click)="toggleCode('basicStepper')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicStepperCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="p-6">
+              <sui-stepper 
+                [activeIndex]="currentStepIndex"
+                orientation="horizontal"
+                [steps]="basicSteps"
+                (onActiveIndexChange)="onActiveIndexChange($event)">
+                
+                <div class="mt-6 p-4 bg-blue-50 rounded-md">
+                  <h4 class="text-lg font-medium text-blue-900 mb-2">Step {{ currentStepIndex + 1 }} Content</h4>
+                  <p class="text-blue-700">
+                    This is the content for step {{ currentStepIndex + 1 }}: {{ basicSteps[currentStepIndex].label }}
+                  </p>
+                </div>
+              </sui-stepper>
+              
+              <!-- Navigation Controls -->
+              <div class="mt-6 flex justify-between">
+                <button 
+                  (click)="prevStep()"
+                  [disabled]="currentStepIndex === 0"
+                  class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 disabled:bg-gray-300 disabled:cursor-not-allowed">
+                  Previous
+                </button>
+                <button 
+                  (click)="completeCurrentStep()"
+                  [disabled]="currentStepIndex === basicSteps.length - 1"
+                  class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed">
+                  Complete Step
+                </button>
+                <button 
+                  (click)="nextStep()"
+                  [disabled]="currentStepIndex === basicSteps.length - 1"
+                  class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed">
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Code Display -->
+          <div *ngIf="showBasicStepperCode" class="mt-4 bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+            <pre><code>&lt;sui-stepper 
+  [activeIndex]="currentStepIndex"
+  orientation="horizontal"
+  [steps]="basicSteps"
+  (onActiveIndexChange)="onActiveIndexChange($event)"&gt;
+  
+  &lt;div class="mt-6 p-4 bg-blue-50 rounded-md"&gt;
+    &lt;h4&gt;Step Content&lt;/h4&gt;
+    &lt;p&gt;This is the content for the current step.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-stepper&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

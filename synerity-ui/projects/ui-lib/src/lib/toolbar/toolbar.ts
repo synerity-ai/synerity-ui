@@ -12,23 +12,21 @@ export class Toolbar {
   @Input() style: any = {};
   @Input() styleClass = '';
   @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Input() leftItems: Array<{ 
+    label?: string; 
+    icon?: string; 
+    command?: () => void;
+    disabled?: boolean;
+    separator?: boolean;
+  }> = [];
+  @Input() rightItems: Array<{ 
+    label?: string; 
+    icon?: string; 
+    command?: () => void;
+    disabled?: boolean;
+    separator?: boolean;
+  }> = [];
   @Output() onItemClick = new EventEmitter<any>();
-
-  leftItems: Array<{ 
-    label?: string; 
-    icon?: string; 
-    command?: () => void;
-    disabled?: boolean;
-    separator?: boolean;
-  }> = [];
-
-  rightItems: Array<{ 
-    label?: string; 
-    icon?: string; 
-    command?: () => void;
-    disabled?: boolean;
-    separator?: boolean;
-  }> = [];
 
   onItemClickHandler(item: any): void {
     if (item.disabled || item.separator) return;
