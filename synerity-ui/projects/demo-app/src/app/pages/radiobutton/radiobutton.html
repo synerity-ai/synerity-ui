@@ -1,0 +1,702 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">RadioButton</h1>
+    <p class="text-lg text-gray-600">Single choice input components with multiple options for user selection in forms.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Radio Button -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Radio Button</h3>
+            <button 
+              (click)="toggleCode('basicRadio')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicRadioCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="radio" 
+                  id="radio-option1"
+                  name="basic-radio"
+                  value="option1"
+                  [(ngModel)]="basicRadio"
+                  (change)="onRadioChange(basicRadio)"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="radio-option1" class="text-sm font-medium text-gray-900">
+                  Option 1
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="radio" 
+                  id="radio-option2"
+                  name="basic-radio"
+                  value="option2"
+                  [(ngModel)]="basicRadio"
+                  (change)="onRadioChange(basicRadio)"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="radio-option2" class="text-sm font-medium text-gray-900">
+                  Option 2
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="radio" 
+                  id="radio-option3"
+                  name="basic-radio"
+                  value="option3"
+                  [(ngModel)]="basicRadio"
+                  (change)="onRadioChange(basicRadio)"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="radio-option3" class="text-sm font-medium text-gray-900">
+                  Option 3
+                </label>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicRadioCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Basic Radio Button Group --&gt;
+&lt;div class="space-y-4"&gt;
+  &lt;div class="flex items-center space-x-3"&gt;
+    &lt;input 
+      type="radio" 
+      id="radio-option1"
+      name="basic-radio"
+      value="option1"
+      [(ngModel)]="basicRadio"
+      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"&gt;
+    &lt;label for="radio-option1" class="text-sm font-medium text-gray-900"&gt;
+      Option 1
+    &lt;/label&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="flex items-center space-x-3"&gt;
+    &lt;input 
+      type="radio" 
+      id="radio-option2"
+      name="basic-radio"
+      value="option2"
+      [(ngModel)]="basicRadio"
+      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"&gt;
+    &lt;label for="radio-option2" class="text-sm font-medium text-gray-900"&gt;
+      Option 2
+    &lt;/label&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Radio Button States -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Radio Button States</h3>
+            <button 
+              (click)="toggleCode('radioStates')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showRadioStatesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="radio" 
+                  id="normal-radio"
+                  name="state-radio"
+                  value="normal"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="normal-radio" class="text-sm font-medium text-gray-900">
+                  Normal state
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="radio" 
+                  id="checked-radio"
+                  name="state-radio"
+                  value="checked"
+                  checked
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="checked-radio" class="text-sm font-medium text-gray-900">
+                  Checked state
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="radio" 
+                  id="disabled-radio"
+                  name="state-radio"
+                  value="disabled"
+                  disabled
+                  class="w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="disabled-radio" class="text-sm font-medium text-gray-400">
+                  Disabled state
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="radio" 
+                  id="disabled-checked-radio"
+                  name="state-radio"
+                  value="disabled-checked"
+                  disabled
+                  checked
+                  class="w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="disabled-checked-radio" class="text-sm font-medium text-gray-400">
+                  Disabled and checked
+                </label>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showRadioStatesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Normal State --&gt;
+&lt;input 
+  type="radio" 
+  name="radio-group"
+  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"&gt;
+
+&lt;!-- Checked State --&gt;
+&lt;input 
+  type="radio" 
+  name="radio-group"
+  checked
+  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"&gt;
+
+&lt;!-- Disabled State --&gt;
+&lt;input 
+  type="radio" 
+  name="radio-group"
+  disabled
+  class="w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 focus:ring-blue-500 focus:ring-2"&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Radio Button Sizes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Radio Button Sizes</h3>
+            <button 
+              (click)="toggleCode('radioSizes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showRadioSizesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="radio" 
+                  id="small-radio"
+                  name="size-radio"
+                  value="small"
+                  class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="small-radio" class="text-xs font-medium text-gray-900">
+                  Small radio button
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="radio" 
+                  id="medium-radio"
+                  name="size-radio"
+                  value="medium"
+                  checked
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="medium-radio" class="text-sm font-medium text-gray-900">
+                  Medium radio button (default)
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="radio" 
+                  id="large-radio"
+                  name="size-radio"
+                  value="large"
+                  class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="large-radio" class="text-base font-medium text-gray-900">
+                  Large radio button
+                </label>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showRadioSizesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Small Radio Button --&gt;
+&lt;input 
+  type="radio" 
+  name="radio-group"
+  class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"&gt;
+
+&lt;!-- Medium Radio Button (Default) --&gt;
+&lt;input 
+  type="radio" 
+  name="radio-group"
+  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"&gt;
+
+&lt;!-- Large Radio Button --&gt;
+&lt;input 
+  type="radio" 
+  name="radio-group"
+  class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multiple Radio Groups -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Multiple Radio Groups</h3>
+            <button 
+              (click)="toggleCode('multipleRadioGroups')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showMultipleRadioGroupsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Color Selection -->
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-3">Choose Color</h4>
+                <div class="space-y-3">
+                  <div *ngFor="let color of colorOptions" class="flex items-center space-x-3">
+                    <input 
+                      type="radio" 
+                      [id]="'color-' + color.value"
+                      name="color-selection"
+                      [value]="color.value"
+                      [(ngModel)]="selectedColor"
+                      (change)="onColorChange(selectedColor)"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                    <div class="flex flex-col">
+                      <label [for]="'color-' + color.value" class="text-sm font-medium text-gray-900">
+                        {{ color.label }}
+                      </label>
+                      <span class="text-xs text-gray-500">{{ color.description }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">
+                  Selected: <strong>{{ selectedColor }}</strong>
+                </div>
+              </div>
+              
+              <!-- Size Selection -->
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-3">Choose Size</h4>
+                <div class="space-y-3">
+                  <div *ngFor="let size of sizeOptions" class="flex items-center space-x-3">
+                    <input 
+                      type="radio" 
+                      [id]="'size-' + size.value"
+                      name="size-selection"
+                      [value]="size.value"
+                      [(ngModel)]="selectedSize"
+                      (change)="onSizeChange(selectedSize)"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                    <div class="flex flex-col">
+                      <label [for]="'size-' + size.value" class="text-sm font-medium text-gray-900">
+                        {{ size.label }}
+                      </label>
+                      <span class="text-xs text-gray-500">{{ size.description }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">
+                  Selected: <strong>{{ selectedSize }}</strong>
+                </div>
+              </div>
+              
+              <!-- Payment Method -->
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-3">Payment Method</h4>
+                <div class="space-y-3">
+                  <div *ngFor="let payment of paymentOptions" class="flex items-center space-x-3">
+                    <input 
+                      type="radio" 
+                      [id]="'payment-' + payment.value"
+                      name="payment-selection"
+                      [value]="payment.value"
+                      [(ngModel)]="selectedPayment"
+                      (change)="onPaymentChange(selectedPayment)"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                    <div class="flex flex-col">
+                      <label [for]="'payment-' + payment.value" class="text-sm font-medium text-gray-900">
+                        {{ payment.label }}
+                      </label>
+                      <span class="text-xs text-gray-500">{{ payment.description }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">
+                  Selected: <strong>{{ selectedPayment }}</strong>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showMultipleRadioGroupsCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Multiple Radio Groups --&gt;
+&lt;div *ngFor="let option of options" class="flex items-center space-x-3"&gt;
+  &lt;input 
+    type="radio" 
+    [id]="'option-' + option.value"
+    name="radio-group"
+    [value]="option.value"
+    [(ngModel)]="selectedValue"
+    (change)="onOptionChange(selectedValue)"
+    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"&gt;
+  &lt;div class="flex flex-col"&gt;
+    &lt;label [for]="'option-' + option.value" class="text-sm font-medium text-gray-900"&gt;
+      {{ '{{' }} option.label {{ '}}' }}
+    &lt;/label&gt;
+    &lt;span class="text-xs text-gray-500"&gt;{{ '{{' }} option.description {{ '}}' }}&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+            <button 
+              (click)="toggleCode('interactiveDemo')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <!-- Demo Area -->
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-4">Live Preview</h4>
+                <div class="space-y-4">
+                  <div *ngFor="let option of interactiveOptions" class="flex items-center space-x-3">
+                    <input 
+                      type="radio" 
+                      [id]="'interactive-' + option.value"
+                      name="interactive-radio"
+                      [value]="option.value"
+                      [(ngModel)]="interactiveValue"
+                      [disabled]="interactiveDisabled"
+                      [readonly]="interactiveReadonly"
+                      [class]="'text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2 ' + 
+                               (interactiveSize === 'sm' ? 'w-3 h-3' : 
+                                interactiveSize === 'md' ? 'w-4 h-4' : 'w-5 h-5')"
+                      (change)="updateInteractiveValue(interactiveValue)">
+                    <div class="flex flex-col">
+                      <label [for]="'interactive-' + option.value" 
+                             [class]="'font-medium text-gray-900 ' + 
+                                      (interactiveSize === 'sm' ? 'text-xs' : 
+                                       interactiveSize === 'md' ? 'text-sm' : 'text-base')">
+                        {{ option.label }}
+                      </label>
+                      <span [class]="'text-gray-500 ' + 
+                                     (interactiveSize === 'sm' ? 'text-xs' : 'text-xs')">
+                        {{ option.description }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mt-4 p-3 bg-gray-50 rounded-lg">
+                  <div class="text-sm text-gray-600">
+                    <strong>Current Value:</strong> {{ interactiveValue }}
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Controls -->
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-4">Controls</h4>
+                <div class="space-y-4">
+                  <!-- Size Control -->
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Size</label>
+                    <div class="flex space-x-2">
+                      <button 
+                        *ngFor="let size of ['sm', 'md', 'lg']"
+                        (click)="updateSize(size)"
+                        [class]="'px-3 py-1 text-sm rounded-md transition-colors ' + 
+                                 (interactiveSize === size ? 
+                                  'bg-blue-500 text-white' : 
+                                  'bg-gray-200 text-gray-700 hover:bg-gray-300')">
+                        {{ size.toUpperCase() }}
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <!-- State Controls -->
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                    <div class="space-y-2">
+                      <label class="flex items-center">
+                        <input 
+                          type="checkbox" 
+                          [(ngModel)]="interactiveDisabled"
+                          (change)="toggleDisabled()"
+                          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                        <span class="ml-2 text-sm text-gray-700">Disabled</span>
+                      </label>
+                      
+                      <label class="flex items-center">
+                        <input 
+                          type="checkbox" 
+                          [(ngModel)]="interactiveReadonly"
+                          (change)="toggleReadonly()"
+                          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                        <span class="ml-2 text-sm text-gray-700">Read Only</span>
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <!-- Reset Button -->
+                  <div>
+                    <button 
+                      (click)="resetInteractive()"
+                      class="px-4 py-2 bg-gray-500 text-white text-sm rounded-md hover:bg-gray-600 transition-colors">
+                      Reset Demo
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">How to Use RadioButton</h3>
+          
+          <div class="space-y-4">
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-2">Basic Implementation</h4>
+              <p class="text-gray-600 mb-3">
+                Radio buttons are used when you need to select one option from a group of mutually exclusive options.
+              </p>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <pre class="text-sm text-gray-800"><code><!-- Basic Radio Button Group -->
+<div class="space-y-3">
+  <div class="flex items-center space-x-3">
+    <input 
+      type="radio" 
+      id="option1"
+      name="radio-group"
+      value="option1"
+      [(ngModel)]="basicRadio"
+      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+    <label for="option1" class="text-sm font-medium text-gray-900">
+      Option 1
+    </label>
+  </div>
+  
+  <div class="flex items-center space-x-3">
+    <input 
+      type="radio" 
+      id="option2"
+      name="radio-group"
+      value="option2"
+      [(ngModel)]="basicRadio"
+      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+    <label for="option2" class="text-sm font-medium text-gray-900">
+      Option 2
+    </label>
+  </div>
+</div></code></pre>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-2">Key Features</h4>
+              <ul class="list-disc list-inside space-y-2 text-gray-600">
+                <li><strong>Mutual Exclusivity:</strong> Only one option can be selected at a time within a group</li>
+                <li><strong>Accessibility:</strong> Proper labeling and keyboard navigation support</li>
+                <li><strong>States:</strong> Support for normal, checked, disabled, and readonly states</li>
+                <li><strong>Sizes:</strong> Small, medium, and large size variants</li>
+                <li><strong>Styling:</strong> Customizable appearance with Tailwind CSS classes</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-2">Best Practices</h4>
+              <ul class="list-disc list-inside space-y-2 text-gray-600">
+                <li>Use radio buttons when users need to select exactly one option from a set</li>
+                <li>Group related radio buttons with the same <code>name</code> attribute</li>
+                <li>Provide clear, descriptive labels for each option</li>
+                <li>Use consistent sizing and spacing within a group</li>
+                <li>Consider using descriptions for complex options</li>
+                <li>Ensure proper keyboard navigation and screen reader support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">RadioButton Documentation</h3>
+          
+          <div class="space-y-6">
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-3">Properties</h4>
+              <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">type</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">"radio"</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Input type attribute</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">name</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Name attribute for grouping radio buttons</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Value of the radio button</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">checked</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Whether the radio button is checked</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Whether the radio button is disabled</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">readonly</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Whether the radio button is readonly</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-3">Events</h4>
+              <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">change</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Event</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Fired when the radio button value changes</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">click</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Event</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Fired when the radio button is clicked</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-3">CSS Classes</h4>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <pre class="text-sm text-gray-800"><code>/* Base radio button styles */
+.w-4.h-4.text-blue-600.bg-gray-100.border-gray-300.focus:ring-blue-500.focus:ring-2
+
+/* Size variants */
+.w-3.h-3  /* Small */
+.w-4.h-4  /* Medium (default) */
+.w-5.h-5  /* Large */
+
+/* State styles */
+.text-gray-400.bg-gray-200  /* Disabled */
+.text-blue-600.bg-gray-100  /* Normal */
+.text-blue-600.bg-blue-100  /* Checked */</code></pre>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-3">Accessibility</h4>
+              <ul class="list-disc list-inside space-y-2 text-gray-600">
+                <li>Use proper <code>label</code> elements associated with radio buttons</li>
+                <li>Ensure each radio button has a unique <code>id</code> attribute</li>
+                <li>Use the same <code>name</code> attribute for related radio buttons</li>
+                <li>Provide descriptive text for screen readers</li>
+                <li>Support keyboard navigation (Tab, Arrow keys, Space)</li>
+                <li>Use <code>aria-describedby</code> for additional context if needed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

@@ -1,0 +1,145 @@
+/* radiobutton.scss */
+.sui-radio {
+  @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2;
+  
+  &:checked {
+    @apply bg-blue-600 border-blue-600;
+  }
+  
+  &:disabled {
+    @apply text-gray-400 bg-gray-200 border-gray-300 cursor-not-allowed;
+  }
+  
+  &:focus {
+    @apply ring-2 ring-blue-500 ring-offset-2;
+  }
+}
+
+.sui-radio-sm {
+  @apply w-3 h-3;
+}
+
+.sui-radio-md {
+  @apply w-4 h-4;
+}
+
+.sui-radio-lg {
+  @apply w-5 h-5;
+}
+
+.sui-radio-label {
+  @apply text-sm font-medium text-gray-900 cursor-pointer;
+  
+  &:hover {
+    @apply text-gray-700;
+  }
+}
+
+.sui-radio-description {
+  @apply text-xs text-gray-500 mt-1;
+}
+
+.sui-radio-group {
+  @apply space-y-3;
+}
+
+.sui-radio-item {
+  @apply flex items-center space-x-3;
+}
+
+.sui-radio-disabled {
+  .sui-radio-label {
+    @apply text-gray-400 cursor-not-allowed;
+  }
+  
+  .sui-radio-description {
+    @apply text-gray-400;
+  }
+}
+
+.sui-radio-readonly {
+  .sui-radio {
+    @apply cursor-default;
+  }
+  
+  .sui-radio-label {
+    @apply cursor-default;
+  }
+}
+
+/* Custom radio button styles for different variants */
+.sui-radio-primary {
+  @apply text-blue-600 focus:ring-blue-500;
+  
+  &:checked {
+    @apply bg-blue-600 border-blue-600;
+  }
+}
+
+.sui-radio-secondary {
+  @apply text-gray-600 focus:ring-gray-500;
+  
+  &:checked {
+    @apply bg-gray-600 border-gray-600;
+  }
+}
+
+.sui-radio-success {
+  @apply text-green-600 focus:ring-green-500;
+  
+  &:checked {
+    @apply bg-green-600 border-green-600;
+  }
+}
+
+.sui-radio-warning {
+  @apply text-yellow-600 focus:ring-yellow-500;
+  
+  &:checked {
+    @apply bg-yellow-600 border-yellow-600;
+  }
+}
+
+.sui-radio-danger {
+  @apply text-red-600 focus:ring-red-500;
+  
+  &:checked {
+    @apply bg-red-600 border-red-600;
+  }
+}
+
+/* Interactive demo styles */
+.sui-radio-demo-controls {
+  @apply space-y-4;
+}
+
+.sui-radio-demo-button {
+  @apply px-3 py-1 text-sm rounded-md transition-colors;
+  
+  &.active {
+    @apply bg-blue-500 text-white;
+  }
+  
+  &.inactive {
+    @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+  }
+}
+
+.sui-radio-demo-preview {
+  @apply space-y-4;
+}
+
+.sui-radio-demo-value {
+  @apply mt-4 p-3 bg-gray-50 rounded-lg text-sm text-gray-600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sui-radio-item {
+    @apply flex-col items-start space-x-0 space-y-2;
+  }
+  
+  .sui-radio-label {
+    @apply ml-0;
+  }
+}

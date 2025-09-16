@@ -7,5 +7,6 @@ export const routes: Routes = [
   { path: 'components/inputtext', loadComponent: () => import('./pages/inputtext/inputtext').then(m => m.Inputtext) },
   { path: 'components/inputtextarea', loadComponent: () => import('./pages/inputtextarea/inputtextarea').then(m => m.Inputtextarea) },
   { path: 'components/card', loadComponent: () => import('./pages/card/card').then(m => m.Card) },
-  { path: 'components/checkbox', loadComponent: () => import('./pages/checkbox/checkbox').then(m => m.Checkbox) }
+  { path: 'components/checkbox', loadComponent: () => import('./pages/checkbox/checkbox').then(m => m.Checkbox) },
+  { path: 'components/radiobutton', loadComponent: () => import('./pages/radiobutton/radiobutton').then(m => m.Radiobutton) }
 ];
