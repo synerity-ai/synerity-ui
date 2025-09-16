@@ -1,0 +1,719 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Checkbox</h1>
+    <p class="text-lg text-gray-600">Binary choice input components with multiple states, sizes, and variants for user selections.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Checkbox -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Checkbox</h3>
+            <button 
+              (click)="toggleCode('basicCheckbox')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicCheckboxCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="basic-checkbox"
+                  [(ngModel)]="basicCheckbox"
+                  (change)="onCheckboxChange(basicCheckbox)"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="basic-checkbox" class="text-sm font-medium text-gray-900">
+                  Basic checkbox
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="checkbox-with-label"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="checkbox-with-label" class="text-sm font-medium text-gray-900">
+                  Checkbox with custom label
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="checkbox-with-description"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <div class="flex flex-col">
+                  <label for="checkbox-with-description" class="text-sm font-medium text-gray-900">
+                    Checkbox with description
+                  </label>
+                  <span class="text-xs text-gray-500">This checkbox includes a helpful description</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicCheckboxCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Basic Checkbox --&gt;
+&lt;div class="flex items-center space-x-3"&gt;
+  &lt;input 
+    type="checkbox" 
+    id="basic-checkbox"
+    [(ngModel)]="checkboxValue"
+    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;
+  &lt;label for="basic-checkbox" class="text-sm font-medium text-gray-900"&gt;
+    Basic checkbox
+  &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;!-- Checkbox with Description --&gt;
+&lt;div class="flex items-center space-x-3"&gt;
+  &lt;input 
+    type="checkbox" 
+    id="checkbox-with-description"
+    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;
+  &lt;div class="flex flex-col"&gt;
+    &lt;label for="checkbox-with-description" class="text-sm font-medium text-gray-900"&gt;
+      Checkbox with description
+    &lt;/label&gt;
+    &lt;span class="text-xs text-gray-500"&gt;This checkbox includes a helpful description&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox States -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Checkbox States</h3>
+            <button 
+              (click)="toggleCode('checkboxStates')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCheckboxStatesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="normal-checkbox"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="normal-checkbox" class="text-sm font-medium text-gray-900">
+                  Normal state
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="checked-checkbox"
+                  checked
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="checked-checkbox" class="text-sm font-medium text-gray-900">
+                  Checked state
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="disabled-checkbox"
+                  disabled
+                  class="w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="disabled-checkbox" class="text-sm font-medium text-gray-400">
+                  Disabled state
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="disabled-checked-checkbox"
+                  disabled
+                  checked
+                  class="w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="disabled-checked-checkbox" class="text-sm font-medium text-gray-400">
+                  Disabled and checked
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="indeterminate-checkbox"
+                  [indeterminate]="true"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="indeterminate-checkbox" class="text-sm font-medium text-gray-900">
+                  Indeterminate state
+                </label>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showCheckboxStatesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Normal State --&gt;
+&lt;input 
+  type="checkbox" 
+  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;
+
+&lt;!-- Checked State --&gt;
+&lt;input 
+  type="checkbox" 
+  checked
+  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;
+
+&lt;!-- Disabled State --&gt;
+&lt;input 
+  type="checkbox" 
+  disabled
+  class="w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;
+
+&lt;!-- Indeterminate State --&gt;
+&lt;input 
+  type="checkbox" 
+  [indeterminate]="true"
+  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox Sizes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Checkbox Sizes</h3>
+            <button 
+              (click)="toggleCode('checkboxSizes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCheckboxSizesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="small-checkbox"
+                  class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="small-checkbox" class="text-xs font-medium text-gray-900">
+                  Small checkbox
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="medium-checkbox"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="medium-checkbox" class="text-sm font-medium text-gray-900">
+                  Medium checkbox (default)
+                </label>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <input 
+                  type="checkbox" 
+                  id="large-checkbox"
+                  class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="large-checkbox" class="text-base font-medium text-gray-900">
+                  Large checkbox
+                </label>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showCheckboxSizesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Small Checkbox --&gt;
+&lt;input 
+  type="checkbox" 
+  class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;
+
+&lt;!-- Medium Checkbox (Default) --&gt;
+&lt;input 
+  type="checkbox" 
+  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;
+
+&lt;!-- Large Checkbox --&gt;
+&lt;input 
+  type="checkbox" 
+  class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multiple Checkboxes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Multiple Checkboxes</h3>
+            <button 
+              (click)="toggleCode('multipleCheckboxes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showMultipleCheckboxesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between mb-4">
+                <h4 class="text-lg font-medium text-gray-900">Select Options</h4>
+                <div class="flex gap-2">
+                  <button 
+                    (click)="selectAll()"
+                    class="px-3 py-1 text-xs text-blue-600 hover:text-blue-900 hover:bg-blue-50 rounded-md transition-colors">
+                    Select All
+                  </button>
+                  <button 
+                    (click)="selectNone()"
+                    class="px-3 py-1 text-xs text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                    Select None
+                  </button>
+                </div>
+              </div>
+              
+              <div class="space-y-3">
+                <div *ngFor="let option of availableOptions" class="flex items-center space-x-3">
+                  <input 
+                    type="checkbox" 
+                    [id]="'option-' + option.value"
+                    [checked]="isOptionSelected(option.value)"
+                    (change)="onOptionChange(option.value, $event.target.checked)"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                  <div class="flex flex-col">
+                    <label [for]="'option-' + option.value" class="text-sm font-medium text-gray-900">
+                      {{ option.label }}
+                    </label>
+                    <span class="text-xs text-gray-500">{{ option.description }}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-4 p-3 bg-gray-50 rounded-md">
+                <p class="text-sm text-gray-600">
+                  <strong>Selected:</strong> 
+                  <span *ngIf="selectedOptions.length === 0" class="text-gray-400">None</span>
+                  <span *ngIf="selectedOptions.length > 0">{{ selectedOptions.join(', ') }}</span>
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showMultipleCheckboxesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Multiple Checkboxes --&gt;
+&lt;div *ngFor="let option of availableOptions" class="flex items-center space-x-3"&gt;
+  &lt;input 
+    type="checkbox" 
+    [id]="'option-' + option.value"
+    [checked]="isOptionSelected(option.value)"
+    (change)="onOptionChange(option.value, $event.target.checked)"
+    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;
+  &lt;div class="flex flex-col"&gt;
+    &lt;label [for]="'option-' + option.value" class="text-sm font-medium text-gray-900"&gt;
+      {{ '{{' }} option.label {{ '}}' }}
+    &lt;/label&gt;
+    &lt;span class="text-xs text-gray-500"&gt;{{ '{{' }} option.description {{ '}}' }}&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+            <button 
+              (click)="toggleCode('interactiveDemo')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <!-- Controls -->
+              <div class="space-y-4">
+                <h4 class="text-lg font-semibold text-gray-900">Checkbox Controls</h4>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Label</label>
+                  <input 
+                    [(ngModel)]="interactiveLabel"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="Enter checkbox label">
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                  <input 
+                    [(ngModel)]="interactiveDescription"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="Enter checkbox description">
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Size</label>
+                  <div class="flex gap-2">
+                    <button 
+                      (click)="updateSize('sm')"
+                      [class]="'px-3 py-1 text-sm rounded-md transition-colors ' + (interactiveSize === 'sm' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')">
+                      Small
+                    </button>
+                    <button 
+                      (click)="updateSize('md')"
+                      [class]="'px-3 py-1 text-sm rounded-md transition-colors ' + (interactiveSize === 'md' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')">
+                      Medium
+                    </button>
+                    <button 
+                      (click)="updateSize('lg')"
+                      [class]="'px-3 py-1 text-sm rounded-md transition-colors ' + (interactiveSize === 'lg' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')">
+                      Large
+                    </button>
+                  </div>
+                </div>
+                
+                <div class="space-y-2">
+                  <label class="block text-sm font-medium text-gray-700">Options</label>
+                  <div class="flex flex-wrap gap-2">
+                    <label class="flex items-center">
+                      <input type="checkbox" [(ngModel)]="interactiveChecked" class="form-checkbox h-4 w-4 text-blue-600">
+                      <span class="ml-2 text-sm text-gray-900">Checked</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input type="checkbox" [(ngModel)]="interactiveDisabled" class="form-checkbox h-4 w-4 text-blue-600">
+                      <span class="ml-2 text-sm text-gray-900">Disabled</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input type="checkbox" [(ngModel)]="interactiveIndeterminate" class="form-checkbox h-4 w-4 text-blue-600">
+                      <span class="ml-2 text-sm text-gray-900">Indeterminate</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="flex gap-2">
+                  <button 
+                    (click)="resetInteractive()"
+                    class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">
+                    Reset
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Live Preview -->
+              <div>
+                <h4 class="text-lg font-semibold text-gray-900 mb-4">Live Preview</h4>
+                <div class="flex items-center space-x-3">
+                  <input 
+                    type="checkbox" 
+                    id="interactive-checkbox"
+                    [(ngModel)]="interactiveChecked"
+                    [disabled]="interactiveDisabled"
+                    [indeterminate]="interactiveIndeterminate"
+                    [class]="'text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 ' + 
+                      (interactiveSize === 'sm' ? 'w-3 h-3' : 
+                       interactiveSize === 'md' ? 'w-4 h-4' : 'w-5 h-5')"
+                    class="transition-all duration-200">
+                  <div class="flex flex-col">
+                    <label for="interactive-checkbox" 
+                      [class]="'font-medium text-gray-900 ' + 
+                        (interactiveSize === 'sm' ? 'text-xs' : 
+                         interactiveSize === 'md' ? 'text-sm' : 'text-base')">
+                      {{ interactiveLabel }}
+                    </label>
+                    <span *ngIf="interactiveDescription" 
+                      [class]="'text-gray-500 ' + 
+                        (interactiveSize === 'sm' ? 'text-xs' : 'text-xs')">
+                      {{ interactiveDescription }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showInteractiveDemoCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Interactive Checkbox Code --&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Checkbox component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the Checkbox component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} Checkbox {{ '}' }} from '@synerity/ui';
+
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;div class="flex items-center space-x-3"&gt;
+      &lt;input 
+        type="checkbox" 
+        id="my-checkbox"
+        [(ngModel)]="isChecked"
+        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;
+      &lt;label for="my-checkbox" class="text-sm font-medium text-gray-900"&gt;
+        Check this option
+      &lt;/label&gt;
+    &lt;/div&gt;
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}
+  isChecked = false;
+{{ '}' }}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Integration -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Form Integration</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Integrate checkboxes with Angular reactive forms:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} FormBuilder, FormGroup {{ '}' }} from '@angular/forms';
+
+export class MyComponent {{ '{' }}
+  form: FormGroup;
+  
+  constructor(private fb: FormBuilder) {{ '{' }}
+    this.form = this.fb.group({{ '{' }}
+      acceptTerms: [false],
+      newsletter: [true],
+      notifications: [false]
+    {{ '}' }});
+  {{ '}' }}
+  
+  onSubmit() {{ '{' }}
+    console.log(this.form.value);
+  {{ '}' }}
+{{ '}' }}
+
+// Template
+&lt;form [formGroup]="form" (ngSubmit)="onSubmit()"&gt;
+  &lt;div class="space-y-4"&gt;
+    &lt;div class="flex items-center space-x-3"&gt;
+      &lt;input 
+        type="checkbox" 
+        formControlName="acceptTerms"
+        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"&gt;
+      &lt;label class="text-sm font-medium text-gray-900"&gt;Accept Terms &amp; Conditions&lt;/label&gt;
+    &lt;/div&gt;
+    
+    &lt;button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md"&gt;
+      Submit
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Styling -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Checkboxes use Tailwind CSS classes for styling. Here are the key classes:</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">w-4 h-4</span>
+                <span class="text-gray-600">Checkbox size (width and height)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">text-blue-600</span>
+                <span class="text-gray-600">Checked state color</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">bg-gray-100</span>
+                <span class="text-gray-600">Background color</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">border-gray-300</span>
+                <span class="text-gray-600">Border color</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">focus:ring-blue-500</span>
+                <span class="text-gray-600">Focus ring color</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">checked</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the checkbox is checked</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the checkbox is disabled</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">indeterminate</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the checkbox is in indeterminate state</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">required</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the checkbox is required</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">name</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Name attribute for form submission</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'on'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Value attribute for form submission</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onChange</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;boolean&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the checkbox state changes</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onFocus</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;FocusEvent&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the checkbox receives focus</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onBlur</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;FocusEvent&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the checkbox loses focus</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation support with Tab and Space keys</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Focus indicators for keyboard users</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Proper labeling with associated labels</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>ARIA attributes for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Indeterminate state properly communicated</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Disabled state properly communicated</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </app-tabs>
+</div>
