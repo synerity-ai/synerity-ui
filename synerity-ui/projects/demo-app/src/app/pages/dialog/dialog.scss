@@ -1,0 +1,63 @@
+// Dialog component styles
+// This file is intentionally minimal as we use Tailwind CSS for styling
+
+// Dialog backdrop
+.dialog-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  transition: opacity 0.3s ease-in-out;
+}
+
+// Dialog animation
+.dialog-enter {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease-in-out;
+}
+
+.dialog-enter-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dialog-exit {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+}
+
+.dialog-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+// Dialog header
+.dialog-header {
+  cursor: move;
+  user-select: none;
+  
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+// Resize handle
+.dialog-resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  cursor: se-resize;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-bottom: 8px solid #d1d5db;
+  }
+}

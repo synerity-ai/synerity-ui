@@ -1,0 +1,121 @@
+// Avatar component styles
+// This file is intentionally minimal as we use Tailwind CSS for styling
+
+// Avatar base styles
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  color: #6b7280;
+  font-weight: 600;
+  overflow: hidden;
+  position: relative;
+}
+
+// Avatar sizes
+.avatar-sm {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.75rem;
+}
+
+.avatar-md {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.875rem;
+}
+
+.avatar-lg {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1rem;
+}
+
+.avatar-xl {
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.25rem;
+}
+
+// Avatar image
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+// Avatar fallback
+.avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #e5e7eb;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+// Avatar icon
+.avatar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1.2em;
+}
+
+// Avatar status indicator
+.avatar-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 2px solid white;
+  
+  &.status-online {
+    background-color: #10b981;
+  }
+  
+  &.status-offline {
+    background-color: #6b7280;
+  }
+  
+  &.status-away {
+    background-color: #f59e0b;
+  }
+  
+  &.status-busy {
+    background-color: #ef4444;
+  }
+}
+
+// Avatar group
+.avatar-group {
+  display: flex;
+  align-items: center;
+  
+  .avatar {
+    margin-left: -0.5rem;
+    border: 2px solid white;
+    
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+// Avatar hover effects
+.avatar-hover {
+  transition: transform 0.2s ease-in-out;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}

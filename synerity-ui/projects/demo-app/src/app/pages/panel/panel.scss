@@ -1,0 +1,117 @@
+// Panel component styles
+// This file is intentionally minimal as we use Tailwind CSS for styling
+
+// Panel container
+.panel-container {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: white;
+}
+
+// Panel header
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  
+  &:hover {
+    background-color: #f3f4f6;
+  }
+}
+
+// Panel toggle button
+.panel-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s ease-in-out;
+  
+  &:hover {
+    color: #374151;
+  }
+  
+  .toggle-icon {
+    transition: transform 0.2s ease-in-out;
+    
+    &.collapsed {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+// Panel content
+.panel-content {
+  padding: 1rem;
+  animation: panelSlideDown 0.3s ease-in-out;
+}
+
+@keyframes panelSlideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+// Panel footer
+.panel-footer {
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+// Panel variants
+.panel-primary {
+  border-color: #3b82f6;
+  
+  .panel-header {
+    background-color: #eff6ff;
+    border-bottom-color: #dbeafe;
+  }
+}
+
+.panel-success {
+  border-color: #10b981;
+  
+  .panel-header {
+    background-color: #ecfdf5;
+    border-bottom-color: #d1fae5;
+  }
+}
+
+.panel-warning {
+  border-color: #f59e0b;
+  
+  .panel-header {
+    background-color: #fffbeb;
+    border-bottom-color: #fef3c7;
+  }
+}
+
+.panel-danger {
+  border-color: #ef4444;
+  
+  .panel-header {
+    background-color: #fef2f2;
+    border-bottom-color: #fee2e2;
+  }
+}

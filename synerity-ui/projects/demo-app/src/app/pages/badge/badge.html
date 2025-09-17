@@ -1,0 +1,230 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Badge</h1>
+    <p class="text-lg text-gray-600">Status indicators and notification counters for UI elements.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Badge -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Badge</h3>
+            <button 
+              (click)="toggleCode('basicBadge')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicBadgeCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <button class="relative px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                  Messages
+                  <sui-badge [value]="badgeCount" class="absolute -top-2 -right-2"></sui-badge>
+                </button>
+                
+                <button class="relative px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">
+                  Notifications
+                  <sui-badge [value]="badgeText" class="absolute -top-2 -right-2"></sui-badge>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicBadgeCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;button class="relative px-4 py-2 bg-blue-600 text-white rounded-md"&gt;
+  Messages
+  &lt;sui-badge [value]="badgeCount" class="absolute -top-2 -right-2"&gt;&lt;/sui-badge&gt;
+&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badge Variants -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Badge Variants</h3>
+            <button 
+              (click)="toggleCode('badgeVariants')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBadgeVariantsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <sui-badge [value]="badgeCount" variant="primary"></sui-badge>
+                <sui-badge [value]="badgeCount" variant="secondary"></sui-badge>
+                <sui-badge [value]="badgeCount" variant="success"></sui-badge>
+                <sui-badge [value]="badgeCount" variant="warning"></sui-badge>
+                <sui-badge [value]="badgeCount" variant="danger"></sui-badge>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBadgeVariantsCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-badge [value]="count" variant="primary"&gt;&lt;/sui-badge&gt;
+&lt;sui-badge [value]="count" variant="secondary"&gt;&lt;/sui-badge&gt;
+&lt;sui-badge [value]="count" variant="success"&gt;&lt;/sui-badge&gt;
+&lt;sui-badge [value]="count" variant="warning"&gt;&lt;/sui-badge&gt;
+&lt;sui-badge [value]="count" variant="danger"&gt;&lt;/sui-badge&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coming Soon Placeholder -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🚧</span>
+            <div>
+              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
+              <p class="text-blue-700">Badge positions, sizes, and custom styling examples will be added soon.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Badge component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the Badge component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} Badge {{ '}' }} from '@synerity/ui';
+
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;sui-badge [value]="count"&gt;&lt;/sui-badge&gt;
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badge with Elements -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Badge with Elements</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Use badges with buttons, icons, or other UI elements:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>&lt;button class="relative"&gt;
+  Button Text
+  &lt;sui-badge [value]="count" class="absolute -top-2 -right-2"&gt;&lt;/sui-badge&gt;
+&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string | number</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Badge content (text or number)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary' | 'secondary' | 'success' | 'warning' | 'danger'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Badge color variant</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Badge size</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">dot</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether to show as a dot without text</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Screen reader support with ARIA labels</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>High contrast mode support</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Semantic markup for status indicators</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </app-tabs>
+</div>

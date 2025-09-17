@@ -1,0 +1,141 @@
+// ScrollPanel component styles
+// This file is intentionally minimal as we use Tailwind CSS for styling
+
+// ScrollPanel container
+.scrollpanel-container {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: white;
+}
+
+// ScrollPanel content
+.scrollpanel-content {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+
+// Custom scrollbar styles
+.scrollpanel-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollpanel-content::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.scrollpanel-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.scrollpanel-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.scrollpanel-content::-webkit-scrollbar-corner {
+  background: #f1f5f9;
+}
+
+// Firefox scrollbar styles
+.scrollpanel-content {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+// ScrollPanel variants
+.scrollpanel-primary {
+  border-color: #3b82f6;
+  
+  .scrollpanel-content::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+  }
+  
+  .scrollpanel-content::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+  }
+}
+
+.scrollpanel-success {
+  border-color: #10b981;
+  
+  .scrollpanel-content::-webkit-scrollbar-thumb {
+    background: #10b981;
+  }
+  
+  .scrollpanel-content::-webkit-scrollbar-thumb:hover {
+    background: #059669;
+  }
+}
+
+.scrollpanel-warning {
+  border-color: #f59e0b;
+  
+  .scrollpanel-content::-webkit-scrollbar-thumb {
+    background: #f59e0b;
+  }
+  
+  .scrollpanel-content::-webkit-scrollbar-thumb:hover {
+    background: #d97706;
+  }
+}
+
+.scrollpanel-danger {
+  border-color: #ef4444;
+  
+  .scrollpanel-content::-webkit-scrollbar-thumb {
+    background: #ef4444;
+  }
+  
+  .scrollpanel-content::-webkit-scrollbar-thumb:hover {
+    background: #dc2626;
+  }
+}
+
+// Horizontal scroll panel
+.scrollpanel-horizontal {
+  .scrollpanel-content {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+
+// Both directions scroll panel
+.scrollpanel-both {
+  .scrollpanel-content {
+    overflow: auto;
+  }
+}
+
+// Smooth scrolling
+.scrollpanel-smooth {
+  .scrollpanel-content {
+    scroll-behavior: smooth;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .scrollpanel-container {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+  
+  .scrollpanel-content::-webkit-scrollbar-track {
+    background: #374151;
+  }
+  
+  .scrollpanel-content::-webkit-scrollbar-thumb {
+    background: #6b7280;
+  }
+  
+  .scrollpanel-content::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+}

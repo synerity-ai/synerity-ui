@@ -1,0 +1,213 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">ScrollPanel</h1>
+    <p class="text-lg text-gray-600">Custom scrollable area component with native scrollbar styling.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic ScrollPanel -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic ScrollPanel</h3>
+            <button 
+              (click)="toggleCode('basicScrollPanel')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicScrollPanelCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <sui-scroll-panel scrollHeight="200px" scrollWidth="100%">
+                <div class="p-4">
+                  <p class="text-gray-600 mb-4">This is a scrollable content area. The content below will be scrollable:</p>
+                  <div class="space-y-2">
+                    <div *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" class="p-3 bg-gray-50 rounded-md">
+                      <p class="text-sm text-gray-700">Scrollable item {{ item }}</p>
+                    </div>
+                  </div>
+                </div>
+              </sui-scroll-panel>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicScrollPanelCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-scroll-panel scrollHeight="200px" scrollWidth="100%"&gt;
+  &lt;div class="p-4"&gt;
+    &lt;!-- Your scrollable content here --&gt;
+  &lt;/div&gt;
+&lt;/sui-scroll-panel&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coming Soon Placeholder -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🚧</span>
+            <div>
+              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
+              <p class="text-blue-700">Horizontal scrolling, custom styling, and advanced features will be added soon.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The ScrollPanel component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the ScrollPanel component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import &#123; ScrollPanel &#125; from '@synerity/ui';
+
+&#64;Component(&#123;
+  template: `
+    &lt;sui-scroll-panel scrollHeight="200px" scrollWidth="100%"&gt;
+      &lt;!-- Your content here --&gt;
+    &lt;/sui-scroll-panel&gt;
+  `
+&#125;)
+export class MyComponent &#123;&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ScrollPanel Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">ScrollPanel Features</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-gray-900">Custom Scrollbars</h4>
+                <p class="text-gray-600">Styled scrollbars that match your design system</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Smooth Scrolling</h4>
+                <p class="text-gray-600">Smooth scroll behavior with customizable easing</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Responsive Design</h4>
+                <p class="text-gray-600">Adapts to different screen sizes and orientations</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Performance Optimized</h4>
+                <p class="text-gray-600">Efficient rendering for large content areas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the scroll panel</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">CSS class for the scroll panel</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">step</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Scroll step size</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">orientation</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'vertical' | 'horizontal' | 'both'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'vertical'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Scroll orientation</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation support</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>ARIA attributes for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Focus management within scrollable area</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>High contrast mode support</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </app-tabs>
+</div>

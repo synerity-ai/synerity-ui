@@ -1,0 +1,312 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Upload</h1>
+    <p class="text-lg text-gray-600">File upload component with drag & drop, progress tracking, and validation.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Upload -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Upload</h3>
+            <button 
+              (click)="toggleCode('basicUpload')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicUploadCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <sui-upload 
+                [multiple]="false"
+                [accept]="'.jpg,.jpeg,.png,.pdf'"
+                (onUpload)="onUpload($event)"
+                (onSelect)="onFileSelect($event)">
+              </sui-upload>
+              
+              <div *ngIf="uploadedFiles.length > 0" class="mt-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Selected Files:</h4>
+                <div class="space-y-2">
+                  <div *ngFor="let file of uploadedFiles" class="flex items-center justify-between p-2 bg-gray-50 rounded-md">
+                    <span class="text-sm text-gray-600">{{ file.name }}</span>
+                    <button 
+                      (click)="onFileRemove(file)"
+                      class="text-red-600 hover:text-red-800">
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicUploadCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-upload 
+  [multiple]="false"
+  [accept]="'.jpg,.jpeg,.png,.pdf'"
+  (onUpload)="onUpload($event)"
+  (onSelect)="onFileSelect($event)"&gt;
+&lt;/sui-upload&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drag & Drop Upload -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Drag & Drop Upload</h3>
+            <button 
+              (click)="toggleCode('dragDropUpload')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showDragDropUploadCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <sui-upload 
+                [multiple]="true"
+                [accept]="'.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx'"
+                (onUpload)="onUpload($event)"
+                (onSelect)="onFileSelect($event)">
+              </sui-upload>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showDragDropUploadCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-upload 
+  [multiple]="true"
+  [dragDrop]="true"
+  [accept]="'.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx'"
+  (onUpload)="onUpload($event)"
+  (onSelect)="onFileSelect($event)"&gt;
+&lt;/sui-upload&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload Progress -->
+        <div *ngIf="isUploading" class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Upload Progress</h3>
+          <div class="space-y-4">
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" [style.width.%]="uploadProgress"></div>
+            </div>
+            <p class="text-sm text-gray-600">Uploading... {{ uploadProgress }}%</p>
+          </div>
+        </div>
+
+        <!-- Coming Soon Placeholder -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🚧</span>
+            <div>
+              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
+              <p class="text-blue-700">File validation, custom styling, and advanced upload features will be added soon.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Upload component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the Upload component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} Upload {{ '}' }} from '@synerity/ui';
+
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;sui-upload 
+      [multiple]="true"
+      [accept]="'.jpg,.png,.pdf'"
+      (onUpload)="onUpload($event)"&gt;
+    &lt;/sui-upload&gt;
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Upload Features</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-gray-900">Drag & Drop</h4>
+                <p class="text-gray-600">Support for dragging files directly onto the upload area</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Multiple Files</h4>
+                <p class="text-gray-600">Upload multiple files at once with progress tracking</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">File Validation</h4>
+                <p class="text-gray-600">Validate file types, sizes, and other constraints</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Progress Tracking</h4>
+                <p class="text-gray-600">Real-time upload progress and status updates</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">multiple</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether to allow multiple file selection</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">accept</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Accepted file types</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">dragDrop</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether to enable drag and drop</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">maxFileSize</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Maximum file size in bytes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onSelect</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;FileList&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when files are selected</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onUpload</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;any&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when upload starts</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onProgress</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;number&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted during upload progress</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onComplete</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;any&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when upload completes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation support</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Screen reader support with ARIA labels</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Focus management for file selection</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Progress announcements for screen readers</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </app-tabs>
+</div>

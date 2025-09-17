@@ -1,0 +1,275 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Avatar</h1>
+    <p class="text-lg text-gray-600">User profile images with fallback support for names and initials.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Avatar -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Avatar</h3>
+            <button 
+              (click)="toggleCode('basicAvatar')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicAvatarCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <sui-avatar 
+                  [image]="avatarImage"
+                  [label]="avatarName">
+                </sui-avatar>
+                
+                <sui-avatar 
+                  [label]="avatarInitials">
+                </sui-avatar>
+                
+                <sui-avatar 
+                  [icon]="'👤'">
+                </sui-avatar>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicAvatarCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Image Avatar --&gt;
+&lt;sui-avatar 
+  [image]="avatarImage"
+  [alt]="avatarName"&gt;
+&lt;/sui-avatar&gt;
+
+&lt;!-- Initials Avatar --&gt;
+&lt;sui-avatar 
+  [label]="avatarInitials"
+  [alt]="avatarName"&gt;
+&lt;/sui-avatar&gt;
+
+&lt;!-- Icon Avatar --&gt;
+&lt;sui-avatar 
+  [icon]="'👤'"
+  [alt]="'User'"&gt;
+&lt;/sui-avatar&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar Sizes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Avatar Sizes</h3>
+            <button 
+              (click)="toggleCode('avatarSizes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showAvatarSizesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <sui-avatar 
+                  [label]="avatarInitials"
+                  size="small">
+                </sui-avatar>
+                
+                <sui-avatar 
+                  [label]="avatarInitials"
+                  size="normal">
+                </sui-avatar>
+                
+                <sui-avatar 
+                  [label]="avatarInitials"
+                  size="large">
+                </sui-avatar>
+                
+                <sui-avatar 
+                  [label]="avatarInitials"
+                  size="xlarge">
+                </sui-avatar>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showAvatarSizesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-avatar [label]="initials" size="sm"&gt;&lt;/sui-avatar&gt;
+&lt;sui-avatar [label]="initials" size="md"&gt;&lt;/sui-avatar&gt;
+&lt;sui-avatar [label]="initials" size="lg"&gt;&lt;/sui-avatar&gt;
+&lt;sui-avatar [label]="initials" size="xl"&gt;&lt;/sui-avatar&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coming Soon Placeholder -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🚧</span>
+            <div>
+              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
+              <p class="text-blue-700">Avatar groups, status indicators, and custom styling examples will be added soon.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Avatar component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the Avatar component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} Avatar {{ '}' }} from '@synerity/ui';
+
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;sui-avatar 
+      [image]="userImage"
+      [alt]="userName"&gt;
+    &lt;/sui-avatar&gt;
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar Types -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Avatar Types</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-gray-900">Image Avatar</h4>
+                <p class="text-gray-600">Display user profile images with fallback support</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Initials Avatar</h4>
+                <p class="text-gray-600">Show user initials when no image is available</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Icon Avatar</h4>
+                <p class="text-gray-600">Display icons or emojis as avatar content</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">image</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Image URL for the avatar</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">label</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Text to display (usually initials)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">icon</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Icon or emoji to display</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg' | 'xl'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Avatar size</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">alt</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Alt text for accessibility</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Alt text support for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>High contrast mode support</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Semantic markup for user identification</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </app-tabs>
+</div>
