@@ -1,15 +1,20 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss'
 })
 export class Sidebar {
   @Input() isCollapsed = false;
+
+  // Search functionality
+  searchQuery = '';
+  filteredNavigationGroups: any[] = [];
 
   // Track which categories are expanded/collapsed
   expandedCategories: { [key: string]: boolean } = {
@@ -28,7 +33,10 @@ export class Sidebar {
     'Getting Started': false
   };
 
-  constructor(public router: Router) {}
+  constructor(public router: Router) {
+    // Initialize filtered navigation groups with all groups
+    this.filteredNavigationGroups = this.navigationGroups;
+  }
 
   toggleCategory(categoryTitle: string) {
     this.expandedCategories[categoryTitle] = !this.expandedCategories[categoryTitle];
@@ -40,6 +48,32 @@ export class Sidebar {
 
   getCategoryId(categoryTitle: string): string {
     return 'category-' + categoryTitle.toLowerCase().replace(/\s+/g, '-');
+  }
+
+  // Search functionality methods
+  onSearchChange(): void {
+    if (!this.searchQuery.trim()) {
+      this.filteredNavigationGroups = this.navigationGroups;
+      return;
+    }
+
+    const query = this.searchQuery.toLowerCase().trim();
+    this.filteredNavigationGroups = this.navigationGroups.map(group => {
+      const filteredItems = group.items.filter((item: any) => 
+        item.name.toLowerCase().includes(query) ||
+        item.route.toLowerCase().includes(query)
+      );
+      
+      return {
+        ...group,
+        items: filteredItems
+      };
+    }).filter(group => group.items.length > 0);
+  }
+
+  clearSearch(): void {
+    this.searchQuery = '';
+    this.filteredNavigationGroups = this.navigationGroups;
   }
 
   navigationGroups = [
@@ -56,13 +90,12 @@ export class Sidebar {
       title: 'Form Components',
       items: [
         { name: 'AutoComplete', route: '/components/autocomplete', icon: '🔍', comingSoon: false },
-               { name: 'Checkbox', route: '/components/checkbox', icon: '☑️', comingSoon: false },
-               { name: 'RadioButton', route: '/components/radiobutton', icon: '🔘', comingSoon: false },
+        { name: 'Checkbox', route: '/components/checkbox', icon: '☑️', comingSoon: false },
+        { name: 'RadioButton', route: '/components/radiobutton', icon: '🔘', comingSoon: false },
         { name: 'ColorPicker', route: '/components/colorpicker', icon: '🎨', comingSoon: false },
         { name: 'DatePicker', route: '/components/datepicker', icon: '📅', comingSoon: false },
         { name: 'Editor', route: '/components/editor', icon: '✏️', comingSoon: false },
         { name: 'InputNumber', route: '/components/inputnumber', icon: '🔢', comingSoon: false },
-        { name: 'MultiSelect', route: '/components/multiselect', icon: '📝', comingSoon: false },
         { name: 'Password', route: '/components/password', icon: '🔒', comingSoon: false },
         { name: 'Rating', route: '/components/rating', icon: '⭐', comingSoon: false },
         { name: 'Select', route: '/components/select', icon: '📋', comingSoon: false },

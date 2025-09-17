@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
+import { InputText as SuiInputText } from '../../../../../ui-lib/src/lib/input-text/input-text';
 
 @Component({
   selector: 'app-inputtext',
-  imports: [CommonModule, FormsModule, Tabs],
+  imports: [CommonModule, FormsModule, Tabs, SuiInputText],
   templateUrl: './inputtext.html',
   styleUrl: './inputtext.scss'
 })
@@ -61,8 +62,9 @@ export class Inputtext {
   }
   
   // Input demo methods
-  onInputChange(value: string) {
-    console.log('Input changed:', value);
+  onInputChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    console.log('Input changed:', target.value);
   }
   
   onInputFocus() {

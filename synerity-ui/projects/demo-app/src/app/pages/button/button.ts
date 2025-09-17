@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
+import { Button as SuiButton } from '../../../../../ui-lib/src/lib/button/button';
 
 @Component({
   selector: 'app-button',
-  imports: [CommonModule, FormsModule, Tabs],
+  imports: [CommonModule, FormsModule, Tabs, SuiButton],
   templateUrl: './button.html',
   styleUrl: './button.scss'
 })

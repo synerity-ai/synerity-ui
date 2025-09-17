@@ -34,46 +34,37 @@
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
               <div class="flex flex-wrap gap-4">
-                <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-                  Primary
-                </button>
-                <button class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
-                  Secondary
-                </button>
-                <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
-                  Success
-                </button>
-                <button class="px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors">
-                  Warning
-                </button>
-                <button class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
-                  Danger
-                </button>
-                <button class="px-4 py-2 bg-blue-100 text-blue-700 border border-blue-300 rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-                  Outline
-                </button>
-                <button class="px-4 py-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-                  Text
-                </button>
+                <sui-button variant="primary">Primary</sui-button>
+                <sui-button variant="secondary">Secondary</sui-button>
+                <sui-button variant="danger">Danger</sui-button>
+                <sui-button variant="outline">Outline</sui-button>
+                <sui-button variant="ghost">Ghost</sui-button>
+              </div>
+              
+              <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                <p class="text-sm text-yellow-800">
+                  <strong>Note:</strong> The sui-button component supports primary, secondary, danger, outline, and ghost variants. 
+                  For custom colors like success (green) or warning (yellow), you can extend the component or use custom CSS classes.
+                </p>
               </div>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showBasicVariantsCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Primary Button --&gt;
-&lt;button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
-  Primary
-&lt;/button&gt;
+&lt;sui-button variant="primary"&gt;Primary&lt;/sui-button&gt;
 
 &lt;!-- Secondary Button --&gt;
-&lt;button class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"&gt;
-  Secondary
-&lt;/button&gt;
+&lt;sui-button variant="secondary"&gt;Secondary&lt;/sui-button&gt;
 
-&lt;!-- Success Button --&gt;
-&lt;button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"&gt;
-  Success
-&lt;/button&gt;</code></pre>
+&lt;!-- Danger Button --&gt;
+&lt;sui-button variant="danger"&gt;Danger&lt;/sui-button&gt;
+
+&lt;!-- Outline Button --&gt;
+&lt;sui-button variant="outline"&gt;Outline&lt;/sui-button&gt;
+
+&lt;!-- Ghost Button --&gt;
+&lt;sui-button variant="ghost"&gt;Ghost&lt;/sui-button&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -93,37 +84,24 @@
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
               <div class="flex flex-wrap items-center gap-4">
-                <button class="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-                  Small
-                </button>
-                <button class="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-                  Medium
-                </button>
-                <button class="px-6 py-3 text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-                  Large
-                </button>
-                <button class="px-8 py-4 text-lg bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-                  Extra Large
-                </button>
+                <sui-button variant="primary" size="sm">Small</sui-button>
+                <sui-button variant="primary" size="md">Medium</sui-button>
+                <sui-button variant="primary" size="lg">Large</sui-button>
               </div>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showButtonSizesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Small Button --&gt;
-&lt;button class="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
-  Small
-&lt;/button&gt;
+&lt;sui-button variant="primary" size="sm"&gt;Small&lt;/sui-button&gt;
 
 &lt;!-- Medium Button --&gt;
-&lt;button class="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
-  Medium
-&lt;/button&gt;
+&lt;sui-button variant="primary" size="md"&gt;Medium&lt;/sui-button&gt;
 
 &lt;!-- Large Button --&gt;
-&lt;button class="px-6 py-3 text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
-  Large
-&lt;/button&gt;</code></pre>
+&lt;sui-button variant="primary" size="lg"&gt;Large&lt;/sui-button&gt;
+
+</code></pre>
             </div>
           </div>
         </div>
@@ -156,9 +134,9 @@
 
 {{ '@' }}Component({{ '{' }}
   template: `
-    &lt;button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"&gt;
+    &lt;sui-button variant="primary"&gt;
       Click me!
-    &lt;/button&gt;
+    &lt;/sui-button&gt;
   `
 {{ '}' }})
 export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
@@ -219,8 +197,20 @@ export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Visual style variant of the button</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Size of the button</td>
+                  </tr>
+                  <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">type</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'button' | 'submit' | 'reset'</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'button'</td>
                     <td class="px-6 py-4 text-sm text-gray-500">HTML button type attribute</td>
                   </tr>
@@ -235,6 +225,24 @@ export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Whether the button is in loading state</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">fullWidth</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the button should take full width of its container</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">icon</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string | null</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Icon to display in the button (HTML string or icon name)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">iconPosition</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'left' | 'right'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'left'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Position of the icon relative to the button text</td>
                   </tr>
                 </tbody>
               </table>
@@ -257,7 +265,7 @@ export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onClick</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">click</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;MouseEvent&gt;</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Emitted when the button is clicked</td>
                   </tr>

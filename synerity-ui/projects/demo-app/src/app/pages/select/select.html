@@ -1,0 +1,729 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Select</h1>
+    <p class="text-lg text-gray-600">A dropdown selection component for choosing single or multiple options from a list.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Select -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Select</h3>
+            <button 
+              (click)="toggleCode('basicSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Select:</label>
+                <sui-select 
+                  [(ngModel)]="basicSelect"
+                  (change)="onBasicSelectChange($event)"
+                  [options]="basicOptions"
+                  placeholder="Choose an option..."
+                  inputId="basic-select"
+                  name="basicSelect">
+                </sui-select>
+              </div>
+              <div *ngIf="basicSelect" class="flex items-center space-x-2">
+                <span class="text-sm text-gray-600">Selected:</span>
+                <span class="text-sm font-medium text-blue-600">
+                  {{ getSelectedLabel(basicSelect, basicOptions) }}
+                </span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showBasicSelectCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-select 
+  [(ngModel)]="basicSelect"
+  (change)="onBasicSelectChange($event)"
+  [options]="basicOptions"
+  placeholder="Choose an option..."
+  inputId="basic-select"
+  name="basicSelect"&gt;
+&lt;/sui-select&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enhanced Multi Select -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Enhanced Multi Select</h3>
+            <button 
+              (click)="toggleCode('multiSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showMultiSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Multi Select:</label>
+                <sui-select 
+                  [(ngModel)]="multiSelect"
+                  (change)="onMultiSelectChange($event)"
+                  [options]="multiOptions"
+                  [multiple]="true"
+                  [selectAll]="true"
+                  [searchable]="true"
+                  [clearable]="true"
+                  [showSelectedCount]="true"
+                  [maxDisplayItems]="2"
+                  placeholder="Choose multiple options..."
+                  searchPlaceholder="Search options..."
+                  inputId="multi-select"
+                  name="multiSelect">
+                </sui-select>
+              </div>
+              <div *ngIf="multiSelect.length > 0" class="flex items-center space-x-2">
+                <span class="text-sm text-gray-600">Selected ({{ multiSelect.length }}):</span>
+                <span class="text-sm font-medium text-blue-600">
+                  {{ getSelectedLabels(multiSelect, multiOptions) }}
+                </span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showMultiSelectCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-select 
+  [(ngModel)]="multiSelect"
+  (change)="onMultiSelectChange($event)"
+  [options]="multiOptions"
+  [multiple]="true"
+  [selectAll]="true"
+  [searchable]="true"
+  [clearable]="true"
+  [showSelectedCount]="true"
+  [maxDisplayItems]="2"
+  placeholder="Choose multiple options..."
+  searchPlaceholder="Search options..."
+  inputId="multi-select"
+  name="multiSelect"&gt;
+&lt;/sui-select&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advanced Multi Select with Many Options -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Advanced Multi Select</h3>
+            <button 
+              (click)="toggleCode('advancedMultiSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showAdvancedMultiSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Advanced:</label>
+                <sui-select 
+                  [(ngModel)]="advancedMultiSelect"
+                  (change)="onAdvancedMultiSelectChange($event)"
+                  [options]="advancedOptions"
+                  [multiple]="true"
+                  [selectAll]="true"
+                  [searchable]="true"
+                  [clearable]="true"
+                  [showSelectedCount]="true"
+                  [maxDisplayItems]="3"
+                  placeholder="Choose from many options..."
+                  searchPlaceholder="Search countries..."
+                  noResultsText="No countries found"
+                  inputId="advanced-multi-select"
+                  name="advancedMultiSelect">
+                </sui-select>
+              </div>
+              <div *ngIf="advancedMultiSelect.length > 0" class="flex items-center space-x-2">
+                <span class="text-sm text-gray-600">Selected ({{ advancedMultiSelect.length }}):</span>
+                <span class="text-sm font-medium text-green-600">
+                  {{ getSelectedLabels(advancedMultiSelect, advancedOptions) }}
+                </span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showAdvancedMultiSelectCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-select 
+  [(ngModel)]="advancedMultiSelect"
+  (change)="onAdvancedMultiSelectChange($event)"
+  [options]="advancedOptions"
+  [multiple]="true"
+  [selectAll]="true"
+  [searchable]="true"
+  [clearable]="true"
+  [showSelectedCount]="true"
+  [maxDisplayItems]="3"
+  placeholder="Choose from many options..."
+  searchPlaceholder="Search countries..."
+  noResultsText="No countries found"
+  inputId="advanced-multi-select"
+  name="advancedMultiSelect"&gt;
+&lt;/sui-select&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Searchable Select -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Searchable Select</h3>
+            <button 
+              (click)="toggleCode('searchableSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showSearchableSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Search:</label>
+                <sui-select 
+                  [(ngModel)]="searchableSelect"
+                  (change)="onSearchableSelectChange($event)"
+                  [options]="searchableOptions"
+                  [searchable]="true"
+                  [clearable]="true"
+                  placeholder="Search cities..."
+                  searchPlaceholder="Type to search..."
+                  inputId="searchable-select"
+                  name="searchableSelect">
+                </sui-select>
+              </div>
+              <div *ngIf="searchableSelect" class="flex items-center space-x-2">
+                <span class="text-sm text-gray-600">Selected:</span>
+                <span class="text-sm font-medium text-blue-600">{{ getSelectedLabel(searchableSelect, searchableOptions) }}</span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showSearchableSelectCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-select 
+  [(ngModel)]="searchableSelect"
+  (change)="onSearchableSelectChange($event)"
+  [options]="searchableOptions"
+  [searchable]="true"
+  [clearable]="true"
+  placeholder="Search cities..."
+  searchPlaceholder="Type to search..."
+  inputId="searchable-select"
+  name="searchableSelect"&gt;
+&lt;/sui-select&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disabled Select -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Disabled Select</h3>
+            <button 
+              (click)="toggleCode('disabledSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showDisabledSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Disabled:</label>
+                <sui-select 
+                  [(ngModel)]="disabledSelect"
+                  [options]="disabledOptions"
+                  [disabled]="true"
+                  placeholder="Disabled select"
+                  inputId="disabled-select"
+                  name="disabledSelect">
+                </sui-select>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="text-sm text-gray-600">Status:</span>
+                <span class="text-sm font-medium text-gray-500">Disabled</span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showDisabledSelectCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-select 
+  [(ngModel)]="disabledSelect"
+  [options]="disabledOptions"
+  [disabled]="true"
+  placeholder="Disabled select"
+  inputId="disabled-select"
+  name="disabledSelect"&gt;
+&lt;/sui-select&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grouped Select -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Grouped Select</h3>
+            <button 
+              (click)="toggleCode('groupedSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showGroupedSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Category:</label>
+                <sui-select 
+                  [(ngModel)]="groupedSelect"
+                  (change)="onGroupedSelectChange($event)"
+                  [options]="flattenedGroupedOptions"
+                  [searchable]="true"
+                  [clearable]="true"
+                  placeholder="Choose a category..."
+                  searchPlaceholder="Search categories..."
+                  inputId="grouped-select"
+                  name="groupedSelect">
+                </sui-select>
+              </div>
+              <div *ngIf="groupedSelect" class="flex items-center space-x-2">
+                <span class="text-sm text-gray-600">Selected:</span>
+                <span class="text-sm font-medium text-blue-600">
+                  {{ getGroupedOptionLabel(groupedSelect) }}
+                </span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showGroupedSelectCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-select 
+  [(ngModel)]="groupedSelect"
+  (change)="onGroupedSelectChange($event)"
+  [options]="flattenedGroupedOptions"
+  [searchable]="true"
+  [clearable]="true"
+  placeholder="Choose a category..."
+  searchPlaceholder="Search categories..."
+  inputId="grouped-select"
+  name="groupedSelect"&gt;
+&lt;/sui-select&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Styled Select -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Custom Styled Select</h3>
+            <button 
+              (click)="toggleCode('customSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCustomSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Custom:</label>
+                <sui-select 
+                  [(ngModel)]="customSelect1"
+                  (change)="onCustomSelect1Change($event)"
+                  [options]="basicOptions"
+                  [searchable]="true"
+                  [clearable]="true"
+                  placeholder="Choose an option..."
+                  searchPlaceholder="Search options..."
+                  inputId="custom-select-1"
+                  name="customSelect1">
+                </sui-select>
+              </div>
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Success:</label>
+                <sui-select 
+                  [(ngModel)]="customSelect2"
+                  (change)="onCustomSelect2Change($event)"
+                  [options]="basicOptions"
+                  [searchable]="true"
+                  [clearable]="true"
+                  placeholder="Choose an option..."
+                  searchPlaceholder="Search options..."
+                  inputId="custom-select-2"
+                  name="customSelect2">
+                </sui-select>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showCustomSelectCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Enhanced Custom Select --&gt;
+&lt;sui-select 
+  [(ngModel)]="customSelect1"
+  (change)="onCustomSelect1Change($event)"
+  [options]="basicOptions"
+  [searchable]="true"
+  [clearable]="true"
+  placeholder="Choose an option..."
+  searchPlaceholder="Search options..."
+  inputId="custom-select-1"
+  name="customSelect1"&gt;
+&lt;/sui-select&gt;
+
+&lt;!-- Enhanced Success Select --&gt;
+&lt;sui-select 
+  [(ngModel)]="customSelect2"
+  (change)="onCustomSelect2Change($event)"
+  [options]="basicOptions"
+  [searchable]="true"
+  [clearable]="true"
+  placeholder="Choose an option..."
+  searchPlaceholder="Search options..."
+  inputId="custom-select-2"
+  name="customSelect2"&gt;
+&lt;/sui-select&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Basic Usage -->
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <p class="text-gray-600 mb-4">The <code>sui-select</code> component provides a powerful dropdown selection with various features:</p>
+          
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">1. Basic Select</h4>
+              <p class="text-gray-600 text-sm">Use <code>sui-select</code> with <code>ngModel</code> for single option selection.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">2. Multi Select</h4>
+              <p class="text-gray-600 text-sm">Set <code>[multiple]="true"</code> to allow selection of multiple options.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">3. Searchable Select</h4>
+              <p class="text-gray-600 text-sm">Set <code>[searchable]="true"</code> to enable search functionality.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">4. Clearable Select</h4>
+              <p class="text-gray-600 text-sm">Set <code>[clearable]="true"</code> to show a clear button.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Component Integration -->
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Integration</h3>
+          <p class="text-gray-600 mb-4">To use Select in your Angular component:</p>
+          
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">1. Import FormsModule</h4>
+              <p class="text-gray-600 text-sm">Import FormsModule from @angular/forms to enable two-way data binding.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">2. Define Options Data</h4>
+              <p class="text-gray-600 text-sm">Create arrays of option objects with value and label properties.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">3. Handle Selection Changes</h4>
+              <p class="text-gray-600 text-sm">Create event handlers to respond to selection changes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Best Practices</h3>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">•</span>
+              <span>Always provide a default empty option for better UX</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">•</span>
+              <span>Use descriptive labels for options</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">•</span>
+              <span>Group related options using optgroup</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">•</span>
+              <span>Provide clear feedback for selected values</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">•</span>
+              <span>Use appropriate sizing for multi-select dropdowns</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">•</span>
+              <span>Consider accessibility with proper labels and ARIA attributes</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- API Reference -->
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">API Reference</h3>
+          
+          <div class="space-y-6">
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">sui-select Component</h4>
+              <div class="overflow-x-auto">
+                <table class="min-w-full border border-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Property</th>
+                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
+                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">ngModel</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">unknown | unknown[]</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Two-way binding for the selected value(s)</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">options</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Array&lt;{{ '{' }}label: string, value: unknown, disabled?: boolean{{ '}' }}&gt;</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Array of options to display</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">multiple</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Enables multiple selection</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">searchable</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Enables search functionality</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">clearable</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Shows a clear button</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">disabled</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Disables the select component</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">placeholder</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">string | null</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Placeholder text for the select</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">inputId</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">ID attribute for the select element</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">name</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Name attribute for the select element</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">selectAll</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Shows select all/clear all buttons (multi-select only)</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">maxDisplayItems</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">number</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Maximum items to show in display (with "+X more")</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">showSelectedCount</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Shows count of selected items in display</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">searchPlaceholder</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Custom placeholder for search input</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">noResultsText</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Text shown when no search results found</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">loading</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Shows loading state for async options</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">Events</h4>
+              <div class="overflow-x-auto">
+                <table class="min-w-full border border-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Event</th>
+                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
+                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">change</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">EventEmitter&lt;unknown&gt;</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Emitted when the selection changes</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">Option Element</h4>
+              <div class="overflow-x-auto">
+                <table class="min-w-full border border-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Attribute</th>
+                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
+                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">value</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">The value of the option</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">disabled</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Disables the option</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2 text-sm text-gray-900">selected</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                      <td class="px-4 py-2 text-sm text-gray-600">Pre-selects the option</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full border border-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Event</th>
+                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
+                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-4 py-2 text-sm text-gray-900">change</td>
+                  <td class="px-4 py-2 text-sm text-gray-600">Event</td>
+                  <td class="px-4 py-2 text-sm text-gray-600">Fired when selection changes</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2 text-sm text-gray-900">focus</td>
+                  <td class="px-4 py-2 text-sm text-gray-600">Event</td>
+                  <td class="px-4 py-2 text-sm text-gray-600">Fired when select gains focus</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2 text-sm text-gray-900">blur</td>
+                  <td class="px-4 py-2 text-sm text-gray-600">Event</td>
+                  <td class="px-4 py-2 text-sm text-gray-600">Fired when select loses focus</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Examples -->
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Usage Examples</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">Basic Selection</h4>
+              <p class="text-gray-600 text-sm">Simple dropdown with single selection.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">Multiple Selection</h4>
+              <p class="text-gray-600 text-sm">Allow users to select multiple options from the list.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">Searchable Dropdown</h4>
+              <p class="text-gray-600 text-sm">Implement search functionality for large option lists.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">Grouped Options</h4>
+              <p class="text-gray-600 text-sm">Organize options into logical groups using optgroup.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </app-tabs>
+</div>

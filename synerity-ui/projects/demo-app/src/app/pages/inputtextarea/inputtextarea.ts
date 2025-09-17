@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
+import { Textarea as SuiTextarea } from '../../../../../ui-lib/src/lib/textarea/textarea';
 
 @Component({
   selector: 'app-inputtextarea',
-  imports: [CommonModule, FormsModule, Tabs],
+  imports: [CommonModule, FormsModule, Tabs, SuiTextarea],
   templateUrl: './inputtextarea.html',
   styleUrl: './inputtextarea.scss'
 })
@@ -64,6 +65,11 @@ export class Inputtextarea {
   // Textarea demo methods
   onTextareaChange(value: string) {
     console.log('Textarea changed:', value);
+  }
+  
+  onInteractiveTextareaChange(value: string) {
+    console.log('Interactive textarea value changed:', value);
+    // sui-textarea handles auto-resize automatically when [autosize]="true"
   }
   
   onTextareaFocus() {

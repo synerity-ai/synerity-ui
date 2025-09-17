@@ -1,0 +1,751 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">DatePicker</h1>
+      <p class="text-gray-600">A comprehensive date selection component with calendar popup, time selection, and advanced customization options.</p>
+    </div>
+
+    <!-- Tabs -->
+    <app-tabs
+      [tabs]="[
+        { id: 'demo', label: 'Demo', icon: '🎯' },
+        { id: 'usage', label: 'How to Use', icon: '📖' },
+        { id: 'docs', label: 'Documentation', icon: '📚' }
+      ]"
+      [activeTab]="activeTab"
+      (tabChange)="onTabChange($event)">
+
+      <!-- Demo Tab -->
+      <div *ngIf="activeTab === 'demo'">
+        <div class="space-y-8">
+          
+          <!-- Basic Date Picker -->
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold text-gray-900">Basic Date Picker</h3>
+              <button
+                (click)="toggleCode('basicDate')"
+                class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                <span class="text-lg">&lt;/&gt;</span>
+                <span>{{ showBasicDateCode ? 'Hide' : 'Show' }} Code</span>
+              </button>
+            </div>
+            
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+              <div class="space-y-4">
+                <div class="flex items-center space-x-4">
+                  <label class="text-sm font-medium text-gray-700 w-24">Date:</label>
+                  <div class="flex-1 max-w-sm">
+                    <sui-date-picker
+                      [(ngModel)]="basicDate"
+                      (onChange)="onDateChange($event)"
+                      placeholder="Select a date"
+                      size="medium">
+                    </sui-date-picker>
+                  </div>
+                </div>
+                <div *ngIf="basicDate" class="flex items-center space-x-2">
+                  <span class="text-sm text-gray-600">Selected:</span>
+                  <span class="text-sm font-medium text-blue-600">{{ formatDate(basicDate) }}</span>
+                  <span class="text-sm text-gray-500">({{ getDateStatus(basicDate) }})</span>
+                </div>
+              </div>
+              
+              <!-- Code Block -->
+              <div *ngIf="showBasicDateCode" class="mt-4 pt-4 border-t border-gray-200">
+                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
+  [(ngModel)]="date"
+  (onChange)="onDateChange($event)"
+  placeholder="Select a date"
+  size="medium"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Min/Max Date Constraints -->
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold text-gray-900">Min/Max Date Constraints</h3>
+              <button
+                (click)="toggleCode('minMaxDate')"
+                class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                <span class="text-lg">&lt;/&gt;</span>
+                <span>{{ showMinMaxDateCode ? 'Hide' : 'Show' }} Code</span>
+              </button>
+            </div>
+            
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+              <div class="space-y-4">
+                <div class="flex items-center space-x-4">
+                  <label class="text-sm font-medium text-gray-700 w-24">Range:</label>
+                  <div class="flex-1 max-w-sm">
+                    <sui-date-picker
+                      [(ngModel)]="minMaxDate"
+                      (onChange)="onDateChange($event)"
+                      [minDate]="today"
+                      [maxDate]="endOf2025"
+                      placeholder="Select date in 2025"
+                      size="medium">
+                    </sui-date-picker>
+                  </div>
+                </div>
+                <div class="text-sm text-gray-600">
+                  <p>• Minimum date: Today</p>
+                  <p>• Maximum date: December 31, 2025</p>
+                  <p>• Dates outside this range will be disabled</p>
+                </div>
+              </div>
+              
+              <!-- Code Block -->
+              <div *ngIf="showMinMaxDateCode" class="mt-4 pt-4 border-t border-gray-200">
+                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
+  [(ngModel)]="date"
+  (onChange)="onDateChange($event)"
+  [minDate]="new Date()"
+  [maxDate]="new Date(2025, 11, 31)"
+  placeholder="Select date in 2025"
+  size="medium"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Date Picker States -->
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold text-gray-900">Date Picker States</h3>
+              <button
+                (click)="toggleCode('dateStates')"
+                class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                <span class="text-lg">&lt;/&gt;</span>
+                <span>{{ showDateStatesCode ? 'Hide' : 'Show' }} Code</span>
+              </button>
+            </div>
+            
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
+                  <sui-date-picker
+                    placeholder="Normal date picker"
+                    size="medium">
+                  </sui-date-picker>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
+                  <sui-date-picker
+                    [(ngModel)]="disabledDate"
+                    [disabled]="true"
+                    size="medium">
+                  </sui-date-picker>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Read-only State</label>
+                  <sui-date-picker
+                    [(ngModel)]="readonlyDate"
+                    [readonly]="true"
+                    size="medium">
+                  </sui-date-picker>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Required Field</label>
+                  <sui-date-picker
+                    placeholder="This field is required"
+                    [required]="true"
+                    size="medium">
+                  </sui-date-picker>
+                </div>
+              </div>
+              
+              <!-- Code Block -->
+              <div *ngIf="showDateStatesCode" class="mt-4 pt-4 border-t border-gray-200">
+                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Normal State --&gt;
+&lt;sui-date-picker
+  placeholder="Normal date picker"
+  size="medium"&gt;
+&lt;/sui-date-picker&gt;
+
+&lt;!-- Disabled State --&gt;
+&lt;sui-date-picker
+  [(ngModel)]="disabledDate"
+  [disabled]="true"
+  size="medium"&gt;
+&lt;/sui-date-picker&gt;
+
+&lt;!-- Read-only State --&gt;
+&lt;sui-date-picker
+  [(ngModel)]="readonlyDate"
+  [readonly]="true"
+  size="medium"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Time Selection -->
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold text-gray-900">Date & Time Selection</h3>
+              <button
+                (click)="toggleCode('timeDate')"
+                class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                <span class="text-lg">&lt;/&gt;</span>
+                <span>{{ showTimeDateCode ? 'Hide' : 'Show' }} Code</span>
+              </button>
+            </div>
+            
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+              <div class="space-y-4">
+                <div class="flex items-center space-x-4">
+                  <label class="text-sm font-medium text-gray-700 w-24">Date & Time:</label>
+                  <div class="flex-1 max-w-sm">
+                    <sui-date-picker
+                      [(ngModel)]="timeDate"
+                      (onChange)="onDateChange($event)"
+                      [showTime]="true"
+                      [timeFormat]="'24'"
+                      placeholder="Select date and time"
+                      size="medium">
+                    </sui-date-picker>
+                  </div>
+                </div>
+                <div *ngIf="timeDate" class="flex items-center space-x-2">
+                  <span class="text-sm text-gray-600">Selected:</span>
+                  <span class="text-sm font-medium text-blue-600">{{ timeDate.toLocaleString() }}</span>
+                </div>
+                <div class="text-sm text-gray-600">
+                  <p>• Includes time selection with 24-hour format</p>
+                  <p>• Calendar remains open after date selection</p>
+                  <p>• Time can be adjusted independently</p>
+                </div>
+              </div>
+              
+              <!-- Code Block -->
+              <div *ngIf="showTimeDateCode" class="mt-4 pt-4 border-t border-gray-200">
+                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
+  [(ngModel)]="dateTime"
+  (onChange)="onDateChange($event)"
+  [showTime]="true"
+  [timeFormat]="'24'"
+  placeholder="Select date and time"
+  size="medium"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Format -->
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold text-gray-900">Custom Date Format</h3>
+              <button
+                (click)="toggleCode('customFormatDate')"
+                class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                <span class="text-lg">&lt;/&gt;</span>
+                <span>{{ showCustomFormatDateCode ? 'Hide' : 'Show' }} Code</span>
+              </button>
+            </div>
+            
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+              <div class="space-y-4">
+                <div class="flex items-center space-x-4">
+                  <label class="text-sm font-medium text-gray-700 w-24">Custom:</label>
+                  <div class="flex-1 max-w-sm">
+                    <sui-date-picker
+                      [(ngModel)]="customFormatDate"
+                      (onChange)="onDateChange($event)"
+                      dateFormat="MM/dd/yyyy"
+                      placeholder="MM/DD/YYYY format"
+                      size="medium">
+                    </sui-date-picker>
+                  </div>
+                </div>
+                <div *ngIf="customFormatDate" class="flex items-center space-x-2">
+                  <span class="text-sm text-gray-600">Selected:</span>
+                  <span class="text-sm font-medium text-blue-600">{{ customFormatDate.toLocaleDateString('en-US') }}</span>
+                </div>
+                <div class="text-sm text-gray-600">
+                  <p>• Custom date format: MM/dd/yyyy</p>
+                  <p>• Displays dates in US format</p>
+                  <p>• Supports various date format patterns</p>
+                </div>
+              </div>
+              
+              <!-- Code Block -->
+              <div *ngIf="showCustomFormatDateCode" class="mt-4 pt-4 border-t border-gray-200">
+                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
+  [(ngModel)]="date"
+  (onChange)="onDateChange($event)"
+  dateFormat="MM/dd/yyyy"
+  placeholder="MM/DD/YYYY format"
+  size="medium"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Demo -->
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+              <button
+                (click)="toggleCode('interactiveDemo')"
+                class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                <span class="text-lg">&lt;/&gt;</span>
+                <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+              </button>
+            </div>
+            
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Controls -->
+                <div class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Configuration</h4>
+                  
+                  <div class="space-y-3">
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-1">Size</label>
+                      <select
+                        [(ngModel)]="interactiveSize"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-1">Variant</label>
+                      <select
+                        [(ngModel)]="interactiveVariant"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="default">Default</option>
+                        <option value="compact">Compact</option>
+                        <option value="inline">Inline</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-1">Placeholder</label>
+                      <input
+                        type="text"
+                        [(ngModel)]="interactivePlaceholder"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div class="space-y-2">
+                      <h5 class="text-sm font-medium text-gray-700">Date Constraints</h5>
+                      <div class="flex flex-wrap gap-2">
+                        <button
+                          (click)="setMinDate(-30)"
+                          class="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200">
+                          Min: -30 days
+                        </button>
+                        <button
+                          (click)="setMinDate(0)"
+                          class="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200">
+                          Min: Today
+                        </button>
+                        <button
+                          (click)="clearMinDate()"
+                          class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
+                          Clear Min
+                        </button>
+                      </div>
+                      <div class="flex flex-wrap gap-2">
+                        <button
+                          (click)="setMaxDate(30)"
+                          class="px-3 py-1 text-xs bg-green-100 text-green-700 rounded-md hover:bg-green-200">
+                          Max: +30 days
+                        </button>
+                        <button
+                          (click)="setMaxDate(365)"
+                          class="px-3 py-1 text-xs bg-green-100 text-green-700 rounded-md hover:bg-green-200">
+                          Max: +1 year
+                        </button>
+                        <button
+                          (click)="clearMaxDate()"
+                          class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
+                          Clear Max
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          [(ngModel)]="interactiveDisabled"
+                          class="mr-2">
+                        <span class="text-sm text-gray-700">Disabled</span>
+                      </label>
+                      
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          [(ngModel)]="interactiveReadonly"
+                          class="mr-2">
+                        <span class="text-sm text-gray-700">Read-only</span>
+                      </label>
+                      
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          [(ngModel)]="interactiveRequired"
+                          class="mr-2">
+                        <span class="text-sm text-gray-700">Required</span>
+                      </label>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          [(ngModel)]="interactiveShowTime"
+                          class="mr-2">
+                        <span class="text-sm text-gray-700">Show Time</span>
+                      </label>
+                      
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          [(ngModel)]="interactiveShowTodayButton"
+                          class="mr-2">
+                        <span class="text-sm text-gray-700">Today Button</span>
+                      </label>
+                      
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          [(ngModel)]="interactiveShowClearButton"
+                          class="mr-2">
+                        <span class="text-sm text-gray-700">Clear Button</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Preview -->
+                <div class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Preview</h4>
+                  
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Date Picker</label>
+                    <sui-date-picker
+                      [(ngModel)]="interactiveValue"
+                      (onChange)="onInteractiveDateChange($event)"
+                      (onOpen)="onDateOpen()"
+                      (onClose)="onDateClose()"
+                      (onSelect)="onDateSelect($event)"
+                      [minDate]="interactiveMinDate"
+                      [maxDate]="interactiveMaxDate"
+                      [disabled]="interactiveDisabled"
+                      [readonly]="interactiveReadonly"
+                      [required]="interactiveRequired"
+                      [showTime]="interactiveShowTime"
+                      [showTodayButton]="interactiveShowTodayButton"
+                      [showClearButton]="interactiveShowClearButton"
+                      [placeholder]="interactivePlaceholder"
+                      [size]="interactiveSize"
+                      [variant]="interactiveVariant">
+                    </sui-date-picker>
+                  </div>
+                  
+                  <div class="p-3 bg-gray-50 rounded-md">
+                    <h5 class="text-sm font-medium text-gray-700 mb-2">Current Value</h5>
+                    <p class="text-sm text-gray-600">
+                      <strong>Value:</strong> {{ formatDate(interactiveValue) }}<br>
+                      <strong>Status:</strong> {{ getDateStatus(interactiveValue) }}<br>
+                      <strong>Valid:</strong> {{ isValidDate(interactiveValue) ? 'Yes' : 'No' }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Code Block -->
+              <div *ngIf="showInteractiveDemoCode" class="mt-4 pt-4 border-t border-gray-200">
+                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
+  [(ngModel)]="interactiveValue"
+  (onChange)="onInteractiveDateChange($event)"
+  (onOpen)="onDateOpen()"
+  (onClose)="onDateClose()"
+  (onSelect)="onDateSelect($event)"
+  [minDate]="interactiveMinDate"
+  [maxDate]="interactiveMaxDate"
+  [disabled]="interactiveDisabled"
+  [readonly]="interactiveReadonly"
+  [required]="interactiveRequired"
+  [showTime]="interactiveShowTime"
+  [showTodayButton]="interactiveShowTodayButton"
+  [showClearButton]="interactiveShowClearButton"
+  [placeholder]="interactivePlaceholder"
+  [size]="interactiveSize"
+  [variant]="interactiveVariant"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How to Use Tab -->
+      <div *ngIf="activeTab === 'usage'">
+        <div class="space-y-6">
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+            <p class="text-gray-600 mb-4">The DatePicker component provides a comprehensive date selection interface with calendar popup and advanced features.</p>
+            
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} DatePicker {{ '}' }} from '@synerity/ui';
+
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;sui-date-picker
+      [(ngModel)]="selectedDate"
+      (onChange)="onDateChange($event)"
+      placeholder="Select a date"
+      [minDate]="new Date()"
+      [maxDate]="new Date(2025, 11, 31)"
+      [showTime]="false"
+      size="medium"&gt;
+    &lt;/sui-date-picker&gt;
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}
+  selectedDate: Date | null = null;
+  
+  onDateChange(value: Date | null) {{ '{' }}
+    console.log('Date changed:', value);
+  {{ '}' }}
+{{ '}' }}</code></pre>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Key Features</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">•</span>
+                <span><strong>Calendar Popup:</strong> Interactive calendar with month/year navigation</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">•</span>
+                <span><strong>Date Constraints:</strong> Min/max date restrictions and disabled dates</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">•</span>
+                <span><strong>Time Selection:</strong> Optional time picker with 12/24 hour formats</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">•</span>
+                <span><strong>Custom Formatting:</strong> Flexible date format options</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">•</span>
+                <span><strong>Accessibility:</strong> Full keyboard navigation and screen reader support</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Best Practices</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>Set appropriate <code>minDate</code> and <code>maxDate</code> for your use case</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>Use <code>showTime</code> only when time selection is necessary</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>Provide clear placeholder text to guide users</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>Handle <code>null</code> values in your change handlers</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documentation Tab -->
+      <div *ngIf="activeTab === 'docs'">
+        <div class="space-y-6">
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">API Reference</h3>
+            
+            <div class="space-y-4">
+              <div>
+                <h4 class="text-lg font-medium text-gray-800 mb-2">Inputs</h4>
+                <div class="overflow-x-auto">
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">value</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Date | null</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">null</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Selected date value</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">placeholder</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">string</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">'Select date'</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Placeholder text</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">disabled</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">false</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Disables the date picker</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">readonly</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">false</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Makes the date picker read-only</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">required</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">false</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Marks the field as required</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">size</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">'small' | 'medium' | 'large'</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">'medium'</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Size of the date picker</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">variant</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">'default' | 'compact' | 'inline'</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">'default'</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Visual variant</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">minDate</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Date | null</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">null</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Minimum selectable date</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">maxDate</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Date | null</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">null</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Maximum selectable date</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">showTime</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">false</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Enable time selection</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">timeFormat</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">'12' | '24'</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">'24'</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Time format when showTime is true</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
+              <div>
+                <h4 class="text-lg font-medium text-gray-800 mb-2">Outputs</h4>
+                <div class="overflow-x-auto">
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">onChange</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">EventEmitter&lt;Date | null&gt;</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Emitted when the date value changes</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">onSelect</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">EventEmitter&lt;Date | null&gt;</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Emitted when a date is selected</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">onOpen</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">EventEmitter&lt;void&gt;</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Emitted when the calendar opens</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-2 text-sm font-mono text-gray-900">onClose</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">EventEmitter&lt;void&gt;</td>
+                        <td class="px-4 py-2 text-sm text-gray-600">Emitted when the calendar closes</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
+            
+            <div class="space-y-4">
+              <div>
+                <h4 class="text-lg font-medium text-gray-800 mb-2">Basic Date Picker</h4>
+                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                  <pre><code>&lt;sui-date-picker
+  [(ngModel)]="birthDate"
+  placeholder="Select your birth date"
+  [maxDate]="new Date()"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+                </div>
+              </div>
+              
+              <div>
+                <h4 class="text-lg font-medium text-gray-800 mb-2">Date Range Picker</h4>
+                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                  <pre><code>&lt;sui-date-picker
+  [(ngModel)]="startDate"
+  placeholder="Start date"
+  [minDate]="new Date()"
+  [maxDate]="new Date(2025, 11, 31)"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+                </div>
+              </div>
+              
+              <div>
+                <h4 class="text-lg font-medium text-gray-800 mb-2">Date & Time Picker</h4>
+                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                  <pre><code>&lt;sui-date-picker
+  [(ngModel)]="appointmentDate"
+  placeholder="Select appointment date and time"
+  [showTime]="true"
+  [timeFormat]="'12'"
+  [minDate]="new Date()"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-tabs>
+  </div>
+</div>

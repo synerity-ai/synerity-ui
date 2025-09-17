@@ -34,69 +34,60 @@
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <!-- Simple Card -->
-              <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                <div class="p-6">
-                  <h3 class="text-lg font-semibold text-gray-900 mb-2">Simple Card</h3>
-                  <p class="text-gray-600">This is a simple card with just content. No header or footer needed.</p>
-                </div>
-              </div>
+              <sui-card 
+                header="Simple Card"
+                size="md"
+                variant="default">
+                <p class="text-gray-600">This is a simple card with just content. No header or footer needed.</p>
+              </sui-card>
               
               <!-- Card with Header -->
-              <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
-                  <h3 class="text-lg font-semibold text-gray-900">Card Header</h3>
-                </div>
-                <div class="p-6">
-                  <p class="text-gray-600">This card has a header section with a title.</p>
-                </div>
-              </div>
+              <sui-card 
+                header="Card Header"
+                size="md"
+                variant="default">
+                <p class="text-gray-600">This card has a header section with a title.</p>
+              </sui-card>
               
               <!-- Card with Header and Footer -->
-              <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
-                  <h3 class="text-lg font-semibold text-gray-900">Complete Card</h3>
-                </div>
-                <div class="p-6">
-                  <p class="text-gray-600">This card has both header and footer sections.</p>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+              <sui-card 
+                header="Complete Card"
+                size="md"
+                variant="default"
+                [showFooter]="true">
+                <p class="text-gray-600">This card has both header and footer sections.</p>
+                <div slot="footer">
                   <p class="text-sm text-gray-500">Card Footer</p>
                 </div>
-              </div>
+              </sui-card>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showBasicCardCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Simple Card --&gt;
-&lt;div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"&gt;
-  &lt;div class="p-6"&gt;
-    &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Simple Card&lt;/h3&gt;
-    &lt;p class="text-gray-600"&gt;This is a simple card with just content.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+&lt;sui-card 
+  header="Simple Card"
+  size="md"
+  variant="default"&gt;
+  &lt;p class="text-gray-600"&gt;This is a simple card with just content. No header or footer needed.&lt;/p&gt;
+&lt;/sui-card&gt;
 
 &lt;!-- Card with Header --&gt;
-&lt;div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"&gt;
-  &lt;div class="px-6 py-4 bg-gray-50 border-b border-gray-200"&gt;
-    &lt;h3 class="text-lg font-semibold text-gray-900"&gt;Card Header&lt;/h3&gt;
-  &lt;/div&gt;
-  &lt;div class="p-6"&gt;
-    &lt;p class="text-gray-600"&gt;This card has a header section.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+&lt;sui-card 
+  header="Card Header"
+  size="md"
+  variant="default"&gt;
+  &lt;p class="text-gray-600"&gt;This card has a header section with a title.&lt;/p&gt;
+&lt;/sui-card&gt;
 
 &lt;!-- Card with Header and Footer --&gt;
-&lt;div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"&gt;
-  &lt;div class="px-6 py-4 bg-gray-50 border-b border-gray-200"&gt;
-    &lt;h3 class="text-lg font-semibold text-gray-900"&gt;Complete Card&lt;/h3&gt;
-  &lt;/div&gt;
-  &lt;div class="p-6"&gt;
-    &lt;p class="text-gray-600"&gt;This card has both header and footer.&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class="px-6 py-4 bg-gray-50 border-t border-gray-200"&gt;
-    &lt;p class="text-sm text-gray-500"&gt;Card Footer&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;sui-card 
+  header="Card with Footer"
+  size="md"
+  variant="default"
+  [showFooter]="true"&gt;
+  &lt;p class="text-gray-600"&gt;This card has both header and footer.&lt;/p&gt;
+&lt;/sui-card&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -116,50 +107,50 @@
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <!-- Default Card -->
-              <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                <div class="p-6">
-                  <h3 class="text-lg font-semibold text-gray-900 mb-2">Default Card</h3>
-                  <p class="text-gray-600">Standard card with subtle shadow and border.</p>
-                </div>
-              </div>
+              <sui-card 
+                header="Default Card"
+                size="md"
+                variant="default">
+                <p class="text-gray-600">Standard card with subtle shadow and border.</p>
+              </sui-card>
               
               <!-- Elevated Card -->
-              <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
-                <div class="p-6">
-                  <h3 class="text-lg font-semibold text-gray-900 mb-2">Elevated Card</h3>
-                  <p class="text-gray-600">Card with enhanced shadow for more prominence.</p>
-                </div>
-              </div>
+              <sui-card 
+                header="Elevated Card"
+                size="md"
+                variant="elevated">
+                <p class="text-gray-600">Card with enhanced shadow for more prominence.</p>
+              </sui-card>
               
               <!-- Outlined Card -->
-              <div class="bg-white border-2 border-gray-300 rounded-lg overflow-hidden">
-                <div class="p-6">
-                  <h3 class="text-lg font-semibold text-gray-900 mb-2">Outlined Card</h3>
-                  <p class="text-gray-600">Card with prominent border and no shadow.</p>
-                </div>
-              </div>
+              <sui-card 
+                header="Outlined Card"
+                size="md"
+                variant="outlined">
+                <p class="text-gray-600">Card with prominent border and no shadow.</p>
+              </sui-card>
               
-              <!-- Flat Card -->
-              <div class="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
-                <div class="p-6">
-                  <h3 class="text-lg font-semibold text-gray-900 mb-2">Flat Card</h3>
-                  <p class="text-gray-600">Card with subtle background and minimal styling.</p>
-                </div>
-              </div>
+              <!-- Filled Card -->
+              <sui-card 
+                header="Filled Card"
+                size="md"
+                variant="filled">
+                <p class="text-gray-600">Card with filled background and minimal styling.</p>
+              </sui-card>
               
-              <!-- Colored Card -->
+              <!-- Note: sui-card supports default, outlined, elevated, and filled variants -->
               <div class="bg-blue-50 border border-blue-200 rounded-lg overflow-hidden">
                 <div class="p-6">
-                  <h3 class="text-lg font-semibold text-blue-900 mb-2">Colored Card</h3>
-                  <p class="text-blue-700">Card with colored background and border.</p>
+                  <h3 class="text-lg font-semibold text-blue-900 mb-2">Custom Styled Card</h3>
+                  <p class="text-blue-700">For custom colors and gradients, extend the component or use custom CSS classes.</p>
                 </div>
               </div>
               
-              <!-- Gradient Card -->
+              <!-- Note: sui-card supports default, outlined, elevated, and filled variants -->
               <div class="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-lg overflow-hidden">
                 <div class="p-6">
-                  <h3 class="text-lg font-semibold text-purple-900 mb-2">Gradient Card</h3>
-                  <p class="text-purple-700">Card with gradient background.</p>
+                  <h3 class="text-lg font-semibold text-purple-900 mb-2">Custom Gradient Card</h3>
+                  <p class="text-purple-700">For custom gradients, extend the component or use custom CSS classes.</p>
                 </div>
               </div>
             </div>
@@ -167,28 +158,36 @@
             <!-- Code Example -->
             <div *ngIf="showCardVariantsCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Default Card --&gt;
-&lt;div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"&gt;
-  &lt;div class="p-6"&gt;
-    &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Default Card&lt;/h3&gt;
-    &lt;p class="text-gray-600"&gt;Standard card styling.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+&lt;sui-card 
+  header="Default Card"
+  size="md"
+  variant="default"&gt;
+  &lt;p class="text-gray-600"&gt;Standard card styling.&lt;/p&gt;
+&lt;/sui-card&gt;
 
 &lt;!-- Elevated Card --&gt;
-&lt;div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden"&gt;
-  &lt;div class="p-6"&gt;
-    &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Elevated Card&lt;/h3&gt;
-    &lt;p class="text-gray-600"&gt;Enhanced shadow.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+&lt;sui-card 
+  header="Elevated Card"
+  size="md"
+  variant="elevated"&gt;
+  &lt;p class="text-gray-600"&gt;Enhanced shadow.&lt;/p&gt;
+&lt;/sui-card&gt;
 
 &lt;!-- Outlined Card --&gt;
-&lt;div class="bg-white border-2 border-gray-300 rounded-lg overflow-hidden"&gt;
-  &lt;div class="p-6"&gt;
-    &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Outlined Card&lt;/h3&gt;
-    &lt;p class="text-gray-600"&gt;Prominent border.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;sui-card 
+  header="Outlined Card"
+  size="md"
+  variant="outlined"&gt;
+  &lt;p class="text-gray-600"&gt;Prominent border.&lt;/p&gt;
+&lt;/sui-card&gt;
+
+&lt;!-- Filled Card --&gt;
+&lt;sui-card 
+  header="Filled Card"
+  size="md"
+  variant="filled"&gt;
+  &lt;p class="text-gray-600"&gt;Filled background.&lt;/p&gt;
+&lt;/sui-card&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -208,55 +207,55 @@
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-6">
               <!-- Small Card -->
-              <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden max-w-sm">
-                <div class="p-4">
-                  <h3 class="text-base font-semibold text-gray-900 mb-2">Small Card</h3>
-                  <p class="text-sm text-gray-600">Compact card with reduced padding and smaller text.</p>
-                </div>
-              </div>
+              <sui-card 
+                header="Small Card"
+                size="sm"
+                variant="default">
+                <p class="text-sm text-gray-600">Compact card with reduced padding and smaller text.</p>
+              </sui-card>
               
               <!-- Medium Card -->
-              <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden max-w-md">
-                <div class="p-6">
-                  <h3 class="text-lg font-semibold text-gray-900 mb-2">Medium Card</h3>
-                  <p class="text-gray-600">Standard card with balanced padding and text sizes.</p>
-                </div>
-              </div>
+              <sui-card 
+                header="Medium Card"
+                size="md"
+                variant="default">
+                <p class="text-gray-600">Standard card with balanced padding and text sizes.</p>
+              </sui-card>
               
               <!-- Large Card -->
-              <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden max-w-lg">
-                <div class="p-8">
-                  <h3 class="text-xl font-semibold text-gray-900 mb-3">Large Card</h3>
-                  <p class="text-lg text-gray-600">Spacious card with generous padding and larger text.</p>
-                </div>
-              </div>
+              <sui-card 
+                header="Large Card"
+                size="lg"
+                variant="default">
+                <p class="text-lg text-gray-600">Spacious card with generous padding and larger text.</p>
+              </sui-card>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showCardSizesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Small Card --&gt;
-&lt;div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden max-w-sm"&gt;
-  &lt;div class="p-4"&gt;
-    &lt;h3 class="text-base font-semibold text-gray-900 mb-2"&gt;Small Card&lt;/h3&gt;
-    &lt;p class="text-sm text-gray-600"&gt;Compact card.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+&lt;sui-card 
+  header="Small Card"
+  size="sm"
+  variant="default"&gt;
+  &lt;p class="text-sm text-gray-600"&gt;Compact card.&lt;/p&gt;
+&lt;/sui-card&gt;
 
 &lt;!-- Medium Card --&gt;
-&lt;div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden max-w-md"&gt;
-  &lt;div class="p-6"&gt;
-    &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Medium Card&lt;/h3&gt;
-    &lt;p class="text-gray-600"&gt;Standard card.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+&lt;sui-card 
+  header="Medium Card"
+  size="md"
+  variant="default"&gt;
+  &lt;p class="text-gray-600"&gt;Standard card.&lt;/p&gt;
+&lt;/sui-card&gt;
 
 &lt;!-- Large Card --&gt;
-&lt;div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden max-w-lg"&gt;
-  &lt;div class="p-8"&gt;
-    &lt;h3 class="text-xl font-semibold text-gray-900 mb-3"&gt;Large Card&lt;/h3&gt;
-    &lt;p class="text-lg text-gray-600"&gt;Spacious card.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;sui-card 
+  header="Large Card"
+  size="lg"
+  variant="default"&gt;
+  &lt;p class="text-lg text-gray-600"&gt;Spacious card.&lt;/p&gt;
+&lt;/sui-card&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -347,32 +346,52 @@
               <!-- Live Preview -->
               <div>
                 <h4 class="text-lg font-semibold text-gray-900 mb-4">Live Preview</h4>
-                <div 
-                  [class]="'bg-white border border-gray-200 rounded-lg overflow-hidden transition-all duration-200 ' + 
-                    (interactiveShadow === 'none' ? '' : 
-                     interactiveShadow === 'small' ? 'shadow-sm' : 
-                     interactiveShadow === 'medium' ? 'shadow-md' : 'shadow-lg')"
+                <sui-card 
+                  [header]="interactiveTitle"
+                  [clickable]="true"
+                  [hoverable]="true"
+                  [variant]="interactiveShadow === 'none' ? 'outlined' : 
+                            interactiveShadow === 'small' ? 'default' : 
+                            interactiveShadow === 'medium' ? 'default' : 'elevated'"
+                  size="md"
+                  [showFooter]="true"
                   (click)="onCardClick()"
-                  class="cursor-pointer hover:shadow-lg transition-shadow">
-                  
-                  <div class="px-6 py-4 bg-gray-50 border-b border-gray-200" (click)="onCardHeaderClick()">
-                    <h3 class="text-lg font-semibold text-gray-900">{{ interactiveTitle }}</h3>
-                  </div>
-                  
-                  <div class="p-6">
-                    <p class="text-gray-600">{{ interactiveContent }}</p>
-                  </div>
-                  
-                  <div class="px-6 py-4 bg-gray-50 border-t border-gray-200" (click)="onCardFooterClick()">
-                    <p class="text-sm text-gray-500">{{ interactiveFooter }}</p>
-                  </div>
-                </div>
+                  (headerClick)="onCardHeaderClick()">
+                  <p class="text-gray-600">{{ interactiveContent }}</p>
+                </sui-card>
               </div>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showInteractiveDemoCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Interactive Card Code --&gt;</code></pre>
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Interactive Card --&gt;
+&lt;sui-card 
+  [header]="interactiveTitle"
+  [clickable]="true"
+  [hoverable]="true"
+  [variant]="interactiveShadow === 'none' ? 'outlined' : 
+            interactiveShadow === 'small' ? 'default' : 
+            interactiveShadow === 'medium' ? 'default' : 'elevated'"
+  size="md"
+  [showFooter]="true"
+  (click)="onCardClick()"
+  (headerClick)="onCardHeaderClick()"&gt;
+  &lt;p class="text-gray-600"&gt;{{ interactiveContent }}&lt;/p&gt;
+&lt;/sui-card&gt;
+
+// Component properties
+interactiveTitle = 'Interactive Card';
+interactiveContent = 'This card demonstrates interactive features.';
+interactiveShadow = 'medium';
+
+// Component methods
+onCardClick() {{ '{' }}
+  console.log('Card clicked!');
+{{ '}' }}
+
+onCardHeaderClick() {{ '{' }}
+  console.log('Card header clicked!');
+{{ '}' }}</code></pre>
             </div>
           </div>
         </div>
@@ -405,12 +424,12 @@
 
 {{ '@' }}Component({{ '{' }}
   template: `
-    &lt;div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"&gt;
-      &lt;div class="p-6"&gt;
-        &lt;h3 class="text-lg font-semibold text-gray-900 mb-2"&gt;Card Title&lt;/h3&gt;
-        &lt;p class="text-gray-600"&gt;Card content goes here.&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+    &lt;sui-card 
+      header="Card Title"
+      size="md"
+      variant="default"&gt;
+      &lt;p class="text-gray-600"&gt;Card content goes here.&lt;/p&gt;
+    &lt;/sui-card&gt;
   `
 {{ '}' }})
 export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
@@ -502,40 +521,70 @@ export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">title</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Card header title</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'default' | 'outlined' | 'elevated' | 'filled'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'default'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Visual style variant of the card</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">content</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Card body content</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Size of the card padding</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">footer</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Card footer content</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">elevated</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">clickable</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card has enhanced shadow</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card is clickable</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">bordered</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card has a border</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card is disabled</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">rounded</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">header</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Card header title text</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">subheader</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Card header subtitle text</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showHeader</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card has rounded corners</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether to show the card header</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showFooter</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether to show the card footer</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">loading</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card is in loading state</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">hoverable</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card has hover effects</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">borderless</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card has no border</td>
                   </tr>
                 </tbody>
               </table>
@@ -558,19 +607,14 @@ export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onClick</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">click</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;MouseEvent&gt;</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Emitted when the card is clicked</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onHeaderClick</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">headerClick</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;MouseEvent&gt;</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Emitted when the card header is clicked</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onFooterClick</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;MouseEvent&gt;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the card footer is clicked</td>
                   </tr>
                 </tbody>
               </table>

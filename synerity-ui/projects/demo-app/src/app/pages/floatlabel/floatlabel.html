@@ -1,0 +1,522 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Float Label</h1>
+    <p class="text-lg text-gray-600">Floating label component that provides animated labels for form inputs with focus and value states.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Float Label -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Float Label</h3>
+            <button 
+              (click)="toggleCode('basicFloatLabel')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicFloatLabelCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Input:</label>
+                <div class="flex-1">
+                  <sui-float-label
+                    label="Enter your name"
+                    for="basic-float-label">
+                    <input 
+                      type="text" 
+                      id="basic-float-label"
+                      [(ngModel)]="basicFloatLabel"
+                      (input)="onFloatLabelChange($event.target.value)"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                  </sui-float-label>
+                </div>
+                <span class="text-sm font-medium text-blue-600 w-32">{{ formatFloatLabelValue(basicFloatLabel) }}</span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showBasicFloatLabelCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-float-label
+  label="Enter your name"
+  for="basic-float-label"&gt;
+  &lt;input 
+    type="text" 
+    id="basic-float-label"
+    [(ngModel)]="basicFloatLabel"
+    (input)="onFloatLabelChange($event.target.value)"
+    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"&gt;
+&lt;/sui-float-label&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email Float Label -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Email Float Label</h3>
+            <button 
+              (click)="toggleCode('emailFloatLabel')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showEmailFloatLabelCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Email:</label>
+                <div class="flex-1">
+                  <sui-float-label
+                    label="Enter your email"
+                    for="email-float-label"
+                    [required]="true">
+                    <input 
+                      type="email" 
+                      id="email-float-label"
+                      [(ngModel)]="emailFloatLabel"
+                      (input)="onFloatLabelChange($event.target.value)"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                  </sui-float-label>
+                </div>
+                <span class="text-sm font-medium text-blue-600 w-32">{{ formatFloatLabelValue(emailFloatLabel) }}</span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showEmailFloatLabelCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-float-label
+  label="Enter your email"
+  for="email-float-label"
+  [required]="true"&gt;
+  &lt;input 
+    type="email" 
+    id="email-float-label"
+    [(ngModel)]="emailFloatLabel"
+    (input)="onFloatLabelChange($event.target.value)"
+    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"&gt;
+&lt;/sui-float-label&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Password Float Label -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Password Float Label</h3>
+            <button 
+              (click)="toggleCode('passwordFloatLabel')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showPasswordFloatLabelCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Password:</label>
+                <div class="flex-1">
+                  <sui-float-label
+                    label="Enter your password"
+                    for="password-float-label"
+                    [required]="true">
+                    <input 
+                      type="password" 
+                      id="password-float-label"
+                      [(ngModel)]="passwordFloatLabel"
+                      (input)="onFloatLabelChange($event.target.value)"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                  </sui-float-label>
+                </div>
+                <span class="text-sm font-medium text-blue-600 w-32">{{ formatFloatLabelValue(passwordFloatLabel) }}</span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showPasswordFloatLabelCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-float-label
+  label="Enter your password"
+  for="password-float-label"
+  [required]="true"&gt;
+  &lt;input 
+    type="password" 
+    id="password-float-label"
+    [(ngModel)]="passwordFloatLabel"
+    (input)="onFloatLabelChange($event.target.value)"
+    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"&gt;
+&lt;/sui-float-label&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Required Float Label -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Required Float Label</h3>
+            <button 
+              (click)="toggleCode('requiredFloatLabel')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showRequiredFloatLabelCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Required:</label>
+                <div class="flex-1">
+                  <sui-float-label
+                    label="Required field"
+                    for="required-float-label"
+                    [required]="true">
+                    <input 
+                      type="text" 
+                      id="required-float-label"
+                      [(ngModel)]="requiredFloatLabel"
+                      (input)="onFloatLabelChange($event.target.value)"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                  </sui-float-label>
+                </div>
+                <span class="text-sm font-medium text-blue-600 w-32">{{ formatFloatLabelValue(requiredFloatLabel) }}</span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showRequiredFloatLabelCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-float-label
+  label="Required field"
+  for="required-float-label"
+  [required]="true"&gt;
+  &lt;input 
+    type="text" 
+    id="required-float-label"
+    [(ngModel)]="requiredFloatLabel"
+    (input)="onFloatLabelChange($event.target.value)"
+    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"&gt;
+&lt;/sui-float-label&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Float Label -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Custom Float Label</h3>
+            <button 
+              (click)="toggleCode('customFloatLabel')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCustomFloatLabelCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Custom:</label>
+                <div class="flex-1">
+                  <sui-float-label
+                    label="Custom styled label"
+                    for="custom-float-label"
+                    styleClass="custom-float-label">
+                    <input 
+                      type="text" 
+                      id="custom-float-label"
+                      [(ngModel)]="customFloatLabel"
+                      (input)="onFloatLabelChange($event.target.value)"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                  </sui-float-label>
+                </div>
+                <span class="text-sm font-medium text-blue-600 w-32">{{ formatFloatLabelValue(customFloatLabel) }}</span>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showCustomFloatLabelCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-float-label
+  label="Custom styled label"
+  for="custom-float-label"
+  styleClass="custom-float-label"&gt;
+  &lt;input 
+    type="text" 
+    id="custom-float-label"
+    [(ngModel)]="customFloatLabel"
+    (input)="onFloatLabelChange($event.target.value)"
+    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"&gt;
+&lt;/sui-float-label&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
+            <button 
+              (click)="toggleCode('interactiveDemo')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-6">
+              <!-- Interactive Float Label -->
+              <div class="flex items-center space-x-4">
+                <label class="text-sm font-medium text-gray-700 w-24">Input:</label>
+                <div class="flex-1">
+                  <sui-float-label
+                    [label]="interactiveLabel"
+                    for="interactive-float-label"
+                    [required]="interactiveRequired"
+                    [styleClass]="interactiveStyleClass">
+                    <input 
+                      type="text" 
+                      id="interactive-float-label"
+                      [(ngModel)]="interactiveValue"
+                      (input)="onInteractiveFloatLabelChange($event.target.value)"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                  </sui-float-label>
+                </div>
+                <span class="text-sm font-medium text-blue-600 w-32">{{ formatFloatLabelValue(interactiveValue) }}</span>
+              </div>
+              
+              <!-- Controls -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-200">
+                <div class="space-y-4">
+                  <h4 class="text-sm font-medium text-gray-800">Label Properties</h4>
+                  
+                  <div class="space-y-3">
+                    <div class="flex items-center space-x-3">
+                      <label class="text-sm text-gray-700 w-16">Label:</label>
+                      <input 
+                        type="text" 
+                        [(ngModel)]="interactiveLabel"
+                        class="flex-1 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div class="flex items-center space-x-3">
+                      <input 
+                        type="checkbox" 
+                        id="interactive-required"
+                        [(ngModel)]="interactiveRequired"
+                        class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                      <label for="interactive-required" class="text-sm text-gray-700">Required</label>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3">
+                      <label class="text-sm text-gray-700 w-16">Style:</label>
+                      <input 
+                        type="text" 
+                        [(ngModel)]="interactiveStyleClass"
+                        placeholder="custom-class"
+                        class="flex-1 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="space-y-4">
+                  <h4 class="text-sm font-medium text-gray-800">Actions</h4>
+                  
+                  <div class="space-y-2">
+                    <button 
+                      (click)="setInteractiveLabel('Enter your name')"
+                      class="w-full px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                      Set Name Label
+                    </button>
+                    
+                    <button 
+                      (click)="setInteractiveLabel('Enter your email')"
+                      class="w-full px-3 py-1 text-sm bg-green-600 text-white rounded hover:bg-green-700 transition-colors">
+                      Set Email Label
+                    </button>
+                    
+                    <button 
+                      (click)="resetFloatLabel()"
+                      class="w-full px-3 py-1 text-sm bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors">
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Status Display -->
+              <div class="pt-4 border-t border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                  <div class="bg-gray-50 p-3 rounded">
+                    <div class="font-medium text-gray-800">Current Value</div>
+                    <div class="text-blue-600">{{ formatFloatLabelValue(interactiveValue) }}</div>
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded">
+                    <div class="font-medium text-gray-800">Status</div>
+                    <div class="text-green-600">{{ getFloatLabelStatus(interactiveValue) }}</div>
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded">
+                    <div class="font-medium text-gray-800">Valid</div>
+                    <div class="text-green-600">{{ isValidFloatLabelValue(interactiveValue) ? 'Yes' : 'No' }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Block -->
+            <div *ngIf="showInteractiveDemoCode" class="mt-4 pt-4 border-t border-gray-200">
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-float-label
+  [label]="interactiveLabel"
+  for="interactive-float-label"
+  [required]="interactiveRequired"
+  [styleClass]="interactiveStyleClass"&gt;
+  &lt;input 
+    type="text" 
+    id="interactive-float-label"
+    [(ngModel)]="interactiveValue"
+    (input)="onInteractiveFloatLabelChange($event.target.value)"
+    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"&gt;
+&lt;/sui-float-label&gt;
+
+&lt;!-- Controls --&gt;
+&lt;input 
+  type="text" 
+  [(ngModel)]="interactiveLabel"
+  class="border border-gray-300 rounded"&gt;
+
+&lt;input 
+  type="checkbox" 
+  [(ngModel)]="interactiveRequired"&gt;
+
+&lt;input 
+  type="text" 
+  [(ngModel)]="interactiveStyleClass"
+  placeholder="custom-class"&gt;
+
+&lt;button (click)="setInteractiveLabel('Enter your name')"&gt;
+  Set Name Label
+&lt;/button&gt;
+
+&lt;button (click)="resetFloatLabel()"&gt;Reset&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <p class="text-gray-600 mb-4">The Float Label component provides animated floating labels for form inputs.</p>
+          
+          <div class="space-y-4">
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-2">1. Import the Component</h4>
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>import &#123; FloatLabel as SuiFloatLabel &#125; from '@synerity/ui';</code></pre>
+            </div>
+            
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-2">2. Add to Component Imports</h4>
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>@Component(&#123;
+  imports: [CommonModule, FormsModule, SuiFloatLabel],
+  // ...
+&#125;)</code></pre>
+            </div>
+            
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-2">3. Use in Template</h4>
+              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-float-label
+  label="Enter your name"
+  for="my-input"
+  [required]="true"&gt;
+  &lt;input 
+    type="text" 
+    id="my-input"
+    [(ngModel)]="inputValue"
+    class="w-full px-3 py-2 border border-gray-300 rounded-md"&gt;
+&lt;/sui-float-label&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">API Reference</h3>
+          
+          <div class="space-y-6">
+            <div>
+              <h4 class="text-lg font-medium text-gray-800 mb-3">Properties</h4>
+              <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">label</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">The label text to display</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">for</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">The ID of the associated input element</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">required</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Whether the field is required</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the component</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">CSS class names for styling</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

@@ -1,17 +1,193 @@
-<div class="inline-flex flex-col gap-2">
-  <input *ngIf="searchable" type="text" [disabled]="disabled" [placeholder]="'Search...'" (input)="onSearchInput($event)" class="px-2 py-1 border rounded" />
-  <select
-	[class.opacity-50]="disabled"
-	[id]="inputId"
-	[name]="name"
-	[disabled]="disabled"
-	(change)="onSelectChange($event)"
-	(blur)="onBlur()"
->
-	<option *ngIf="placeholder != null" [selected]="value == null" [value]="''" disabled>{{ placeholder }}</option>
-	<option *ngFor="let opt of filteredOptions; let i = index" [disabled]="opt.disabled" [selected]="opt.value === value">
-		{{ opt.label }}
-	</option>
-  </select>
-  <button *ngIf="clearable && value != null" type="button" class="text-sm underline self-start" (click)="clearSelection()">Clear</button>
+<div class="sui-select-wrapper" #dropdown>
+  <!-- Selected Items Display (for multi-select) -->
+  <div *ngIf="multiple && hasValue()" class="selected-items-container">
+    <div class="selected-items-grid">
+      <div 
+        *ngFor="let selected of selectedOptions" 
+        class="selected-item-chip"
+      >
+        <span class="chip-label">{{ selected.label }}</span>
+        <button 
+          type="button" 
+          class="chip-remove-btn"
+          (click)="removeSelectedItem(selected.value)"
+          [disabled]="disabled"
+          aria-label="Remove {{ selected.label }}"
+        >
+          <svg class="remove-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Select Trigger -->
+  <div class="select-trigger-container">
+    <button
+      type="button"
+      [id]="inputId"
+      [name]="name"
+      [disabled]="disabled"
+      [class.disabled]="disabled"
+      [class.focused]="isOpen"
+      class="select-trigger"
+      (click)="toggleDropdown()"
+      (keydown)="onKeyDown($event)"
+      [attr.aria-expanded]="isOpen"
+      [attr.aria-haspopup]="true"
+      [attr.aria-label]="placeholder || 'Select an option'"
+    >
+      <div class="trigger-content">
+        <span class="trigger-text" [class.placeholder]="!hasValue()">
+          {{ displayText }}
+        </span>
+        <div class="trigger-actions">
+          <!-- Clear Button -->
+          <button 
+            *ngIf="clearable && hasValue()" 
+            type="button" 
+            class="clear-btn"
+            (click)="clearSelection(); $event.stopPropagation()"
+            [disabled]="disabled"
+            aria-label="Clear selection"
+          >
+            <svg class="clear-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+          
+          <!-- Dropdown Arrow -->
+          <div class="dropdown-arrow" [class.open]="isOpen">
+            <svg class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </button>
+  </div>
+
+  <!-- Dropdown Panel -->
+  <div 
+    *ngIf="isOpen" 
+    class="dropdown-panel"
+    [class.animate-in]="isOpen"
+  >
+    <!-- Search Input -->
+    <div *ngIf="searchable" class="search-container">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+        </svg>
+        <input
+          #searchInput
+          type="text"
+          [placeholder]="searchPlaceholder"
+          [value]="searchTerm"
+          (input)="onSearchInput($event)"
+          class="search-input"
+          autocomplete="off"
+        />
+        <button 
+          *ngIf="searchTerm" 
+          type="button" 
+          class="search-clear-btn"
+          (click)="searchTerm = ''"
+          aria-label="Clear search"
+        >
+          <svg class="clear-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Select All / Clear All (for multi-select) -->
+    <div *ngIf="multiple && selectAll && filteredOptions.length > 0" class="bulk-actions-container">
+      <div class="bulk-actions">
+        <button
+          type="button"
+          class="bulk-action-btn select-all-btn"
+          (click)="selectAllOptions()"
+          [disabled]="isAllSelected"
+        >
+          <svg class="action-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          Select All
+        </button>
+        <button
+          type="button"
+          class="bulk-action-btn clear-all-btn"
+          (click)="clearAllOptions()"
+          [disabled]="!hasValue()"
+        >
+          <svg class="action-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+          Clear All
+        </button>
+      </div>
+    </div>
+
+    <!-- Options List -->
+    <div class="options-container">
+      <!-- Loading State -->
+      <div *ngIf="loading" class="loading-state">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Loading options...</p>
+      </div>
+
+      <!-- No Results -->
+      <div *ngIf="!loading && filteredOptions.length === 0" class="no-results-state">
+        <svg class="no-results-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+        </svg>
+        <p class="no-results-text">{{ noResultsText }}</p>
+      </div>
+
+      <!-- Options -->
+      <div *ngIf="!loading && filteredOptions.length > 0" class="options-list">
+        <button
+          *ngFor="let option of filteredOptions; let i = index"
+          type="button"
+          [disabled]="option.disabled"
+          [class.focused]="i === focusedIndex"
+          [class.selected]="isOptionSelected(option.value)"
+          [class.disabled]="option.disabled"
+          class="option-item"
+          (click)="onOptionClick(option)"
+          [attr.aria-selected]="isOptionSelected(option.value)"
+        >
+          <!-- Checkbox for multi-select -->
+          <div *ngIf="multiple" class="option-checkbox">
+            <div 
+              class="checkbox"
+              [class.checked]="isOptionSelected(option.value)"
+            >
+              <svg 
+                *ngIf="isOptionSelected(option.value)"
+                class="checkmark" 
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Option Label -->
+          <span class="option-label">{{ option.label }}</span>
+
+          <!-- Selected indicator for single select -->
+          <div *ngIf="!multiple && isOptionSelected(option.value)" class="selected-indicator">
+            <svg class="selected-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

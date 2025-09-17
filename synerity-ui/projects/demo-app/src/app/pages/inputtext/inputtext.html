@@ -35,21 +35,19 @@
             <div class="space-y-4">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Basic Text Input</label>
-                  <input 
-                    type="text" 
+                  <sui-input-text 
                     [(ngModel)]="basicInput"
-                    (input)="onInputChange($event.target.value)"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    placeholder="Enter text here...">
+                    (input)="onInputChange($event)"
+                    placeholder="Enter text here..."
+                    label="Basic Text Input">
+                  </sui-input-text>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">With Placeholder</label>
-                  <input 
-                    type="text" 
+                  <sui-input-text 
                     [(ngModel)]="placeholderInput"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    placeholder="This is a placeholder text">
+                    placeholder="This is a placeholder text"
+                    label="With Placeholder">
+                  </sui-input-text>
                 </div>
               </div>
             </div>
@@ -57,17 +55,17 @@
             <!-- Code Example -->
             <div *ngIf="showBasicInputCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Basic Text Input --&gt;
-&lt;input 
-  type="text" 
+&lt;sui-input-text 
   [(ngModel)]="inputValue"
-  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-  placeholder="Enter text here..."&gt;
+  placeholder="Enter text here..."
+  label="Basic Text Input"&gt;
+&lt;/sui-input-text&gt;
 
 &lt;!-- With Placeholder --&gt;
-&lt;input 
-  type="text" 
-  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-  placeholder="This is a placeholder text"&gt;</code></pre>
+&lt;sui-input-text 
+  placeholder="This is a placeholder text"
+  label="With Placeholder"&gt;
+&lt;/sui-input-text&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -88,35 +86,33 @@
             <div class="space-y-4">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
-                  <input 
-                    type="text" 
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    placeholder="Normal input field">
+                  <sui-input-text 
+                    placeholder="Normal input field"
+                    label="Normal State">
+                  </sui-input-text>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
-                  <input 
-                    type="text" 
+                  <sui-input-text 
                     [(ngModel)]="disabledInput"
-                    disabled
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-500 cursor-not-allowed">
+                    placeholder="Disabled input field"
+                    label="Disabled State"
+                    [disabled]="true">
+                  </sui-input-text>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Read-only State</label>
-                  <input 
-                    type="text" 
+                  <sui-input-text 
                     [(ngModel)]="readonlyInput"
-                    readonly
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-700">
+                    placeholder="Read-only input field"
+                    label="Read-only State"
+                    [readonly]="true">
+                  </sui-input-text>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Required Field</label>
-                  <input 
-                    type="text" 
-                    required
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    placeholder="This field is required">
+                  <sui-input-text 
+                    placeholder="This field is required"
+                    label="Required Field"
+                    [required]="true">
+                  </sui-input-text>
                 </div>
               </div>
             </div>
@@ -124,22 +120,24 @@
             <!-- Code Example -->
             <div *ngIf="showInputStatesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Normal State --&gt;
-&lt;input 
-  type="text" 
-  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-  placeholder="Normal input field"&gt;
+&lt;sui-input-text 
+  placeholder="Normal input field"
+  label="Normal Input"&gt;
+&lt;/sui-input-text&gt;
 
 &lt;!-- Disabled State --&gt;
-&lt;input 
-  type="text" 
-  disabled
-  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-500 cursor-not-allowed"&gt;
+&lt;sui-input-text 
+  placeholder="Disabled input field"
+  label="Disabled Input"
+  [disabled]="true"&gt;
+&lt;/sui-input-text&gt;
 
 &lt;!-- Read-only State --&gt;
-&lt;input 
-  type="text" 
-  readonly
-  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-700"&gt;</code></pre>
+&lt;sui-input-text 
+  placeholder="Read-only input field"
+  label="Read-only Input"
+  [readonly]="true"&gt;
+&lt;/sui-input-text&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -172,11 +170,11 @@
 
 {{ '@' }}Component({{ '{' }}
   template: `
-    &lt;input 
-      type="text" 
+    &lt;sui-input-text 
       [(ngModel)]="inputValue"
-      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-      placeholder="Enter text here..."&gt;
+      placeholder="Enter text here..."
+      label="Basic Text Input"&gt;
+    &lt;/sui-input-text&gt;
   `
 {{ '}' }})
 export class MyComponent {{ '{' }}
@@ -239,12 +237,6 @@ export class MyComponent {{ '{' }}
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">type</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'text'</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">HTML input type attribute</td>
-                  </tr>
-                  <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
@@ -268,6 +260,108 @@ export class MyComponent {{ '{' }}
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Whether the input is required</td>
                   </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Size of the input field</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'default' | 'filled' | 'outlined'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'default'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Visual style variant of the input</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">validationState</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'none' | 'valid' | 'invalid'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'none'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Validation state of the input</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">errorMessage</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Error message to display when validation fails</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">helperText</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Helper text to display below the input</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">label</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Label text for the input field</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">type</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'text' | 'email' | 'password' | 'tel' | 'url'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'text'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">HTML input type attribute</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">maxlength</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number | null</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Maximum number of characters allowed</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">minlength</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number | null</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Minimum number of characters required</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">pattern</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string | null</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Regular expression pattern for validation</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">autocomplete</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string | null</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Autocomplete attribute value</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">autofocus</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the input should be focused on page load</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">spellcheck</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether to enable spell checking</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">prefix</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string | null</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Prefix text or icon to display before the input</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">suffix</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string | null</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Suffix text or icon to display after the input</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">clearable</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether to show a clear button</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showPasswordToggle</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether to show password toggle button (for password type)</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -289,19 +383,24 @@ export class MyComponent {{ '{' }}
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onInput</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;string&gt;</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">input</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;Event&gt;</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Emitted when the input value changes</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onFocus</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">focus</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;FocusEvent&gt;</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Emitted when the input receives focus</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onBlur</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">blur</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;FocusEvent&gt;</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Emitted when the input loses focus</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">clear</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;void&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the clear button is clicked</td>
                   </tr>
                 </tbody>
               </table>

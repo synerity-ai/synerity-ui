@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
+import { RadioButton as SuiRadioButton } from '../../../../../ui-lib/src/lib/radio-button/radio-button';
 
 @Component({
   selector: 'app-radiobutton',
-  imports: [CommonModule, FormsModule, Tabs],
+  imports: [CommonModule, FormsModule, Tabs, SuiRadioButton],
   templateUrl: './radiobutton.html',
   styleUrl: './radiobutton.scss'
 })
@@ -14,6 +15,8 @@ export class Radiobutton {
   
   // Demo data
   basicRadio = 'option1';
+  checkedRadio = 'checked';
+  disabledCheckedRadio = 'disabled-checked';
   disabledRadio = 'option2';
   readonlyRadio = 'option1';
   
@@ -105,28 +108,33 @@ export class Radiobutton {
   }
   
   // Radio button demo methods
-  onRadioChange(value: string) {
-    console.log('Radio changed:', value);
+  onRadioChange(value: unknown) {
+    const stringValue = value as string;
+    console.log('Radio changed:', stringValue);
   }
   
-  onColorChange(value: string) {
-    this.selectedColor = value;
-    console.log('Color selected:', value);
+  onColorChange(value: unknown) {
+    const stringValue = value as string;
+    this.selectedColor = stringValue;
+    console.log('Color selected:', stringValue);
   }
   
-  onSizeChange(value: string) {
-    this.selectedSize = value;
-    console.log('Size selected:', value);
+  onSizeChange(value: unknown) {
+    const stringValue = value as string;
+    this.selectedSize = stringValue;
+    console.log('Size selected:', stringValue);
   }
   
-  onPaymentChange(value: string) {
-    this.selectedPayment = value;
-    console.log('Payment method selected:', value);
+  onPaymentChange(value: unknown) {
+    const stringValue = value as string;
+    this.selectedPayment = stringValue;
+    console.log('Payment method selected:', stringValue);
   }
   
   // Interactive demo methods
-  updateInteractiveValue(value: string) {
-    this.interactiveValue = value;
+  updateInteractiveValue(value: unknown) {
+    const stringValue = value as string;
+    this.interactiveValue = stringValue;
   }
   
   toggleDisabled() {

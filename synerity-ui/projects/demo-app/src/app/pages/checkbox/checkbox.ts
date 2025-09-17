@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
+import { Checkbox as SuiCheckbox } from '../../../../../ui-lib/src/lib/checkbox/checkbox';
 
 @Component({
   selector: 'app-checkbox',
-  imports: [CommonModule, FormsModule, Tabs],
+  imports: [CommonModule, FormsModule, Tabs, SuiCheckbox],
   templateUrl: './checkbox.html',
   styleUrl: './checkbox.scss'
 })
@@ -14,9 +15,13 @@ export class Checkbox {
   
   // Demo data
   basicCheckbox = false;
+  checkedCheckbox = true;
   disabledCheckbox = true;
+  disabledCheckedCheckbox = true;
   readonlyCheckbox = true;
   indeterminateCheckbox = false;
+  checkboxWithLabel = false;
+  checkboxWithDescription = false;
   
   // Multiple checkboxes
   selectedOptions: string[] = [];

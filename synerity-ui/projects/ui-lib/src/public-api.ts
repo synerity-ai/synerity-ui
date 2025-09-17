@@ -24,7 +24,6 @@ export * from './lib/input-otp/input-otp';
 export * from './lib/key-filter/key-filter';
 export * from './lib/knob/knob';
 export * from './lib/listbox/listbox';
-export * from './lib/multi-select/multi-select';
 export * from './lib/password/password';
 export * from './lib/radio-button/radio-button';
 export * from './lib/rating/rating';

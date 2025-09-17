@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
+import { Card as SuiCard } from '../../../../../ui-lib/src/lib/card/card';
 
 @Component({
   selector: 'app-card',
-  imports: [CommonModule, FormsModule, Tabs],
+  imports: [CommonModule, FormsModule, Tabs, SuiCard],
   templateUrl: './card.html',
   styleUrl: './card.scss'
 })
