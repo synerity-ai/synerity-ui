@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
-import { Tooltip as SuiTooltip } from '../../../../../ui-lib/src/lib/tooltip/tooltip';
 
 @Component({
   selector: 'app-tooltip',
-  imports: [CommonModule, FormsModule, Tabs, SuiTooltip],
+  imports: [CommonModule, FormsModule, Tabs],
   templateUrl: './tooltip.html',
   styleUrl: './tooltip.scss'
 })

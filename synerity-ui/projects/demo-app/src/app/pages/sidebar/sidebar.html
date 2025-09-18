@@ -1,0 +1,308 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Sidebar</h1>
+    <p class="text-lg text-gray-600">A sliding panel component that appears from the side of the screen for navigation or additional content.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Sidebar -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Sidebar</h3>
+            <button 
+              (click)="toggleCode('basicSidebar')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicSidebarCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <button 
+                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                (click)="toggleSidebar()">
+                Toggle Sidebar
+              </button>
+              <div class="p-4 bg-gray-100 rounded-lg">
+                <p class="text-gray-600">Sidebar Component - Placeholder</p>
+                <div class="p-4">
+                  <h4 class="text-lg font-semibold text-gray-900 mb-4">Sidebar Content</h4>
+                  <nav class="space-y-2">
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Home</a>
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About</a>
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Services</a>
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact</a>
+                  </nav>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicSidebarCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;div class="p-4 bg-gray-100 rounded-lg" 
+  [visible]="sidebarVisible"
+  [position]="sidebarPosition"
+  (onShow)="onSidebarShow($event)"
+  (onHide)="onSidebarHide($event)"&gt;
+  &lt;div class="p-4"&gt;
+    &lt;h4&gt;Sidebar Content&lt;/h4&gt;
+    &lt;nav class="space-y-2"&gt;
+      &lt;a href="#"&gt;Home&lt;/a&gt;
+      &lt;a href="#"&gt;About&lt;/a&gt;
+      &lt;a href="#"&gt;Services&lt;/a&gt;
+      &lt;a href="#"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/div class="p-4 bg-gray-100 rounded-lg"&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Sidebar -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Custom Sidebar</h3>
+            <button 
+              (click)="toggleCode('customSidebar')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCustomSidebarCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <p class="text-sm text-gray-600">Sidebar with custom styling and positioning.</p>
+              <button 
+                class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                (click)="toggleSidebar()">
+                Show Custom Sidebar
+              </button>
+              <div class="p-4 bg-gray-100 rounded-lg">
+                <p class="text-gray-600">Custom Sidebar Component - Placeholder</p>
+                <div class="p-4 bg-gray-50 h-full">
+                  <h4 class="text-lg font-semibold text-gray-900 mb-4">Custom Styled Sidebar</h4>
+                  <p class="text-gray-600 mb-4">This sidebar has custom dimensions and styling.</p>
+                  <nav class="space-y-2">
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-200 rounded-md">Dashboard</a>
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-200 rounded-md">Analytics</a>
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-200 rounded-md">Reports</a>
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-200 rounded-md">Settings</a>
+                  </nav>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showCustomSidebarCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;div class="p-4 bg-gray-100 rounded-lg" 
+  [visible]="sidebarVisible"
+  [position]="sidebarPosition"
+  [style]="&#123;'width': '300px', 'background-color': '#f8fafc'&#125;"
+  (onShow)="onSidebarShow($event)"
+  (onHide)="onSidebarHide($event)"&gt;
+  &lt;div class="p-4 bg-gray-50 h-full"&gt;
+    &lt;h4&gt;Custom Styled Sidebar&lt;/h4&gt;
+    &lt;p&gt;This sidebar has custom dimensions and styling.&lt;/p&gt;
+    &lt;nav class="space-y-2"&gt;
+      &lt;a href="#"&gt;Dashboard&lt;/a&gt;
+      &lt;a href="#"&gt;Analytics&lt;/a&gt;
+      &lt;a href="#"&gt;Reports&lt;/a&gt;
+      &lt;a href="#"&gt;Settings&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/div class="p-4 bg-gray-100 rounded-lg"&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Sidebar component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the Sidebar component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import &#123; Sidebar &#125; from '@synerity/ui';
+
+&#64;Component(&#123;
+  template: `
+    &lt;div class="p-4 bg-gray-100 rounded-lg" 
+      [visible]="sidebarVisible"
+      [position]="'left'"
+      (onShow)="onShow($event)"
+      (onHide)="onHide($event)"&gt;
+      &lt;div&gt;Sidebar content&lt;/div&gt;
+    &lt;/div class="p-4 bg-gray-100 rounded-lg"&gt;
+  `
+&#125;)
+export class MyComponent &#123;&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Styling -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Sidebar uses Tailwind CSS classes for styling. Here are the key classes:</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">div class="p-4 bg-gray-100 rounded-lg"</span>
+                <span class="text-gray-600">Base class for the sidebar container</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">div class="p-4 bg-gray-100 rounded-lg"-content</span>
+                <span class="text-gray-600">Class for the sidebar content area</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">div class="p-4 bg-gray-100 rounded-lg"-mask</span>
+                <span class="text-gray-600">Class for the sidebar backdrop mask</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">visible</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the sidebar is visible</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">position</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'left' | 'right' | 'top' | 'bottom'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'left'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Position of the sidebar</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the sidebar container</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Style class for the sidebar container</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onShow</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;Event&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the sidebar is shown</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onHide</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;Event&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the sidebar is hidden</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation support with Tab key</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Escape key to close the sidebar</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Focus indicators for keyboard users</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>ARIA attributes for screen readers</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </app-tabs>
+</div>

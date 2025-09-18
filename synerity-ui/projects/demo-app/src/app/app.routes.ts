@@ -42,5 +42,20 @@ export const routes: Routes = [
   { path: 'components/toolbar', loadComponent: () => import('./pages/toolbar/toolbar').then(m => m.Toolbar) },
   { path: 'components/scrollpanel', loadComponent: () => import('./pages/scrollpanel/scrollpanel').then(m => m.ScrollPanel) },
   { path: 'components/splitter', loadComponent: () => import('./pages/splitter/splitter').then(m => m.Splitter) },
-  { path: 'components/menu', loadComponent: () => import('./pages/menu/menu').then(m => m.Menu) }
+  { path: 'components/menu', loadComponent: () => import('./pages/menu/menu').then(m => m.Menu) },
+  
+  // Additional Medium-Priority Components
+  { path: 'components/menubar', loadComponent: () => import('./pages/menubar/menubar').then(m => m.MenubarComponent) },
+  { path: 'components/contextmenu', loadComponent: () => import('./pages/contextmenu/contextmenu').then(m => m.Contextmenu) },
+  { path: 'components/breadcrumb', loadComponent: () => import('./pages/breadcrumb/breadcrumb').then(m => m.BreadcrumbComponent) },
+  { path: 'components/tieredmenu', loadComponent: () => import('./pages/tieredmenu/tieredmenu').then(m => m.Tieredmenu) },
+  { path: 'components/carousel', loadComponent: () => import('./pages/carousel/carousel').then(m => m.CarouselComponent) },
+  { path: 'components/galleria', loadComponent: () => import('./pages/galleria/galleria').then(m => m.GalleriaComponent) },
+  { path: 'components/image', loadComponent: () => import('./pages/image/image').then(m => m.ImageComponent) },
+  { path: 'components/tag', loadComponent: () => import('./pages/tag/tag').then(m => m.TagComponent) },
+  { path: 'components/skeleton', loadComponent: () => import('./pages/skeleton/skeleton').then(m => m.SkeletonComponent) },
+  { path: 'components/overlaypanel', loadComponent: () => import('./pages/overlaypanel/overlaypanel').then(m => m.Overlaypanel) },
+  { path: 'components/sidebar', loadComponent: () => import('./pages/sidebar/sidebar').then(m => m.SidebarComponent) },
+  { path: 'components/confirmdialog', loadComponent: () => import('./pages/confirmdialog/confirmdialog').then(m => m.Confirmdialog) },
+  { path: 'components/fileupload', loadComponent: () => import('./pages/fileupload/fileupload').then(m => m.Fileupload) }
 ];
