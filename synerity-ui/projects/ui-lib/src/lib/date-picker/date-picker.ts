@@ -186,6 +186,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   open(): void {
     if (this.disabled || this.readonly || this.isOpen) return;
     
+    console.log('Opening calendar, variant:', this.variant, 'showTime:', this.showTime);
     this.isOpen = true;
     this.updateCurrentDate();
     
@@ -227,7 +228,12 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   }
 
   selectDate(date: Date, event?: Event): void {
-    if (this.isDateDisabled(date)) return;
+    console.log('selectDate called with:', { date, event, showTime: this.showTime, variant: this.variant });
+    
+    if (this.isDateDisabled(date)) {
+      console.log('Date is disabled, returning');
+      return;
+    }
     
     // Prevent event propagation to avoid conflicts with document click handler
     if (event) {
@@ -252,12 +258,15 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     
     // Close calendar if not showing time
     if (!this.showTime) {
+      console.log('Closing calendar because showTime is false');
       this.close();
+    } else {
+      console.log('Calendar remains open because showTime is true');
     }
   }
 
   selectToday(): void {
-    this.selectDate(new Date());
+    this.selectDate(new Date(), undefined);
   }
 
   clear(event?: Event): void {
@@ -306,6 +315,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
 
   // Calendar Data Methods
   getCalendarDays(): any[] {
+    console.log('getCalendarDays called');
     const days: any[] = [];
     const firstDay = new Date(this.currentYear, this.currentMonth, 1);
     const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
@@ -341,6 +351,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       });
     }
 
+    console.log('getCalendarDays returning:', days.length, 'days');
     return days;
   }
 
@@ -731,7 +742,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
         event.stopPropagation();
         const dateStr = target.getAttribute('data-date');
         if (dateStr) {
-          this.selectDate(new Date(dateStr));
+          this.selectDate(new Date(dateStr), undefined);
         }
       } else if (target.classList.contains('sui-date-picker-month')) {
         event.stopPropagation();
