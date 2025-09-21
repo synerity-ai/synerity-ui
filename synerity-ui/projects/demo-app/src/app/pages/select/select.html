@@ -385,7 +385,7 @@
             
             <!-- Code Block -->
             <div *ngIf="showCustomSelectCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Enhanced Custom Select --&gt;
+              <pre class="bg-gray-900 text-green-400 font-mono text-sm p-4 rounded-lg overflow-x-auto"><code>&lt;!-- Enhanced Custom Select --&gt;
 &lt;sui-select 
   [(ngModel)]="customSelect1"
   (change)="onCustomSelect1Change($event)"
@@ -421,86 +421,58 @@
     <div *ngIf="activeTab === 'usage'">
       <div class="space-y-6">
         
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import the Select component in your module or standalone component:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>import &#123; Select &#125; from 'ui-lib';
+
+// In your component imports
+imports: [Select, FormsModule]</code>
+            </div>
+          </div>
+        </div>
+
         <!-- Basic Usage -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
+        <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <p class="text-gray-600 mb-4">The <code>sui-select</code> component provides a powerful dropdown selection with various features:</p>
-          
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">1. Basic Select</h4>
-              <p class="text-gray-600 text-sm">Use <code>sui-select</code> with <code>ngModel</code> for single option selection.</p>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">2. Multi Select</h4>
-              <p class="text-gray-600 text-sm">Set <code>[multiple]="true"</code> to allow selection of multiple options.</p>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">3. Searchable Select</h4>
-              <p class="text-gray-600 text-sm">Set <code>[searchable]="true"</code> to enable search functionality.</p>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">4. Clearable Select</h4>
-              <p class="text-gray-600 text-sm">Set <code>[clearable]="true"</code> to show a clear button.</p>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Use the Select component with ngModel for two-way data binding:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>&lt;sui-select
+  [(ngModel)]="selectedValue"
+  [options]="optionsList"
+  placeholder="Choose an option..."
+  (change)="onSelectionChange($event)"
+  inputId="my-select"
+  name="mySelect"&gt;
+&lt;/sui-select&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Component Integration -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Integration</h3>
-          <p class="text-gray-600 mb-4">To use Select in your Angular component:</p>
-          
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">1. Import FormsModule</h4>
-              <p class="text-gray-600 text-sm">Import FormsModule from @angular/forms to enable two-way data binding.</p>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">2. Define Options Data</h4>
-              <p class="text-gray-600 text-sm">Create arrays of option objects with value and label properties.</p>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">3. Handle Selection Changes</h4>
-              <p class="text-gray-600 text-sm">Create event handlers to respond to selection changes.</p>
+        <!-- Form Integration -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Form Integration</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Integrate with Angular reactive forms:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>&lt;form [formGroup]="myForm"&gt;
+  &lt;sui-select
+    formControlName="selectedOption"
+    [options]="options"
+    [multiple]="true"
+    [searchable]="true"
+    [clearable]="true"
+    placeholder="Select options..."
+    inputId="form-select"
+    name="formSelect"&gt;
+  &lt;/sui-select&gt;
+&lt;/form&gt;</code></pre>
             </div>
           </div>
-        </div>
-
-        <!-- Best Practices -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Best Practices</h3>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Always provide a default empty option for better UX</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Use descriptive labels for options</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Group related options using optgroup</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Provide clear feedback for selected values</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Use appropriate sizing for multi-select dropdowns</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Consider accessibility with proper labels and ARIA attributes</span>
-            </li>
-          </ul>
         </div>
 
       </div>
@@ -510,220 +482,154 @@
     <div *ngIf="activeTab === 'docs'">
       <div class="space-y-6">
         
-        <!-- API Reference -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">API Reference</h3>
-          
-          <div class="space-y-6">
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">sui-select Component</h4>
-              <div class="overflow-x-auto">
-                <table class="min-w-full border border-gray-200">
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Property</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-200">
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">ngModel</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">unknown | unknown[]</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Two-way binding for the selected value(s)</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">options</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Array&lt;{{ '{' }}label: string, value: unknown, disabled?: boolean{{ '}' }}&gt;</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Array of options to display</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">multiple</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Enables multiple selection</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">searchable</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Enables search functionality</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">clearable</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Shows a clear button</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">disabled</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Disables the select component</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">placeholder</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">string | null</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Placeholder text for the select</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">inputId</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">ID attribute for the select element</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">name</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Name attribute for the select element</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">selectAll</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Shows select all/clear all buttons (multi-select only)</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">maxDisplayItems</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">number</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Maximum items to show in display (with "+X more")</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">showSelectedCount</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Shows count of selected items in display</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">searchPlaceholder</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Custom placeholder for search input</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">noResultsText</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Text shown when no search results found</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">loading</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Shows loading state for async options</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Events</h4>
-              <div class="overflow-x-auto">
-                <table class="min-w-full border border-gray-200">
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Event</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-200">
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">change</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">EventEmitter&lt;unknown&gt;</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Emitted when the selection changes</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        <!-- Component Overview -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Select Component</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600">The Select component provides a powerful dropdown selection with support for single/multiple selection, search functionality, and customizable options.</p>
+          </div>
+        </div>
 
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Option Element</h4>
-              <div class="overflow-x-auto">
-                <table class="min-w-full border border-gray-200">
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Attribute</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-200">
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">value</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">The value of the option</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">disabled</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Disables the option</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">selected</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Pre-selects the option</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">ngModel</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">unknown | unknown[]</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Two-way binding for the selected value(s)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">options</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Array&lt;{{ '{' }}label: string, value: unknown, disabled?: boolean{{ '}' }}&gt;</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Array of options to display</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">multiple</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Enables multiple selection</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">searchable</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Enables search functionality</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">clearable</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Shows a clear button</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Disables the select component</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Placeholder text for the select</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">inputId</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">ID attribute for the select element</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">name</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Name attribute for the select element</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
         <!-- Events -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
+        <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
-          <div class="overflow-x-auto">
-            <table class="min-w-full border border-gray-200">
-              <thead class="bg-gray-50">
-                <tr>
-                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Event</th>
-                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
-                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-200">
-                <tr>
-                  <td class="px-4 py-2 text-sm text-gray-900">change</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Event</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Fired when selection changes</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-2 text-sm text-gray-900">focus</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Event</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Fired when select gains focus</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-2 text-sm text-gray-900">blur</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Event</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Fired when select loses focus</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">change</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;unknown&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the selection changes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
         <!-- Examples -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Usage Examples</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Basic Selection</h4>
-              <p class="text-gray-600 text-sm">Simple dropdown with single selection.</p>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Multiple Selection</h4>
-              <p class="text-gray-600 text-sm">Allow users to select multiple options from the list.</p>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Searchable Dropdown</h4>
-              <p class="text-gray-600 text-sm">Implement search functionality for large option lists.</p>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Grouped Options</h4>
-              <p class="text-gray-600 text-sm">Organize options into logical groups using optgroup.</p>
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-6">
+              
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">Basic Select</h4>
+                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                  <pre><code>&lt;sui-select
+  [(ngModel)]="selectedValue"
+  [options]="options"
+  placeholder="Choose an option..."
+  inputId="basic-select"
+  name="basicSelect"&gt;
+&lt;/sui-select&gt;</code></pre>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">Multi Select with Search</h4>
+                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                  <pre><code>&lt;sui-select
+  [(ngModel)]="selectedValues"
+  [options]="options"
+  [multiple]="true"
+  [searchable]="true"
+  [clearable]="true"
+  placeholder="Select options..."
+  inputId="multi-select"
+  name="multiSelect"&gt;
+&lt;/sui-select&gt;</code></pre>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
 
       </div>
     </div>
-
   </app-tabs>
 </div>
