@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Button } from 'ui-lib';
+import { FormsModule } from '@angular/forms';
+import { Tabs } from '../../shared/tabs/tabs';
+import { Button as SuiButton } from '../../../../../ui-lib/src/lib/button/button';
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [CommonModule, Button],
+  imports: [CommonModule, FormsModule, Tabs, SuiButton],
   templateUrl: './button.html',
-  styleUrls: ['./button.scss']
+  styleUrl: './button.scss'
 })
 export class ButtonComponent {
-  activeTab = 0;
+  activeTab = 'demo';
   showBasicCode = false;
   showSizeCode = false;
   showCustomCode = false;
@@ -18,9 +20,10 @@ export class ButtonComponent {
   // Demo data
   buttonText = 'Click me';
   isLoading = false;
+  isSubmitting = false;
 
-  onTabChange(index: number): void {
-    this.activeTab = index;
+  onTabChange(tab: string): void {
+    this.activeTab = tab;
   }
 
   toggleCode(type: string): void {
