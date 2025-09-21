@@ -21,6 +21,7 @@ export const routes: Routes = [
   { path: 'components/floatlabel', loadComponent: () => import('./pages/floatlabel/floatlabel').then(m => m.Floatlabel) },
   { path: 'components/autocomplete', loadComponent: () => import('./pages/autocomplete/autocomplete').then(m => m.AutocompleteComponent) },
   { path: 'components/inputmask', loadComponent: () => import('./pages/inputmask/inputmask').then(m => m.Inputmask) },
+  { path: 'components/iconfield', loadComponent: () => import('./pages/iconfield/iconfield').then(m => m.IconfieldComponent) },
   
   // High-Priority Components
   { path: 'components/table', loadComponent: () => import('./pages/table/table').then(m => m.Table) },

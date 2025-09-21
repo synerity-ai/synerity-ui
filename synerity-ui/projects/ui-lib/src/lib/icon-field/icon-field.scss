@@ -1,0 +1,267 @@
+// IconField Component Styles
+.sui-icon-field {
+  display: block;
+  position: relative;
+  width: 100%;
+  
+  // Ensure the container doesn't overflow
+  overflow: hidden;
+  
+  // CSS Custom Properties for dynamic padding
+  --icon-padding: 40px;
+  --icon-position: left;
+  
+  &.sui-icon-field-left {
+    .sui-icon-field-icon {
+      position: absolute;
+      left: 12px;
+      z-index: 10;
+      pointer-events: none;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  
+  &.sui-icon-field-right {
+    .sui-icon-field-icon {
+      position: absolute;
+      right: 12px;
+      z-index: 10;
+      pointer-events: none;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    // Try to position the icon relative to the input field
+    ::ng-deep .relative {
+      position: relative;
+    }
+    
+    ::ng-deep .relative input {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+// Global styles for IconField input padding - using maximum specificity
+.sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep .relative input {
+  padding-left: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep .relative input {
+  padding-right: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep .relative input {
+  padding-left: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep .relative input {
+  padding-right: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep .relative input {
+  padding-left: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep .relative input {
+  padding-right: 44px !important;
+}
+
+// Fallback selectors for different input types - Normal size
+.sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="text"] {
+  padding-left: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="email"] {
+  padding-left: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="password"] {
+  padding-left: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="search"] {
+  padding-left: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="tel"] {
+  padding-left: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="url"] {
+  padding-left: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="text"] {
+  padding-right: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="email"] {
+  padding-right: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="password"] {
+  padding-right: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="search"] {
+  padding-right: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="tel"] {
+  padding-right: 40px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="url"] {
+  padding-right: 40px !important;
+}
+
+// Fallback selectors for different input types - Small size
+.sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="text"] {
+  padding-left: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="email"] {
+  padding-left: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="password"] {
+  padding-left: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="search"] {
+  padding-left: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="tel"] {
+  padding-left: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="url"] {
+  padding-left: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="text"] {
+  padding-right: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="email"] {
+  padding-right: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="password"] {
+  padding-right: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="search"] {
+  padding-right: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="tel"] {
+  padding-right: 36px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="url"] {
+  padding-right: 36px !important;
+}
+
+// Fallback selectors for different input types - Large size
+.sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="text"] {
+  padding-left: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="email"] {
+  padding-left: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="password"] {
+  padding-left: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="search"] {
+  padding-left: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="tel"] {
+  padding-left: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="url"] {
+  padding-left: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="text"] {
+  padding-right: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="email"] {
+  padding-right: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="password"] {
+  padding-right: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="search"] {
+  padding-right: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="tel"] {
+  padding-right: 44px !important;
+}
+
+.sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="url"] {
+  padding-right: 44px !important;
+}
+
+.sui-icon-field-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  font-size: 16px;
+  
+  &.sui-icon-field-icon-small {
+    font-size: 14px;
+  }
+  
+  &.sui-icon-field-icon-normal {
+    font-size: 16px;
+  }
+  
+  &.sui-icon-field-icon-large {
+    font-size: 18px;
+  }
+}
+
+// Size variants
+.sui-icon-field-small {
+  .sui-icon-field-icon {
+    font-size: 14px;
+  }
+}
+
+.sui-icon-field-normal {
+  .sui-icon-field-icon {
+    font-size: 16px;
+  }
+}
+
+.sui-icon-field-large {
+  .sui-icon-field-icon {
+    font-size: 18px;
+  }
+}
+
+// Focus state
+.sui-icon-field:focus-within .sui-icon-field-icon {
+  color: #3b82f6;
+}
+
+// Disabled state
+.sui-icon-field:has(input:disabled) .sui-icon-field-icon {
+  color: #9ca3af;
+  opacity: 0.6;
+}

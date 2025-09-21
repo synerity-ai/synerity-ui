@@ -1,0 +1,14 @@
+// IconField component styles
+// This file is intentionally minimal as we use Tailwind CSS for styling
+
+// Custom styling for the icon field demo
+.custom-icon-field {
+  border: 2px solid #10b981;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #f0fdf4;
+  
+  .sui-icon-field-icon {
+    color: #10b981;
+  }
+}
