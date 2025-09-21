@@ -1,0 +1,326 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">TreeSelect</h1>
+    <p class="text-lg text-gray-600">A dropdown component that displays hierarchical data in a tree structure for selection.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'" class="space-y-8">
+      <!-- Basic TreeSelect -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Basic TreeSelect</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="w-80">
+              <sui-tree-select
+                [(ngModel)]="basicValue"
+                [options]="basicOptions"
+                placeholder="Select a technology..."
+                (change)="onBasicChange($event)"
+              ></sui-tree-select>
+            </div>
+            <p class="text-sm text-gray-600">Selected: {{ basicValue || 'None' }}</p>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('basic')">
+          {{ showBasicCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-tree-select
+  [(ngModel)]="basicValue"
+  [options]="basicOptions"
+  placeholder="Select a technology..."
+  (change)="onBasicChange($event)"
+&gt;&lt;/sui-tree-select&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Department TreeSelect -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Department Structure</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="w-80">
+              <sui-tree-select
+                [(ngModel)]="departmentValue"
+                [options]="departmentOptions"
+                placeholder="Select a department..."
+                (change)="onDepartmentChange($event)"
+              ></sui-tree-select>
+            </div>
+            <p class="text-sm text-gray-600">Selected: {{ departmentValue || 'None' }}</p>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('department')">
+          {{ showDepartmentCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showDepartmentCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-tree-select
+  [(ngModel)]="departmentValue"
+  [options]="departmentOptions"
+  placeholder="Select a department..."
+  (change)="onDepartmentChange($event)"
+&gt;&lt;/sui-tree-select&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- File System TreeSelect -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">File System Structure</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="w-80">
+              <sui-tree-select
+                [(ngModel)]="fileSystemValue"
+                [options]="fileSystemOptions"
+                placeholder="Select a folder..."
+                (change)="onFileSystemChange($event)"
+              ></sui-tree-select>
+            </div>
+            <p class="text-sm text-gray-600">Selected: {{ fileSystemValue || 'None' }}</p>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('filesystem')">
+          {{ showFileSystemCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showFileSystemCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-tree-select
+  [(ngModel)]="fileSystemValue"
+  [options]="fileSystemOptions"
+  placeholder="Select a folder..."
+  (change)="onFileSystemChange($event)"
+&gt;&lt;/sui-tree-select&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Disabled TreeSelect -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Disabled State</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="w-80">
+              <sui-tree-select
+                [(ngModel)]="disabledValue"
+                [options]="disabledOptions"
+                placeholder="Select a framework..."
+                [disabled]="true"
+                (change)="onDisabledChange($event)"
+              ></sui-tree-select>
+            </div>
+            <p class="text-sm text-gray-600">Selected: {{ disabledValue }} (Disabled)</p>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('disabled')">
+          {{ showDisabledCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showDisabledCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-tree-select
+  [(ngModel)]="disabledValue"
+  [options]="disabledOptions"
+  placeholder="Select a framework..."
+  [disabled]="true"
+  (change)="onDisabledChange($event)"
+&gt;&lt;/sui-tree-select&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
+      <h2>How to Use TreeSelect</h2>
+      
+      <h3>Installation</h3>
+      <p>Import the TreeSelect component from the UI library:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; TreeSelect &#125; from 'ui-lib';
+
+// In your component imports
+imports: [TreeSelect]</code></pre>
+
+      <h3>Basic Usage</h3>
+      <p>Use the component with hierarchical data:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-tree-select
+  [(ngModel)]="selectedValue"
+  [options]="options"
+  placeholder="Select an option..."
+  (change)="onSelectionChange($event)"
+&gt;&lt;/sui-tree-select&gt;</code></pre>
+
+      <h3>Component Properties</h3>
+      <ul>
+        <li><strong>options</strong>: Array of hierarchical option objects with label, value, and children</li>
+        <li><strong>placeholder</strong>: Placeholder text when no option is selected</li>
+        <li><strong>disabled</strong>: Boolean to disable the entire component</li>
+        <li><strong>name</strong>: String for form control name</li>
+        <li><strong>ngModel</strong>: Two-way binding for the selected value</li>
+      </ul>
+
+      <h3>Events</h3>
+      <ul>
+        <li><strong>change</strong>: Emitted when selection changes</li>
+      </ul>
+
+      <h3>Option Structure</h3>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>options = [
+  &#123;
+    label: 'Category 1',
+    children: [
+      &#123; label: 'Option 1', value: 'option1' &#125;,
+      &#123; label: 'Option 2', value: 'option2' &#125;
+    ]
+  &#125;,
+  &#123;
+    label: 'Category 2',
+    children: [
+      &#123; label: 'Option 3', value: 'option3' &#125;
+    ]
+  &#125;
+];</code></pre>
+
+      <h3>Important Notes</h3>
+      <ul>
+        <li>Only leaf nodes (options without children) are selectable</li>
+        <li>Parent nodes are used for organization and navigation only</li>
+        <li>The component automatically handles tree expansion and collapse</li>
+      </ul>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
+      <h2>API Documentation</h2>
+      
+      <h3>Properties</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">options</td>
+              <td class="border border-gray-300 px-4 py-2">Array&lt;&#123;label: string, value?: any, children?: any[]&#125;&gt;</td>
+              <td class="border border-gray-300 px-4 py-2">[]</td>
+              <td class="border border-gray-300 px-4 py-2">Array of hierarchical options</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">placeholder</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">''</td>
+              <td class="border border-gray-300 px-4 py-2">Placeholder text when no option is selected</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">disabled</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">false</td>
+              <td class="border border-gray-300 px-4 py-2">Disables the entire component</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">name</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">''</td>
+              <td class="border border-gray-300 px-4 py-2">Name attribute for form control</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">ngModel</td>
+              <td class="border border-gray-300 px-4 py-2">any</td>
+              <td class="border border-gray-300 px-4 py-2">null</td>
+              <td class="border border-gray-300 px-4 py-2">Selected value (two-way binding)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Events</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 px-4 py-2 text-left">Event</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">change</td>
+              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;any&gt;</td>
+              <td class="border border-gray-300 px-4 py-2">Fired when selection changes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li><strong>ARIA</strong>: Proper ARIA attributes for screen readers</li>
+        <li><strong>Keyboard Navigation</strong>: Arrow keys for tree navigation, Enter for selection</li>
+        <li><strong>Focus Management</strong>: Proper focus handling and visual indicators</li>
+        <li><strong>Screen Reader</strong>: Descriptive labels for all options and hierarchy</li>
+      </ul>
+
+      <h3>Styling</h3>
+      <p>The component uses CSS classes that can be customized:</p>
+      <ul>
+        <li><code>.tree-select-container</code>: Main container</li>
+        <li><code>.tree-select-dropdown</code>: Dropdown panel</li>
+        <li><code>.tree-select-option</code>: Individual option styling</li>
+        <li><code>.tree-select-option-selected</code>: Selected option styling</li>
+        <li><code>.tree-select-option-disabled</code>: Disabled option styling</li>
+      </ul>
+
+      <h3>Examples</h3>
+      <h4>Basic Usage</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>export class ExampleComponent &#123;
+  selectedValue = null;
+  options = [
+    &#123;
+      label: 'Frontend',
+      children: [
+        &#123; label: 'Angular', value: 'angular' &#125;,
+        &#123; label: 'React', value: 'react' &#125;
+      ]
+    &#125;
+  ];
+&#125;</code></pre>
+
+      <h4>Multi-level Hierarchy</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>options = [
+  &#123;
+    label: 'Engineering',
+    children: [
+      &#123;
+        label: 'Frontend Team',
+        children: [
+          &#123; label: 'UI/UX Designers', value: 'ui-ux' &#125;,
+          &#123; label: 'React Developers', value: 'react-dev' &#125;
+        ]
+      &#125;
+    ]
+  &#125;
+];</code></pre>
+    </div>
+  </app-tabs>
+</div>

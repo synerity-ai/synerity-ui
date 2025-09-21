@@ -1,0 +1,62 @@
+.sui-overlay-panel {
+  @apply absolute bg-white border border-gray-200 rounded-lg shadow-lg p-4 min-w-48;
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.sui-overlay-panel-visible {
+  @apply opacity-100;
+  transform: scale(1);
+}
+
+.sui-overlay-panel-modal {
+  @apply fixed inset-0 flex items-center justify-center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sui-overlay-panel-content {
+  @apply relative;
+}
+
+.sui-overlay-panel-close {
+  @apply absolute top-0 right-0 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Size variants */
+.sui-overlay-panel-small {
+  @apply min-w-32 p-2;
+}
+
+.sui-overlay-panel-large {
+  @apply min-w-80 p-6;
+}
+
+/* Position variants */
+.sui-overlay-panel-top {
+  @apply bottom-full mb-2;
+}
+
+.sui-overlay-panel-bottom {
+  @apply top-full mt-2;
+}
+
+.sui-overlay-panel-left {
+  @apply right-full mr-2;
+}
+
+.sui-overlay-panel-right {
+  @apply left-full ml-2;
+}
+
+/* Dark mode */
+.dark .sui-overlay-panel {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .sui-overlay-panel-close {
+  @apply text-gray-400 hover:text-gray-200 hover:bg-gray-700;
+}

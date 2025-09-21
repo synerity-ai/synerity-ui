@@ -8,6 +8,7 @@ export * from './lib/input-text/input-text';
 export * from './lib/card/card';
 // Form Components
 export * from './lib/auto-complete/auto-complete';
+export * from './lib/captcha/captcha';
 export * from './lib/cascade-select/cascade-select';
 export * from './lib/checkbox/checkbox';
 export * from './lib/color-picker/color-picker';
@@ -68,10 +69,13 @@ export * from './lib/confirm-popup/confirm-popup';
 export * from './lib/dialog/dialog';
 export * from './lib/drawer/drawer';
 export * from './lib/dynamic-dialog/dynamic-dialog';
+export * from './lib/overlay-panel/overlay-panel';
 export * from './lib/popover/popover';
+export * from './lib/sidebar/sidebar';
 export * from './lib/tooltip/tooltip';
 
 // File Components
+export * from './lib/file-upload-advanced/file-upload-advanced';
 export * from './lib/upload/upload';
 
 // Chart Components

@@ -1,0 +1,547 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">InputGroup</h1>
+    <p class="text-lg text-gray-600">A container component for grouping related input elements with consistent styling and behavior.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'" class="space-y-8">
+      <!-- Basic InputGroup -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Basic InputGroup</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <sui-input-group
+              [size]="'normal'"
+              [disabled]="basicInputDisabled"
+            >
+              <div class="flex">
+                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
+                  @
+                </span>
+                <input
+                  type="text"
+                  class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm"
+                  placeholder="Enter your username"
+                  [value]="basicInputValue"
+                  (input)="onBasicInputChange($event)"
+                  [disabled]="basicInputDisabled"
+                />
+              </div>
+            </sui-input-group>
+            <div class="flex flex-col space-y-2">
+              <p class="text-sm text-gray-600">Current value: {{ basicInputValue || 'Empty' }}</p>
+              <div class="flex space-x-2">
+                <button 
+                  class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
+                  (click)="clearBasicInput()">
+                  Clear
+                </button>
+                <button 
+                  class="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 text-sm"
+                  (click)="toggleBasicDisabled()">
+                  {{ basicInputDisabled ? 'Enable' : 'Disable' }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('basic')">
+          {{ showBasicCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-input-group [size]="'normal'" [disabled]="false"&gt;
+  &lt;div class="flex"&gt;
+    &lt;span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md"&gt;
+      @
+    &lt;/span&gt;
+    &lt;input
+      type="text"
+      class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm"
+      placeholder="Enter your username"
+      [(ngModel)]="basicInputValue"
+    /&gt;
+  &lt;/div&gt;
+&lt;/sui-input-group&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Size Variants -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Size Variants</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-6">
+            <!-- Small Size -->
+            <div class="flex flex-col space-y-2">
+              <label class="text-sm font-medium text-gray-700">Small Size</label>
+              <sui-input-group [size]="'small'">
+                <div class="flex">
+                  <span class="inline-flex items-center px-2 text-xs text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
+                    $
+                  </span>
+                  <input
+                    type="number"
+                    class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-xs py-1 px-2"
+                    placeholder="0.00"
+                    [value]="smallInputValue"
+                    (input)="onSmallInputChange($event)"
+                  />
+                </div>
+              </sui-input-group>
+              <p class="text-xs text-gray-600">Value: {{ smallInputValue || 'Empty' }}</p>
+            </div>
+
+            <!-- Normal Size -->
+            <div class="flex flex-col space-y-2">
+              <label class="text-sm font-medium text-gray-700">Normal Size</label>
+              <sui-input-group [size]="'normal'">
+                <div class="flex">
+                  <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
+                    🔍
+                  </span>
+                  <input
+                    type="text"
+                    class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm"
+                    placeholder="Search..."
+                    [value]="normalInputValue"
+                    (input)="onNormalInputChange($event)"
+                  />
+                </div>
+              </sui-input-group>
+              <p class="text-xs text-gray-600">Value: {{ normalInputValue || 'Empty' }}</p>
+            </div>
+
+            <!-- Large Size -->
+            <div class="flex flex-col space-y-2">
+              <label class="text-sm font-medium text-gray-700">Large Size</label>
+              <sui-input-group [size]="'large'">
+                <div class="flex">
+                  <span class="inline-flex items-center px-3 text-base text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
+                    📧
+                  </span>
+                  <input
+                    type="email"
+                    class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-base"
+                    placeholder="Enter your email"
+                    [value]="largeInputValue"
+                    (input)="onLargeInputChange($event)"
+                  />
+                </div>
+              </sui-input-group>
+              <p class="text-xs text-gray-600">Value: {{ largeInputValue || 'Empty' }}</p>
+            </div>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('size')">
+          {{ showSizeCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showSizeCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;!-- Small Size --&gt;
+&lt;sui-input-group [size]="'small'"&gt;
+  &lt;div class="flex"&gt;
+    &lt;span class="inline-flex items-center px-2 text-xs text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md"&gt;
+      $
+    &lt;/span&gt;
+    &lt;input type="number" class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-xs py-1 px-2" placeholder="0.00" /&gt;
+  &lt;/div&gt;
+&lt;/sui-input-group&gt;
+
+&lt;!-- Normal Size --&gt;
+&lt;sui-input-group [size]="'normal'"&gt;
+  &lt;!-- content --&gt;
+&lt;/sui-input-group&gt;
+
+&lt;!-- Large Size --&gt;
+&lt;sui-input-group [size]="'large'"&gt;
+  &lt;!-- content --&gt;
+&lt;/sui-input-group&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Custom Styled InputGroup -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Custom Styled InputGroup</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <sui-input-group
+              [size]="'normal'"
+              [disabled]="customInputDisabled"
+              styleClass="custom-input-group"
+            >
+              <div class="flex">
+                <span class="inline-flex items-center px-3 text-sm text-white bg-blue-500 border border-r-0 border-blue-500 rounded-l-md">
+                  🌐
+                </span>
+                <input
+                  type="url"
+                  class="rounded-none rounded-r-md border-blue-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm"
+                  placeholder="https://example.com"
+                  [value]="customInputValue"
+                  (input)="onCustomInputChange($event)"
+                  [disabled]="customInputDisabled"
+                />
+              </div>
+            </sui-input-group>
+            <div class="flex flex-col space-y-2">
+              <p class="text-sm text-gray-600">Current value: {{ customInputValue || 'Empty' }}</p>
+              <div class="flex space-x-2">
+                <button 
+                  class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
+                  (click)="clearCustomInput()">
+                  Clear
+                </button>
+                <button 
+                  class="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 text-sm"
+                  (click)="toggleCustomDisabled()">
+                  {{ customInputDisabled ? 'Enable' : 'Disable' }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('custom')">
+          {{ showCustomCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-input-group
+  [size]="'normal'"
+  [disabled]="false"
+  styleClass="custom-input-group"
+&gt;
+  &lt;div class="flex"&gt;
+    &lt;span class="inline-flex items-center px-3 text-sm text-white bg-blue-500 border border-r-0 border-blue-500 rounded-l-md"&gt;
+      🌐
+    &lt;/span&gt;
+    &lt;input
+      type="url"
+      class="rounded-none rounded-r-md border-blue-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm"
+      placeholder="https://example.com"
+      [(ngModel)]="customInputValue"
+    /&gt;
+  &lt;/div&gt;
+&lt;/sui-input-group&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Multiple Input Groups -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Multiple Input Groups</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- First Name -->
+              <div class="flex flex-col space-y-2">
+                <label class="text-sm font-medium text-gray-700">First Name</label>
+                <sui-input-group [size]="'normal'">
+                  <div class="flex">
+                    <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
+                      👤
+                    </span>
+                    <input
+                      type="text"
+                      class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm"
+                      placeholder="First name"
+                      [value]="firstNameValue"
+                      (input)="onFirstNameChange($event)"
+                    />
+                  </div>
+                </sui-input-group>
+              </div>
+
+              <!-- Last Name -->
+              <div class="flex flex-col space-y-2">
+                <label class="text-sm font-medium text-gray-700">Last Name</label>
+                <sui-input-group [size]="'normal'">
+                  <div class="flex">
+                    <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
+                      👤
+                    </span>
+                    <input
+                      type="text"
+                      class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm"
+                      placeholder="Last name"
+                      [value]="lastNameValue"
+                      (input)="onLastNameChange($event)"
+                    />
+                  </div>
+                </sui-input-group>
+              </div>
+
+              <!-- Email -->
+              <div class="flex flex-col space-y-2">
+                <label class="text-sm font-medium text-gray-700">Email</label>
+                <sui-input-group [size]="'normal'">
+                  <div class="flex">
+                    <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
+                      📧
+                    </span>
+                    <input
+                      type="email"
+                      class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm"
+                      placeholder="email@example.com"
+                      [value]="emailValue"
+                      (input)="onEmailChange($event)"
+                    />
+                  </div>
+                </sui-input-group>
+              </div>
+
+              <!-- Phone -->
+              <div class="flex flex-col space-y-2">
+                <label class="text-sm font-medium text-gray-700">Phone</label>
+                <sui-input-group [size]="'normal'">
+                  <div class="flex">
+                    <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
+                      📞
+                    </span>
+                    <input
+                      type="tel"
+                      class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm"
+                      placeholder="+1 (555) 123-4567"
+                      [value]="phoneValue"
+                      (input)="onPhoneChange($event)"
+                    />
+                  </div>
+                </sui-input-group>
+              </div>
+            </div>
+            
+            <div class="flex flex-col space-y-2">
+              <p class="text-sm text-gray-600">
+                Values: {{ firstNameValue || 'First' }} {{ lastNameValue || 'Last' }} | 
+                {{ emailValue || 'Email' }} | {{ phoneValue || 'Phone' }}
+              </p>
+              <button 
+                class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm w-fit"
+                (click)="clearAllInputs()">
+                Clear All
+              </button>
+            </div>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('multiple')">
+          {{ showMultipleCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showMultipleCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
+  &lt;!-- First Name --&gt;
+  &lt;sui-input-group [size]="'normal'"&gt;
+    &lt;div class="flex"&gt;
+      &lt;span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md"&gt;
+        👤
+      &lt;/span&gt;
+      &lt;input type="text" class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm" placeholder="First name" [(ngModel)]="firstNameValue" /&gt;
+    &lt;/div&gt;
+  &lt;/sui-input-group&gt;
+  
+  &lt;!-- Last Name, Email, Phone... --&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
+      <h2>How to Use InputGroup</h2>
+      
+      <h3>Installation</h3>
+      <p>Import the InputGroup component from the UI library:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; InputGroup &#125; from 'ui-lib';
+
+// In your component imports
+imports: [InputGroup]</code></pre>
+
+      <h3>Basic Usage</h3>
+      <p>Use the component to group related input elements:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-input-group [size]="'normal'" [disabled]="false"&gt;
+  &lt;div class="flex"&gt;
+    &lt;span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md"&gt;
+      @
+    &lt;/span&gt;
+    &lt;input
+      type="text"
+      class="rounded-none rounded-r-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm"
+      placeholder="Enter your username"
+    /&gt;
+  &lt;/div&gt;
+&lt;/sui-input-group&gt;</code></pre>
+
+      <h3>Component Properties</h3>
+      <ul>
+        <li><strong>size</strong>: Size variant ('small', 'normal', 'large')</li>
+        <li><strong>disabled</strong>: Boolean to disable the entire group</li>
+        <li><strong>styleClass</strong>: Custom CSS classes</li>
+        <li><strong>style</strong>: Inline styles object</li>
+      </ul>
+
+      <h3>Common Patterns</h3>
+      <ul>
+        <li><strong>Prefix/Suffix Icons</strong>: Add icons or text before/after input</li>
+        <li><strong>Button Groups</strong>: Group buttons with inputs</li>
+        <li><strong>Multiple Elements</strong>: Combine inputs, selects, and buttons</li>
+        <li><strong>Form Layouts</strong>: Create consistent form styling</li>
+      </ul>
+
+      <h3>Styling Guidelines</h3>
+      <ul>
+        <li>Use consistent sizing across all elements in the group</li>
+        <li>Maintain proper border radius (rounded-l for first, rounded-r for last)</li>
+        <li>Ensure proper focus states and accessibility</li>
+        <li>Use semantic colors and icons for better UX</li>
+      </ul>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
+      <h2>API Documentation</h2>
+      
+      <h3>Properties</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">size</td>
+              <td class="border border-gray-300 px-4 py-2">'small' | 'normal' | 'large'</td>
+              <td class="border border-gray-300 px-4 py-2">'normal'</td>
+              <td class="border border-gray-300 px-4 py-2">Size variant for the input group</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">disabled</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">false</td>
+              <td class="border border-gray-300 px-4 py-2">Disables the entire input group</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">styleClass</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">''</td>
+              <td class="border border-gray-300 px-4 py-2">Custom CSS classes</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">style</td>
+              <td class="border border-gray-300 px-4 py-2">any</td>
+              <td class="border border-gray-300 px-4 py-2">&#123;&#125;</td>
+              <td class="border border-gray-300 px-4 py-2">Inline styles object</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Methods</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 px-4 py-2 text-left">Method</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Return Type</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">getInputGroupClass()</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">Returns computed CSS classes</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">getInputGroupStyle()</td>
+              <td class="border border-gray-300 px-4 py-2">any</td>
+              <td class="border border-gray-300 px-4 py-2">Returns computed inline styles</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">getSize()</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">Returns current size</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">isDisabled()</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">Returns disabled state</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">isSmall()</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">Checks if size is small</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">isNormal()</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">Checks if size is normal</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">isLarge()</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">Checks if size is large</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li><strong>ARIA</strong>: Proper ARIA attributes for screen readers</li>
+        <li><strong>Keyboard Navigation</strong>: Full keyboard support</li>
+        <li><strong>Focus Management</strong>: Proper focus handling within groups</li>
+        <li><strong>Screen Reader</strong>: Descriptive labels and instructions</li>
+      </ul>
+
+      <h3>Styling</h3>
+      <p>The component uses CSS classes that can be customized:</p>
+      <ul>
+        <li><code>.sui-input-group</code>: Main container</li>
+        <li><code>.sui-input-group-small</code>: Small size variant</li>
+        <li><code>.sui-input-group-normal</code>: Normal size variant</li>
+        <li><code>.sui-input-group-large</code>: Large size variant</li>
+        <li><code>.sui-input-group-disabled</code>: Disabled state</li>
+      </ul>
+
+      <h3>Examples</h3>
+      <h4>Basic Usage</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>export class ExampleComponent &#123;
+  inputValue = '';
+  isDisabled = false;
+&#125;</code></pre>
+
+      <h4>With Custom Styling</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-input-group
+  [size]="'large'"
+  styleClass="my-custom-class"
+  [style]="&#123; backgroundColor: '#f0f0f0' &#125;"
+&gt;
+  &lt;!-- content --&gt;
+&lt;/sui-input-group&gt;</code></pre>
+
+      <h4>Disabled State</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-input-group [disabled]="true"&gt;
+  &lt;!-- content --&gt;
+&lt;/sui-input-group&gt;</code></pre>
+    </div>
+  </app-tabs>
+</div>

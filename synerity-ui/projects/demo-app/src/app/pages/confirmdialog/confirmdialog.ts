@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ConfirmDialog } from 'ui-lib';
 import { Tabs } from '../../shared/tabs/tabs';
 
 @Component({
   selector: 'app-confirmdialog',
-  imports: [CommonModule, FormsModule, Tabs],
+  imports: [CommonModule, FormsModule, ConfirmDialog, Tabs],
   templateUrl: './confirmdialog.html',
   styleUrl: './confirmdialog.scss'
 })
@@ -52,5 +53,10 @@ export class Confirmdialog {
   
   showConfirmDialog() {
     this.confirmDialogVisible = true;
+  }
+  
+  onConfirmDialogHide(event: any) {
+    console.log('Confirm dialog hidden:', event);
+    this.confirmDialogVisible = false;
   }
 }

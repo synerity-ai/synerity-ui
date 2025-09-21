@@ -1,73 +1,90 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Button as SuiButton } from '../../../../../ui-lib/src/lib/button/button';
+import { Button } from 'ui-lib';
 
 @Component({
   selector: 'app-button',
-  imports: [CommonModule, FormsModule, Tabs, SuiButton],
+  standalone: true,
+  imports: [CommonModule, Button],
   templateUrl: './button.html',
-  styleUrl: './button.scss'
+  styleUrls: ['./button.scss']
 })
-export class Button {
-  activeTab = 'demo';
-  
+export class ButtonComponent {
+  activeTab = 0;
+  showBasicCode = false;
+  showSizeCode = false;
+  showCustomCode = false;
+
   // Demo data
-  buttonText = 'Click me!';
-  buttonDisabled = false;
-  buttonLoading = false;
-  
-  // Code visibility states
-  showBasicVariantsCode = false;
-  showButtonSizesCode = false;
-  showButtonStatesCode = false;
-  showButtonIconsCode = false;
-  showButtonGroupsCode = false;
-  showInteractiveDemoCode = false;
-  
-  onTabChange(tab: string) {
-    this.activeTab = tab;
+  buttonText = 'Click me';
+  isLoading = false;
+
+  onTabChange(index: number): void {
+    this.activeTab = index;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicVariants':
-        this.showBasicVariantsCode = !this.showBasicVariantsCode;
+
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
+        this.showBasicCode = !this.showBasicCode;
         break;
-      case 'buttonSizes':
-        this.showButtonSizesCode = !this.showButtonSizesCode;
+      case 'size':
+        this.showSizeCode = !this.showSizeCode;
         break;
-      case 'buttonStates':
-        this.showButtonStatesCode = !this.showButtonStatesCode;
-        break;
-      case 'buttonIcons':
-        this.showButtonIconsCode = !this.showButtonIconsCode;
-        break;
-      case 'buttonGroups':
-        this.showButtonGroupsCode = !this.showButtonGroupsCode;
-        break;
-      case 'interactiveDemo':
-        this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
+      case 'custom':
+        this.showCustomCode = !this.showCustomCode;
         break;
     }
   }
-  
-  // Button demo methods
-  onButtonClick() {
+
+  onButtonClick(): void {
     console.log('Button clicked!');
-    alert('Button clicked!');
   }
-  
-  onLoadingClick() {
-    this.buttonLoading = true;
+
+  onPrimaryClick(): void {
+    console.log('Primary button clicked!');
+  }
+
+  onSecondaryClick(): void {
+    console.log('Secondary button clicked!');
+  }
+
+  onOutlineClick(): void {
+    console.log('Outline button clicked!');
+  }
+
+  onGhostClick(): void {
+    console.log('Ghost button clicked!');
+  }
+
+  onDangerClick(): void {
+    console.log('Danger button clicked!');
+  }
+
+  onSmallClick(): void {
+    console.log('Small button clicked!');
+  }
+
+  onMediumClick(): void {
+    console.log('Medium button clicked!');
+  }
+
+  onLargeClick(): void {
+    console.log('Large button clicked!');
+  }
+
+  onLoadingClick(): void {
+    this.isLoading = true;
+    console.log('Loading button clicked!');
+    
+    // Simulate loading for 3 seconds
     setTimeout(() => {
-      this.buttonLoading = false;
-      alert('Loading completed!');
-    }, 2000);
+      this.isLoading = false;
+      console.log('Loading completed!');
+    }, 3000);
   }
-  
-  toggleDisabled() {
-    this.buttonDisabled = !this.buttonDisabled;
+
+  onDisabledClick(): void {
+    console.log('This should not be logged - button is disabled');
   }
 }

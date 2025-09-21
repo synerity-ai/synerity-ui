@@ -1,0 +1,55 @@
+<div class="sui-captcha" [class]="getCaptchaClass()" [style]="style">
+  <div class="sui-captcha-header">
+    <h3 class="sui-captcha-title">Security Verification</h3>
+    <button 
+      *ngIf="refreshButton"
+      type="button"
+      class="sui-captcha-refresh"
+      [disabled]="disabled"
+      (click)="refresh()"
+      [attr.aria-label]="'Refresh captcha'"
+    >
+      🔄
+    </button>
+  </div>
+
+  <div class="sui-captcha-challenge">
+    <p class="sui-captcha-question">{{ currentChallenge?.question }}</p>
+    
+    <div class="sui-captcha-input-container">
+      <input
+        type="text"
+        class="sui-captcha-input"
+        [class.sui-captcha-input-error]="isError"
+        [class.sui-captcha-input-success]="isVerified"
+        [disabled]="disabled || isVerified"
+        [placeholder]="'Enter your answer'"
+        [(ngModel)]="userAnswer"
+        (ngModelChange)="onInputChange($event)"
+        (keypress)="onKeyPress($event)"
+      />
+      <button 
+        type="button"
+        class="sui-captcha-verify"
+        [disabled]="disabled || !userAnswer || isVerified"
+        (click)="verifyAnswer()"
+      >
+        Verify
+      </button>
+    </div>
+
+    <div *ngIf="isError" class="sui-captcha-error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="isVerified" class="sui-captcha-success">
+      ✅ Verification successful!
+    </div>
+  </div>
+
+  <div class="sui-captcha-info">
+    <small class="sui-captcha-help">
+      Difficulty: {{ difficulty | titlecase }} • Type: {{ type | titlecase }}
+    </small>
+  </div>
+</div>

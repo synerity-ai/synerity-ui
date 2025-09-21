@@ -1,0 +1,130 @@
+// Scroll Top Demo Styles
+
+.demo-section {
+  @apply mb-8;
+}
+
+.demo-container {
+  @apply bg-gray-50 p-6 rounded-lg border;
+}
+
+// Custom scroll top styles
+.custom-scroll-top {
+  .sui-scroll-top {
+    background-color: var(--scroll-top-bg, #8b5cf6);
+    color: var(--scroll-top-color, #ffffff);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.threshold-low {
+  .sui-scroll-top {
+    background-color: #ef4444;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+.threshold-medium {
+  .sui-scroll-top {
+    background-color: #f59e0b;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+}
+
+// Custom button styles for demo
+button {
+  @apply transition-colors duration-200;
+  
+  &:hover:not(:disabled) {
+    @apply transform scale-105;
+  }
+  
+  &:active:not(:disabled) {
+    @apply transform scale-95;
+  }
+  
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
+
+// Code block styles
+pre {
+  @apply text-sm;
+  
+  code {
+    @apply font-mono;
+  }
+}
+
+// Table styles for documentation
+table {
+  @apply text-sm;
+  
+  th {
+    @apply font-semibold;
+  }
+  
+  td, th {
+    @apply px-3 py-2;
+  }
+}
+
+// Scrollable content styling
+.max-h-96 {
+  max-height: 24rem;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+    
+    &:hover {
+      background: #94a3b8;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .demo-container {
+    @apply p-4;
+  }
+  
+  pre {
+    @apply text-xs;
+  }
+  
+  .custom-scroll-top .sui-scroll-top {
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+  }
+}

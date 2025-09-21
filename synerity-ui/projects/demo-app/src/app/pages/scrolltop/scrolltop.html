@@ -1,0 +1,306 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Scroll Top</h1>
+    <p class="text-lg text-gray-600">A scroll-to-top button component that appears when users scroll down past a threshold.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'" class="space-y-8">
+      <!-- Basic Scroll Top -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Basic Scroll Top</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="space-y-4">
+            <p class="text-gray-700">Scroll down to see the scroll to top button appear. It will show when you scroll past the default threshold of 400px.</p>
+            
+            <!-- Long content to demonstrate scrolling -->
+            <div class="space-y-4 max-h-96 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-white">
+              <div *ngFor="let section of longContent" class="p-4 bg-gray-50 rounded border">
+                <h3 class="font-semibold text-gray-800 mb-2">{{ section.title }}</h3>
+                <p class="text-gray-600">{{ section.content }}</p>
+              </div>
+            </div>
+            
+            <!-- Scroll Top Button -->
+            <sui-scroll-top 
+              [threshold]="200"
+              icon="↑"
+              behavior="smooth"
+            ></sui-scroll-top>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('basic')">
+          {{ showBasicCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-scroll-top 
+  threshold="200"
+  icon="↑"
+  behavior="smooth"
+&gt;&lt;/sui-scroll-top&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Custom Styling -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Custom Styling</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="space-y-4">
+            <p class="text-gray-700">Custom styled scroll to top button with different appearance.</p>
+            
+            <!-- Long content -->
+            <div class="space-y-4 max-h-96 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-white">
+              <div *ngFor="let section of longContent.slice(0, 20)" class="p-4 bg-gray-50 rounded border">
+                <h3 class="font-semibold text-gray-800 mb-2">{{ section.title }}</h3>
+                <p class="text-gray-600">{{ section.content }}</p>
+              </div>
+            </div>
+            
+            <!-- Custom Scroll Top Button -->
+            <sui-scroll-top 
+              [threshold]="150"
+              icon="🔝"
+              behavior="smooth"
+              styleClass="custom-scroll-top"
+              [style]="{'--scroll-top-bg': '#8b5cf6', '--scroll-top-color': '#ffffff'}"
+            ></sui-scroll-top>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('custom')">
+          {{ showCustomCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-scroll-top 
+  threshold="150"
+  icon="🔝"
+  behavior="smooth"
+  styleClass="custom-scroll-top"
+  [style]="&#123;'--scroll-top-bg': '#8b5cf6', '--scroll-top-color': '#ffffff'&#125;"
+&gt;&lt;/sui-scroll-top&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Different Thresholds -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Different Thresholds</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="space-y-4">
+            <p class="text-gray-700">Scroll to top buttons with different threshold values. The button appears at different scroll positions.</p>
+            
+            <!-- Long content -->
+            <div class="space-y-4 max-h-96 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-white">
+              <div *ngFor="let section of longContent.slice(0, 30)" class="p-4 bg-gray-50 rounded border">
+                <h3 class="font-semibold text-gray-800 mb-2">{{ section.title }}</h3>
+                <p class="text-gray-600">{{ section.content }}</p>
+              </div>
+            </div>
+            
+            <!-- Multiple Scroll Top Buttons with different thresholds -->
+            <sui-scroll-top 
+              [threshold]="100"
+              icon="⬆️"
+              behavior="smooth"
+              styleClass="threshold-low"
+            ></sui-scroll-top>
+            
+            <sui-scroll-top 
+              [threshold]="300"
+              icon="🔼"
+              behavior="auto"
+              styleClass="threshold-medium"
+            ></sui-scroll-top>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('threshold')">
+          {{ showThresholdCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showThresholdCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;!-- Low threshold (100px) --&gt;
+&lt;sui-scroll-top 
+  threshold="100"
+  icon="⬆️"
+  behavior="smooth"
+  styleClass="threshold-low"
+&gt;&lt;/sui-scroll-top&gt;
+
+&lt;!-- Medium threshold (300px) --&gt;
+&lt;sui-scroll-top 
+  threshold="300"
+  icon="🔼"
+  behavior="auto"
+  styleClass="threshold-medium"
+&gt;&lt;/sui-scroll-top&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
+      <h2>How to Use Scroll Top</h2>
+      
+      <h3>Installation</h3>
+      <p>Import the ScrollTop component from the UI library:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; ScrollTop &#125; from 'ui-lib';
+
+// In your component imports
+imports: [ScrollTop]</code></pre>
+
+      <h3>Basic Usage</h3>
+      <p>Add the component to your template:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-scroll-top&gt;&lt;/sui-scroll-top&gt;</code></pre>
+
+      <h3>Component Properties</h3>
+      <ul>
+        <li><strong>threshold</strong>: Scroll position in pixels when button becomes visible</li>
+        <li><strong>icon</strong>: Icon or text to display on the button</li>
+        <li><strong>behavior</strong>: Scroll behavior ('smooth' or 'auto')</li>
+        <li><strong>style</strong>: Custom CSS styles</li>
+        <li><strong>styleClass</strong>: Custom CSS class</li>
+      </ul>
+
+      <h3>Common Use Cases</h3>
+      <ul>
+        <li><strong>Long Pages</strong>: Help users quickly return to top of long content</li>
+        <li><strong>Blog Posts</strong>: Provide easy navigation for long articles</li>
+        <li><strong>Product Pages</strong>: Allow quick return to product details</li>
+        <li><strong>Documentation</strong>: Improve navigation in long documentation</li>
+        <li><strong>E-commerce</strong>: Help users return to top of product listings</li>
+      </ul>
+
+      <h3>Best Practices</h3>
+      <ul>
+        <li><strong>Appropriate Threshold</strong>: Set threshold based on content length (200-500px typical)</li>
+        <li><strong>Clear Icon</strong>: Use intuitive icons like ↑, ⬆️, or 🔝</li>
+        <li><strong>Smooth Scrolling</strong>: Use 'smooth' behavior for better UX</li>
+        <li><strong>Positioning</strong>: Place button in bottom-right corner</li>
+        <li><strong>Accessibility</strong>: Ensure button is accessible via keyboard</li>
+      </ul>
+
+      <h3>Positioning</h3>
+      <p>The component is positioned fixed to the bottom-right of the viewport by default:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>.sui-scroll-top &#123;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+&#125;</code></pre>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
+      <h2>API Documentation</h2>
+      
+      <h3>Properties</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">threshold</td>
+              <td class="border border-gray-300 px-4 py-2">number</td>
+              <td class="border border-gray-300 px-4 py-2">400</td>
+              <td class="border border-gray-300 px-4 py-2">Scroll position when button becomes visible</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">icon</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">'↑'</td>
+              <td class="border border-gray-300 px-4 py-2">Icon or text displayed on button</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">behavior</td>
+              <td class="border border-gray-300 px-4 py-2">'smooth' | 'auto'</td>
+              <td class="border border-gray-300 px-4 py-2">'smooth'</td>
+              <td class="border border-gray-300 px-4 py-2">Scroll animation behavior</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">style</td>
+              <td class="border border-gray-300 px-4 py-2">any</td>
+              <td class="border border-gray-300 px-4 py-2">&#123;&#125;</td>
+              <td class="border border-gray-300 px-4 py-2">Custom CSS styles</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">styleClass</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">''</td>
+              <td class="border border-gray-300 px-4 py-2">Custom CSS class</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Methods</h3>
+      <ul>
+        <li><strong>scrollToTop()</strong>: Scrolls to the top of the page</li>
+        <li><strong>getScrollTopClass()</strong>: Returns CSS classes for the button</li>
+        <li><strong>getScrollTopStyle()</strong>: Returns inline styles for the button</li>
+        <li><strong>isVisible()</strong>: Checks if button should be visible</li>
+        <li><strong>getIcon()</strong>: Returns the icon to display</li>
+      </ul>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li><strong>ARIA</strong>: Proper ARIA attributes for screen readers</li>
+        <li><strong>Keyboard Navigation</strong>: Accessible via Tab key</li>
+        <li><strong>Screen Reader</strong>: Descriptive labels and announcements</li>
+        <li><strong>Focus Management</strong>: Proper focus handling</li>
+      </ul>
+
+      <h3>Styling</h3>
+      <p>The component uses CSS classes that can be customized:</p>
+      <ul>
+        <li><code>.sui-scroll-top</code>: Main button container</li>
+        <li><code>.sui-scroll-top-visible</code>: Visible state styling</li>
+        <li><code>.sui-scroll-top-hidden</code>: Hidden state styling</li>
+      </ul>
+
+      <h3>Examples</h3>
+      <h4>Basic Usage</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-scroll-top&gt;&lt;/sui-scroll-top&gt;</code></pre>
+
+      <h4>Custom Threshold and Icon</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-scroll-top
+  threshold="200"
+  icon="🔝"
+  behavior="smooth"
+&gt;&lt;/sui-scroll-top&gt;</code></pre>
+
+      <h4>Custom Styling</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-scroll-top
+  styleClass="custom-scroll-top"
+  [style]="&#123;backgroundColor: '#3b82f6', color: '#ffffff'&#125;"
+&gt;&lt;/sui-scroll-top&gt;</code></pre>
+
+      <h4>Different Scroll Behaviors</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;!-- Smooth scrolling --&gt;
+&lt;sui-scroll-top behavior="smooth"&gt;&lt;/sui-scroll-top&gt;
+
+&lt;!-- Instant scrolling --&gt;
+&lt;sui-scroll-top behavior="auto"&gt;&lt;/sui-scroll-top&gt;</code></pre>
+    </div>
+  </app-tabs>
+</div>

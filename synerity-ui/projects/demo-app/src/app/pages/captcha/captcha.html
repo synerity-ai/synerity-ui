@@ -1,0 +1,114 @@
+<div class="captcha-demo">
+  <div class="demo-header">
+    <h1>Captcha</h1>
+    <p>A security verification component with various challenge types and difficulty levels.</p>
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-section">
+      <h2>Basic Math Captcha</h2>
+      <div class="demo-example">
+        <sui-captcha 
+          [type]="basicConfig.type"
+          [difficulty]="basicConfig.difficulty"
+          [refreshButton]="basicConfig.refreshButton"
+          (onVerify)="onVerify($event)"
+          (onRefresh)="onRefresh()"
+        ></sui-captcha>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('basic')">
+        {{ showBasicCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showBasicCode" class="code-block">
+        <pre><code>&lt;sui-captcha 
+  [type]="'math'"
+  [difficulty]="'easy'"
+  [refreshButton]="true"
+  (onVerify)="onVerify($event)"
+  (onRefresh)="onRefresh()"
+&gt;&lt;/sui-captcha&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Medium Difficulty Math</h2>
+      <div class="demo-example">
+        <sui-captcha 
+          [type]="mathConfig.type"
+          [difficulty]="mathConfig.difficulty"
+          [refreshButton]="mathConfig.refreshButton"
+          (onVerify)="onVerify($event)"
+          (onRefresh)="onRefresh()"
+        ></sui-captcha>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('math')">
+        {{ showMathCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showMathCode" class="code-block">
+        <pre><code>&lt;sui-captcha 
+  [type]="'math'"
+  [difficulty]="'medium'"
+  [refreshButton]="true"
+  (onVerify)="onVerify($event)"
+  (onRefresh)="onRefresh()"
+&gt;&lt;/sui-captcha&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Text Challenge</h2>
+      <div class="demo-example">
+        <sui-captcha 
+          [type]="textConfig.type"
+          [difficulty]="textConfig.difficulty"
+          [refreshButton]="textConfig.refreshButton"
+          (onVerify)="onVerify($event)"
+          (onRefresh)="onRefresh()"
+        ></sui-captcha>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('text')">
+        {{ showTextCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showTextCode" class="code-block">
+        <pre><code>&lt;sui-captcha 
+  [type]="'text'"
+  [difficulty]="'easy'"
+  [refreshButton]="true"
+  (onVerify)="onVerify($event)"
+  (onRefresh)="onRefresh()"
+&gt;&lt;/sui-captcha&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Custom Challenge</h2>
+      <div class="demo-example">
+        <sui-captcha 
+          [type]="customConfig.type"
+          [difficulty]="customConfig.difficulty"
+          [refreshButton]="customConfig.refreshButton"
+          [customChallenge]="customConfig.customChallenge"
+          (onVerify)="onVerify($event)"
+          (onRefresh)="onRefresh()"
+        ></sui-captcha>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('custom')">
+        {{ showCustomCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showCustomCode" class="code-block">
+        <pre><code>&lt;sui-captcha 
+  [type]="'math'"
+  [difficulty]="'hard'"
+  [refreshButton]="false"
+  [customChallenge]="&#123;
+    question: 'What is the capital of France?',
+    answer: 'Paris',
+    type: 'text'
+  &#125;"
+  (onVerify)="onVerify($event)"
+  (onRefresh)="onRefresh()"
+&gt;&lt;/sui-captcha&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</div>

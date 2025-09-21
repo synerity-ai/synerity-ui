@@ -1,2 +1,436 @@
-// Image component styles
-// Most styling is handled by Tailwind CSS classes
+// Image demo page styles
+
+.image-demo {
+  .demo-section {
+    @apply mb-8;
+  }
+  
+  .demo-header {
+    @apply flex items-center justify-between mb-4;
+  }
+  
+  .demo-title {
+    @apply text-xl font-semibold text-gray-900;
+  }
+  
+  .code-toggle {
+    @apply flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors;
+    
+    .icon {
+      @apply text-lg;
+    }
+  }
+  
+  .demo-container {
+    @apply bg-white rounded-lg border border-gray-200 p-6;
+  }
+  
+  .info-box {
+    @apply mt-4 p-3 rounded-md border;
+    
+    &.blue {
+      @apply bg-blue-50 border-blue-200 text-blue-800;
+    }
+    
+    &.green {
+      @apply bg-green-50 border-green-200 text-green-800;
+    }
+    
+    &.purple {
+      @apply bg-purple-50 border-purple-200 text-purple-800;
+    }
+    
+    &.yellow {
+      @apply bg-yellow-50 border-yellow-200 text-yellow-800;
+    }
+    
+    &.indigo {
+      @apply bg-indigo-50 border-indigo-200 text-indigo-800;
+    }
+    
+    .info-text {
+      @apply text-sm;
+      
+      strong {
+        @apply font-medium;
+      }
+    }
+  }
+  
+  .code-example {
+    @apply mt-6 p-4 bg-gray-50 rounded-lg;
+    
+    pre {
+      @apply text-sm text-gray-800 overflow-x-auto;
+    }
+  }
+}
+
+// Image component enhancements
+sui-image {
+  @apply inline-block;
+  
+  // Enhanced image loading states
+  img {
+    @apply transition-all duration-300;
+    
+    &[src=""] {
+      @apply opacity-0;
+    }
+    
+    &:not([src=""]) {
+      @apply opacity-100;
+    }
+  }
+  
+  // Improved preview functionality
+  .sui-image-preview {
+    @apply transition-all duration-300;
+  }
+  
+  .sui-image-preview-close {
+    @apply transition-all duration-200;
+    
+    &:hover {
+      @apply scale-110 shadow-lg;
+    }
+    
+    &:active {
+      @apply scale-95;
+    }
+  }
+  
+  // Enhanced error and placeholder states
+  .sui-image-error-placeholder,
+  .sui-image-placeholder {
+    @apply transition-all duration-200;
+  }
+  
+  .sui-image-error-placeholder:hover {
+    @apply bg-red-100;
+  }
+  
+  .sui-image-placeholder:hover {
+    @apply bg-gray-100;
+  }
+  
+  // Focus styles for accessibility
+  img:focus-visible,
+  .sui-image-preview-close:focus {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2 rounded;
+  }
+  
+  // Loading animation
+  &.loading img {
+    @apply animate-pulse bg-gray-200;
+  }
+  
+  // Custom styling variants
+  &.rounded img {
+    @apply rounded-lg;
+  }
+  
+  &.circle img {
+    @apply rounded-full;
+  }
+  
+  &.shadow img {
+    @apply shadow-lg;
+  }
+  
+  &.border img {
+    @apply border-solid border-gray-200;
+    border-width: 1px;
+  }
+  
+  // Aspect ratio variants
+  &.aspect-square img {
+    @apply object-cover;
+    aspect-ratio: 1 / 1;
+  }
+  
+  &.aspect-video img {
+    @apply object-cover;
+    aspect-ratio: 16 / 9;
+  }
+  
+  &.aspect-4-3 img {
+    @apply object-cover;
+    aspect-ratio: 4 / 3;
+  }
+  
+  &.aspect-16-9 img {
+    @apply object-cover;
+    aspect-ratio: 16 / 9;
+  }
+  
+  // Hover effects
+  &.hover-scale img:hover {
+    @apply transform scale-105;
+  }
+  
+  &.hover-shadow img:hover {
+    @apply shadow-xl;
+  }
+  
+  &.hover-brightness img:hover {
+    @apply brightness-110;
+  }
+}
+
+// Dark mode enhancements
+@media (prefers-color-scheme: dark) {
+  .image-demo {
+    .demo-container {
+      @apply bg-gray-800 border-gray-700;
+    }
+    
+    .demo-title {
+      @apply text-gray-100;
+    }
+    
+    .code-toggle {
+      @apply text-gray-300 hover:text-gray-100 hover:bg-gray-700;
+    }
+    
+    .code-example {
+      @apply bg-gray-900;
+      
+      pre {
+        @apply text-gray-200;
+      }
+    }
+  }
+  
+  sui-image {
+    &.loading img {
+      @apply bg-gray-700;
+    }
+    
+    .sui-image-error-placeholder:hover {
+      @apply bg-red-900/20;
+    }
+    
+    .sui-image-placeholder:hover {
+      @apply bg-gray-700;
+    }
+  }
+}
+
+// Responsive improvements
+@media (max-width: 768px) {
+  .image-demo {
+    .demo-header {
+      @apply flex-col gap-2 items-start;
+    }
+    
+    .code-toggle {
+      @apply w-full justify-center;
+    }
+  }
+  
+  sui-image {
+    .sui-image-preview-overlay {
+      @apply p-4;
+    }
+    
+    .sui-image-preview-close {
+      @apply top-2 right-2 w-8 h-8 text-lg;
+    }
+    
+    .sui-image-error-placeholder,
+    .sui-image-placeholder {
+      @apply min-h-24 p-3;
+    }
+  }
+}
+
+// Animation for code examples
+.code-example {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Special animations for image interactions
+sui-image img {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  &:hover::before {
+    transform: translateX(100%);
+  }
+}
+
+// Enhanced preview animations
+.sui-image-preview {
+  backdrop-filter: blur(8px);
+}
+
+.sui-image-preview-visible {
+  animation: previewFadeIn 0.3s ease-out;
+}
+
+@keyframes previewFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+}
+
+// Zoom effect enhancements
+.sui-image-zoom img {
+  @apply transition-transform duration-300 ease-in-out;
+  cursor: zoom-in;
+}
+
+.sui-image-zoom img:hover {
+  @apply transform scale-105;
+}
+
+.sui-image-preview-content {
+  cursor: zoom-out;
+}
+
+// Loading skeleton animation
+sui-image.loading {
+  img {
+    @apply animate-pulse bg-gray-200;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// Error state improvements
+.sui-image-error {
+  @apply border-2 border-red-200 bg-red-50 transition-all duration-200;
+  
+  &:hover {
+    @apply border-red-300 bg-red-100;
+  }
+}
+
+.sui-image-error-placeholder {
+  @apply transition-all duration-200;
+  
+  &:hover {
+    @apply transform scale-105;
+  }
+}
+
+// Placeholder state improvements
+.sui-image-placeholder {
+  @apply transition-all duration-200;
+  
+  &:hover {
+    @apply transform scale-105;
+  }
+}
+
+// Grid layout enhancements
+.image-grid {
+  @apply grid gap-4;
+  
+  &.cols-2 {
+    @apply grid-cols-1 md:grid-cols-2;
+  }
+  
+  &.cols-3 {
+    @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  }
+  
+  &.cols-4 {
+    @apply grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+  }
+}
+
+// Aspect ratio showcase
+.aspect-showcase {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4;
+  
+  .aspect-item {
+    @apply text-center;
+    
+    sui-image {
+      @apply mx-auto;
+    }
+    
+    .aspect-label {
+      @apply mt-2 text-sm text-gray-600 font-medium;
+    }
+  }
+}
+
+// Enhanced focus indicators
+sui-image img:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 rounded;
+}
+
+// Smooth transitions for all states
+sui-image img {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.sui-image-preview-close {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+// Custom scrollbar for code examples
+.code-example pre {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+  
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}

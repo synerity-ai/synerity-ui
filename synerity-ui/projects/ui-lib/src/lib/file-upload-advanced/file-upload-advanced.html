@@ -1,0 +1,111 @@
+<div class="sui-file-upload-advanced" [class]="styleClass" [style]="style">
+  <!-- Hidden file input -->
+  <input 
+    #fileInput
+    type="file" 
+    [multiple]="multiple"
+    [accept]="accept"
+    [disabled]="disabled"
+    (change)="onFileSelect($event)"
+    style="display: none;"
+  />
+
+  <!-- Drop Zone -->
+  <div 
+    #dropZone
+    class="sui-file-upload-advanced-dropzone"
+    [class]="getDropZoneClass()"
+    (click)="!disabled && fileInput.click()"
+    (drop)="onDrop($event)"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+  >
+    <div class="sui-file-upload-advanced-content">
+      <div class="sui-file-upload-advanced-icon">📁</div>
+      <div class="sui-file-upload-advanced-text">
+        <p class="sui-file-upload-advanced-title">
+          {{ dragDropEnabled ? 'Drag & drop files here or click to browse' : 'Click to browse files' }}
+        </p>
+        <p class="sui-file-upload-advanced-subtitle">
+          {{ accept ? 'Accepted formats: ' + accept : 'All file types accepted' }}
+          {{ maxFileSize > 0 ? ' • Max size: ' + formatFileSize(maxFileSize) : '' }}
+          {{ maxFiles > 1 ? ' • Max files: ' + maxFiles : '' }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- File List -->
+  <div *ngIf="hasFiles()" class="sui-file-upload-advanced-list">
+    <div class="sui-file-upload-advanced-header">
+      <span class="sui-file-upload-advanced-count">
+        {{ files.length }} file{{ files.length === 1 ? '' : 's' }} selected
+      </span>
+      <div class="sui-file-upload-advanced-actions">
+        <button 
+          *ngIf="!autoUpload"
+          type="button"
+          class="sui-file-upload-advanced-upload-btn"
+          [disabled]="disabled || areAllFilesUploaded()"
+          (click)="uploadFiles()"
+        >
+          Upload All
+        </button>
+        <button 
+          type="button"
+          class="sui-file-upload-advanced-clear-btn"
+          [disabled]="disabled"
+          (click)="clearFiles()"
+        >
+          Clear All
+        </button>
+      </div>
+    </div>
+
+    <div class="sui-file-upload-advanced-items">
+      <div 
+        *ngFor="let fileItem of files; trackBy: trackByFileId" 
+        class="sui-file-upload-advanced-item"
+        [class.sui-file-upload-advanced-item-success]="fileItem.status === 'success'"
+        [class.sui-file-upload-advanced-item-error]="fileItem.status === 'error'"
+      >
+        <div class="sui-file-upload-advanced-item-icon">
+          {{ getFileIcon(fileItem.type) }}
+        </div>
+        
+        <div class="sui-file-upload-advanced-item-content">
+          <div class="sui-file-upload-advanced-item-header">
+            <span class="sui-file-upload-advanced-item-name">{{ fileItem.name }}</span>
+            <span class="sui-file-upload-advanced-item-status">{{ getStatusIcon(fileItem.status) }}</span>
+          </div>
+          
+          <div class="sui-file-upload-advanced-item-details">
+            <span class="sui-file-upload-advanced-item-size">{{ formatFileSize(fileItem.size) }}</span>
+            <span *ngIf="fileItem.status === 'error'" class="sui-file-upload-advanced-item-error-text">
+              {{ fileItem.error }}
+            </span>
+          </div>
+
+          <div *ngIf="showProgress && fileItem.status === 'uploading'" class="sui-file-upload-advanced-progress">
+            <div class="sui-file-upload-advanced-progress-bar">
+              <div 
+                class="sui-file-upload-advanced-progress-fill"
+                [style.width.%]="fileItem.progress"
+              ></div>
+            </div>
+            <span class="sui-file-upload-advanced-progress-text">{{ fileItem.progress | number:'1.0-0' }}%</span>
+          </div>
+        </div>
+
+        <button 
+          type="button"
+          class="sui-file-upload-advanced-item-remove"
+          [disabled]="disabled"
+          (click)="removeFile(fileItem)"
+        >
+          ×
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

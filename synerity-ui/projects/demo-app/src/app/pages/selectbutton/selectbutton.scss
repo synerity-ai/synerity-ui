@@ -1,0 +1,35 @@
+.demo-section {
+  @apply mb-8;
+}
+
+.demo-container {
+  @apply p-6 border border-gray-200 rounded-lg;
+}
+
+.size-demo {
+  ::ng-deep .select-button-option {
+    @apply px-6 py-3 text-lg;
+  }
+}
+
+.alignment-demo {
+  ::ng-deep .select-button-option {
+    @apply min-w-24;
+    
+    &:first-child {
+      text-align: left;
+    }
+    
+    &:nth-child(2) {
+      text-align: center;
+    }
+    
+    &:nth-child(3) {
+      text-align: right;
+    }
+    
+    &:last-child {
+      text-align: justify;
+    }
+  }
+}

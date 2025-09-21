@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
+import { TieredMenu as SuiTieredMenu } from '../../../../../ui-lib/src/lib/tiered-menu/tiered-menu';
 
 @Component({
   selector: 'app-tieredmenu',
-  imports: [CommonModule, FormsModule, Tabs],
+  imports: [CommonModule, FormsModule, Tabs, SuiTieredMenu],
   templateUrl: './tieredmenu.html',
   styleUrl: './tieredmenu.scss'
 })
@@ -16,44 +17,103 @@ export class Tieredmenu {
   tieredMenuItems = [
     {
       label: 'File',
-      icon: 'pi pi-file',
+      icon: '📁',
       items: [
         {
           label: 'New',
-          icon: 'pi pi-plus',
+          icon: '➕',
           items: [
-            { label: 'Document', icon: 'pi pi-file' },
-            { label: 'Spreadsheet', icon: 'pi pi-table' },
-            { label: 'Presentation', icon: 'pi pi-images' }
+            { label: 'Document', icon: '📄' },
+            { label: 'Spreadsheet', icon: '📊' },
+            { label: 'Presentation', icon: '📽️' }
           ]
         },
-        { label: 'Open', icon: 'pi pi-download' },
-        { separator: true },
-        { label: 'Exit', icon: 'pi pi-times' }
+        { label: 'Open', icon: '📂' },
+        { label: 'Save', icon: '💾' },
+        { label: 'Exit', icon: '❌' }
       ]
     },
     {
       label: 'Edit',
-      icon: 'pi pi-pencil',
+      icon: '✏️',
       items: [
-        { label: 'Undo', icon: 'pi pi-refresh' },
-        { label: 'Redo', icon: 'pi pi-replay' }
+        { label: 'Undo', icon: '↶' },
+        { label: 'Redo', icon: '↷' },
+        { label: 'Cut', icon: '✂️' },
+        { label: 'Copy', icon: '📋' },
+        { label: 'Paste', icon: '📌' }
       ]
     },
     {
       label: 'View',
-      icon: 'pi pi-eye',
+      icon: '👁️',
       items: [
-        { label: 'Zoom In', icon: 'pi pi-search-plus' },
-        { label: 'Zoom Out', icon: 'pi pi-search-minus' }
+        { label: 'Zoom In', icon: '🔍➕' },
+        { label: 'Zoom Out', icon: '🔍➖' },
+        { label: 'Full Screen', icon: '⛶' }
+      ]
+    },
+    {
+      label: 'Help',
+      icon: '❓',
+      items: [
+        { label: 'Documentation', icon: '📚' },
+        { label: 'Support', icon: '🎧' }
+      ]
+    }
+  ];
+
+  simpleTieredMenuItems = [
+    {
+      label: 'Home',
+      icon: '🏠'
+    },
+    {
+      label: 'Products',
+      icon: '📦',
+      items: [
+        { label: 'Electronics', icon: '📱' },
+        { label: 'Clothing', icon: '👕' },
+        { label: 'Books', icon: '📚' }
+      ]
+    },
+    {
+      label: 'About',
+      icon: 'ℹ️'
+    }
+  ];
+
+  nestedTieredMenuItems = [
+    {
+      label: 'Dashboard',
+      icon: '📊',
+      items: [
+        {
+          label: 'Analytics',
+          icon: '📈',
+          items: [
+            { label: 'Sales Report', icon: '💰' },
+            { label: 'User Activity', icon: '👥' },
+            { label: 'Performance', icon: '⚡' }
+          ]
+        },
+        {
+          label: 'Settings',
+          icon: '⚙️',
+          items: [
+            { label: 'General', icon: '🔧' },
+            { label: 'Security', icon: '🔒' },
+            { label: 'Notifications', icon: '🔔' }
+          ]
+        }
       ]
     }
   ];
   
   // Code visibility states
   showBasicTieredMenuCode = false;
+  showSimpleTieredMenuCode = false;
   showNestedTieredMenuCode = false;
-  showCustomTieredMenuCode = false;
   
   onTabChange(tab: string) {
     this.activeTab = tab;
@@ -64,11 +124,11 @@ export class Tieredmenu {
       case 'basicTieredMenu':
         this.showBasicTieredMenuCode = !this.showBasicTieredMenuCode;
         break;
+      case 'simpleTieredMenu':
+        this.showSimpleTieredMenuCode = !this.showSimpleTieredMenuCode;
+        break;
       case 'nestedTieredMenu':
         this.showNestedTieredMenuCode = !this.showNestedTieredMenuCode;
-        break;
-      case 'customTieredMenu':
-        this.showCustomTieredMenuCode = !this.showCustomTieredMenuCode;
         break;
     }
   }

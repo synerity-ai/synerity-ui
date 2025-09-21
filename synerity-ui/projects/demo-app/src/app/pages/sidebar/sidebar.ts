@@ -1,54 +1,143 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
+import { Sidebar } from 'ui-lib';
+
+interface SidebarMenuItem {
+  label?: string;
+  icon?: string;
+  routerLink?: string;
+  items?: SidebarMenuItem[];
+  disabled?: boolean;
+  separator?: boolean;
+}
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, FormsModule, Tabs],
+  standalone: true,
+  imports: [CommonModule, Sidebar],
   templateUrl: './sidebar.html',
-  styleUrl: './sidebar.scss'
+  styleUrls: ['./sidebar.scss']
 })
 export class SidebarComponent {
-  activeTab = 'demo';
-  
-  // Demo data
-  sidebarVisible = false;
-  sidebarPosition = 'left';
-  
-  // Code visibility states
-  showBasicSidebarCode = false;
-  showCustomSidebarCode = false;
-  showEventSidebarCode = false;
-  
-  onTabChange(tab: string) {
-    this.activeTab = tab;
+  activeTab = 0;
+  showBasicSidebar = false;
+  showPositionedSidebar = false;
+  showModalSidebar = false;
+  showCustomSidebar = false;
+
+  showBasicCode = false;
+  showPositionedCode = false;
+  showModalCode = false;
+  showCustomCode = false;
+
+  sidebarItems: SidebarMenuItem[] = [
+    {
+      label: 'Dashboard',
+      icon: '🏠',
+      routerLink: '/dashboard'
+    },
+    {
+      label: 'Products',
+      icon: '📦',
+      items: [
+        {
+          label: 'All Products',
+          routerLink: '/products'
+        },
+        {
+          label: 'Categories',
+          routerLink: '/products/categories'
+        },
+        {
+          label: 'Inventory',
+          routerLink: '/products/inventory'
+        }
+      ]
+    },
+    {
+      label: 'Orders',
+      icon: '📋',
+      routerLink: '/orders'
+    },
+    {
+      separator: true
+    },
+    {
+      label: 'Settings',
+      icon: '⚙️',
+      items: [
+        {
+          label: 'General',
+          routerLink: '/settings/general'
+        },
+        {
+          label: 'Security',
+          routerLink: '/settings/security'
+        },
+        {
+          label: 'Notifications',
+          routerLink: '/settings/notifications'
+        }
+      ]
+    },
+    {
+      label: 'Help',
+      icon: '❓',
+      routerLink: '/help'
+    },
+    {
+      label: 'Disabled Item',
+      icon: '🚫',
+      disabled: true
+    }
+  ];
+
+  onTabChange(index: number): void {
+    this.activeTab = index;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicSidebar':
-        this.showBasicSidebarCode = !this.showBasicSidebarCode;
+
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
+        this.showBasicCode = !this.showBasicCode;
         break;
-      case 'customSidebar':
-        this.showCustomSidebarCode = !this.showCustomSidebarCode;
+      case 'positioned':
+        this.showPositionedCode = !this.showPositionedCode;
         break;
-      case 'eventSidebar':
-        this.showEventSidebarCode = !this.showEventSidebarCode;
+      case 'modal':
+        this.showModalCode = !this.showModalCode;
+        break;
+      case 'custom':
+        this.showCustomCode = !this.showCustomCode;
         break;
     }
   }
-  
-  // Sidebar demo methods
-  onSidebarShow(event: any) {
-    console.log('Sidebar shown:', event);
+
+  toggleBasicSidebar(): void {
+    this.showBasicSidebar = !this.showBasicSidebar;
   }
-  
-  onSidebarHide(event: any) {
-    console.log('Sidebar hidden:', event);
+
+  togglePositionedSidebar(): void {
+    this.showPositionedSidebar = !this.showPositionedSidebar;
   }
-  
-  toggleSidebar() {
-    this.sidebarVisible = !this.sidebarVisible;
+
+  toggleModalSidebar(): void {
+    this.showModalSidebar = !this.showModalSidebar;
+  }
+
+  toggleCustomSidebar(): void {
+    this.showCustomSidebar = !this.showCustomSidebar;
+  }
+
+  closeModalSidebar(): void {
+    this.showModalSidebar = false;
+  }
+
+  onShow(): void {
+    console.log('Sidebar shown');
+  }
+
+  onHide(): void {
+    console.log('Sidebar hidden');
   }
 }

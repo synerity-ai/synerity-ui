@@ -1,0 +1,365 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">PickList</h1>
+    <p class="text-lg text-gray-600">A dual list component for transferring items between two lists with filtering and drag & drop support.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'" class="space-y-8">
+      <!-- Basic PickList -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Basic PickList</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="w-full max-w-4xl">
+              <sui-pick-list 
+                [source]="sourceItems"
+                [target]="targetItems"
+                sourceHeader="Available Items"
+                targetHeader="Selected Items"
+                (onMoveToTarget)="onMoveToTarget($event)"
+                (onMoveToSource)="onMoveToSource($event)"
+                (onMoveAllToTarget)="onMoveAllToTarget($event)"
+                (onMoveAllToSource)="onMoveAllToSource($event)"
+              ></sui-pick-list>
+            </div>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('basic')">
+          {{ showBasicCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-pick-list 
+  [source]="sourceItems"
+  [target]="targetItems"
+  sourceHeader="Available Items"
+  targetHeader="Selected Items"
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)"
+  (onMoveAllToTarget)="onMoveAllToTarget($event)"
+  (onMoveAllToSource)="onMoveAllToSource($event)"
+&gt;&lt;/sui-pick-list&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- PickList with Drag & Drop -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">PickList with Drag & Drop</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="w-full max-w-4xl">
+              <sui-pick-list 
+                [source]="dragDropSourceItems"
+                [target]="dragDropTargetItems"
+                sourceHeader="Available Items"
+                targetHeader="Selected Items"
+                [dragdrop]="true"
+                (onMoveToTarget)="onMoveToTarget($event)"
+                (onMoveToSource)="onMoveToSource($event)"
+                (onMoveAllToTarget)="onMoveAllToTarget($event)"
+                (onMoveAllToSource)="onMoveAllToSource($event)"
+              ></sui-pick-list>
+            </div>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('dragdrop')">
+          {{ showDragDropCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showDragDropCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-pick-list 
+  [source]="dragDropSourceItems"
+  [target]="dragDropTargetItems"
+  sourceHeader="Available Items"
+  targetHeader="Selected Items"
+  [dragdrop]="true"
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)"
+  (onMoveAllToTarget)="onMoveAllToTarget($event)"
+  (onMoveAllToSource)="onMoveAllToSource($event)"
+&gt;&lt;/sui-pick-list&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Custom PickList -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Custom PickList</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="w-full max-w-4xl">
+              <sui-pick-list 
+                [source]="customSourceItems"
+                [target]="customTargetItems"
+                sourceHeader="Available Products"
+                targetHeader="Selected Products"
+                filterPlaceholder="Search products..."
+                (onMoveToTarget)="onMoveToTarget($event)"
+                (onMoveToSource)="onMoveToSource($event)"
+                (onMoveAllToTarget)="onMoveAllToTarget($event)"
+                (onMoveAllToSource)="onMoveAllToSource($event)"
+              ></sui-pick-list>
+            </div>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('custom')">
+          {{ showCustomCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-pick-list 
+  [source]="customSourceItems"
+  [target]="customTargetItems"
+  sourceHeader="Available Products"
+  targetHeader="Selected Products"
+  filterPlaceholder="Search products..."
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)"
+  (onMoveAllToTarget)="onMoveAllToTarget($event)"
+  (onMoveAllToSource)="onMoveAllToSource($event)"
+&gt;&lt;/sui-pick-list&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
+      <h2>How to Use PickList</h2>
+      
+      <h3>Installation</h3>
+      <p>Import the PickList component from the UI library:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; PickList &#125; from 'ui-lib';
+
+// In your component imports
+imports: [PickList]</code></pre>
+
+      <h3>Basic Usage</h3>
+      <p>Use the component with source and target arrays:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-pick-list 
+  [source]="availableItems"
+  [target]="selectedItems"
+  sourceHeader="Available"
+  targetHeader="Selected"
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)"
+&gt;&lt;/sui-pick-list&gt;</code></pre>
+
+      <h3>Component Properties</h3>
+      <ul>
+        <li><strong>source</strong>: Array of items in the source list</li>
+        <li><strong>target</strong>: Array of items in the target list</li>
+        <li><strong>sourceHeader</strong>: Header text for the source list</li>
+        <li><strong>targetHeader</strong>: Header text for the target list</li>
+        <li><strong>filter</strong>: Boolean to enable filtering (default: true)</li>
+        <li><strong>filterPlaceholder</strong>: Placeholder text for filter inputs</li>
+        <li><strong>dragdrop</strong>: Boolean to enable drag & drop functionality</li>
+        <li><strong>showSourceControls</strong>: Boolean to show/hide source controls</li>
+        <li><strong>showTargetControls</strong>: Boolean to show/hide target controls</li>
+      </ul>
+
+      <h3>Events</h3>
+      <ul>
+        <li><strong>onMoveToTarget</strong>: Emitted when items are moved to target</li>
+        <li><strong>onMoveToSource</strong>: Emitted when items are moved to source</li>
+        <li><strong>onMoveAllToTarget</strong>: Emitted when all items are moved to target</li>
+        <li><strong>onMoveAllToSource</strong>: Emitted when all items are moved to source</li>
+      </ul>
+
+      <h3>Features</h3>
+      <ul>
+        <li><strong>Dual List Transfer</strong>: Move items between two lists</li>
+        <li><strong>Bulk Operations</strong>: Move all items at once</li>
+        <li><strong>Filtering</strong>: Search and filter items in both lists</li>
+        <li><strong>Drag & Drop</strong>: Intuitive drag and drop functionality</li>
+        <li><strong>Selection</strong>: Select multiple items for transfer</li>
+        <li><strong>Custom Headers</strong>: Customizable list headers</li>
+      </ul>
+
+      <h3>Data Structure</h3>
+      <p>Items can be any objects:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>sourceItems = [
+  &#123; id: 1, name: 'Item 1', category: 'Category A' &#125;,
+  &#123; id: 2, name: 'Item 2', category: 'Category B' &#125;
+];
+
+targetItems = [
+  &#123; id: 3, name: 'Selected Item', category: 'Selected' &#125;
+];</code></pre>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
+      <h2>API Documentation</h2>
+      
+      <h3>Properties</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">source</td>
+              <td class="border border-gray-300 px-4 py-2">any[]</td>
+              <td class="border border-gray-300 px-4 py-2">[]</td>
+              <td class="border border-gray-300 px-4 py-2">Array of source items</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">target</td>
+              <td class="border border-gray-300 px-4 py-2">any[]</td>
+              <td class="border border-gray-300 px-4 py-2">[]</td>
+              <td class="border border-gray-300 px-4 py-2">Array of target items</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">sourceHeader</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">'Available'</td>
+              <td class="border border-gray-300 px-4 py-2">Header text for source list</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">targetHeader</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">'Selected'</td>
+              <td class="border border-gray-300 px-4 py-2">Header text for target list</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">filter</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">true</td>
+              <td class="border border-gray-300 px-4 py-2">Enable filtering</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">filterPlaceholder</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">'Search'</td>
+              <td class="border border-gray-300 px-4 py-2">Filter input placeholder</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">dragdrop</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">false</td>
+              <td class="border border-gray-300 px-4 py-2">Enable drag & drop</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">showSourceControls</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">true</td>
+              <td class="border border-gray-300 px-4 py-2">Show source list controls</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">showTargetControls</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">true</td>
+              <td class="border border-gray-300 px-4 py-2">Show target list controls</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Events</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 px-4 py-2 text-left">Event</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">onMoveToTarget</td>
+              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;&#123;items: any[]&#125;&gt;</td>
+              <td class="border border-gray-300 px-4 py-2">Fired when items are moved to target</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">onMoveToSource</td>
+              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;&#123;items: any[]&#125;&gt;</td>
+              <td class="border border-gray-300 px-4 py-2">Fired when items are moved to source</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">onMoveAllToTarget</td>
+              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;&#123;items: any[]&#125;&gt;</td>
+              <td class="border border-gray-300 px-4 py-2">Fired when all items are moved to target</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">onMoveAllToSource</td>
+              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;&#123;items: any[]&#125;&gt;</td>
+              <td class="border border-gray-300 px-4 py-2">Fired when all items are moved to source</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li><strong>ARIA</strong>: Proper ARIA attributes for screen readers</li>
+        <li><strong>Keyboard Navigation</strong>: Full keyboard support for item selection and transfer</li>
+        <li><strong>Focus Management</strong>: Proper focus handling and visual indicators</li>
+        <li><strong>Screen Reader</strong>: Descriptive labels for all actions and states</li>
+      </ul>
+
+      <h3>Styling</h3>
+      <p>The component uses CSS classes that can be customized:</p>
+      <ul>
+        <li><code>.sui-pick-list</code>: Main container</li>
+        <li><code>.sui-pick-list-source</code>: Source list container</li>
+        <li><code>.sui-pick-list-target</code>: Target list container</li>
+        <li><code>.sui-pick-list-header</code>: List header styling</li>
+        <li><code>.sui-pick-list-filter</code>: Filter input styling</li>
+        <li><code>.sui-pick-list-items</code>: Items container</li>
+        <li><code>.sui-pick-list-item</code>: Individual item styling</li>
+        <li><code>.sui-pick-list-item-selected</code>: Selected item styling</li>
+        <li><code>.sui-pick-list-controls</code>: Transfer controls styling</li>
+      </ul>
+
+      <h3>Examples</h3>
+      <h4>Basic Usage</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>export class ExampleComponent &#123;
+  sourceItems = [
+    &#123; id: 1, name: 'Item 1' &#125;,
+    &#123; id: 2, name: 'Item 2' &#125;
+  ];
+  
+  targetItems = [
+    &#123; id: 3, name: 'Selected Item' &#125;
+  ];
+&#125;</code></pre>
+
+      <h4>With Drag & Drop</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-pick-list
+  [source]="sourceItems"
+  [target]="targetItems"
+  [dragdrop]="true"
+&gt;&lt;/sui-pick-list&gt;</code></pre>
+
+      <h4>Custom Headers and Filtering</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-pick-list
+  [source]="sourceItems"
+  [target]="targetItems"
+  sourceHeader="Available Products"
+  targetHeader="Selected Products"
+  filterPlaceholder="Search products..."
+&gt;&lt;/sui-pick-list&gt;</code></pre>
+    </div>
+  </app-tabs>
+</div>

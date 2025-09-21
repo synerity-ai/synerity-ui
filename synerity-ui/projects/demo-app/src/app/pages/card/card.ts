@@ -1,111 +1,51 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Card as SuiCard } from '../../../../../ui-lib/src/lib/card/card';
+import { Card } from 'ui-lib';
 
 @Component({
   selector: 'app-card',
-  imports: [CommonModule, FormsModule, Tabs, SuiCard],
+  standalone: true,
+  imports: [CommonModule, Card],
   templateUrl: './card.html',
-  styleUrl: './card.scss'
+  styleUrls: ['./card.scss']
 })
-export class Card {
-  activeTab = 'demo';
-  
+export class CardComponent {
+  activeTab = 0;
+  showBasicCode = false;
+  showVariantCode = false;
+  showCustomCode = false;
+
   // Demo data
-  cardTitle = 'Sample Card Title';
-  cardContent = 'This is a sample card content. You can put any text, images, or other components inside a card.';
-  cardFooter = 'Card Footer';
-  
-  // Interactive demo
-  interactiveTitle = 'Interactive Card';
-  interactiveContent = 'This card demonstrates interactive features. You can customize the title, content, and footer.';
-  interactiveFooter = 'Interactive Footer';
-  interactiveElevated = false;
-  interactiveBordered = true;
-  interactiveRounded = true;
-  interactiveShadow = 'medium';
-  
-  // Code visibility states
-  showBasicCardCode = false;
-  showCardVariantsCode = false;
-  showCardSizesCode = false;
-  showCardStatesCode = false;
-  showInteractiveDemoCode = false;
-  
-  onTabChange(tab: string) {
-    this.activeTab = tab;
+  cardData = {
+    title: 'Sample Card',
+    subtitle: 'This is a sample card',
+    content: 'This is the main content of the card. It can contain any HTML content including text, images, and other components.',
+    footer: 'Card Footer'
+  };
+
+  onTabChange(index: number): void {
+    this.activeTab = index;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicCard':
-        this.showBasicCardCode = !this.showBasicCardCode;
+
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
+        this.showBasicCode = !this.showBasicCode;
         break;
-      case 'cardVariants':
-        this.showCardVariantsCode = !this.showCardVariantsCode;
+      case 'variant':
+        this.showVariantCode = !this.showVariantCode;
         break;
-      case 'cardSizes':
-        this.showCardSizesCode = !this.showCardSizesCode;
-        break;
-      case 'cardStates':
-        this.showCardStatesCode = !this.showCardStatesCode;
-        break;
-      case 'interactiveDemo':
-        this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
+      case 'custom':
+        this.showCustomCode = !this.showCustomCode;
         break;
     }
   }
-  
-  // Card demo methods
-  onCardClick() {
+
+  onCardClick(): void {
     console.log('Card clicked!');
-    alert('Card clicked!');
   }
-  
-  onCardHeaderClick() {
-    console.log('Card header clicked!');
-    alert('Card header clicked!');
-  }
-  
-  onCardFooterClick() {
-    console.log('Card footer clicked!');
-    alert('Card footer clicked!');
-  }
-  
-  // Interactive demo methods
-  updateTitle() {
-    this.interactiveTitle = 'Updated Title - ' + new Date().toLocaleTimeString();
-  }
-  
-  updateContent() {
-    this.interactiveContent = 'Content updated at ' + new Date().toLocaleTimeString() + '. This demonstrates dynamic content updates.';
-  }
-  
-  updateFooter() {
-    this.interactiveFooter = 'Footer updated at ' + new Date().toLocaleTimeString();
-  }
-  
-  resetCard() {
-    this.interactiveTitle = 'Interactive Card';
-    this.interactiveContent = 'This card demonstrates interactive features. You can customize the title, content, and footer.';
-    this.interactiveFooter = 'Interactive Footer';
-  }
-  
-  toggleElevated() {
-    this.interactiveElevated = !this.interactiveElevated;
-  }
-  
-  toggleBordered() {
-    this.interactiveBordered = !this.interactiveBordered;
-  }
-  
-  toggleRounded() {
-    this.interactiveRounded = !this.interactiveRounded;
-  }
-  
-  updateShadow(shadow: string) {
-    this.interactiveShadow = shadow;
+
+  onCardHover(): void {
+    console.log('Card hovered!');
   }
 }

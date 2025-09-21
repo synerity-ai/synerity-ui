@@ -1,2 +1,298 @@
-// Carousel component styles
-// Most styling is handled by Tailwind CSS classes
+// Carousel demo page styles
+
+.carousel-demo {
+  .demo-section {
+    @apply mb-8;
+  }
+  
+  .demo-header {
+    @apply flex items-center justify-between mb-4;
+  }
+  
+  .demo-title {
+    @apply text-xl font-semibold text-gray-900;
+  }
+  
+  .code-toggle {
+    @apply flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors;
+    
+    .icon {
+      @apply text-lg;
+    }
+  }
+  
+  .demo-container {
+    @apply bg-white rounded-lg border border-gray-200 p-6;
+  }
+  
+  .info-box {
+    @apply mt-4 p-3 rounded-md border;
+    
+    &.blue {
+      @apply bg-blue-50 border-blue-200 text-blue-800;
+    }
+    
+    &.green {
+      @apply bg-green-50 border-green-200 text-green-800;
+    }
+    
+    &.purple {
+      @apply bg-purple-50 border-purple-200 text-purple-800;
+    }
+    
+    .info-text {
+      @apply text-sm;
+      
+      strong {
+        @apply font-medium;
+      }
+    }
+  }
+  
+  .code-example {
+    @apply mt-6 p-4 bg-gray-50 rounded-lg;
+    
+    pre {
+      @apply text-sm text-gray-800 overflow-x-auto;
+    }
+  }
+}
+
+// Carousel component enhancements
+sui-carousel {
+  @apply block;
+  
+  // Enhanced image loading states
+  .sui-carousel-image {
+    @apply transition-all duration-300;
+    
+    &[src=""] {
+      @apply opacity-0;
+    }
+    
+    &:not([src=""]) {
+      @apply opacity-100;
+    }
+  }
+  
+  // Improved navigation button styling
+  .sui-carousel-prev,
+  .sui-carousel-next {
+    @apply transition-all duration-300;
+    
+    &:hover:not(:disabled) {
+      @apply scale-110 shadow-lg;
+    }
+    
+    &:active {
+      @apply scale-95;
+    }
+  }
+  
+  // Enhanced indicator styling
+  .sui-carousel-indicator {
+    @apply transition-all duration-300;
+    
+    &:hover {
+      @apply scale-125;
+    }
+    
+    &.sui-carousel-indicator-active {
+      @apply ring-2 ring-blue-500 ring-offset-2;
+    }
+  }
+  
+  // Improved caption styling
+  .sui-carousel-caption {
+    @apply transition-all duration-300;
+    
+    .sui-carousel-title {
+      @apply transition-all duration-300;
+    }
+    
+    .sui-carousel-text {
+      @apply transition-all duration-300;
+    }
+  }
+  
+  // Focus styles for accessibility
+  .sui-carousel-prev:focus,
+  .sui-carousel-next:focus,
+  .sui-carousel-indicator:focus {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+  }
+  
+  // Loading animation
+  &.loading .sui-carousel-image {
+    @apply animate-pulse bg-gray-200;
+  }
+  
+  // Custom size variants
+  &.compact {
+    .sui-carousel-content {
+      @apply h-48;
+    }
+  }
+  
+  &.large {
+    .sui-carousel-content {
+      @apply h-96;
+    }
+  }
+  
+  &.square {
+    .sui-carousel-content {
+      @apply aspect-square;
+    }
+  }
+}
+
+// Dark mode enhancements
+@media (prefers-color-scheme: dark) {
+  .carousel-demo {
+    .demo-container {
+      @apply bg-gray-800 border-gray-700;
+    }
+    
+    .demo-title {
+      @apply text-gray-100;
+    }
+    
+    .code-toggle {
+      @apply text-gray-300 hover:text-gray-100 hover:bg-gray-700;
+    }
+    
+    .code-example {
+      @apply bg-gray-900;
+      
+      pre {
+        @apply text-gray-200;
+      }
+    }
+  }
+  
+  sui-carousel {
+    .sui-carousel-prev,
+    .sui-carousel-next {
+      @apply bg-black/70 hover:bg-black/80;
+    }
+    
+    &.loading .sui-carousel-image {
+      @apply bg-gray-700;
+    }
+  }
+}
+
+// Responsive improvements
+@media (max-width: 768px) {
+  .carousel-demo {
+    .demo-header {
+      @apply flex-col gap-2 items-start;
+    }
+    
+    .code-toggle {
+      @apply w-full justify-center;
+    }
+  }
+  
+  sui-carousel {
+    .sui-carousel-content {
+      @apply h-64;
+    }
+    
+    .sui-carousel-caption {
+      @apply p-4;
+      
+      .sui-carousel-title {
+        @apply text-lg;
+      }
+      
+      .sui-carousel-text {
+        @apply text-xs;
+      }
+    }
+  }
+}
+
+// Animation for code examples
+.code-example {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Special animations for carousel interactions
+.sui-carousel-item {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    z-index: 1;
+  }
+  
+  &.sui-carousel-item-active::before {
+    transform: translateX(100%);
+  }
+}
+
+// Enhanced autoplay pause on hover
+sui-carousel {
+  &:hover {
+    .sui-carousel-prev,
+    .sui-carousel-next {
+      @apply opacity-100;
+    }
+  }
+  
+  .sui-carousel-prev,
+  .sui-carousel-next {
+    @apply opacity-0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  &:hover .sui-carousel-prev,
+  &:hover .sui-carousel-next {
+    @apply opacity-100;
+  }
+}
+
+// Image zoom effect on hover
+.sui-carousel-image {
+  @apply transition-transform duration-500;
+}
+
+sui-carousel:hover .sui-carousel-item-active .sui-carousel-image {
+  @apply scale-105;
+}
+
+// Indicator pulse animation for active state
+.sui-carousel-indicator-active {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}

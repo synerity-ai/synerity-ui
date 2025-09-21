@@ -1,0 +1,226 @@
+// Style Class Demo Styles
+
+.demo-section {
+  @apply mb-8;
+}
+
+.demo-container {
+  @apply bg-gray-50 p-6 rounded-lg border;
+}
+
+// Demo element styles
+#demo-element {
+  &.highlight {
+    @apply bg-yellow-100 border-yellow-500 transform scale-105;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  }
+  
+  &.fade-out {
+    @apply opacity-50 transform scale-95;
+  }
+  
+  &.active {
+    @apply bg-blue-100 border-blue-500;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  }
+  
+  &.inactive {
+    @apply bg-gray-100 border-gray-400 opacity-75;
+  }
+}
+
+// Toggle element styles
+#toggle-element {
+  &.highlighted {
+    @apply bg-purple-100 border-purple-500;
+    box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+  }
+  
+  &.animated {
+    animation: pulse 2s infinite;
+  }
+  
+  &.large {
+    @apply transform scale-110;
+  }
+}
+
+// Custom target styles
+.custom-target {
+  &.custom-enter {
+    @apply bg-green-100 border-green-500;
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  &.custom-leave {
+    @apply bg-red-100 border-red-500;
+    animation: slideOut 0.5s ease-out;
+  }
+  
+  &.custom-toggle {
+    @apply bg-teal-100 border-teal-500;
+    transform: perspective(1000px) rotateY(10deg);
+  }
+  
+  &.custom-rotate {
+    transform: rotate(5deg);
+    transition: transform 0.3s ease;
+  }
+}
+
+// Custom style class
+.custom-style-class {
+  @apply relative;
+  
+  &::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-teal-500 to-pink-500 opacity-0 rounded-lg;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::before {
+    @apply opacity-20;
+  }
+}
+
+// Animations
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+// Button styles
+button {
+  @apply transition-all duration-200 focus:outline-none focus:ring-2;
+  
+  &:hover:not(:disabled) {
+    @apply transform scale-105;
+  }
+  
+  &:active:not(:disabled) {
+    @apply transform scale-95;
+  }
+  
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
+
+// Code block styles
+pre {
+  @apply text-sm;
+  
+  code {
+    @apply font-mono;
+  }
+}
+
+// Table styles for documentation
+table {
+  @apply text-sm;
+  
+  th {
+    @apply font-semibold;
+  }
+  
+  td, th {
+    @apply px-3 py-2;
+  }
+}
+
+// Target element base styles
+#demo-element,
+#toggle-element,
+.custom-target {
+  @apply transition-all duration-300 ease-in-out;
+  
+  &:hover {
+    @apply shadow-md;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .demo-container {
+    @apply p-4;
+  }
+  
+  .flex.space-x-4 {
+    @apply flex-col space-x-0 space-y-3;
+  }
+  
+  button {
+    @apply w-full;
+  }
+  
+  pre {
+    @apply text-xs;
+  }
+  
+  #toggle-element.large {
+    @apply transform scale-105;
+  }
+}
+
+// Focus styles for better accessibility
+button:focus {
+  @apply ring-2;
+  
+  &.bg-blue-500 {
+    @apply ring-blue-500;
+  }
+  
+  &.bg-red-500 {
+    @apply ring-red-500;
+  }
+  
+  &.bg-green-500 {
+    @apply ring-green-500;
+  }
+  
+  &.bg-purple-500 {
+    @apply ring-purple-500;
+  }
+  
+  &.bg-yellow-500 {
+    @apply ring-yellow-500;
+  }
+  
+  &.bg-indigo-500 {
+    @apply ring-indigo-500;
+  }
+  
+  &.bg-teal-500 {
+    @apply ring-teal-500;
+  }
+  
+  &.bg-pink-500 {
+    @apply ring-pink-500;
+  }
+}

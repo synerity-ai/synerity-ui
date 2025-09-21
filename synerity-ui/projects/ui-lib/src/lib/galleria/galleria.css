@@ -1,0 +1,238 @@
+.sui-galleria {
+  @apply fixed inset-0 z-50 bg-black/90 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300;
+}
+
+.sui-galleria-visible {
+  @apply opacity-100 pointer-events-auto;
+}
+
+.sui-galleria-container {
+  @apply relative w-full h-full flex items-center justify-center p-8;
+}
+
+.sui-galleria-content {
+  @apply relative max-w-5xl max-h-full;
+}
+
+.sui-galleria-item {
+  @apply relative opacity-0 transition-opacity duration-500 ease-in-out;
+}
+
+.sui-galleria-item-active {
+  @apply opacity-100;
+}
+
+.sui-galleria-image {
+  @apply max-w-full max-h-full object-contain rounded-lg shadow-2xl;
+}
+
+.sui-galleria-caption {
+  @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white rounded-b-lg;
+}
+
+.sui-galleria-title {
+  @apply text-xl font-semibold mb-2;
+}
+
+.sui-galleria-text {
+  @apply text-sm opacity-90;
+}
+
+.sui-galleria-prev,
+.sui-galleria-next {
+  @apply absolute top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center text-2xl font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+}
+
+.sui-galleria-prev {
+  @apply left-8;
+}
+
+.sui-galleria-next {
+  @apply right-8;
+}
+
+.sui-galleria-prev:hover,
+.sui-galleria-next:hover {
+  @apply scale-110;
+}
+
+.sui-galleria-close {
+  @apply absolute top-8 right-8 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center text-xl font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+}
+
+.sui-galleria-close:hover {
+  @apply scale-110;
+}
+
+.sui-galleria-indicators {
+  @apply absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2;
+}
+
+.sui-galleria-indicator {
+  @apply w-3 h-3 rounded-full bg-white/50 hover:bg-white/70 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+}
+
+.sui-galleria-indicator-active {
+  @apply bg-white;
+}
+
+.sui-galleria-thumbnails {
+  @apply absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-2 max-w-4xl overflow-x-auto;
+}
+
+.sui-galleria-thumbnail {
+  @apply w-16 h-16 rounded-lg overflow-hidden cursor-pointer transition-all duration-200 border-2 border-transparent hover:border-white/50;
+}
+
+.sui-galleria-thumbnail-active {
+  @apply border-white;
+}
+
+.sui-galleria-thumbnail-image {
+  @apply w-full h-full object-cover;
+}
+
+/* Fullscreen mode */
+.sui-galleria-fullscreen .sui-galleria-container {
+  @apply p-4;
+}
+
+.sui-galleria-fullscreen .sui-galleria-content {
+  @apply max-w-none max-h-none w-full h-full;
+}
+
+.sui-galleria-fullscreen .sui-galleria-image {
+  @apply w-full h-full object-contain rounded-none;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .sui-galleria {
+    @apply bg-black/95;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sui-galleria-container {
+    @apply p-4;
+  }
+  
+  .sui-galleria-prev,
+  .sui-galleria-next {
+    @apply w-10 h-10 text-lg;
+  }
+  
+  .sui-galleria-prev {
+    @apply left-4;
+  }
+  
+  .sui-galleria-next {
+    @apply right-4;
+  }
+  
+  .sui-galleria-close {
+    @apply top-4 right-4 w-8 h-8 text-lg;
+  }
+  
+  .sui-galleria-caption {
+    @apply p-4;
+  }
+  
+  .sui-galleria-title {
+    @apply text-lg;
+  }
+  
+  .sui-galleria-text {
+    @apply text-xs;
+  }
+  
+  .sui-galleria-thumbnails {
+    @apply bottom-16 space-x-1;
+  }
+  
+  .sui-galleria-thumbnail {
+    @apply w-12 h-12;
+  }
+}
+
+/* Animation enhancements */
+.sui-galleria-item {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Focus styles for accessibility */
+.sui-galleria-prev:focus,
+.sui-galleria-next:focus,
+.sui-galleria-close:focus,
+.sui-galleria-indicator:focus {
+  @apply outline-none ring-2 ring-white ring-offset-2;
+}
+
+/* Loading state */
+.sui-galleria-item img {
+  @apply transition-opacity duration-300;
+}
+
+.sui-galleria-item img[src=""] {
+  @apply opacity-0;
+}
+
+/* Keyboard navigation */
+.sui-galleria:focus-within {
+  @apply outline-none;
+}
+
+/* Zoom effect on hover */
+.sui-galleria-image {
+  @apply transition-transform duration-300;
+}
+
+.sui-galleria-item-active:hover .sui-galleria-image {
+  @apply scale-105;
+}
+
+/* Thumbnail hover effects */
+.sui-galleria-thumbnail:hover {
+  @apply transform scale-110;
+}
+
+/* Custom styling variants */
+.sui-galleria.compact .sui-galleria-thumbnails {
+  @apply bottom-12;
+}
+
+.sui-galleria.large .sui-galleria-thumbnails {
+  @apply bottom-24;
+}
+
+/* Overlay animations */
+.sui-galleria {
+  backdrop-filter: blur(8px);
+}
+
+.sui-galleria-visible {
+  animation: galleriaFadeIn 0.3s ease-out;
+}
+
+@keyframes galleriaFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+}

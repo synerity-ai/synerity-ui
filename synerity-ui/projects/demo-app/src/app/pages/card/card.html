@@ -1,661 +1,194 @@
-<div class="max-w-6xl mx-auto">
-  <!-- Page Header -->
-  <div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">Card</h1>
-    <p class="text-lg text-gray-600">Flexible content containers with headers, bodies, and footers for organizing information.</p>
+<div class="card-demo">
+  <div class="demo-header">
+    <h1>Card</h1>
+    <p>A flexible container component that displays content in a structured layout with header, body, and footer sections.</p>
   </div>
 
-  <!-- Tabs -->
-  <app-tabs 
-    [tabs]="[
-      { id: 'demo', label: 'Demo', icon: '🎯' },
-      { id: 'usage', label: 'How to Use', icon: '📖' },
-      { id: 'docs', label: 'Documentation', icon: '📚' }
-    ]"
-    [activeTab]="activeTab"
-    (tabChange)="onTabChange($event)">
-    
-    <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'">
-      <div class="space-y-8">
-        
-        <!-- Basic Card -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Basic Card</h3>
-            <button 
-              (click)="toggleCode('basicCard')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showBasicCardCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <!-- Simple Card -->
-              <sui-card 
-                header="Simple Card"
-                size="md"
-                variant="default">
-                <p class="text-gray-600">This is a simple card with just content. No header or footer needed.</p>
-              </sui-card>
-              
-              <!-- Card with Header -->
-              <sui-card 
-                header="Card Header"
-                size="md"
-                variant="default">
-                <p class="text-gray-600">This card has a header section with a title.</p>
-              </sui-card>
-              
-              <!-- Card with Header and Footer -->
-              <sui-card 
-                header="Complete Card"
-                size="md"
-                variant="default"
-                [showFooter]="true">
-                <p class="text-gray-600">This card has both header and footer sections.</p>
-                <div slot="footer">
-                  <p class="text-sm text-gray-500">Card Footer</p>
-                </div>
-              </sui-card>
-            </div>
-            
-            <!-- Code Example -->
-            <div *ngIf="showBasicCardCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Simple Card --&gt;
-&lt;sui-card 
-  header="Simple Card"
-  size="md"
-  variant="default"&gt;
-  &lt;p class="text-gray-600"&gt;This is a simple card with just content. No header or footer needed.&lt;/p&gt;
-&lt;/sui-card&gt;
-
-&lt;!-- Card with Header --&gt;
-&lt;sui-card 
-  header="Card Header"
-  size="md"
-  variant="default"&gt;
-  &lt;p class="text-gray-600"&gt;This card has a header section with a title.&lt;/p&gt;
-&lt;/sui-card&gt;
-
-&lt;!-- Card with Header and Footer --&gt;
-&lt;sui-card 
-  header="Card with Footer"
-  size="md"
-  variant="default"
-  [showFooter]="true"&gt;
-  &lt;p class="text-gray-600"&gt;This card has both header and footer.&lt;/p&gt;
-&lt;/sui-card&gt;</code></pre>
-            </div>
-          </div>
+  <div class="demo-content">
+    <div class="demo-section">
+      <h2>Basic Card</h2>
+      <div class="demo-example">
+        <div class="card-container">
+          <sui-card 
+            [header]="cardData.title"
+            [subheader]="cardData.subtitle"
+            [showFooter]="true"
+          >
+            {{ cardData.content }}
+          </sui-card>
         </div>
-
-        <!-- Card Variants -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Card Variants</h3>
-            <button 
-              (click)="toggleCode('cardVariants')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showCardVariantsCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <!-- Default Card -->
-              <sui-card 
-                header="Default Card"
-                size="md"
-                variant="default">
-                <p class="text-gray-600">Standard card with subtle shadow and border.</p>
-              </sui-card>
-              
-              <!-- Elevated Card -->
-              <sui-card 
-                header="Elevated Card"
-                size="md"
-                variant="elevated">
-                <p class="text-gray-600">Card with enhanced shadow for more prominence.</p>
-              </sui-card>
-              
-              <!-- Outlined Card -->
-              <sui-card 
-                header="Outlined Card"
-                size="md"
-                variant="outlined">
-                <p class="text-gray-600">Card with prominent border and no shadow.</p>
-              </sui-card>
-              
-              <!-- Filled Card -->
-              <sui-card 
-                header="Filled Card"
-                size="md"
-                variant="filled">
-                <p class="text-gray-600">Card with filled background and minimal styling.</p>
-              </sui-card>
-              
-              <!-- Note: sui-card supports default, outlined, elevated, and filled variants -->
-              <div class="bg-blue-50 border border-blue-200 rounded-lg overflow-hidden">
-                <div class="p-6">
-                  <h3 class="text-lg font-semibold text-blue-900 mb-2">Custom Styled Card</h3>
-                  <p class="text-blue-700">For custom colors and gradients, extend the component or use custom CSS classes.</p>
-                </div>
-              </div>
-              
-              <!-- Note: sui-card supports default, outlined, elevated, and filled variants -->
-              <div class="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-lg overflow-hidden">
-                <div class="p-6">
-                  <h3 class="text-lg font-semibold text-purple-900 mb-2">Custom Gradient Card</h3>
-                  <p class="text-purple-700">For custom gradients, extend the component or use custom CSS classes.</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Code Example -->
-            <div *ngIf="showCardVariantsCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Default Card --&gt;
-&lt;sui-card 
-  header="Default Card"
-  size="md"
-  variant="default"&gt;
-  &lt;p class="text-gray-600"&gt;Standard card styling.&lt;/p&gt;
-&lt;/sui-card&gt;
-
-&lt;!-- Elevated Card --&gt;
-&lt;sui-card 
-  header="Elevated Card"
-  size="md"
-  variant="elevated"&gt;
-  &lt;p class="text-gray-600"&gt;Enhanced shadow.&lt;/p&gt;
-&lt;/sui-card&gt;
-
-&lt;!-- Outlined Card --&gt;
-&lt;sui-card 
-  header="Outlined Card"
-  size="md"
-  variant="outlined"&gt;
-  &lt;p class="text-gray-600"&gt;Prominent border.&lt;/p&gt;
-&lt;/sui-card&gt;
-
-&lt;!-- Filled Card --&gt;
-&lt;sui-card 
-  header="Filled Card"
-  size="md"
-  variant="filled"&gt;
-  &lt;p class="text-gray-600"&gt;Filled background.&lt;/p&gt;
-&lt;/sui-card&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card Sizes -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Card Sizes</h3>
-            <button 
-              (click)="toggleCode('cardSizes')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showCardSizesCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-6">
-              <!-- Small Card -->
-              <sui-card 
-                header="Small Card"
-                size="sm"
-                variant="default">
-                <p class="text-sm text-gray-600">Compact card with reduced padding and smaller text.</p>
-              </sui-card>
-              
-              <!-- Medium Card -->
-              <sui-card 
-                header="Medium Card"
-                size="md"
-                variant="default">
-                <p class="text-gray-600">Standard card with balanced padding and text sizes.</p>
-              </sui-card>
-              
-              <!-- Large Card -->
-              <sui-card 
-                header="Large Card"
-                size="lg"
-                variant="default">
-                <p class="text-lg text-gray-600">Spacious card with generous padding and larger text.</p>
-              </sui-card>
-            </div>
-            
-            <!-- Code Example -->
-            <div *ngIf="showCardSizesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Small Card --&gt;
-&lt;sui-card 
-  header="Small Card"
-  size="sm"
-  variant="default"&gt;
-  &lt;p class="text-sm text-gray-600"&gt;Compact card.&lt;/p&gt;
-&lt;/sui-card&gt;
-
-&lt;!-- Medium Card --&gt;
-&lt;sui-card 
-  header="Medium Card"
-  size="md"
-  variant="default"&gt;
-  &lt;p class="text-gray-600"&gt;Standard card.&lt;/p&gt;
-&lt;/sui-card&gt;
-
-&lt;!-- Large Card --&gt;
-&lt;sui-card 
-  header="Large Card"
-  size="lg"
-  variant="default"&gt;
-  &lt;p class="text-lg text-gray-600"&gt;Spacious card.&lt;/p&gt;
-&lt;/sui-card&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Interactive Demo -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
-            <button 
-              (click)="toggleCode('interactiveDemo')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <!-- Controls -->
-              <div class="space-y-4">
-                <h4 class="text-lg font-semibold text-gray-900">Card Controls</h4>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Title</label>
-                  <input 
-                    [(ngModel)]="interactiveTitle"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    placeholder="Enter card title">
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Content</label>
-                  <textarea 
-                    [(ngModel)]="interactiveContent"
-                    rows="3"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
-                    placeholder="Enter card content"></textarea>
-                </div>
-                
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Footer</label>
-                  <input 
-                    [(ngModel)]="interactiveFooter"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    placeholder="Enter card footer">
-                </div>
-                
-                <div class="space-y-2">
-                  <label class="block text-sm font-medium text-gray-700">Shadow</label>
-                  <div class="flex gap-2">
-                    <button 
-                      (click)="updateShadow('none')"
-                      [class]="'px-3 py-1 text-sm rounded-md transition-colors ' + (interactiveShadow === 'none' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')">
-                      None
-                    </button>
-                    <button 
-                      (click)="updateShadow('small')"
-                      [class]="'px-3 py-1 text-sm rounded-md transition-colors ' + (interactiveShadow === 'small' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')">
-                      Small
-                    </button>
-                    <button 
-                      (click)="updateShadow('medium')"
-                      [class]="'px-3 py-1 text-sm rounded-md transition-colors ' + (interactiveShadow === 'medium' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')">
-                      Medium
-                    </button>
-                    <button 
-                      (click)="updateShadow('large')"
-                      [class]="'px-3 py-1 text-sm rounded-md transition-colors ' + (interactiveShadow === 'large' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')">
-                      Large
-                    </button>
-                  </div>
-                </div>
-                
-                <div class="flex gap-2">
-                  <button 
-                    (click)="resetCard()"
-                    class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">
-                    Reset
-                  </button>
-                  <button 
-                    (click)="updateTitle()"
-                    class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-                    Update Title
-                  </button>
-                </div>
-              </div>
-              
-              <!-- Live Preview -->
-              <div>
-                <h4 class="text-lg font-semibold text-gray-900 mb-4">Live Preview</h4>
-                <sui-card 
-                  [header]="interactiveTitle"
-                  [clickable]="true"
-                  [hoverable]="true"
-                  [variant]="interactiveShadow === 'none' ? 'outlined' : 
-                            interactiveShadow === 'small' ? 'default' : 
-                            interactiveShadow === 'medium' ? 'default' : 'elevated'"
-                  size="md"
-                  [showFooter]="true"
-                  (click)="onCardClick()"
-                  (headerClick)="onCardHeaderClick()">
-                  <p class="text-gray-600">{{ interactiveContent }}</p>
-                </sui-card>
-              </div>
-            </div>
-            
-            <!-- Code Example -->
-            <div *ngIf="showInteractiveDemoCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Interactive Card --&gt;
-&lt;sui-card 
-  [header]="interactiveTitle"
-  [clickable]="true"
-  [hoverable]="true"
-  [variant]="interactiveShadow === 'none' ? 'outlined' : 
-            interactiveShadow === 'small' ? 'default' : 
-            interactiveShadow === 'medium' ? 'default' : 'elevated'"
-  size="md"
+      </div>
+      <button class="code-toggle" (click)="toggleCode('basic')">
+        {{ showBasicCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showBasicCode" class="code-block">
+        <pre><code>&lt;sui-card 
+  [header]="cardData.title"
+  [subheader]="cardData.subtitle"
   [showFooter]="true"
-  (click)="onCardClick()"
-  (headerClick)="onCardHeaderClick()"&gt;
-  &lt;p class="text-gray-600"&gt;{{ interactiveContent }}&lt;/p&gt;
+&gt;
+  {{ cardData.content }}
+&lt;/sui-card&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Card Variants</h2>
+      <div class="demo-example">
+        <div class="card-container">
+          <div class="card-grid">
+            <sui-card 
+              variant="default"
+              [header]="'Default Card'"
+              [subheader]="'Standard card variant'"
+            >
+              This is a default card with standard styling.
+            </sui-card>
+            
+            <sui-card 
+              variant="outlined"
+              [header]="'Outlined Card'"
+              [subheader]="'Card with border'"
+            >
+              This is an outlined card with a visible border.
+            </sui-card>
+            
+            <sui-card 
+              variant="elevated"
+              [header]="'Elevated Card'"
+              [subheader]="'Card with shadow'"
+            >
+              This is an elevated card with shadow effects.
+            </sui-card>
+            
+            <sui-card 
+              variant="filled"
+              [header]="'Filled Card'"
+              [subheader]="'Card with background'"
+            >
+              This is a filled card with background color.
+            </sui-card>
+          </div>
+        </div>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('variant')">
+        {{ showVariantCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showVariantCode" class="code-block">
+        <pre><code>&lt;sui-card variant="default" [header]="'Default Card'"&gt;
+  Content here
 &lt;/sui-card&gt;
 
-// Component properties
-interactiveTitle = 'Interactive Card';
-interactiveContent = 'This card demonstrates interactive features.';
-interactiveShadow = 'medium';
+&lt;sui-card variant="outlined" [header]="'Outlined Card'"&gt;
+  Content here
+&lt;/sui-card&gt;
 
-// Component methods
-onCardClick() {{ '{' }}
-  console.log('Card clicked!');
-{{ '}' }}
+&lt;sui-card variant="elevated" [header]="'Elevated Card'"&gt;
+  Content here
+&lt;/sui-card&gt;
 
-onCardHeaderClick() {{ '{' }}
-  console.log('Card header clicked!');
-{{ '}' }}</code></pre>
-            </div>
-          </div>
-        </div>
-
+&lt;sui-card variant="filled" [header]="'Filled Card'"&gt;
+  Content here
+&lt;/sui-card&gt;</code></pre>
       </div>
     </div>
 
-    <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'">
-      <div class="space-y-6">
-        
-        <!-- Installation -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">The Card component is part of the Synerity UI library. Install it using npm:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <code>npm install @synerity/ui</code>
-            </div>
+    <div class="demo-section">
+      <h2>Interactive Cards</h2>
+      <div class="demo-example">
+        <div class="card-container">
+          <div class="card-grid">
+            <sui-card 
+              variant="default"
+              [header]="'Clickable Card'"
+              [clickable]="true"
+              (onClick)="onCardClick()"
+            >
+              This card is clickable. Click to see the event.
+            </sui-card>
+            
+            <sui-card 
+              variant="outlined"
+              [header]="'Hoverable Card'"
+              [hoverable]="true"
+              (onHover)="onCardHover()"
+            >
+              This card has hover effects. Hover to see the event.
+            </sui-card>
+            
+            <sui-card 
+              variant="elevated"
+              [header]="'Loading Card'"
+              [loading]="true"
+            >
+              This card is in a loading state.
+            </sui-card>
+            
+            <sui-card 
+              variant="filled"
+              [header]="'Disabled Card'"
+              [disabled]="true"
+            >
+              This card is disabled and cannot be interacted with.
+            </sui-card>
           </div>
         </div>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('custom')">
+        {{ showCustomCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showCustomCode" class="code-block">
+        <pre><code>&lt;sui-card 
+  variant="default"
+  [header]="'Clickable Card'"
+  [clickable]="true"
+  (onClick)="onCardClick()"
+&gt;
+  Content here
+&lt;/sui-card&gt;
 
-        <!-- Basic Usage -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Import and use the Card component in your Angular application:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>import {{ '{' }} Card {{ '}' }} from '@synerity/ui';
-
-{{ '@' }}Component({{ '{' }}
-  template: `
-    &lt;sui-card 
-      header="Card Title"
-      size="md"
-      variant="default"&gt;
-      &lt;p class="text-gray-600"&gt;Card content goes here.&lt;/p&gt;
-    &lt;/sui-card&gt;
-  `
-{{ '}' }})
-export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card Structure -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Card Structure</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Cards can have three main sections:</p>
-            <div class="space-y-4">
-              <div class="flex items-start gap-3">
-                <span class="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold">1</span>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Header</h4>
-                  <p class="text-gray-600">Optional header section with title and actions</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold">2</span>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Body</h4>
-                  <p class="text-gray-600">Main content area for text, images, and other components</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold">3</span>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Footer</h4>
-                  <p class="text-gray-600">Optional footer section with additional actions or information</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Styling -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Cards use Tailwind CSS classes for styling. Here are the key classes:</p>
-            <div class="space-y-2 text-sm">
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">bg-white</span>
-                <span class="text-gray-600">White background</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">border border-gray-200</span>
-                <span class="text-gray-600">Border styling</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">rounded-lg</span>
-                <span class="text-gray-600">Border radius</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">shadow-sm</span>
-                <span class="text-gray-600">Subtle shadow</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">overflow-hidden</span>
-                <span class="text-gray-600">Hide overflow content</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
+&lt;sui-card 
+  variant="outlined"
+  [header]="'Hoverable Card'"
+  [hoverable]="true"
+  (onHover)="onCardHover()"
+&gt;
+  Content here
+&lt;/sui-card&gt;</code></pre>
       </div>
     </div>
 
-    <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'">
-      <div class="space-y-6">
-        
-        <!-- Props -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="overflow-x-auto">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'default' | 'outlined' | 'elevated' | 'filled'</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'default'</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Visual style variant of the card</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Size of the card padding</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">clickable</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card is clickable</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card is disabled</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">header</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Card header title text</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">subheader</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Card header subtitle text</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showHeader</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether to show the card header</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showFooter</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether to show the card footer</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">loading</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card is in loading state</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">hoverable</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card has hover effects</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">borderless</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether the card has no border</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+    <div class="demo-section">
+      <h2>Card Sizes</h2>
+      <div class="demo-example">
+        <div class="card-container">
+          <div class="card-grid">
+            <sui-card 
+              variant="default"
+              size="sm"
+              [header]="'Small Card'"
+            >
+              This is a small card.
+            </sui-card>
+            
+            <sui-card 
+              variant="default"
+              size="md"
+              [header]="'Medium Card'"
+            >
+              This is a medium card (default size).
+            </sui-card>
+            
+            <sui-card 
+              variant="default"
+              size="lg"
+              [header]="'Large Card'"
+            >
+              This is a large card with more padding and spacing.
+            </sui-card>
           </div>
         </div>
-
-        <!-- Events -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="overflow-x-auto">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">click</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;MouseEvent&gt;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the card is clicked</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">headerClick</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;MouseEvent&gt;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the card header is clicked</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Accessibility -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Keyboard navigation support with Tab key</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Focus indicators for interactive cards</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Proper heading hierarchy with semantic HTML</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>ARIA attributes for screen readers</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Clickable areas properly labeled</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Color contrast meets WCAG guidelines</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
       </div>
     </div>
-  </app-tabs>
+  </div>
 </div>

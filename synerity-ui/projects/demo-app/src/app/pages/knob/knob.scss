@@ -1,0 +1,101 @@
+// Knob Demo Styles
+
+.demo-section {
+  @apply mb-8;
+}
+
+.demo-container {
+  @apply bg-gray-50 p-6 rounded-lg border;
+}
+
+// Custom knob styling
+.custom-knob {
+  --knob-color: #8b5cf6;
+  --knob-bg: #f3f4f6;
+  --knob-text: #1f2937;
+  
+  .sui-knob-progress {
+    stroke: var(--knob-color);
+  }
+  
+  .sui-knob-value {
+    color: var(--knob-text);
+    font-weight: 600;
+  }
+}
+
+// Volume knob colors
+.sui-knob[style*="--knob-color: #ef4444"] {
+  .sui-knob-progress {
+    stroke: #ef4444;
+  }
+}
+
+.sui-knob[style*="--knob-color: #f59e0b"] {
+  .sui-knob-progress {
+    stroke: #f59e0b;
+  }
+}
+
+.sui-knob[style*="--knob-color: #10b981"] {
+  .sui-knob-progress {
+    stroke: #10b981;
+  }
+}
+
+// Temperature knob colors
+.sui-knob[style*="--knob-color: #3b82f6"] {
+  .sui-knob-progress {
+    stroke: #3b82f6;
+  }
+}
+
+// Custom button styles for demo
+button {
+  @apply transition-colors duration-200;
+  
+  &:hover {
+    @apply transform scale-105;
+  }
+  
+  &:active {
+    @apply transform scale-95;
+  }
+}
+
+// Code block styles
+pre {
+  @apply text-sm;
+  
+  code {
+    @apply font-mono;
+  }
+}
+
+// Table styles for documentation
+table {
+  @apply text-sm;
+  
+  th {
+    @apply font-semibold;
+  }
+  
+  td, th {
+    @apply px-3 py-2;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .demo-container {
+    @apply p-4;
+  }
+  
+  .grid {
+    @apply grid-cols-1 gap-6;
+  }
+  
+  pre {
+    @apply text-xs;
+  }
+}

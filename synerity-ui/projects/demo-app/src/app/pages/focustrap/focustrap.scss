@@ -1,0 +1,166 @@
+// Focus Trap Demo Styles
+
+.demo-section {
+  @apply mb-8;
+}
+
+.demo-container {
+  @apply bg-gray-50 p-6 rounded-lg border;
+}
+
+// Focus trap demo styles
+.focus-trap-demo {
+  .sui-focus-trap {
+    @apply relative;
+  }
+}
+
+.focus-trap-modal {
+  .sui-focus-trap {
+    @apply relative;
+  }
+}
+
+.custom-focus-trap {
+  .sui-focus-trap {
+    @apply relative rounded-lg;
+  }
+}
+
+// Modal overlay styles
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+}
+
+.modal-content {
+  @apply bg-white rounded-lg shadow-xl max-w-md w-full mx-4;
+}
+
+// Form styles
+form {
+  @apply space-y-4;
+  
+  label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  
+  input, textarea {
+    @apply w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500;
+  }
+}
+
+// Button styles
+button {
+  @apply transition-colors duration-200 focus:outline-none focus:ring-2;
+  
+  &:hover:not(:disabled) {
+    @apply transform scale-105;
+  }
+  
+  &:active:not(:disabled) {
+    @apply transform scale-95;
+  }
+  
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
+
+// Link styles
+a {
+  @apply transition-colors duration-200 focus:outline-none focus:ring-2;
+  
+  &:hover {
+    @apply transform scale-105;
+  }
+  
+  &:active {
+    @apply transform scale-95;
+  }
+}
+
+// Input focus styles
+input:focus, textarea:focus {
+  @apply ring-2 ring-blue-500 border-blue-500;
+}
+
+// Custom button focus styles
+button:focus {
+  &.bg-blue-500 {
+    @apply ring-blue-500;
+  }
+  
+  &.bg-green-500 {
+    @apply ring-green-500;
+  }
+  
+  &.bg-purple-500 {
+    @apply ring-purple-500;
+  }
+  
+  &.bg-gray-300 {
+    @apply ring-gray-500;
+  }
+}
+
+// Code block styles
+pre {
+  @apply text-sm;
+  
+  code {
+    @apply font-mono;
+  }
+}
+
+// Table styles for documentation
+table {
+  @apply text-sm;
+  
+  th {
+    @apply font-semibold;
+  }
+  
+  td, th {
+    @apply px-3 py-2;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .demo-container {
+    @apply p-4;
+  }
+  
+  .modal-content {
+    @apply mx-2;
+  }
+  
+  pre {
+    @apply text-xs;
+  }
+  
+  button {
+    @apply px-3 py-2 text-sm;
+  }
+}
+
+// Animation for modal appearance
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-content {
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+// Focus trap border highlight
+.sui-focus-trap:focus-within {
+  @apply ring-2 ring-blue-500 ring-opacity-50;
+}

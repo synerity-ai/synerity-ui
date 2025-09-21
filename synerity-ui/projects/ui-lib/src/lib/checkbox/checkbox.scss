@@ -1,0 +1,162 @@
+// Checkbox component styles using Tailwind CSS classes
+
+// Base checkbox styling
+input[type="checkbox"] {
+  @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2;
+  
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  
+  &:checked {
+    @apply bg-blue-600 border-blue-600;
+  }
+  
+  &:indeterminate {
+    @apply bg-blue-600 border-blue-600;
+  }
+}
+
+// Label styling
+label {
+  @apply cursor-pointer select-none;
+  
+  &:has(input:disabled) {
+    @apply cursor-not-allowed opacity-75;
+  }
+}
+
+// Focus states
+input[type="checkbox"]:focus {
+  @apply ring-2 ring-blue-500 ring-offset-2;
+}
+
+// Hover states
+input[type="checkbox"]:not(:disabled):hover {
+  @apply border-gray-400;
+}
+
+// Size variants
+.checkbox-sm input[type="checkbox"] {
+  @apply w-3 h-3;
+}
+
+.checkbox-lg input[type="checkbox"] {
+  @apply w-5 h-5;
+}
+
+.checkbox-xl input[type="checkbox"] {
+  @apply w-6 h-6;
+}
+
+// Color variants
+.checkbox-primary input[type="checkbox"] {
+  @apply text-blue-600 focus:ring-blue-500;
+  
+  &:checked, &:indeterminate {
+    @apply bg-blue-600 border-blue-600;
+  }
+}
+
+.checkbox-secondary input[type="checkbox"] {
+  @apply text-gray-600 focus:ring-gray-500;
+  
+  &:checked, &:indeterminate {
+    @apply bg-gray-600 border-gray-600;
+  }
+}
+
+.checkbox-success input[type="checkbox"] {
+  @apply text-green-600 focus:ring-green-500;
+  
+  &:checked, &:indeterminate {
+    @apply bg-green-600 border-green-600;
+  }
+}
+
+.checkbox-warning input[type="checkbox"] {
+  @apply text-yellow-600 focus:ring-yellow-500;
+  
+  &:checked, &:indeterminate {
+    @apply bg-yellow-600 border-yellow-600;
+  }
+}
+
+.checkbox-danger input[type="checkbox"] {
+  @apply text-red-600 focus:ring-red-500;
+  
+  &:checked, &:indeterminate {
+    @apply bg-red-600 border-red-600;
+  }
+}
+
+// Custom styling for enhanced appearance
+.checkbox-enhanced input[type="checkbox"] {
+  @apply appearance-none bg-white border-2 border-gray-300 rounded transition-all duration-200;
+  
+  &:hover:not(:disabled) {
+    @apply border-gray-400 shadow-sm;
+  }
+  
+  &:checked, &:indeterminate {
+    @apply bg-blue-600 border-blue-600;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e");
+    background-size: 12px 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  &:indeterminate {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8z'/%3e%3c/svg%3e");
+  }
+}
+
+// Animation variants
+.checkbox-animated input[type="checkbox"] {
+  @apply transition-all duration-200;
+  
+  &:hover:not(:disabled) {
+    @apply transform scale-105;
+  }
+  
+  &:active:not(:disabled) {
+    @apply transform scale-95;
+  }
+}
+
+// Ripple effect
+.checkbox-ripple {
+  @apply relative overflow-hidden;
+  
+  input[type="checkbox"] {
+    @apply relative z-10;
+  }
+  
+  &::after {
+    content: '';
+    @apply absolute top-1/2 left-1/2 w-0 h-0 bg-blue-500 bg-opacity-30 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300;
+  }
+  
+  &:active::after {
+    @apply w-8 h-8;
+  }
+}
+
+// Glow effect
+.checkbox-glow input[type="checkbox"]:focus {
+  @apply ring-2 ring-blue-500 ring-offset-2 shadow-lg;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+// Border animation
+.checkbox-border-animated input[type="checkbox"] {
+  @apply border-2 border-transparent bg-white;
+  background-image: linear-gradient(white, white), linear-gradient(45deg, #3b82f6, #8b5cf6);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  
+  &:checked, &:indeterminate {
+    @apply bg-blue-600;
+    background-image: linear-gradient(#3b82f6, #3b82f6), linear-gradient(45deg, #3b82f6, #8b5cf6);
+  }
+}

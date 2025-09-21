@@ -1,40 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
-// import { ContextMenu } from '../../../../../ui-lib/src/lib/contextmenu/contextmenu';
+import { ContextMenu as SuiContextMenu } from '../../../../../ui-lib/src/lib/context-menu/context-menu';
 
 @Component({
   selector: 'app-contextmenu',
-  imports: [CommonModule, FormsModule, Tabs],
+  imports: [CommonModule, FormsModule, Tabs, SuiContextMenu],
   templateUrl: './contextmenu.html',
   styleUrl: './contextmenu.scss'
 })
 export class Contextmenu {
+  @ViewChild('contextMenu') contextMenu!: SuiContextMenu;
+  
   activeTab = 'demo';
   
   // Demo data
   contextMenuItems = [
     {
       label: 'Edit',
-      icon: 'pi pi-pencil',
+      icon: '✏️',
       command: () => this.editItem()
     },
     {
       label: 'Delete',
-      icon: 'pi pi-trash',
+      icon: '🗑️',
       command: () => this.deleteItem()
     },
     { separator: true },
     {
       label: 'Copy',
-      icon: 'pi pi-copy',
+      icon: '📋',
       command: () => this.copyItem()
     },
     {
       label: 'Paste',
-      icon: 'pi pi-clone',
+      icon: '📌',
       command: () => this.pasteItem()
+    }
+  ];
+
+  nestedContextMenuItems = [
+    {
+      label: 'Edit',
+      icon: '✏️',
+      items: [
+        { label: 'Cut', icon: '✂️', command: () => this.cutItem() },
+        { label: 'Copy', icon: '📋', command: () => this.copyItem() },
+        { label: 'Paste', icon: '📌', command: () => this.pasteItem() }
+      ]
+    },
+    {
+      label: 'View',
+      icon: '👁️',
+      items: [
+        { label: 'Details', icon: '📄', command: () => this.viewDetails() },
+        { label: 'Properties', icon: '⚙️', command: () => this.viewProperties() }
+      ]
+    },
+    { separator: true },
+    {
+      label: 'Delete',
+      icon: '🗑️',
+      command: () => this.deleteItem()
     }
   ];
   
@@ -78,8 +106,32 @@ export class Contextmenu {
     console.log('Paste item clicked');
   }
   
+  cutItem() {
+    console.log('Cut item clicked');
+  }
+  
+  viewDetails() {
+    console.log('View details clicked');
+  }
+  
+  viewProperties() {
+    console.log('View properties clicked');
+  }
+  
   onContextMenu(event: MouseEvent) {
-    event.preventDefault();
-    // Context menu will be shown by the component
+    this.contextMenu.show(event);
+  }
+  
+  onNestedContextMenu(event: MouseEvent) {
+    // This would use a different context menu instance for nested demo
+    this.contextMenu.show(event);
+  }
+  
+  onContextMenuShow() {
+    console.log('Context menu shown');
+  }
+  
+  onContextMenuHide() {
+    console.log('Context menu hidden');
   }
 }

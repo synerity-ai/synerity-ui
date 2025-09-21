@@ -33,20 +33,26 @@
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <div class="p-4 bg-gray-100 rounded-lg">
-                <p class="text-gray-600">File Upload Component - Placeholder</p>
-              </div>
+              <sui-upload 
+                [multiple]="true"
+                [accept]="allowedFileTypes.join(',')"
+                [maxFileSize]="maxFileSize"
+                (onUpload)="onFileUpload($event)"
+                (onSelect)="onFileSelect($event)"
+                (onError)="onFileError($event)"
+              ></sui-upload>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showBasicFileUploadCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;div class="p-4 bg-gray-100 rounded-lg" 
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-upload 
+  [multiple]="true"
+  [accept]="allowedFileTypes.join(',')"
   [maxFileSize]="maxFileSize"
-  [allowedFileTypes]="allowedFileTypes"
   (onUpload)="onFileUpload($event)"
   (onSelect)="onFileSelect($event)"
-  (onError)="onFileError($event)"&gt;
-&lt;/div class="p-4 bg-gray-100 rounded-lg"&gt;</code></pre>
+  (onError)="onFileError($event)"
+&gt;&lt;/sui-upload&gt;</code></pre>
             </div>
           </div>
         </div>

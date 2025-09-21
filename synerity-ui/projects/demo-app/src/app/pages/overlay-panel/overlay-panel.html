@@ -1,0 +1,179 @@
+<div class="overlay-panel-demo">
+  <div class="demo-header">
+    <h1>Overlay Panel</h1>
+    <p>A panel component that displays content in an overlay layer.</p>
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-section">
+      <h2>Basic Usage</h2>
+      <div class="demo-example">
+        <button 
+          class="demo-button" 
+          (click)="toggleBasicOverlayPanel()"
+        >
+          Show Basic Overlay Panel
+        </button>
+        <sui-overlay-panel 
+          [visible]="showBasicOverlayPanel"
+          (onShow)="onShow()"
+          (onHide)="onHide()"
+          (visibleChange)="showBasicOverlayPanel = $event"
+        >
+          <div class="overlay-content">
+            <h3>Basic Overlay Panel</h3>
+            <p>This is a basic overlay panel with default styling.</p>
+          </div>
+        </sui-overlay-panel>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('basic')">
+        {{ showBasicCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showBasicCode" class="code-block">
+        <pre><code>(click)="toggleBasicOverlayPanel()"
+&lt;sui-overlay-panel 
+  [visible]="showBasicOverlayPanel"
+  (onShow)="onShow()"
+  (onHide)="onHide()"
+  (visibleChange)="showBasicOverlayPanel = $event"
+&gt;
+  &lt;div class="overlay-content"&gt;
+    &lt;h3&gt;Basic Overlay Panel&lt;/h3&gt;
+    &lt;p&gt;This is a basic overlay panel with default styling.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-overlay-panel&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Positioned Overlay Panel</h2>
+      <div class="demo-example">
+        <div class="position-demo">
+          <button 
+            class="demo-button" 
+            (click)="togglePositionedOverlayPanel()"
+          >
+            Show Positioned Overlay Panel
+          </button>
+          <sui-overlay-panel 
+            [visible]="showPositionedOverlayPanel"
+            [styleClass]="'sui-overlay-panel-top'"
+            (visibleChange)="showPositionedOverlayPanel = $event"
+          >
+            <div class="overlay-content">
+              <h3>Positioned Overlay Panel</h3>
+              <p>This overlay panel is positioned above the trigger button.</p>
+            </div>
+          </sui-overlay-panel>
+        </div>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('positioned')">
+        {{ showPositionedCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showPositionedCode" class="code-block">
+        <pre><code>&lt;sui-overlay-panel 
+  [visible]="showPositionedOverlayPanel"
+  [styleClass]="'sui-overlay-panel-top'"
+  (visibleChange)="showPositionedOverlayPanel = $event"
+&gt;
+  &lt;div class="overlay-content"&gt;
+    &lt;h3&gt;Positioned Overlay Panel&lt;/h3&gt;
+    &lt;p&gt;This overlay panel is positioned above the trigger button.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-overlay-panel&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Modal Overlay Panel</h2>
+      <div class="demo-example">
+        <button 
+          class="demo-button" 
+          (click)="toggleModalOverlayPanel()"
+        >
+          Show Modal Overlay Panel
+        </button>
+        <sui-overlay-panel 
+          [visible]="showModalOverlayPanel"
+          [modal]="true"
+          [styleClass]="'sui-overlay-panel-large'"
+          (visibleChange)="showModalOverlayPanel = $event"
+        >
+          <div class="overlay-content">
+            <h3>Modal Overlay Panel</h3>
+            <p>This is a modal overlay panel that covers the entire screen.</p>
+            <button class="demo-button" (click)="closeModalOverlayPanel()">
+              Close Modal
+            </button>
+          </div>
+        </sui-overlay-panel>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('modal')">
+        {{ showModalCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showModalCode" class="code-block">
+        <pre><code>&lt;sui-overlay-panel 
+  [visible]="showModalOverlayPanel"
+  [modal]="true"
+  [styleClass]="'sui-overlay-panel-large'"
+  (visibleChange)="showModalOverlayPanel = $event"
+&gt;
+  &lt;div class="overlay-content"&gt;
+    &lt;h3&gt;Modal Overlay Panel&lt;/h3&gt;
+    &lt;p&gt;This is a modal overlay panel that covers the entire screen.&lt;/p&gt;
+    &lt;button class="demo-button" (click)="showModalOverlayPanel = false"&gt;
+      Close Modal
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/sui-overlay-panel&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Custom Styled Overlay Panel</h2>
+      <div class="demo-example">
+        <button 
+          class="demo-button" 
+          (click)="toggleCustomOverlayPanel()"
+        >
+          Show Custom Overlay Panel
+        </button>
+        <sui-overlay-panel 
+          [visible]="showCustomOverlayPanel"
+          [style]="{
+            backgroundColor: '#f0f9ff',
+            borderColor: '#0ea5e9',
+            color: '#0c4a6e'
+          }"
+          [styleClass]="'sui-overlay-panel-small'"
+          (visibleChange)="showCustomOverlayPanel = $event"
+        >
+          <div class="overlay-content">
+            <h3>Custom Styled Panel</h3>
+            <p>This overlay panel has custom styling applied.</p>
+          </div>
+        </sui-overlay-panel>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('custom')">
+        {{ showCustomCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showCustomCode" class="code-block">
+        <pre><code>&lt;sui-overlay-panel 
+  [visible]="showCustomOverlayPanel"
+  [style]="&#123;
+    backgroundColor: '#f0f9ff',
+    borderColor: '#0ea5e9',
+    color: '#0c4a6e'
+  &#125;"
+  [styleClass]="'sui-overlay-panel-small'"
+  (visibleChange)="showCustomOverlayPanel = $event"
+&gt;
+  &lt;div class="overlay-content"&gt;
+    &lt;h3&gt;Custom Styled Panel&lt;/h3&gt;
+    &lt;p&gt;This overlay panel has custom styling applied.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-overlay-panel&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</div>

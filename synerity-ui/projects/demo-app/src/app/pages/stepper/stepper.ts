@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
-import { Stepper as SuiStepper } from '../../../../../ui-lib/src/lib/stepper/stepper';
+import { Stepper as SuiStepper } from 'ui-lib';
 
 @Component({
   selector: 'app-stepper',

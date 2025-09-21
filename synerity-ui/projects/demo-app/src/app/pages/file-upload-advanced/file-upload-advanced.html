@@ -1,0 +1,120 @@
+<div class="file-upload-advanced-demo">
+  <div class="demo-header">
+    <h1>File Upload Advanced</h1>
+    <p>An advanced file upload component with drag & drop, progress tracking, and file management.</p>
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-section">
+      <h2>Basic File Upload</h2>
+      <div class="demo-example">
+        <sui-file-upload-advanced 
+          [multiple]="basicConfig.multiple"
+          [accept]="basicConfig.accept"
+          [maxFileSize]="basicConfig.maxFileSize"
+          [maxFiles]="basicConfig.maxFiles"
+          [autoUpload]="basicConfig.autoUpload"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)"
+        ></sui-file-upload-advanced>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('basic')">
+        {{ showBasicCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showBasicCode" class="code-block">
+        <pre><code>&lt;sui-file-upload-advanced 
+  [multiple]="true"
+  [accept]="'image/*,.pdf,.doc,.docx'"
+  [maxFileSize]="5 * 1024 * 1024"
+  [maxFiles]="5"
+  [autoUpload]="false"
+  (onSelect)="onFileSelect($event)"
+  (onUpload)="onFileUpload($event)"
+  (onRemove)="onFileRemove($event)"
+  (onError)="onFileError($event)"
+&gt;&lt;/sui-file-upload-advanced&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Drag & Drop with Auto Upload</h2>
+      <div class="demo-example">
+        <sui-file-upload-advanced 
+          [multiple]="dragDropConfig.multiple"
+          [accept]="dragDropConfig.accept"
+          [maxFileSize]="dragDropConfig.maxFileSize"
+          [maxFiles]="dragDropConfig.maxFiles"
+          [dragDropEnabled]="dragDropConfig.dragDropEnabled"
+          [autoUpload]="dragDropConfig.autoUpload"
+          [showProgress]="dragDropConfig.showProgress"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)"
+        ></sui-file-upload-advanced>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('dragdrop')">
+        {{ showDragDropCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showDragDropCode" class="code-block">
+        <pre><code>&lt;sui-file-upload-advanced 
+  [multiple]="true"
+  [accept]="'image/*,video/*'"
+  [maxFileSize]="10 * 1024 * 1024"
+  [maxFiles]="3"
+  [dragDropEnabled]="true"
+  [autoUpload]="true"
+  [showProgress]="true"
+  (onSelect)="onFileSelect($event)"
+  (onUpload)="onFileUpload($event)"
+  (onRemove)="onFileRemove($event)"
+  (onError)="onFileError($event)"
+&gt;&lt;/sui-file-upload-advanced&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Custom Styled Upload</h2>
+      <div class="demo-example">
+        <sui-file-upload-advanced 
+          [multiple]="customConfig.multiple"
+          [accept]="customConfig.accept"
+          [maxFileSize]="customConfig.maxFileSize"
+          [maxFiles]="customConfig.maxFiles"
+          [dragDropEnabled]="customConfig.dragDropEnabled"
+          [showPreview]="customConfig.showPreview"
+          [style]="customConfig.style"
+          [styleClass]="'sui-file-upload-advanced-large'"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)"
+        ></sui-file-upload-advanced>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('custom')">
+        {{ showCustomCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showCustomCode" class="code-block">
+        <pre><code>&lt;sui-file-upload-advanced 
+  [multiple]="false"
+  [accept]="'.pdf'"
+  [maxFileSize]="2 * 1024 * 1024"
+  [maxFiles]="1"
+  [dragDropEnabled]="true"
+  [showPreview]="false"
+  [style]="&#123;
+    borderColor: '#10b981',
+    backgroundColor: '#f0fdf4'
+  &#125;"
+  [styleClass]="'sui-file-upload-advanced-large'"
+  (onSelect)="onFileSelect($event)"
+  (onUpload)="onFileUpload($event)"
+  (onRemove)="onFileRemove($event)"
+  (onError)="onFileError($event)"
+&gt;&lt;/sui-file-upload-advanced&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</div>

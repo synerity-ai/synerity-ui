@@ -1,0 +1,89 @@
+<div class="terminal-demo">
+  <div class="demo-header">
+    <h1>Terminal</h1>
+    <p>A terminal component for command-line interface interactions.</p>
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-section">
+      <h2>Basic Usage</h2>
+      <div class="demo-example">
+        <sui-terminal 
+          [welcomeMessage]="terminalWelcomeMessage"
+          [prompt]="terminalPrompt"
+          (onCommand)="onTerminalCommand($event)"
+        ></sui-terminal>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('basic')">
+        {{ showBasicCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showBasicCode" class="code-block">
+        <pre><code>&lt;sui-terminal 
+  [welcomeMessage]="terminalWelcomeMessage"
+  [prompt]="terminalPrompt"
+  (onCommand)="onTerminalCommand($event)"
+&gt;&lt;/sui-terminal&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Custom Styled Terminal</h2>
+      <div class="demo-example">
+        <sui-terminal 
+          [welcomeMessage]="'Custom Terminal'"
+          [prompt]="'❯'"
+          [style]="{
+            backgroundColor: '#1a1a1a',
+            color: '#00ff00',
+            fontFamily: 'Courier New, monospace',
+            height: '300px'
+          }"
+          (onCommand)="onTerminalCommand($event)"
+        ></sui-terminal>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('custom')">
+        {{ showCustomCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showCustomCode" class="code-block">
+        <pre><code>&lt;sui-terminal 
+  [welcomeMessage]="'Custom Terminal'"
+  [prompt]="'❯'"
+  [style]="&#123;
+    backgroundColor: '#1a1a1a',
+    color: '#00ff00',
+    fontFamily: 'Courier New, monospace',
+    height: '300px'
+  &#125;"
+  (onCommand)="onTerminalCommand($event)"
+&gt;&lt;/sui-terminal&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Interactive Terminal</h2>
+      <div class="demo-example">
+        <sui-terminal 
+          [welcomeMessage]="'Interactive Terminal - Try typing commands!'"
+          [prompt]="'user@demo:~$'"
+          [style]="{
+            height: '350px'
+          }"
+          (onCommand)="onTerminalCommand($event)"
+        ></sui-terminal>
+      </div>
+      <button class="code-toggle" (click)="toggleCode('interactive')">
+        {{ showInteractiveCode ? 'Hide' : 'Show' }} Code
+      </button>
+      <div *ngIf="showInteractiveCode" class="code-block">
+        <pre><code>&lt;sui-terminal 
+  [welcomeMessage]="'Interactive Terminal - Try typing commands!'"
+  [prompt]="'user@demo:~$'"
+  [style]="&#123;
+    height: '350px'
+  &#125;"
+  (onCommand)="onTerminalCommand($event)"
+&gt;&lt;/sui-terminal&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,342 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">SplitButton</h1>
+    <p class="text-lg text-gray-600">A button component with a main action and a dropdown menu for secondary actions.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'" class="space-y-8">
+      <!-- Basic SplitButton -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Basic SplitButton</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="flex flex-wrap gap-4">
+              <sui-split-button 
+                label="Save"
+                [items]="basicItems"
+                (onClick)="onMainButtonClick()"
+                (itemClick)="onMenuItemClick($event)"
+              ></sui-split-button>
+              
+              <sui-split-button 
+                label="Export"
+                buttonStyle="secondary"
+                [items]="basicItems"
+                (onClick)="onMainButtonClick()"
+                (itemClick)="onMenuItemClick($event)"
+              ></sui-split-button>
+            </div>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('basic')">
+          {{ showBasicCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-split-button 
+  label="Save"
+  [items]="basicItems"
+  (onClick)="onMainButtonClick()"
+  (itemClick)="onMenuItemClick($event)"
+&gt;&lt;/sui-split-button&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- SplitButton with Icons -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">SplitButton with Icons</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="flex flex-wrap gap-4">
+              <sui-split-button 
+                label="File"
+                icon="📁"
+                [items]="iconItems"
+                (onClick)="onMainButtonClick()"
+                (itemClick)="onMenuItemClick($event)"
+              ></sui-split-button>
+              
+              <sui-split-button 
+                label="Edit"
+                icon="✏️"
+                buttonStyle="success"
+                [items]="iconItems"
+                (onClick)="onMainButtonClick()"
+                (itemClick)="onMenuItemClick($event)"
+              ></sui-split-button>
+            </div>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('icon')">
+          {{ showIconCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showIconCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-split-button 
+  label="File"
+  icon="📁"
+  [items]="iconItems"
+  (onClick)="onMainButtonClick()"
+  (itemClick)="onMenuItemClick($event)"
+&gt;&lt;/sui-split-button&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Custom SplitButton -->
+      <div class="demo-section">
+        <h2 class="text-xl font-semibold mb-4">Custom SplitButton</h2>
+        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+          <div class="flex flex-col space-y-4">
+            <div class="flex flex-wrap gap-4">
+              <sui-split-button 
+                label="Actions"
+                icon="⚡"
+                buttonStyle="warning"
+                [items]="customItems"
+                (onClick)="onMainButtonClick()"
+                (itemClick)="onMenuItemClick($event)"
+              ></sui-split-button>
+              
+              <sui-split-button 
+                label="Disabled"
+                icon="🚫"
+                buttonStyle="danger"
+                [disabled]="true"
+                [items]="customItems"
+                (onClick)="onMainButtonClick()"
+                (itemClick)="onMenuItemClick($event)"
+              ></sui-split-button>
+            </div>
+          </div>
+        </div>
+        <button 
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="toggleCode('custom')">
+          {{ showCustomCode ? 'Hide' : 'Show' }} Code
+        </button>
+        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+          <pre><code>&lt;sui-split-button 
+  label="Actions"
+  icon="⚡"
+  buttonStyle="warning"
+  [items]="customItems"
+  (onClick)="onMainButtonClick()"
+  (itemClick)="onMenuItemClick($event)"
+&gt;&lt;/sui-split-button&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
+      <h2>How to Use SplitButton</h2>
+      
+      <h3>Installation</h3>
+      <p>Import the SplitButton component from the UI library:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; SplitButton &#125; from 'ui-lib';
+
+// In your component imports
+imports: [SplitButton]</code></pre>
+
+      <h3>Basic Usage</h3>
+      <p>Use the component with a label and menu items:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-split-button 
+  label="Save"
+  [items]="menuItems"
+  (onClick)="onMainClick()"
+  (itemClick)="onItemClick($event)"
+&gt;&lt;/sui-split-button&gt;</code></pre>
+
+      <h3>Component Properties</h3>
+      <ul>
+        <li><strong>disabled</strong>: Boolean to disable the button</li>
+        <li><strong>label</strong>: Text label for the main button</li>
+        <li><strong>icon</strong>: Icon for the main button</li>
+        <li><strong>items</strong>: Array of menu items for the dropdown</li>
+        <li><strong>buttonStyle</strong>: Button style variant</li>
+      </ul>
+
+      <h3>Events</h3>
+      <ul>
+        <li><strong>onClick</strong>: Emitted when the main button is clicked</li>
+        <li><strong>itemClick</strong>: Emitted when a menu item is clicked</li>
+      </ul>
+
+      <h3>Menu Item Structure</h3>
+      <p>Menu items support various properties:</p>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>menuItems = [
+  &#123; label: 'Save', icon: '💾', command: () => this.save() &#125;,
+  &#123; label: 'Save As', icon: '📁', command: () => this.saveAs() &#125;,
+  &#123; label: '', separator: true &#125;, // Separator item
+  &#123; label: 'Export', icon: '📤', command: () => this.export() &#125;,
+  &#123; label: 'Disabled', icon: '🚫', command: () => this.disabled(), disabled: true &#125;
+];</code></pre>
+
+      <h3>Button Styles</h3>
+      <p>Available button style variants:</p>
+      <ul>
+        <li><strong>primary</strong>: Primary button style (default)</li>
+        <li><strong>secondary</strong>: Secondary button style</li>
+        <li><strong>success</strong>: Success button style</li>
+        <li><strong>info</strong>: Info button style</li>
+        <li><strong>warning</strong>: Warning button style</li>
+        <li><strong>help</strong>: Help button style</li>
+        <li><strong>danger</strong>: Danger button style</li>
+      </ul>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
+      <h2>API Documentation</h2>
+      
+      <h3>Properties</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">disabled</td>
+              <td class="border border-gray-300 px-4 py-2">boolean</td>
+              <td class="border border-gray-300 px-4 py-2">false</td>
+              <td class="border border-gray-300 px-4 py-2">Disable the button</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">label</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">''</td>
+              <td class="border border-gray-300 px-4 py-2">Button label text</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">icon</td>
+              <td class="border border-gray-300 px-4 py-2">string</td>
+              <td class="border border-gray-300 px-4 py-2">''</td>
+              <td class="border border-gray-300 px-4 py-2">Button icon</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">items</td>
+              <td class="border border-gray-300 px-4 py-2">SplitButtonItem[]</td>
+              <td class="border border-gray-300 px-4 py-2">[]</td>
+              <td class="border border-gray-300 px-4 py-2">Menu items array</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">buttonStyle</td>
+              <td class="border border-gray-300 px-4 py-2">ButtonStyle</td>
+              <td class="border border-gray-300 px-4 py-2">'primary'</td>
+              <td class="border border-gray-300 px-4 py-2">Button style variant</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Events</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 px-4 py-2 text-left">Event</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">onClick</td>
+              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;void&gt;</td>
+              <td class="border border-gray-300 px-4 py-2">Fired when main button is clicked</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2">itemClick</td>
+              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;SplitButtonItem&gt;</td>
+              <td class="border border-gray-300 px-4 py-2">Fired when menu item is clicked</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Interfaces</h3>
+      <h4>SplitButtonItem</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>interface SplitButtonItem &#123;
+  label: string;
+  icon?: string;
+  command?: () => void;
+  disabled?: boolean;
+  separator?: boolean;
+&#125;</code></pre>
+
+      <h4>ButtonStyle</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>type ButtonStyle = 
+  | 'primary' 
+  | 'secondary' 
+  | 'success' 
+  | 'info' 
+  | 'warning' 
+  | 'help' 
+  | 'danger';</code></pre>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li><strong>ARIA</strong>: Proper ARIA attributes for screen readers</li>
+        <li><strong>Keyboard Navigation</strong>: Full keyboard support for button and menu</li>
+        <li><strong>Focus Management</strong>: Proper focus handling and visual indicators</li>
+        <li><strong>Screen Reader</strong>: Descriptive labels for all actions</li>
+      </ul>
+
+      <h3>Styling</h3>
+      <p>The component uses CSS classes that can be customized:</p>
+      <ul>
+        <li><code>.sui-split-button</code>: Main container</li>
+        <li><code>.sui-split-button-main</code>: Main button styling</li>
+        <li><code>.sui-split-button-dropdown</code>: Dropdown button styling</li>
+        <li><code>.sui-split-button-menu</code>: Dropdown menu container</li>
+        <li><code>.sui-split-button-item</code>: Menu item styling</li>
+        <li><code>.sui-split-button-item-disabled</code>: Disabled item styling</li>
+        <li><code>.sui-split-button-separator</code>: Separator styling</li>
+      </ul>
+
+      <h3>Examples</h3>
+      <h4>Basic Usage</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>export class ExampleComponent &#123;
+  menuItems = [
+    &#123; label: 'Save', command: () => this.save() &#125;,
+    &#123; label: 'Export', command: () => this.export() &#125;
+  ];
+&#125;</code></pre>
+
+      <h4>With Icon and Custom Style</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-split-button
+  label="File"
+  icon="📁"
+  buttonStyle="success"
+  [items]="menuItems"
+&gt;&lt;/sui-split-button&gt;</code></pre>
+
+      <h4>Disabled State</h4>
+      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-split-button
+  label="Disabled"
+  [disabled]="true"
+  [items]="menuItems"
+&gt;&lt;/sui-split-button&gt;</code></pre>
+    </div>
+  </app-tabs>
+</div>

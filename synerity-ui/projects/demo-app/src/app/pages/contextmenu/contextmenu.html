@@ -2,8 +2,16 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Context Menu</h1>
-    <p class="text-lg text-gray-600">A context menu that appears on right-click with customizable menu items.</p>
+    <p class="text-lg text-gray-600">Right-click context menu with dropdown submenus for contextual actions.</p>
   </div>
+
+  <!-- Context Menu Component -->
+  <sui-context-menu 
+    #contextMenu
+    [model]="contextMenuItems"
+    (onShow)="onContextMenuShow()"
+    (onHide)="onContextMenuHide()">
+  </sui-context-menu>
 
   <!-- Tabs -->
   <app-tabs 
@@ -33,22 +41,42 @@
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <p class="text-sm text-gray-600">Right-click on the area below to see the context menu:</p>
               <div 
-                class="h-32 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-context-menu"
+                class="p-8 border-2 border-dashed border-gray-300 rounded-lg text-center cursor-pointer hover:border-gray-400 transition-colors"
                 (contextmenu)="onContextMenu($event)">
-                <span class="text-gray-500">Right-click here</span>
+                <p class="text-gray-600 mb-2">Right-click anywhere in this area</p>
+                <p class="text-sm text-gray-500">A context menu will appear with basic actions</p>
               </div>
-              <div class="p-4 bg-gray-100 rounded-lg">
-                <p class="text-gray-600">Context Menu Component - Placeholder</p>
+              
+              <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                <p class="text-sm text-blue-800">
+                  <strong>Interactive:</strong> Right-click in the dashed area above to see the context menu. Click outside to close it.
+                </p>
               </div>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showBasicContextMenuCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;div class="p-4 bg-gray-100 rounded-lg" 
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-context-menu 
+  #contextMenu
   [model]="contextMenuItems"&gt;
-&lt;/div class="p-4 bg-gray-100 rounded-lg"&gt;</code></pre>
+&lt;/sui-context-menu&gt;
+
+&lt;div (contextmenu)="onContextMenu($event)"&gt;
+  Right-click me!
+&lt;/div&gt;
+
+// Component data
+contextMenuItems = [
+  &#123; label: 'Edit', icon: '✏️', command: () =&gt; this.editItem() &#125;,
+  &#123; label: 'Delete', icon: '🗑️', command: () =&gt; this.deleteItem() &#125;,
+  &#123; separator: true &#125;,
+  &#123; label: 'Copy', icon: '📋', command: () =&gt; this.copyItem() &#125;
+];
+
+onContextMenu(event: MouseEvent) &#123;
+  this.contextMenu.show(event);
+&#125;</code></pre>
             </div>
           </div>
         </div>
@@ -67,22 +95,41 @@
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <p class="text-sm text-gray-600">Context menu with nested items and separators.</p>
               <div 
-                class="h-32 bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg flex items-center justify-center cursor-context-menu"
-                (contextmenu)="onContextMenu($event)">
-                <span class="text-blue-600">Right-click here for nested menu</span>
-              </div>
-              <div class="p-4 bg-gray-100 rounded-lg">
-                <p class="text-gray-600">Context Menu Component - Placeholder</p>
+                class="p-8 border-2 border-dashed border-gray-300 rounded-lg text-center cursor-pointer hover:border-gray-400 transition-colors"
+                (contextmenu)="onNestedContextMenu($event)">
+                <p class="text-gray-600 mb-2">Right-click here for nested menu</p>
+                <p class="text-sm text-gray-500">Hover over menu items to see submenus</p>
               </div>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showNestedContextMenuCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;div class="p-4 bg-gray-100 rounded-lg" 
-  [model]="contextMenuItems"&gt;
-&lt;/div class="p-4 bg-gray-100 rounded-lg"&gt;</code></pre>
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-context-menu 
+  #nestedContextMenu
+  [model]="nestedContextMenuItems"&gt;
+&lt;/sui-context-menu&gt;
+
+// Nested menu structure
+nestedContextMenuItems = [
+  &#123;
+    label: 'Edit',
+    icon: '✏️',
+    items: [
+      &#123; label: 'Cut', icon: '✂️' &#125;,
+      &#123; label: 'Copy', icon: '📋' &#125;,
+      &#123; label: 'Paste', icon: '📌' &#125;
+    ]
+  &#125;,
+  &#123;
+    label: 'View',
+    icon: '👁️',
+    items: [
+      &#123; label: 'Details', icon: '📄' &#125;,
+      &#123; label: 'Properties', icon: '⚙️' &#125;
+    ]
+  &#125;
+];</code></pre>
             </div>
           </div>
         </div>
@@ -98,7 +145,7 @@
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">The Context Menu component is part of the Synerity UI library. Install it using npm:</p>
+            <p class="text-gray-600 mb-4">The ContextMenu component is part of the Synerity UI library. Install it using npm:</p>
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
               <code>npm install @synerity/ui</code>
             </div>
@@ -109,39 +156,61 @@
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Import and use the Context Menu component in your Angular application:</p>
+            <p class="text-gray-600 mb-4">Import and use the ContextMenu component in your Angular application:</p>
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
               <pre><code>import &#123; ContextMenu &#125; from '@synerity/ui';
 
-&#64;Component(&#123;
+@Component(&#123;
   template: `
-    &lt;div class="p-4 bg-gray-100 rounded-lg" 
-      [model]="contextMenuItems"&gt;
-    &lt;/div class="p-4 bg-gray-100 rounded-lg"&gt;
+    &lt;sui-context-menu #contextMenu [model]="menuItems"&gt;&lt;/sui-context-menu&gt;
+    &lt;div (contextmenu)="showContextMenu($event)"&gt;Right-click me!&lt;/div&gt;
   `
 &#125;)
-export class MyComponent &#123;&#125;</code></pre>
+export class MyComponent &#123;
+  @ViewChild('contextMenu') contextMenu!: ContextMenu;
+  
+  menuItems = [
+    &#123; label: 'Edit', command: () =&gt; console.log('Edit') &#125;,
+    &#123; label: 'Delete', command: () =&gt; console.log('Delete') &#125;
+  ];
+  
+  showContextMenu(event: MouseEvent) &#123;
+    this.contextMenu.show(event);
+  &#125;
+&#125;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Styling -->
+        <!-- Menu Structure -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Menu Structure</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Context Menu uses Tailwind CSS classes for styling. Here are the key classes:</p>
+            <p class="text-gray-600 mb-4">The context menu expects an array of menu items with the following structure:</p>
             <div class="space-y-2 text-sm">
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">div class="p-4 bg-gray-100 rounded-lg"</span>
-                <span class="text-gray-600">Base class for the context menu container</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">label</span>
+                <span class="text-gray-600">Required. Display text for the menu item</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">div class="p-4 bg-gray-100 rounded-lg"-item</span>
-                <span class="text-gray-600">Class for individual menu items</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">icon</span>
+                <span class="text-gray-600">Optional. Icon to display before the label</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">div class="p-4 bg-gray-100 rounded-lg"-item-active</span>
-                <span class="text-gray-600">Class for the active menu item</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">items</span>
+                <span class="text-gray-600">Optional. Array of submenu items</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">command</span>
+                <span class="text-gray-600">Optional. Function to execute when clicked</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">disabled</span>
+                <span class="text-gray-600">Optional. Boolean to disable the menu item</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">separator</span>
+                <span class="text-gray-600">Optional. Boolean to show a separator line</span>
               </div>
             </div>
           </div>
@@ -176,16 +245,22 @@ export class MyComponent &#123;&#125;</code></pre>
                     <td class="px-6 py-4 text-sm text-gray-500">Array of menu items to display</td>
                   </tr>
                   <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">appendTo</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'body' | 'target' | ElementRef | string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'body'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">DOM element to append the menu to</td>
+                  </tr>
+                  <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the context menu container</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the context menu</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Style class for the context menu container</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">CSS class name for custom styling</td>
                   </tr>
                 </tbody>
               </table>
@@ -208,12 +283,34 @@ export class MyComponent &#123;&#125;</code></pre>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onItemClick</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;MenuItem&gt;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when a menu item is clicked</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onShow</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;void&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the context menu is shown</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onHide</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;void&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the context menu is hidden</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Methods -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Methods</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-gray-900">show(event: MouseEvent)</h4>
+                <p class="text-sm text-gray-600 mt-1">Shows the context menu at the specified mouse event position.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">hide()</h4>
+                <p class="text-sm text-gray-600 mt-1">Hides the context menu.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -229,6 +326,10 @@ export class MyComponent &#123;&#125;</code></pre>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
+                <span>Arrow keys for submenu navigation</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
                 <span>Enter and Space key activation</span>
               </li>
               <li class="flex items-start gap-2">
@@ -238,6 +339,10 @@ export class MyComponent &#123;&#125;</code></pre>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
                 <span>ARIA attributes for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Disabled state properly communicated</span>
               </li>
             </ul>
           </div>

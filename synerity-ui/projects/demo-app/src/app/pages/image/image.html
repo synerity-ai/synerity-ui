@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Image</h1>
-    <p class="text-lg text-gray-600">A responsive image component with preview, zoom, and loading states.</p>
+    <p class="text-lg text-gray-600">Enhanced image component with preview, zoom, error handling, and accessibility features.</p>
   </div>
 
   <!-- Tabs -->
@@ -33,12 +33,30 @@
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <sui-image 
-                [src]="imageSrc"
-                [alt]="imageAlt"
-                (onError)="onImageError($event)"
-                (onLoad)="onImageLoad($event)">
-              </sui-image>
+              <div class="flex flex-wrap gap-4">
+                <sui-image 
+                  [src]="imageSrc"
+                  [alt]="imageAlt"
+                  [width]="'300px'"
+                  [height]="'200px'"
+                  (onLoad)="onImageLoad($event)"
+                  (onError)="onImageError($event)">
+                </sui-image>
+                
+                <sui-image 
+                  [src]="imageSrc"
+                  [alt]="imageAlt"
+                  [width]="'200px'"
+                  [height]="'200px'"
+                  styleClass="rounded circle shadow">
+                </sui-image>
+              </div>
+              
+              <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                <p class="text-sm text-blue-800">
+                  <strong>Standard:</strong> Basic image display with width/height controls and custom styling options.
+                </p>
+              </div>
             </div>
             
             <!-- Code Example -->
@@ -46,8 +64,19 @@
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-image 
   [src]="imageSrc"
   [alt]="imageAlt"
-  (onError)="onImageError($event)"
-  (onLoad)="onImageLoad($event)"&gt;
+  [width]="'300px'"
+  [height]="'200px'"
+  (onLoad)="onImageLoad($event)"
+  (onError)="onImageError($event)"&gt;
+&lt;/sui-image&gt;
+
+&lt;!-- With custom styling --&gt;
+&lt;sui-image 
+  [src]="imageSrc"
+  [alt]="imageAlt"
+  [width]="'200px'"
+  [height]="'200px'"
+  styleClass="rounded circle shadow"&gt;
 &lt;/sui-image&gt;</code></pre>
             </div>
           </div>
@@ -67,25 +96,237 @@
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <p class="text-sm text-gray-600">Image with preview functionality and zoom capabilities.</p>
-              <sui-image 
-                [src]="imageSrc"
-                [alt]="imageAlt"
-                [preview]="true"
-                (onError)="onImageError($event)"
-                (onLoad)="onImageLoad($event)">
-              </sui-image>
+              <div class="flex flex-wrap gap-4">
+                <sui-image 
+                  [src]="previewImageSrc"
+                  [alt]="previewImageAlt"
+                  [width]="'250px'"
+                  [height]="'150px'"
+                  [preview]="true"
+                  styleClass="rounded shadow">
+                </sui-image>
+                
+                <sui-image 
+                  [src]="previewImageSrc"
+                  [alt]="previewImageAlt"
+                  [width]="'200px'"
+                  [height]="'150px'"
+                  [preview]="true"
+                  styleClass="rounded border hover-scale">
+                </sui-image>
+              </div>
+              
+              <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
+                <p class="text-sm text-green-800">
+                  <strong>Interactive:</strong> Click on the image to open it in a fullscreen preview overlay.
+                </p>
+              </div>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showPreviewImageCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-image 
-  [src]="imageSrc"
-  [alt]="imageAlt"
+  [src]="previewImageSrc"
+  [alt]="previewImageAlt"
+  [width]="'250px'"
+  [height]="'150px'"
   [preview]="true"
-  (onError)="onImageError($event)"
-  (onLoad)="onImageLoad($event)"&gt;
+  styleClass="rounded shadow"&gt;
+&lt;/sui-image&gt;
+
+&lt;!-- With hover effects --&gt;
+&lt;sui-image 
+  [src]="previewImageSrc"
+  [alt]="previewImageAlt"
+  [width]="'200px'"
+  [height]="'150px'"
+  [preview]="true"
+  styleClass="rounded border hover-scale"&gt;
 &lt;/sui-image&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zoom Image -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Zoom Image</h3>
+            <button 
+              (click)="toggleCode('zoomImage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showZoomImageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex flex-wrap gap-4">
+                <sui-image 
+                  [src]="zoomImageSrc"
+                  [alt]="zoomImageAlt"
+                  [width]="'300px'"
+                  [height]="'200px'"
+                  [zoom]="true"
+                  styleClass="rounded shadow">
+                </sui-image>
+                
+                <sui-image 
+                  [src]="zoomImageSrc"
+                  [alt]="zoomImageAlt"
+                  [width]="'250px'"
+                  [height]="'200px'"
+                  [zoom]="true"
+                  styleClass="rounded border hover-brightness">
+                </sui-image>
+              </div>
+              
+              <div class="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-md">
+                <p class="text-sm text-purple-800">
+                  <strong>Zoom Effect:</strong> Hover over the image to see the zoom effect. Perfect for detailed images.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showZoomImageCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-image 
+  [src]="zoomImageSrc"
+  [alt]="zoomImageAlt"
+  [width]="'300px'"
+  [height]="'200px'"
+  [zoom]="true"
+  styleClass="rounded shadow"&gt;
+&lt;/sui-image&gt;
+
+&lt;!-- With brightness effect --&gt;
+&lt;sui-image 
+  [src]="zoomImageSrc"
+  [alt]="zoomImageAlt"
+  [width]="'250px'"
+  [height]="'200px'"
+  [zoom]="true"
+  styleClass="rounded border hover-brightness"&gt;
+&lt;/sui-image&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error Handling -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Error Handling</h3>
+            <button 
+              (click)="toggleCode('errorImage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showErrorImageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex flex-wrap gap-4">
+                <sui-image 
+                  [src]="errorImageSrc"
+                  [alt]="errorImageAlt"
+                  [width]="'250px'"
+                  [height]="'150px'"
+                  (onError)="onImageError($event)">
+                </sui-image>
+                
+                <sui-image 
+                  [src]="''"
+                  [alt]="'No source image'"
+                  [width]="'250px'"
+                  [height]="'150px'">
+                </sui-image>
+              </div>
+              
+              <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                <p class="text-sm text-yellow-800">
+                  <strong>Graceful Degradation:</strong> Shows appropriate placeholders when images fail to load or have no source.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showErrorImageCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Error handling --&gt;
+&lt;sui-image 
+  [src]="errorImageSrc"
+  [alt]="errorImageAlt"
+  [width]="'250px'"
+  [height]="'150px'"
+  (onError)="onImageError($event)"&gt;
+&lt;/sui-image&gt;
+
+&lt;!-- No source --&gt;
+&lt;sui-image 
+  [src]="''"
+  [alt]="'No source image'"
+  [width]="'250px'"
+  [height]="'150px'"&gt;
+&lt;/sui-image&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aspect Ratio Examples -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Aspect Ratio Variants</h3>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center">
+                  <sui-image 
+                    [src]="imageSrc"
+                    [alt]="'Square image'"
+                    [width]="'150px'"
+                    styleClass="aspect-square rounded">
+                  </sui-image>
+                  <p class="mt-2 text-sm text-gray-600">Square</p>
+                </div>
+                
+                <div class="text-center">
+                  <sui-image 
+                    [src]="imageSrc"
+                    [alt]="'Video aspect'"
+                    [width]="'200px'"
+                    styleClass="aspect-video rounded">
+                  </sui-image>
+                  <p class="mt-2 text-sm text-gray-600">16:9</p>
+                </div>
+                
+                <div class="text-center">
+                  <sui-image 
+                    [src]="imageSrc"
+                    [alt]="'4:3 aspect'"
+                    [width]="'180px'"
+                    styleClass="aspect-4-3 rounded">
+                  </sui-image>
+                  <p class="mt-2 text-sm text-gray-600">4:3</p>
+                </div>
+                
+                <div class="text-center">
+                  <sui-image 
+                    [src]="imageSrc"
+                    [alt]="'Natural aspect'"
+                    [width]="'150px'"
+                    styleClass="rounded">
+                  </sui-image>
+                  <p class="mt-2 text-sm text-gray-600">Natural</p>
+                </div>
+              </div>
+              
+              <div class="mt-4 p-3 bg-indigo-50 border border-indigo-200 rounded-md">
+                <p class="text-sm text-indigo-800">
+                  <strong>Flexible Layouts:</strong> Use aspect ratio classes for consistent layouts across different screen sizes.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -116,38 +357,122 @@
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
               <pre><code>import &#123; Image &#125; from '@synerity/ui';
 
-&#64;Component(&#123;
+@Component(&#123;
   template: `
-    &lt;sui-image 
-      [src]="imageSrc"
-      [alt]="imageAlt"
-      (onError)="onError($event)"
-      (onLoad)="onLoad($event)"&gt;
-    &lt;/sui-image&gt;
-  `
+    &lt;sui-image [src]="imageSrc" [alt]="imageAlt"&gt;&lt;/sui-image&gt;
+  `,
+  data: &#123;
+    imageSrc: 'path/to/image.jpg',
+    imageAlt: 'Image description'
+  &#125;
 &#125;)
 export class MyComponent &#123;&#125;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Styling -->
+        <!-- Configuration Options -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Configuration Options</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Image uses Tailwind CSS classes for styling. Here are the key classes:</p>
-            <div class="space-y-2 text-sm">
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Preview Mode</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-image [preview]="true"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Enable click-to-preview functionality with fullscreen overlay.</p>
+              </div>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Zoom Effect</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-image [zoom]="true"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Enable hover zoom effect for detailed image viewing.</p>
+              </div>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Loading Strategy</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-image [loading]="'lazy'"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Set loading strategy: 'lazy' (default) or 'eager'.</p>
+              </div>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Custom Styling</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-image styleClass="rounded shadow border"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Apply custom CSS classes for styling variants.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Handling -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Event Handling</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Handle image events using the provided event emitters:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>&lt;sui-image 
+  [src]="imageSrc"
+  [alt]="imageAlt"
+  (onLoad)="onImageLoad($event)"
+  (onError)="onImageError($event)"&gt;
+&lt;/sui-image&gt;
+
+onImageLoad(event: Event) &#123;
+  console.log('Image loaded successfully');
+  // Handle successful image load
+&#125;
+
+onImageError(event: Event) &#123;
+  console.log('Image failed to load');
+  // Handle image load error
+&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Styling Variants -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling Variants</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-3 text-sm">
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-image</span>
-                <span class="text-gray-600">Base class for the image container</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">rounded</span>
+                <span class="text-gray-600">Add rounded corners</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-image-preview</span>
-                <span class="text-gray-600">Class for the preview overlay</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">circle</span>
+                <span class="text-gray-600">Make image circular</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-image-loading</span>
-                <span class="text-gray-600">Class for the loading state</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">shadow</span>
+                <span class="text-gray-600">Add drop shadow</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">border</span>
+                <span class="text-gray-600">Add border</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">aspect-square</span>
+                <span class="text-gray-600">Force square aspect ratio</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">aspect-video</span>
+                <span class="text-gray-600">Force 16:9 aspect ratio</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">hover-scale</span>
+                <span class="text-gray-600">Scale on hover</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">hover-brightness</span>
+                <span class="text-gray-600">Brighten on hover</span>
               </div>
             </div>
           </div>
@@ -179,31 +504,55 @@ export class MyComponent &#123;&#125;</code></pre>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">src</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Source URL of the image</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Image source URL</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">alt</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Alt text for the image</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Alternative text for accessibility</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">width</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Image width (CSS value)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">height</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Image height (CSS value)</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">preview</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether to enable preview functionality</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Enable preview functionality</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">zoom</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Enable zoom effect on hover</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">loading</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'lazy' | 'eager'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'lazy'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Image loading strategy</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the image container</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the image</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Style class for the image container</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">CSS class name for custom styling</td>
                   </tr>
                 </tbody>
               </table>
@@ -228,7 +577,7 @@ export class MyComponent &#123;&#125;</code></pre>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onLoad</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;Event&gt;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the image is loaded</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the image loads successfully</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onError</td>
@@ -248,11 +597,11 @@ export class MyComponent &#123;&#125;</code></pre>
             <ul class="space-y-2 text-gray-600">
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
-                <span>Alt text support for screen readers</span>
+                <span>Proper alt text support for screen readers</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
-                <span>Keyboard navigation for preview mode</span>
+                <span>Keyboard navigation support for interactive features</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
@@ -260,7 +609,15 @@ export class MyComponent &#123;&#125;</code></pre>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
-                <span>ARIA attributes for screen readers</span>
+                <span>Error state communication to screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Loading state management and announcements</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Preview overlay with proper focus management</span>
               </li>
             </ul>
           </div>

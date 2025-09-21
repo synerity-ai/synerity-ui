@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Upload } from 'ui-lib';
 import { Tabs } from '../../shared/tabs/tabs';
 
 @Component({
   selector: 'app-fileupload',
-  imports: [CommonModule, FormsModule, Tabs],
+  imports: [CommonModule, FormsModule, Upload, Tabs],
   templateUrl: './fileupload.html',
   styleUrl: './fileupload.scss'
 })

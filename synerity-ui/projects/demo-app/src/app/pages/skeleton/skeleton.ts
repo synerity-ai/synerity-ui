@@ -20,8 +20,9 @@ export class SkeletonComponent {
   
   // Code visibility states
   showBasicSkeletonCode = false;
-  showCustomSkeletonCode = false;
+  showShapeSkeletonCode = false;
   showAnimationSkeletonCode = false;
+  showLayoutSkeletonCode = false;
   
   onTabChange(tab: string) {
     this.activeTab = tab;
@@ -32,11 +33,14 @@ export class SkeletonComponent {
       case 'basicSkeleton':
         this.showBasicSkeletonCode = !this.showBasicSkeletonCode;
         break;
-      case 'customSkeleton':
-        this.showCustomSkeletonCode = !this.showCustomSkeletonCode;
+      case 'shapeSkeleton':
+        this.showShapeSkeletonCode = !this.showShapeSkeletonCode;
         break;
       case 'animationSkeleton':
         this.showAnimationSkeletonCode = !this.showAnimationSkeletonCode;
+        break;
+      case 'layoutSkeleton':
+        this.showLayoutSkeletonCode = !this.showLayoutSkeletonCode;
         break;
     }
   }

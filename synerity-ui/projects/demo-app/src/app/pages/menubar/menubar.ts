@@ -18,25 +18,76 @@ export class MenubarComponent {
     {
       label: 'File',
       items: [
-        { label: 'New', icon: 'pi pi-plus' },
-        { label: 'Open', icon: 'pi pi-download' },
-        { separator: true },
-        { label: 'Exit', icon: 'pi pi-times' }
+        { label: 'New', icon: '📄' },
+        { label: 'Open', icon: '📂' },
+        { label: 'Save', icon: '💾' },
+        { label: 'Exit', icon: '❌' }
       ]
     },
     {
       label: 'Edit',
       items: [
-        { label: 'Undo', icon: 'pi pi-refresh' },
-        { label: 'Redo', icon: 'pi pi-replay' }
+        { label: 'Undo', icon: '↶' },
+        { label: 'Redo', icon: '↷' },
+        { label: 'Cut', icon: '✂️' },
+        { label: 'Copy', icon: '📋' },
+        { label: 'Paste', icon: '📌' }
       ]
     },
     {
       label: 'View',
       items: [
-        { label: 'Zoom In', icon: 'pi pi-search-plus' },
-        { label: 'Zoom Out', icon: 'pi pi-search-minus' }
+        { label: 'Zoom In', icon: '🔍' },
+        { label: 'Zoom Out', icon: '🔍' },
+        { label: 'Full Screen', icon: '⛶' }
       ]
+    }
+  ];
+
+  nestedMenubarItems = [
+    {
+      label: 'Products',
+      items: [
+        { 
+          label: 'Electronics',
+          items: [
+            { label: 'Phones', icon: '📱' },
+            { label: 'Laptops', icon: '💻' },
+            { label: 'Tablets', icon: '📱' }
+          ]
+        },
+        { 
+          label: 'Clothing',
+          items: [
+            { label: 'Shirts', icon: '👕' },
+            { label: 'Pants', icon: '👖' },
+            { label: 'Shoes', icon: '👟' }
+          ]
+        }
+      ]
+    },
+    {
+      label: 'Services',
+      items: [
+        { label: 'Consulting', icon: '💼' },
+        { label: 'Support', icon: '🛠️' },
+        { label: 'Training', icon: '🎓' }
+      ]
+    }
+  ];
+
+  customMenubarItems = [
+    {
+      label: 'Home',
+      icon: '🏠'
+    },
+    {
+      label: 'About',
+      icon: 'ℹ️'
+    },
+    {
+      label: 'Contact',
+      icon: '📞'
     }
   ];
   

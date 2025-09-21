@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Menubar</h1>
-    <p class="text-lg text-gray-600">A horizontal menu bar with dropdown menus for navigation.</p>
+    <p class="text-lg text-gray-600">Horizontal navigation menu with dropdown submenus for application navigation.</p>
   </div>
 
   <!-- Tabs -->
@@ -37,6 +37,12 @@
                 [model]="menubarItems"
                 (onItemClick)="onMenubarItemClick($event)">
               </sui-menubar>
+              
+              <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                <p class="text-sm text-blue-800">
+                  <strong>Interactive:</strong> Hover over menu items to see dropdown submenus. Click on items to trigger events.
+                </p>
+              </div>
             </div>
             
             <!-- Code Example -->
@@ -44,7 +50,26 @@
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-menubar 
   [model]="menubarItems"
   (onItemClick)="onMenubarItemClick($event)"&gt;
-&lt;/sui-menubar&gt;</code></pre>
+&lt;/sui-menubar&gt;
+
+// Component data
+menubarItems = [
+  &#123;
+    label: 'File',
+    items: [
+      &#123; label: 'New', icon: '📄' &#125;,
+      &#123; label: 'Open', icon: '📂' &#125;,
+      &#123; label: 'Exit', icon: '❌' &#125;
+    ]
+  &#125;,
+  &#123;
+    label: 'Edit',
+    items: [
+      &#123; label: 'Undo', icon: '↶' &#125;,
+      &#123; label: 'Redo', icon: '↷' &#125;
+    ]
+  &#125;
+];</code></pre>
             </div>
           </div>
         </div>
@@ -63,9 +88,8 @@
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <p class="text-sm text-gray-600">Menubar with nested menu items and separators.</p>
               <sui-menubar 
-                [model]="menubarItems"
+                [model]="nestedMenubarItems"
                 (onItemClick)="onMenubarItemClick($event)">
               </sui-menubar>
             </div>
@@ -73,9 +97,73 @@
             <!-- Code Example -->
             <div *ngIf="showNestedMenubarCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-menubar 
-  [model]="menubarItems"
+  [model]="nestedMenubarItems"
   (onItemClick)="onMenubarItemClick($event)"&gt;
-&lt;/sui-menubar&gt;</code></pre>
+&lt;/sui-menubar&gt;
+
+// Nested menu structure
+nestedMenubarItems = [
+  &#123;
+    label: 'Products',
+    items: [
+      &#123; 
+        label: 'Electronics',
+        items: [
+          &#123; label: 'Phones', icon: '📱' &#125;,
+          &#123; label: 'Laptops', icon: '💻' &#125;
+        ]
+      &#125;,
+      &#123; label: 'Clothing', icon: '👕' &#125;
+    ]
+  &#125;
+];</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Styled Menubar -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Custom Styled Menubar</h3>
+            <button 
+              (click)="toggleCode('customMenubar')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCustomMenubarCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <sui-menubar 
+                [model]="customMenubarItems"
+                styleClass="custom-menubar"
+                (onItemClick)="onMenubarItemClick($event)">
+              </sui-menubar>
+              
+              <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
+                <p class="text-sm text-green-800">
+                  <strong>Custom Styling:</strong> Use styleClass prop to apply custom CSS classes for theming.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showCustomMenubarCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-menubar 
+  [model]="customMenubarItems"
+  styleClass="custom-menubar"
+  (onItemClick)="onMenubarItemClick($event)"&gt;
+&lt;/sui-menubar&gt;
+
+// Custom CSS
+.custom-menubar &#123;
+  @apply bg-gradient-to-r from-blue-500 to-purple-600;
+&#125;
+
+.custom-menubar .sui-menubar-item-content &#123;
+  @apply text-white hover:bg-white hover:bg-opacity-20;
+&#125;</code></pre>
             </div>
           </div>
         </div>
@@ -106,37 +194,82 @@
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
               <pre><code>import &#123; Menubar &#125; from '@synerity/ui';
 
-&#64;Component(&#123;
+@Component(&#123;
   template: `
-    &lt;sui-menubar 
-      [model]="menubarItems"
-      (onItemClick)="onItemClick($event)"&gt;
-    &lt;/sui-menubar&gt;
-  `
+    &lt;sui-menubar [model]="menuItems"&gt;&lt;/sui-menubar&gt;
+  `,
+  data: &#123;
+    menuItems: [
+      &#123; label: 'Home', icon: '🏠' &#125;,
+      &#123; 
+        label: 'Products', 
+        items: [
+          &#123; label: 'Electronics' &#125;,
+          &#123; label: 'Clothing' &#125;
+        ]
+      &#125;
+    ]
+  &#125;
 &#125;)
 export class MyComponent &#123;&#125;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Styling -->
+        <!-- Menu Structure -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Menu Structure</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Menubar uses Tailwind CSS classes for styling. Here are the key classes:</p>
+            <p class="text-gray-600 mb-4">The menubar expects an array of menu items with the following structure:</p>
             <div class="space-y-2 text-sm">
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-menubar</span>
-                <span class="text-gray-600">Base class for the menubar container</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">label</span>
+                <span class="text-gray-600">Required. Display text for the menu item</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-menubar-item</span>
-                <span class="text-gray-600">Class for individual menu items</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">icon</span>
+                <span class="text-gray-600">Optional. Icon to display before the label</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-menubar-item-active</span>
-                <span class="text-gray-600">Class for the active menu item</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">items</span>
+                <span class="text-gray-600">Optional. Array of submenu items</span>
               </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">command</span>
+                <span class="text-gray-600">Optional. Function to execute when clicked</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">disabled</span>
+                <span class="text-gray-600">Optional. Boolean to disable the menu item</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Handling -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Event Handling</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Handle menu item clicks using the onItemClick event:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>&lt;sui-menubar 
+  [model]="menuItems"
+  (onItemClick)="onMenuItemClick($event)"&gt;
+&lt;/sui-menubar&gt;
+
+onMenuItemClick(item: any) &#123;
+  console.log('Menu item clicked:', item);
+  
+  // Handle different menu actions
+  switch(item.label) &#123;
+    case 'New':
+      this.createNew();
+      break;
+    case 'Open':
+      this.openFile();
+      break;
+  &#125;
+&#125;</code></pre>
             </div>
           </div>
         </div>
@@ -173,13 +306,13 @@ export class MyComponent &#123;&#125;</code></pre>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the menubar container</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the menubar</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Style class for the menubar container</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">CSS class name for custom styling</td>
                   </tr>
                 </tbody>
               </table>
@@ -212,6 +345,22 @@ export class MyComponent &#123;&#125;</code></pre>
           </div>
         </div>
 
+        <!-- MenuItem Interface -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">MenuItem Interface</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>interface MenuItem &#123;
+  label: string;           // Display text
+  icon?: string;           // Optional icon
+  command?: () =&gt; void;    // Optional click handler
+  disabled?: boolean;      // Optional disabled state
+  items?: MenuItem[];      // Optional submenu items
+&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+
         <!-- Accessibility -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
@@ -220,6 +369,10 @@ export class MyComponent &#123;&#125;</code></pre>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
                 <span>Keyboard navigation support with Tab key</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Arrow keys for submenu navigation</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
@@ -232,6 +385,10 @@ export class MyComponent &#123;&#125;</code></pre>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
                 <span>ARIA attributes for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Disabled state properly communicated</span>
               </li>
             </ul>
           </div>

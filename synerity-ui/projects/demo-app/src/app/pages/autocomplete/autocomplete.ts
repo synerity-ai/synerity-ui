@@ -1,126 +1,121 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { AutoComplete } from '../../../../../ui-lib/src/lib/auto-complete/auto-complete';
+import { AutoComplete } from 'ui-lib';
 
 @Component({
   selector: 'app-autocomplete',
-  imports: [CommonModule, FormsModule, Tabs, AutoComplete],
+  standalone: true,
+  imports: [CommonModule, FormsModule, AutoComplete],
   templateUrl: './autocomplete.html',
-  styleUrl: './autocomplete.scss'
+  styleUrls: ['./autocomplete.scss']
 })
-export class Autocomplete {
-  activeTab = 'demo';
-  
-  // Basic AutoComplete
-  basicAutoComplete = '';
-  showBasicAutoCompleteCode = false;
-  
-  // Product AutoComplete
-  productAutoComplete = '';
-  showProductAutoCompleteCode = false;
-  
-  // Template AutoComplete
-  templateAutoComplete = '';
-  showTemplateAutoCompleteCode = false;
-  
-  // Interactive Demo
-  interactiveValue = '';
-  interactiveDisabled = false;
-  showInteractiveDemoCode = false;
-  
-  // Sample data
+export class AutocompleteComponent {
+  activeTab = 0;
+  showBasicCode = false;
+  showMultipleCode = false;
+  showCustomCode = false;
+
+  // Demo data
+  basicValue = '';
+  multipleValue: string[] = [];
+  customValue = '';
+
+  // Sample data for autocomplete
   countries = [
-    'Afghanistan', 'Albania', 'Algeria', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan',
-    'Bahrain', 'Bangladesh', 'Belarus', 'Belgium', 'Bolivia', 'Brazil', 'Bulgaria', 'Cambodia',
-    'Canada', 'Chile', 'China', 'Colombia', 'Croatia', 'Cuba', 'Cyprus', 'Czech Republic',
-    'Denmark', 'Ecuador', 'Egypt', 'Estonia', 'Finland', 'France', 'Georgia', 'Germany',
-    'Ghana', 'Greece', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq',
-    'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan', 'Kazakhstan', 'Kenya', 'Kuwait',
-    'Latvia', 'Lebanon', 'Libya', 'Lithuania', 'Luxembourg', 'Malaysia', 'Mexico', 'Morocco',
-    'Netherlands', 'New Zealand', 'Nigeria', 'Norway', 'Oman', 'Pakistan', 'Peru', 'Philippines',
-    'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Saudi Arabia', 'Singapore', 'Slovakia',
-    'Slovenia', 'South Africa', 'South Korea', 'Spain', 'Sri Lanka', 'Sudan', 'Sweden', 'Switzerland',
-    'Syria', 'Thailand', 'Turkey', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'Venezuela',
-    'Vietnam', 'Yemen', 'Zimbabwe'
+    'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda',
+    'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas',
+    'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize',
+    'Benin', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina', 'Botswana',
+    'Brazil', 'Brunei', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Cambodia',
+    'Cameroon', 'Canada', 'Cape Verde', 'Central African Republic', 'Chad',
+    'Chile', 'China', 'Colombia', 'Comoros', 'Congo', 'Costa Rica',
+    'Croatia', 'Cuba', 'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti',
+    'Dominica', 'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador',
+    'Equatorial Guinea', 'Eritrea', 'Estonia', 'Ethiopia', 'Fiji',
+    'Finland', 'France', 'Gabon', 'Gambia', 'Georgia', 'Germany',
+    'Ghana', 'Greece', 'Grenada', 'Guatemala', 'Guinea', 'Guinea-Bissau',
+    'Guyana', 'Haiti', 'Honduras', 'Hungary', 'Iceland', 'India',
+    'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy',
+    'Jamaica', 'Japan', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati',
+    'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho',
+    'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg',
+    'Macedonia', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali',
+    'Malta', 'Marshall Islands', 'Mauritania', 'Mauritius', 'Mexico',
+    'Micronesia', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro',
+    'Morocco', 'Mozambique', 'Myanmar', 'Namibia', 'Nauru', 'Nepal',
+    'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria',
+    'North Korea', 'Norway', 'Oman', 'Pakistan', 'Palau', 'Panama',
+    'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland',
+    'Portugal', 'Qatar', 'Romania', 'Russia', 'Rwanda', 'Saint Kitts and Nevis',
+    'Saint Lucia', 'Saint Vincent and the Grenadines', 'Samoa', 'San Marino',
+    'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles',
+    'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'Solomon Islands',
+    'Somalia', 'South Africa', 'South Korea', 'South Sudan', 'Spain',
+    'Sri Lanka', 'Sudan', 'Suriname', 'Swaziland', 'Sweden', 'Switzerland',
+    'Syria', 'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand', 'Timor-Leste',
+    'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan',
+    'Tuvalu', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom',
+    'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican City',
+    'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
   ];
-  
-  products = [
-    { label: 'Laptop', value: 'laptop' },
-    { label: 'Smartphone', value: 'smartphone' },
-    { label: 'Tablet', value: 'tablet' },
-    { label: 'Headphones', value: 'headphones' },
-    { label: 'Camera', value: 'camera' },
-    { label: 'Book', value: 'book' },
-    { label: 'Notebook', value: 'notebook' },
-    { label: 'Pen', value: 'pen' },
-    { label: 'Desk', value: 'desk' },
-    { label: 'Chair', value: 'chair' },
-    { label: 'Lamp', value: 'lamp' },
-    { label: 'Sofa', value: 'sofa' }
+
+  cities = [
+    'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia',
+    'San Antonio', 'San Diego', 'Dallas', 'San Jose', 'Austin', 'Jacksonville',
+    'Fort Worth', 'Columbus', 'Charlotte', 'San Francisco', 'Indianapolis',
+    'Seattle', 'Denver', 'Washington', 'Boston', 'El Paso', 'Nashville',
+    'Detroit', 'Oklahoma City', 'Portland', 'Las Vegas', 'Memphis', 'Louisville',
+    'Baltimore', 'Milwaukee', 'Albuquerque', 'Tucson', 'Fresno', 'Mesa',
+    'Sacramento', 'Atlanta', 'Kansas City', 'Colorado Springs', 'Omaha',
+    'Raleigh', 'Miami', 'Virginia Beach', 'Oakland', 'Minneapolis', 'Tulsa',
+    'Arlington', 'Tampa', 'New Orleans'
   ];
-  
-  onTabChange(tab: string) {
-    this.activeTab = tab;
+
+  onTabChange(index: number): void {
+    this.activeTab = index;
   }
-  
-  toggleCode(section: string) {
-    switch (section) {
-      case 'basicAutoComplete':
-        this.showBasicAutoCompleteCode = !this.showBasicAutoCompleteCode;
+
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
+        this.showBasicCode = !this.showBasicCode;
         break;
-      case 'productAutoComplete':
-        this.showProductAutoCompleteCode = !this.showProductAutoCompleteCode;
+      case 'multiple':
+        this.showMultipleCode = !this.showMultipleCode;
         break;
-      case 'templateAutoComplete':
-        this.showTemplateAutoCompleteCode = !this.showTemplateAutoCompleteCode;
-        break;
-      case 'interactiveDemo':
-        this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
+      case 'custom':
+        this.showCustomCode = !this.showCustomCode;
         break;
     }
   }
-  
-  onAutoCompleteChange(value: unknown) {
-    console.log('AutoComplete value changed:', value);
+
+  onBasicChange(value: string): void {
+    console.log('Basic autocomplete changed:', value);
+    this.basicValue = value;
   }
-  
-  onInteractiveAutoCompleteChange(value: unknown) {
-    console.log('Interactive AutoComplete value changed:', value);
+
+  onMultipleChange(value: string[]): void {
+    console.log('Multiple autocomplete changed:', value);
+    this.multipleValue = value;
   }
-  
-  formatAutoCompleteValue(value: unknown): string {
-    return value ? String(value) : 'No selection';
+
+  onCustomChange(value: string): void {
+    console.log('Custom autocomplete changed:', value);
+    this.customValue = value;
   }
-  
-  // Interactive demo methods
-  resetAutoComplete() {
-    this.interactiveValue = '';
-    this.interactiveDisabled = false;
-  }
-  
-  getAutoCompleteStatus(value: unknown): string {
-    return value ? 'Selected' : 'Not selected';
-  }
-  
-  isValidAutoCompleteValue(value: unknown): boolean {
-    return Boolean(value);
-  }
-  
-  // Filter methods for different data sources
-  filterCountries(event: any) {
+
+  filterCountries(event: any): string[] {
     const query = event.query.toLowerCase();
     return this.countries.filter(country => 
       country.toLowerCase().includes(query)
     );
   }
-  
-  filterProducts(event: any) {
+
+  filterCities(event: any): string[] {
     const query = event.query.toLowerCase();
-    return this.products.filter(product => 
-      product.label.toLowerCase().includes(query) ||
-      product.value.toLowerCase().includes(query)
+    return this.cities.filter(city => 
+      city.toLowerCase().includes(query)
     );
   }
 }

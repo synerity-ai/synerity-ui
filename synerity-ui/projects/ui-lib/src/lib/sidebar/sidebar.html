@@ -1,0 +1,81 @@
+<div 
+  class="sui-sidebar" 
+  [class]="getSidebarClass()" 
+  [style]="getSidebarStyle()"
+  (click)="onSidebarClick($event)"
+>
+  <div class="sui-sidebar-header" *ngIf="showCloseIcon">
+    <button 
+      type="button" 
+      class="sui-sidebar-close"
+      (click)="onCloseClick()"
+      [attr.aria-label]="'Close sidebar'"
+    >
+      ×
+    </button>
+  </div>
+
+  <div class="sui-sidebar-content">
+    <div class="sui-sidebar-menu" *ngIf="hasItems()">
+      <div 
+        *ngFor="let item of items; let i = index" 
+        class="sui-sidebar-menu-item"
+        [class.sui-sidebar-menu-item-separator]="item.separator"
+        [class.sui-sidebar-menu-item-disabled]="item.disabled"
+      >
+        <div *ngIf="item.separator" class="sui-sidebar-separator"></div>
+        <div *ngIf="!item.separator" class="sui-sidebar-menu-item-content">
+          <a 
+            *ngIf="item.routerLink" 
+            [href]="item.routerLink"
+            class="sui-sidebar-menu-item-link"
+            [class.sui-sidebar-menu-item-link-disabled]="item.disabled"
+            (click)="onMenuItemClick(item)"
+          >
+            <span *ngIf="item.icon" class="sui-sidebar-menu-item-icon">{{ item.icon }}</span>
+            <span class="sui-sidebar-menu-item-label">{{ item.label }}</span>
+          </a>
+          <div 
+            *ngIf="!item.routerLink" 
+            class="sui-sidebar-menu-item-link"
+            [class.sui-sidebar-menu-item-link-disabled]="item.disabled"
+            (click)="onMenuItemClick(item)"
+          >
+            <span *ngIf="item.icon" class="sui-sidebar-menu-item-icon">{{ item.icon }}</span>
+            <span class="sui-sidebar-menu-item-label">{{ item.label }}</span>
+          </div>
+          
+          <div *ngIf="hasSubItems(item)" class="sui-sidebar-submenu">
+            <div 
+              *ngFor="let subItem of item.items" 
+              class="sui-sidebar-submenu-item"
+              [class.sui-sidebar-submenu-item-disabled]="subItem.disabled"
+            >
+              <a 
+                *ngIf="subItem.routerLink" 
+                [href]="subItem.routerLink"
+                class="sui-sidebar-submenu-item-link"
+                [class.sui-sidebar-submenu-item-link-disabled]="subItem.disabled"
+                (click)="onMenuItemClick(subItem)"
+              >
+                <span *ngIf="subItem.icon" class="sui-sidebar-submenu-item-icon">{{ subItem.icon }}</span>
+                <span class="sui-sidebar-submenu-item-label">{{ subItem.label }}</span>
+              </a>
+              <div 
+                *ngIf="!subItem.routerLink" 
+                class="sui-sidebar-submenu-item-link"
+                [class.sui-sidebar-submenu-item-link-disabled]="subItem.disabled"
+                (click)="onMenuItemClick(subItem)"
+              >
+                <span *ngIf="subItem.icon" class="sui-sidebar-submenu-item-icon">{{ subItem.icon }}</span>
+                <span class="sui-sidebar-submenu-item-label">{{ subItem.label }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <ng-content></ng-content>
+  </div>
+</div>

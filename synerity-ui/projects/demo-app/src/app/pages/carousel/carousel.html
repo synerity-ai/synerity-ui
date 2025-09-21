@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Carousel</h1>
-    <p class="text-lg text-gray-600">A slideshow component for cycling through elements with navigation controls.</p>
+    <p class="text-lg text-gray-600">Image carousel component with navigation controls, indicators, and autoplay functionality.</p>
   </div>
 
   <!-- Tabs -->
@@ -35,30 +35,85 @@
             <div class="space-y-4">
               <sui-carousel 
                 [value]="carouselItems"
-                (onChange)="onCarouselChange($event)">
-                <ng-template let-item pTemplate="item">
-                  <div class="text-center p-6">
-                    <img [src]="item.image" [alt]="item.header" class="w-full h-64 object-cover rounded-lg mb-4">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ item.header }}</h3>
-                    <p class="text-gray-600">{{ item.content }}</p>
-                  </div>
-                </ng-template>
+                [showIndicators]="true"
+                [showNavigators]="true"
+                [circular]="true"
+                (onPageChange)="onCarouselChange($event)">
               </sui-carousel>
+              
+              <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                <p class="text-sm text-blue-800">
+                  <strong>Interactive:</strong> Use the navigation arrows or click the indicators to navigate between slides. Features captions and titles.
+                </p>
+              </div>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showBasicCarouselCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-carousel 
   [value]="carouselItems"
-  (onChange)="onCarouselChange($event)"&gt;
-  &lt;ng-template let-item pTemplate="item"&gt;
-    &lt;div class="text-center p-6"&gt;
-      &lt;img [src]="item.image" [alt]="item.header"&gt;
-      &lt;h3&gt;Item Header&lt;/h3&gt;
-      &lt;p&gt;Item Content&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/ng-template&gt;
-&lt;/sui-carousel&gt;</code></pre>
+  [showIndicators]="true"
+  [showNavigators]="true"
+  [circular]="true"
+  (onPageChange)="onCarouselChange($event)"&gt;
+&lt;/sui-carousel&gt;
+
+// Component data
+carouselItems = [
+  &#123;
+    src: 'image1.jpg',
+    alt: 'Mountain landscape',
+    title: 'Mountain Adventure',
+    caption: 'Explore breathtaking mountain landscapes'
+  &#125;
+];</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simple Carousel -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Simple Carousel</h3>
+            <button 
+              (click)="toggleCode('simpleCarousel')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showSimpleCarouselCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <sui-carousel 
+                [value]="simpleCarouselItems"
+                [showIndicators]="true"
+                [showNavigators]="false"
+                [circular]="false">
+              </sui-carousel>
+              
+              <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
+                <p class="text-sm text-green-800">
+                  <strong>Minimal:</strong> Simple image carousel with indicators only. No navigation arrows or captions.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showSimpleCarouselCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-carousel 
+  [value]="simpleCarouselItems"
+  [showIndicators]="true"
+  [showNavigators]="false"
+  [circular]="false"&gt;
+&lt;/sui-carousel&gt;
+
+// Simple image data
+simpleCarouselItems = [
+  &#123; src: 'image1.jpg', alt: 'Mountain view' &#125;,
+  &#123; src: 'image2.jpg', alt: 'Forest path' &#125;,
+  &#123; src: 'image3.jpg', alt: 'Ocean waves' &#125;
+];</code></pre>
             </div>
           </div>
         </div>
@@ -77,35 +132,33 @@
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <p class="text-sm text-gray-600">Carousel with automatic slide transitions.</p>
               <sui-carousel 
-                [value]="carouselItems"
+                [value]="autoplayCarouselItems"
                 [autoplayInterval]="3000"
-                (onChange)="onCarouselChange($event)">
-                <ng-template let-item pTemplate="item">
-                  <div class="text-center p-6">
-                    <img [src]="item.image" [alt]="item.header" class="w-full h-64 object-cover rounded-lg mb-4">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ item.header }}</h3>
-                    <p class="text-gray-600">{{ item.content }}</p>
-                  </div>
-                </ng-template>
+                [showIndicators]="true"
+                [showNavigators]="true"
+                [circular]="true">
               </sui-carousel>
+              
+              <div class="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-md">
+                <p class="text-sm text-purple-800">
+                  <strong>Autoplay:</strong> Automatically advances slides every 3 seconds. Hover to pause autoplay.
+                </p>
+              </div>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showAutoplayCarouselCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-carousel 
-  [value]="carouselItems"
+  [value]="autoplayCarouselItems"
   [autoplayInterval]="3000"
-  (onChange)="onCarouselChange($event)"&gt;
-  &lt;ng-template let-item pTemplate="item"&gt;
-    &lt;div class="text-center p-6"&gt;
-      &lt;img [src]="item.image" [alt]="item.header"&gt;
-      &lt;h3&gt;Item Header&lt;/h3&gt;
-      &lt;p&gt;Item Content&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/ng-template&gt;
-&lt;/sui-carousel&gt;</code></pre>
+  [showIndicators]="true"
+  [showNavigators]="true"
+  [circular]="true"&gt;
+&lt;/sui-carousel&gt;
+
+// Autoplay every 3 seconds (3000ms)
+autoplayInterval="3000"</code></pre>
             </div>
           </div>
         </div>
@@ -136,40 +189,103 @@
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
               <pre><code>import &#123; Carousel &#125; from '@synerity/ui';
 
-&#64;Component(&#123;
+@Component(&#123;
   template: `
-    &lt;sui-carousel 
-      [value]="carouselItems"
-      (onChange)="onChange($event)"&gt;
-      &lt;ng-template let-item pTemplate="item"&gt;
-        &lt;div&gt;Item Content&lt;/div&gt;
-      &lt;/ng-template&gt;
-    &lt;/sui-carousel&gt;
-  `
+    &lt;sui-carousel [value]="carouselItems"&gt;&lt;/sui-carousel&gt;
+  `,
+  data: &#123;
+    carouselItems: [
+      &#123; src: 'image1.jpg', alt: 'Image 1' &#125;,
+      &#123; src: 'image2.jpg', alt: 'Image 2' &#125;
+    ]
+  &#125;
 &#125;)
 export class MyComponent &#123;&#125;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Styling -->
+        <!-- Carousel Item Structure -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Carousel Item Structure</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Carousel uses Tailwind CSS classes for styling. Here are the key classes:</p>
+            <p class="text-gray-600 mb-4">Each carousel item can have the following properties:</p>
             <div class="space-y-2 text-sm">
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-carousel</span>
-                <span class="text-gray-600">Base class for the carousel container</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">src</span>
+                <span class="text-gray-600">Required. Image source URL</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-carousel-item</span>
-                <span class="text-gray-600">Class for individual carousel items</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">alt</span>
+                <span class="text-gray-600">Optional. Alternative text for accessibility</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-carousel-indicators</span>
-                <span class="text-gray-600">Class for the carousel indicators</span>
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">title</span>
+                <span class="text-gray-600">Optional. Title displayed in caption</span>
               </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">caption</span>
+                <span class="text-gray-600">Optional. Caption text displayed below title</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Configuration Options -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Configuration Options</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Navigation Controls</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-carousel [showNavigators]="true"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Show/hide previous and next navigation arrows.</p>
+              </div>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Indicators</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-carousel [showIndicators]="true"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Show/hide dot indicators for direct slide navigation.</p>
+              </div>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Circular Navigation</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-carousel [circular]="true"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Enable continuous looping through slides.</p>
+              </div>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Autoplay</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-carousel [autoplayInterval]="3000"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Auto-advance slides every specified milliseconds.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Handling -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Event Handling</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Handle carousel page changes using the onPageChange event:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>&lt;sui-carousel 
+  [value]="carouselItems"
+  (onPageChange)="onPageChange($event)"&gt;
+&lt;/sui-carousel&gt;
+
+onPageChange(activeIndex: number) &#123;
+  console.log('Current slide:', activeIndex);
+  console.log('Current item:', this.carouselItems[activeIndex]);
+&#125;</code></pre>
             </div>
           </div>
         </div>
@@ -198,27 +314,51 @@ export class MyComponent &#123;&#125;</code></pre>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Array&lt;any&gt;</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Array&lt;CarouselItem&gt;</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Array of items to display in the carousel</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Array of carousel items to display</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">activeIndex</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Index of the currently active slide</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">circular</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Enable circular navigation</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">autoplayInterval</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Time in milliseconds for automatic slide transitions</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Autoplay interval in milliseconds (0 to disable)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showIndicators</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Show slide indicators</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showNavigators</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Show navigation arrows</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the carousel container</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the carousel</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Style class for the carousel container</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">CSS class name for custom styling</td>
                   </tr>
                 </tbody>
               </table>
@@ -241,12 +381,27 @@ export class MyComponent &#123;&#125;</code></pre>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onChange</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;any&gt;</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onPageChange</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;number&gt;</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Emitted when the active slide changes</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- CarouselItem Interface -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">CarouselItem Interface</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>interface CarouselItem &#123;
+  src: string;          // Image source URL (required)
+  alt?: string;         // Alternative text for accessibility
+  title?: string;       // Title displayed in caption
+  caption?: string;     // Caption text displayed below title
+&#125;</code></pre>
             </div>
           </div>
         </div>
@@ -258,7 +413,11 @@ export class MyComponent &#123;&#125;</code></pre>
             <ul class="space-y-2 text-gray-600">
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
-                <span>Keyboard navigation support with arrow keys</span>
+                <span>Proper alt text support for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation with arrow keys</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
@@ -266,11 +425,15 @@ export class MyComponent &#123;&#125;</code></pre>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
-                <span>ARIA attributes for screen readers</span>
+                <span>ARIA labels for navigation controls</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
-                <span>Pause autoplay on hover for better accessibility</span>
+                <span>Screen reader announcements for slide changes</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Touch/swipe support for mobile devices</span>
               </li>
             </ul>
           </div>

@@ -1,0 +1,47 @@
+.demo-section {
+  @apply mb-8;
+}
+
+.demo-container {
+  @apply p-6 border border-gray-200 rounded-lg;
+}
+
+.icon-toggle {
+  ::ng-deep .toggle-button-option {
+    @apply flex items-center gap-2 px-4 py-2;
+  }
+}
+
+.status-toggle {
+  ::ng-deep .toggle-button-option {
+    @apply px-6 py-3 font-semibold;
+    
+    &[data-value="active"] {
+      &.toggle-button-option-selected {
+        @apply bg-green-500 text-white;
+      }
+    }
+    
+    &[data-value="inactive"] {
+      &.toggle-button-option-selected {
+        @apply bg-red-500 text-white;
+      }
+    }
+    
+    &[data-value="pending"] {
+      &.toggle-button-option-selected {
+        @apply bg-yellow-500 text-white;
+      }
+    }
+  }
+}
+
+.view-mode-toggle {
+  ::ng-deep .toggle-button-option {
+    @apply px-5 py-2 text-sm;
+    
+    &.toggle-button-option-selected {
+      @apply bg-blue-600 text-white border-blue-600;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
-import { Toolbar as SuiToolbar } from '../../../../../ui-lib/src/lib/toolbar/toolbar';
+import { Toolbar as SuiToolbar } from 'ui-lib';
 
 @Component({
   selector: 'app-toolbar',

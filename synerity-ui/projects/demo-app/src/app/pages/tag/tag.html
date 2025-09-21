@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Tag</h1>
-    <p class="text-lg text-gray-600">A small label component for categorizing and organizing content.</p>
+    <p class="text-lg text-gray-600">Flexible tag component for categorizing and labeling content with various severity levels and interactive features.</p>
   </div>
 
   <!-- Tabs -->
@@ -19,10 +19,10 @@
     <div *ngIf="activeTab === 'demo'">
       <div class="space-y-8">
         
-        <!-- Basic Tag -->
+        <!-- Basic Tags -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Basic Tag</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Basic Tags</h3>
             <button 
               (click)="toggleCode('basicTag')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
@@ -33,26 +33,36 @@
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <sui-tag 
-                [value]="tagValue"
-                (onClick)="onTagClick($event)">
-              </sui-tag>
+              <div class="flex flex-wrap gap-2">
+                <sui-tag 
+                  *ngFor="let tag of tags"
+                  [value]="tag.value"
+                  [severity]="tag.severity">
+                </sui-tag>
+              </div>
+              
+              <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                <p class="text-sm text-blue-800">
+                  <strong>Severity Levels:</strong> Different severity levels provide visual context for different types of information.
+                </p>
+              </div>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showBasicTagCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-tag 
-  [value]="tagValue"
-  (onClick)="onTagClick($event)"&gt;
-&lt;/sui-tag&gt;</code></pre>
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-tag value="Angular" severity="info"&gt;&lt;/sui-tag&gt;
+&lt;sui-tag value="React" severity="success"&gt;&lt;/sui-tag&gt;
+&lt;sui-tag value="Vue" severity="warning"&gt;&lt;/sui-tag&gt;
+&lt;sui-tag value="TypeScript" severity="danger"&gt;&lt;/sui-tag&gt;
+&lt;sui-tag value="JavaScript" severity="contrast"&gt;&lt;/sui-tag&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Icon Tag -->
+        <!-- Icon Tags -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Icon Tag</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Icon Tags</h3>
             <button 
               (click)="toggleCode('iconTag')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
@@ -63,21 +73,170 @@
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <p class="text-sm text-gray-600">Tag with an icon for better visual representation.</p>
-              <sui-tag 
-                [value]="tagValue"
-                [icon]="tagIcon"
-                (onClick)="onTagClick($event)">
-              </sui-tag>
+              <div class="flex flex-wrap gap-2">
+                <sui-tag 
+                  *ngFor="let tag of iconTags"
+                  [value]="tag.value"
+                  [icon]="tag.icon"
+                  [severity]="tag.severity">
+                </sui-tag>
+              </div>
+              
+              <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
+                <p class="text-sm text-green-800">
+                  <strong>Enhanced Visual:</strong> Icons provide additional context and make tags more visually appealing.
+                </p>
+              </div>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showIconTagCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
               <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-tag 
-  [value]="tagValue"
-  [icon]="tagIcon"
-  (onClick)="onTagClick($event)"&gt;
+  value="Frontend" 
+  icon="🎨" 
+  severity="info"&gt;
+&lt;/sui-tag&gt;
+
+&lt;sui-tag 
+  value="Backend" 
+  icon="⚙️" 
+  severity="success"&gt;
+&lt;/sui-tag&gt;
+
+&lt;sui-tag 
+  value="Database" 
+  icon="🗄️" 
+  severity="warning"&gt;
 &lt;/sui-tag&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Removable Tags -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Removable Tags</h3>
+            <button 
+              (click)="toggleCode('removableTag')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showRemovableTagCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex flex-wrap gap-2">
+                <sui-tag 
+                  *ngFor="let tag of removableTags"
+                  [value]="tag.value"
+                  [severity]="tag.severity"
+                  [removable]="tag.removable"
+                  [disabled]="tag.disabled"
+                  (onRemove)="onTagRemove(tag)">
+                </sui-tag>
+              </div>
+              
+              <div class="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-md">
+                <p class="text-sm text-purple-800">
+                  <strong>Interactive:</strong> Click the × button to remove tags. Disabled tags cannot be removed.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showRemovableTagCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-tag 
+  value="Removable Tag" 
+  severity="info"
+  [removable]="true"
+  (onRemove)="onTagRemove($event)"&gt;
+&lt;/sui-tag&gt;
+
+&lt;sui-tag 
+  value="Disabled Tag" 
+  severity="danger"
+  [removable]="true"
+  [disabled]="true"
+  (onRemove)="onTagRemove($event)"&gt;
+&lt;/sui-tag&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Styled Tags -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Styled Tags</h3>
+            <button 
+              (click)="toggleCode('styledTag')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showStyledTagCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="space-y-4">
+                <div>
+                  <h4 class="text-sm font-medium text-gray-700 mb-2">Size Variants</h4>
+                  <div class="flex flex-wrap gap-2 items-center">
+                    <sui-tag value="Small" severity="info" styleClass="small"></sui-tag>
+                    <sui-tag value="Normal" severity="success"></sui-tag>
+                    <sui-tag value="Large" severity="warning" styleClass="large"></sui-tag>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 class="text-sm font-medium text-gray-700 mb-2">Shape Variants</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <sui-tag value="Rounded" severity="info" styleClass="rounded"></sui-tag>
+                    <sui-tag value="Square" severity="success" styleClass="square"></sui-tag>
+                    <sui-tag value="Pill" severity="warning"></sui-tag>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 class="text-sm font-medium text-gray-700 mb-2">Style Variants</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <sui-tag value="Filled" severity="info" styleClass="filled"></sui-tag>
+                    <sui-tag value="Outlined" severity="success" styleClass="outlined"></sui-tag>
+                    <sui-tag value="Gradient" severity="warning" styleClass="gradient"></sui-tag>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 class="text-sm font-medium text-gray-700 mb-2">Special Effects</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <sui-tag value="Pulse" severity="info" styleClass="pulse"></sui-tag>
+                    <sui-tag value="Loading" severity="success" styleClass="loading"></sui-tag>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-4 p-3 bg-indigo-50 border border-indigo-200 rounded-md">
+                <p class="text-sm text-indigo-800">
+                  <strong>Customizable:</strong> Use styleClass prop to apply various styling variants for different use cases.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showStyledTagCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Size variants --&gt;
+&lt;sui-tag value="Small" severity="info" styleClass="small"&gt;&lt;/sui-tag&gt;
+&lt;sui-tag value="Normal" severity="success"&gt;&lt;/sui-tag&gt;
+&lt;sui-tag value="Large" severity="warning" styleClass="large"&gt;&lt;/sui-tag&gt;
+
+&lt;!-- Shape variants --&gt;
+&lt;sui-tag value="Rounded" severity="info" styleClass="rounded"&gt;&lt;/sui-tag&gt;
+&lt;sui-tag value="Square" severity="success" styleClass="square"&gt;&lt;/sui-tag&gt;
+
+&lt;!-- Style variants --&gt;
+&lt;sui-tag value="Filled" severity="info" styleClass="filled"&gt;&lt;/sui-tag&gt;
+&lt;sui-tag value="Outlined" severity="success" styleClass="outlined"&gt;&lt;/sui-tag&gt;
+&lt;sui-tag value="Gradient" severity="warning" styleClass="gradient"&gt;&lt;/sui-tag&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -108,12 +267,9 @@
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
               <pre><code>import &#123; Tag &#125; from '@synerity/ui';
 
-&#64;Component(&#123;
+@Component(&#123;
   template: `
-    &lt;sui-tag 
-      [value]="tagValue"
-      (onClick)="onClick($event)"&gt;
-    &lt;/sui-tag&gt;
+    &lt;sui-tag value="Angular" severity="info"&gt;&lt;/sui-tag&gt;
   `
 &#125;)
 export class MyComponent &#123;&#125;</code></pre>
@@ -121,23 +277,102 @@ export class MyComponent &#123;&#125;</code></pre>
           </div>
         </div>
 
-        <!-- Styling -->
+        <!-- Configuration Options -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Configuration Options</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Tag uses Tailwind CSS classes for styling. Here are the key classes:</p>
-            <div class="space-y-2 text-sm">
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-tag</span>
-                <span class="text-gray-600">Base class for the tag container</span>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Severity Levels</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-tag severity="info|success|warning|danger|contrast"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Choose from predefined severity levels for different contexts.</p>
               </div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-tag-value</span>
-                <span class="text-gray-600">Class for the tag text content</span>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Icon Support</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-tag icon="🎨" value="Frontend"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Add icons to enhance visual appeal and provide context.</p>
               </div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">sui-tag-icon</span>
-                <span class="text-gray-600">Class for the tag icon</span>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Removable Tags</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-tag [removable]="true" (onRemove)="handleRemove()"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Enable removal functionality with clickable × button.</p>
+              </div>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Custom Styling</h4>
+                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
+                  <code>&lt;sui-tag styleClass="small rounded gradient"&gt;</code>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Apply custom CSS classes for size, shape, and style variants.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Handling -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Event Handling</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Handle tag events using the provided event emitter:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>&lt;sui-tag 
+  value="Removable Tag"
+  [removable]="true"
+  (onRemove)="onTagRemove($event)"&gt;
+&lt;/sui-tag&gt;
+
+onTagRemove() &#123;
+  console.log('Tag removed');
+  // Handle tag removal logic
+&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Styling Classes -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Available Styling Classes</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Size Classes</h4>
+                <ul class="space-y-1 text-gray-600">
+                  <li><code class="bg-gray-100 px-1 rounded">small</code> - Smaller padding and text</li>
+                  <li><code class="bg-gray-100 px-1 rounded">large</code> - Larger padding and text</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Shape Classes</h4>
+                <ul class="space-y-1 text-gray-600">
+                  <li><code class="bg-gray-100 px-1 rounded">rounded</code> - Rounded corners</li>
+                  <li><code class="bg-gray-100 px-1 rounded">square</code> - Square corners</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Style Classes</h4>
+                <ul class="space-y-1 text-gray-600">
+                  <li><code class="bg-gray-100 px-1 rounded">filled</code> - Solid background</li>
+                  <li><code class="bg-gray-100 px-1 rounded">outlined</code> - Border only</li>
+                  <li><code class="bg-gray-100 px-1 rounded">gradient</code> - Gradient background</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Effect Classes</h4>
+                <ul class="space-y-1 text-gray-600">
+                  <li><code class="bg-gray-100 px-1 rounded">pulse</code> - Pulsing animation</li>
+                  <li><code class="bg-gray-100 px-1 rounded">loading</code> - Loading state</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -169,25 +404,43 @@ export class MyComponent &#123;&#125;</code></pre>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Text content of the tag</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">The text content of the tag</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">severity</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'info' | 'success' | 'warning' | 'danger' | 'contrast'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'info'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Severity level determining the visual style</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">icon</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Icon class for the tag</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Icon to display before the tag text</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">removable</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the tag can be removed</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the tag is disabled</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the tag container</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the tag</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Style class for the tag container</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">CSS class name for custom styling</td>
                   </tr>
                 </tbody>
               </table>
@@ -210,9 +463,9 @@ export class MyComponent &#123;&#125;</code></pre>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onClick</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;Event&gt;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the tag is clicked</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onRemove</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;void&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the remove button is clicked</td>
                   </tr>
                 </tbody>
               </table>
@@ -227,19 +480,27 @@ export class MyComponent &#123;&#125;</code></pre>
             <ul class="space-y-2 text-gray-600">
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
-                <span>Keyboard navigation support with Tab key</span>
+                <span>Proper semantic HTML structure with button element for removal</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
-                <span>Enter and Space key activation</span>
+                <span>Keyboard navigation support for removable tags</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
-                <span>Focus indicators for keyboard users</span>
+                <span>Focus indicators for interactive elements</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-green-500 mt-1">✓</span>
-                <span>ARIA attributes for screen readers</span>
+                <span>Disabled state support with proper ARIA attributes</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>High contrast mode support</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Reduced motion support for animations</span>
               </li>
             </ul>
           </div>

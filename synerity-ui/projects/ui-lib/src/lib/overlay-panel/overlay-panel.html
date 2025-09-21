@@ -1,0 +1,20 @@
+<div 
+  *ngIf="visible"
+  class="sui-overlay-panel" 
+  [class]="getOverlayPanelClass()" 
+  [style]="getOverlayPanelStyle()"
+  (click)="onOverlayPanelClick($event)"
+>
+  <div class="sui-overlay-panel-content">
+    <button 
+      *ngIf="showCloseIcon" 
+      type="button" 
+      class="sui-overlay-panel-close"
+      (click)="onCloseClick()"
+      [attr.aria-label]="'Close'"
+    >
+      ×
+    </button>
+    <ng-content></ng-content>
+  </div>
+</div>

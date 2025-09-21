@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
-import { Splitter as SuiSplitter } from '../../../../../ui-lib/src/lib/splitter/splitter';
+import { Splitter as SuiSplitter } from 'ui-lib';
 
 @Component({
   selector: 'app-splitter',

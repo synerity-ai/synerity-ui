@@ -38,19 +38,34 @@
                 (click)="showConfirmDialog()">
                 Delete Item
               </button>
-              <div class="p-4 bg-gray-100 rounded-lg">
-                <p class="text-gray-600">Confirm Dialog Component - Placeholder</p>
-              </div>
+              <sui-confirm-dialog 
+                [visible]="confirmDialogVisible"
+                [header]="'Delete Item'"
+                [message]="confirmMessage"
+                [acceptLabel]="'Delete'"
+                [rejectLabel]="'Cancel'"
+                [acceptIcon]="'🗑️'"
+                [rejectIcon]="'❌'"
+                (onAccept)="onConfirmDialogAccept($event)"
+                (onReject)="onConfirmDialogReject($event)"
+                (onHide)="onConfirmDialogHide($event)"
+              ></sui-confirm-dialog>
             </div>
             
             <!-- Code Example -->
             <div *ngIf="showBasicConfirmDialogCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;div class="p-4 bg-gray-100 rounded-lg" 
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-confirm-dialog 
   [visible]="confirmDialogVisible"
+  [header]="'Delete Item'"
   [message]="confirmMessage"
+  [acceptLabel]="'Delete'"
+  [rejectLabel]="'Cancel'"
+  [acceptIcon]="'🗑️'"
+  [rejectIcon]="'❌'"
   (onAccept)="onConfirmDialogAccept($event)"
-  (onReject)="onConfirmDialogReject($event)"&gt;
-&lt;/div class="p-4 bg-gray-100 rounded-lg"&gt;</code></pre>
+  (onReject)="onConfirmDialogReject($event)"
+  (onHide)="onConfirmDialogHide($event)"
+&gt;&lt;/sui-confirm-dialog&gt;</code></pre>
             </div>
           </div>
         </div>
