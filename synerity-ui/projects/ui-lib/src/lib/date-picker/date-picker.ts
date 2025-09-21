@@ -940,6 +940,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 8px;
+        align-items: stretch;
       }
 
       .sui-date-picker-month {
@@ -954,6 +955,9 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
         font-size: 14px;
         color: #374151;
         transition: all 0.15s ease;
+        text-align: center;
+        min-height: 44px;
+        box-sizing: border-box;
       }
 
       .sui-date-picker-month:hover {
@@ -989,6 +993,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 8px;
+        align-items: stretch;
       }
 
       .sui-date-picker-year {
@@ -1003,6 +1008,9 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
         font-size: 14px;
         color: #374151;
         transition: all 0.15s ease;
+        text-align: center;
+        min-height: 44px;
+        box-sizing: border-box;
       }
 
       .sui-date-picker-year:hover {
