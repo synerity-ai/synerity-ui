@@ -25,7 +25,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Basic ColorPicker</h3>
             <button 
               (click)="toggleCode('basicColorPicker')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showBasicColorPickerCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -40,13 +40,13 @@
               </sui-color-picker>
               <div class="flex items-center space-x-2">
                 <span class="text-sm text-gray-600">Selected Color:</span>
-                <span class="font-mono text-sm bg-gray-100 px-2 py-1 rounded">{{ basicColor }}</span>
+                <span class="font-mono text-sm bg-gray-900 text-green-400 font-mono px-2 py-1 rounded">{{ basicColor }}</span>
               </div>
             </div>
             
             <!-- Code Block -->
             <div *ngIf="showBasicColorPickerCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-color-picker 
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-color-picker 
   [(ngModel)]="basicColor"
   (onChange)="onColorChange($event)"
   size="medium"&gt;
@@ -61,7 +61,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Preset Colors</h3>
             <button 
               (click)="toggleCode('presetColors')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showPresetColorsCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -79,13 +79,13 @@
               </div>
               <div class="flex items-center space-x-2">
                 <span class="text-sm text-gray-600">Selected:</span>
-                <span class="font-mono text-sm bg-gray-100 px-2 py-1 rounded">{{ selectedPresetColor }}</span>
+                <span class="font-mono text-sm bg-gray-900 text-green-400 font-mono px-2 py-1 rounded">{{ selectedPresetColor }}</span>
               </div>
             </div>
             
             <!-- Code Block -->
             <div *ngIf="showPresetColorsCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;div class="flex space-x-2"&gt;
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;div class="flex space-x-2"&gt;
   &lt;div 
     *ngFor="let color of presetColors"
     (click)="onPresetColorChange(color)"
@@ -103,7 +103,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Hex Color Input</h3>
             <button 
               (click)="toggleCode('hexInput')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showHexInputCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -145,7 +145,7 @@
             
             <!-- Code Block -->
             <div *ngIf="showHexInputCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Primary: sui-color-picker --&gt;
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Primary: sui-color-picker --&gt;
 &lt;sui-color-picker 
   [(ngModel)]="hexColor"
   (onChange)="onHexColorChange($event)"
@@ -169,7 +169,7 @@
             <h3 class="text-xl font-semibold text-gray-900">RGB Color Input</h3>
             <button 
               (click)="toggleCode('rgbInput')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showRgbInputCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -228,7 +228,7 @@
             
             <!-- Code Block -->
             <div *ngIf="showRgbInputCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Primary: sui-color-picker --&gt;
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Primary: sui-color-picker --&gt;
 &lt;sui-color-picker 
   [(ngModel)]="rgbColorHex"
   (onChange)="onRgbColorChangeFromPicker($event)"
@@ -269,7 +269,7 @@
             <h3 class="text-xl font-semibold text-gray-900">HSL Color Input</h3>
             <button 
               (click)="toggleCode('hslInput')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showHslInputCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -309,7 +309,7 @@
             
             <!-- Code Block -->
             <div *ngIf="showHslInputCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;div class="flex space-x-2"&gt;
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;div class="flex space-x-2"&gt;
   &lt;input 
     type="number" 
     [(ngModel)]="hslColor.h"
@@ -342,7 +342,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Advanced Features</h3>
             <button 
               (click)="toggleCode('advancedFeatures')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showAdvancedFeaturesCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -396,7 +396,7 @@
             
             <!-- Code Block -->
             <div *ngIf="showAdvancedFeaturesCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Gradient Color --&gt;
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Gradient Color --&gt;
 &lt;sui-color-picker 
   [(ngModel)]="gradientColor"
   (onChange)="onGradientColorChange($event)"
@@ -438,7 +438,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Color Palette</h3>
             <button 
               (click)="toggleCode('colorPalette')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showColorPaletteCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -456,7 +456,7 @@
             
             <!-- Code Block -->
             <div *ngIf="showColorPaletteCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;div class="grid grid-cols-8 gap-2"&gt;
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;div class="grid grid-cols-8 gap-2"&gt;
   &lt;div 
     *ngFor="let color of colorPalette"
     class="w-12 h-12 rounded cursor-pointer border border-gray-300 hover:border-gray-500 transition-colors"
@@ -475,87 +475,50 @@
     <div *ngIf="activeTab === 'usage'">
       <div class="space-y-6">
         
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import the ColorPicker component in your module or standalone component:</p>
+            <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm">
+              <code>import &#123; ColorPicker &#125; from 'ui-lib';
+
+// In your component imports
+imports: [ColorPicker, FormsModule]</code>
+            </div>
+          </div>
+        </div>
+
         <!-- Basic Usage -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
+        <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <p class="text-gray-600 mb-4">The ColorPicker component provides various ways to select colors:</p>
-          
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">1. Synerity Color Picker</h4>
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-color-picker 
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Use the ColorPicker component with ngModel for two-way data binding:</p>
+            <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm">
+              <pre><code>&lt;sui-color-picker
   [(ngModel)]="selectedColor"
   (onChange)="onColorChange($event)"
   size="medium"&gt;
 &lt;/sui-color-picker&gt;</code></pre>
             </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">2. Hex Color Input</h4>
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;input type="text" [(ngModel)]="hexColor" placeholder="#000000"&gt;</code></pre>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">3. RGB Color Input</h4>
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;input type="number" [(ngModel)]="rgbColor.r" min="0" max="255"&gt;
-&lt;input type="number" [(ngModel)]="rgbColor.g" min="0" max="255"&gt;
-&lt;input type="number" [(ngModel)]="rgbColor.b" min="0" max="255"&gt;</code></pre>
-            </div>
           </div>
         </div>
 
-        <!-- Component Integration -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Integration</h3>
-          <p class="text-gray-600 mb-4">To use ColorPicker in your Angular component:</p>
-          
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">1. Import FormsModule</h4>
-              <p class="text-gray-600 text-sm">Import FormsModule from @angular/forms to enable two-way data binding.</p>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">2. Define Color Properties</h4>
-              <p class="text-gray-600 text-sm">Define color properties in your component class for storing selected colors.</p>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">3. Handle Color Changes</h4>
-              <p class="text-gray-600 text-sm">Create event handlers to respond to color selection changes.</p>
+        <!-- Form Integration -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Form Integration</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Integrate with Angular reactive forms:</p>
+            <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm">
+              <pre><code>&lt;form [formGroup]="myForm"&gt;
+  &lt;sui-color-picker
+    formControlName="selectedColor"
+    (onChange)="onColorChange($event)"
+    size="medium"&gt;
+  &lt;/sui-color-picker&gt;
+&lt;/form&gt;</code></pre>
             </div>
           </div>
-        </div>
-
-        <!-- Best Practices -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Best Practices</h3>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Use HTML5 color input for simple color selection</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Provide preset colors for common use cases</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Validate hex color format when using text input</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Show color preview alongside input controls</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Use consistent color formats throughout your application</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2">•</span>
-              <span>Consider accessibility with proper labels and contrast</span>
-            </li>
-          </ul>
         </div>
 
       </div>
@@ -565,216 +528,128 @@
     <div *ngIf="activeTab === 'docs'">
       <div class="space-y-6">
         
-        <!-- API Reference -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">API Reference</h3>
-          
-          <div class="space-y-6">
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">HTML5 Color Input</h4>
-              <div class="overflow-x-auto">
-                <table class="min-w-full border border-gray-200">
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Attribute</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-200">
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">type</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">"color"</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Specifies the input type as color picker</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">ngModel</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Two-way binding for the selected color value</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">disabled</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Disables the color picker</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        <!-- Component Overview -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">ColorPicker Component</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600">The ColorPicker component provides various ways to select colors including HTML5 color input, hex text input, and RGB/HSL number inputs with visual color previews.</p>
+          </div>
+        </div>
 
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Text Input (Hex Colors)</h4>
-              <div class="overflow-x-auto">
-                <table class="min-w-full border border-gray-200">
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Attribute</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-200">
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">type</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">"text"</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Text input for hex color values</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">placeholder</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Placeholder text (e.g., "#000000")</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">pattern</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Regex pattern for hex color validation</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Number Input (RGB Colors)</h4>
-              <div class="overflow-x-auto">
-                <table class="min-w-full border border-gray-200">
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Attribute</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
-                      <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-200">
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">type</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">"number"</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Number input for RGB values</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-900">min</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">number</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Minimum value (0 for RGB)</td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-2 text-sm text-gray-600">max</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">number</td>
-                      <td class="px-4 py-2 text-sm text-gray-600">Maximum value (255 for RGB)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">ngModel</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Two-way binding for the selected color value</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">medium</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Size of the color picker (small, medium, large)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Disables the color picker</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Placeholder text for text inputs</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
         <!-- Events -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
+        <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
-          <div class="overflow-x-auto">
-            <table class="min-w-full border border-gray-200">
-              <thead class="bg-gray-50">
-                <tr>
-                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Event</th>
-                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Type</th>
-                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b">Description</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-200">
-                <tr>
-                  <td class="px-4 py-2 text-sm text-gray-900">change</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Event</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Fired when color value changes</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-2 text-sm text-gray-900">input</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Event</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Fired on every input change</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-2 text-sm text-gray-900">blur</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Event</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">Fired when input loses focus</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Color Formats -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Supported Color Formats</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Hex Colors</h4>
-              <p class="text-gray-600 mb-2">6-digit hexadecimal color codes:</p>
-              <ul class="list-disc list-inside text-gray-600 space-y-1">
-                <li><code class="bg-gray-100 px-1 rounded">#FF0000</code> - Red</li>
-                <li><code class="bg-gray-100 px-1 rounded">#00FF00</code> - Green</li>
-                <li><code class="bg-gray-100 px-1 rounded">#0000FF</code> - Blue</li>
-                <li><code class="bg-gray-100 px-1 rounded">#FFFFFF</code> - White</li>
-                <li><code class="bg-gray-100 px-1 rounded">#000000</code> - Black</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">RGB Colors</h4>
-              <p class="text-gray-600 mb-2">Red, Green, Blue values (0-255):</p>
-              <ul class="list-disc list-inside text-gray-600 space-y-1">
-                <li><code class="bg-gray-100 px-1 rounded">rgb(255, 0, 0)</code> - Red</li>
-                <li><code class="bg-gray-100 px-1 rounded">rgb(0, 255, 0)</code> - Green</li>
-                <li><code class="bg-gray-100 px-1 rounded">rgb(0, 0, 255)</code> - Blue</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">HSL Colors</h4>
-              <p class="text-gray-600 mb-2">Hue, Saturation, Lightness values:</p>
-              <ul class="list-disc list-inside text-gray-600 space-y-1">
-                <li><code class="bg-gray-100 px-1 rounded">hsl(0, 100%, 50%)</code> - Red</li>
-                <li><code class="bg-gray-100 px-1 rounded">hsl(120, 100%, 50%)</code> - Green</li>
-                <li><code class="bg-gray-100 px-1 rounded">hsl(240, 100%, 50%)</code> - Blue</li>
-              </ul>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onChange</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the color value changes</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
         <!-- Examples -->
-        <div class="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Usage Examples</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Basic Color Selection</h4>
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-color-picker 
-  [(ngModel)]="color"
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-6">
+              
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">Basic ColorPicker</h4>
+                <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm">
+                  <pre><code>&lt;sui-color-picker
+  [(ngModel)]="selectedColor"
   (onChange)="onColorChange($event)"
   size="medium"&gt;
 &lt;/sui-color-picker&gt;</code></pre>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">Hex Color Input with Validation</h4>
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;input 
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">Hex Color Input</h4>
+                <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm">
+                  <pre><code>&lt;input 
   type="text" 
-  [(ngModel)]="hexColor" 
-  pattern="^#[0-9A-Fa-f]{{ '{' }}6{{ '}' }}$"
+  [(ngModel)]="hexColor"
   placeholder="#000000"
-  (input)="validateHexColor($event)"&gt;</code></pre>
-            </div>
-            
-            <div>
-              <h4 class="font-medium text-gray-900 mb-2">RGB Color Inputs</h4>
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;div class="flex space-x-2"&gt;
+  maxlength="7"&gt;</code></pre>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">RGB Color Inputs</h4>
+                <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm">
+                  <pre><code>&lt;div class="flex space-x-2"&gt;
   &lt;input type="number" [(ngModel)]="r" min="0" max="255"&gt;
   &lt;input type="number" [(ngModel)]="g" min="0" max="255"&gt;
   &lt;input type="number" [(ngModel)]="b" min="0" max="255"&gt;
 &lt;/div&gt;</code></pre>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
 
       </div>
     </div>
-
   </app-tabs>
 </div>
