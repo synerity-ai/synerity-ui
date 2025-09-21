@@ -560,24 +560,10 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   private renderCalendarContent(): void {
     if (!this.calendarElement) return;
 
-    const calendarHTML = `
-      <div class="sui-date-picker-header">
-        <div class="sui-date-picker-nav">
-          <button type="button" class="sui-date-picker-nav-button" data-action="prev">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="15,18 9,12 15,6"></polyline>
-            </svg>
-          </button>
-          <button type="button" class="sui-date-picker-month-year" data-action="month">${this.monthNames[this.currentMonth]}</button>
-          <button type="button" class="sui-date-picker-month-year" data-action="year">${this.currentYear}</button>
-          <button type="button" class="sui-date-picker-nav-button" data-action="next">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9,18 15,12 9,6"></polyline>
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div class="sui-date-picker-content">
+    let contentHTML = '';
+    
+    if (this.currentView === 'calendar') {
+      contentHTML = `
         <div class="sui-date-picker-calendar-view">
           <div class="sui-date-picker-weekdays">
             ${this.weekDays.map(day => `<div class="sui-date-picker-weekday">${day}</div>`).join('')}
@@ -590,6 +576,67 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
             `).join('')}
           </div>
         </div>
+      `;
+    } else if (this.currentView === 'months') {
+      contentHTML = `
+        <div class="sui-date-picker-months-view">
+          <div class="sui-date-picker-months-grid">
+            ${this.monthNames.map((month, index) => `
+              <button type="button" class="sui-date-picker-month ${index === this.currentMonth ? 'sui-date-picker-month-selected' : ''}" data-month="${index}">
+                ${month}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else if (this.currentView === 'years') {
+      const startYear = Math.floor(this.currentYear / 10) * 10;
+      const endYear = startYear + 9;
+      contentHTML = `
+        <div class="sui-date-picker-years-view">
+          <div class="sui-date-picker-years-nav">
+            <button type="button" class="sui-date-picker-nav-button" data-action="prev-decade">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15,18 9,12 15,6"></polyline>
+              </svg>
+            </button>
+            <span class="sui-date-picker-years-range">${startYear} - ${endYear}</span>
+            <button type="button" class="sui-date-picker-nav-button" data-action="next-decade">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="sui-date-picker-years-grid">
+            ${Array.from({length: 10}, (_, i) => startYear + i).map(year => `
+              <button type="button" class="sui-date-picker-year ${year === this.currentYear ? 'sui-date-picker-year-selected' : ''}" data-year="${year}">
+                ${year}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    const calendarHTML = `
+      <div class="sui-date-picker-header">
+        <div class="sui-date-picker-nav">
+          ${this.currentView === 'years' ? '' : `<button type="button" class="sui-date-picker-nav-button" data-action="prev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15,18 9,12 15,6"></polyline>
+            </svg>
+          </button>`}
+          <button type="button" class="sui-date-picker-month-year" data-action="month">${this.monthNames[this.currentMonth]}</button>
+          <button type="button" class="sui-date-picker-month-year" data-action="year">${this.currentYear}</button>
+          ${this.currentView === 'years' ? '' : `<button type="button" class="sui-date-picker-nav-button" data-action="next">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9,18 15,12 9,6"></polyline>
+            </svg>
+          </button>`}
+        </div>
+      </div>
+      <div class="sui-date-picker-content">
+        ${contentHTML}
       </div>
       <div class="sui-date-picker-footer">
         <button type="button" class="sui-date-picker-today" data-action="today">Today</button>
@@ -625,6 +672,14 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
         event.stopPropagation();
         this.nextMonth();
         this.renderCalendarContent();
+      } else if (action === 'prev-decade') {
+        event.stopPropagation();
+        this.currentYear -= 10;
+        this.renderCalendarContent();
+      } else if (action === 'next-decade') {
+        event.stopPropagation();
+        this.currentYear += 10;
+        this.renderCalendarContent();
       } else if (action === 'month') {
         event.stopPropagation();
         this.currentView = this.currentView === 'months' ? 'calendar' : 'months';
@@ -645,6 +700,16 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
         if (dateStr) {
           this.selectDate(new Date(dateStr));
         }
+      } else if (target.classList.contains('sui-date-picker-month')) {
+        event.stopPropagation();
+        const month = parseInt(target.getAttribute('data-month') || '0');
+        this.goToMonth(month);
+        this.renderCalendarContent();
+      } else if (target.classList.contains('sui-date-picker-year')) {
+        event.stopPropagation();
+        const year = parseInt(target.getAttribute('data-year') || '0');
+        this.goToYear(year);
+        this.renderCalendarContent();
       }
     };
 
@@ -863,6 +928,96 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
 
       .sui-date-picker-today:hover {
         background-color: #dbeafe;
+      }
+
+      /* Month and Year Views */
+      .sui-date-picker-months-view,
+      .sui-date-picker-years-view {
+        padding: 8px;
+      }
+
+      .sui-date-picker-months-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .sui-date-picker-month {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 8px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        background: #ffffff;
+        cursor: pointer;
+        font-size: 14px;
+        color: #374151;
+        transition: all 0.15s ease;
+      }
+
+      .sui-date-picker-month:hover {
+        background-color: #f3f4f6;
+        border-color: #3b82f6;
+      }
+
+      .sui-date-picker-month-selected {
+        background-color: #3b82f6;
+        color: #ffffff;
+        border-color: #3b82f6;
+      }
+
+      .sui-date-picker-month-selected:hover {
+        background-color: #3b82f6;
+      }
+
+      .sui-date-picker-years-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding: 8px 0;
+      }
+
+      .sui-date-picker-years-range {
+        font-size: 16px;
+        font-weight: 600;
+        color: #374151;
+      }
+
+      .sui-date-picker-years-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .sui-date-picker-year {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 8px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        background: #ffffff;
+        cursor: pointer;
+        font-size: 14px;
+        color: #374151;
+        transition: all 0.15s ease;
+      }
+
+      .sui-date-picker-year:hover {
+        background-color: #f3f4f6;
+        border-color: #3b82f6;
+      }
+
+      .sui-date-picker-year-selected {
+        background-color: #3b82f6;
+        color: #ffffff;
+        border-color: #3b82f6;
+      }
+
+      .sui-date-picker-year-selected:hover {
+        background-color: #3b82f6;
       }
     `;
 
