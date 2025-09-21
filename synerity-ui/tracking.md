@@ -7,6 +7,9 @@ This document tracks the completion status of all component demo pages in the Sy
 | Page | Status | Component | 3-Tab Layout |
 |------|--------|-----------|--------------|
 | http://localhost:4200/components/button | ✅ Complete | sui-button | ✅ Implemented |
+| http://localhost:4200/components/inputtext | 🚧 In Progress | sui-input-text | ❌ Not Started |
+| http://localhost:4200/components/inputtextarea | 🚧 In Progress | sui-input-textarea | ❌ Not Started |
+| http://localhost:4200/components/card | 🚧 In Progress | sui-card | ❌ Not Started |
 
 ## Notes
 
