@@ -8,30 +8,7 @@
   color: #374151;
   
   // Size Variants
-  &-small {
-    font-size: 12px;
-    
-    .sui-date-picker-trigger {
-      height: 32px;
-      padding: 0 4px;
-    }
-    
-    .sui-date-picker-icon svg {
-      width: 14px;
-      height: 14px;
-    }
-    
-    .sui-date-picker-clear svg {
-      width: 10px;
-      height: 10px;
-    }
-    
-    .sui-date-picker-input {
-      padding: 6px 8px;
-    }
-  }
-  
-  &-medium {
+  &-normal {
     font-size: 14px;
     
     .sui-date-picker-trigger {
@@ -54,35 +31,29 @@
     }
   }
   
-  &-large {
-    font-size: 16px;
+  &-compact {
+    font-size: 12px;
     
     .sui-date-picker-trigger {
-      height: 48px;
-      padding: 0 12px;
+      height: 32px;
+      padding: 0 4px;
     }
     
     .sui-date-picker-icon svg {
-      width: 18px;
-      height: 18px;
-    }
-    
-    .sui-date-picker-clear svg {
       width: 14px;
       height: 14px;
     }
     
-    .sui-date-picker-input {
-      padding: 10px 16px;
-    }
-  }
-  
-  // Variant Styles
-  &-compact {
-    .sui-date-picker-trigger {
-      min-width: 100px;
+    .sui-date-picker-clear svg {
+      width: 10px;
+      height: 10px;
     }
     
+    .sui-date-picker-input {
+      padding: 6px 8px;
+    }
+    
+    // Compact calendar styling
     .sui-date-picker-calendar {
       width: 240px;
     }
@@ -146,6 +117,7 @@
       font-size: 11px;
     }
   }
+  
   
   &-inline {
     .sui-date-picker-trigger {
