@@ -54,7 +54,7 @@
 
   <!-- Calendar Panel -->
   <div
-    *ngIf="isOpen"
+    *ngIf="isOpen && variant !== 'inline'"
     [class]="getCalendarClass()"
     [style]="getCalendarStyle()"
     role="dialog"
