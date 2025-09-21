@@ -10,6 +10,7 @@ import {
   forwardRef,
   ChangeDetectorRef,
   OnInit,
+  OnChanges,
   HostListener
 } from '@angular/core';
 import { NgIf, CommonModule } from '@angular/common';
@@ -80,7 +81,7 @@ export interface DatePickerConfig {
     }
   ]
 })
-export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
+export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnChanges {
   // Core Inputs
   @Input() value: Date | null = null;
   @Input() placeholder = 'Select date';
@@ -163,6 +164,11 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   ngOnInit(): void {
     this.initializeYearRange();
     this.updateCurrentDate();
+  }
+
+  ngOnChanges(): void {
+    // Trigger change detection when input properties change
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy(): void {
