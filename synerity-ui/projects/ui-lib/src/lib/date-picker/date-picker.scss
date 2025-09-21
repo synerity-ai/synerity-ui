@@ -72,51 +72,66 @@
     }
     
     .sui-date-picker-calendar {
-      width: 260px;
+      width: 240px;
     }
     
     .sui-date-picker-header {
-      padding: 8px;
+      padding: 6px;
     }
     
     .sui-date-picker-content {
-      padding: 8px;
+      padding: 6px;
+    }
+    
+    .sui-date-picker-weekdays {
+      gap: 1px;
+      margin-bottom: 4px;
     }
     
     .sui-date-picker-weekday {
-      height: 24px;
-      font-size: 10px;
+      height: 20px;
+      font-size: 9px;
+    }
+    
+    .sui-date-picker-days {
+      gap: 1px;
+      margin-bottom: 6px;
     }
     
     .sui-date-picker-day {
-      width: 28px;
-      height: 28px;
-      font-size: 12px;
+      width: 26px;
+      height: 26px;
+      font-size: 11px;
     }
     
     .sui-date-picker-footer {
-      padding: 8px;
+      padding: 6px;
+      gap: 4px;
     }
     
     .sui-date-picker-today,
     .sui-date-picker-clear-footer {
-      padding: 4px 8px;
-      font-size: 11px;
+      padding: 3px 6px;
+      font-size: 10px;
+    }
+    
+    .sui-date-picker-nav {
+      gap: 4px;
     }
     
     .sui-date-picker-nav-button {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       
       svg {
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
       }
     }
     
     .sui-date-picker-month-year {
-      padding: 4px 8px;
-      font-size: 12px;
+      padding: 3px 6px;
+      font-size: 11px;
     }
   }
   
