@@ -186,14 +186,20 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   open(): void {
     if (this.disabled || this.readonly || this.isOpen) return;
     
-    // Register with z-index manager to get highest z-index
-    const zIndexManager = DatePickerZIndexManager.getInstance();
-    this.calendarZIndex = zIndexManager.registerCalendar(this);
-    
     this.isOpen = true;
     this.updateCurrentDate();
-    this.createCalendarInBody();
-    this.bindEventListeners();
+    
+    // Only create dynamic calendar for inline variant
+    // For default and compact variants, use the HTML template
+    if (this.variant === 'inline') {
+      // Register with z-index manager to get highest z-index
+      const zIndexManager = DatePickerZIndexManager.getInstance();
+      this.calendarZIndex = zIndexManager.registerCalendar(this);
+      
+      this.createCalendarInBody();
+      this.bindEventListeners();
+    }
+    
     this.onOpen.emit();
     this.cdr.detectChanges();
   }
@@ -201,16 +207,21 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   close(): void {
     if (!this.isOpen) return;
     
-    // Unregister from z-index manager
-    const zIndexManager = DatePickerZIndexManager.getInstance();
-    zIndexManager.unregisterCalendar(this);
-    
-    // Remove calendar from body
-    this.removeCalendarFromBody();
-    
     this.isOpen = false;
     this.currentView = 'calendar';
-    this.cleanupEventListeners();
+    
+    // Only cleanup dynamic calendar for inline variant
+    if (this.variant === 'inline') {
+      // Unregister from z-index manager
+      const zIndexManager = DatePickerZIndexManager.getInstance();
+      zIndexManager.unregisterCalendar(this);
+      
+      // Remove calendar from body
+      this.removeCalendarFromBody();
+      
+      this.cleanupEventListeners();
+    }
+    
     this.onClose.emit();
     this.cdr.detectChanges();
   }
