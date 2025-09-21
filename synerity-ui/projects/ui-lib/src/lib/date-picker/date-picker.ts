@@ -87,8 +87,8 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   @Input() disabled = false;
   @Input() readonly = false;
   @Input() required = false;
-  @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() variant: 'default' | 'compact' | 'inline' = 'default';
+  @Input() variant: 'dropdown' | 'inline' = 'dropdown';
+  @Input() size: 'normal' | 'compact' = 'normal';
   @Input() theme: 'light' | 'dark' = 'light';
   
   // Date Constraints
@@ -495,7 +495,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   }
 
   getCalendarClass(): string {
-    return `sui-date-picker-calendar sui-date-picker-calendar-${this.size} sui-date-picker-calendar-${this.theme}`;
+    return `sui-date-picker-calendar sui-date-picker-calendar-${this.variant} sui-date-picker-calendar-${this.size} sui-date-picker-calendar-${this.theme}`;
   }
 
   getCalendarStyle(): any {
@@ -514,14 +514,16 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
     
-    // Calculate calendar dimensions based on variant
+    // Calculate calendar dimensions based on variant and size
     let calendarHeight = 400; // Default height
     let calendarWidth = 280; // Default width
     
-    if (this.variant === 'compact') {
+    if (this.size === 'compact') {
       calendarHeight = 320; // Compact height
       calendarWidth = 240; // Compact width
-    } else if (this.variant === 'inline') {
+    }
+    
+    if (this.variant === 'inline') {
       calendarHeight = 380; // Inline height
       calendarWidth = 280; // Inline width
     }

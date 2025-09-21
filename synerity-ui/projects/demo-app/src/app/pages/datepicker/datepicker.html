@@ -41,7 +41,7 @@
                       [(ngModel)]="basicDate"
                       (onChange)="onDateChange($event)"
                       placeholder="Select a date"
-                      size="medium">
+                      size="normal">
                     </sui-date-picker>
                   </div>
                 </div>
@@ -58,8 +58,8 @@
   [(ngModel)]="date"
   (onChange)="onDateChange($event)"
   placeholder="Select a date"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
               </div>
             </div>
@@ -88,7 +88,7 @@
                       [minDate]="today"
                       [maxDate]="endOf2025"
                       placeholder="Select date in 2025"
-                      size="medium">
+                      size="normal">
                     </sui-date-picker>
                   </div>
                 </div>
@@ -107,8 +107,8 @@
   [minDate]="new Date()"
   [maxDate]="new Date(2025, 11, 31)"
   placeholder="Select date in 2025"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
               </div>
             </div>
@@ -132,7 +132,7 @@
                   <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
                   <sui-date-picker
                     placeholder="Normal date picker"
-                    size="medium">
+                    size="normal">
                   </sui-date-picker>
                 </div>
                 <div>
@@ -140,7 +140,7 @@
                   <sui-date-picker
                     [(ngModel)]="disabledDate"
                     [disabled]="true"
-                    size="medium">
+                    size="normal">
                   </sui-date-picker>
                 </div>
                 <div>
@@ -148,7 +148,7 @@
                   <sui-date-picker
                     [(ngModel)]="readonlyDate"
                     [readonly]="true"
-                    size="medium">
+                    size="normal">
                   </sui-date-picker>
                 </div>
                 <div>
@@ -156,7 +156,7 @@
                   <sui-date-picker
                     placeholder="This field is required"
                     [required]="true"
-                    size="medium">
+                    size="normal">
                   </sui-date-picker>
                 </div>
               </div>
@@ -166,24 +166,24 @@
                 <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Normal State --&gt;
 &lt;sui-date-picker
   placeholder="Normal date picker"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;
 
 &lt;!-- Disabled State --&gt;
 &lt;sui-date-picker
   [(ngModel)]="disabledDate"
   [disabled]="true"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;
 
 &lt;!-- Read-only State --&gt;
 &lt;sui-date-picker
   [(ngModel)]="readonlyDate"
   [readonly]="true"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
               </div>
             </div>
@@ -212,7 +212,7 @@
                       [showTime]="true"
                       [timeFormat]="'24'"
                       placeholder="Select date and time"
-                      size="medium">
+                      size="normal">
                     </sui-date-picker>
                   </div>
                 </div>
@@ -235,8 +235,8 @@
   [showTime]="true"
   [timeFormat]="'24'"
   placeholder="Select date and time"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
               </div>
             </div>
@@ -264,7 +264,7 @@
                       (onChange)="onDateChange($event)"
                       dateFormat="MM/dd/yyyy"
                       placeholder="MM/DD/YYYY format"
-                      size="medium">
+                      size="normal">
                     </sui-date-picker>
                   </div>
                 </div>
@@ -286,8 +286,8 @@
   (onChange)="onDateChange($event)"
   dateFormat="MM/dd/yyyy"
   placeholder="MM/DD/YYYY format"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
               </div>
             </div>
@@ -328,9 +328,18 @@
                       <select
                         [(ngModel)]="interactiveVariant"
                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <option value="default">Default</option>
-                        <option value="compact">Compact</option>
+                        <option value="dropdown">Dropdown</option>
                         <option value="inline">Inline</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-1">Size</label>
+                      <select
+                        [(ngModel)]="interactiveSize"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="normal">Normal</option>
+                        <option value="compact">Compact</option>
                       </select>
                     </div>
                     
@@ -525,8 +534,8 @@ imports: [DatePicker, FormsModule]</code>
   [(ngModel)]="selectedDate"
   (onChange)="onDateChange($event)"
   placeholder="Select a date"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
               </div>
             </div>
@@ -545,7 +554,7 @@ imports: [DatePicker, FormsModule]</code>
     [maxDate]="new Date(2025, 11, 31)"
     [showTime]="true"
     placeholder="Select date and time"
-    size="medium"
+    size="normal"
     variant="default"&gt;
   &lt;/sui-date-picker&gt;
 &lt;/form&gt;</code></pre>
@@ -604,8 +613,14 @@ imports: [DatePicker, FormsModule]</code>
                     <tr>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">default</td>
-                      <td class="px-6 py-4 text-sm text-gray-500">Visual variant (default, compact, inline)</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">dropdown</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Visual variant (dropdown, inline)</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">normal</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Size of the calendar (normal, compact)</td>
                     </tr>
                     <tr>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">minDate</td>
@@ -675,8 +690,8 @@ imports: [DatePicker, FormsModule]</code>
   [(ngModel)]="selectedDate"
   (onChange)="onDateChange($event)"
   placeholder="Select a date"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
                   </div>
                 </div>
@@ -689,8 +704,8 @@ imports: [DatePicker, FormsModule]</code>
   (onChange)="onDateTimeChange($event)"
   [showTime]="true"
   placeholder="Select date and time"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
                   </div>
                 </div>
@@ -704,8 +719,8 @@ imports: [DatePicker, FormsModule]</code>
   [minDate]="new Date()"
   [maxDate]="new Date(2025, 11, 31)"
   placeholder="Select a date"
-  size="medium"
-  variant="default"&gt;
+  size="normal"
+  variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
                   </div>
                 </div>

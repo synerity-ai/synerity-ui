@@ -38,8 +38,8 @@ export class Datepicker {
   interactiveShowTodayButton = true;
   interactiveShowClearButton = true;
   interactivePlaceholder = 'Select a date...';
-  interactiveSize: 'small' | 'medium' | 'large' = 'medium';
-  interactiveVariant: 'default' | 'compact' | 'inline' = 'default';
+  interactiveSize: 'normal' | 'compact' = 'normal';
+  interactiveVariant: 'dropdown' | 'inline' = 'dropdown';
   
   // Code visibility states
   showBasicDateCode = false;
