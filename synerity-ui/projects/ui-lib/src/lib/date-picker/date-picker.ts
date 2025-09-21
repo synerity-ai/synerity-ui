@@ -598,22 +598,29 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       const action = target.getAttribute('data-action');
       
       if (action === 'prev') {
+        event.stopPropagation();
         this.previousMonth();
         this.renderCalendarContent();
       } else if (action === 'next') {
+        event.stopPropagation();
         this.nextMonth();
         this.renderCalendarContent();
       } else if (action === 'month') {
+        event.stopPropagation();
         this.currentView = this.currentView === 'months' ? 'calendar' : 'months';
         this.renderCalendarContent();
       } else if (action === 'year') {
+        event.stopPropagation();
         this.currentView = this.currentView === 'years' ? 'calendar' : 'years';
         this.renderCalendarContent();
       } else if (action === 'today') {
+        event.stopPropagation();
         this.selectToday();
       } else if (action === 'clear') {
+        event.stopPropagation();
         this.clear();
       } else if (target.classList.contains('sui-date-picker-day') && !target.hasAttribute('disabled')) {
+        event.stopPropagation();
         const dateStr = target.getAttribute('data-date');
         if (dateStr) {
           this.selectDate(new Date(dateStr));
