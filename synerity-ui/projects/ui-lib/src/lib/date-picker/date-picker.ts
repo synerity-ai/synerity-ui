@@ -149,6 +149,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   private windowResizeListener!: Subscription;
   private windowScrollListener!: Subscription;
   private escapeKeyListener!: Subscription;
+  private calendarClickHandler: ((event: Event) => void) | null = null;
   
   // ControlValueAccessor implementation
   private onValueChange = (value: Date | null) => {};
@@ -592,8 +593,13 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   private bindCalendarEvents(): void {
     if (!this.calendarElement) return;
 
-    // Navigation buttons
-    this.calendarElement.addEventListener('click', (event) => {
+    // Remove existing click handler if it exists
+    if (this.calendarClickHandler) {
+      this.calendarElement.removeEventListener('click', this.calendarClickHandler);
+    }
+
+    // Create new click handler
+    this.calendarClickHandler = (event: Event) => {
       const target = event.target as HTMLElement;
       const action = target.getAttribute('data-action');
       
@@ -626,7 +632,10 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
           this.selectDate(new Date(dateStr));
         }
       }
-    });
+    };
+
+    // Add the new click handler
+    this.calendarElement.addEventListener('click', this.calendarClickHandler);
   }
 
   private ensureGlobalStyles(): void {
@@ -926,6 +935,10 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     }
     if (this.escapeKeyListener) {
       this.escapeKeyListener.unsubscribe();
+    }
+    if (this.calendarClickHandler && this.calendarElement) {
+      this.calendarElement.removeEventListener('click', this.calendarClickHandler);
+      this.calendarClickHandler = null;
     }
   }
 
