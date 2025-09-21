@@ -655,21 +655,21 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       .sui-date-picker-calendar {
         position: fixed !important;
         z-index: 999999 !important;
-        width: 320px;
+        width: 280px;
         background: #ffffff;
         border: 1px solid #d1d5db;
-        border-radius: 12px;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        border-radius: 8px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         overflow: hidden;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        font-size: 14px;
-        line-height: 1.5;
+        font-size: 13px;
+        line-height: 1.4;
         color: #374151;
         isolation: isolate !important;
       }
 
       .sui-date-picker-header {
-        padding: 16px;
+        padding: 12px;
         border-bottom: 1px solid #d1d5db;
         background: #f9fafb;
       }
@@ -719,22 +719,22 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       }
 
       .sui-date-picker-content {
-        padding: 16px;
+        padding: 12px;
       }
 
       .sui-date-picker-weekdays {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        gap: 4px;
-        margin-bottom: 12px;
+        gap: 2px;
+        margin-bottom: 8px;
       }
 
       .sui-date-picker-weekday {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 32px;
-        font-size: 12px;
+        height: 28px;
+        font-size: 11px;
         font-weight: 600;
         color: #6b7280;
         text-transform: uppercase;
@@ -744,21 +744,21 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       .sui-date-picker-days {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        gap: 4px;
-        margin-bottom: 16px;
+        gap: 2px;
+        margin-bottom: 12px;
       }
 
       .sui-date-picker-day {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
         border: none;
         background: none;
-        border-radius: 8px;
+        border-radius: 6px;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 13px;
         color: #374151;
         transition: all 0.15s ease;
         position: relative;
@@ -819,8 +819,8 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       .sui-date-picker-footer {
         display: flex;
         justify-content: space-between;
-        gap: 8px;
-        padding: 16px;
+        gap: 6px;
+        padding: 10px;
         border-top: 1px solid #d1d5db;
         background: #f9fafb;
       }
@@ -828,12 +828,12 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       .sui-date-picker-today,
       .sui-date-picker-clear-footer {
         flex: 1;
-        padding: 8px 16px;
+        padding: 6px 12px;
         border: 1px solid #d1d5db;
         border-radius: 6px;
         background: #ffffff;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 12px;
         color: #374151;
         transition: all 0.15s ease;
       }
