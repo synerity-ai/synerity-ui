@@ -642,9 +642,10 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   }
 
   private ensureGlobalStyles(): void {
-    // Check if styles are already injected
-    if (document.getElementById('sui-date-picker-global-styles')) {
-      return;
+    // Remove existing styles if they exist to ensure updates are applied
+    const existingStyles = document.getElementById('sui-date-picker-global-styles');
+    if (existingStyles) {
+      existingStyles.remove();
     }
 
     // Create style element with all datepicker styles
