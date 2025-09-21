@@ -1,10 +1,9 @@
-<div class="container mx-auto px-4 py-8">
-  <div class="max-w-6xl mx-auto">
-    <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">InputNumber</h1>
-      <p class="text-gray-600">A specialized input component for numeric values with built-in validation, min/max constraints, and step controls.</p>
-    </div>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">InputNumber</h1>
+    <p class="text-lg text-gray-600">A specialized input component for numeric values with built-in validation, min/max constraints, and step controls.</p>
+  </div>
 
     <!-- Tabs -->
     <app-tabs
@@ -54,8 +53,8 @@
               </div>
               
               <!-- Code Block -->
-              <div *ngIf="showBasicNumberCode" class="mt-4 pt-4 border-t border-gray-200">
-                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
+              <div *ngIf="showBasicNumberCode" class="mt-4">
+                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
   [(ngModel)]="number"
   (change)="onNumberChange($event)"
   placeholder="Enter a number"
@@ -102,8 +101,8 @@
               </div>
               
               <!-- Code Block -->
-              <div *ngIf="showMinMaxNumberCode" class="mt-4 pt-4 border-t border-gray-200">
-                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
+              <div *ngIf="showMinMaxNumberCode" class="mt-4">
+                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
   [(ngModel)]="number"
   (change)="onNumberChange($event)"
   [min]="0"
@@ -151,8 +150,8 @@
               </div>
               
               <!-- Code Block -->
-              <div *ngIf="showStepNumberCode" class="mt-4 pt-4 border-t border-gray-200">
-                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
+              <div *ngIf="showStepNumberCode" class="mt-4">
+                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
   [(ngModel)]="number"
   (change)="onNumberChange($event)"
   [step]="5"
@@ -215,8 +214,8 @@
               </div>
               
               <!-- Code Block -->
-              <div *ngIf="showNumberStatesCode" class="mt-4 pt-4 border-t border-gray-200">
-                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Normal State --&gt;
+              <div *ngIf="showNumberStatesCode" class="mt-4">
+                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Normal State --&gt;
 &lt;sui-input-number
   placeholder="Normal number input"
   inputId="normal-number"
@@ -276,8 +275,8 @@
               </div>
               
               <!-- Code Block -->
-              <div *ngIf="showDecimalNumberCode" class="mt-4 pt-4 border-t border-gray-200">
-                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
+              <div *ngIf="showDecimalNumberCode" class="mt-4">
+                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
   [(ngModel)]="decimalNumber"
   (change)="onNumberChange($event)"
   [step]="0.1"
@@ -400,8 +399,8 @@
               </div>
               
               <!-- Code Block -->
-              <div *ngIf="showInteractiveDemoCode" class="mt-4 pt-4 border-t border-gray-200">
-                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
+              <div *ngIf="showInteractiveDemoCode" class="mt-4">
+                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
   [(ngModel)]="interactiveValue"
   (change)="onInteractiveNumberChange($event)"
   [min]="interactiveMin"
@@ -422,209 +421,181 @@
 
       <!-- How to Use Tab -->
       <div *ngIf="activeTab === 'usage'">
-        <div class="space-y-6">
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-            <p class="text-gray-600 mb-4">The InputNumber component provides a specialized input for numeric values with built-in validation and controls.</p>
-            
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>import {{ '{' }} InputNumber {{ '}' }} from '@synerity/ui';
+        <div class="prose max-w-none">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">How to Use InputNumber</h2>
+          
+          <div class="space-y-8">
+            <!-- Installation -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+              <p class="text-gray-700 mb-4">Import the InputNumber component in your Angular module:</p>
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>import &#123; InputNumber &#125; from '@synerity/ui-lib';
 
-{{ '@' }}Component({{ '{' }}
-  template: `
-    &lt;sui-input-number
-      [(ngModel)]="numberValue"
-      (change)="onNumberChange($event)"
-      placeholder="Enter a number"
-      [min]="0"
-      [max]="100"
-      [step]="1"&gt;
-    &lt;/sui-input-number&gt;
-  `
-{{ '}' }})
-export class MyComponent {{ '{' }}
-  numberValue: number | null = null;
-  
-  onNumberChange(value: number | null) {{ '{' }}
-    console.log('Number changed:', value);
-  {{ '}' }}
-{{ '}' }}</code></pre>
+@NgModule(&#123;
+  imports: [
+    InputNumber
+  ]
+&#125;)
+export class YourModule &#123; &#125;</code></pre>
             </div>
-          </div>
 
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Key Features</h3>
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-start">
-                <span class="text-blue-500 mr-2">•</span>
-                <span><strong>Type Safety:</strong> Emits <code>number | null</code> values</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-blue-500 mr-2">•</span>
-                <span><strong>Min/Max Constraints:</strong> Automatically clamps values to specified range</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-blue-500 mr-2">•</span>
-                <span><strong>Step Control:</strong> Supports custom step values for increments</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-blue-500 mr-2">•</span>
-                <span><strong>Built-in Validation:</strong> Handles invalid input gracefully</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-blue-500 mr-2">•</span>
-                <span><strong>Accessibility:</strong> Full keyboard navigation and screen reader support</span>
-              </li>
-            </ul>
-          </div>
+            <!-- Basic Usage -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+              <p class="text-gray-700 mb-4">Use the InputNumber component in your template:</p>
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
+  [(ngModel)]="numberValue"
+  (change)="onNumberChange($event)"
+  placeholder="Enter a number"
+  [min]="0"
+  [max]="100"
+  [step]="1"&gt;
+&lt;/sui-input-number&gt;</code></pre>
+            </div>
 
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Best Practices</h3>
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-start">
-                <span class="text-green-500 mr-2">✓</span>
-                <span>Always provide meaningful <code>min</code> and <code>max</code> values when applicable</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-green-500 mr-2">✓</span>
-                <span>Use appropriate <code>step</code> values for your use case (e.g., 0.1 for decimals)</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-green-500 mr-2">✓</span>
-                <span>Handle <code>null</code> values in your change handlers</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-green-500 mr-2">✓</span>
-                <span>Provide clear placeholder text to guide users</span>
-              </li>
-            </ul>
+            <!-- Form Integration -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Form Integration</h3>
+              <p class="text-gray-700 mb-4">The InputNumber implements ControlValueAccessor and works seamlessly with Angular reactive forms:</p>
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;form [formGroup]="myForm"&gt;
+  &lt;sui-input-number
+    formControlName="quantity"
+    placeholder="Enter quantity"
+    [min]="1"
+    [max]="100"&gt;
+  &lt;/sui-input-number&gt;
+&lt;/form&gt;</code></pre>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Documentation Tab -->
       <div *ngIf="activeTab === 'docs'">
-        <div class="space-y-6">
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">API Reference</h3>
+        <div class="prose max-w-none">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">InputNumber Documentation</h2>
+          
+          <div class="space-y-8">
+            <!-- Component Overview -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Overview</h3>
+              <p class="text-gray-700 mb-4">
+                The InputNumber component provides a specialized input for numeric values with built-in validation, 
+                min/max constraints, and step controls. It ensures type safety by emitting number or null values.
+              </p>
+            </div>
             
-            <div class="space-y-4">
-              <div>
-                <h4 class="text-lg font-medium text-gray-800 mb-2">Inputs</h4>
-                <div class="overflow-x-auto">
-                  <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                      <tr>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                      </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                      <tr>
-                        <td class="px-4 py-2 text-sm font-mono text-gray-900">disabled</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">boolean</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">false</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">Disables the input</td>
-                      </tr>
-                      <tr>
-                        <td class="px-4 py-2 text-sm font-mono text-gray-900">name</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">''</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">Name attribute for the input</td>
-                      </tr>
-                      <tr>
-                        <td class="px-4 py-2 text-sm font-mono text-gray-900">inputId</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">''</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">ID attribute for the input</td>
-                      </tr>
-                      <tr>
-                        <td class="px-4 py-2 text-sm font-mono text-gray-900">min</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">number | null</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">null</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">Minimum allowed value</td>
-                      </tr>
-                      <tr>
-                        <td class="px-4 py-2 text-sm font-mono text-gray-900">max</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">number | null</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">null</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">Maximum allowed value</td>
-                      </tr>
-                      <tr>
-                        <td class="px-4 py-2 text-sm font-mono text-gray-900">step</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">number</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">1</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">Step value for increments</td>
-                      </tr>
-                      <tr>
-                        <td class="px-4 py-2 text-sm font-mono text-gray-900">placeholder</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">string</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">''</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">Placeholder text</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              
-              <div>
-                <h4 class="text-lg font-medium text-gray-800 mb-2">Outputs</h4>
-                <div class="overflow-x-auto">
-                  <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                      <tr>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                      </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                      <tr>
-                        <td class="px-4 py-2 text-sm font-mono text-gray-900">change</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">EventEmitter&lt;number | null&gt;</td>
-                        <td class="px-4 py-2 text-sm text-gray-600">Emitted when the value changes</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+            <!-- Props -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+              <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Disables the input</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">name</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Name attribute for the input</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">inputId</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">ID attribute for the input</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">min</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number | null</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Minimum allowed value</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">max</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number | null</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Maximum allowed value</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">step</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Step value for increments</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Placeholder text</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-          </div>
 
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
-            
-            <div class="space-y-4">
-              <div>
-                <h4 class="text-lg font-medium text-gray-800 mb-2">Basic Number Input</h4>
-                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-                  <pre><code>&lt;sui-input-number
+            <!-- Events -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+              <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">change</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;number | null&gt;</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Emitted when the value changes</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Examples -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
+              <div class="space-y-4">
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-2">Basic Number Input</h4>
+                  <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
   [(ngModel)]="age"
   placeholder="Enter your age"
   [min]="0"
   [max]="120"&gt;
 &lt;/sui-input-number&gt;</code></pre>
                 </div>
-              </div>
-              
-              <div>
-                <h4 class="text-lg font-medium text-gray-800 mb-2">Decimal Input</h4>
-                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-                  <pre><code>&lt;sui-input-number
+                
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-2">Decimal Input</h4>
+                  <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
   [(ngModel)]="price"
   placeholder="Enter price"
   [step]="0.01"
   [min]="0"&gt;
 &lt;/sui-input-number&gt;</code></pre>
                 </div>
-              </div>
-              
-              <div>
-                <h4 class="text-lg font-medium text-gray-800 mb-2">Percentage Input</h4>
-                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-                  <pre><code>&lt;sui-input-number
+                
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-2">Percentage Input</h4>
+                  <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-number
   [(ngModel)]="percentage"
   placeholder="Enter percentage"
   [min]="0"
@@ -637,6 +608,5 @@ export class MyComponent {{ '{' }}
           </div>
         </div>
       </div>
-    </app-tabs>
-  </div>
+  </app-tabs>
 </div>
