@@ -195,16 +195,14 @@
                   [showFooter]="true">
                   <p class="text-gray-600">Card with multiple action buttons in the footer.</p>
                   
-                  <ng-template #footer>
-                    <div class="flex gap-2">
-                      <button class="flex-1 px-3 py-2 bg-gray-100 text-gray-700 text-sm rounded hover:bg-gray-200">
-                        Cancel
-                      </button>
-                      <button class="flex-1 px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
-                        Save
-                      </button>
-                    </div>
-                  </ng-template>
+                  <div slot="footer" class="flex gap-2">
+                    <button class="flex-1 px-3 py-2 bg-gray-100 text-gray-700 text-sm rounded hover:bg-gray-200">
+                      Cancel
+                    </button>
+                    <button class="flex-1 px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
+                      Save
+                    </button>
+                  </div>
                 </sui-card>
               </div>
             </div>
@@ -227,16 +225,14 @@
   [showFooter]="true"&gt;
   &lt;p class="text-gray-600"&gt;Card with multiple action buttons.&lt;/p&gt;
   
-  &lt;ng-template #footer&gt;
-    &lt;div class="flex gap-2"&gt;
-      &lt;button class="flex-1 px-3 py-2 bg-gray-100 text-gray-700 text-sm rounded"&gt;
-        Cancel
-      &lt;/button&gt;
-      &lt;button class="flex-1 px-3 py-2 bg-blue-500 text-white text-sm rounded"&gt;
-        Save
-      &lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/ng-template&gt;
+  &lt;div slot="footer" class="flex gap-2"&gt;
+    &lt;button class="flex-1 px-3 py-2 bg-gray-100 text-gray-700 text-sm rounded"&gt;
+      Cancel
+    &lt;/button&gt;
+    &lt;button class="flex-1 px-3 py-2 bg-blue-500 text-white text-sm rounded"&gt;
+      Save
+    &lt;/button&gt;
+  &lt;/div&gt;
 &lt;/sui-card&gt;</code></pre>
             </div>
           </div>
