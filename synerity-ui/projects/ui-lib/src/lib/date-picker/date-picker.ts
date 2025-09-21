@@ -244,8 +244,12 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     this.onChange.emit(this.value);
     this.onSelect.emit(this.value);
     
+    // Close calendar if not showing time
     if (!this.showTime) {
-      this.close();
+      // Use setTimeout to ensure the click event is fully processed
+      setTimeout(() => {
+        this.close();
+      }, 0);
     }
   }
 
