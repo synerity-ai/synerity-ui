@@ -1,0 +1,339 @@
+// ToggleButton Component Styles
+.sui-toggle-button-group {
+  display: inline-flex;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    border-color: #cbd5e1;
+  }
+  
+  &:focus-within {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+}
+
+.sui-toggle-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  min-height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  white-space: nowrap;
+  
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.8);
+    color: #475569;
+    transform: translateY(-1px);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    transition-duration: 0.1s;
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+  
+  &.sui-toggle-button-selected {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    transform: translateY(-1px);
+    
+    &:hover {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+    }
+    
+    &:active {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    }
+  }
+  
+  &.sui-toggle-button-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.sui-toggle-button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+  
+  .sui-toggle-button-selected & {
+    filter: brightness(1.2);
+  }
+}
+
+.sui-toggle-button-label {
+  display: inline-flex;
+  align-items: center;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+// Size variants
+.sui-toggle-button-group.sui-toggle-button-sm {
+  padding: 2px;
+  gap: 2px;
+  border-radius: 8px;
+  
+  .sui-toggle-button {
+    padding: 6px 12px;
+    min-height: 32px;
+    font-size: 12px;
+    border-radius: 6px;
+    gap: 6px;
+  }
+  
+  .sui-toggle-button-icon {
+    font-size: 14px;
+  }
+}
+
+.sui-toggle-button-group.sui-toggle-button-lg {
+  padding: 6px;
+  gap: 6px;
+  border-radius: 16px;
+  
+  .sui-toggle-button {
+    padding: 14px 20px;
+    min-height: 48px;
+    font-size: 16px;
+    border-radius: 10px;
+    gap: 10px;
+  }
+  
+  .sui-toggle-button-icon {
+    font-size: 18px;
+  }
+}
+
+// Color variants
+.sui-toggle-button-group.sui-toggle-button-success {
+  .sui-toggle-button-selected {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    
+    &:hover {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+    }
+  }
+}
+
+.sui-toggle-button-group.sui-toggle-button-warning {
+  .sui-toggle-button-selected {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    
+    &:hover {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+    }
+  }
+}
+
+.sui-toggle-button-group.sui-toggle-button-danger {
+  .sui-toggle-button-selected {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    
+    &:hover {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+    }
+  }
+}
+
+.sui-toggle-button-group.sui-toggle-button-purple {
+  .sui-toggle-button-selected {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    
+    &:hover {
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+    }
+  }
+}
+
+// Style variants
+.sui-toggle-button-group.sui-toggle-button-outline {
+  background: transparent;
+  border: 2px solid #e2e8f0;
+  box-shadow: none;
+  
+  .sui-toggle-button {
+    background: transparent;
+    border: 1px solid transparent;
+    
+    &:hover:not(:disabled) {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    
+    &.sui-toggle-button-selected {
+      background: white;
+      border-color: #3b82f6;
+      color: #3b82f6;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      
+      &:hover {
+        background: #f0f9ff;
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+.sui-toggle-button-group.sui-toggle-button-ghost {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  gap: 8px;
+  
+  .sui-toggle-button {
+    background: transparent;
+    
+    &:hover:not(:disabled) {
+      background: #f1f5f9;
+      transform: none;
+    }
+    
+    &.sui-toggle-button-selected {
+      background: #e0f2fe;
+      color: #0369a1;
+      box-shadow: none;
+      transform: none;
+      
+      &:hover {
+        background: #bae6fd;
+        transform: none;
+      }
+    }
+  }
+}
+
+// Shape variants
+.sui-toggle-button-group.sui-toggle-button-rounded {
+  border-radius: 50px;
+  
+  .sui-toggle-button {
+    border-radius: 50px;
+  }
+}
+
+.sui-toggle-button-group.sui-toggle-button-pill {
+  border-radius: 9999px;
+  
+  .sui-toggle-button {
+    border-radius: 9999px;
+  }
+}
+
+// Responsive design
+@media (max-width: 640px) {
+  .sui-toggle-button-group {
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 2px;
+    
+    .sui-toggle-button {
+      flex: 1;
+      min-width: 0;
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-toggle-button-group {
+    background: #1e293b;
+    border-color: #334155;
+    
+    &:hover {
+      border-color: #475569;
+    }
+    
+    &:focus-within {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+  }
+  
+  .sui-toggle-button {
+    color: #cbd5e1;
+    
+    &:hover:not(:disabled) {
+      background: rgba(51, 65, 85, 0.5);
+      color: #e2e8f0;
+    }
+    
+    &.sui-toggle-button-selected {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+    }
+  }
+  
+  .sui-toggle-button-group.sui-toggle-button-outline {
+    border-color: #334155;
+    
+    .sui-toggle-button {
+      &:hover:not(:disabled) {
+        background: #334155;
+        border-color: #475569;
+      }
+      
+      &.sui-toggle-button-selected {
+        background: #1e293b;
+        border-color: #3b82f6;
+        color: #3b82f6;
+      }
+    }
+  }
+  
+  .sui-toggle-button-group.sui-toggle-button-ghost {
+    .sui-toggle-button {
+      &:hover:not(:disabled) {
+        background: #334155;
+      }
+      
+      &.sui-toggle-button-selected {
+        background: #0f172a;
+        color: #60a5fa;
+      }
+    }
+  }
+}

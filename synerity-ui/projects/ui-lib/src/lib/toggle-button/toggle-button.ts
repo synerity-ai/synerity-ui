@@ -20,6 +20,10 @@ export class ToggleButton implements ControlValueAccessor {
   @Input() disabled = false;
   @Input() multiple = false;
   @Input() options: Array<{ label: string; value: unknown; icon?: string }> = [];
+  @Input() size: 'sm' | 'md' | 'lg' = 'md';
+  @Input() variant: 'default' | 'success' | 'warning' | 'danger' | 'purple' = 'default';
+  @Input() style: 'default' | 'outline' | 'ghost' = 'default';
+  @Input() shape: 'default' | 'rounded' | 'pill' = 'default';
   @Output() change = new EventEmitter<unknown | unknown[]>();
 
   value: unknown | unknown[] = null;
@@ -70,5 +74,31 @@ export class ToggleButton implements ControlValueAccessor {
       return Array.isArray(this.value) && this.value.includes(option.value);
     }
     return this.value === option.value;
+  }
+
+  getGroupClasses(): string {
+    const classes = ['sui-toggle-button-group'];
+    
+    // Size classes
+    if (this.size !== 'md') {
+      classes.push(`sui-toggle-button-${this.size}`);
+    }
+    
+    // Variant classes (only for default style)
+    if (this.style === 'default' && this.variant !== 'default') {
+      classes.push(`sui-toggle-button-${this.variant}`);
+    }
+    
+    // Style classes
+    if (this.style !== 'default') {
+      classes.push(`sui-toggle-button-${this.style}`);
+    }
+    
+    // Shape classes
+    if (this.shape !== 'default') {
+      classes.push(`sui-toggle-button-${this.shape}`);
+    }
+    
+    return classes.join(' ');
   }
 }

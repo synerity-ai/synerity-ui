@@ -62,6 +62,10 @@ export class TogglebuttonComponent {
   showIconCode = false;
   showStatusCode = false;
   showViewModeCode = false;
+  showVariantsCode = false;
+  showStylesCode = false;
+  showSizesCode = false;
+  showShapesCode = false;
 
   onTabChange(tab: string) {
     this.activeTab = tab;
@@ -83,6 +87,18 @@ export class TogglebuttonComponent {
         break;
       case 'viewmode':
         this.showViewModeCode = !this.showViewModeCode;
+        break;
+      case 'variants':
+        this.showVariantsCode = !this.showVariantsCode;
+        break;
+      case 'styles':
+        this.showStylesCode = !this.showStylesCode;
+        break;
+      case 'sizes':
+        this.showSizesCode = !this.showSizesCode;
+        break;
+      case 'shapes':
+        this.showShapesCode = !this.showShapesCode;
         break;
     }
   }

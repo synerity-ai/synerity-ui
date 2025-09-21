@@ -25,7 +25,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Basic InputMask</h3>
             <button 
               (click)="toggleCode('basicInputMask')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showBasicInputMaskCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -49,8 +49,8 @@
             </div>
             
             <!-- Code Block -->
-            <div *ngIf="showBasicInputMaskCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
+            <div *ngIf="showBasicInputMaskCode" class="mt-4">
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
   [(ngModel)]="basicInputMask"
   (change)="onInputMaskChange($event)"
   mask="999-999-9999"
@@ -67,7 +67,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Phone InputMask</h3>
             <button 
               (click)="toggleCode('phoneInputMask')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showPhoneInputMaskCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -91,8 +91,8 @@
             </div>
             
             <!-- Code Block -->
-            <div *ngIf="showPhoneInputMaskCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
+            <div *ngIf="showPhoneInputMaskCode" class="mt-4">
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
   [(ngModel)]="phoneInputMask"
   (change)="onInputMaskChange($event)"
   mask="(999) 999-9999"
@@ -109,7 +109,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Date InputMask</h3>
             <button 
               (click)="toggleCode('dateInputMask')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showDateInputMaskCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -133,8 +133,8 @@
             </div>
             
             <!-- Code Block -->
-            <div *ngIf="showDateInputMaskCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
+            <div *ngIf="showDateInputMaskCode" class="mt-4">
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
   [(ngModel)]="dateInputMask"
   (change)="onInputMaskChange($event)"
   mask="99/99/9999"
@@ -151,7 +151,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Credit Card InputMask</h3>
             <button 
               (click)="toggleCode('creditCardInputMask')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showCreditCardInputMaskCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -175,8 +175,8 @@
             </div>
             
             <!-- Code Block -->
-            <div *ngIf="showCreditCardInputMaskCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
+            <div *ngIf="showCreditCardInputMaskCode" class="mt-4">
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
   [(ngModel)]="creditCardInputMask"
   (change)="onInputMaskChange($event)"
   mask="9999-9999-9999-9999"
@@ -193,7 +193,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Currency InputMask</h3>
             <button 
               (click)="toggleCode('currencyInputMask')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showCurrencyInputMaskCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -217,8 +217,8 @@
             </div>
             
             <!-- Code Block -->
-            <div *ngIf="showCurrencyInputMaskCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
+            <div *ngIf="showCurrencyInputMaskCode" class="mt-4">
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
   [(ngModel)]="currencyInputMask"
   (change)="onInputMaskChange($event)"
   mask="999,999.99"
@@ -235,7 +235,7 @@
             <h3 class="text-xl font-semibold text-gray-900">Interactive Demo</h3>
             <button 
               (click)="toggleCode('interactiveDemo')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-900 text-green-400 font-mono rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showInteractiveDemoCode ? 'Hide' : 'Show' }} Code</span>
             </button>
@@ -342,8 +342,8 @@
             </div>
             
             <!-- Code Block -->
-            <div *ngIf="showInteractiveDemoCode" class="mt-4 pt-4 border-t border-gray-200">
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
+            <div *ngIf="showInteractiveDemoCode" class="mt-4">
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
   [(ngModel)]="interactiveValue"
   (change)="onInteractiveInputMaskChange($event)"
   [mask]="interactiveMask"
@@ -377,36 +377,50 @@
     <!-- How to Use Tab -->
     <div *ngIf="activeTab === 'usage'">
       <div class="space-y-6">
-        <div class="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">How to Use InputMask</h3>
-          
-          <div class="space-y-4">
-            <div>
-              <h4 class="text-lg font-medium text-gray-800 mb-2">1. Import the Component</h4>
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>import &#123; SuiInputMask &#125; from 'ui-lib';</code></pre>
-            </div>
-            
-            <div>
-              <h4 class="text-lg font-medium text-gray-800 mb-2">2. Add to Component Imports</h4>
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>@Component(&#123;
-  imports: [SuiInputMask, FormsModule],
-  // ...
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <p class="text-gray-700 mb-4">Import the InputMask component in your Angular module:</p>
+          <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>import &#123; InputMask &#125; from '@synerity/ui-lib';
+
+@NgModule(&#123;
+  imports: [
+    InputMask
+  ]
 &#125;)</code></pre>
-            </div>
-            
-            <div>
-              <h4 class="text-lg font-medium text-gray-800 mb-2">3. Use in Template</h4>
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <p class="text-gray-700 mb-4">Use the InputMask component in your template:</p>
+          <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
   [(ngModel)]="maskedValue"
   mask="999-999-9999"
   placeholder="Enter phone number"
   (change)="onValueChange($event)"&gt;
 &lt;/sui-input-mask&gt;</code></pre>
-            </div>
-            
-            <div>
-              <h4 class="text-lg font-medium text-gray-800 mb-2">4. Common Mask Patterns</h4>
-              <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Phone Number --&gt;
+        </div>
+
+        <!-- Form Integration -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Form Integration</h3>
+          <p class="text-gray-700 mb-4">The InputMask implements ControlValueAccessor and works seamlessly with Angular reactive forms:</p>
+          <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;form [formGroup]="myForm"&gt;
+  &lt;sui-input-mask
+    formControlName="phone"
+    mask="(999) 999-9999"
+    placeholder="Enter phone number"&gt;
+  &lt;/sui-input-mask&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+
+        <!-- Common Patterns -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Common Mask Patterns</h3>
+          <p class="text-gray-700 mb-4">Here are some commonly used mask patterns:</p>
+          <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Phone Number --&gt;
 &lt;sui-input-mask mask="(999) 999-9999"&gt;&lt;/sui-input-mask&gt;
 
 &lt;!-- Date --&gt;
@@ -417,117 +431,169 @@
 
 &lt;!-- Currency --&gt;
 &lt;sui-input-mask mask="999,999.99"&gt;&lt;/sui-input-mask&gt;</code></pre>
-            </div>
-          </div>
         </div>
+
       </div>
     </div>
 
     <!-- Documentation Tab -->
     <div *ngIf="activeTab === 'docs'">
       <div class="space-y-6">
-        <div class="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">InputMask API Reference</h3>
-          
+        
+        <!-- Component Overview -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Overview</h3>
+          <p class="text-gray-700 mb-4">The InputMask component provides input formatting and validation using predefined patterns. It's perfect for phone numbers, dates, credit cards, and other structured data entry. The component automatically formats user input according to the specified mask pattern and provides real-time validation. It implements ControlValueAccessor for seamless integration with Angular forms.</p>
+        </div>
+
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
           <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
+            <table class="min-w-full border border-gray-200">
               <thead class="bg-gray-50">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  <th class="px-6 py-4 text-left text-sm font-medium text-gray-900 border-b">Property</th>
+                  <th class="px-6 py-4 text-left text-sm font-medium text-gray-900 border-b">Type</th>
+                  <th class="px-6 py-4 text-left text-sm font-medium text-gray-900 border-b">Default</th>
+                  <th class="px-6 py-4 text-left text-sm font-medium text-gray-900 border-b">Description</th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="divide-y divide-gray-200">
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">mask</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Mask pattern (9=digit, A=letter, *=alphanumeric)</td>
+                  <td class="px-6 py-4 text-sm text-gray-900">ngModel</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">string</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">-</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">Two-way binding for the masked value</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Placeholder text</td>
+                  <td class="px-6 py-4 text-sm text-gray-900">mask</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">string</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">-</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">Mask pattern (9=digit, A=letter, *=alphanumeric)</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Disable the component</td>
+                  <td class="px-6 py-4 text-sm text-gray-900">placeholder</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">string</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">-</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">Placeholder text for the input</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">inputId</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">ID attribute for the input</td>
+                  <td class="px-6 py-4 text-sm text-gray-900">disabled</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">boolean</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">false</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">Disables the input mask interaction</td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">name</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                  <td class="px-6 py-4 text-sm text-gray-500">Name attribute for the input</td>
+                  <td class="px-6 py-4 text-sm text-gray-900">inputId</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">string</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">-</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">Unique identifier for the input element</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 text-sm text-gray-900">name</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">string</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">-</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">Name attribute for the input element</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          
-          <div class="mt-6">
-            <h4 class="text-lg font-medium text-gray-800 mb-2">Events</h4>
-            <div class="overflow-x-auto">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">change</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;string&gt;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Fired when the value changes</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full border border-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-4 text-left text-sm font-medium text-gray-900 border-b">Event</th>
+                  <th class="px-6 py-4 text-left text-sm font-medium text-gray-900 border-b">Type</th>
+                  <th class="px-6 py-4 text-left text-sm font-medium text-gray-900 border-b">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 text-sm text-gray-900">change</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">string</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">Fired when the masked value changes</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+        </div>
+
+        <!-- Examples -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
           
-          <div class="mt-6">
-            <h4 class="text-lg font-medium text-gray-800 mb-2">Mask Characters</h4>
-            <div class="overflow-x-auto">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Character</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Example</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">9</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Digit (0-9)</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">999-999-9999</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">A</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Letter (a-z, A-Z)</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">AAA-999</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">*</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Alphanumeric</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">***-***</td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="space-y-6">
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Phone Number Mask</h4>
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
+  [(ngModel)]="phoneValue"
+  mask="(999) 999-9999"
+  placeholder="Enter phone number"
+  (change)="onPhoneChange($event)"&gt;
+&lt;/sui-input-mask&gt;</code></pre>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Date Mask</h4>
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
+  [(ngModel)]="dateValue"
+  mask="99/99/9999"
+  placeholder="MM/DD/YYYY"
+  (change)="onDateChange($event)"&gt;
+&lt;/sui-input-mask&gt;</code></pre>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-2">Credit Card Mask</h4>
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-input-mask
+  [(ngModel)]="cardValue"
+  mask="9999-9999-9999-9999"
+  placeholder="Enter card number"
+  (change)="onCardChange($event)"&gt;
+&lt;/sui-input-mask&gt;</code></pre>
             </div>
           </div>
         </div>
+
+        <!-- Mask Characters -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Mask Characters</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full border border-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-4 text-left text-sm font-medium text-gray-900 border-b">Character</th>
+                  <th class="px-6 py-4 text-left text-sm font-medium text-gray-900 border-b">Description</th>
+                  <th class="px-6 py-4 text-left text-sm font-medium text-gray-900 border-b">Example</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 text-sm text-gray-900">9</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">Digit (0-9)</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">999-999-9999</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 text-sm text-gray-900">A</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">Letter (a-z, A-Z)</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">AAA-999</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 text-sm text-gray-900">*</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">Alphanumeric</td>
+                  <td class="px-6 py-4 text-sm text-gray-600">***-***</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
   </app-tabs>
