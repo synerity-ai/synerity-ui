@@ -17,6 +17,7 @@ export class Datepicker {
   basicDate: Date | null = null;
   dropdownDate: Date | null = null;
   inlineDate: Date | null = null;
+  rangeDate: { start: Date | null; end: Date | null } | null = null;
   normalSizeDate: Date | null = null;
   compactSizeDate: Date | null = null;
   disabledDate: Date | null = null;
@@ -25,7 +26,8 @@ export class Datepicker {
   
   // Interactive demo data
   demoValue: Date | null = null;
-  demoVariant: 'dropdown' | 'inline' = 'dropdown';
+  demoRangeValue: { start: Date | null; end: Date | null } | null = null;
+  demoVariant: 'dropdown' | 'inline' | 'range' = 'dropdown';
   demoSize: 'normal' | 'compact' = 'normal';
   demoPlaceholder = 'Select a date...';
   demoDisabled = false;
@@ -63,13 +65,22 @@ export class Datepicker {
   }
   
   // Date picker demo methods
-  onDateChange(value: Date | null) {
+  onDateChange(value: Date | null | { start: Date | null; end: Date | null } | null) {
     console.log('Date changed:', value);
   }
   
-  onDemoDateChange(value: Date | null) {
-    this.demoValue = value;
+  onDemoDateChange(value: Date | null | { start: Date | null; end: Date | null } | null) {
+    if (this.demoVariant === 'range') {
+      this.demoRangeValue = value as { start: Date | null; end: Date | null } | null;
+    } else {
+      this.demoValue = value as Date | null;
+    }
     console.log('Demo date changed:', value);
+  }
+
+  onRangeChange(value: Date | null | { start: Date | null; end: Date | null } | null) {
+    this.rangeDate = value as { start: Date | null; end: Date | null } | null;
+    console.log('Range changed:', value);
   }
   
   // Utility methods

@@ -97,6 +97,22 @@
                     size="normal">
                   </sui-date-picker>
                 </div>
+                
+                <div class="md:col-span-2">
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Range Variant</h4>
+                  <sui-date-picker
+                    [rangeValue]="rangeDate"
+                    (onChange)="onRangeChange($event)"
+                    placeholder="Select date range"
+                    variant="range"
+                    size="normal">
+                  </sui-date-picker>
+                  <div *ngIf="rangeDate?.start || rangeDate?.end" class="mt-2 text-sm text-gray-600">
+                    <span *ngIf="rangeDate?.start">Start: {{ formatDate(rangeDate!.start) }}</span>
+                    <span *ngIf="rangeDate?.start && rangeDate?.end"> • </span>
+                    <span *ngIf="rangeDate?.end">End: {{ formatDate(rangeDate!.end) }}</span>
+                  </div>
+                </div>
               </div>
               
               <div *ngIf="showVariantsCode" class="mt-4 pt-4 border-t border-gray-200">
@@ -113,6 +129,15 @@
   [(ngModel)]="inlineDate"
   placeholder="Inline date picker"
   variant="inline"
+  size="normal"&gt;
+&lt;/sui-date-picker&gt;
+
+&lt;!-- Range Variant --&gt;
+&lt;sui-date-picker
+  [rangeValue]="rangeDate"
+  (onChange)="onRangeChange($event)"
+  placeholder="Select date range"
+  variant="range"
   size="normal"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
               </div>
@@ -271,6 +296,7 @@
                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <option value="dropdown">Dropdown</option>
                         <option value="inline">Inline</option>
+                        <option value="range">Range</option>
                       </select>
                     </div>
                     
@@ -319,7 +345,8 @@
                   
                   <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
                     <sui-date-picker
-                      [(ngModel)]="demoValue"
+                      [ngModel]="demoVariant === 'range' ? null : demoValue"
+                      [rangeValue]="demoVariant === 'range' ? demoRangeValue : null"
                       [variant]="demoVariant"
                       [size]="demoSize"
                       [placeholder]="demoPlaceholder"
@@ -332,7 +359,17 @@
                   <div class="p-3 bg-blue-50 rounded-md border border-blue-200">
                     <h5 class="text-sm font-medium text-blue-900 mb-2">Current Value</h5>
                     <p class="text-sm text-blue-800">
-                      <strong>Selected Date:</strong> {{ demoValue ? formatDate(demoValue) : 'No date selected' }}
+                      <span *ngIf="demoVariant === 'range'">
+                        <strong>Selected Range:</strong> 
+                        <span *ngIf="demoRangeValue?.start || demoRangeValue?.end">
+                          {{ demoRangeValue?.start ? formatDate(demoRangeValue!.start) : 'No start date' }} - 
+                          {{ demoRangeValue?.end ? formatDate(demoRangeValue!.end) : 'No end date' }}
+                        </span>
+                        <span *ngIf="!demoRangeValue?.start && !demoRangeValue?.end">No range selected</span>
+                      </span>
+                      <span *ngIf="demoVariant !== 'range'">
+                        <strong>Selected Date:</strong> {{ demoValue ? formatDate(demoValue) : 'No date selected' }}
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -341,7 +378,8 @@
               <!-- Code Block -->
               <div *ngIf="showInteractiveDemoCode" class="mt-6 pt-6 border-t border-gray-200">
                 <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
-  [(ngModel)]="demoValue"
+  [ngModel]="{{ demoVariant === 'range' ? 'null' : 'demoValue' }}"
+  [rangeValue]="{{ demoVariant === 'range' ? 'demoRangeValue' : 'null' }}"
   [variant]="{{ demoVariant }}"
   [size]="{{ demoSize }}"
   [placeholder]="{{ demoPlaceholder }}"
@@ -440,7 +478,13 @@ export class YourModule {{ '{' }} {{ '}' }}</code></pre>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Date | null</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
-                      <td class="px-6 py-4 text-sm text-gray-500">Selected date value</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Selected date value (for single date selection)</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">rangeValue</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Object | null</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Selected date range value (for range selection)</td>
                     </tr>
                     <tr>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
@@ -452,7 +496,7 @@ export class YourModule {{ '{' }} {{ '}' }}</code></pre>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'dropdown'</td>
-                      <td class="px-6 py-4 text-sm text-gray-500">Visual variant (dropdown, inline)</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Visual variant (dropdown, inline, range)</td>
                     </tr>
                     <tr>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
@@ -542,6 +586,16 @@ export class YourModule {{ '{' }} {{ '}' }}</code></pre>
   [(ngModel)]="date"
   [disabled]="true"
   placeholder="Disabled date picker"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+                </div>
+                
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-2">Range Date Picker</h4>
+                  <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
+  [rangeValue]="rangeValue"
+  (onChange)="onRangeChange($event)"
+  variant="range"
+  placeholder="Select date range"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
                 </div>
               </div>

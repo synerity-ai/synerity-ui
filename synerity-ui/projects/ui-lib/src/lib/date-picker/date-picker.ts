@@ -84,11 +84,12 @@ export interface DatePickerConfig {
 export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnChanges {
   // Core Inputs
   @Input() value: Date | null = null;
+  @Input() rangeValue: { start: Date | null; end: Date | null } | null = null;
   @Input() placeholder = 'Select date';
   @Input() disabled = false;
   @Input() readonly = false;
   @Input() required = false;
-  @Input() variant: 'dropdown' | 'inline' = 'dropdown';
+  @Input() variant: 'dropdown' | 'inline' | 'range' = 'dropdown';
   @Input() size: 'normal' | 'compact' = 'normal';
   @Input() theme: 'light' | 'dark' = 'light';
   
@@ -115,8 +116,8 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
   @Input() styleClass = '';
   
   // Events
-  @Output() onChange = new EventEmitter<Date | null>();
-  @Output() onSelect = new EventEmitter<Date | null>();
+  @Output() onChange = new EventEmitter<Date | null | { start: Date | null; end: Date | null } | null>();
+  @Output() onSelect = new EventEmitter<Date | null | { start: Date | null; end: Date | null } | null>();
   @Output() onOpen = new EventEmitter<void>();
   @Output() onClose = new EventEmitter<void>();
   @Output() onFocus = new EventEmitter<void>();
@@ -133,6 +134,11 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
   currentView: 'calendar' | 'months' | 'years' = 'calendar';
   currentMonth = new Date().getMonth();
   currentYear = new Date().getFullYear();
+  
+  // Range selection state
+  rangeStart: Date | null = null;
+  rangeEnd: Date | null = null;
+  rangeHoverDate: Date | null = null;
   selectedTime = { hours: 0, minutes: 0 };
   private calendarZIndex = 999999;
   private calendarElement: HTMLElement | null = null;
@@ -156,7 +162,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
   private isSelectingDate = false;
   
   // ControlValueAccessor implementation
-  private onValueChange = (value: Date | null) => {};
+  private onValueChange = (value: any) => {};
   private onTouched = () => {};
 
   constructor(private cdr: ChangeDetectorRef) {}
@@ -248,6 +254,13 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
     
     let selectedDate = new Date(date);
     
+    // Handle range selection
+    if (this.variant === 'range') {
+      this.handleRangeSelection(selectedDate);
+      return;
+    }
+    
+    // Handle single date selection
     // Preserve time if showTime is enabled and we have an existing value
     if (this.showTime && this.value) {
       selectedDate.setHours(this.value.getHours(), this.value.getMinutes());
@@ -276,14 +289,59 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
     this.selectDate(new Date(), undefined);
   }
 
+  handleRangeSelection(date: Date): void {
+    if (!this.rangeStart || (this.rangeStart && this.rangeEnd)) {
+      // Start new range or reset existing range
+      this.rangeStart = new Date(date);
+      this.rangeEnd = null;
+    } else {
+      // Complete the range
+      if (date < this.rangeStart) {
+        // Selected date is before start date, swap them
+        this.rangeEnd = new Date(this.rangeStart);
+        this.rangeStart = new Date(date);
+      } else {
+        this.rangeEnd = new Date(date);
+      }
+      
+      // Emit range value and close calendar
+      const rangeValue = { start: this.rangeStart, end: this.rangeEnd };
+      this.rangeValue = rangeValue;
+      this.onValueChange(rangeValue);
+      this.onTouched();
+      this.onChange.emit(rangeValue);
+      this.onSelect.emit(rangeValue);
+      
+      // Close calendar after range is complete
+      setTimeout(() => {
+        this.close();
+      }, 100);
+    }
+    
+    // Reset the flag
+    setTimeout(() => {
+      this.isSelectingDate = false;
+    }, 100);
+  }
+
   clear(event?: Event): void {
     if (event) {
       event.stopPropagation();
     }
-    this.value = null;
-    this.onValueChange(this.value);
+    
+    if (this.variant === 'range') {
+      this.rangeStart = null;
+      this.rangeEnd = null;
+      this.rangeValue = null;
+      this.onValueChange(this.rangeValue);
+      this.onChange.emit(this.rangeValue);
+    } else {
+      this.value = null;
+      this.onValueChange(this.value);
+      this.onChange.emit(this.value);
+    }
+    
     this.onTouched();
-    this.onChange.emit(this.value);
     this.close();
   }
 
@@ -332,7 +390,6 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
     startDate.setDate(startDate.getDate() - dayOffset);
 
     const today = new Date();
-    const selectedDate = this.value;
 
     // Generate 42 days (6 weeks) to ensure full calendar view
     for (let i = 0; i < 42; i++) {
@@ -341,9 +398,32 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
       
       const isCurrentMonth = date.getMonth() === this.currentMonth;
       const isToday = this.isSameDay(date, today);
-      const isSelected = selectedDate && this.isSameDay(date, selectedDate);
       const isDisabled = this.isDateDisabled(date);
       const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+
+      let isSelected = false;
+      let isRangeStart = false;
+      let isRangeEnd = false;
+      let isInRange = false;
+
+      if (this.variant === 'range') {
+        // Range selection logic
+        if (this.rangeStart && this.isSameDay(date, this.rangeStart)) {
+          isSelected = true;
+          isRangeStart = true;
+        }
+        if (this.rangeEnd && this.isSameDay(date, this.rangeEnd)) {
+          isSelected = true;
+          isRangeEnd = true;
+        }
+        if (this.rangeStart && this.rangeEnd && date > this.rangeStart && date < this.rangeEnd) {
+          isInRange = true;
+        }
+      } else {
+        // Single date selection
+        const selectedDate = this.value;
+        isSelected = !!(selectedDate && this.isSameDay(date, selectedDate));
+      }
 
       days.push({
         date: date,
@@ -353,6 +433,9 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
         isSelected,
         isDisabled,
         isWeekend,
+        isRangeStart,
+        isRangeEnd,
+        isInRange,
         weekNumber: this.getWeekNumber(date)
       });
     }
@@ -396,6 +479,12 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
   }
 
   getDisplayValue(): string {
+    if (this.variant === 'range') {
+      if (!this.rangeStart) return '';
+      if (!this.rangeEnd) return `${this.rangeStart.toLocaleDateString()} - `;
+      return `${this.rangeStart.toLocaleDateString()} - ${this.rangeEnd.toLocaleDateString()}`;
+    }
+    
     if (!this.value) return '';
     
     if (this.showTime) {
@@ -621,7 +710,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
           </div>
           <div class="sui-date-picker-days">
             ${this.getCalendarDays().map(day => `
-              <button type="button" class="sui-date-picker-day ${day.isCurrentMonth ? '' : 'sui-date-picker-day-other-month'} ${day.isToday ? 'sui-date-picker-day-today' : ''} ${day.isSelected ? 'sui-date-picker-day-selected' : ''} ${day.isDisabled ? 'sui-date-picker-day-disabled' : ''} ${day.isWeekend ? 'sui-date-picker-day-weekend' : ''}" ${day.isDisabled ? 'disabled' : ''} data-date="${day.date.toISOString()}">
+              <button type="button" class="sui-date-picker-day ${day.isCurrentMonth ? '' : 'sui-date-picker-day-other-month'} ${day.isToday ? 'sui-date-picker-day-today' : ''} ${day.isSelected ? 'sui-date-picker-day-selected' : ''} ${day.isDisabled ? 'sui-date-picker-day-disabled' : ''} ${day.isWeekend ? 'sui-date-picker-day-weekend' : ''} ${day.isRangeStart ? 'sui-date-picker-day-range-start' : ''} ${day.isRangeEnd ? 'sui-date-picker-day-range-end' : ''} ${day.isInRange ? 'sui-date-picker-day-in-range' : ''}" ${day.isDisabled ? 'disabled' : ''} data-date="${day.date.toISOString()}">
                 ${day.day}
               </button>
             `).join('')}
@@ -944,6 +1033,32 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
         color: #6b7280;
       }
 
+      /* Range Selection Styles */
+      .sui-date-picker-day-in-range {
+        background-color: #dbeafe;
+        color: #1e40af;
+      }
+
+      .sui-date-picker-day-range-start,
+      .sui-date-picker-day-range-end {
+        background-color: #3b82f6;
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      .sui-date-picker-day-range-start::after,
+      .sui-date-picker-day-range-end::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid #1e40af;
+        border-radius: 6px;
+        pointer-events: none;
+      }
+
       .sui-date-picker-footer {
         display: flex;
         justify-content: space-between;
@@ -1173,13 +1288,25 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
   }
 
   // ControlValueAccessor Methods
-  writeValue(value: Date | null): void {
-    this.value = value;
+  writeValue(value: Date | null | { start: Date | null; end: Date | null } | null): void {
+    if (this.variant === 'range') {
+      if (value && typeof value === 'object' && 'start' in value && 'end' in value) {
+        this.rangeValue = value as { start: Date | null; end: Date | null };
+        this.rangeStart = this.rangeValue.start;
+        this.rangeEnd = this.rangeValue.end;
+      } else {
+        this.rangeValue = null;
+        this.rangeStart = null;
+        this.rangeEnd = null;
+      }
+    } else {
+      this.value = value as Date | null;
+    }
     this.updateCurrentDate();
     this.cdr.detectChanges();
   }
 
-  registerOnChange(fn: (value: Date | null) => void): void {
+  registerOnChange(fn: (value: any) => void): void {
     this.onValueChange = fn;
   }
 
