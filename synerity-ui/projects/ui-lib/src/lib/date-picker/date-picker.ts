@@ -151,6 +151,9 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   private escapeKeyListener!: Subscription;
   private calendarClickHandler: ((event: Event) => void) | null = null;
   
+  // Flag to prevent double-click issues
+  private isSelectingDate = false;
+  
   // ControlValueAccessor implementation
   private onValueChange = (value: Date | null) => {};
   private onTouched = () => {};
@@ -187,6 +190,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     if (this.disabled || this.readonly || this.isOpen) return;
     
     this.isOpen = true;
+    this.isSelectingDate = false; // Reset flag when opening
     this.updateCurrentDate();
     
     // Only create dynamic calendar for inline variant
@@ -227,7 +231,10 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   }
 
   selectDate(date: Date, event?: Event): void {
-    if (this.isDateDisabled(date)) return;
+    if (this.isDateDisabled(date) || this.isSelectingDate) return;
+    
+    // Set flag to prevent double-click issues
+    this.isSelectingDate = true;
     
     // Prevent event propagation to avoid conflicts with document click handler
     if (event) {
@@ -251,14 +258,14 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     this.onSelect.emit(this.value);
     
     // Close calendar if not showing time
-    // Use setTimeout to ensure the click event is fully processed before closing
     if (!this.showTime) {
-      setTimeout(() => {
-        if (this.isOpen) { // Only close if still open (prevent double-close)
-          this.close();
-        }
-      }, 0);
+      this.close();
     }
+    
+    // Reset the flag after a short delay
+    setTimeout(() => {
+      this.isSelectingDate = false;
+    }, 100);
   }
 
   selectToday(): void {
