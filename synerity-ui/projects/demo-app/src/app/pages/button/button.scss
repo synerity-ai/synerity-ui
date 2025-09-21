@@ -1,83 +1,253 @@
-.button-demo {
-  .demo-header {
-    margin-bottom: 2rem;
+// Button Demo Styles
+
+// Import shared documentation styles
+@use '../../shared/styles/documentation.scss';
+
+.demo-section {
+  @apply mb-8;
+}
+
+.demo-container {
+  @apply bg-gray-50 p-6 rounded-lg border;
+}
+
+// Demo content styling
+.demo-content {
+  @apply space-y-8;
+}
+
+.demo-example {
+  @apply bg-gray-50 p-6 rounded-lg border;
+}
+
+.button-container {
+  @apply bg-white border border-gray-200 rounded-lg p-8;
+}
+
+.button-group {
+  @apply flex flex-wrap gap-4 items-center;
+}
+
+// Code toggle button
+.code-toggle {
+  @apply mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200;
+}
+
+.code-block {
+  @apply mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto;
+  
+  pre {
+    @apply text-sm;
+    
+    code {
+      @apply font-mono;
+    }
+  }
+}
+
+// Prose styling for documentation tabs
+.prose {
+  @apply max-w-none;
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-gray-900 mb-4;
+  }
+  
+  h1 {
+    @apply text-3xl;
+  }
+  
+  h2 {
+    @apply text-2xl;
+  }
+  
+  h3 {
+    @apply text-xl;
+  }
+  
+  h4 {
+    @apply text-lg;
+  }
+  
+  p {
+    @apply text-gray-700 mb-4 leading-relaxed;
+  }
+  
+  ul, ol {
+    @apply mb-4 pl-6;
+    
+    li {
+      @apply text-gray-700 mb-2;
+      
+      strong {
+        @apply font-semibold text-gray-900;
+      }
+    }
+  }
+  
+  pre {
+    @apply bg-gray-900 text-white p-4 rounded-lg overflow-x-auto text-sm mb-4;
+    
+    code {
+      @apply font-mono;
+    }
+  }
+  
+  code {
+    @apply bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-mono;
+  }
+  
+  blockquote {
+    @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 mb-4;
+  }
+  
+  table {
+    @apply w-full border-collapse border border-gray-300 mb-4;
+    
+    th {
+      @apply bg-gray-100 border border-gray-300 px-4 py-2 text-left font-semibold;
+    }
+    
+    td {
+      @apply border border-gray-300 px-4 py-2;
+    }
+  }
+  
+  a {
+    @apply text-blue-600 hover:text-blue-800 underline;
+  }
+  
+  hr {
+    @apply border-gray-300 my-8;
+  }
+}
+
+// Button styling within demos
+sui-button {
+  @apply transition-all duration-200;
+  
+  &:hover:not(:disabled) {
+    @apply transform scale-105;
+  }
+  
+  &:active:not(:disabled) {
+    @apply transform scale-95;
+  }
+  
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
+
+// Demo button groups
+.demo-button-group {
+  @apply flex flex-wrap gap-4 items-center justify-center p-4 bg-white rounded-lg border;
+}
+
+// Size demo styling
+.size-demo {
+  @apply space-y-4;
+  
+  .size-group {
+    @apply flex items-center gap-4 p-4 bg-white rounded-lg border;
+    
+    .size-label {
+      @apply text-sm font-medium text-gray-600 w-20;
+    }
+  }
+}
+
+// State demo styling
+.state-demo {
+  @apply space-y-4;
+  
+  .state-group {
+    @apply flex items-center gap-4 p-4 bg-white rounded-lg border;
+    
+    .state-label {
+      @apply text-sm font-medium text-gray-600 w-24;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .demo-container {
+    @apply p-4;
+  }
+  
+  .button-group {
+    @apply flex-col items-stretch;
+  }
+  
+  .demo-button-group {
+    @apply flex-col;
+  }
+  
+  .size-demo .size-group {
+    @apply flex-col items-stretch gap-2;
+  }
+  
+  .state-demo .state-group {
+    @apply flex-col items-stretch gap-2;
+  }
+  
+  .prose {
+    @apply text-sm;
     
     h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+      @apply text-2xl;
     }
     
-    p {
-      color: #6b7280;
-      font-size: 1.125rem;
+    h2 {
+      @apply text-xl;
+    }
+    
+    h3 {
+      @apply text-lg;
     }
   }
-
-  .demo-content {
-    .demo-section {
-      margin-bottom: 3rem;
-      
-      h2 {
-        font-size: 1.875rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-      }
-    }
-
-    .demo-example {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .button-container {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 0.375rem;
-      padding: 2rem;
-    }
-
-    .button-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .code-toggle {
-      background: #3b82f6;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 0.375rem;
-      cursor: pointer;
-      font-size: 0.875rem;
-      margin-bottom: 1rem;
-      
-      &:hover {
-        background: #2563eb;
-      }
-    }
-
-    .code-block {
-      background: #1f2937;
-      color: #f9fafb;
-      border-radius: 0.5rem;
-      padding: 1rem;
-      overflow-x: auto;
-      
-      pre {
-        margin: 0;
-        
-        code {
-          font-family: 'Courier New', Courier, monospace;
-          font-size: 0.875rem;
-          line-height: 1.5;
-        }
-      }
-    }
+  
+  .code-block {
+    @apply text-xs;
   }
+}
+
+// Loading state animation
+@keyframes button-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.button-loading {
+  &::after {
+    content: '';
+    @apply inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin ml-2;
+  }
+}
+
+// Focus styles for better accessibility
+.button-group:focus-within {
+  @apply ring-2 ring-blue-500 ring-opacity-50 rounded-lg;
+}
+
+// Custom scrollbar for code blocks
+.code-block::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+.code-block::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+.code-block::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded;
+}
+
+.code-block::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
 }
