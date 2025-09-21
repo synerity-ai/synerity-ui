@@ -15,38 +15,27 @@ export class Datepicker {
   
   // Demo data
   basicDate: Date | null = null;
-  minMaxDate: Date | null = null;
+  dropdownDate: Date | null = null;
+  inlineDate: Date | null = null;
+  normalSizeDate: Date | null = null;
+  compactSizeDate: Date | null = null;
   disabledDate: Date | null = null;
   readonlyDate: Date | null = new Date();
-  requiredDate: Date | null = null;
-  placeholderDate: Date | null = null;
-  timeDate: Date | null = null;
-  customFormatDate: Date | null = null;
+  valueDate: Date | null = new Date();
   
   // Interactive demo data
-  interactiveValue: Date | null = null;
-  interactiveMinDate: Date | null = null;
-  interactiveMaxDate: Date | null = null;
-  
-  // Helper properties for template
-  today = new Date();
-  endOf2025 = new Date(2025, 11, 31);
-  interactiveDisabled = false;
-  interactiveReadonly = false;
-  interactiveRequired = false;
-  interactiveShowTime = false;
-  interactiveShowTodayButton = true;
-  interactiveShowClearButton = true;
-  interactivePlaceholder = 'Select a date...';
-  interactiveSize: 'normal' | 'compact' = 'normal';
-  interactiveVariant: 'dropdown' | 'inline' = 'dropdown';
+  demoValue: Date | null = null;
+  demoVariant: 'dropdown' | 'inline' = 'dropdown';
+  demoSize: 'normal' | 'compact' = 'normal';
+  demoPlaceholder = 'Select a date...';
+  demoDisabled = false;
+  demoReadonly = false;
   
   // Code visibility states
   showBasicDateCode = false;
-  showMinMaxDateCode = false;
-  showDateStatesCode = false;
-  showTimeDateCode = false;
-  showCustomFormatDateCode = false;
+  showVariantsCode = false;
+  showSizesCode = false;
+  showStatesCode = false;
   showInteractiveDemoCode = false;
   
   onTabChange(tab: string) {
@@ -58,17 +47,14 @@ export class Datepicker {
       case 'basicDate':
         this.showBasicDateCode = !this.showBasicDateCode;
         break;
-      case 'minMaxDate':
-        this.showMinMaxDateCode = !this.showMinMaxDateCode;
+      case 'variants':
+        this.showVariantsCode = !this.showVariantsCode;
         break;
-      case 'dateStates':
-        this.showDateStatesCode = !this.showDateStatesCode;
+      case 'sizes':
+        this.showSizesCode = !this.showSizesCode;
         break;
-      case 'timeDate':
-        this.showTimeDateCode = !this.showTimeDateCode;
-        break;
-      case 'customFormatDate':
-        this.showCustomFormatDateCode = !this.showCustomFormatDateCode;
+      case 'states':
+        this.showStatesCode = !this.showStatesCode;
         break;
       case 'interactiveDemo':
         this.showInteractiveDemoCode = !this.showInteractiveDemoCode;
@@ -81,65 +67,14 @@ export class Datepicker {
     console.log('Date changed:', value);
   }
   
-  onInteractiveDateChange(value: Date | null) {
-    this.interactiveValue = value;
-    console.log('Interactive date changed:', value);
-  }
-  
-  onDateFocus() {
-    console.log('Date picker focused');
-  }
-  
-  onDateBlur() {
-    console.log('Date picker blurred');
-  }
-  
-  onDateOpen() {
-    console.log('Date picker opened');
-  }
-  
-  onDateClose() {
-    console.log('Date picker closed');
-  }
-  
-  onDateSelect(value: Date | null) {
-    console.log('Date selected:', value);
+  onDemoDateChange(value: Date | null) {
+    this.demoValue = value;
+    console.log('Demo date changed:', value);
   }
   
   // Utility methods
   formatDate(value: Date | null): string {
     if (!value) return 'No date selected';
     return value.toLocaleDateString();
-  }
-  
-  isValidDate(value: Date | null): boolean {
-    return value !== null && !isNaN(value.getTime());
-  }
-  
-  getDateStatus(value: Date | null): string {
-    if (!value) return 'No date';
-    if (isNaN(value.getTime())) return 'Invalid date';
-    return 'Valid date';
-  }
-  
-  // Helper methods for interactive demo
-  setMinDate(days: number) {
-    const date = new Date();
-    date.setDate(date.getDate() + days);
-    this.interactiveMinDate = date;
-  }
-  
-  setMaxDate(days: number) {
-    const date = new Date();
-    date.setDate(date.getDate() + days);
-    this.interactiveMaxDate = date;
-  }
-  
-  clearMinDate() {
-    this.interactiveMinDate = null;
-  }
-  
-  clearMaxDate() {
-    this.interactiveMaxDate = null;
   }
 }

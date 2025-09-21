@@ -41,21 +41,20 @@
                       [(ngModel)]="basicDate"
                       (onChange)="onDateChange($event)"
                       placeholder="Select a date"
-                      size="normal">
+                      size="normal"
+                      variant="dropdown">
                     </sui-date-picker>
                   </div>
                 </div>
                 <div *ngIf="basicDate" class="flex items-center space-x-2">
                   <span class="text-sm text-gray-600">Selected:</span>
                   <span class="text-sm font-medium text-blue-600">{{ formatDate(basicDate) }}</span>
-                  <span class="text-sm text-gray-500">({{ getDateStatus(basicDate) }})</span>
                 </div>
               </div>
               
-              <!-- Code Block -->
               <div *ngIf="showBasicDateCode" class="mt-4 pt-4 border-t border-gray-200">
                 <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
-  [(ngModel)]="date"
+  [(ngModel)]="basicDate"
   (onChange)="onDateChange($event)"
   placeholder="Select a date"
   size="normal"
@@ -65,228 +64,181 @@
             </div>
           </div>
 
-          <!-- Min/Max Date Constraints -->
+          <!-- Variants -->
           <div>
             <div class="flex items-center justify-between mb-4">
-              <h3 class="text-xl font-semibold text-gray-900">Min/Max Date Constraints</h3>
+              <h3 class="text-xl font-semibold text-gray-900">Variants</h3>
               <button
-                (click)="toggleCode('minMaxDate')"
+                (click)="toggleCode('variants')"
                 class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
                 <span class="text-lg">&lt;/&gt;</span>
-                <span>{{ showMinMaxDateCode ? 'Hide' : 'Show' }} Code</span>
+                <span>{{ showVariantsCode ? 'Hide' : 'Show' }} Code</span>
+              </button>
+            </div>
+            
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Dropdown Variant</h4>
+                  <sui-date-picker
+                    [(ngModel)]="dropdownDate"
+                    placeholder="Dropdown date picker"
+                    variant="dropdown"
+                    size="normal">
+                  </sui-date-picker>
+                </div>
+                
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Inline Variant</h4>
+                  <sui-date-picker
+                    [(ngModel)]="inlineDate"
+                    placeholder="Inline date picker"
+                    variant="inline"
+                    size="normal">
+                  </sui-date-picker>
+                </div>
+              </div>
+              
+              <div *ngIf="showVariantsCode" class="mt-4 pt-4 border-t border-gray-200">
+                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Dropdown Variant --&gt;
+&lt;sui-date-picker
+  [(ngModel)]="dropdownDate"
+  placeholder="Dropdown date picker"
+  variant="dropdown"
+  size="normal"&gt;
+&lt;/sui-date-picker&gt;
+
+&lt;!-- Inline Variant --&gt;
+&lt;sui-date-picker
+  [(ngModel)]="inlineDate"
+  placeholder="Inline date picker"
+  variant="inline"
+  size="normal"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sizes -->
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold text-gray-900">Sizes</h3>
+              <button
+                (click)="toggleCode('sizes')"
+                class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                <span class="text-lg">&lt;/&gt;</span>
+                <span>{{ showSizesCode ? 'Hide' : 'Show' }} Code</span>
               </button>
             </div>
             
             <div class="bg-white rounded-lg border border-gray-200 p-6">
               <div class="space-y-4">
-                <div class="flex items-center space-x-4">
-                  <label class="text-sm font-medium text-gray-700 w-24">Range:</label>
-                  <div class="flex-1 max-w-sm">
-                    <sui-date-picker
-                      [(ngModel)]="minMaxDate"
-                      (onChange)="onDateChange($event)"
-                      [minDate]="today"
-                      [maxDate]="endOf2025"
-                      placeholder="Select date in 2025"
-                      size="normal">
-                    </sui-date-picker>
-                  </div>
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Normal Size</h4>
+                  <sui-date-picker
+                    [(ngModel)]="normalSizeDate"
+                    placeholder="Normal size"
+                    size="normal"
+                    variant="dropdown">
+                  </sui-date-picker>
                 </div>
-                <div class="text-sm text-gray-600">
-                  <p>• Minimum date: Today</p>
-                  <p>• Maximum date: December 31, 2025</p>
-                  <p>• Dates outside this range will be disabled</p>
+                
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Compact Size</h4>
+                  <sui-date-picker
+                    [(ngModel)]="compactSizeDate"
+                    placeholder="Compact size"
+                    size="compact"
+                    variant="dropdown">
+                  </sui-date-picker>
                 </div>
               </div>
               
-              <!-- Code Block -->
-              <div *ngIf="showMinMaxDateCode" class="mt-4 pt-4 border-t border-gray-200">
-                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
-  [(ngModel)]="date"
-  (onChange)="onDateChange($event)"
-  [minDate]="new Date()"
-  [maxDate]="new Date(2025, 11, 31)"
-  placeholder="Select date in 2025"
+              <div *ngIf="showSizesCode" class="mt-4 pt-4 border-t border-gray-200">
+                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Normal Size --&gt;
+&lt;sui-date-picker
+  [(ngModel)]="normalSizeDate"
+  placeholder="Normal size"
   size="normal"
+  variant="dropdown"&gt;
+&lt;/sui-date-picker&gt;
+
+&lt;!-- Compact Size --&gt;
+&lt;sui-date-picker
+  [(ngModel)]="compactSizeDate"
+  placeholder="Compact size"
+  size="compact"
   variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
               </div>
             </div>
           </div>
 
-          <!-- Date Picker States -->
+          <!-- States -->
           <div>
             <div class="flex items-center justify-between mb-4">
-              <h3 class="text-xl font-semibold text-gray-900">Date Picker States</h3>
+              <h3 class="text-xl font-semibold text-gray-900">States</h3>
               <button
-                (click)="toggleCode('dateStates')"
+                (click)="toggleCode('states')"
                 class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
                 <span class="text-lg">&lt;/&gt;</span>
-                <span>{{ showDateStatesCode ? 'Hide' : 'Show' }} Code</span>
+                <span>{{ showStatesCode ? 'Hide' : 'Show' }} Code</span>
               </button>
             </div>
             
             <div class="bg-white rounded-lg border border-gray-200 p-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
-                  <sui-date-picker
-                    placeholder="Normal date picker"
-                    size="normal">
-                  </sui-date-picker>
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Disabled</h4>
                   <sui-date-picker
                     [(ngModel)]="disabledDate"
+                    placeholder="Disabled date picker"
                     [disabled]="true"
-                    size="normal">
+                    variant="dropdown">
                   </sui-date-picker>
                 </div>
+                
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Read-only State</label>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">Readonly</h4>
                   <sui-date-picker
                     [(ngModel)]="readonlyDate"
+                    placeholder="Readonly date picker"
                     [readonly]="true"
-                    size="normal">
+                    variant="dropdown">
                   </sui-date-picker>
                 </div>
+                
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Required Field</label>
+                  <h4 class="text-lg font-medium text-gray-900 mb-3">With Value</h4>
                   <sui-date-picker
-                    placeholder="This field is required"
-                    [required]="true"
-                    size="normal">
+                    [(ngModel)]="valueDate"
+                    placeholder="Date with value"
+                    variant="dropdown">
                   </sui-date-picker>
                 </div>
               </div>
               
-              <!-- Code Block -->
-              <div *ngIf="showDateStatesCode" class="mt-4 pt-4 border-t border-gray-200">
-                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Normal State --&gt;
-&lt;sui-date-picker
-  placeholder="Normal date picker"
-  size="normal"
-  variant="dropdown"&gt;
-&lt;/sui-date-picker&gt;
-
-&lt;!-- Disabled State --&gt;
+              <div *ngIf="showStatesCode" class="mt-4 pt-4 border-t border-gray-200">
+                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;!-- Disabled --&gt;
 &lt;sui-date-picker
   [(ngModel)]="disabledDate"
+  placeholder="Disabled date picker"
   [disabled]="true"
-  size="normal"
   variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;
 
-&lt;!-- Read-only State --&gt;
+&lt;!-- Readonly --&gt;
 &lt;sui-date-picker
   [(ngModel)]="readonlyDate"
+  placeholder="Readonly date picker"
   [readonly]="true"
-  size="normal"
   variant="dropdown"&gt;
-&lt;/sui-date-picker&gt;</code></pre>
-              </div>
-            </div>
-          </div>
+&lt;/sui-date-picker&gt;
 
-          <!-- Time Selection -->
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-xl font-semibold text-gray-900">Date & Time Selection</h3>
-              <button
-                (click)="toggleCode('timeDate')"
-                class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-                <span class="text-lg">&lt;/&gt;</span>
-                <span>{{ showTimeDateCode ? 'Hide' : 'Show' }} Code</span>
-              </button>
-            </div>
-            
-            <div class="bg-white rounded-lg border border-gray-200 p-6">
-              <div class="space-y-4">
-                <div class="flex items-center space-x-4">
-                  <label class="text-sm font-medium text-gray-700 w-24">Date & Time:</label>
-                  <div class="flex-1 max-w-sm">
-                    <sui-date-picker
-                      [(ngModel)]="timeDate"
-                      (onChange)="onDateChange($event)"
-                      [showTime]="true"
-                      [timeFormat]="'24'"
-                      placeholder="Select date and time"
-                      size="normal">
-                    </sui-date-picker>
-                  </div>
-                </div>
-                <div *ngIf="timeDate" class="flex items-center space-x-2">
-                  <span class="text-sm text-gray-600">Selected:</span>
-                  <span class="text-sm font-medium text-blue-600">{{ timeDate.toLocaleString() }}</span>
-                </div>
-                <div class="text-sm text-gray-600">
-                  <p>• Includes time selection with 24-hour format</p>
-                  <p>• Calendar remains open after date selection</p>
-                  <p>• Time can be adjusted independently</p>
-                </div>
-              </div>
-              
-              <!-- Code Block -->
-              <div *ngIf="showTimeDateCode" class="mt-4 pt-4 border-t border-gray-200">
-                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
-  [(ngModel)]="dateTime"
-  (onChange)="onDateChange($event)"
-  [showTime]="true"
-  [timeFormat]="'24'"
-  placeholder="Select date and time"
-  size="normal"
-  variant="dropdown"&gt;
-&lt;/sui-date-picker&gt;</code></pre>
-              </div>
-            </div>
-          </div>
-
-          <!-- Custom Format -->
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-xl font-semibold text-gray-900">Custom Date Format</h3>
-              <button
-                (click)="toggleCode('customFormatDate')"
-                class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-                <span class="text-lg">&lt;/&gt;</span>
-                <span>{{ showCustomFormatDateCode ? 'Hide' : 'Show' }} Code</span>
-              </button>
-            </div>
-            
-            <div class="bg-white rounded-lg border border-gray-200 p-6">
-              <div class="space-y-4">
-                <div class="flex items-center space-x-4">
-                  <label class="text-sm font-medium text-gray-700 w-24">Custom:</label>
-                  <div class="flex-1 max-w-sm">
-                    <sui-date-picker
-                      [(ngModel)]="customFormatDate"
-                      (onChange)="onDateChange($event)"
-                      dateFormat="MM/dd/yyyy"
-                      placeholder="MM/DD/YYYY format"
-                      size="normal">
-                    </sui-date-picker>
-                  </div>
-                </div>
-                <div *ngIf="customFormatDate" class="flex items-center space-x-2">
-                  <span class="text-sm text-gray-600">Selected:</span>
-                  <span class="text-sm font-medium text-blue-600">{{ customFormatDate.toLocaleDateString('en-US') }}</span>
-                </div>
-                <div class="text-sm text-gray-600">
-                  <p>• Custom date format: MM/dd/yyyy</p>
-                  <p>• Displays dates in US format</p>
-                  <p>• Supports various date format patterns</p>
-                </div>
-              </div>
-              
-              <!-- Code Block -->
-              <div *ngIf="showCustomFormatDateCode" class="mt-4 pt-4 border-t border-gray-200">
-                <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
-  [(ngModel)]="date"
-  (onChange)="onDateChange($event)"
-  dateFormat="MM/dd/yyyy"
-  placeholder="MM/DD/YYYY format"
-  size="normal"
+&lt;!-- With Value --&gt;
+&lt;sui-date-picker
+  [(ngModel)]="valueDate"
+  placeholder="Date with value"
   variant="dropdown"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
               </div>
@@ -306,27 +258,16 @@
             </div>
             
             <div class="bg-white rounded-lg border border-gray-200 p-6">
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Controls -->
                 <div class="space-y-4">
                   <h4 class="text-lg font-medium text-gray-900">Configuration</h4>
                   
-                  <div class="space-y-3">
+                  <div class="grid grid-cols-1 gap-4">
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">Size</label>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Variant</label>
                       <select
-                        [(ngModel)]="interactiveSize"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                      </select>
-                    </div>
-                    
-                    <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">Variant</label>
-                      <select
-                        [(ngModel)]="interactiveVariant"
+                        [(ngModel)]="demoVariant"
                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <option value="dropdown">Dropdown</option>
                         <option value="inline">Inline</option>
@@ -334,9 +275,9 @@
                     </div>
                     
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">Size</label>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Size</label>
                       <select
-                        [(ngModel)]="interactiveSize"
+                        [(ngModel)]="demoSize"
                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <option value="normal">Normal</option>
                         <option value="compact">Compact</option>
@@ -344,56 +285,19 @@
                     </div>
                     
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">Placeholder</label>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Placeholder</label>
                       <input
                         type="text"
-                        [(ngModel)]="interactivePlaceholder"
+                        [(ngModel)]="demoPlaceholder"
+                        placeholder="Enter placeholder text..."
                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     </div>
                     
-                    <div class="space-y-2">
-                      <h5 class="text-sm font-medium text-gray-700">Date Constraints</h5>
-                      <div class="flex flex-wrap gap-2">
-                        <button
-                          (click)="setMinDate(-30)"
-                          class="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200">
-                          Min: -30 days
-                        </button>
-                        <button
-                          (click)="setMinDate(0)"
-                          class="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200">
-                          Min: Today
-                        </button>
-                        <button
-                          (click)="clearMinDate()"
-                          class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
-                          Clear Min
-                        </button>
-                      </div>
-                      <div class="flex flex-wrap gap-2">
-                        <button
-                          (click)="setMaxDate(30)"
-                          class="px-3 py-1 text-xs bg-green-100 text-green-700 rounded-md hover:bg-green-200">
-                          Max: +30 days
-                        </button>
-                        <button
-                          (click)="setMaxDate(365)"
-                          class="px-3 py-1 text-xs bg-green-100 text-green-700 rounded-md hover:bg-green-200">
-                          Max: +1 year
-                        </button>
-                        <button
-                          (click)="clearMaxDate()"
-                          class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
-                          Clear Max
-                        </button>
-                      </div>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4">
+                    <div class="grid grid-cols-2 gap-3">
                       <label class="flex items-center">
                         <input
                           type="checkbox"
-                          [(ngModel)]="interactiveDisabled"
+                          [(ngModel)]="demoDisabled"
                           class="mr-2">
                         <span class="text-sm text-gray-700">Disabled</span>
                       </label>
@@ -401,43 +305,9 @@
                       <label class="flex items-center">
                         <input
                           type="checkbox"
-                          [(ngModel)]="interactiveReadonly"
+                          [(ngModel)]="demoReadonly"
                           class="mr-2">
-                        <span class="text-sm text-gray-700">Read-only</span>
-                      </label>
-                      
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          [(ngModel)]="interactiveRequired"
-                          class="mr-2">
-                        <span class="text-sm text-gray-700">Required</span>
-                      </label>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4">
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          [(ngModel)]="interactiveShowTime"
-                          class="mr-2">
-                        <span class="text-sm text-gray-700">Show Time</span>
-                      </label>
-                      
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          [(ngModel)]="interactiveShowTodayButton"
-                          class="mr-2">
-                        <span class="text-sm text-gray-700">Today Button</span>
-                      </label>
-                      
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          [(ngModel)]="interactiveShowClearButton"
-                          class="mr-2">
-                        <span class="text-sm text-gray-700">Clear Button</span>
+                        <span class="text-sm text-gray-700">Readonly</span>
                       </label>
                     </div>
                   </div>
@@ -447,145 +317,119 @@
                 <div class="space-y-4">
                   <h4 class="text-lg font-medium text-gray-900">Preview</h4>
                   
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Date Picker</label>
+                  <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
                     <sui-date-picker
-                      [(ngModel)]="interactiveValue"
-                      (onChange)="onInteractiveDateChange($event)"
-                      (onOpen)="onDateOpen()"
-                      (onClose)="onDateClose()"
-                      (onSelect)="onDateSelect($event)"
-                      [minDate]="interactiveMinDate"
-                      [maxDate]="interactiveMaxDate"
-                      [disabled]="interactiveDisabled"
-                      [readonly]="interactiveReadonly"
-                      [required]="interactiveRequired"
-                      [showTime]="interactiveShowTime"
-                      [showTodayButton]="interactiveShowTodayButton"
-                      [showClearButton]="interactiveShowClearButton"
-                      [placeholder]="interactivePlaceholder"
-                      [size]="interactiveSize"
-                      [variant]="interactiveVariant">
+                      [(ngModel)]="demoValue"
+                      [variant]="demoVariant"
+                      [size]="demoSize"
+                      [placeholder]="demoPlaceholder"
+                      [disabled]="demoDisabled"
+                      [readonly]="demoReadonly"
+                      (onChange)="onDemoDateChange($event)">
                     </sui-date-picker>
                   </div>
                   
-                  <div class="p-3 bg-gray-50 rounded-md">
-                    <h5 class="text-sm font-medium text-gray-700 mb-2">Current Value</h5>
-                    <p class="text-sm text-gray-600">
-                      <strong>Value:</strong> {{ formatDate(interactiveValue) }}<br>
-                      <strong>Status:</strong> {{ getDateStatus(interactiveValue) }}<br>
-                      <strong>Valid:</strong> {{ isValidDate(interactiveValue) ? 'Yes' : 'No' }}
+                  <div class="p-3 bg-blue-50 rounded-md border border-blue-200">
+                    <h5 class="text-sm font-medium text-blue-900 mb-2">Current Value</h5>
+                    <p class="text-sm text-blue-800">
+                      <strong>Selected Date:</strong> {{ demoValue ? formatDate(demoValue) : 'No date selected' }}
                     </p>
                   </div>
                 </div>
               </div>
               
               <!-- Code Block -->
-              <div *ngIf="showInteractiveDemoCode" class="mt-4 pt-4 border-t border-gray-200">
+              <div *ngIf="showInteractiveDemoCode" class="mt-6 pt-6 border-t border-gray-200">
                 <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
-  [(ngModel)]="interactiveValue"
-  (onChange)="onInteractiveDateChange($event)"
-  (onOpen)="onDateOpen()"
-  (onClose)="onDateClose()"
-  (onSelect)="onDateSelect($event)"
-  [minDate]="interactiveMinDate"
-  [maxDate]="interactiveMaxDate"
-  [disabled]="interactiveDisabled"
-  [readonly]="interactiveReadonly"
-  [required]="interactiveRequired"
-  [showTime]="interactiveShowTime"
-  [showTodayButton]="interactiveShowTodayButton"
-  [showClearButton]="interactiveShowClearButton"
-  [placeholder]="interactivePlaceholder"
-  [size]="interactiveSize"
-  [variant]="interactiveVariant"&gt;
+  [(ngModel)]="demoValue"
+  [variant]="{{ demoVariant }}"
+  [size]="{{ demoSize }}"
+  [placeholder]="{{ demoPlaceholder }}"
+  [disabled]="{{ demoDisabled }}"
+  [readonly]="{{ demoReadonly }}"
+  (onChange)="onDemoDateChange($event)"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
       <!-- How to Use Tab -->
       <div *ngIf="activeTab === 'usage'">
-        <div class="space-y-6">
+        <div class="prose max-w-none">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">How to Use DatePicker</h2>
           
-          <!-- Installation -->
-          <div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
-            <div class="bg-white rounded-lg border border-gray-200 p-6">
-              <p class="text-gray-600 mb-4">Import the DatePicker component in your module or standalone component:</p>
-              <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-                <code>import &#123; DatePicker &#125; from 'ui-lib';
+          <div class="space-y-8">
+            <!-- Installation -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+              <p class="text-gray-700 mb-4">Import the DatePicker component in your Angular module:</p>
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>import {{ '{' }} DatePicker {{ '}' }} from '@synerity/ui-lib';
 
-// In your component imports
-imports: [DatePicker, FormsModule]</code>
-              </div>
+@NgModule({{ '{' }}
+  imports: [
+    DatePicker
+  ]
+{{ '}' }})
+export class YourModule {{ '{' }} {{ '}' }}</code></pre>
             </div>
-          </div>
 
-          <!-- Basic Usage -->
-          <div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-            <div class="bg-white rounded-lg border border-gray-200 p-6">
-              <p class="text-gray-600 mb-4">Use the DatePicker component with ngModel for two-way data binding:</p>
-              <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-                <pre><code>&lt;sui-date-picker
+            <!-- Basic Usage -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+              <p class="text-gray-700 mb-4">Use the DatePicker component in your template:</p>
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
   [(ngModel)]="selectedDate"
-  (onChange)="onDateChange($event)"
   placeholder="Select a date"
+  variant="dropdown"
   size="normal"
-  variant="dropdown"&gt;
+  (onChange)="onDateChange($event)"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
-              </div>
             </div>
-          </div>
 
-          <!-- Form Integration -->
-          <div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Form Integration</h3>
-            <div class="bg-white rounded-lg border border-gray-200 p-6">
-              <p class="text-gray-600 mb-4">Integrate with Angular reactive forms:</p>
-              <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-                <pre><code>&lt;form [formGroup]="myForm"&gt;
+            <!-- Form Integration -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Form Integration</h3>
+              <p class="text-gray-700 mb-4">The DatePicker implements ControlValueAccessor and works seamlessly with Angular reactive forms:</p>
+              <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;form [formGroup]="myForm"&gt;
   &lt;sui-date-picker
-    formControlName="selectedDate"
-    [minDate]="new Date()"
-    [maxDate]="new Date(2025, 11, 31)"
-    [showTime]="true"
-    placeholder="Select date and time"
-    size="normal"
-    variant="default"&gt;
+    formControlName="date"
+    placeholder="Select a date"
+    variant="dropdown"
+    size="normal"&gt;
   &lt;/sui-date-picker&gt;
 &lt;/form&gt;</code></pre>
-              </div>
             </div>
           </div>
-
         </div>
       </div>
 
       <!-- Documentation Tab -->
       <div *ngIf="activeTab === 'docs'">
-        <div class="space-y-6">
+        <div class="prose max-w-none">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">DatePicker Documentation</h2>
           
-          <!-- Component Overview -->
-          <div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">DatePicker Component</h3>
-            <div class="bg-white rounded-lg border border-gray-200 p-6">
-              <p class="text-gray-600">The DatePicker component provides a comprehensive date selection interface with calendar popup, time selection, and advanced customization options.</p>
+          <div class="space-y-8">
+            <!-- Component Overview -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Overview</h3>
+              <p class="text-gray-700 mb-4">
+                The DatePicker component provides a comprehensive date selection interface with calendar popup, 
+                keyboard navigation, and accessibility support. It supports both dropdown and inline variants 
+                with customizable sizing options.
+              </p>
             </div>
-          </div>
 
-          <!-- Props -->
-          <div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
-            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <!-- Props -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
               <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                   <thead class="bg-gray-50">
                     <tr>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
                       <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                       <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
                       <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
@@ -593,69 +437,49 @@ imports: [DatePicker, FormsModule]</code>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
                     <tr>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">ngModel</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Date | null</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
-                      <td class="px-6 py-4 text-sm text-gray-500">Two-way binding for the selected date</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Selected date value</td>
                     </tr>
                     <tr>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'Select date'</td>
                       <td class="px-6 py-4 text-sm text-gray-500">Placeholder text for the input</td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">medium</td>
-                      <td class="px-6 py-4 text-sm text-gray-500">Size of the date picker (small, medium, large)</td>
                     </tr>
                     <tr>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">dropdown</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'dropdown'</td>
                       <td class="px-6 py-4 text-sm text-gray-500">Visual variant (dropdown, inline)</td>
                     </tr>
                     <tr>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">normal</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'normal'</td>
                       <td class="px-6 py-4 text-sm text-gray-500">Size of the calendar (normal, compact)</td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">minDate</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Date</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
-                      <td class="px-6 py-4 text-sm text-gray-500">Minimum selectable date</td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">maxDate</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Date</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
-                      <td class="px-6 py-4 text-sm text-gray-500">Maximum selectable date</td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">showTime</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                      <td class="px-6 py-4 text-sm text-gray-500">Show time selection</td>
                     </tr>
                     <tr>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                      <td class="px-6 py-4 text-sm text-gray-500">Disables the date picker</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Whether the date picker is disabled</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">readonly</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Whether the date picker is readonly</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
 
-          <!-- Events -->
-          <div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
-            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <!-- Events -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
               <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                   <thead class="bg-gray-50">
@@ -668,69 +492,64 @@ imports: [DatePicker, FormsModule]</code>
                   <tbody class="bg-white divide-y divide-gray-200">
                     <tr>
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onChange</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Date | null</td>
-                      <td class="px-6 py-4 text-sm text-gray-500">Emitted when the date value changes</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;Date | null&gt;</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Emitted when the selected date changes</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onSelect</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;Date | null&gt;</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Emitted when a date is selected</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onOpen</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;void&gt;</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Emitted when the calendar opens</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onClose</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;void&gt;</td>
+                      <td class="px-6 py-4 text-sm text-gray-500">Emitted when the calendar closes</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
 
-          <!-- Examples -->
-          <div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
-            <div class="bg-white rounded-lg border border-gray-200 p-6">
-              <div class="space-y-6">
+            <!-- Examples -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Examples</h3>
+              <div class="space-y-4">
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-2">Basic Date Picker</h4>
+                  <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
+  [(ngModel)]="date"
+  placeholder="Select a date"&gt;
+&lt;/sui-date-picker&gt;</code></pre>
+                </div>
                 
                 <div>
-                  <h4 class="text-lg font-medium text-gray-900 mb-2">Basic DatePicker</h4>
-                  <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm">
-                    <pre><code>&lt;sui-date-picker
-  [(ngModel)]="selectedDate"
-  (onChange)="onDateChange($event)"
-  placeholder="Select a date"
-  size="normal"
-  variant="dropdown"&gt;
+                  <h4 class="text-lg font-medium text-gray-900 mb-2">Inline Date Picker</h4>
+                  <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
+  [(ngModel)]="date"
+  variant="inline"
+  size="compact"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
-                  </div>
                 </div>
-
+                
                 <div>
-                  <h4 class="text-lg font-medium text-gray-900 mb-2">DatePicker with Time</h4>
-                  <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm">
-                    <pre><code>&lt;sui-date-picker
-  [(ngModel)]="selectedDateTime"
-  (onChange)="onDateTimeChange($event)"
-  [showTime]="true"
-  placeholder="Select date and time"
-  size="normal"
-  variant="dropdown"&gt;
+                  <h4 class="text-lg font-medium text-gray-900 mb-2">Disabled Date Picker</h4>
+                  <pre class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;sui-date-picker
+  [(ngModel)]="date"
+  [disabled]="true"
+  placeholder="Disabled date picker"&gt;
 &lt;/sui-date-picker&gt;</code></pre>
-                  </div>
                 </div>
-
-                <div>
-                  <h4 class="text-lg font-medium text-gray-900 mb-2">DatePicker with Constraints</h4>
-                  <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg text-sm">
-                    <pre><code>&lt;sui-date-picker
-  [(ngModel)]="selectedDate"
-  (onChange)="onDateChange($event)"
-  [minDate]="new Date()"
-  [maxDate]="new Date(2025, 11, 31)"
-  placeholder="Select a date"
-  size="normal"
-  variant="dropdown"&gt;
-&lt;/sui-date-picker&gt;</code></pre>
-                  </div>
-                </div>
-
               </div>
             </div>
           </div>
-
         </div>
       </div>
+
     </app-tabs>
   </div>
 </div>
