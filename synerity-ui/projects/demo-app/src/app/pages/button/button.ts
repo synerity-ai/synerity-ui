@@ -13,9 +13,9 @@ import { Button as SuiButton } from '../../../../../ui-lib/src/lib/button/button
 })
 export class ButtonComponent {
   activeTab = 'demo';
-  showBasicCode = false;
-  showSizeCode = false;
-  showCustomCode = false;
+  showBasicButtonsCode = false;
+  showButtonSizesCode = false;
+  showButtonStatesCode = false;
 
   // Demo data
   buttonText = 'Click me';
@@ -28,14 +28,14 @@ export class ButtonComponent {
 
   toggleCode(type: string): void {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicButtons':
+        this.showBasicButtonsCode = !this.showBasicButtonsCode;
         break;
-      case 'size':
-        this.showSizeCode = !this.showSizeCode;
+      case 'buttonSizes':
+        this.showButtonSizesCode = !this.showButtonSizesCode;
         break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'buttonStates':
+        this.showButtonStatesCode = !this.showButtonStatesCode;
         break;
     }
   }

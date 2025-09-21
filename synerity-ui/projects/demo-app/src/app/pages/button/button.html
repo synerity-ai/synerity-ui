@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Button</h1>
-    <p class="text-lg text-gray-600">A versatile button component with multiple variants, sizes, and states for user interactions.</p>
+    <p class="text-lg text-gray-600">Interactive button components with various styles, sizes, and states for user actions.</p>
   </div>
 
   <!-- Tabs -->
@@ -16,441 +16,436 @@
     (tabChange)="onTabChange($event)">
     
     <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'" class="space-y-8">
-      <!-- Basic Buttons -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Basic Buttons</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="space-y-6">
-            <p class="text-gray-700">Basic button variants with different styles and purposes.</p>
-            
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Buttons -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Buttons</h3>
+            <button 
+              (click)="toggleCode('basicButtons')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicButtonsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
               <div class="flex flex-wrap gap-4 items-center">
                 <sui-button 
                   type="button"
                   variant="primary"
-                  (click)="onPrimaryClick()"
-                >Primary Button</sui-button>
+                  (click)="onButtonClick()">
+                  Primary Button
+                </sui-button>
                 
                 <sui-button 
                   type="button"
                   variant="secondary"
-                  (click)="onSecondaryClick()"
-                >Secondary Button</sui-button>
+                  (click)="onButtonClick()">
+                  Secondary Button
+                </sui-button>
                 
                 <sui-button 
                   type="button"
                   variant="outline"
-                  (click)="onOutlineClick()"
-                >Outline Button</sui-button>
+                  (click)="onButtonClick()">
+                  Outline Button
+                </sui-button>
                 
                 <sui-button 
                   type="button"
                   variant="ghost"
-                  (click)="onGhostClick()"
-                >Ghost Button</sui-button>
+                  (click)="onButtonClick()">
+                  Ghost Button
+                </sui-button>
                 
                 <sui-button 
                   type="button"
                   variant="danger"
-                  (click)="onDangerClick()"
-                >Danger Button</sui-button>
+                  (click)="onButtonClick()">
+                  Danger Button
+                </sui-button>
               </div>
             </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('basic')">
-          {{ showBasicCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-button 
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicButtonsCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Primary Button --&gt;
+&lt;sui-button 
   type="button"
   variant="primary"
-  (click)="onPrimaryClick()"
-&gt;Primary Button&lt;/sui-button&gt;
+  (click)="onClick()"&gt;
+  Primary Button
+&lt;/sui-button&gt;
 
+&lt;!-- Secondary Button --&gt;
 &lt;sui-button 
   type="button"
   variant="secondary"
-  (click)="onSecondaryClick()"
-&gt;Secondary Button&lt;/sui-button&gt;
+  (click)="onClick()"&gt;
+  Secondary Button
+&lt;/sui-button&gt;
 
+&lt;!-- Outline Button --&gt;
 &lt;sui-button 
   type="button"
   variant="outline"
-  (click)="onOutlineClick()"
-&gt;Outline Button&lt;/sui-button&gt;</code></pre>
+  (click)="onClick()"&gt;
+  Outline Button
+&lt;/sui-button&gt;</code></pre>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- Button Sizes -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Button Sizes</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="space-y-6">
-            <p class="text-gray-700">Buttons come in different sizes to fit various UI contexts.</p>
-            
+        <!-- Button Sizes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Button Sizes</h3>
+            <button 
+              (click)="toggleCode('buttonSizes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showButtonSizesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
               <div class="flex flex-wrap gap-4 items-center">
                 <sui-button 
                   type="button"
                   variant="primary"
                   size="sm"
-                  (click)="onSmallClick()"
-                >Small Button</sui-button>
+                  (click)="onButtonClick()">
+                  Small Button
+                </sui-button>
                 
                 <sui-button 
                   type="button"
                   variant="primary"
                   size="md"
-                  (click)="onMediumClick()"
-                >Medium Button</sui-button>
+                  (click)="onButtonClick()">
+                  Medium Button
+                </sui-button>
                 
                 <sui-button 
                   type="button"
                   variant="primary"
                   size="lg"
-                  (click)="onLargeClick()"
-                >Large Button</sui-button>
+                  (click)="onButtonClick()">
+                  Large Button
+                </sui-button>
               </div>
             </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('size')">
-          {{ showSizeCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showSizeCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-button 
+            
+            <!-- Code Example -->
+            <div *ngIf="showButtonSizesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Small Button --&gt;
+&lt;sui-button 
   type="button"
   variant="primary"
   size="sm"
-  (click)="onSmallClick()"
-&gt;Small Button&lt;/sui-button&gt;
+  (click)="onClick()"&gt;
+  Small Button
+&lt;/sui-button&gt;
 
+&lt;!-- Medium Button --&gt;
 &lt;sui-button 
   type="button"
   variant="primary"
   size="md"
-  (click)="onMediumClick()"
-&gt;Medium Button&lt;/sui-button&gt;
+  (click)="onClick()"&gt;
+  Medium Button
+&lt;/sui-button&gt;
 
+&lt;!-- Large Button --&gt;
 &lt;sui-button 
   type="button"
   variant="primary"
   size="lg"
-  (click)="onLargeClick()"
-&gt;Large Button&lt;/sui-button&gt;</code></pre>
+  (click)="onClick()"&gt;
+  Large Button
+&lt;/sui-button&gt;</code></pre>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- Button States -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Button States</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="space-y-6">
-            <p class="text-gray-700">Buttons can be in different states to provide user feedback.</p>
-            
+        <!-- Button States -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Button States</h3>
+            <button 
+              (click)="toggleCode('buttonStates')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showButtonStatesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
               <div class="flex flex-wrap gap-4 items-center">
                 <sui-button 
                   type="button"
                   variant="primary"
-                  (click)="onButtonClick()"
-                >Normal Button</sui-button>
+                  (click)="onButtonClick()">
+                  Normal Button
+                </sui-button>
                 
                 <sui-button 
                   type="button"
                   variant="primary"
                   [loading]="isLoading"
-                  (click)="onLoadingClick()"
-                >{{ isLoading ? 'Loading...' : 'Loading Button' }}</sui-button>
+                  (click)="onLoadingClick()">
+                  {{ isLoading ? 'Loading...' : 'Loading Button' }}
+                </sui-button>
                 
                 <sui-button 
                   type="button"
                   variant="primary"
                   [disabled]="true"
-                  (click)="onDisabledClick()"
-                >Disabled Button</sui-button>
+                  (click)="onDisabledClick()">
+                  Disabled Button
+                </sui-button>
+                
+                <sui-button 
+                  type="button"
+                  variant="primary"
+                  [fullWidth]="true"
+                  (click)="onButtonClick()">
+                  Full Width Button
+                </sui-button>
               </div>
             </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('custom')">
-          {{ showCustomCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-button 
+            
+            <!-- Code Example -->
+            <div *ngIf="showButtonStatesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Normal Button --&gt;
+&lt;sui-button 
+  type="button"
+  variant="primary"
+  (click)="onClick()"&gt;
+  Normal Button
+&lt;/sui-button&gt;
+
+&lt;!-- Loading Button --&gt;
+&lt;sui-button 
   type="button"
   variant="primary"
   [loading]="isLoading"
-  (click)="onLoadingClick()"
-&gt;&#123;&#123; isLoading ? 'Loading...' : 'Loading Button' &#125;&#125;&lt;/sui-button&gt;
+  (click)="onLoadingClick()"&gt;
+  {{ isLoading ? 'Loading...' : 'Loading Button' }}
+&lt;/sui-button&gt;
 
+&lt;!-- Disabled Button --&gt;
 &lt;sui-button 
   type="button"
   variant="primary"
   [disabled]="true"
-  (click)="onDisabledClick()"
-&gt;Disabled Button&lt;/sui-button&gt;</code></pre>
+  (click)="onDisabledClick()"&gt;
+  Disabled Button
+&lt;/sui-button&gt;</code></pre>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
     <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
-      <h2>How to Use Button</h2>
-      
-      <h3>Installation</h3>
-      <p>Import the Button component from the UI library:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; Button &#125; from 'ui-lib';
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Button component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
 
-// In your component imports
-imports: [Button]</code></pre>
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the Button component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} Button {{ '}' }} from '@synerity/ui';
 
-      <h3>Basic Usage</h3>
-      <p>Use the Button component with different variants:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-button 
-  type="button"
-  variant="primary"
-  (click)="onClick()"
-&gt;Click Me&lt;/sui-button&gt;</code></pre>
-
-      <h3>Component Properties</h3>
-      <ul>
-        <li><strong>type</strong>: HTML button type (button, submit, reset)</li>
-        <li><strong>variant</strong>: Button style variant (primary, secondary, outline, ghost, danger)</li>
-        <li><strong>size</strong>: Button size (small, medium, large)</li>
-        <li><strong>disabled</strong>: Disable the button</li>
-        <li><strong>loading</strong>: Show loading state</li>
-        <li><strong>fullWidth</strong>: Make button full width</li>
-      </ul>
-
-      <h3>Button Variants</h3>
-      <ul>
-        <li><strong>primary</strong>: Main action button with solid background</li>
-        <li><strong>secondary</strong>: Secondary action with muted styling</li>
-        <li><strong>outline</strong>: Transparent background with border</li>
-        <li><strong>ghost</strong>: Transparent background without border</li>
-        <li><strong>danger</strong>: Destructive action with warning colors</li>
-      </ul>
-
-      <h3>Button Sizes</h3>
-      <ul>
-        <li><strong>small</strong>: Compact button for dense layouts</li>
-        <li><strong>medium</strong>: Standard button size (default)</li>
-        <li><strong>large</strong>: Prominent button for important actions</li>
-      </ul>
-
-      <h3>Common Use Cases</h3>
-      <ul>
-        <li><strong>Forms</strong>: Submit and reset buttons</li>
-        <li><strong>Actions</strong>: Primary and secondary actions</li>
-        <li><strong>Navigation</strong>: Call-to-action buttons</li>
-        <li><strong>Dialogs</strong>: Confirm and cancel buttons</li>
-        <li><strong>Cards</strong>: Action buttons within content</li>
-      </ul>
-
-      <h3>Best Practices</h3>
-      <ul>
-        <li><strong>Clear Labels</strong>: Use descriptive button text</li>
-        <li><strong>Consistent Sizing</strong>: Use appropriate sizes for context</li>
-        <li><strong>Loading States</strong>: Show loading for async operations</li>
-        <li><strong>Accessibility</strong>: Ensure proper focus and keyboard navigation</li>
-        <li><strong>Color Usage</strong>: Use danger variant sparingly for destructive actions</li>
-      </ul>
-
-      <h3>Form Integration</h3>
-      <p>Buttons work seamlessly with forms:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;form (ngSubmit)="onSubmit()"&gt;
-  &lt;!-- Form fields --&gt;
-  
-  &lt;div class="form-actions"&gt;
-    &lt;sui-button type="submit" variant="primary"&gt;
-      Submit Form
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;sui-button 
+      (click)="handleClick()"
+      variant="primary"
+      size="md"&gt;
+      Click Me
     &lt;/sui-button&gt;
-    
-    &lt;sui-button type="button" variant="outline" (click)="onCancel()"&gt;
-      Cancel
-    &lt;/sui-button&gt;
-  &lt;/div&gt;
-&lt;/form&gt;</code></pre>
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}
+  handleClick() {{ '{' }}
+    console.log('Button clicked!');
+  {{ '}' }}
+{{ '}' }}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Styling -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Styling with Tailwind CSS</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Button uses Tailwind CSS classes for styling. Here are the key classes:</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">px-4 py-2</span>
+                <span class="text-gray-600">Horizontal and vertical padding</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">rounded-md</span>
+                <span class="text-gray-600">Border radius</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">font-medium</span>
+                <span class="text-gray-600">Font weight</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">transition-colors</span>
+                <span class="text-gray-600">Smooth color transitions</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">hover:bg-blue-600</span>
+                <span class="text-gray-600">Hover state styling</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
-      <h2>API Documentation</h2>
-      
-      <h3>Properties</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">type</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">'button'</td>
-              <td class="border border-gray-300 px-4 py-2">HTML button type</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">variant</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">'primary'</td>
-              <td class="border border-gray-300 px-4 py-2">Button style variant</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">size</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">'medium'</td>
-              <td class="border border-gray-300 px-4 py-2">Button size</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">disabled</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Disable the button</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">loading</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Show loading state</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">fullWidth</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Make button full width</td>
-            </tr>
-          </tbody>
-        </table>
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">type</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'button'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">HTML button type (button, submit, reset)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Button style variant</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Button size</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Disable the button</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">loading</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Show loading state</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">fullWidth</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Make button full width</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">click</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;Event&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the button is clicked</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation support with Tab key</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Focus indicators for keyboard users</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Proper ARIA attributes for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Disabled state properly communicated</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Loading state accessibility support</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
-
-      <h3>Events</h3>
-      <ul>
-        <li><strong>click</strong>: Emitted when the button is clicked</li>
-      </ul>
-
-      <h3>Variants</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Variant</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Use Case</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">primary</td>
-              <td class="border border-gray-300 px-4 py-2">Solid background with primary color</td>
-              <td class="border border-gray-300 px-4 py-2">Main actions, form submissions</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">secondary</td>
-              <td class="border border-gray-300 px-4 py-2">Solid background with secondary color</td>
-              <td class="border border-gray-300 px-4 py-2">Secondary actions</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">outline</td>
-              <td class="border border-gray-300 px-4 py-2">Transparent with colored border</td>
-              <td class="border border-gray-300 px-4 py-2">Alternative actions</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">ghost</td>
-              <td class="border border-gray-300 px-4 py-2">Transparent with hover effects</td>
-              <td class="border border-gray-300 px-4 py-2">Subtle actions, links</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">danger</td>
-              <td class="border border-gray-300 px-4 py-2">Red background for destructive actions</td>
-              <td class="border border-gray-300 px-4 py-2">Delete, remove, destructive actions</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Examples</h3>
-      <h4>Basic Button</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-button 
-  type="button"
-  variant="primary"
-  (click)="onClick()"
-&gt;Click Me&lt;/sui-button&gt;</code></pre>
-
-      <h4>Loading Button</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-button 
-  type="button"
-  variant="primary"
-  [loading]="isLoading"
-  (click)="onSubmit()"
-&gt;&#123;&#123; isLoading ? 'Saving...' : 'Save' &#125;&#125;&lt;/sui-button&gt;</code></pre>
-
-      <h4>Disabled Button</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-button 
-  type="button"
-  variant="primary"
-  [disabled]="!isFormValid"
-  (click)="onSubmit()"
-&gt;Submit&lt;/sui-button&gt;</code></pre>
-
-      <h4>Full Width Button</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-button 
-  type="button"
-  variant="primary"
-  [fullWidth]="true"
-  (click)="onClick()"
-&gt;Full Width Button&lt;/sui-button&gt;</code></pre>
-
-      <h4>Form Submit Button</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;form (ngSubmit)="onSubmit()"&gt;
-  &lt;!-- Form fields --&gt;
-  
-  &lt;sui-button 
-    type="submit"
-    variant="primary"
-    [loading]="isSubmitting"
-  &gt;
-    &#123;&#123; isSubmitting ? 'Submitting...' : 'Submit Form' &#125;&#125;
-  &lt;/sui-button&gt;
-&lt;/form&gt;</code></pre>
-
-      <h3>Accessibility</h3>
-      <ul>
-        <li><strong>Keyboard Navigation</strong>: Full keyboard support (Enter, Space)</li>
-        <li><strong>Focus Management</strong>: Visible focus indicators</li>
-        <li><strong>Screen Reader</strong>: Proper ARIA labels and announcements</li>
-        <li><strong>Loading States</strong>: Screen reader announcements for loading state</li>
-      </ul>
-
-      <h3>Styling</h3>
-      <p>The component uses CSS classes that can be customized:</p>
-      <ul>
-        <li><code>.sui-button</code>: Base button class</li>
-        <li><code>.sui-button--primary</code>: Primary variant</li>
-        <li><code>.sui-button--secondary</code>: Secondary variant</li>
-        <li><code>.sui-button--outline</code>: Outline variant</li>
-        <li><code>.sui-button--ghost</code>: Ghost variant</li>
-        <li><code>.sui-button--danger</code>: Danger variant</li>
-        <li><code>.sui-button--small</code>: Small size</li>
-        <li><code>.sui-button--medium</code>: Medium size</li>
-        <li><code>.sui-button--large</code>: Large size</li>
-        <li><code>.sui-button--loading</code>: Loading state</li>
-        <li><code>.sui-button--disabled</code>: Disabled state</li>
-      </ul>
     </div>
   </app-tabs>
 </div>
