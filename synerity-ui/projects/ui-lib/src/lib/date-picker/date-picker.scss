@@ -70,6 +70,54 @@
     .sui-date-picker-trigger {
       min-width: 100px;
     }
+    
+    .sui-date-picker-calendar {
+      width: 260px;
+    }
+    
+    .sui-date-picker-header {
+      padding: 8px;
+    }
+    
+    .sui-date-picker-content {
+      padding: 8px;
+    }
+    
+    .sui-date-picker-weekday {
+      height: 24px;
+      font-size: 10px;
+    }
+    
+    .sui-date-picker-day {
+      width: 28px;
+      height: 28px;
+      font-size: 12px;
+    }
+    
+    .sui-date-picker-footer {
+      padding: 8px;
+    }
+    
+    .sui-date-picker-today,
+    .sui-date-picker-clear-footer {
+      padding: 4px 8px;
+      font-size: 11px;
+    }
+    
+    .sui-date-picker-nav-button {
+      width: 24px;
+      height: 24px;
+      
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+    
+    .sui-date-picker-month-year {
+      padding: 4px 8px;
+      font-size: 12px;
+    }
   }
   
   &-inline {
