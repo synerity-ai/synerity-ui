@@ -59,7 +59,7 @@
           (click)="toggleCode('basic')">
           {{ showBasicCode ? 'Hide' : 'Show' }} Code
         </button>
-        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
           <pre><code>&lt;sui-checkbox
   [(ngModel)]="basicChecked"
   (ngModelChange)="onBasicChange($event)"
@@ -123,7 +123,7 @@
           (click)="toggleCode('group')">
           {{ showGroupCode ? 'Hide' : 'Show' }} Code
         </button>
-        <div *ngIf="showGroupCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+        <div *ngIf="showGroupCode" class="mt-4 bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
           <pre><code>&lt;sui-checkbox
   [(ngModel)]="allSelected"
   (ngModelChange)="onSelectAllChange($event)"
@@ -185,7 +185,7 @@
           (click)="toggleCode('custom')">
           {{ showCustomCode ? 'Hide' : 'Show' }} Code
         </button>
-        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
           <pre><code>&lt;sui-checkbox
   [(ngModel)]="customChecked"
   (ngModelChange)="onCustomChange($event)"
@@ -209,14 +209,14 @@
       
       <h3>Installation</h3>
       <p>Import the Checkbox component from the UI library:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; Checkbox &#125; from 'ui-lib';
+      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>import &#123; Checkbox &#125; from 'ui-lib';
 
 // In your component imports
 imports: [Checkbox]</code></pre>
 
       <h3>Basic Usage</h3>
       <p>Use the Checkbox component with two-way data binding:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-checkbox
+      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
   [(ngModel)]="isChecked"
   (ngModelChange)="onChange($event)"
   name="myCheckbox"
@@ -346,27 +346,27 @@ imports: [Checkbox]</code></pre>
 
       <h3>Examples</h3>
       <h4>Basic Checkbox</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-checkbox
+      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
   [(ngModel)]="isChecked"
   name="basic"
 &gt;Basic Checkbox&lt;/sui-checkbox&gt;</code></pre>
 
       <h4>Disabled Checkbox</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-checkbox
+      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
   [(ngModel)]="isChecked"
   [disabled]="true"
   name="disabled"
 &gt;Disabled Checkbox&lt;/sui-checkbox&gt;</code></pre>
 
       <h4>Indeterminate Checkbox</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-checkbox
+      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
   [(ngModel)]="isChecked"
   [indeterminate]="true"
   name="indeterminate"
 &gt;Indeterminate Checkbox&lt;/sui-checkbox&gt;</code></pre>
 
       <h4>Custom Styled Checkbox</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-checkbox
+      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
   [(ngModel)]="isChecked"
   name="custom"
   class="checkbox-enhanced checkbox-animated"

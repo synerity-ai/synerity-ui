@@ -1,24 +1,25 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Tabs } from '../../shared/tabs/tabs';
 import { AutoComplete } from 'ui-lib';
 
 @Component({
   selector: 'app-autocomplete',
   standalone: true,
-  imports: [CommonModule, FormsModule, AutoComplete],
+  imports: [CommonModule, FormsModule, Tabs, AutoComplete],
   templateUrl: './autocomplete.html',
   styleUrls: ['./autocomplete.scss']
 })
 export class AutocompleteComponent {
-  activeTab = 0;
-  showBasicCode = false;
-  showMultipleCode = false;
-  showCustomCode = false;
+  activeTab = 'demo';
+  showBasicAutoCompleteCode = false;
+  showMultipleAutoCompleteCode = false;
+  showCustomAutoCompleteCode = false;
 
   // Demo data
   basicValue = '';
-  multipleValue: string[] = [];
+  multipleValue = '';
   customValue = '';
 
   // Sample data for autocomplete
@@ -72,35 +73,35 @@ export class AutocompleteComponent {
     'Arlington', 'Tampa', 'New Orleans'
   ];
 
-  onTabChange(index: number): void {
-    this.activeTab = index;
+  onTabChange(tab: string): void {
+    this.activeTab = tab;
   }
 
   toggleCode(type: string): void {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicAutoComplete':
+        this.showBasicAutoCompleteCode = !this.showBasicAutoCompleteCode;
         break;
-      case 'multiple':
-        this.showMultipleCode = !this.showMultipleCode;
+      case 'multipleAutoComplete':
+        this.showMultipleAutoCompleteCode = !this.showMultipleAutoCompleteCode;
         break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'customAutoComplete':
+        this.showCustomAutoCompleteCode = !this.showCustomAutoCompleteCode;
         break;
     }
   }
 
-  onBasicChange(value: string): void {
+  onBasicChange(value: any): void {
     console.log('Basic autocomplete changed:', value);
     this.basicValue = value;
   }
 
-  onMultipleChange(value: string[]): void {
+  onMultipleChange(value: any): void {
     console.log('Multiple autocomplete changed:', value);
     this.multipleValue = value;
   }
 
-  onCustomChange(value: string): void {
+  onCustomChange(value: any): void {
     console.log('Custom autocomplete changed:', value);
     this.customValue = value;
   }

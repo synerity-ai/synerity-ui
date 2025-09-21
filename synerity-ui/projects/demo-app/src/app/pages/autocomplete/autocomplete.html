@@ -1,117 +1,341 @@
-<div class="autocomplete-demo">
-  <div class="demo-header">
-    <h1>Auto Complete</h1>
-    <p>An input component that provides real-time suggestions as users type, with customizable filtering and selection options.</p>
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">AutoComplete</h1>
+    <p class="text-lg text-gray-600">An input component that provides real-time suggestions as users type, with customizable filtering and selection options.</p>
   </div>
 
-  <div class="demo-content">
-    <div class="demo-section">
-      <h2>Basic Auto Complete</h2>
-      <div class="demo-example">
-        <div class="autocomplete-container">
-          <div class="input-group">
-            <label for="basic-autocomplete">Select Country:</label>
-            <sui-auto-complete
-              id="basic-autocomplete"
-              [(ngModel)]="basicValue"
-              [options]="countries"
-              placeholder="Type to search countries..."
-              (ngModelChange)="onBasicChange($event)"
-            ></sui-auto-complete>
-            <p class="input-info">Selected: {{ basicValue || 'None' }}</p>
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'" class="space-y-8">
+      
+      <!-- Basic AutoComplete -->
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold text-gray-900">Basic AutoComplete</h3>
+          <button 
+            (click)="toggleCode('basicAutoComplete')"
+            class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+            <span class="text-lg">&lt;/&gt;</span>
+            <span>{{ showBasicAutoCompleteCode ? 'Hide' : 'Show' }} Code</span>
+          </button>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <div class="flex items-center space-x-4">
+              <label class="text-sm font-medium text-gray-700 w-24">Country:</label>
+              <div class="flex-1 max-w-sm">
+                  <sui-auto-complete
+                    [(ngModel)]="basicValue"
+                    [options]="countries"
+                    placeholder="Type to search countries..."
+                    (change)="onBasicChange($event)"
+                    inputId="basic-autocomplete"
+                    name="basicAutocomplete">
+                  </sui-auto-complete>
+              </div>
+              <span class="text-sm font-medium text-blue-600 w-32">{{ basicValue || 'None' }}</span>
+            </div>
           </div>
         </div>
-      </div>
-      <button class="code-toggle" (click)="toggleCode('basic')">
-        {{ showBasicCode ? 'Hide' : 'Show' }} Code
-      </button>
-      <div *ngIf="showBasicCode" class="code-block">
-        <pre><code>&lt;sui-auto-complete
+        
+        <!-- Code Example -->
+        <div *ngIf="showBasicAutoCompleteCode" class="mt-4 p-4 bg-gray-900 rounded-lg">
+          <pre class="text-green-400 font-mono text-sm"><code>&lt;sui-auto-complete
   [(ngModel)]="basicValue"
   [options]="countries"
   placeholder="Type to search countries..."
-  (ngModelChange)="onBasicChange($event)"
-&gt;&lt;/sui-auto-complete&gt;</code></pre>
-      </div>
-    </div>
-
-    <div class="demo-section">
-      <h2>Multiple Selection</h2>
-      <div class="demo-example">
-        <div class="autocomplete-container">
-          <div class="input-group">
-            <label for="multiple-autocomplete">Select Cities:</label>
-            <sui-auto-complete
-              id="multiple-autocomplete"
-              [(ngModel)]="multipleValue"
-              [options]="cities"
-              placeholder="Type to search cities..."
-              (ngModelChange)="onMultipleChange($event)"
-            ></sui-auto-complete>
-            <p class="input-info">Selected: {{ multipleValue.length > 0 ? multipleValue.join(', ') : 'None' }}</p>
-          </div>
+  (change)="onBasicChange($event)"
+  inputId="basic-autocomplete"
+  name="basicAutocomplete"&gt;
+&lt;/sui-auto-complete&gt;</code></pre>
         </div>
       </div>
-      <button class="code-toggle" (click)="toggleCode('multiple')">
-        {{ showMultipleCode ? 'Hide' : 'Show' }} Code
-      </button>
-      <div *ngIf="showMultipleCode" class="code-block">
-        <pre><code>&lt;sui-auto-complete
+
+      <!-- Multiple Selection -->
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold text-gray-900">Multiple Selection</h3>
+          <button 
+            (click)="toggleCode('multipleAutoComplete')"
+            class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+            <span class="text-lg">&lt;/&gt;</span>
+            <span>{{ showMultipleAutoCompleteCode ? 'Hide' : 'Show' }} Code</span>
+          </button>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <div class="flex items-center space-x-4">
+              <label class="text-sm font-medium text-gray-700 w-24">Cities:</label>
+              <div class="flex-1 max-w-sm">
+                  <sui-auto-complete
+                    [(ngModel)]="multipleValue"
+                    [options]="cities"
+                    placeholder="Type to search cities..."
+                    (change)="onMultipleChange($event)"
+                    inputId="multiple-autocomplete"
+                    name="multipleAutocomplete">
+                  </sui-auto-complete>
+              </div>
+              <span class="text-sm font-medium text-blue-600 w-32">{{ multipleValue || 'None' }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Code Example -->
+        <div *ngIf="showMultipleAutoCompleteCode" class="mt-4 p-4 bg-gray-900 rounded-lg">
+          <pre class="text-green-400 font-mono text-sm"><code>&lt;sui-auto-complete
   [(ngModel)]="multipleValue"
   [options]="cities"
   placeholder="Type to search cities..."
-  (ngModelChange)="onMultipleChange($event)"
-&gt;&lt;/sui-auto-complete&gt;</code></pre>
-      </div>
-    </div>
-
-    <div class="demo-section">
-      <h2>Custom Filter Function</h2>
-      <div class="demo-example">
-        <div class="autocomplete-container">
-          <div class="input-group">
-            <label for="custom-autocomplete">Search Countries:</label>
-            <sui-auto-complete
-              id="custom-autocomplete"
-              [(ngModel)]="customValue"
-              [options]="countries"
-              placeholder="Type to filter countries..."
-              (ngModelChange)="onCustomChange($event)"
-            ></sui-auto-complete>
-            <p class="input-info">Selected: {{ customValue || 'None' }}</p>
-          </div>
+  (change)="onMultipleChange($event)"
+  inputId="multiple-autocomplete"
+  name="multipleAutocomplete"&gt;
+&lt;/sui-auto-complete&gt;</code></pre>
         </div>
       </div>
-      <button class="code-toggle" (click)="toggleCode('custom')">
-        {{ showCustomCode ? 'Hide' : 'Show' }} Code
-      </button>
-      <div *ngIf="showCustomCode" class="code-block">
-        <pre><code>&lt;sui-auto-complete
+
+      <!-- Custom Filter -->
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold text-gray-900">Custom Filter</h3>
+          <button 
+            (click)="toggleCode('customAutoComplete')"
+            class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+            <span class="text-lg">&lt;/&gt;</span>
+            <span>{{ showCustomAutoCompleteCode ? 'Hide' : 'Show' }} Code</span>
+          </button>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <div class="flex items-center space-x-4">
+              <label class="text-sm font-medium text-gray-700 w-24">Filter:</label>
+              <div class="flex-1 max-w-sm">
+                  <sui-auto-complete
+                    [(ngModel)]="customValue"
+                    [options]="countries"
+                    placeholder="Type to filter countries..."
+                    (change)="onCustomChange($event)"
+                    inputId="custom-autocomplete"
+                    name="customAutocomplete">
+                  </sui-auto-complete>
+              </div>
+              <span class="text-sm font-medium text-blue-600 w-32">{{ customValue || 'None' }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Code Example -->
+        <div *ngIf="showCustomAutoCompleteCode" class="mt-4 p-4 bg-gray-900 rounded-lg">
+          <pre class="text-green-400 font-mono text-sm"><code>&lt;sui-auto-complete
   [(ngModel)]="customValue"
   [options]="countries"
   placeholder="Type to filter countries..."
-  (ngModelChange)="onCustomChange($event)"
-&gt;&lt;/sui-auto-complete&gt;</code></pre>
-      </div>
-    </div>
-
-    <div class="demo-section">
-      <h2>Disabled Auto Complete</h2>
-      <div class="demo-example">
-        <div class="autocomplete-container">
-          <div class="input-group">
-            <label for="disabled-autocomplete">Disabled Input:</label>
-            <sui-auto-complete
-              id="disabled-autocomplete"
-              [(ngModel)]="basicValue"
-              [options]="countries"
-              [disabled]="true"
-              placeholder="This input is disabled"
-            ></sui-auto-complete>
-            <p class="input-info">This input is disabled and cannot be interacted with.</p>
-          </div>
+  (change)="onCustomChange($event)"
+  inputId="custom-autocomplete"
+  name="customAutocomplete"&gt;
+&lt;/sui-auto-complete&gt;</code></pre>
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'" class="space-y-6">
+      <div class="content-section">
+        <h2>Installation</h2>
+        <p>Import the AutoComplete component in your module or standalone component:</p>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>import &#123; AutoComplete &#125; from 'ui-lib';
+
+// In your component imports
+imports: [AutoComplete]</code></pre>
+      </div>
+
+      <div class="content-section">
+        <h2>Basic Usage</h2>
+        <p>Use the AutoComplete component with ngModel for two-way data binding:</p>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-auto-complete
+  [(ngModel)]="selectedValue"
+  [options]="optionsList"
+  placeholder="Type to search..."
+  (ngModelChange)="onValueChange($event)"
+  inputId="my-autocomplete"
+  name="myAutocomplete"&gt;
+&lt;/sui-auto-complete&gt;</code></pre>
+      </div>
+
+      <div class="content-section">
+        <h2>Form Integration</h2>
+        <p>Integrate with Angular reactive forms:</p>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;form [formGroup]="myForm"&gt;
+  &lt;sui-auto-complete
+    formControlName="selectedCountry"
+    [options]="countries"
+    placeholder="Select a country..."
+    inputId="country-autocomplete"
+    name="countryAutocomplete"&gt;
+  &lt;/sui-auto-complete&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'" class="space-y-6">
+      <div class="content-section">
+        <h2>AutoComplete Component</h2>
+        <p>The AutoComplete component provides an input field with dropdown suggestions that appear as the user types. It supports single and multiple selection modes with customizable filtering.</p>
+      </div>
+
+      <div class="content-section">
+        <h2>Props</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-medium">ngModel</td>
+              <td>string | string[]</td>
+              <td>-</td>
+              <td>Two-way binding for the selected value(s)</td>
+            </tr>
+            <tr>
+              <td class="font-medium">options</td>
+              <td>string[]</td>
+              <td>[]</td>
+              <td>Array of options to display in the dropdown</td>
+            </tr>
+            <tr>
+              <td class="font-medium">placeholder</td>
+              <td>string</td>
+              <td>-</td>
+              <td>Placeholder text for the input field</td>
+            </tr>
+            <tr>
+              <td class="font-medium">multiple</td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Enable multiple selection mode</td>
+            </tr>
+            <tr>
+              <td class="font-medium">disabled</td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Disable the input field</td>
+            </tr>
+            <tr>
+              <td class="font-medium">filterFunction</td>
+              <td>function</td>
+              <td>-</td>
+              <td>Custom filter function for options</td>
+            </tr>
+            <tr>
+              <td class="font-medium">inputId</td>
+              <td>string</td>
+              <td>-</td>
+              <td>Unique identifier for the input element</td>
+            </tr>
+            <tr>
+              <td class="font-medium">name</td>
+              <td>string</td>
+              <td>-</td>
+              <td>Name attribute for the input element</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="content-section">
+        <h2>Events</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-medium">ngModelChange</td>
+              <td>string | string[]</td>
+              <td>Emitted when the selected value changes</td>
+            </tr>
+            <tr>
+              <td class="font-medium">onFocus</td>
+              <td>Event</td>
+              <td>Emitted when the input receives focus</td>
+            </tr>
+            <tr>
+              <td class="font-medium">onBlur</td>
+              <td>Event</td>
+              <td>Emitted when the input loses focus</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="content-section">
+        <h2>Examples</h2>
+        
+        <h3>Basic AutoComplete</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-auto-complete
+  [(ngModel)]="selectedCountry"
+  [options]="countries"
+  placeholder="Select a country..."
+  inputId="country-select"
+  name="countrySelect"&gt;
+&lt;/sui-auto-complete&gt;</code></pre>
+
+        <h3>Multiple Selection</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-auto-complete
+  [(ngModel)]="selectedCities"
+  [options]="cities"
+  [multiple]="true"
+  placeholder="Select cities..."
+  inputId="cities-select"
+  name="citiesSelect"&gt;
+&lt;/sui-auto-complete&gt;</code></pre>
+
+        <h3>Custom Filter Function</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-auto-complete
+  [(ngModel)]="selectedItem"
+  [options]="items"
+  [filterFunction]="customFilter"
+  placeholder="Search items..."
+  inputId="item-search"
+  name="itemSearch"&gt;
+&lt;/sui-auto-complete&gt;</code></pre>
+
+        <h3>Form Integration</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;form [formGroup]="myForm" (ngSubmit)="onSubmit()"&gt;
+  &lt;sui-auto-complete
+    formControlName="selectedOption"
+    [options]="options"
+    placeholder="Choose an option..."
+    inputId="form-autocomplete"
+    name="formAutocomplete"&gt;
+  &lt;/sui-auto-complete&gt;
+  
+  &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+    </div>
+  </app-tabs>
 </div>
