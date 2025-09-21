@@ -1,51 +1,41 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Card } from 'ui-lib';
+import { FormsModule } from '@angular/forms';
+import { Tabs } from '../../shared/tabs/tabs';
+import { Card as SuiCard } from '../../../../../ui-lib/src/lib/card/card';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule, Card],
+  imports: [CommonModule, FormsModule, Tabs, SuiCard],
   templateUrl: './card.html',
-  styleUrls: ['./card.scss']
+  styleUrl: './card.scss'
 })
 export class CardComponent {
-  activeTab = 0;
-  showBasicCode = false;
-  showVariantCode = false;
-  showCustomCode = false;
+  activeTab = 'demo';
+  showBasicCardsCode = false;
+  showCardVariantsCode = false;
+  showInteractiveCardsCode = false;
 
-  // Demo data
-  cardData = {
-    title: 'Sample Card',
-    subtitle: 'This is a sample card',
-    content: 'This is the main content of the card. It can contain any HTML content including text, images, and other components.',
-    footer: 'Card Footer'
-  };
-
-  onTabChange(index: number): void {
-    this.activeTab = index;
+  onTabChange(tab: string): void {
+    this.activeTab = tab;
   }
 
   toggleCode(type: string): void {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicCards':
+        this.showBasicCardsCode = !this.showBasicCardsCode;
         break;
-      case 'variant':
-        this.showVariantCode = !this.showVariantCode;
+      case 'cardVariants':
+        this.showCardVariantsCode = !this.showCardVariantsCode;
         break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'interactiveCards':
+        this.showInteractiveCardsCode = !this.showInteractiveCardsCode;
         break;
     }
   }
 
-  onCardClick(): void {
-    console.log('Card clicked!');
-  }
-
-  onCardHover(): void {
-    console.log('Card hovered!');
+  onCardSelect(event: any): void {
+    console.log('Card selected:', event);
   }
 }
