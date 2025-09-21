@@ -193,6 +193,9 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     this.isSelectingDate = false; // Reset flag when opening
     this.updateCurrentDate();
     
+    // Bind event listeners for all variants
+    this.bindEventListeners();
+    
     // Only create dynamic calendar for inline variant
     // For default and compact variants, use the HTML template
     if (this.variant === 'inline') {
@@ -201,7 +204,6 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       this.calendarZIndex = zIndexManager.registerCalendar(this);
       
       this.createCalendarInBody();
-      this.bindEventListeners();
     }
     
     this.onOpen.emit();
@@ -214,6 +216,9 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     this.isOpen = false;
     this.currentView = 'calendar';
     
+    // Cleanup event listeners for all variants
+    this.cleanupEventListeners();
+    
     // Only cleanup dynamic calendar for inline variant
     if (this.variant === 'inline') {
       // Unregister from z-index manager
@@ -222,8 +227,6 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       
       // Remove calendar from body
       this.removeCalendarFromBody();
-      
-      this.cleanupEventListeners();
     }
     
     this.onClose.emit();
