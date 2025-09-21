@@ -226,8 +226,14 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     this.cdr.detectChanges();
   }
 
-  selectDate(date: Date): void {
+  selectDate(date: Date, event?: Event): void {
     if (this.isDateDisabled(date)) return;
+    
+    // Prevent event propagation to avoid conflicts with document click handler
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
     
     let selectedDate = new Date(date);
     
@@ -246,10 +252,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     
     // Close calendar if not showing time
     if (!this.showTime) {
-      // Use setTimeout to ensure the click event is fully processed
-      setTimeout(() => {
-        this.close();
-      }, 0);
+      this.close();
     }
   }
 
