@@ -160,7 +160,7 @@
             [class.sui-date-picker-day-disabled]="day.isDisabled"
             [class.sui-date-picker-day-weekend]="day.isWeekend"
             [disabled]="day.isDisabled"
-            (mousedown)="selectDate(day.date, $event)"
+            (click)="selectDate(day.date, $event)"
             [attr.aria-label]="day.date.toLocaleDateString()"
             [attr.aria-selected]="day.isSelected">
             {{ day.day }}

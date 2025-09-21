@@ -1116,15 +1116,18 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   }
 
   private bindEventListeners(): void {
-    // Document click listener
-    setTimeout(() => {
-      this.documentClickListener = fromEvent(document, 'click').subscribe((event: any) => {
-        if (!this.triggerElement?.nativeElement?.contains(event.target) && 
-            !this.calendarPanel?.nativeElement?.contains(event.target)) {
-          this.close();
-        }
-      });
-    }, 100);
+    // Document click listener - only for inline variant
+    // Default/compact variants use HTML template which handles its own events
+    if (this.variant === 'inline') {
+      setTimeout(() => {
+        this.documentClickListener = fromEvent(document, 'click').subscribe((event: any) => {
+          if (!this.triggerElement?.nativeElement?.contains(event.target) && 
+              !this.calendarElement?.contains(event.target)) {
+            this.close();
+          }
+        });
+      }, 100);
+    }
     
     // Window resize listener
     this.windowResizeListener = fromEvent(window, 'resize').subscribe(() => {
