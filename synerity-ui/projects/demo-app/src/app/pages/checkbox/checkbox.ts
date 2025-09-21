@@ -13,9 +13,9 @@ import { Checkbox as SuiCheckbox } from '../../../../../ui-lib/src/lib/checkbox/
 })
 export class CheckboxComponent {
   activeTab = 'demo';
-  showBasicCode = false;
-  showGroupCode = false;
-  showCustomCode = false;
+  showBasicCheckboxesCode = false;
+  showCheckboxGroupCode = false;
+  showCustomCheckboxesCode = false;
 
   // Demo data
   basicChecked = false;
@@ -23,16 +23,17 @@ export class CheckboxComponent {
   disabledChecked = true;
   
   // Checkbox group data
-  selectedItems: string[] = [];
-  allItems = [
-    { id: 'item1', label: 'Option 1', checked: false },
-    { id: 'item2', label: 'Option 2', checked: false },
-    { id: 'item3', label: 'Option 3', checked: false }
+  allSelected = false;
+  checkboxOptions = [
+    { label: 'Option 1', checked: false },
+    { label: 'Option 2', checked: false },
+    { label: 'Option 3', checked: false },
+    { label: 'Option 4', checked: false }
   ];
 
   // Custom checkbox data
   customChecked = false;
-  customDisabled = false;
+  animatedChecked = false;
 
   onTabChange(tab: string): void {
     this.activeTab = tab;
@@ -40,14 +41,14 @@ export class CheckboxComponent {
 
   toggleCode(type: string): void {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicCheckboxes':
+        this.showBasicCheckboxesCode = !this.showBasicCheckboxesCode;
         break;
-      case 'group':
-        this.showGroupCode = !this.showGroupCode;
+      case 'checkboxGroup':
+        this.showCheckboxGroupCode = !this.showCheckboxGroupCode;
         break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'customCheckboxes':
+        this.showCustomCheckboxesCode = !this.showCustomCheckboxesCode;
         break;
     }
   }
@@ -67,30 +68,18 @@ export class CheckboxComponent {
     this.disabledChecked = checked;
   }
 
-  onItemChange(item: any, checked: boolean): void {
-    console.log('Item changed:', item.label, checked);
-    item.checked = checked;
-    
-    if (checked) {
-      if (!this.selectedItems.includes(item.id)) {
-        this.selectedItems.push(item.id);
-      }
-    } else {
-      this.selectedItems = this.selectedItems.filter(id => id !== item.id);
-    }
+  onOptionChange(index: number, checked: boolean): void {
+    console.log('Option changed:', index, checked);
+    this.checkboxOptions[index].checked = checked;
+    this.updateSelectAllState();
   }
 
   onSelectAllChange(checked: boolean): void {
     console.log('Select all changed:', checked);
-    this.allItems.forEach(item => {
-      item.checked = checked;
+    this.allSelected = checked;
+    this.checkboxOptions.forEach(option => {
+      option.checked = checked;
     });
-    
-    if (checked) {
-      this.selectedItems = this.allItems.map(item => item.id);
-    } else {
-      this.selectedItems = [];
-    }
   }
 
   onCustomChange(checked: boolean): void {
@@ -98,11 +87,18 @@ export class CheckboxComponent {
     this.customChecked = checked;
   }
 
-  get allSelected(): boolean {
-    return this.allItems.every(item => item.checked);
+  onAnimatedChange(checked: boolean): void {
+    console.log('Animated checkbox changed:', checked);
+    this.animatedChecked = checked;
+  }
+
+  updateSelectAllState(): void {
+    const checkedCount = this.checkboxOptions.filter(option => option.checked).length;
+    this.allSelected = checkedCount === this.checkboxOptions.length;
   }
 
   get someSelected(): boolean {
-    return this.allItems.some(item => item.checked) && !this.allSelected;
+    const checkedCount = this.checkboxOptions.filter(option => option.checked).length;
+    return checkedCount > 0 && checkedCount < this.checkboxOptions.length;
   }
 }

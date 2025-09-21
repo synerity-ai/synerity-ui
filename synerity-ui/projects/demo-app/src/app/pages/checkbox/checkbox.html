@@ -16,372 +16,372 @@
     (tabChange)="onTabChange($event)">
     
     <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'" class="space-y-8">
-      <!-- Basic Checkbox -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Basic Checkbox</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="space-y-6">
-            <p class="text-gray-700">Basic checkbox functionality with different states.</p>
-            
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Checkboxes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Checkboxes</h3>
+            <button 
+              (click)="toggleCode('basicCheckboxes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicCheckboxesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <div class="checkbox-item">
-                <sui-checkbox 
-                  [(ngModel)]="basicChecked"
-                  (ngModelChange)="onBasicChange($event)"
-                  name="basic"
-                >Basic Checkbox</sui-checkbox>
-                <p class="checkbox-info">Checked: {{ basicChecked }}</p>
+              <div class="flex flex-col gap-4">
+                <div class="flex items-center space-x-3">
+                  <sui-checkbox 
+                    [(ngModel)]="basicChecked"
+                    (ngModelChange)="onBasicChange($event)"
+                    name="basic">
+                  </sui-checkbox>
+                  <label class="text-sm font-medium text-gray-900">Basic Checkbox</label>
+                  <span class="text-sm text-gray-500">Checked: {{ basicChecked }}</span>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                  <sui-checkbox 
+                    [(ngModel)]="disabledChecked"
+                    [disabled]="true"
+                    name="disabled">
+                  </sui-checkbox>
+                  <label class="text-sm font-medium text-gray-500">Disabled Checkbox</label>
+                  <span class="text-sm text-gray-500">Checked: {{ disabledChecked }}</span>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                  <sui-checkbox 
+                    [(ngModel)]="indeterminateChecked"
+                    name="indeterminate">
+                  </sui-checkbox>
+                  <label class="text-sm font-medium text-gray-900">Another Checkbox</label>
+                  <span class="text-sm text-gray-500">Checked: {{ indeterminateChecked }}</span>
+                </div>
               </div>
-              
-              <div class="checkbox-item">
-                <sui-checkbox 
-                  [(ngModel)]="basicChecked"
-                  (ngModelChange)="onBasicChange($event)"
-                  name="basic2"
-                >Another Basic Checkbox</sui-checkbox>
-                <p class="checkbox-info">Checked: {{ basicChecked }}</p>
-              </div>
-              
-              <div class="checkbox-item">
-                <sui-checkbox
-                  [(ngModel)]="disabledChecked"
-                  [disabled]="true"
-                  name="disabled"
-                >Disabled Checkbox</sui-checkbox>
-                <p class="checkbox-info">Checked: {{ disabledChecked }} (Disabled)</p>
-              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicCheckboxesCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Basic Checkbox --&gt;
+&lt;sui-checkbox 
+  [(ngModel)]="isChecked"
+  (ngModelChange)="onChange($event)"
+  name="basic"&gt;
+&lt;/sui-checkbox&gt;
+
+&lt;!-- Disabled Checkbox --&gt;
+&lt;sui-checkbox 
+  [(ngModel)]="isChecked"
+  [disabled]="true"
+  name="disabled"&gt;
+&lt;/sui-checkbox&gt;
+
+&lt;!-- Another Checkbox --&gt;
+&lt;sui-checkbox 
+  [(ngModel)]="isChecked"
+  name="another"&gt;
+&lt;/sui-checkbox&gt;</code></pre>
             </div>
           </div>
         </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('basic')">
-          {{ showBasicCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-checkbox
-  [(ngModel)]="basicChecked"
-  (ngModelChange)="onBasicChange($event)"
-  name="basic"
-&gt;Basic Checkbox&lt;/sui-checkbox&gt;
 
-&lt;sui-checkbox 
-  [(ngModel)]="basicChecked"
-  (ngModelChange)="onBasicChange($event)"
-  name="basic2"
-&gt;Another Basic Checkbox&lt;/sui-checkbox&gt;
-
-&lt;sui-checkbox
-  [(ngModel)]="disabledChecked"
-  [disabled]="true"
-  name="disabled"
-&gt;Disabled Checkbox&lt;/sui-checkbox&gt;</code></pre>
-        </div>
-      </div>
-
-      <!-- Checkbox Group -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Checkbox Group</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="space-y-6">
-            <p class="text-gray-700">Multiple checkboxes with select all functionality.</p>
-            
-            <div class="checkbox-form">
-              <div class="form-group">
-                <div class="checkbox-item">
+        <!-- Checkbox Group -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Checkbox Group</h3>
+            <button 
+              (click)="toggleCode('checkboxGroup')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCheckboxGroupCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex flex-col gap-4">
+                <div class="flex items-center space-x-3">
                   <sui-checkbox
                     [(ngModel)]="allSelected"
                     (ngModelChange)="onSelectAllChange($event)"
-                    name="selectAll"
-                  >Select All</sui-checkbox>
-                  <p class="checkbox-info">All Selected: {{ allSelected }} | Some Selected: {{ someSelected }}</p>
+                    name="selectAll">
+                  </sui-checkbox>
+                  <label class="text-sm font-medium text-gray-900">Select All</label>
+                  <span class="text-sm text-gray-500">All: {{ allSelected }} | Some: {{ someSelected }}</span>
                 </div>
-              </div>
-              
-              <div class="checkbox-list">
-                <div *ngFor="let item of allItems" class="checkbox-list-item">
-                  <div class="checkbox-list-label">
+                
+                <div class="ml-6 space-y-2">
+                  <div class="flex items-center space-x-3" *ngFor="let option of checkboxOptions; let i = index">
                     <sui-checkbox
-                      [(ngModel)]="item.checked"
-                      (ngModelChange)="onItemChange(item, $event)"
-                      [name]="item.id"
-                    >{{ item.label }}</sui-checkbox>
+                      [(ngModel)]="option.checked"
+                      (ngModelChange)="onOptionChange(i, $event)"
+                      [name]="'option' + i">
+                    </sui-checkbox>
+                    <label class="text-sm font-medium text-gray-900">{{ option.label }}</label>
                   </div>
                 </div>
               </div>
-              
-              <div class="mt-4 p-3 bg-white rounded border">
-                <h4 class="font-semibold mb-2">Selected Items:</h4>
-                <p class="text-sm text-gray-600">{{ selectedItems.length > 0 ? selectedItems.join(', ') : 'None selected' }}</p>
-              </div>
             </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('group')">
-          {{ showGroupCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showGroupCode" class="mt-4 bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-checkbox
+            
+            <!-- Code Example -->
+            <div *ngIf="showCheckboxGroupCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Checkbox Group with Select All --&gt;
+&lt;sui-checkbox
   [(ngModel)]="allSelected"
   (ngModelChange)="onSelectAllChange($event)"
-  name="selectAll"
-&gt;Select All&lt;/sui-checkbox&gt;
+  name="selectAll"&gt;
+&lt;/sui-checkbox&gt;
 
-&lt;div *ngFor="let item of allItems"&gt;
+&lt;!-- Individual Options --&gt;
+&lt;div *ngFor="let option of options; let i = index"&gt;
   &lt;sui-checkbox
-    [(ngModel)]="item.checked"
-    (ngModelChange)="onItemChange(item, $event)"
-    [name]="item.id"
-  &gt;Item Label&lt;/sui-checkbox&gt;
+    [(ngModel)]="option.checked"
+    (ngModelChange)="onOptionChange(i, $event)"
+    [name]="'option' + i"&gt;
+  &lt;/sui-checkbox&gt;
 &lt;/div&gt;</code></pre>
-        </div>
-      </div>
-
-      <!-- Custom Styling -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Custom Styling</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="space-y-6">
-            <p class="text-gray-700">Checkboxes with custom styling and enhanced appearance.</p>
-            
-            <div class="space-y-4">
-              <div class="checkbox-item">
-                <sui-checkbox
-                  [(ngModel)]="customChecked"
-                  (ngModelChange)="onCustomChange($event)"
-                  name="custom"
-                  class="checkbox-enhanced"
-                >Enhanced Checkbox</sui-checkbox>
-                <p class="checkbox-info">Checked: {{ customChecked }}</p>
-              </div>
-              
-              <div class="checkbox-item">
-                <sui-checkbox
-                  [(ngModel)]="customChecked"
-                  (ngModelChange)="onCustomChange($event)"
-                  name="customAnimated"
-                  class="checkbox-animated"
-                >Animated Checkbox</sui-checkbox>
-                <p class="checkbox-info">Checked: {{ customChecked }}</p>
-              </div>
-              
-              <div class="checkbox-item">
-                <sui-checkbox
-                  [(ngModel)]="customChecked"
-                  (ngModelChange)="onCustomChange($event)"
-                  name="customGlow"
-                  class="checkbox-glow"
-                >Glow Effect Checkbox</sui-checkbox>
-                <p class="checkbox-info">Checked: {{ customChecked }}</p>
-              </div>
             </div>
           </div>
         </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('custom')">
-          {{ showCustomCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-checkbox
-  [(ngModel)]="customChecked"
-  (ngModelChange)="onCustomChange($event)"
-  name="custom"
-  class="checkbox-enhanced"
-&gt;Enhanced Checkbox&lt;/sui-checkbox&gt;
 
+        <!-- Custom Styled Checkboxes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Custom Styled Checkboxes</h3>
+            <button 
+              (click)="toggleCode('customCheckboxes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCustomCheckboxesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex flex-col gap-4">
+                <div class="flex items-center space-x-3">
+                  <sui-checkbox
+                    [(ngModel)]="customChecked"
+                    (ngModelChange)="onCustomChange($event)"
+                    name="custom"
+                    class="checkbox-custom">
+                  </sui-checkbox>
+                  <label class="text-sm font-medium text-gray-900">Custom Styled Checkbox</label>
+                  <span class="text-sm text-gray-500">Enhanced appearance</span>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                  <sui-checkbox
+                    [(ngModel)]="animatedChecked"
+                    (ngModelChange)="onAnimatedChange($event)"
+                    name="animated"
+                    class="checkbox-animated">
+                  </sui-checkbox>
+                  <label class="text-sm font-medium text-gray-900">Animated Checkbox</label>
+                  <span class="text-sm text-gray-500">With transition effects</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showCustomCheckboxesCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Custom Styled Checkbox --&gt;
 &lt;sui-checkbox
-  [(ngModel)]="customChecked"
-  (ngModelChange)="onCustomChange($event)"
-  name="customAnimated"
-  class="checkbox-animated"
-&gt;Animated Checkbox&lt;/sui-checkbox&gt;</code></pre>
+  [(ngModel)]="isChecked"
+  (ngModelChange)="onChange($event)"
+  name="custom"
+  class="checkbox-custom"&gt;
+&lt;/sui-checkbox&gt;
+
+&lt;!-- Animated Checkbox --&gt;
+&lt;sui-checkbox
+  [(ngModel)]="isChecked"
+  (ngModelChange)="onChange($event)"
+  name="animated"
+  class="checkbox-animated"&gt;
+&lt;/sui-checkbox&gt;</code></pre>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
-      <h2>How to Use Checkbox</h2>
-      
-      <h3>Installation</h3>
-      <p>Import the Checkbox component from the UI library:</p>
-      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>import &#123; Checkbox &#125; from 'ui-lib';
+    <div *ngIf="activeTab === 'usage'" class="space-y-6">
+      <div class="content-section">
+        <h2>Installation</h2>
+        <p>Import the Checkbox component in your module or standalone component:</p>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>import &#123; Checkbox &#125; from 'ui-lib';
 
 // In your component imports
 imports: [Checkbox]</code></pre>
+      </div>
 
-      <h3>Basic Usage</h3>
-      <p>Use the Checkbox component with two-way data binding:</p>
-      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
+      <div class="content-section">
+        <h2>Basic Usage</h2>
+        <p>Use the Checkbox component with ngModel for two-way data binding:</p>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
   [(ngModel)]="isChecked"
   (ngModelChange)="onChange($event)"
-  name="myCheckbox"
-&gt;Checkbox Label&lt;/sui-checkbox&gt;</code></pre>
+  name="myCheckbox"&gt;
+&lt;/sui-checkbox&gt;</code></pre>
+      </div>
 
-      <h3>Component Properties</h3>
-      <ul>
-        <li><strong>ngModel</strong>: Two-way binding for the checked state</li>
-        <li><strong>name</strong>: Name attribute for the input</li>
-        <li><strong>disabled</strong>: Disable the checkbox</li>
-        <li><strong>indeterminate</strong>: Set indeterminate state</li>
-        <li><strong>inputId</strong>: Custom ID for the input element</li>
-      </ul>
-
-      <h3>Events</h3>
-      <ul>
-        <li><strong>ngModelChange</strong>: Emitted when the checkbox state changes</li>
-      </ul>
-
-      <h3>Common Use Cases</h3>
-      <ul>
-        <li><strong>Form Controls</strong>: Basic form input for boolean values</li>
-        <li><strong>Settings</strong>: Toggle options and preferences</li>
-        <li><strong>Lists</strong>: Select multiple items from a list</li>
-        <li><strong>Agreements</strong>: Terms and conditions acceptance</li>
-        <li><strong>Filters</strong>: Filter options in search interfaces</li>
-      </ul>
-
-      <h3>Best Practices</h3>
-      <ul>
-        <li><strong>Clear Labels</strong>: Use descriptive labels for checkboxes</li>
-        <li><strong>Grouping</strong>: Group related checkboxes logically</li>
-        <li><strong>Indeterminate State</strong>: Use for "select all" scenarios</li>
-        <li><strong>Accessibility</strong>: Ensure proper labeling and keyboard navigation</li>
-        <li><strong>Validation</strong>: Provide clear feedback for required checkboxes</li>
-      </ul>
-
-      <h3>Form Integration</h3>
-      <p>The component works seamlessly with Angular forms:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;form [formGroup]="myForm"&gt;
+      <div class="content-section">
+        <h2>Form Integration</h2>
+        <p>Integrate with Angular reactive forms:</p>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;form [formGroup]="myForm"&gt;
   &lt;sui-checkbox
     formControlName="agreeToTerms"
-    name="agreeToTerms"
-  &gt;I agree to the terms and conditions&lt;/sui-checkbox&gt;
+    name="agreeToTerms"&gt;
+  &lt;/sui-checkbox&gt;
 &lt;/form&gt;</code></pre>
+      </div>
 
-      <h3>Styling Options</h3>
-      <ul>
-        <li><strong>checkbox-enhanced</strong>: Enhanced appearance with custom checkmark</li>
-        <li><strong>checkbox-animated</strong>: Smooth hover and click animations</li>
-        <li><strong>checkbox-glow</strong>: Glow effect on focus</li>
-        <li><strong>checkbox-ripple</strong>: Ripple effect on interaction</li>
-      </ul>
+      <div class="content-section">
+        <h2>Checkbox Groups</h2>
+        <p>Create checkbox groups with select all functionality:</p>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;!-- Select All Checkbox --&gt;
+&lt;sui-checkbox
+  [(ngModel)]="allSelected"
+  (ngModelChange)="onSelectAllChange($event)"
+  name="selectAll"&gt;
+&lt;/sui-checkbox&gt;
+
+&lt;!-- Individual Checkboxes --&gt;
+&lt;div *ngFor="let option of options"&gt;
+  &lt;sui-checkbox
+    [(ngModel)]="option.checked"
+    (ngModelChange)="onOptionChange(option, $event)"
+    [name]="option.id"&gt;
+  &lt;/sui-checkbox&gt;
+&lt;/div&gt;</code></pre>
+      </div>
     </div>
 
     <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
-      <h2>API Documentation</h2>
-      
-      <h3>Properties</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
+    <div *ngIf="activeTab === 'docs'" class="space-y-6">
+      <div class="content-section">
+        <h2>Checkbox Component</h2>
+        <p>The Checkbox component provides a form control for selecting one or more options from a set of choices. It supports various states including checked, unchecked, disabled, and indeterminate.</p>
+      </div>
+
+      <div class="content-section">
+        <h2>Props</h2>
+        <table>
           <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="border border-gray-300 px-4 py-2">checked</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Checked state of the checkbox</td>
+              <td class="font-medium">ngModel</td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Two-way binding for the checkbox state</td>
             </tr>
             <tr>
-              <td class="border border-gray-300 px-4 py-2">disabled</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Disable the checkbox</td>
+              <td class="font-medium">disabled</td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Disable the checkbox</td>
             </tr>
             <tr>
-              <td class="border border-gray-300 px-4 py-2">indeterminate</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Set indeterminate state</td>
+              <td class="font-medium">name</td>
+              <td>string</td>
+              <td>-</td>
+              <td>Name attribute for the checkbox</td>
             </tr>
             <tr>
-              <td class="border border-gray-300 px-4 py-2">name</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">''</td>
-              <td class="border border-gray-300 px-4 py-2">Name attribute for the input</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">inputId</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">''</td>
-              <td class="border border-gray-300 px-4 py-2">ID attribute for the input</td>
+              <td class="font-medium">inputId</td>
+              <td>string</td>
+              <td>-</td>
+              <td>Unique identifier for the checkbox element</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h3>Events</h3>
-      <ul>
-        <li><strong>ngModelChange</strong>: Emitted when the checkbox state changes (boolean)</li>
-      </ul>
+      <div class="content-section">
+        <h2>Events</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-medium">ngModelChange</td>
+              <td>boolean</td>
+              <td>Emitted when the checkbox state changes</td>
+            </tr>
+            <tr>
+              <td class="font-medium">onFocus</td>
+              <td>Event</td>
+              <td>Emitted when the checkbox receives focus</td>
+            </tr>
+            <tr>
+              <td class="font-medium">onBlur</td>
+              <td>Event</td>
+              <td>Emitted when the checkbox loses focus</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      <h3>Accessibility</h3>
-      <ul>
-        <li><strong>ARIA</strong>: Proper ARIA attributes for screen readers</li>
-        <li><strong>Keyboard Navigation</strong>: Full keyboard support (Space, Tab)</li>
-        <li><strong>Focus Management</strong>: Visible focus indicators</li>
-        <li><strong>Screen Reader</strong>: Compatible with screen reader announcements</li>
-      </ul>
-
-      <h3>Styling Classes</h3>
-      <ul>
-        <li><code>.checkbox-enhanced</code>: Enhanced appearance with custom checkmark</li>
-        <li><code>.checkbox-animated</code>: Smooth animations on interaction</li>
-        <li><code>.checkbox-glow</code>: Glow effect on focus</li>
-        <li><code>.checkbox-ripple</code>: Ripple effect on click</li>
-        <li><code>.checkbox-border-animated</code>: Animated border effect</li>
-      </ul>
-
-      <h3>Examples</h3>
-      <h4>Basic Checkbox</h4>
-      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
+      <div class="content-section">
+        <h2>Examples</h2>
+        
+        <h3>Basic Checkbox</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
   [(ngModel)]="isChecked"
-  name="basic"
-&gt;Basic Checkbox&lt;/sui-checkbox&gt;</code></pre>
+  (ngModelChange)="onChange($event)"
+  name="basic"&gt;
+&lt;/sui-checkbox&gt;</code></pre>
 
-      <h4>Disabled Checkbox</h4>
-      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
+        <h3>Disabled Checkbox</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
   [(ngModel)]="isChecked"
   [disabled]="true"
-  name="disabled"
-&gt;Disabled Checkbox&lt;/sui-checkbox&gt;</code></pre>
+  name="disabled"&gt;
+&lt;/sui-checkbox&gt;</code></pre>
 
-      <h4>Indeterminate Checkbox</h4>
-      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
+        <h3>Another Checkbox</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
   [(ngModel)]="isChecked"
-  [indeterminate]="true"
-  name="indeterminate"
-&gt;Indeterminate Checkbox&lt;/sui-checkbox&gt;</code></pre>
+  name="another"&gt;
+&lt;/sui-checkbox&gt;</code></pre>
 
-      <h4>Custom Styled Checkbox</h4>
-      <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
+        <h3>Custom Styled Checkbox</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;sui-checkbox
   [(ngModel)]="isChecked"
+  (ngModelChange)="onChange($event)"
   name="custom"
-  class="checkbox-enhanced checkbox-animated"
-&gt;Custom Checkbox&lt;/sui-checkbox&gt;</code></pre>
+  class="checkbox-custom"&gt;
+&lt;/sui-checkbox&gt;</code></pre>
 
-      <h4>Form Integration</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;form [formGroup]="myForm" (ngSubmit)="onSubmit()"&gt;
+        <h3>Form Integration</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg"><code>&lt;form [formGroup]="myForm" (ngSubmit)="onSubmit()"&gt;
   &lt;sui-checkbox
     formControlName="agreeToTerms"
-    name="agreeToTerms"
-    required
-  &gt;I agree to the terms and conditions&lt;/sui-checkbox&gt;
+    name="agreeToTerms"&gt;
+  &lt;/sui-checkbox&gt;
   
-  &lt;button type="submit" [disabled]="!myForm.valid"&gt;Submit&lt;/button&gt;
+  &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
 &lt;/form&gt;</code></pre>
+      </div>
     </div>
   </app-tabs>
 </div>
