@@ -196,15 +196,12 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     // Bind event listeners for all variants
     this.bindEventListeners();
     
-    // Only create dynamic calendar for inline variant
-    // For default and compact variants, use the HTML template
-    if (this.variant === 'inline') {
-      // Register with z-index manager to get highest z-index
-      const zIndexManager = DatePickerZIndexManager.getInstance();
-      this.calendarZIndex = zIndexManager.registerCalendar(this);
-      
-      this.createCalendarInBody();
-    }
+    // Create dynamic calendar for all variants to ensure consistent behavior
+    // Register with z-index manager to get highest z-index
+    const zIndexManager = DatePickerZIndexManager.getInstance();
+    this.calendarZIndex = zIndexManager.registerCalendar(this);
+    
+    this.createCalendarInBody();
     
     this.onOpen.emit();
     this.cdr.detectChanges();
@@ -219,15 +216,13 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     // Cleanup event listeners for all variants
     this.cleanupEventListeners();
     
-    // Only cleanup dynamic calendar for inline variant
-    if (this.variant === 'inline') {
-      // Unregister from z-index manager
-      const zIndexManager = DatePickerZIndexManager.getInstance();
-      zIndexManager.unregisterCalendar(this);
-      
-      // Remove calendar from body
-      this.removeCalendarFromBody();
-    }
+    // Cleanup dynamic calendar for all variants
+    // Unregister from z-index manager
+    const zIndexManager = DatePickerZIndexManager.getInstance();
+    zIndexManager.unregisterCalendar(this);
+    
+    // Remove calendar from body
+    this.removeCalendarFromBody();
     
     this.onClose.emit();
     this.cdr.detectChanges();
@@ -1116,18 +1111,16 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   }
 
   private bindEventListeners(): void {
-    // Document click listener - only for inline variant
-    // Default/compact variants use HTML template which handles its own events
-    if (this.variant === 'inline') {
-      setTimeout(() => {
-        this.documentClickListener = fromEvent(document, 'click').subscribe((event: any) => {
-          if (!this.triggerElement?.nativeElement?.contains(event.target) && 
-              !this.calendarElement?.contains(event.target)) {
-            this.close();
-          }
-        });
-      }, 100);
-    }
+    // Document click listener for all variants
+    // All variants now use JavaScript-generated calendar
+    setTimeout(() => {
+      this.documentClickListener = fromEvent(document, 'click').subscribe((event: any) => {
+        if (!this.triggerElement?.nativeElement?.contains(event.target) && 
+            !this.calendarElement?.contains(event.target)) {
+          this.close();
+        }
+      });
+    }, 100);
     
     // Window resize listener
     this.windowResizeListener = fromEvent(window, 'resize').subscribe(() => {
