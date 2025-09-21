@@ -186,7 +186,6 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   open(): void {
     if (this.disabled || this.readonly || this.isOpen) return;
     
-    console.log('Opening calendar, variant:', this.variant, 'showTime:', this.showTime);
     this.isOpen = true;
     this.updateCurrentDate();
     
@@ -228,12 +227,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
   }
 
   selectDate(date: Date, event?: Event): void {
-    console.log('selectDate called with:', { date, event, showTime: this.showTime, variant: this.variant });
-    
-    if (this.isDateDisabled(date)) {
-      console.log('Date is disabled, returning');
-      return;
-    }
+    if (this.isDateDisabled(date)) return;
     
     // Prevent event propagation to avoid conflicts with document click handler
     if (event) {
@@ -257,11 +251,13 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     this.onSelect.emit(this.value);
     
     // Close calendar if not showing time
+    // Use setTimeout to ensure the click event is fully processed before closing
     if (!this.showTime) {
-      console.log('Closing calendar because showTime is false');
-      this.close();
-    } else {
-      console.log('Calendar remains open because showTime is true');
+      setTimeout(() => {
+        if (this.isOpen) { // Only close if still open (prevent double-close)
+          this.close();
+        }
+      }, 0);
     }
   }
 
@@ -315,7 +311,6 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
 
   // Calendar Data Methods
   getCalendarDays(): any[] {
-    console.log('getCalendarDays called');
     const days: any[] = [];
     const firstDay = new Date(this.currentYear, this.currentMonth, 1);
     const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
@@ -351,7 +346,6 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       });
     }
 
-    console.log('getCalendarDays returning:', days.length, 'days');
     return days;
   }
 
