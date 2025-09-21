@@ -601,7 +601,10 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     // Create new click handler
     this.calendarClickHandler = (event: Event) => {
       const target = event.target as HTMLElement;
-      const action = target.getAttribute('data-action');
+      
+      // Find the closest element with data-action attribute (handles SVG clicks)
+      const actionElement = target.closest('[data-action]') as HTMLElement;
+      const action = actionElement?.getAttribute('data-action');
       
       if (action === 'prev') {
         event.stopPropagation();
