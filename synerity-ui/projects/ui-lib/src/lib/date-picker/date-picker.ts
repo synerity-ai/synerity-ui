@@ -496,19 +496,45 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
     
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
-    const calendarHeight = 400; // Approximate calendar height
-    const calendarWidth = 320; // Approximate calendar width
     
+    // Calculate calendar dimensions based on variant
+    let calendarHeight = 400; // Default height
+    let calendarWidth = 280; // Default width
+    
+    if (this.variant === 'compact') {
+      calendarHeight = 320; // Compact height
+      calendarWidth = 240; // Compact width
+    } else if (this.variant === 'inline') {
+      calendarHeight = 380; // Inline height
+      calendarWidth = 280; // Inline width
+    }
+    
+    // Calculate optimal position
     let top = triggerRect.bottom + window.scrollY + 8;
     let left = triggerRect.left + window.scrollX;
     
-    // Adjust position if calendar would go off screen
-    if (top + calendarHeight > viewportHeight + window.scrollY) {
+    // Check if calendar would go off screen vertically
+    const wouldGoOffBottom = top + calendarHeight > viewportHeight + window.scrollY;
+    const wouldGoOffTop = triggerRect.top + window.scrollY - calendarHeight - 8 < window.scrollY;
+    
+    // Priority: Show month/year navigation buttons
+    // If there's not enough space below, position above the trigger
+    if (wouldGoOffBottom && !wouldGoOffTop) {
       top = triggerRect.top + window.scrollY - calendarHeight - 8;
+    } else if (wouldGoOffBottom && wouldGoOffTop) {
+      // If it would go off both top and bottom, center it vertically
+      const availableHeight = viewportHeight - 20; // Leave 20px margin
+      top = window.scrollY + (viewportHeight - Math.min(calendarHeight, availableHeight)) / 2;
     }
     
+    // Check if calendar would go off screen horizontally
     if (left + calendarWidth > viewportWidth + window.scrollX) {
       left = viewportWidth + window.scrollX - calendarWidth - 16;
+    }
+    
+    // Ensure calendar doesn't go off the left edge
+    if (left < window.scrollX + 16) {
+      left = window.scrollX + 16;
     }
     
     return {
