@@ -939,7 +939,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
       .sui-date-picker-months-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
+        gap: 6px;
         align-items: stretch;
       }
 
@@ -947,16 +947,16 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 12px 8px;
+        padding: 8px 6px;
         border: 1px solid #d1d5db;
         border-radius: 6px;
         background: #ffffff;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 12px;
         color: #374151;
         transition: all 0.15s ease;
         text-align: center;
-        min-height: 44px;
+        min-height: 36px;
         box-sizing: border-box;
       }
 
