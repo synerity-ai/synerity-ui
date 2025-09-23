@@ -1,0 +1,554 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Dynamic Dialog</h1>
+    <p class="text-lg text-gray-600">A dialog component that can be created and managed programmatically with dynamic content.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Dynamic Dialog -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Dynamic Dialog</h3>
+            <button 
+              (click)="toggleCode('basicDynamicDialog')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicDynamicDialogCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A dynamic dialog that can be created programmatically with custom content.</p>
+            <div class="flex gap-4">
+              <button 
+                class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
+                (click)="showBasicDynamicDialog = true">
+                Open Dynamic Dialog
+              </button>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicDynamicDialogCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>// Component method
+openDynamicDialog(): void &#123;
+  this.dynamicDialog.open(MyComponent, &#123;
+    header: 'Dynamic Dialog',
+    width: '400px',
+    height: '300px'
+  &#125;);
+&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Draggable Dynamic Dialog -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Draggable Dynamic Dialog</h3>
+            <button 
+              (click)="toggleCode('draggableDynamicDialog')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showDraggableDynamicDialogCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A dynamic dialog that can be dragged around the screen.</p>
+            <div class="flex gap-4">
+              <button 
+                class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
+                (click)="showDraggableDynamicDialog = true">
+                Open Draggable Dialog
+              </button>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showDraggableDynamicDialogCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>// Component method
+openDraggableDialog(): void &#123;
+  this.dynamicDialog.open(MyComponent, &#123;
+    header: 'Draggable Dialog',
+    draggable: true,
+    width: '500px',
+    height: '400px'
+  &#125;);
+&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Size Dynamic Dialog -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Custom Size Dynamic Dialog</h3>
+            <button 
+              (click)="toggleCode('customSizeDynamicDialog')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCustomSizeDynamicDialogCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A dynamic dialog with custom dimensions and positioning.</p>
+            <div class="flex gap-4">
+              <button 
+                class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
+                (click)="showCustomSizeDynamicDialog = true">
+                Open Custom Size Dialog
+              </button>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showCustomSizeDynamicDialogCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>// Component method
+openCustomSizeDialog(): void &#123;
+  this.dynamicDialog.open(MyComponent, &#123;
+    header: 'Custom Size Dialog',
+    width: '600px',
+    height: '500px',
+    position: 'top-right',
+    resizable: true
+  &#125;);
+&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The DynamicDialog component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the DynamicDialog component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>import &#123; DynamicDialog &#125; from '@synerity/ui';</code>
+            </div>
+            <p class="text-gray-600 mt-4 mb-4">Then use it in your template:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>// Component method
+openDynamicDialog(): void &#123;
+  this.dynamicDialog.open(MyComponent, &#123;
+    header: 'Dynamic Dialog',
+    width: '400px',
+    height: '300px'
+  &#125;);
+&#125;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advanced Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Advanced Features</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-6">
+              
+              <!-- Draggable Dialog -->
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">Draggable Dialog</h4>
+                <p class="text-gray-600 mb-3">Enable dragging by setting the draggable property to true:</p>
+                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                  <code>this.dynamicDialog.open(MyComponent, &#123;
+  header: 'Draggable Dialog',
+  draggable: true,
+  width: '500px',
+  height: '400px'
+&#125;);</code>
+                </div>
+              </div>
+
+              <!-- Custom Size -->
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 mb-2">Custom Size</h4>
+                <p class="text-gray-600 mb-3">Set custom dimensions and positioning:</p>
+                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                  <code>this.dynamicDialog.open(MyComponent, &#123;
+  header: 'Custom Size Dialog',
+  width: '600px',
+  height: '500px',
+  position: 'top-right',
+  resizable: true
+&#125;);</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Component Properties -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Properties</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">component</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Type&lt;any&gt;</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Component to display in the dialog</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">header</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Header text of the dialog</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">width</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'auto'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Width of the dialog</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">height</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'auto'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Height of the dialog</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">draggable</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the dialog can be dragged</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">resizable</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the dialog can be resized</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onShow</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the dialog is shown</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onHide</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the dialog is hidden</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Overview -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Overview</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">
+              The DynamicDialog component allows you to create and manage dialogs programmatically. Unlike regular dialogs, dynamic dialogs can be created at runtime with any component as content, making them perfect for complex workflows and dynamic content.
+            </p>
+            <p class="text-gray-600">
+              Dynamic dialogs are managed through a service that handles their lifecycle, positioning, and interaction with the underlying content components.
+            </p>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Programmatic Creation</h4>
+                    <p class="text-sm text-gray-600">Create dialogs dynamically at runtime</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Component Injection</h4>
+                    <p class="text-sm text-gray-600">Inject any component as dialog content</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Data Passing</h4>
+                    <p class="text-sm text-gray-600">Pass data to dialog components</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Result Handling</h4>
+                    <p class="text-sm text-gray-600">Handle dialog results and responses</p>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Multiple Dialogs</h4>
+                    <p class="text-sm text-gray-600">Support for multiple open dialogs</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Lifecycle Management</h4>
+                    <p class="text-sm text-gray-600">Automatic component lifecycle handling</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Flexible Configuration</h4>
+                    <p class="text-sm text-gray-600">Configurable size, position, and behavior</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Service Integration</h4>
+                    <p class="text-sm text-gray-600">Easy integration with Angular services</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Use Cases -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Use Cases</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Form Dialogs</h4>
+                <p class="text-sm text-gray-600">Create dynamic forms with validation and submission handling.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Confirmation Dialogs</h4>
+                <p class="text-sm text-gray-600">Show custom confirmation dialogs with dynamic content.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Detail Views</h4>
+                <p class="text-sm text-gray-600">Display detailed information in modal dialogs.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Wizard Flows</h4>
+                <p class="text-sm text-gray-600">Create multi-step wizard processes with dynamic content.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Browser Support -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Browser Support</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="text-center">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-green-600 font-bold">Ch</span>
+                </div>
+                <p class="text-sm text-gray-600">Chrome 60+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">FF</span>
+                </div>
+                <p class="text-sm text-gray-600">Firefox 55+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">Sa</span>
+                </div>
+                <p class="text-sm text-gray-600">Safari 12+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">Ed</span>
+                </div>
+                <p class="text-sm text-gray-600">Edge 79+</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>
+
+<!-- Dynamic Dialog Components -->
+<sui-dynamic-dialog 
+  [visible]="showBasicDynamicDialog" 
+  header="Dynamic Dialog"
+  (onHide)="showBasicDynamicDialog = false">
+  <div class="space-y-4">
+    <p class="text-gray-600">This is a dynamic dialog that can be created and managed programmatically. It's perfect for complex workflows and dynamic content.</p>
+    <div class="p-4 bg-gray-50 rounded-lg">
+      <h4 class="font-medium text-gray-900 mb-2">Dynamic Features</h4>
+      <ul class="text-sm text-gray-600 space-y-1">
+        <li>• Programmatically created</li>
+        <li>• Dynamic content support</li>
+        <li>• Flexible configuration</li>
+        <li>• Event-driven architecture</li>
+      </ul>
+    </div>
+    <div class="flex justify-end space-x-3">
+      <button 
+        class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        (click)="showBasicDynamicDialog = false">
+        Cancel
+      </button>
+      <button 
+        class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
+        (click)="showBasicDynamicDialog = false">
+        OK
+      </button>
+    </div>
+  </div>
+</sui-dynamic-dialog>
+
+<sui-dynamic-dialog 
+  [visible]="showDraggableDynamicDialog" 
+  header="Draggable Dynamic Dialog"
+  [draggable]="true"
+  width="500px"
+  height="400px"
+  (onHide)="showDraggableDynamicDialog = false">
+  <div class="space-y-4">
+    <p class="text-gray-600">This dynamic dialog can be dragged around the screen. Try dragging it by the header!</p>
+    <div class="p-4 bg-gray-50 rounded-lg">
+      <h4 class="font-medium text-gray-900 mb-2">Dragging Features</h4>
+      <ul class="text-sm text-gray-600 space-y-1">
+        <li>• Click and drag the header to move</li>
+        <li>• Smooth drag experience</li>
+        <li>• Maintains position after drag</li>
+        <li>• Perfect for multi-dialog workflows</li>
+      </ul>
+    </div>
+    <div class="flex justify-end space-x-3">
+      <button 
+        class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        (click)="showDraggableDynamicDialog = false">
+        Close
+      </button>
+    </div>
+  </div>
+</sui-dynamic-dialog>
+
+<sui-dynamic-dialog 
+  [visible]="showCustomSizeDynamicDialog" 
+  header="Custom Size Dynamic Dialog"
+  width="700px"
+  height="500px"
+  (onHide)="showCustomSizeDynamicDialog = false">
+  <div class="space-y-4">
+    <p class="text-gray-600">This dynamic dialog has custom dimensions to accommodate larger content or specific layout requirements.</p>
+    <div class="p-4 bg-gray-50 rounded-lg">
+      <h4 class="font-medium text-gray-900 mb-2">Custom Size Benefits</h4>
+      <ul class="text-sm text-gray-600 space-y-1">
+        <li>• Accommodates large content</li>
+        <li>• Specific layout requirements</li>
+        <li>• Better content organization</li>
+        <li>• Improved user experience</li>
+      </ul>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="p-3 bg-blue-50 rounded-lg">
+        <h5 class="font-medium text-blue-900 mb-1">Feature 1</h5>
+        <p class="text-sm text-blue-700">Custom sizing allows for better content layout.</p>
+      </div>
+      <div class="p-3 bg-green-50 rounded-lg">
+        <h5 class="font-medium text-green-900 mb-1">Feature 2</h5>
+        <p class="text-sm text-green-700">More space for complex forms and data.</p>
+      </div>
+    </div>
+    <div class="flex justify-end space-x-3">
+      <button 
+        class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        (click)="showCustomSizeDynamicDialog = false">
+        Close
+      </button>
+    </div>
+  </div>
+</sui-dynamic-dialog>

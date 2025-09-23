@@ -1,0 +1,596 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Drawer</h1>
+    <p class="text-lg text-gray-600">A slide-out panel component that can be positioned on any side of the screen.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Left Drawer -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Left Drawer</h3>
+            <button 
+              (click)="toggleCode('leftDrawer')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showLeftDrawerCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A drawer that slides in from the left side of the screen.</p>
+            <div class="flex gap-4">
+              <button 
+                class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
+                (click)="showLeftDrawer = true">
+                Open Left Drawer
+              </button>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showLeftDrawerCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-drawer 
+  [visible]="showDrawer" 
+  position="left"
+  header="Left Drawer"
+  (onHide)="showDrawer = false"&gt;
+  &lt;p&gt;This drawer slides in from the left.&lt;/p&gt;
+&lt;/sui-drawer&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Drawer -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Right Drawer</h3>
+            <button 
+              (click)="toggleCode('rightDrawer')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showRightDrawerCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A drawer that slides in from the right side of the screen.</p>
+            <div class="flex gap-4">
+              <button 
+                class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
+                (click)="showRightDrawer = true">
+                Open Right Drawer
+              </button>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showRightDrawerCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-drawer 
+  [visible]="showDrawer" 
+  position="right"
+  header="Right Drawer"
+  (onHide)="showDrawer = false"&gt;
+  &lt;p&gt;This drawer slides in from the right.&lt;/p&gt;
+&lt;/sui-drawer&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Drawer -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Top Drawer</h3>
+            <button 
+              (click)="toggleCode('topDrawer')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showTopDrawerCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A drawer that slides in from the top of the screen.</p>
+            <div class="flex gap-4">
+              <button 
+                class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
+                (click)="showTopDrawer = true">
+                Open Top Drawer
+              </button>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showTopDrawerCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-drawer 
+  [visible]="showDrawer" 
+  position="top"
+  header="Top Drawer"
+  (onHide)="showDrawer = false"&gt;
+  &lt;p&gt;This drawer slides in from the top.&lt;/p&gt;
+&lt;/sui-drawer&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Drawer -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Bottom Drawer</h3>
+            <button 
+              (click)="toggleCode('bottomDrawer')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBottomDrawerCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A drawer that slides in from the bottom of the screen.</p>
+            <div class="flex gap-4">
+              <button 
+                class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
+                (click)="showBottomDrawer = true">
+                Open Bottom Drawer
+              </button>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBottomDrawerCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-drawer 
+  [visible]="showDrawer" 
+  position="bottom"
+  header="Bottom Drawer"
+  (onHide)="showDrawer = false"&gt;
+  &lt;p&gt;This drawer slides in from the bottom.&lt;/p&gt;
+&lt;/sui-drawer&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Drawer component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the Drawer component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>import &#123; Drawer &#125; from '@synerity/ui';</code>
+            </div>
+            <p class="text-gray-600 mt-4 mb-4">Then use it in your template:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>&lt;sui-drawer 
+  [visible]="showDrawer" 
+  position="left"
+  header="Drawer Title"
+  (onHide)="showDrawer = false"&gt;
+  &lt;p&gt;Drawer content goes here.&lt;/p&gt;
+&lt;/sui-drawer&gt;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Different Positions -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Different Positions</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The drawer can be positioned on any side of the screen:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>&lt;!-- Left Drawer --&gt;
+&lt;sui-drawer [visible]="showDrawer" position="left"&gt;&lt;/sui-drawer&gt;
+
+&lt;!-- Right Drawer --&gt;
+&lt;sui-drawer [visible]="showDrawer" position="right"&gt;&lt;/sui-drawer&gt;
+
+&lt;!-- Top Drawer --&gt;
+&lt;sui-drawer [visible]="showDrawer" position="top"&gt;&lt;/sui-drawer&gt;
+
+&lt;!-- Bottom Drawer --&gt;
+&lt;sui-drawer [visible]="showDrawer" position="bottom"&gt;&lt;/sui-drawer&gt;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Size -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Custom Size</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">You can customize the size of the drawer:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>&lt;sui-drawer 
+  [visible]="showDrawer" 
+  position="left"
+  width="400px"
+  height="500px"
+  (onHide)="showDrawer = false"&gt;
+  &lt;p&gt;Custom sized drawer.&lt;/p&gt;
+&lt;/sui-drawer&gt;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Component Properties -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Properties</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">visible</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Controls the visibility of the drawer</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">position</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'left' | 'right' | 'top' | 'bottom'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'left'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Position of the drawer</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">header</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Header text of the drawer</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">width</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'300px'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Width of the drawer (for left/right positions)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">height</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'300px'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Height of the drawer (for top/bottom positions)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">closable</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the drawer can be closed</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onShow</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the drawer is shown</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onHide</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the drawer is hidden</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Overview -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Overview</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">
+              The Drawer component provides a slide-out panel that can be positioned on any side of the screen. It's perfect for navigation menus, settings panels, or any secondary content that needs to be accessible but not always visible.
+            </p>
+            <p class="text-gray-600">
+              Drawers slide in smoothly from the specified direction and can be closed by clicking the backdrop, the close button, or pressing the ESC key.
+            </p>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Four Positions</h4>
+                    <p class="text-sm text-gray-600">Left, right, top, and bottom positioning</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Smooth Animations</h4>
+                    <p class="text-sm text-gray-600">CSS transitions for smooth slide-in/out effects</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Custom Sizing</h4>
+                    <p class="text-sm text-gray-600">Configurable width and height</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Modal Support</h4>
+                    <p class="text-sm text-gray-600">Optional modal backdrop</p>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Keyboard Navigation</h4>
+                    <p class="text-sm text-gray-600">ESC key to close, focus management</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Accessibility</h4>
+                    <p class="text-sm text-gray-600">ARIA attributes and screen reader support</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Responsive Design</h4>
+                    <p class="text-sm text-gray-600">Works on all screen sizes</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Event Handling</h4>
+                    <p class="text-sm text-gray-600">Show/hide event callbacks</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Use Cases -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Use Cases</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Navigation Menus</h4>
+                <p class="text-sm text-gray-600">Perfect for mobile navigation menus that slide in from the left or right.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Settings Panels</h4>
+                <p class="text-sm text-gray-600">Ideal for application settings that don't need to be always visible.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Filters & Search</h4>
+                <p class="text-sm text-gray-600">Great for advanced filters or search panels in data-heavy applications.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Notifications</h4>
+                <p class="text-sm text-gray-600">Use top or bottom drawers for notification panels or alerts.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Browser Support -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Browser Support</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="text-center">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-green-600 font-bold">Ch</span>
+                </div>
+                <p class="text-sm text-gray-600">Chrome 60+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">FF</span>
+                </div>
+                <p class="text-sm text-gray-600">Firefox 55+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">Sa</span>
+                </div>
+                <p class="text-sm text-gray-600">Safari 12+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">Ed</span>
+                </div>
+                <p class="text-sm text-gray-600">Edge 79+</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>
+
+<!-- Drawer Components -->
+<sui-drawer 
+  [visible]="showLeftDrawer" 
+  position="left"
+  width="400px"
+  (onHide)="showLeftDrawer = false">
+  <div class="space-y-4">
+    <h4 class="text-lg font-semibold text-gray-900">Left Drawer</h4>
+    <p class="text-gray-600">This drawer slides in from the left side. Perfect for navigation menus or side panels.</p>
+    <div class="p-4 bg-gray-50 rounded-lg">
+      <h5 class="font-medium text-gray-900 mb-2">Features</h5>
+      <ul class="text-sm text-gray-600 space-y-1">
+        <li>• Slides in from the left</li>
+        <li>• Customizable width</li>
+        <li>• Modal backdrop</li>
+        <li>• Smooth animations</li>
+      </ul>
+    </div>
+    <div class="flex justify-end space-x-3">
+      <button 
+        class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        (click)="showLeftDrawer = false">
+        Close
+      </button>
+    </div>
+  </div>
+</sui-drawer>
+
+<sui-drawer 
+  [visible]="showRightDrawer" 
+  position="right"
+  width="400px"
+  (onHide)="showRightDrawer = false">
+  <div class="space-y-4">
+    <h4 class="text-lg font-semibold text-gray-900">Right Drawer</h4>
+    <p class="text-gray-600">This drawer slides in from the right side. Great for settings panels or additional information.</p>
+    <div class="p-4 bg-gray-50 rounded-lg">
+      <h5 class="font-medium text-gray-900 mb-2">Use Cases</h5>
+      <ul class="text-sm text-gray-600 space-y-1">
+        <li>• Settings panels</li>
+        <li>• Additional information</li>
+        <li>• Quick actions</li>
+        <li>• Context menus</li>
+      </ul>
+    </div>
+    <div class="flex justify-end space-x-3">
+      <button 
+        class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        (click)="showRightDrawer = false">
+        Close
+      </button>
+    </div>
+  </div>
+</sui-drawer>
+
+<sui-drawer 
+  [visible]="showTopDrawer" 
+  position="top"
+  height="300px"
+  (onHide)="showTopDrawer = false">
+  <div class="space-y-4">
+    <h4 class="text-lg font-semibold text-gray-900">Top Drawer</h4>
+    <p class="text-gray-600">This drawer slides in from the top. Perfect for notifications or quick access panels.</p>
+    <div class="p-4 bg-gray-50 rounded-lg">
+      <h5 class="font-medium text-gray-900 mb-2">Best For</h5>
+      <ul class="text-sm text-gray-600 space-y-1">
+        <li>• Notification panels</li>
+        <li>• Quick access menus</li>
+        <li>• Search interfaces</li>
+        <li>• Status updates</li>
+      </ul>
+    </div>
+    <div class="flex justify-end space-x-3">
+      <button 
+        class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        (click)="showTopDrawer = false">
+        Close
+      </button>
+    </div>
+  </div>
+</sui-drawer>
+
+<sui-drawer 
+  [visible]="showBottomDrawer" 
+  position="bottom"
+  height="300px"
+  (onHide)="showBottomDrawer = false">
+  <div class="space-y-4">
+    <h4 class="text-lg font-semibold text-gray-900">Bottom Drawer</h4>
+    <p class="text-gray-600">This drawer slides in from the bottom. Ideal for mobile interfaces and action sheets.</p>
+    <div class="p-4 bg-gray-50 rounded-lg">
+      <h5 class="font-medium text-gray-900 mb-2">Mobile Friendly</h5>
+      <ul class="text-sm text-gray-600 space-y-1">
+        <li>• Action sheets</li>
+        <li>• Mobile menus</li>
+        <li>• Bottom navigation</li>
+        <li>• Quick actions</li>
+      </ul>
+    </div>
+    <div class="flex justify-end space-x-3">
+      <button 
+        class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        (click)="showBottomDrawer = false">
+        Close
+      </button>
+    </div>
+  </div>
+</sui-drawer>

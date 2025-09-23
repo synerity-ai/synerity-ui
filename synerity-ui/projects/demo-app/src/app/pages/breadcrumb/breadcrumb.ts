@@ -1,86 +1,87 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Breadcrumb } from 'ui-lib';
-import { Tabs } from '../../shared/tabs/tabs';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Breadcrumb as SuiBreadcrumb } from 'ui-lib';
 
 @Component({
   selector: 'app-breadcrumb',
   standalone: true,
-  imports: [CommonModule, Breadcrumb, Tabs],
+  imports: [CommonModule, AppTabs, SuiBreadcrumb],
   templateUrl: './breadcrumb.html',
-  styleUrls: ['./breadcrumb.scss']
+  styleUrl: './breadcrumb.scss'
 })
 export class BreadcrumbComponent {
   activeTab = 'demo';
-  showBasicBreadcrumbCode = false;
-  showBreadcrumbVariantsCode = false;
-  showBreadcrumbStatesCode = false;
+  lastClickedItem: any = null;
 
-  // Demo data
-  basicModel = [
-    { label: 'Home', url: '/' },
-    { label: 'Products', url: '/products' },
-    { label: 'Electronics', url: '/products/electronics' },
-    { label: 'Smartphones' }
-  ];
-
-  customModel = [
-    { label: 'Dashboard', url: '/dashboard', icon: '🏠' },
-    { label: 'Projects', url: '/projects', icon: '📁' },
-    { label: 'Current Project', url: '/projects/current', icon: '📋' },
-    { label: 'Tasks', icon: '✅' }
-  ];
-
-  iconModel = [
-    { label: 'Home', icon: '🏠' },
-    { label: 'Library', icon: '📚' },
-    { label: 'Data', icon: '💾' },
-    { label: 'Documents', icon: '📄' }
-  ];
-
-  homeItem = {
-    label: 'Home',
+  homeItem = { 
+    label: 'Home', 
     icon: '🏠',
-    url: '/'
+    url: '/' 
   };
 
-  longPathModel = [
+  customHomeItem = { 
+    label: 'Dashboard', 
+    icon: '📊',
+    url: '/dashboard' 
+  };
+
+  basicBreadcrumb = [
+    { label: 'Products', url: '/products' },
+    { label: 'Electronics', url: '/products/electronics' },
+    { label: 'Smartphones', url: '/products/electronics/smartphones' },
+    { label: 'iPhone 15' }
+  ];
+
+  iconBreadcrumb = [
+    { label: 'Dashboard', icon: '📊', url: '/dashboard' },
+    { label: 'Reports', icon: '📈', url: '/reports' },
+    { label: 'Sales Report', icon: '💰', url: '/reports/sales' },
+    { label: 'Monthly Summary', icon: '📅' }
+  ];
+
+  disabledBreadcrumb = [
+    { label: 'Products', url: '/products' },
+    { label: 'Electronics', disabled: true },
+    { label: 'Smartphones', url: '/products/electronics/smartphones' },
+    { label: 'iPhone 15' }
+  ];
+
+  longBreadcrumb = [
     { label: 'Home', url: '/' },
     { label: 'Products', url: '/products' },
     { label: 'Electronics', url: '/products/electronics' },
-    { label: 'Computers', url: '/products/electronics/computers' },
-    { label: 'Laptops', url: '/products/electronics/computers/laptops' },
-    { label: 'Gaming Laptops', url: '/products/electronics/computers/laptops/gaming' },
-    { label: 'High-End Gaming Laptops' }
+    { label: 'Mobile Devices', url: '/products/electronics/mobile' },
+    { label: 'Smartphones', url: '/products/electronics/mobile/smartphones' },
+    { label: 'Apple', url: '/products/electronics/mobile/smartphones/apple' },
+    { label: 'iPhone 15 Pro Max' }
   ];
 
-  onTabChange(tabId: string): void {
-    this.activeTab = tabId;
+  // Code visibility toggles
+  showBasicBreadcrumbCode = false;
+  showIconBreadcrumbCode = false;
+  showDisabledBreadcrumbCode = false;
+
+  onTabChange(tab: string): void {
+    this.activeTab = tab;
   }
 
   toggleCode(type: string): void {
     switch (type) {
-      case 'basic':
+      case 'basicBreadcrumb':
         this.showBasicBreadcrumbCode = !this.showBasicBreadcrumbCode;
         break;
-      case 'variants':
-        this.showBreadcrumbVariantsCode = !this.showBreadcrumbVariantsCode;
+      case 'iconBreadcrumb':
+        this.showIconBreadcrumbCode = !this.showIconBreadcrumbCode;
         break;
-      case 'states':
-        this.showBreadcrumbStatesCode = !this.showBreadcrumbStatesCode;
+      case 'disabledBreadcrumb':
+        this.showDisabledBreadcrumbCode = !this.showDisabledBreadcrumbCode;
         break;
     }
   }
 
-  onBreadcrumbClick(item: any): void {
-    console.log('Breadcrumb clicked:', item);
-    if (item.url) {
-      // In a real app, you would navigate to the URL
-      console.log('Navigating to:', item.url);
-    }
-  }
-
-  onHomeClick(): void {
-    console.log('Home clicked');
+  onBreadcrumbClick(event: any): void {
+    this.lastClickedItem = event;
+    console.log('Breadcrumb clicked:', event);
   }
 }

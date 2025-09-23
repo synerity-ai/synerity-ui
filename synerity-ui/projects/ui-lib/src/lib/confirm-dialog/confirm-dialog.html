@@ -1,35 +1,44 @@
-<div *ngIf="visible" class="sui-confirm-dialog-mask" (click)="hide()">
-  <div 
-    class="sui-confirm-dialog" 
-    [class]="getDialogClass()"
-    [style]="getDialogStyle()"
-    (click)="$event.stopPropagation()"
-  >
-    <div class="sui-confirm-dialog-header">
-      <h3 class="sui-confirm-dialog-title">{{ header }}</h3>
-    </div>
-    
-    <div class="sui-confirm-dialog-content">
-      <p class="sui-confirm-dialog-message">{{ message }}</p>
-    </div>
-    
-    <div class="sui-confirm-dialog-footer">
-      <button 
-        type="button" 
-        class="sui-confirm-dialog-button sui-confirm-dialog-reject"
-        (click)="reject()"
-      >
-        <span *ngIf="rejectIcon" class="sui-confirm-dialog-button-icon">{{ rejectIcon }}</span>
-        {{ rejectLabel }}
-      </button>
-      <button 
-        type="button" 
-        class="sui-confirm-dialog-button sui-confirm-dialog-accept"
-        (click)="accept()"
-      >
-        <span *ngIf="acceptIcon" class="sui-confirm-dialog-button-icon">{{ acceptIcon }}</span>
-        {{ acceptLabel }}
-      </button>
+<div *ngIf="visible" class="fixed inset-0 z-50 overflow-y-auto" (click)="hide()">
+  <!-- Backdrop -->
+  <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+  
+  <!-- Dialog Container -->
+  <div class="flex min-h-full items-center justify-center p-4">
+    <div 
+      class="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-auto transform transition-all"
+      [class]="styleClass"
+      [style]="getDialogStyle()"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">{{ header }}</h3>
+      </div>
+      
+      <!-- Content -->
+      <div class="px-6 py-4">
+        <p class="text-sm text-gray-600">{{ message }}</p>
+      </div>
+      
+      <!-- Footer -->
+      <div class="px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end space-x-3">
+        <button 
+          type="button" 
+          class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors"
+          (click)="reject()"
+        >
+          <span *ngIf="rejectIcon" class="mr-2">{{ rejectIcon }}</span>
+          {{ rejectLabel }}
+        </button>
+        <button 
+          type="button" 
+          class="px-4 py-2 text-sm font-medium text-white bg-primary-600 border border-transparent rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors"
+          (click)="accept()"
+        >
+          <span *ngIf="acceptIcon" class="mr-2">{{ acceptIcon }}</span>
+          {{ acceptLabel }}
+        </button>
+      </div>
     </div>
   </div>
 </div>

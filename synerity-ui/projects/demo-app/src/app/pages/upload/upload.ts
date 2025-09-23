@@ -1,78 +1,72 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Upload as SuiUpload } from '../../../../../ui-lib/src/lib/upload/upload';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Upload as SuiUpload } from 'ui-lib';
 
 @Component({
   selector: 'app-upload',
-  imports: [CommonModule, FormsModule, Tabs, SuiUpload],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiUpload],
   templateUrl: './upload.html',
   styleUrl: './upload.scss'
 })
-export class Upload {
+export class UploadComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  uploadedFiles: File[] = [];
-  uploadProgress = 0;
-  isUploading = false;
-  
-  // Code visibility states
+  uploadStatus: Array<{ file: File; status: string }> = [];
+
+  // Code visibility toggles
   showBasicUploadCode = false;
-  showDragDropUploadCode = false;
-  showMultipleUploadCode = false;
-  
-  onTabChange(tab: string) {
+  showSingleUploadCode = false;
+  showAutoUploadCode = false;
+  showCustomUploadCode = false;
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
+
+  toggleCode(type: string): void {
+    switch (type) {
       case 'basicUpload':
         this.showBasicUploadCode = !this.showBasicUploadCode;
         break;
-      case 'dragDropUpload':
-        this.showDragDropUploadCode = !this.showDragDropUploadCode;
+      case 'singleUpload':
+        this.showSingleUploadCode = !this.showSingleUploadCode;
         break;
-      case 'multipleUpload':
-        this.showMultipleUploadCode = !this.showMultipleUploadCode;
+      case 'autoUpload':
+        this.showAutoUploadCode = !this.showAutoUploadCode;
+        break;
+      case 'customUpload':
+        this.showCustomUploadCode = !this.showCustomUploadCode;
         break;
     }
   }
-  
-  // Upload demo methods
-  onFileSelect(event: any) {
-    const files = event.target.files;
-    if (files) {
-      this.uploadedFiles = Array.from(files);
+
+  onFileSelect(event: any): void {
+    console.log('Files selected:', event.files);
+  }
+
+  onUpload(event: any): void {
+    console.log('Files uploaded:', event.files);
+    if (event.file) {
+      this.uploadStatus.push({ file: event.file, status: 'success' });
+    } else {
+      event.files.forEach((file: File) => {
+        this.uploadStatus.push({ file, status: 'success' });
+      });
     }
   }
-  
-  onUpload(event: any) {
-    console.log('Upload event:', event);
-    this.isUploading = true;
-    this.uploadProgress = 0;
-    
-    // Simulate upload progress
-    const interval = setInterval(() => {
-      this.uploadProgress += 10;
-      if (this.uploadProgress >= 100) {
-        clearInterval(interval);
-        this.isUploading = false;
-        alert('Upload completed!');
-      }
-    }, 200);
+
+  onCustomUpload(event: any): void {
+    console.log('Custom upload handler:', event.files);
+    // Simulate custom upload logic
+    event.files.forEach((file: File) => {
+      console.log(`Uploading ${file.name} with custom logic...`);
+      this.uploadStatus.push({ file, status: 'success' });
+    });
   }
-  
-  onFileRemove(file: File) {
-    const index = this.uploadedFiles.indexOf(file);
-    if (index > -1) {
-      this.uploadedFiles.splice(index, 1);
-    }
-  }
-  
-  clearFiles() {
-    this.uploadedFiles = [];
+
+  onError(event: any): void {
+    console.error('Upload error:', event.error);
+    this.uploadStatus.push({ file: event.file, status: 'error' });
   }
 }

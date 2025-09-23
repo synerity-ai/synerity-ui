@@ -1,0 +1,43 @@
+/* Enterprise Standard Tabs Styling */
+.sui-tabs {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.sui-tabs .sui-tabs-tab {
+  position: relative;
+  user-select: none;
+}
+
+.sui-tabs .sui-tabs-tab-active {
+  font-weight: 600;
+}
+
+.sui-tabs .sui-tabs-tab-disabled {
+  pointer-events: none;
+}
+
+/* Focus styles for accessibility */
+.sui-tabs .sui-tabs-tab:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: -2px;
+}
+
+/* Smooth transitions */
+.sui-tabs .sui-tabs-tab {
+  transition: all 0.15s ease-in-out;
+}
+
+/* Enterprise color scheme */
+.sui-tabs .sui-tabs-tab-active {
+  color: #1e40af;
+  border-bottom-color: #1e40af;
+}
+
+.sui-tabs .sui-tabs-tab:hover:not(.sui-tabs-tab-disabled) {
+  color: #1f2937;
+}
+
+/* Content area styling */
+.sui-tabs .sui-tabs-content {
+  min-height: 120px;
+}

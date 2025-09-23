@@ -1,15 +1,39 @@
-<div *ngIf="visible" class="sui-drawer-mask" (click)="hide()">
+<div *ngIf="visible" class="fixed inset-0 z-50 overflow-hidden" (click)="hide()">
+  <!-- Backdrop -->
+  <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+  
+  <!-- Drawer Container -->
   <div 
     #drawerElement
-    class="sui-drawer" 
+    class="fixed bg-white shadow-xl border border-gray-200 transition-transform duration-300 ease-in-out"
     [class]="getDrawerClass()"
     [style]="getDrawerStyle()"
+    [class.top-0]="position === 'top'"
+    [class.bottom-0]="position === 'bottom'"
+    [class.left-0]="position === 'left'"
+    [class.right-0]="position === 'right'"
+    [class.w-full]="position === 'top' || position === 'bottom'"
+    [class.h-full]="position === 'left' || position === 'right'"
     (click)="$event.stopPropagation()"
   >
-    <div *ngIf="closable" class="sui-drawer-header">
-      <button type="button" class="sui-drawer-close" (click)="hide()">×</button>
+    <!-- Header -->
+    <div *ngIf="closable" 
+         class="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-gray-50"
+         [class.flex-row]="position === 'left' || position === 'right'"
+         [class.flex-col]="position === 'top' || position === 'bottom'">
+      <h3 class="text-lg font-semibold text-gray-900">Drawer</h3>
+      <button 
+        type="button" 
+        class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded transition-colors duration-200"
+        (click)="hide()">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
     </div>
-    <div class="sui-drawer-content">
+    
+    <!-- Content -->
+    <div class="p-6 overflow-y-auto h-full">
       <ng-content></ng-content>
     </div>
   </div>

@@ -1,40 +1,37 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Tooltip as SuiTooltip } from 'ui-lib';
 
 @Component({
   selector: 'app-tooltip',
-  imports: [CommonModule, FormsModule, Tabs],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiTooltip],
   templateUrl: './tooltip.html',
   styleUrl: './tooltip.scss'
 })
-export class Tooltip {
+export class TooltipComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  tooltipText = 'This is a tooltip message';
-  tooltipPosition = 'top';
-  
-  // Code visibility states
+
+  // Code visibility toggles
   showBasicTooltipCode = false;
-  showPositionTooltipCode = false;
   showCustomTooltipCode = false;
-  
-  onTabChange(tab: string) {
+  showDisabledTooltipCode = false;
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
+
+  toggleCode(type: string): void {
+    switch (type) {
       case 'basicTooltip':
         this.showBasicTooltipCode = !this.showBasicTooltipCode;
         break;
-      case 'positionTooltip':
-        this.showPositionTooltipCode = !this.showPositionTooltipCode;
-        break;
       case 'customTooltip':
         this.showCustomTooltipCode = !this.showCustomTooltipCode;
+        break;
+      case 'disabledTooltip':
+        this.showDisabledTooltipCode = !this.showDisabledTooltipCode;
         break;
     }
   }

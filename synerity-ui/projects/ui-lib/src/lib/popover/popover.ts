@@ -127,4 +127,21 @@ export class Popover implements AfterViewInit, OnDestroy {
       ...this.style
     };
   }
+
+  getArrowClass(): string {
+    const baseClasses = 'absolute w-2 h-2 bg-white border border-gray-200 transform rotate-45';
+
+    const positionClasses = {
+      'top': '-bottom-1 left-1/2 transform -translate-x-1/2 border-t-0 border-l-0',
+      'bottom': '-top-1 left-1/2 transform -translate-x-1/2 border-b-0 border-r-0',
+      'left': '-right-1 top-1/2 transform -translate-y-1/2 border-l-0 border-b-0',
+      'right': '-left-1 top-1/2 transform -translate-y-1/2 border-r-0 border-t-0',
+      'top-left': '-bottom-1 left-4 border-t-0 border-l-0',
+      'top-right': '-bottom-1 right-4 border-t-0 border-r-0',
+      'bottom-left': '-top-1 left-4 border-b-0 border-l-0',
+      'bottom-right': '-top-1 right-4 border-b-0 border-r-0'
+    };
+
+    return `${baseClasses} ${positionClasses[this.position]}`;
+  }
 }

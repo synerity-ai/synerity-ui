@@ -1,137 +1,122 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { ContextMenu as SuiContextMenu } from '../../../../../ui-lib/src/lib/context-menu/context-menu';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { ContextMenu as SuiContextMenu } from 'ui-lib';
 
 @Component({
   selector: 'app-contextmenu',
-  imports: [CommonModule, FormsModule, Tabs, SuiContextMenu],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiContextMenu],
   templateUrl: './contextmenu.html',
   styleUrl: './contextmenu.scss'
 })
-export class Contextmenu {
+export class ContextMenuComponent {
   @ViewChild('contextMenu') contextMenu!: SuiContextMenu;
-  
+  @ViewChild('iconContextMenu') iconContextMenu!: SuiContextMenu;
+  @ViewChild('submenuContextMenu') submenuContextMenu!: SuiContextMenu;
+  @ViewChild('separatorContextMenu') separatorContextMenu!: SuiContextMenu;
+
   activeTab = 'demo';
-  
-  // Demo data
+  lastAction: string = '';
+
   contextMenuItems = [
-    {
-      label: 'Edit',
-      icon: '✏️',
-      command: () => this.editItem()
-    },
-    {
-      label: 'Delete',
-      icon: '🗑️',
-      command: () => this.deleteItem()
-    },
-    { separator: true },
-    {
-      label: 'Copy',
-      icon: '📋',
-      command: () => this.copyItem()
-    },
-    {
-      label: 'Paste',
-      icon: '📌',
-      command: () => this.pasteItem()
-    }
+    { label: 'Copy', command: () => this.executeAction('Copy') },
+    { label: 'Paste', command: () => this.executeAction('Paste') },
+    { label: 'Cut', command: () => this.executeAction('Cut') },
+    { label: 'Delete', command: () => this.executeAction('Delete') }
   ];
 
-  nestedContextMenuItems = [
-    {
-      label: 'Edit',
+  iconContextMenuItems = [
+    { label: 'Copy', icon: '📋', command: () => this.executeAction('Copy') },
+    { label: 'Paste', icon: '📄', command: () => this.executeAction('Paste') },
+    { label: 'Cut', icon: '✂️', command: () => this.executeAction('Cut') },
+    { label: 'Delete', icon: '🗑️', command: () => this.executeAction('Delete') }
+  ];
+
+  submenuContextMenuItems = [
+    { 
+      label: 'Edit', 
       icon: '✏️',
       items: [
-        { label: 'Cut', icon: '✂️', command: () => this.cutItem() },
-        { label: 'Copy', icon: '📋', command: () => this.copyItem() },
-        { label: 'Paste', icon: '📌', command: () => this.pasteItem() }
+        { label: 'Cut', command: () => this.executeAction('Cut') },
+        { label: 'Copy', command: () => this.executeAction('Copy') },
+        { label: 'Paste', command: () => this.executeAction('Paste') }
       ]
     },
-    {
-      label: 'View',
+    { 
+      label: 'View', 
       icon: '👁️',
       items: [
-        { label: 'Details', icon: '📄', command: () => this.viewDetails() },
-        { label: 'Properties', icon: '⚙️', command: () => this.viewProperties() }
+        { label: 'Zoom In', command: () => this.executeAction('Zoom In') },
+        { label: 'Zoom Out', command: () => this.executeAction('Zoom Out') },
+        { label: 'Reset Zoom', command: () => this.executeAction('Reset Zoom') }
       ]
     },
-    { separator: true },
-    {
-      label: 'Delete',
-      icon: '🗑️',
-      command: () => this.deleteItem()
-    }
+    { label: 'Delete', icon: '🗑️', command: () => this.executeAction('Delete') }
   ];
-  
-  // Code visibility states
+
+  separatorContextMenuItems = [
+    { label: 'Copy', command: () => this.executeAction('Copy') },
+    { label: 'Paste', command: () => this.executeAction('Paste') },
+    { separator: true },
+    { label: 'Cut', command: () => this.executeAction('Cut') },
+    { separator: true },
+    { label: 'Delete', command: () => this.executeAction('Delete') }
+  ];
+
+  // Code visibility toggles
   showBasicContextMenuCode = false;
-  showNestedContextMenuCode = false;
-  showCustomContextMenuCode = false;
-  
-  onTabChange(tab: string) {
+  showIconContextMenuCode = false;
+  showSubmenuContextMenuCode = false;
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
+
+  toggleCode(type: string): void {
+    switch (type) {
       case 'basicContextMenu':
         this.showBasicContextMenuCode = !this.showBasicContextMenuCode;
         break;
-      case 'nestedContextMenu':
-        this.showNestedContextMenuCode = !this.showNestedContextMenuCode;
+      case 'iconContextMenu':
+        this.showIconContextMenuCode = !this.showIconContextMenuCode;
         break;
-      case 'customContextMenu':
-        this.showCustomContextMenuCode = !this.showCustomContextMenuCode;
+      case 'submenuContextMenu':
+        this.showSubmenuContextMenuCode = !this.showSubmenuContextMenuCode;
         break;
     }
   }
-  
-  // Context menu demo methods
-  editItem() {
-    console.log('Edit item clicked');
-  }
-  
-  deleteItem() {
-    console.log('Delete item clicked');
-  }
-  
-  copyItem() {
-    console.log('Copy item clicked');
-  }
-  
-  pasteItem() {
-    console.log('Paste item clicked');
-  }
-  
-  cutItem() {
-    console.log('Cut item clicked');
-  }
-  
-  viewDetails() {
-    console.log('View details clicked');
-  }
-  
-  viewProperties() {
-    console.log('View properties clicked');
-  }
-  
-  onContextMenu(event: MouseEvent) {
+
+  showContextMenu(event: MouseEvent): void {
     this.contextMenu.show(event);
   }
-  
-  onNestedContextMenu(event: MouseEvent) {
-    // This would use a different context menu instance for nested demo
-    this.contextMenu.show(event);
+
+  showIconContextMenu(event: MouseEvent): void {
+    this.iconContextMenu.show(event);
   }
-  
-  onContextMenuShow() {
+
+  showSubmenuContextMenu(event: MouseEvent): void {
+    this.submenuContextMenu.show(event);
+  }
+
+  showSeparatorContextMenu(event: MouseEvent): void {
+    this.separatorContextMenu.show(event);
+  }
+
+  onContextMenuShow(): void {
     console.log('Context menu shown');
   }
-  
-  onContextMenuHide() {
+
+  onContextMenuHide(): void {
     console.log('Context menu hidden');
+  }
+
+  onContextMenuClick(event: any): void {
+    console.log('Context menu item clicked:', event);
+  }
+
+  executeAction(action: string): void {
+    this.lastAction = `${action} action executed`;
+    console.log(`${action} action executed`);
   }
 }

@@ -1,62 +1,102 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ConfirmDialog } from 'ui-lib';
 import { Tabs } from '../../shared/tabs/tabs';
+import { ConfirmDialog as SuiConfirmDialog } from '../../../../../ui-lib/src/lib/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-confirmdialog',
-  imports: [CommonModule, FormsModule, ConfirmDialog, Tabs],
+  standalone: true,
+  imports: [CommonModule, Tabs, SuiConfirmDialog],
   templateUrl: './confirmdialog.html',
   styleUrl: './confirmdialog.scss'
 })
-export class Confirmdialog {
+export class ConfirmDialogComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  confirmDialogVisible = false;
-  confirmMessage = 'Are you sure you want to delete this item?';
-  
-  // Code visibility states
   showBasicConfirmDialogCode = false;
+  showIconConfirmDialogCode = false;
   showCustomConfirmDialogCode = false;
-  showEventConfirmDialogCode = false;
-  
-  onTabChange(tab: string) {
+
+  // Basic dialog
+  basicDialogVisible = false;
+  lastAction = 'None';
+
+  // Icon dialog
+  iconDialogVisible = false;
+  lastIconAction = 'None';
+
+  // Custom dialog
+  customDialogVisible = false;
+  lastCustomAction = 'None';
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
+
+  toggleCode(type: string): void {
+    switch (type) {
       case 'basicConfirmDialog':
         this.showBasicConfirmDialogCode = !this.showBasicConfirmDialogCode;
+        break;
+      case 'iconConfirmDialog':
+        this.showIconConfirmDialogCode = !this.showIconConfirmDialogCode;
         break;
       case 'customConfirmDialog':
         this.showCustomConfirmDialogCode = !this.showCustomConfirmDialogCode;
         break;
-      case 'eventConfirmDialog':
-        this.showEventConfirmDialogCode = !this.showEventConfirmDialogCode;
-        break;
     }
   }
-  
-  // Confirm dialog demo methods
-  onConfirmDialogAccept(event: any) {
-    console.log('Confirm dialog accepted:', event);
-    this.confirmDialogVisible = false;
+
+  showBasicDialog(): void {
+    this.basicDialogVisible = true;
   }
-  
-  onConfirmDialogReject(event: any) {
-    console.log('Confirm dialog rejected:', event);
-    this.confirmDialogVisible = false;
+
+  onBasicAccept(): void {
+    this.lastAction = 'Accepted';
+    console.log('Basic dialog accepted');
   }
-  
-  showConfirmDialog() {
-    this.confirmDialogVisible = true;
+
+  onBasicReject(): void {
+    this.lastAction = 'Rejected';
+    console.log('Basic dialog rejected');
   }
-  
-  onConfirmDialogHide(event: any) {
-    console.log('Confirm dialog hidden:', event);
-    this.confirmDialogVisible = false;
+
+  onBasicHide(): void {
+    this.basicDialogVisible = false;
+  }
+
+  showIconDialog(): void {
+    this.iconDialogVisible = true;
+  }
+
+  onIconAccept(): void {
+    this.lastIconAction = 'Item Deleted';
+    console.log('Icon dialog accepted - item deleted');
+  }
+
+  onIconReject(): void {
+    this.lastIconAction = 'Deletion Cancelled';
+    console.log('Icon dialog rejected - deletion cancelled');
+  }
+
+  onIconHide(): void {
+    this.iconDialogVisible = false;
+  }
+
+  showCustomDialog(): void {
+    this.customDialogVisible = true;
+  }
+
+  onCustomAccept(): void {
+    this.lastCustomAction = 'Changes Saved';
+    console.log('Custom dialog accepted - changes saved');
+  }
+
+  onCustomReject(): void {
+    this.lastCustomAction = 'Changes Not Saved';
+    console.log('Custom dialog rejected - changes not saved');
+  }
+
+  onCustomHide(): void {
+    this.customDialogVisible = false;
   }
 }

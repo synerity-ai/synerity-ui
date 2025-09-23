@@ -1,14 +1,48 @@
-<div class="sui-dock" [class]="getDockClass()" [style]="getDockStyle()">
-  <div class="sui-dock-items">
+<div class="fixed z-40 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg p-2"
+     [class]="getDockClass()"
+     [style]="getDockStyle()"
+     [class.bottom-4]="position === 'bottom'"
+     [class.top-4]="position === 'top'"
+     [class.left-4]="position === 'left'"
+     [class.right-4]="position === 'right'"
+     [class.left-1/2]="position === 'bottom' || position === 'top'"
+     [class.top-1/2]="position === 'left' || position === 'right'"
+     [class.transform]="position === 'bottom' || position === 'top' || position === 'left' || position === 'right'"
+     [class.-translate-x-1/2]="position === 'bottom' || position === 'top'"
+     [class.-translate-y-1/2]="position === 'left' || position === 'right'">
+  <div class="flex items-center space-x-2"
+       [class.flex-col]="position === 'left' || position === 'right'"
+       [class.space-y-2]="position === 'left' || position === 'right'"
+       [class.space-x-2]="position === 'bottom' || position === 'top'">
     <div 
       *ngFor="let item of model" 
-      class="sui-dock-item" 
-      [class]="getItemClass(item)"
+      class="flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 cursor-pointer group relative"
+      [class.opacity-50]="item.disabled"
+      [class.cursor-not-allowed]="item.disabled"
+      [class.pointer-events-none]="item.disabled"
+      [class.hover:bg-gray-200]="!item.disabled"
+      [class.hover:scale-105]="!item.disabled"
       [title]="item.tooltip || item.label"
       (click)="onItemClickHandler($event, item)"
-    >
-      <span *ngIf="item.icon" class="sui-dock-item-icon">{{ item.icon }}</span>
-      <span *ngIf="item.label" class="sui-dock-item-label">{{ item.label }}</span>
+      role="button"
+      [attr.aria-label]="item.tooltip || item.label"
+      tabindex="0">
+      <span *ngIf="item.icon" class="text-xl">{{ item.icon }}</span>
+      <span *ngIf="item.label && (position === 'left' || position === 'right')" 
+            class="ml-2 text-sm font-medium text-gray-700 whitespace-nowrap">{{ item.label }}</span>
+      
+      <!-- Tooltip for horizontal positions -->
+      <div *ngIf="item.label && (position === 'bottom' || position === 'top')" 
+           class="absolute bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50"
+           [class.bottom-full]="position === 'top'"
+           [class.top-full]="position === 'bottom'"
+           [class.left-1/2]="position === 'bottom' || position === 'top'"
+           [class.transform]="position === 'bottom' || position === 'top'"
+           [class.-translate-x-1/2]="position === 'bottom' || position === 'top'"
+           [class.mb-2]="position === 'top'"
+           [class.mt-2]="position === 'bottom'">
+        {{ item.label }}
+      </div>
     </div>
   </div>
 </div>

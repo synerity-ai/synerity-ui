@@ -133,4 +133,15 @@ export class Tooltip implements AfterViewInit, OnDestroy {
       ...this.style
     };
   }
+
+  getArrowClass(): string {
+    const positionClasses = {
+      'top': '-bottom-1 left-1/2 transform -translate-x-1/2',
+      'bottom': '-top-1 left-1/2 transform -translate-x-1/2',
+      'left': '-right-1 top-1/2 transform -translate-y-1/2',
+      'right': '-left-1 top-1/2 transform -translate-y-1/2'
+    };
+
+    return positionClasses[this.position];
+  }
 }

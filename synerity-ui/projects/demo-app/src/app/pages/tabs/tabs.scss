@@ -1,75 +1,8 @@
-// Tabs component styles
-// This file is intentionally minimal as we use Tailwind CSS for styling
+// Tabs demo page styles
+// Most styling is handled by Tailwind CSS classes
 
-// Tab navigation
-.tab-nav {
-  border-bottom: 1px solid #e5e7eb;
-  
-  .tab-item {
-    position: relative;
-    transition: all 0.2s ease-in-out;
-    
-    &.active {
-      color: #1f2937;
-      border-bottom-color: #3b82f6;
-    }
-    
-    &:hover:not(.active) {
-      color: #374151;
-      border-bottom-color: #d1d5db;
-    }
-  }
-}
-
-// Tab content
-.tab-content {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Vertical tabs
-.tabs-vertical {
-  display: flex;
-  
-  .tab-nav {
-    flex-direction: column;
-    border-bottom: none;
-    border-right: 1px solid #e5e7eb;
-    min-width: 200px;
-    
-    .tab-item {
-      border-bottom: none;
-      border-right: 2px solid transparent;
-      
-      &.active {
-        border-right-color: #3b82f6;
-      }
-    }
-  }
-  
-  .tab-content {
-    flex: 1;
-    padding-left: 1rem;
-  }
-}
-
-// Closable tabs
-.tab-close {
-  margin-left: 0.5rem;
-  opacity: 0.6;
-  transition: opacity 0.2s ease-in-out;
-  
-  &:hover {
-    opacity: 1;
+.tabs-demo {
+  .demo-section {
+    margin-bottom: 2rem;
   }
 }

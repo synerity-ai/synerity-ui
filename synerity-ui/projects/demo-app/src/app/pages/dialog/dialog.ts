@@ -1,81 +1,51 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Dialog as SuiDialog } from '../../../../../ui-lib/src/lib/dialog/dialog';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Dialog as SuiDialog } from 'ui-lib';
 
 @Component({
   selector: 'app-dialog',
-  imports: [CommonModule, FormsModule, Tabs, SuiDialog],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiDialog],
   templateUrl: './dialog.html',
   styleUrl: './dialog.scss'
 })
-export class Dialog {
+export class DialogComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  basicDialogVisible = false;
-  modalDialogVisible = false;
-  resizableDialogVisible = false;
-  draggableDialogVisible = false;
-  
-  // Code visibility states
+  showBasicDialog = false;
+  showDraggableDialog = false;
+  showResizableDialog = false;
+  showMaximizableDialog = false;
+  showPositionedDialog = false;
+
+  // Code visibility toggles
   showBasicDialogCode = false;
-  showModalDialogCode = false;
-  showResizableDialogCode = false;
   showDraggableDialogCode = false;
-  
-  onTabChange(tab: string) {
+  showResizableDialogCode = false;
+  showMaximizableDialogCode = false;
+  showPositionedDialogCode = false;
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
+
+  toggleCode(type: string): void {
+    switch (type) {
       case 'basicDialog':
         this.showBasicDialogCode = !this.showBasicDialogCode;
-        break;
-      case 'modalDialog':
-        this.showModalDialogCode = !this.showModalDialogCode;
-        break;
-      case 'resizableDialog':
-        this.showResizableDialogCode = !this.showResizableDialogCode;
         break;
       case 'draggableDialog':
         this.showDraggableDialogCode = !this.showDraggableDialogCode;
         break;
+      case 'resizableDialog':
+        this.showResizableDialogCode = !this.showResizableDialogCode;
+        break;
+      case 'maximizableDialog':
+        this.showMaximizableDialogCode = !this.showMaximizableDialogCode;
+        break;
+      case 'positionedDialog':
+        this.showPositionedDialogCode = !this.showPositionedDialogCode;
+        break;
     }
-  }
-  
-  // Dialog demo methods
-  openBasicDialog() {
-    this.basicDialogVisible = true;
-  }
-  
-  closeBasicDialog() {
-    this.basicDialogVisible = false;
-  }
-  
-  openModalDialog() {
-    this.modalDialogVisible = true;
-  }
-  
-  closeModalDialog() {
-    this.modalDialogVisible = false;
-  }
-  
-  openResizableDialog() {
-    this.resizableDialogVisible = true;
-  }
-  
-  closeResizableDialog() {
-    this.resizableDialogVisible = false;
-  }
-  
-  openDraggableDialog() {
-    this.draggableDialogVisible = true;
-  }
-  
-  closeDraggableDialog() {
-    this.draggableDialogVisible = false;
   }
 }

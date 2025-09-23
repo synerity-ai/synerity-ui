@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Tooltip</h1>
-    <p class="text-lg text-gray-600">Contextual information overlay that appears on hover or focus.</p>
+    <p class="text-lg text-gray-600">A lightweight overlay component that displays helpful information on hover or focus.</p>
   </div>
 
   <!-- Tabs -->
@@ -19,10 +19,10 @@
     <div *ngIf="activeTab === 'demo'">
       <div class="space-y-8">
         
-        <!-- Basic Tooltip -->
+        <!-- Basic Tooltips -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Basic Tooltip</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Basic Tooltips</h3>
             <button 
               (click)="toggleCode('basicTooltip')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
@@ -32,108 +32,119 @@
           </div>
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
-              <div class="flex items-center gap-4">
-                <button 
-                  sui-tooltip="This is a basic tooltip"
-                  class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-                  Hover me
+            <p class="text-gray-600 mb-4">Simple tooltips that appear on hover or focus.</p>
+            <div class="flex space-x-4">
+              <sui-tooltip tooltip="This is a top tooltip" position="top">
+                <button class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+                  Top Tooltip
                 </button>
-                <span 
-                  sui-tooltip="Tooltip on text element"
-                  class="text-blue-600 underline cursor-help">
-                  Hover over this text
-                </span>
-              </div>
+              </sui-tooltip>
+
+              <sui-tooltip tooltip="This is a bottom tooltip" position="bottom">
+                <button class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+                  Bottom Tooltip
+                </button>
+              </sui-tooltip>
+
+              <sui-tooltip tooltip="This is a left tooltip" position="left">
+                <button class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+                  Left Tooltip
+                </button>
+              </sui-tooltip>
+
+              <sui-tooltip tooltip="This is a right tooltip" position="right">
+                <button class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+                  Right Tooltip
+                </button>
+              </sui-tooltip>
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showBasicTooltipCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;button 
-  sui-tooltip="This is a basic tooltip"
-  class="px-4 py-2 bg-blue-600 text-white rounded-md"&gt;
-  Hover me
-&lt;/button&gt;
-
-&lt;span 
-  sui-tooltip="Tooltip on text element"
-  class="text-blue-600 underline cursor-help"&gt;
-  Hover over this text
-&lt;/span&gt;</code></pre>
+            <div *ngIf="showBasicTooltipCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-tooltip tooltip="This is a tooltip" position="top"&gt;
+  &lt;button&gt;Hover me&lt;/button&gt;
+&lt;/sui-tooltip&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Position Tooltips -->
+        <!-- Custom Styled Tooltips -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Tooltip Positions</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Custom Styled Tooltips</h3>
             <button 
-              (click)="toggleCode('positionTooltip')"
+              (click)="toggleCode('customTooltip')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showPositionTooltipCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showCustomTooltipCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
-              <div class="grid grid-cols-3 gap-4 place-items-center">
-                <button 
-                  sui-tooltip="Top tooltip"
-                  tooltipPosition="top"
-                  class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">
-                  Top
+            <p class="text-gray-600 mb-4">Tooltips with custom styling and longer content.</p>
+            <div class="flex space-x-4">
+              <sui-tooltip tooltip="This is a longer tooltip with more detailed information that explains what this button does." position="top">
+                <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
+                  Success Action
                 </button>
-                <button 
-                  sui-tooltip="Left tooltip"
-                  tooltipPosition="left"
-                  class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">
-                  Left
+              </sui-tooltip>
+
+              <sui-tooltip tooltip="⚠️ Warning: This action cannot be undone!" position="bottom">
+                <button class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
+                  Delete Item
                 </button>
-                <button 
-                  sui-tooltip="Right tooltip"
-                  tooltipPosition="right"
-                  class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">
-                  Right
-                </button>
-                <button 
-                  sui-tooltip="Bottom tooltip"
-                  tooltipPosition="bottom"
-                  class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">
-                  Bottom
-                </button>
-              </div>
+              </sui-tooltip>
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showPositionTooltipCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;button 
-  sui-tooltip="Top tooltip"
-  tooltipPosition="top"&gt;
-  Top
-&lt;/button&gt;
-
-&lt;button 
-  sui-tooltip="Left tooltip"
-  tooltipPosition="left"&gt;
-  Left
-&lt;/button&gt;</code></pre>
+            <div *ngIf="showCustomTooltipCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-tooltip 
+  tooltip="This is a longer tooltip with more detailed information." 
+  position="top"&gt;
+  &lt;button&gt;Custom Button&lt;/button&gt;
+&lt;/sui-tooltip&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Coming Soon Placeholder -->
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">🚧</span>
-            <div>
-              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
-              <p class="text-blue-700">Custom styling, delay options, and interactive tooltip examples will be added soon.</p>
+        <!-- Disabled Tooltips -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Disabled Tooltips</h3>
+            <button 
+              (click)="toggleCode('disabledTooltip')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showDisabledTooltipCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Tooltips can be disabled when needed.</p>
+            <div class="flex space-x-4">
+              <sui-tooltip tooltip="This tooltip is enabled" [disabled]="false">
+                <button class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+                  Enabled Tooltip
+                </button>
+              </sui-tooltip>
+
+              <sui-tooltip tooltip="This tooltip is disabled" [disabled]="true">
+                <button class="px-4 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed focus:outline-none transition-colors">
+                  Disabled Tooltip
+                </button>
+              </sui-tooltip>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showDisabledTooltipCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-tooltip 
+  tooltip="This tooltip is disabled" 
+  [disabled]="true"&gt;
+  &lt;button&gt;Disabled Button&lt;/button&gt;
+&lt;/sui-tooltip&gt;</code></pre>
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -156,48 +167,58 @@
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Use the tooltip directive on any element:</p>
+            <p class="text-gray-600 mb-4">Import and use the Tooltip component in your Angular application:</p>
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>&lt;button 
-  sui-tooltip="Your tooltip text"
-  class="px-4 py-2 bg-blue-600 text-white rounded-md"&gt;
-  Hover me
-&lt;/button&gt;</code></pre>
+              <code>import &#123; Tooltip &#125; from '@synerity/ui';</code>
+            </div>
+            <p class="text-gray-600 mt-4 mb-4">Then use it in your template:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>&lt;sui-tooltip tooltip="Helpful information" position="top"&gt;
+  &lt;button&gt;Hover me&lt;/button&gt;
+&lt;/sui-tooltip&gt;</code>
             </div>
           </div>
         </div>
 
-        <!-- Positioning -->
+        <!-- Different Positions -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Positioning</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Different Positions</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Control tooltip position with the tooltipPosition attribute:</p>
+            <p class="text-gray-600 mb-4">The tooltip can be positioned in different directions:</p>
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>&lt;button 
-  sui-tooltip="Top tooltip"
-  tooltipPosition="top"&gt;
-  Top
-&lt;/button&gt;
+              <code>&lt;!-- Top Tooltip --&gt;
+&lt;sui-tooltip tooltip="Top tooltip" position="top"&gt;&lt;/sui-tooltip&gt;
 
-&lt;button 
-  sui-tooltip="Bottom tooltip"
-  tooltipPosition="bottom"&gt;
-  Bottom
-&lt;/button&gt;</code></pre>
+&lt;!-- Bottom Tooltip --&gt;
+&lt;sui-tooltip tooltip="Bottom tooltip" position="bottom"&gt;&lt;/sui-tooltip&gt;
+
+&lt;!-- Left Tooltip --&gt;
+&lt;sui-tooltip tooltip="Left tooltip" position="left"&gt;&lt;/sui-tooltip&gt;
+
+&lt;!-- Right Tooltip --&gt;
+&lt;sui-tooltip tooltip="Right tooltip" position="right"&gt;&lt;/sui-tooltip&gt;</code>
             </div>
           </div>
         </div>
 
-      </div>
-    </div>
-
-    <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'">
-      <div class="space-y-6">
-        
-        <!-- Props -->
+        <!-- Disabled State -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Disabled State</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Disable tooltips when needed:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>&lt;sui-tooltip 
+  tooltip="This tooltip is disabled" 
+  [disabled]="true"&gt;
+  &lt;button&gt;Disabled Button&lt;/button&gt;
+&lt;/sui-tooltip&gt;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Component Properties -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Properties</h3>
           <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
             <div class="overflow-x-auto">
               <table class="min-w-full divide-y divide-gray-200">
@@ -211,28 +232,28 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">sui-tooltip</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">tooltip</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Tooltip text content</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">tooltipPosition</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">position</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'top' | 'bottom' | 'left' | 'right'</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'top'</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Position of the tooltip</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">tooltipDelay</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Delay before showing tooltip (ms)</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">tooltipDisabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Whether the tooltip is disabled</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">delay</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Delay in milliseconds before showing tooltip</td>
                   </tr>
                 </tbody>
               </table>
@@ -240,31 +261,194 @@
           </div>
         </div>
 
-        <!-- Accessibility -->
+        <!-- Events -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onShow</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the tooltip is shown</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onHide</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the tooltip is hidden</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Overview -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Overview</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Keyboard focus support</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Screen reader announcements</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>ARIA attributes for tooltip association</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Escape key to dismiss</span>
-              </li>
-            </ul>
+            <p class="text-gray-600 mb-4">
+              The Tooltip component provides a lightweight overlay that displays helpful information when users hover over or focus on an element. Tooltips are perfect for providing additional context, explanations, or guidance without cluttering the interface.
+            </p>
+            <p class="text-gray-600">
+              Tooltips automatically position themselves relative to their trigger element and can be configured to appear on any side with customizable delays and styling.
+            </p>
           </div>
         </div>
 
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Four Positions</h4>
+                    <p class="text-sm text-gray-600">Top, bottom, left, and right positioning</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Hover & Focus</h4>
+                    <p class="text-sm text-gray-600">Shows on hover and focus events</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Customizable Delay</h4>
+                    <p class="text-sm text-gray-600">Configurable show/hide delays</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Auto Positioning</h4>
+                    <p class="text-sm text-gray-600">Automatic positioning to stay in viewport</p>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Keyboard Navigation</h4>
+                    <p class="text-sm text-gray-600">Works with keyboard focus and navigation</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Accessibility</h4>
+                    <p class="text-sm text-gray-600">ARIA attributes and screen reader support</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Responsive Design</h4>
+                    <p class="text-sm text-gray-600">Works on all screen sizes</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Event Handling</h4>
+                    <p class="text-sm text-gray-600">Show/hide event callbacks</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Use Cases -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Use Cases</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Form Field Help</h4>
+                <p class="text-sm text-gray-600">Provide additional context for form fields and input requirements.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Button Actions</h4>
+                <p class="text-sm text-gray-600">Explain what buttons do, especially for icon-only buttons.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Status Indicators</h4>
+                <p class="text-sm text-gray-600">Show detailed status information for status badges or indicators.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Navigation Help</h4>
+                <p class="text-sm text-gray-600">Provide guidance for navigation elements and menu items.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Browser Support -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Browser Support</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="text-center">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-green-600 font-bold">Ch</span>
+                </div>
+                <p class="text-sm text-gray-600">Chrome 60+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">FF</span>
+                </div>
+                <p class="text-sm text-gray-600">Firefox 55+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">Sa</span>
+                </div>
+                <p class="text-sm text-gray-600">Safari 12+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">Ed</span>
+                </div>
+                <p class="text-sm text-gray-600">Edge 79+</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </app-tabs>

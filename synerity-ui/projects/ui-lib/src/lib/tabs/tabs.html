@@ -1,24 +1,47 @@
-<div class="sui-tabs" [class]="getTabsClass()" [style]="getTabsStyle()">
-  <div class="sui-tabs-nav">
+<div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm" [class]="styleClass" [style]="getTabsStyle()">
+  <!-- Tab Navigation -->
+  <div class="border-b border-gray-200 bg-gray-50" 
+       [class.flex]="orientation === 'top' || orientation === 'bottom'"
+       [class.flex-col]="orientation === 'left' || orientation === 'right'"
+       [class.flex-row]="orientation === 'top' || orientation === 'bottom'">
+    
     <div 
       *ngFor="let tab of tabs; let i = index" 
-      class="sui-tabs-tab" 
-      [class]="getTabClass(i)"
+      class="relative flex items-center px-6 py-4 text-sm font-medium transition-colors duration-200 cursor-pointer border-b-2"
+      [class.border-primary-600]="isTabActive(i)"
+      [class.text-primary-700]="isTabActive(i)"
+      [class.bg-white]="isTabActive(i)"
+      [class.border-transparent]="!isTabActive(i)"
+      [class.text-gray-600]="!isTabActive(i)"
+      [class.hover:text-gray-900]="!isTabActive(i) && !isTabDisabled(i)"
+      [class.hover:bg-gray-100]="!isTabActive(i) && !isTabDisabled(i)"
+      [class.hover:border-gray-300]="!isTabActive(i) && !isTabDisabled(i)"
+      [class.opacity-50]="isTabDisabled(i)"
+      [class.cursor-not-allowed]="isTabDisabled(i)"
+      [class.cursor-pointer]="!isTabDisabled(i)"
       (click)="setActiveIndex(i)"
     >
-      <span *ngIf="tab.icon" class="sui-tabs-tab-icon">{{ tab.icon }}</span>
-      <span class="sui-tabs-tab-label">{{ tab.header }}</span>
-      <span 
+      <!-- Tab Icon -->
+      <span *ngIf="tab.icon" class="mr-2 text-base">{{ tab.icon }}</span>
+      
+      <!-- Tab Label -->
+      <span class="font-medium">{{ tab.header }}</span>
+      
+      <!-- Close Button -->
+      <button 
         *ngIf="tab.closable" 
-        class="sui-tabs-tab-close"
+        class="ml-3 p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded transition-colors duration-200"
         (click)="closeTab(i); $event.stopPropagation()"
       >
-        ×
-      </span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
     </div>
   </div>
   
-  <div *ngIf="tabs[activeIndex]" class="sui-tabs-content">
+  <!-- Tab Content -->
+  <div *ngIf="tabs[activeIndex]" class="p-6 bg-white">
     <ng-content></ng-content>
   </div>
 </div>

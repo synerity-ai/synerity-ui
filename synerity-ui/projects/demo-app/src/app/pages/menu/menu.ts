@@ -1,112 +1,122 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Menu as SuiMenu } from '../../../../../ui-lib/src/lib/menu/menu';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Menu as SuiMenu } from 'ui-lib';
 
 @Component({
   selector: 'app-menu',
-  imports: [CommonModule, FormsModule, Tabs, SuiMenu],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiMenu],
   templateUrl: './menu.html',
   styleUrl: './menu.scss'
 })
-export class Menu {
+export class MenuComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  menuItems = [
-    {
-      label: 'File',
+  lastClickedItem: any = null;
+
+  basicMenuItems = [
+    { label: 'Home', icon: '🏠', command: () => this.executeAction('Home') },
+    { label: 'About', icon: 'ℹ️', command: () => this.executeAction('About') },
+    { label: 'Contact', icon: '📞', command: () => this.executeAction('Contact') }
+  ];
+
+  menuWithSubmenus = [
+    { 
+      label: 'File', 
       icon: '📁',
       items: [
-        { label: 'New', icon: '📄', command: () => this.newFile() },
-        { label: 'Open', icon: '📂', command: () => this.openFile() },
-        { label: 'Save', icon: '💾', command: () => this.saveFile() },
-        { separator: true },
-        { label: 'Exit', icon: '🚪', command: () => this.exit() }
+        { label: 'New', icon: '📄', command: () => this.executeAction('New File') },
+        { label: 'Open', icon: '📂', command: () => this.executeAction('Open File') },
+        { label: 'Save', icon: '💾', command: () => this.executeAction('Save File') },
+        { label: '', separator: true },
+        { label: 'Exit', icon: '🚪', command: () => this.executeAction('Exit') }
       ]
     },
-    {
-      label: 'Edit',
+    { 
+      label: 'Edit', 
       icon: '✏️',
       items: [
-        { label: 'Cut', icon: '✂️', command: () => this.cut() },
-        { label: 'Copy', icon: '📋', command: () => this.copy() },
-        { label: 'Paste', icon: '📌', command: () => this.paste() }
+        { label: 'Undo', icon: '↶', command: () => this.executeAction('Undo') },
+        { label: 'Redo', icon: '↷', command: () => this.executeAction('Redo') },
+        { label: '', separator: true },
+        { label: 'Cut', icon: '✂️', command: () => this.executeAction('Cut') },
+        { label: 'Copy', icon: '📋', command: () => this.executeAction('Copy') },
+        { label: 'Paste', icon: '📌', command: () => this.executeAction('Paste') }
       ]
     },
-    {
-      label: 'View',
+    { 
+      label: 'View', 
       icon: '👁️',
       items: [
-        { label: 'Zoom In', icon: '🔍', command: () => this.zoomIn() },
-        { label: 'Zoom Out', icon: '🔍', command: () => this.zoomOut() },
-        { label: 'Reset Zoom', icon: '🎯', command: () => this.resetZoom() }
+        { label: 'Zoom In', icon: '🔍+', command: () => this.executeAction('Zoom In') },
+        { label: 'Zoom Out', icon: '🔍-', command: () => this.executeAction('Zoom Out') },
+        { label: 'Reset Zoom', icon: '🔍', command: () => this.executeAction('Reset Zoom') }
+      ]
+    },
+    { 
+      label: 'Help', 
+      icon: '❓',
+      items: [
+        { label: 'Documentation', icon: '📚', command: () => this.executeAction('Documentation') },
+        { label: 'Support', icon: '🆘', command: () => this.executeAction('Support') },
+        { label: 'About', icon: 'ℹ️', command: () => this.executeAction('About') }
       ]
     }
   ];
-  
-  // Code visibility states
+
+  menuWithDisabledItems = [
+    { label: 'Enabled Item', icon: '✅', command: () => this.executeAction('Enabled Item') },
+    { label: 'Disabled Item', icon: '❌', disabled: true },
+    { label: 'Another Enabled', icon: '✅', command: () => this.executeAction('Another Enabled') },
+    { label: '', separator: true },
+    { label: 'Last Item', icon: '🏁', command: () => this.executeAction('Last Item') }
+  ];
+
+  popupMenuItems = [
+    { label: 'Profile', icon: '👤', command: () => this.executeAction('Profile') },
+    { label: 'Settings', icon: '⚙️', command: () => this.executeAction('Settings') },
+    { label: '', separator: true },
+    { label: 'Logout', icon: '🚪', command: () => this.executeAction('Logout') }
+  ];
+
+  // Code visibility toggles
   showBasicMenuCode = false;
-  showContextMenuCode = false;
-  showCustomMenuCode = false;
-  
-  onTabChange(tab: string) {
+  showSubmenuMenuCode = false;
+  showIconMenuCode = false;
+
+  // Icon menu items for the third example
+  iconMenuItems = [
+    { label: 'Dashboard', icon: '📊', command: () => this.executeAction('Dashboard') },
+    { label: 'Users', icon: '👥', command: () => this.executeAction('Users') },
+    { label: 'Settings', icon: '⚙️', command: () => this.executeAction('Settings') },
+    { label: 'Reports', icon: '📈', command: () => this.executeAction('Reports') },
+    { label: 'Help', icon: '❓', command: () => this.executeAction('Help') }
+  ];
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
+
+  toggleCode(type: string): void {
+    switch (type) {
       case 'basicMenu':
         this.showBasicMenuCode = !this.showBasicMenuCode;
         break;
-      case 'contextMenu':
-        this.showContextMenuCode = !this.showContextMenuCode;
+      case 'submenuMenu':
+        this.showSubmenuMenuCode = !this.showSubmenuMenuCode;
         break;
-      case 'customMenu':
-        this.showCustomMenuCode = !this.showCustomMenuCode;
+      case 'iconMenu':
+        this.showIconMenuCode = !this.showIconMenuCode;
         break;
     }
   }
-  
-  // Menu demo methods
-  newFile() {
-    console.log('New file created');
+
+  onMenuItemClick(item: any): void {
+    this.lastClickedItem = item;
+    console.log('Menu item clicked:', item);
   }
-  
-  openFile() {
-    console.log('Opening file');
-  }
-  
-  saveFile() {
-    console.log('File saved');
-  }
-  
-  exit() {
-    console.log('Exiting application');
-  }
-  
-  cut() {
-    console.log('Cut operation');
-  }
-  
-  copy() {
-    console.log('Copy operation');
-  }
-  
-  paste() {
-    console.log('Paste operation');
-  }
-  
-  zoomIn() {
-    console.log('Zooming in');
-  }
-  
-  zoomOut() {
-    console.log('Zooming out');
-  }
-  
-  resetZoom() {
-    console.log('Resetting zoom');
+
+  executeAction(action: string): void {
+    console.log(`${action} action executed`);
   }
 }
