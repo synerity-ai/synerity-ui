@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Splitter</h1>
-    <p class="text-lg text-gray-600">Resizable panel splitter component for creating flexible layouts.</p>
+    <p class="text-lg text-gray-600">Resizable panel component that allows users to adjust the size of adjacent panels by dragging the gutter.</p>
   </div>
 
   <!-- Tabs -->
@@ -19,63 +19,215 @@
     <div *ngIf="activeTab === 'demo'">
       <div class="space-y-8">
         
-        <!-- Basic Splitter -->
+        <!-- Horizontal Splitter -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Basic Splitter</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Horizontal Splitter</h3>
             <button 
-              (click)="toggleCode('basicSplitter')"
+              (click)="toggleCode('horizontalSplitter')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showBasicSplitterCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showHorizontalSplitterCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
-              <sui-splitter 
-                layout="horizontal"
-                (onResizeEnd)="onResize($event)"
-                style="height: 300px;">
-                <ng-template pTemplate="panel">
-                  <div class="p-4 bg-blue-50 h-full">
-                    <h4 class="font-semibold text-blue-900 mb-2">Left Panel</h4>
-                    <p class="text-blue-700">This is the left panel content. You can resize it by dragging the splitter.</p>
+              <div class="h-64">
+                <sui-splitter 
+                  layout="horizontal"
+                  [minSizes]="[20, 20]"
+                  [maxSizes]="[80, 80]"
+                  (onResizeEnd)="onResizeEnd($event)">
+                  
+                  <div slot="panel1" class="p-4 h-full">
+                    <h4 class="font-medium text-gray-900 mb-3">Left Panel</h4>
+                    <div class="space-y-2">
+                      <div class="p-2 bg-blue-100 rounded text-sm text-blue-800">Content 1</div>
+                      <div class="p-2 bg-blue-100 rounded text-sm text-blue-800">Content 2</div>
+                      <div class="p-2 bg-blue-100 rounded text-sm text-blue-800">Content 3</div>
+                    </div>
                   </div>
-                </ng-template>
-                <ng-template pTemplate="panel">
-                  <div class="p-4 bg-green-50 h-full">
-                    <h4 class="font-semibold text-green-900 mb-2">Right Panel</h4>
-                    <p class="text-green-700">This is the right panel content. The splitter allows you to adjust the panel sizes.</p>
+                  
+                  <div slot="panel2" class="p-4 h-full">
+                    <h4 class="font-medium text-gray-900 mb-3">Right Panel</h4>
+                    <div class="space-y-2">
+                      <div class="p-2 bg-green-100 rounded text-sm text-green-800">Content A</div>
+                      <div class="p-2 bg-green-100 rounded text-sm text-green-800">Content B</div>
+                      <div class="p-2 bg-green-100 rounded text-sm text-green-800">Content C</div>
+                    </div>
                   </div>
-                </ng-template>
-              </sui-splitter>
+                </sui-splitter>
+              </div>
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showBasicSplitterCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-splitter 
+            <div *ngIf="showHorizontalSplitterCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-splitter 
   layout="horizontal"
-  (onResizeEnd)="onResize($event)"
-  style="height: 300px;"&gt;
-  &lt;ng-template pTemplate="panel"&gt;
-    &lt;div class="p-4 bg-blue-50"&gt;Left Panel&lt;/div&gt;
-  &lt;/ng-template&gt;
-  &lt;ng-template pTemplate="panel"&gt;
-    &lt;div class="p-4 bg-green-50"&gt;Right Panel&lt;/div&gt;
-  &lt;/ng-template&gt;
+  [minSizes]="[20, 20]"
+  [maxSizes]="[80, 80]"
+  (onResizeEnd)="onResizeEnd($event)"&gt;
+  
+  &lt;div slot="panel1" class="p-4 h-full"&gt;
+    &lt;h4 class="font-medium text-gray-900 mb-3"&gt;Left Panel&lt;/h4&gt;
+    &lt;div class="space-y-2"&gt;
+      &lt;div class="p-2 bg-blue-100 rounded text-sm text-blue-800"&gt;Content 1&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div slot="panel2" class="p-4 h-full"&gt;
+    &lt;h4 class="font-medium text-gray-900 mb-3"&gt;Right Panel&lt;/h4&gt;
+    &lt;div class="space-y-2"&gt;
+      &lt;div class="p-2 bg-green-100 rounded text-sm text-green-800"&gt;Content A&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/sui-splitter&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Coming Soon Placeholder -->
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">🚧</span>
-            <div>
-              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
-              <p class="text-blue-700">Vertical splitter, nested splitters, and advanced features will be added soon.</p>
+        <!-- Vertical Splitter -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Vertical Splitter</h3>
+            <button 
+              (click)="toggleCode('verticalSplitter')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showVerticalSplitterCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="h-80">
+                <sui-splitter 
+                  layout="vertical"
+                  [minSizes]="[25, 25]"
+                  [maxSizes]="[75, 75]"
+                  (onResizeEnd)="onResizeEnd($event)">
+                  
+                  <div slot="panel1" class="p-4 w-full">
+                    <h4 class="font-medium text-gray-900 mb-3">Top Panel</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                      <div class="p-3 bg-purple-100 rounded text-sm text-purple-800">Item 1</div>
+                      <div class="p-3 bg-purple-100 rounded text-sm text-purple-800">Item 2</div>
+                      <div class="p-3 bg-purple-100 rounded text-sm text-purple-800">Item 3</div>
+                      <div class="p-3 bg-purple-100 rounded text-sm text-purple-800">Item 4</div>
+                    </div>
+                  </div>
+                  
+                  <div slot="panel2" class="p-4 w-full">
+                    <h4 class="font-medium text-gray-900 mb-3">Bottom Panel</h4>
+                    <div class="space-y-3">
+                      <div class="p-3 bg-orange-100 rounded text-sm text-orange-800">Bottom Content 1</div>
+                      <div class="p-3 bg-orange-100 rounded text-sm text-orange-800">Bottom Content 2</div>
+                      <div class="p-3 bg-orange-100 rounded text-sm text-orange-800">Bottom Content 3</div>
+                    </div>
+                  </div>
+                </sui-splitter>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showVerticalSplitterCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-splitter 
+  layout="vertical"
+  [minSizes]="[25, 25]"
+  [maxSizes]="[75, 75]"
+  (onResizeEnd)="onResizeEnd($event)"&gt;
+  
+  &lt;div slot="panel1" class="p-4 w-full"&gt;
+    &lt;h4 class="font-medium text-gray-900 mb-3"&gt;Top Panel&lt;/h4&gt;
+    &lt;div class="grid grid-cols-2 gap-2"&gt;
+      &lt;div class="p-3 bg-purple-100 rounded text-sm text-purple-800"&gt;Item 1&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div slot="panel2" class="p-4 w-full"&gt;
+    &lt;h4 class="font-medium text-gray-900 mb-3"&gt;Bottom Panel&lt;/h4&gt;
+    &lt;div class="space-y-3"&gt;
+      &lt;div class="p-3 bg-orange-100 rounded text-sm text-orange-800"&gt;Bottom Content 1&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/sui-splitter&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Splitter with Custom Gutter Size -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Custom Gutter Size</h3>
+            <button 
+              (click)="toggleCode('customGutterSplitter')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showCustomGutterSplitterCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4 mb-4">
+                <span class="text-sm text-gray-600">Gutter Size: {{ gutterSize }}px</span>
+                <input 
+                  type="range" 
+                  min="2" 
+                  max="20" 
+                  [value]="gutterSize"
+                  (input)="updateGutterSize($event)"
+                  class="w-32">
+              </div>
+              <div class="h-64">
+                <sui-splitter 
+                  layout="horizontal"
+                  [gutterSize]="gutterSize"
+                  [minSizes]="[30, 30]"
+                  (onResizeEnd)="onResizeEnd($event)">
+                  
+                  <div slot="panel1" class="p-4 h-full">
+                    <h4 class="font-medium text-gray-900 mb-3">Panel 1</h4>
+                    <div class="space-y-2">
+                      <div class="p-2 bg-red-100 rounded text-sm text-red-800">Custom gutter size</div>
+                      <div class="p-2 bg-red-100 rounded text-sm text-red-800">Drag to resize</div>
+                    </div>
+                  </div>
+                  
+                  <div slot="panel2" class="p-4 h-full">
+                    <h4 class="font-medium text-gray-900 mb-3">Panel 2</h4>
+                    <div class="space-y-2">
+                      <div class="p-2 bg-yellow-100 rounded text-sm text-yellow-800">Adjustable gutter</div>
+                      <div class="p-2 bg-yellow-100 rounded text-sm text-yellow-800">Smooth resizing</div>
+                    </div>
+                  </div>
+                </sui-splitter>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showCustomGutterSplitterCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-splitter 
+  layout="horizontal"
+  [gutterSize]="gutterSize"
+  [minSizes]="[30, 30]"
+  (onResizeEnd)="onResizeEnd($event)"&gt;
+  
+  &lt;div slot="panel1" class="p-4 h-full"&gt;
+    &lt;h4 class="font-medium text-gray-900 mb-3"&gt;Panel 1&lt;/h4&gt;
+    &lt;div class="space-y-2"&gt;
+      &lt;div class="p-2 bg-red-100 rounded text-sm text-red-800"&gt;Custom gutter size&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div slot="panel2" class="p-4 h-full"&gt;
+    &lt;h4 class="font-medium text-gray-900 mb-3"&gt;Panel 2&lt;/h4&gt;
+    &lt;div class="space-y-2"&gt;
+      &lt;div class="p-2 bg-yellow-100 rounded text-sm text-yellow-800"&gt;Adjustable gutter&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/sui-splitter&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -94,56 +246,6 @@
             <p class="text-gray-600 mb-4">The Splitter component is part of the Synerity UI library. Install it using npm:</p>
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
               <code>npm install @synerity/ui</code>
-            </div>
-          </div>
-        </div>
-
-        <!-- Basic Usage -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Import and use the Splitter component in your Angular application:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>import &#123; Splitter &#125; from '@synerity/ui';
-
-&#64;Component(&#123;
-  template: `
-    &lt;sui-splitter [panelSizes]="[30, 70]"&gt;
-      &lt;ng-template pTemplate="panel"&gt;
-        &lt;div&gt;Panel 1&lt;/div&gt;
-      &lt;/ng-template&gt;
-      &lt;ng-template pTemplate="panel"&gt;
-        &lt;div&gt;Panel 2&lt;/div&gt;
-      &lt;/ng-template&gt;
-    &lt;/sui-splitter&gt;
-  `
-&#125;)
-export class MyComponent &#123;&#125;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Splitter Features -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Splitter Features</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-gray-900">Resizable Panels</h4>
-                <p class="text-gray-600">Drag the splitter to resize panels dynamically</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Multiple Orientations</h4>
-                <p class="text-gray-600">Horizontal and vertical splitter layouts</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Nested Splitters</h4>
-                <p class="text-gray-600">Create complex layouts with nested splitters</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Size Constraints</h4>
-                <p class="text-gray-600">Set minimum and maximum panel sizes</p>
-              </div>
             </div>
           </div>
         </div>
@@ -171,16 +273,10 @@ export class MyComponent &#123;&#125;</code></pre>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">panelSizes</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number[]</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[50, 50]</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Array of panel sizes in percentage</td>
-                  </tr>
-                  <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">layout</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'horizontal' | 'vertical'</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'horizontal'</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Splitter orientation</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Orientation of the splitter</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">gutterSize</td>
@@ -189,70 +285,14 @@ export class MyComponent &#123;&#125;</code></pre>
                     <td class="px-6 py-4 text-sm text-gray-500">Size of the gutter in pixels</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the splitter</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">CSS class for the splitter</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">minSizes</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number[]</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[0, 0]</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Minimum sizes for panels (in percentage)</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
-
-        <!-- Events -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="overflow-x-auto">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onResize</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;any&gt;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when panels are resized</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Accessibility -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Keyboard navigation support</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>ARIA attributes for screen readers</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Focus management for resizable areas</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>High contrast mode support</span>
-              </li>
-            </ul>
           </div>
         </div>
 

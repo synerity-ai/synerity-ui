@@ -1,29 +1,8 @@
-.demo-section {
-  @apply mb-8;
-}
+// DataView demo page styles
+// Most styling is handled by Tailwind CSS classes
 
-.demo-container {
-  @apply p-6 border border-gray-200 rounded-lg;
-}
-
-.data-view-container {
-  @apply w-full;
-}
-
-.pagination-info {
-  @apply mt-4 p-3 bg-blue-50 rounded-lg;
-}
-
-// Grid layout for DataView
-::ng-deep .sui-data-view-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
-}
-
-// List layout for DataView
-::ng-deep .sui-data-view-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.data-view-demo {
+  .demo-section {
+    margin-bottom: 2rem;
+  }
 }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-input-otp',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './input-otp.html',
   styleUrl: './input-otp.scss',

@@ -1,11 +1,9 @@
-<div class="max-w-6xl mx-auto">
-  <!-- Page Header -->
-  <div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">Toolbar</h1>
-    <p class="text-lg text-gray-600">Command bar component for organizing actions and tools.</p>
+<div class="toolbar-demo">
+  <div class="demo-header">
+    <h1>Toolbar Component</h1>
+    <p>Action button container that organizes toolbar items into left, center, and right sections with support for separators and disabled states.</p>
   </div>
 
-  <!-- Tabs -->
   <app-tabs 
     [tabs]="[
       { id: 'demo', label: 'Demo', icon: '🎯' },
@@ -13,180 +11,400 @@
       { id: 'docs', label: 'Documentation', icon: '📚' }
     ]"
     [activeTab]="activeTab"
-    (tabChange)="onTabChange($event)">
-    
-    <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'">
-      <div class="space-y-8">
-        
-        <!-- Basic Toolbar -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Basic Toolbar</h3>
-            <button 
-              (click)="toggleCode('basicToolbar')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showBasicToolbarCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
+    (tabChange)="onTabChange($event)"
+  ></app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="demo-content">
+    <!-- Basic Toolbar -->
+    <div class="demo-section">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold text-gray-800">Basic Toolbar</h2>
+        <button 
+          (click)="toggleCode('basic')"
+          class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+        >
+          {{ showBasicToolbarCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="space-y-4">
+          <sui-toolbar 
+            [leftItems]="basicLeftItems"
+            [rightItems]="basicRightItems"
+            (onItemClick)="onToolbarItemClick($event)"
+          >
+            <div class="text-center text-gray-600 font-medium">
+              Document Editor
+            </div>
+          </sui-toolbar>
+          <p class="text-sm text-gray-600">
+            A basic toolbar with left and right items, and center content.
+          </p>
+          <div *ngIf="lastAction" class="text-sm text-blue-600">
+            Last action: <span class="font-mono">{{ lastAction }}</span>
           </div>
-          
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
-              <sui-toolbar [leftItems]="toolbarItems"></sui-toolbar>
+        </div>
+        
+        <!-- Code Example -->
+        <div *ngIf="showBasicToolbarCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-toolbar 
+  [leftItems]="basicLeftItems"
+  [rightItems]="basicRightItems"
+  (onItemClick)="onToolbarItemClick($event)"
+&gt;
+  &lt;div class="text-center text-gray-600 font-medium"&gt;
+    Document Editor
+  &lt;/div&gt;
+&lt;/sui-toolbar&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toolbar Variants -->
+    <div class="demo-section">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold text-gray-800">Toolbar Variants</h2>
+        <button 
+          (click)="toggleCode('variants')"
+          class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+        >
+          {{ showToolbarVariantsCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="space-y-4">
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm font-medium text-gray-700 mb-2">Horizontal Toolbar</p>
+              <sui-toolbar 
+                [leftItems]="variantLeftItems"
+                [rightItems]="variantRightItems"
+                orientation="horizontal"
+                (onItemClick)="onToolbarItemClick($event)"
+              >
+                <div class="text-center text-gray-600 font-medium">
+                  Text Editor
+                </div>
+              </sui-toolbar>
             </div>
             
-            <!-- Code Example -->
-            <div *ngIf="showBasicToolbarCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-toolbar [leftItems]="toolbarItems"&gt;&lt;/sui-toolbar&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Coming Soon Placeholder -->
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">🚧</span>
             <div>
-              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
-              <p class="text-blue-700">Custom toolbar styling, grouped actions, and advanced features will be added soon.</p>
+              <p class="text-sm font-medium text-gray-700 mb-2">Vertical Toolbar</p>
+              <div class="flex h-32">
+                <sui-toolbar 
+                  [leftItems]="variantLeftItems"
+                  [rightItems]="variantRightItems"
+                  orientation="vertical"
+                  (onItemClick)="onToolbarItemClick($event)"
+                >
+                  <div class="text-center text-gray-600 font-medium">
+                    Side Panel
+                  </div>
+                </sui-toolbar>
+              </div>
             </div>
           </div>
+          <p class="text-sm text-gray-600">
+            Toolbar supports both horizontal and vertical orientations with separators and disabled items.
+          </p>
         </div>
-
-      </div>
-    </div>
-
-    <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'">
-      <div class="space-y-6">
         
-        <!-- Installation -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">The Toolbar component is part of the Synerity UI library. Install it using npm:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <code>npm install @synerity/ui</code>
-            </div>
-          </div>
+        <!-- Code Example -->
+        <div *ngIf="showToolbarVariantsCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-toolbar 
+  [leftItems]="variantLeftItems"
+  [rightItems]="variantRightItems"
+  orientation="horizontal"
+  (onItemClick)="onToolbarItemClick($event)"
+&gt;
+  &lt;div class="text-center text-gray-600 font-medium"&gt;
+    Text Editor
+  &lt;/div&gt;
+&lt;/sui-toolbar&gt;</code></pre>
         </div>
-
-        <!-- Basic Usage -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Import and use the Toolbar component in your Angular application:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>import &#123; Toolbar &#125; from '@synerity/ui';
-
-&#64;Component(&#123;
-  template: `
-    &lt;sui-toolbar [leftItems]="toolbarItems"&gt;&lt;/sui-toolbar&gt;
-  `
-&#125;)
-export class MyComponent &#123;&#125;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Toolbar Features -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Toolbar Features</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-gray-900">Action Buttons</h4>
-                <p class="text-gray-600">Clickable buttons with labels and icons</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Separators</h4>
-                <p class="text-gray-600">Visual separators to group related actions</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Custom Styling</h4>
-                <p class="text-gray-600">Flexible styling options for different themes</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Responsive Design</h4>
-                <p class="text-gray-600">Adapts to different screen sizes</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
 
-    <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'">
-      <div class="space-y-6">
+    <!-- Custom Toolbar -->
+    <div class="demo-section">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold text-gray-800">Custom Styled Toolbar</h2>
+        <button 
+          (click)="toggleCode('custom')"
+          class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+        >
+          {{ showToolbarCustomCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="space-y-4">
+          <sui-toolbar 
+            [leftItems]="customLeftItems"
+            [rightItems]="customRightItems"
+            styleClass="custom-toolbar"
+            [style]="customToolbarStyle"
+            (onItemClick)="onToolbarItemClick($event)"
+          >
+            <div class="text-center text-gray-600 font-medium">
+              User Management
+            </div>
+          </sui-toolbar>
+          <p class="text-sm text-gray-600">
+            A toolbar with custom styling using styleClass and inline styles.
+          </p>
+        </div>
         
-        <!-- Props -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="overflow-x-auto">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">model</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MenuItem[]</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Array of toolbar items</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the toolbar</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">CSS class for the toolbar</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <!-- Code Example -->
+        <div *ngIf="showToolbarCustomCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-toolbar 
+  [leftItems]="customLeftItems"
+  [rightItems]="customRightItems"
+  styleClass="custom-toolbar"
+  [style]="&#123; backgroundColor: '#f8fafc', border: '1px solid #e2e8f0' &#125;"
+  (onItemClick)="onToolbarItemClick($event)"
+&gt;
+  &lt;div class="text-center text-gray-600 font-medium"&gt;
+    User Management
+  &lt;/div&gt;
+&lt;/sui-toolbar&gt;</code></pre>
         </div>
-
-        <!-- Accessibility -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Keyboard navigation support</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>ARIA attributes for screen readers</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Focus management and indicators</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Tooltip support for action descriptions</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
       </div>
     </div>
-  </app-tabs>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'usage'" class="demo-content">
+    <div class="space-y-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Installation</h2>
+        <div class="bg-gray-900 text-white p-4 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>npm install @synerity/ui</code></pre>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Basic Usage</h2>
+        <p class="text-gray-600 mb-4">
+          The Toolbar component organizes action buttons into left, center, and right sections.
+        </p>
+        <div class="bg-gray-900 text-white p-4 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-toolbar 
+  [leftItems]="leftItems"
+  [rightItems]="rightItems"
+  (onItemClick)="onItemClick($event)"
+&gt;
+  &lt;div class="text-center"&gt;
+    Center Content
+  &lt;/div&gt;
+&lt;/sui-toolbar&gt;</code></pre>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Toolbar Items Configuration</h2>
+        <p class="text-gray-600 mb-4">
+          Each toolbar item can have a label, icon, command function, disabled state, or act as a separator:
+        </p>
+        <div class="bg-gray-900 text-white p-4 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>leftItems = [
+  &#123; 
+    label: 'New', 
+    icon: '📄', 
+    command: () => this.newDocument() 
+  &#125;,
+  &#123; 
+    label: 'Save', 
+    icon: '💾', 
+    command: () => this.saveDocument() 
+  &#125;,
+  &#123; separator: true &#125;,
+  &#123; 
+    label: 'Print', 
+    icon: '🖨️', 
+    command: () => this.printDocument() 
+  &#125;,
+  &#123; 
+    label: 'Disabled', 
+    icon: '🚫', 
+    disabled: true 
+  &#125;
+];</code></pre>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Orientations</h2>
+        <p class="text-gray-600 mb-4">
+          Toolbar supports two orientations:
+        </p>
+        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-2">
+          <li><strong>horizontal</strong>: Default horizontal layout (left to right)</li>
+          <li><strong>vertical</strong>: Vertical layout (top to bottom)</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Use Cases</h2>
+        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-2">
+          <li><strong>Text Editors</strong>: Formatting and editing tools</li>
+          <li><strong>File Managers</strong>: File operations and navigation</li>
+          <li><strong>Image Editors</strong>: Drawing and editing tools</li>
+          <li><strong>Data Tables</strong>: Action buttons for table operations</li>
+          <li><strong>Form Builders</strong>: Form element insertion tools</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'docs'" class="demo-content">
+    <div class="space-y-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Props</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">leftItems</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Array&lt;ToolbarItem&gt;</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Array of items for the left section</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">rightItems</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Array&lt;ToolbarItem&gt;</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Array of items for the right section</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">orientation</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'horizontal' | 'vertical'</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'horizontal'</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Orientation of the toolbar</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ '{}' }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the toolbar</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                <td class="px-6 py-4 text-sm text-gray-500">CSS class for custom styling</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Events</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onItemClick</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">ToolbarItem</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Emitted when a toolbar item is clicked</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">ToolbarItem Interface</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500">Description</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">label</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Optional label for the item</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">icon</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Optional icon for the item</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">command</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">() => void</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Optional function to execute when clicked</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Whether the item is disabled</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">separator</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Whether the item acts as a separator</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Accessibility</h2>
+        <ul class="list-disc list-inside text-gray-600 space-y-2">
+          <li>Keyboard navigation support with Tab and Enter keys</li>
+          <li>ARIA attributes for screen readers</li>
+          <li>Focus management for toolbar items</li>
+          <li>Proper button semantics for all interactive elements</li>
+          <li>Disabled state support for individual items</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Styling</h2>
+        <p class="text-gray-600 mb-4">
+          The Toolbar component uses CSS classes that can be customized with your own styles:
+        </p>
+        <div class="bg-gray-900 text-white p-4 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>.sui-toolbar {{ '{' }}
+  /* Custom toolbar styles */
+{{ '}' }}
+
+.sui-toolbar-item {{ '{' }}
+  /* Custom item styles */
+{{ '}' }}
+
+.sui-toolbar-separator {{ '{' }}
+  /* Custom separator styles */
+{{ '}' }}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -3,6 +3,7 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-fieldset',
+  standalone: true,
   imports: [NgIf],
   templateUrl: './fieldset.html',
   styleUrl: './fieldset.css',

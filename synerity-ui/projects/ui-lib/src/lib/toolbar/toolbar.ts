@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-toolbar',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './toolbar.html',
   styleUrl: './toolbar.css',

@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Breadcrumb } from 'ui-lib';
+import { Tabs } from '../../shared/tabs/tabs';
 
 @Component({
   selector: 'app-breadcrumb',
   standalone: true,
-  imports: [CommonModule, Breadcrumb],
+  imports: [CommonModule, Breadcrumb, Tabs],
   templateUrl: './breadcrumb.html',
   styleUrls: ['./breadcrumb.scss']
 })
 export class BreadcrumbComponent {
-  activeTab = 0;
-  showBasicCode = false;
-  showCustomCode = false;
-  showIconCode = false;
+  activeTab = 'demo';
+  showBasicBreadcrumbCode = false;
+  showBreadcrumbVariantsCode = false;
+  showBreadcrumbStatesCode = false;
 
   // Demo data
   basicModel = [
@@ -53,20 +54,20 @@ export class BreadcrumbComponent {
     { label: 'High-End Gaming Laptops' }
   ];
 
-  onTabChange(index: number): void {
-    this.activeTab = index;
+  onTabChange(tabId: string): void {
+    this.activeTab = tabId;
   }
 
   toggleCode(type: string): void {
     switch (type) {
       case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+        this.showBasicBreadcrumbCode = !this.showBasicBreadcrumbCode;
         break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'variants':
+        this.showBreadcrumbVariantsCode = !this.showBreadcrumbVariantsCode;
         break;
-      case 'icon':
-        this.showIconCode = !this.showIconCode;
+      case 'states':
+        this.showBreadcrumbStatesCode = !this.showBreadcrumbStatesCode;
         break;
     }
   }

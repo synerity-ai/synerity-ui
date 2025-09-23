@@ -1,20 +1,102 @@
-<div class="sui-stepper" [class]="getStepperClass()" [style]="getStepperStyle()">
-  <div 
-    *ngFor="let step of steps; let i = index" 
-    class="sui-stepper-step" 
-    [class]="getStepClass(i)"
-    (click)="setActiveIndex(i)"
-  >
-    <div class="sui-stepper-step-indicator">
-      <span *ngIf="!isStepCompleted(i)" class="sui-stepper-step-number">{{ i + 1 }}</span>
-      <span *ngIf="isStepCompleted(i)" class="sui-stepper-step-check">✓</span>
+<div class="w-full" [class]="styleClass" [style]="getStepperStyle()">
+  <!-- Horizontal Stepper -->
+  <div *ngIf="orientation === 'horizontal'" class="flex items-center justify-between">
+    <div 
+      *ngFor="let step of steps; let i = index" 
+      class="flex items-center flex-1"
+      [class.cursor-pointer]="canNavigateToStep(i)"
+      [class.cursor-not-allowed]="!canNavigateToStep(i)"
+      (click)="setActiveIndex(i)"
+    >
+      <!-- Step Indicator -->
+      <div class="flex items-center">
+        <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-200"
+             [class.bg-primary-600]="isStepActive(i)"
+             [class.border-primary-600]="isStepActive(i)"
+             [class.text-white]="isStepActive(i)"
+             [class.bg-green-600]="isStepCompleted(i)"
+             [class.border-green-600]="isStepCompleted(i)"
+             [class.text-white]="isStepCompleted(i)"
+             [class.bg-gray-100]="!isStepActive(i) && !isStepCompleted(i)"
+             [class.border-gray-300]="!isStepActive(i) && !isStepCompleted(i)"
+             [class.text-gray-500]="!isStepActive(i) && !isStepCompleted(i)"
+             [class.opacity-50]="isStepDisabled(i)">
+          <span *ngIf="!isStepCompleted(i)" class="text-sm font-medium">{{ i + 1 }}</span>
+          <svg *ngIf="isStepCompleted(i)" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+        </div>
+        
+        <!-- Step Label -->
+        <div class="ml-3">
+          <div class="text-sm font-medium transition-colors duration-200"
+               [class.text-primary-600]="isStepActive(i)"
+               [class.text-green-600]="isStepCompleted(i)"
+               [class.text-gray-500]="!isStepActive(i) && !isStepCompleted(i)"
+               [class.opacity-50]="isStepDisabled(i)">
+            {{ step.label }}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Connector Line -->
+      <div *ngIf="i < steps.length - 1" 
+           class="flex-1 h-0.5 mx-4 transition-colors duration-200"
+           [class.bg-primary-600]="isStepCompleted(i)"
+           [class.bg-gray-300]="!isStepCompleted(i)">
+      </div>
     </div>
-    <div class="sui-stepper-step-content">
-      <div class="sui-stepper-step-label">{{ step.label }}</div>
+  </div>
+
+  <!-- Vertical Stepper -->
+  <div *ngIf="orientation === 'vertical'" class="space-y-4">
+    <div 
+      *ngFor="let step of steps; let i = index" 
+      class="flex items-start"
+      [class.cursor-pointer]="canNavigateToStep(i)"
+      [class.cursor-not-allowed]="!canNavigateToStep(i)"
+      (click)="setActiveIndex(i)"
+    >
+      <!-- Step Indicator -->
+      <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-200 flex-shrink-0"
+           [class.bg-primary-600]="isStepActive(i)"
+           [class.border-primary-600]="isStepActive(i)"
+           [class.text-white]="isStepActive(i)"
+           [class.bg-green-600]="isStepCompleted(i)"
+           [class.border-green-600]="isStepCompleted(i)"
+           [class.text-white]="isStepCompleted(i)"
+           [class.bg-gray-100]="!isStepActive(i) && !isStepCompleted(i)"
+           [class.border-gray-300]="!isStepActive(i) && !isStepCompleted(i)"
+           [class.text-gray-500]="!isStepActive(i) && !isStepCompleted(i)"
+           [class.opacity-50]="isStepDisabled(i)">
+        <span *ngIf="!isStepCompleted(i)" class="text-sm font-medium">{{ i + 1 }}</span>
+        <svg *ngIf="isStepCompleted(i)" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+        </svg>
+      </div>
+      
+      <!-- Step Content -->
+      <div class="ml-4 flex-1">
+        <div class="text-sm font-medium transition-colors duration-200"
+             [class.text-primary-600]="isStepActive(i)"
+             [class.text-green-600]="isStepCompleted(i)"
+             [class.text-gray-500]="!isStepActive(i) && !isStepCompleted(i)"
+             [class.opacity-50]="isStepDisabled(i)">
+          {{ step.label }}
+        </div>
+        
+        <!-- Connector Line -->
+        <div *ngIf="i < steps.length - 1" 
+             class="w-0.5 h-8 mt-2 transition-colors duration-200"
+             [class.bg-primary-600]="isStepCompleted(i)"
+             [class.bg-gray-300]="!isStepCompleted(i)">
+        </div>
+      </div>
     </div>
   </div>
   
-  <div *ngIf="steps[activeIndex]" class="sui-stepper-content">
+  <!-- Step Content -->
+  <div *ngIf="steps[activeIndex]" class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
     <ng-content></ng-content>
   </div>
 </div>

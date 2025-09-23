@@ -1,45 +1,8 @@
-// Table component styles
-// This file is intentionally minimal as we use Tailwind CSS for styling
+// Table demo page styles
+// Most styling is handled by Tailwind CSS classes
 
-// Custom table styles
-.table-container {
-  overflow-x: auto;
-  border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
-}
-
-// Table hover effects
-.table-row-hover {
-  transition: background-color 0.15s ease-in-out;
-  
-  &:hover {
-    background-color: #f9fafb;
-  }
-}
-
-// Sort indicator styles
-.sort-indicator {
-  transition: transform 0.2s ease-in-out;
-  
-  &.asc {
-    transform: rotate(180deg);
-  }
-}
-
-// Loading state
-.table-loading {
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.table-demo {
+  .demo-section {
+    margin-bottom: 2rem;
   }
 }

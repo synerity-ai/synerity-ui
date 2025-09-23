@@ -1,33 +1,88 @@
 <div class="sui-knob" [class]="getKnobClass()" [style]="getKnobStyle()">
-  <svg 
-    #knobElement
-    [attr.width]="size" 
-    [attr.height]="size" 
-    viewBox="0 0 100 100"
-    class="sui-knob-svg"
-  >
-    <circle
-      cx="50"
-      cy="50"
-      r="45"
-      fill="none"
-      stroke="#e0e0e0"
-      [attr.stroke-width]="strokeWidth"
-      class="sui-knob-track"
-    />
-    <circle
-      cx="50"
-      cy="50"
-      r="45"
-      fill="none"
-      stroke="#007bff"
-      [attr.stroke-width]="strokeWidth"
-      [style]="getProgressStyle()"
-      class="sui-knob-progress"
-    />
-  </svg>
-  
-  <div *ngIf="shouldShowValue()" class="sui-knob-value">
-    {{ getDisplayValue() }}
+  <div class="sui-knob-container">
+    <svg 
+      #knobElement
+      [attr.width]="size" 
+      [attr.height]="size" 
+      viewBox="0 0 100 100"
+      class="sui-knob-svg"
+    >
+      <!-- Background circle with gradient -->
+      <defs>
+        <linearGradient id="trackGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#1d4ed8;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+          <feMerge> 
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      
+      <!-- Track circle -->
+      <circle
+        cx="50"
+        cy="50"
+        r="42"
+        fill="url(#trackGradient)"
+        stroke="#cbd5e1"
+        [attr.stroke-width]="strokeWidth * 0.3"
+        class="sui-knob-track"
+      />
+      
+      <!-- Progress circle -->
+      <circle
+        cx="50"
+        cy="50"
+        r="42"
+        fill="none"
+        stroke="url(#progressGradient)"
+        [attr.stroke-width]="strokeWidth"
+        [style]="getProgressStyle()"
+        class="sui-knob-progress"
+        filter="url(#glow)"
+      />
+      
+      <!-- Center dot indicator -->
+      <circle
+        cx="50"
+        cy="50"
+        r="3"
+        fill="#ffffff"
+        stroke="#3b82f6"
+        stroke-width="1"
+        class="sui-knob-indicator"
+        [style]="getIndicatorStyle()"
+      />
+      
+      <!-- Tick marks -->
+      <g class="sui-knob-ticks">
+        <line *ngFor="let tick of getTickMarks()" 
+              [attr.x1]="tick.x1" 
+              [attr.y1]="tick.y1" 
+              [attr.x2]="tick.x2" 
+              [attr.y2]="tick.y2" 
+              stroke="#64748b" 
+              stroke-width="0.5" 
+              class="sui-knob-tick" />
+      </g>
+    </svg>
+    
+    <!-- Value display -->
+    <div *ngIf="shouldShowValue()" class="sui-knob-value">
+      <span class="sui-knob-value-number">{{ getDisplayValue() }}</span>
+      <span *ngIf="unit" class="sui-knob-value-unit">{{ unit }}</span>
+    </div>
+    
+    <!-- Label -->
+    <div *ngIf="label" class="sui-knob-label">{{ label }}</div>
   </div>
 </div>

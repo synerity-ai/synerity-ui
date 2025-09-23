@@ -1,11 +1,8 @@
-.demo-section {
-  @apply mb-8;
-}
+// TreeTable demo page styles
+// Most styling is handled by Tailwind CSS classes
 
-.demo-container {
-  @apply p-6 border border-gray-200 rounded-lg;
-}
-
-.selection-info {
-  @apply mt-4 p-3 bg-blue-50 rounded-lg;
+.tree-table-demo {
+  .demo-section {
+    margin-bottom: 2rem;
+  }
 }

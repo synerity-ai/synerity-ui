@@ -1,7 +1,8 @@
-.demo-section {
-  @apply mb-8;
-}
+// PickList demo page styles
+// Most styling is handled by Tailwind CSS classes
 
-.demo-container {
-  @apply p-6 border border-gray-200 rounded-lg;
+.picklist-demo {
+  .demo-section {
+    margin-bottom: 2rem;
+  }
 }

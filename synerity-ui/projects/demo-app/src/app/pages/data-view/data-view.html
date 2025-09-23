@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">DataView</h1>
-    <p class="text-lg text-gray-600">A versatile data display component with list and grid layouts, pagination support, and customizable templates.</p>
+    <p class="text-lg text-gray-600">Flexible data display component that can render data in list or grid layouts with customizable templates.</p>
   </div>
 
   <!-- Tabs -->
@@ -16,403 +16,167 @@
     (tabChange)="onTabChange($event)">
     
     <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'" class="space-y-8">
-      <!-- List Layout -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">List Layout</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="data-view-container">
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- List Layout -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">List Layout</h3>
+            <button 
+              (click)="toggleCode('listLayout')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showListLayoutCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
               <sui-data-view 
-                [value]="products"
+                [value]="sampleData"
                 layout="list"
-                emptyMessage="No products found"
-              >
-                <ng-template #itemTemplate let-product>
-                  <div class="product-item flex items-center space-x-4 p-4 border border-gray-200 rounded-lg mb-2 bg-white">
-                    <img [src]="'https://via.placeholder.com/100x100?text=' + product.name" [alt]="product.name" class="product-image w-20 h-20 object-cover rounded">
-                    <div class="product-details flex-1">
-                      <h3 class="product-name text-lg font-semibold text-gray-900">{{ product.name }}</h3>
-                      <p class="product-description text-gray-600">{{ product.description }}</p>
-                      <div class="product-info flex items-center space-x-4 mt-2">
-                        <span class="product-price text-lg font-bold text-green-600">${{ product.price }}</span>
-                        <span class="product-category text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">{{ product.category }}</span>
-                        <span class="product-rating text-sm text-yellow-600">⭐ {{ product.rating }}</span>
-                      </div>
-                      <div class="product-status mt-2">
-                        <span class="status-badge px-2 py-1 rounded text-xs font-medium" 
-                              [class]="'bg-' + (getSeverity(product.inventoryStatus) === 'success' ? 'green' : getSeverity(product.inventoryStatus) === 'warning' ? 'yellow' : 'red') + '-100 text-' + (getSeverity(product.inventoryStatus) === 'success' ? 'green' : getSeverity(product.inventoryStatus) === 'warning' ? 'yellow' : 'red') + '-800'">
-                          {{ getSeverityText(product.inventoryStatus) }}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </ng-template>
+                [itemTemplate]="listItemTemplate">
               </sui-data-view>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showListLayoutCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-data-view 
+  [value]="data"
+  layout="list"
+  [itemTemplate]="listItemTemplate"&gt;
+&lt;/sui-data-view&gt;</code></pre>
             </div>
           </div>
         </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('list')">
-          {{ showListCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showListCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-data-view 
-  [value]="products"
-  layout="list"
-  emptyMessage="No products found"
-&gt;
-  &lt;ng-template #itemTemplate let-product&gt;
-    &lt;div class="product-item"&gt;
-      &lt;img [src]="product.image" [alt]="product.name"&gt;
-      &lt;div class="product-details"&gt;
-        &lt;h3&gt;Product Name&lt;/h3&gt;
-        &lt;p&gt;Product Description&lt;/p&gt;
-        &lt;span&gt;Product Price&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/ng-template&gt;
-&lt;/sui-data-view&gt;</code></pre>
-        </div>
-      </div>
 
-      <!-- Grid Layout -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Grid Layout</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="data-view-container">
+        <!-- Grid Layout -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Grid Layout</h3>
+            <button 
+              (click)="toggleCode('gridLayout')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showGridLayoutCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
               <sui-data-view 
-                [value]="products"
+                [value]="sampleData"
                 layout="grid"
-                emptyMessage="No products found"
-              >
-                <ng-template #itemTemplate let-product>
-                  <div class="product-item bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-                    <img [src]="'https://via.placeholder.com/200x200?text=' + product.name" [alt]="product.name" class="product-image w-full h-48 object-cover rounded mb-3">
-                    <div class="product-details">
-                      <h3 class="product-name text-lg font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
-                      <p class="product-description text-gray-600 text-sm mb-3">{{ product.description }}</p>
-                      <div class="product-info flex items-center justify-between mb-3">
-                        <span class="product-price text-xl font-bold text-green-600">${{ product.price }}</span>
-                        <span class="product-rating text-sm text-yellow-600">⭐ {{ product.rating }}</span>
-                      </div>
-                      <div class="product-status flex items-center justify-between">
-                        <span class="product-category text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">{{ product.category }}</span>
-                        <span class="status-badge px-2 py-1 rounded text-xs font-medium" 
-                              [class]="'bg-' + (getSeverity(product.inventoryStatus) === 'success' ? 'green' : getSeverity(product.inventoryStatus) === 'warning' ? 'yellow' : 'red') + '-100 text-' + (getSeverity(product.inventoryStatus) === 'success' ? 'green' : getSeverity(product.inventoryStatus) === 'warning' ? 'yellow' : 'red') + '-800'">
-                          {{ getSeverityText(product.inventoryStatus) }}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </ng-template>
+                [itemTemplate]="gridItemTemplate">
               </sui-data-view>
             </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('grid')">
-          {{ showGridCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showGridCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-data-view 
-  [value]="products"
+            
+            <!-- Code Example -->
+            <div *ngIf="showGridLayoutCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-data-view 
+  [value]="data"
   layout="grid"
-  emptyMessage="No products found"
-&gt;
-  &lt;ng-template #itemTemplate let-product&gt;
-    &lt;div class="product-item"&gt;
-      &lt;img [src]="product.image" [alt]="product.name"&gt;
-      &lt;div class="product-details"&gt;
-        &lt;h3&gt;Product Name&lt;/h3&gt;
-        &lt;p&gt;Product Description&lt;/p&gt;
-        &lt;span&gt;Product Price&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/ng-template&gt;
+  [itemTemplate]="gridItemTemplate"&gt;
 &lt;/sui-data-view&gt;</code></pre>
-        </div>
-      </div>
-
-      <!-- Paginated DataView -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Paginated DataView</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="data-view-container">
-              <sui-data-view 
-                [value]="paginatedProducts"
-                layout="list"
-                [paginator]="true"
-                [rows]="pageSize"
-                [first]="currentPage * pageSize"
-                [totalRecords]="totalRecords"
-                emptyMessage="No products found"
-                (onPage)="onPage($event)"
-              >
-                <ng-template #itemTemplate let-product>
-                  <div class="product-item flex items-center space-x-4 p-4 border border-gray-200 rounded-lg mb-2 bg-white">
-                    <img [src]="'https://via.placeholder.com/100x100?text=' + product.name" [alt]="product.name" class="product-image w-20 h-20 object-cover rounded">
-                    <div class="product-details flex-1">
-                      <h3 class="product-name text-lg font-semibold text-gray-900">{{ product.name }}</h3>
-                      <p class="product-description text-gray-600">{{ product.description }}</p>
-                      <div class="product-info flex items-center space-x-4 mt-2">
-                        <span class="product-price text-lg font-bold text-green-600">${{ product.price }}</span>
-                        <span class="product-category text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">{{ product.category }}</span>
-                        <span class="product-rating text-sm text-yellow-600">⭐ {{ product.rating }}</span>
-                      </div>
-                      <div class="product-status mt-2">
-                        <span class="status-badge px-2 py-1 rounded text-xs font-medium" 
-                              [class]="'bg-' + (getSeverity(product.inventoryStatus) === 'success' ? 'green' : getSeverity(product.inventoryStatus) === 'warning' ? 'yellow' : 'red') + '-100 text-' + (getSeverity(product.inventoryStatus) === 'success' ? 'green' : getSeverity(product.inventoryStatus) === 'warning' ? 'yellow' : 'red') + '-800'">
-                          {{ getSeverityText(product.inventoryStatus) }}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </ng-template>
-              </sui-data-view>
-            </div>
-            <div class="pagination-info">
-              <p class="text-sm text-gray-600">
-                Showing {{ currentPage * pageSize + 1 }} to {{ getMaxDisplayIndex() }} of {{ totalRecords }} products
-              </p>
             </div>
           </div>
         </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('paginated')">
-          {{ showPaginatedCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showPaginatedCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-data-view 
-  [value]="paginatedProducts"
-  layout="list"
-  [paginator]="true"
-  [rows]="pageSize"
-  [first]="currentPage * pageSize"
-  [totalRecords]="totalRecords"
-  (onPage)="onPage($event)"
-&gt;
-  &lt;ng-template #itemTemplate let-product&gt;
-    &lt;!-- template content --&gt;
-  &lt;/ng-template&gt;
-&lt;/sui-data-view&gt;</code></pre>
-        </div>
+
       </div>
     </div>
 
     <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
-      <h2>How to Use DataView</h2>
-      
-      <h3>Installation</h3>
-      <p>Import the DataView component from the UI library:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; DataView &#125; from 'ui-lib';
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The DataView component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
 
-// In your component imports
-imports: [DataView]</code></pre>
-
-      <h3>Basic Usage</h3>
-      <p>Use the component with data and custom templates:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-data-view 
-  [value]="products"
-  layout="list"
-  emptyMessage="No products found"
-&gt;
-  &lt;ng-template #itemTemplate let-product&gt;
-    &lt;div class="product-item"&gt;
-      &lt;h3&gt;Product Name&lt;/h3&gt;
-      &lt;p&gt;Product Description&lt;/p&gt;
-      &lt;span&gt;Product Price&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/ng-template&gt;
-&lt;/sui-data-view&gt;</code></pre>
-
-      <h3>Component Properties</h3>
-      <ul>
-        <li><strong>value</strong>: Array of data items to display</li>
-        <li><strong>layout</strong>: Display layout ('list' or 'grid')</li>
-        <li><strong>paginator</strong>: Boolean to enable pagination</li>
-        <li><strong>rows</strong>: Number of items per page</li>
-        <li><strong>first</strong>: Index of first item on current page</li>
-        <li><strong>totalRecords</strong>: Total number of records</li>
-        <li><strong>emptyMessage</strong>: Message to display when no data</li>
-      </ul>
-
-      <h3>Events</h3>
-      <ul>
-        <li><strong>onPage</strong>: Emitted when pagination changes</li>
-        <li><strong>onLazyLoad</strong>: Emitted for lazy loading scenarios</li>
-      </ul>
-
-      <h3>Template Usage</h3>
-      <p>The component uses Angular templates for custom item rendering:</p>
-      <ul>
-        <li><strong>itemTemplate</strong>: Template for rendering each data item</li>
-        <li><strong>Template Context</strong>: Each item is passed as template context</li>
-        <li><strong>Flexible Layout</strong>: Templates work with both list and grid layouts</li>
-      </ul>
-
-      <h3>Layout Modes</h3>
-      <ul>
-        <li><strong>List Layout</strong>: Vertical list of items, good for detailed views</li>
-        <li><strong>Grid Layout</strong>: Grid of items, good for card-based displays</li>
-      </ul>
-
-      <h3>Pagination</h3>
-      <p>Enable pagination for large datasets:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-data-view 
-  [value]="paginatedData"
-  [paginator]="true"
-  [rows]="10"
-  [first]="0"
-  [totalRecords]="100"
-  (onPage)="onPage($event)"
-&gt;&lt;/sui-data-view&gt;</code></pre>
+      </div>
     </div>
 
     <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
-      <h2>API Documentation</h2>
-      
-      <h3>Properties</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">value</td>
-              <td class="border border-gray-300 px-4 py-2">any[]</td>
-              <td class="border border-gray-300 px-4 py-2">[]</td>
-              <td class="border border-gray-300 px-4 py-2">Array of data items</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">layout</td>
-              <td class="border border-gray-300 px-4 py-2">'list' | 'grid'</td>
-              <td class="border border-gray-300 px-4 py-2">'list'</td>
-              <td class="border border-gray-300 px-4 py-2">Display layout mode</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">paginator</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Enable pagination</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">rows</td>
-              <td class="border border-gray-300 px-4 py-2">number</td>
-              <td class="border border-gray-300 px-4 py-2">0</td>
-              <td class="border border-gray-300 px-4 py-2">Number of items per page</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">first</td>
-              <td class="border border-gray-300 px-4 py-2">number</td>
-              <td class="border border-gray-300 px-4 py-2">0</td>
-              <td class="border border-gray-300 px-4 py-2">Index of first item</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">totalRecords</td>
-              <td class="border border-gray-300 px-4 py-2">number</td>
-              <td class="border border-gray-300 px-4 py-2">0</td>
-              <td class="border border-gray-300 px-4 py-2">Total number of records</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">emptyMessage</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">'No records found'</td>
-              <td class="border border-gray-300 px-4 py-2">Empty state message</td>
-            </tr>
-          </tbody>
-        </table>
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any[]</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Array of data objects to display</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">layout</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'list' | 'grid'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'list'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Display layout for the data</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <h3>Events</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Event</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">onPage</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;&#123;first: number, rows: number, page: number&#125;&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when pagination changes</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">onLazyLoad</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;&#123;first: number, rows: number&#125;&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired for lazy loading</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Templates</h3>
-      <h4>itemTemplate</h4>
-      <p>Template for rendering each data item:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;ng-template #itemTemplate let-item&gt;
-  &lt;div class="item"&gt;
-    &lt;!-- Custom item content --&gt;
-  &lt;/div&gt;
-&lt;/ng-template&gt;</code></pre>
-
-      <h3>Accessibility</h3>
-      <ul>
-        <li><strong>ARIA</strong>: Proper ARIA attributes for screen readers</li>
-        <li><strong>Keyboard Navigation</strong>: Full keyboard support for pagination</li>
-        <li><strong>Focus Management</strong>: Proper focus handling</li>
-        <li><strong>Screen Reader</strong>: Descriptive labels and announcements</li>
-      </ul>
-
-      <h3>Styling</h3>
-      <p>The component uses CSS classes that can be customized:</p>
-      <ul>
-        <li><code>.sui-data-view</code>: Main container</li>
-        <li><code>.sui-data-view-list</code>: List layout container</li>
-        <li><code>.sui-data-view-grid</code>: Grid layout container</li>
-        <li><code>.sui-data-view-item</code>: Individual item container</li>
-        <li><code>.sui-data-view-empty</code>: Empty state styling</li>
-        <li><code>.sui-data-view-paginator</code>: Pagination controls</li>
-      </ul>
-
-      <h3>Examples</h3>
-      <h4>Basic Usage</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>export class ExampleComponent &#123;
-  products = [
-    &#123; id: 1, name: 'Product 1', price: 100 &#125;,
-    &#123; id: 2, name: 'Product 2', price: 200 &#125;
-  ];
-&#125;</code></pre>
-
-      <h4>With Pagination</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-data-view
-  [value]="products"
-  [paginator]="true"
-  [rows]="10"
-  [totalRecords]="100"
-  (onPage)="onPage($event)"
-&gt;&lt;/sui-data-view&gt;</code></pre>
-
-      <h4>Grid Layout</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-data-view
-  [value]="products"
-  layout="grid"
-&gt;&lt;/sui-data-view&gt;</code></pre>
     </div>
   </app-tabs>
+
+  <!-- Templates -->
+  <ng-template #listItemTemplate let-item>
+    <div class="flex items-center space-x-4">
+      <div class="flex-shrink-0">
+        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+          <span class="text-primary-600 font-semibold">{{ item.name.charAt(0) }}</span>
+        </div>
+      </div>
+      <div class="flex-1 min-w-0">
+        <h4 class="text-sm font-medium text-gray-900 truncate">{{ item.name }}</h4>
+        <p class="text-sm text-gray-500 truncate">{{ item.email }}</p>
+      </div>
+      <div class="flex-shrink-0">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+              [class]="getStatusClass(item.status)">
+          {{ item.status }}
+        </span>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #gridItemTemplate let-item>
+    <div class="text-center">
+      <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+        <span class="text-primary-600 font-semibold text-lg">{{ item.name.charAt(0) }}</span>
+      </div>
+      <h4 class="text-sm font-medium text-gray-900 mb-1">{{ item.name }}</h4>
+      <p class="text-xs text-gray-500 mb-2">{{ item.email }}</p>
+      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium"
+            [class]="getStatusClass(item.status)">
+        {{ item.status }}
+      </span>
+    </div>
+  </ng-template>
 </div>

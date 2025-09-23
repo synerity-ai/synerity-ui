@@ -1,0 +1,289 @@
+// Modern Knob Component Styles
+.sui-knob {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover:not(.sui-knob-disabled):not(.sui-knob-readonly) {
+    transform: scale(1.05);
+    
+    .sui-knob-svg {
+      filter: drop-shadow(0 8px 25px rgba(59, 130, 246, 0.3));
+    }
+  }
+  
+  &:active:not(.sui-knob-disabled):not(.sui-knob-readonly) {
+    transform: scale(0.98);
+  }
+  
+  &.sui-knob-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    
+    .sui-knob-svg {
+      filter: grayscale(100%);
+    }
+  }
+  
+  &.sui-knob-readonly {
+    cursor: default;
+  }
+}
+
+.sui-knob-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.sui-knob-svg {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.sui-knob-track {
+  transition: all 0.3s ease;
+}
+
+.sui-knob-progress {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  stroke-linecap: round;
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+
+.sui-knob-indicator {
+  transition: all 0.2s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.sui-knob-ticks {
+  .sui-knob-tick {
+    transition: all 0.2s ease;
+  }
+}
+
+.sui-knob-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.sui-knob-value-number {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  line-height: 1;
+}
+
+.sui-knob-value-unit {
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: #64748b;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.sui-knob-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+  text-align: center;
+  margin-top: 4px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Size variations
+.sui-knob {
+  &[style*="width: 80px"] {
+    .sui-knob-value-number {
+      font-size: 0.625rem;
+    }
+    
+    .sui-knob-value-unit {
+      font-size: 0.5rem;
+    }
+    
+    .sui-knob-label {
+      font-size: 0.625rem;
+    }
+  }
+  
+  &[style*="width: 120px"] {
+    .sui-knob-value-number {
+      font-size: 0.875rem;
+    }
+    
+    .sui-knob-value-unit {
+      font-size: 0.75rem;
+    }
+    
+    .sui-knob-label {
+      font-size: 0.875rem;
+    }
+  }
+  
+  &[style*="width: 160px"] {
+    .sui-knob-value-number {
+      font-size: 1rem;
+    }
+    
+    .sui-knob-value-unit {
+      font-size: 0.875rem;
+    }
+    
+    .sui-knob-label {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Color variations
+.sui-knob {
+  &[style*="--knob-color: #ef4444"] {
+    .sui-knob-progress {
+      stroke: url(#progressGradientRed);
+    }
+    
+    .sui-knob-indicator {
+      stroke: #ef4444;
+    }
+  }
+  
+  &[style*="--knob-color: #10b981"] {
+    .sui-knob-progress {
+      stroke: url(#progressGradientGreen);
+    }
+    
+    .sui-knob-indicator {
+      stroke: #10b981;
+    }
+  }
+  
+  &[style*="--knob-color: #f59e0b"] {
+    .sui-knob-progress {
+      stroke: url(#progressGradientYellow);
+    }
+    
+    .sui-knob-indicator {
+      stroke: #f59e0b;
+    }
+  }
+  
+  &[style*="--knob-color: #8b5cf6"] {
+    .sui-knob-progress {
+      stroke: url(#progressGradientPurple);
+    }
+    
+    .sui-knob-indicator {
+      stroke: #8b5cf6;
+    }
+  }
+}
+
+// Focus styles for accessibility
+.sui-knob:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+// Animation for value changes
+@keyframes valueChange {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.sui-knob-value {
+  animation: valueChange 0.3s ease-out;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-knob-value-number {
+    color: #f1f5f9;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  }
+  
+  .sui-knob-value-unit {
+    color: #94a3b8;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  }
+  
+  .sui-knob-label {
+    color: #94a3b8;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .sui-knob {
+    &:hover:not(.sui-knob-disabled):not(.sui-knob-readonly) {
+      transform: scale(1.02);
+    }
+  }
+}
+
+// Custom gradient definitions for different colors
+.sui-knob-svg {
+  defs {
+    .progressGradientRed {
+      stop:first-child {
+        stop-color: #ef4444;
+      }
+      stop:last-child {
+        stop-color: #dc2626;
+      }
+    }
+    
+    .progressGradientGreen {
+      stop:first-child {
+        stop-color: #10b981;
+      }
+      stop:last-child {
+        stop-color: #059669;
+      }
+    }
+    
+    .progressGradientYellow {
+      stop:first-child {
+        stop-color: #f59e0b;
+      }
+      stop:last-child {
+        stop-color: #d97706;
+      }
+    }
+    
+    .progressGradientPurple {
+      stop:first-child {
+        stop-color: #8b5cf6;
+      }
+      stop:last-child {
+        stop-color: #7c3aed;
+      }
+    }
+  }
+}

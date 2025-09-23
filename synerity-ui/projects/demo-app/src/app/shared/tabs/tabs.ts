@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tabs',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './tabs.html',
   styleUrl: './tabs.scss'

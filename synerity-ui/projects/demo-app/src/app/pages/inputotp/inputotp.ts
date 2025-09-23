@@ -6,6 +6,7 @@ import { InputOtp as SuiInputOtp } from '../../../../../ui-lib/src/lib/input-otp
 
 @Component({
   selector: 'app-inputotp',
+  standalone: true,
   imports: [CommonModule, FormsModule, Tabs, SuiInputOtp],
   templateUrl: './inputotp.html',
   styleUrl: './inputotp.scss'
@@ -38,12 +39,9 @@ export class InputotpComponent {
   emailOtpLength = 8;
 
   // Code visibility flags
-  showBasicCode = false;
-  showCustomCode = false;
-  showAlphanumericCode = false;
-  showDisabledCode = false;
-  showSmsCode = false;
-  showEmailCode = false;
+  showBasicInputOtpCode = false;
+  showInputOtpVariantsCode = false;
+  showInputOtpStatesCode = false;
 
   onTabChange(tab: string) {
     this.activeTab = tab;
@@ -51,23 +49,14 @@ export class InputotpComponent {
 
   toggleCode(type: string) {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicInputOtp':
+        this.showBasicInputOtpCode = !this.showBasicInputOtpCode;
         break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'inputOtpVariants':
+        this.showInputOtpVariantsCode = !this.showInputOtpVariantsCode;
         break;
-      case 'alphanumeric':
-        this.showAlphanumericCode = !this.showAlphanumericCode;
-        break;
-      case 'disabled':
-        this.showDisabledCode = !this.showDisabledCode;
-        break;
-      case 'sms':
-        this.showSmsCode = !this.showSmsCode;
-        break;
-      case 'email':
-        this.showEmailCode = !this.showEmailCode;
+      case 'inputOtpStates':
+        this.showInputOtpStatesCode = !this.showInputOtpStatesCode;
         break;
     }
   }

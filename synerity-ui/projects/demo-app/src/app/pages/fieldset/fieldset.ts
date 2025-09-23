@@ -1,47 +1,50 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Fieldset } from '../../../../../ui-lib/src/lib/fieldset/fieldset';
 import { Tabs } from '../../shared/tabs/tabs';
-import { Fieldset as SuiFieldset } from '../../../../../ui-lib/src/lib/fieldset/fieldset';
 
 @Component({
   selector: 'app-fieldset',
-  imports: [CommonModule, FormsModule, Tabs, SuiFieldset],
+  standalone: true,
+  imports: [CommonModule, FormsModule, Fieldset, Tabs],
   templateUrl: './fieldset.html',
-  styleUrl: './fieldset.scss'
+  styleUrls: ['./fieldset.scss']
 })
-export class Fieldset {
+export class FieldsetComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  fieldsetCollapsed = false;
-  fieldsetToggleable = true;
-  
-  // Code visibility states
+
+  // Code visibility flags
   showBasicFieldsetCode = false;
-  showCollapsibleFieldsetCode = false;
-  showCustomFieldsetCode = false;
-  
-  onTabChange(tab: string) {
-    this.activeTab = tab;
+  showFieldsetToggleableCode = false;
+  showFieldsetCustomCode = false;
+
+  // Demo data
+  basicLegend = 'Basic Fieldset';
+  toggleableLegend = 'Toggleable Fieldset';
+  customLegend = 'Custom Styled Fieldset';
+  customFieldsetStyle = { borderColor: '#3b82f6', borderRadius: '8px' };
+
+  // Event handlers
+  onTabChange(tabId: string): void {
+    this.activeTab = tabId;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicFieldset':
+
+  toggleCode(codeType: string): void {
+    switch (codeType) {
+      case 'basic':
         this.showBasicFieldsetCode = !this.showBasicFieldsetCode;
         break;
-      case 'collapsibleFieldset':
-        this.showCollapsibleFieldsetCode = !this.showCollapsibleFieldsetCode;
+      case 'toggleable':
+        this.showFieldsetToggleableCode = !this.showFieldsetToggleableCode;
         break;
-      case 'customFieldset':
-        this.showCustomFieldsetCode = !this.showCustomFieldsetCode;
+      case 'custom':
+        this.showFieldsetCustomCode = !this.showFieldsetCustomCode;
         break;
     }
   }
-  
-  // Fieldset demo methods
-  toggleFieldset() {
-    this.fieldsetCollapsed = !this.fieldsetCollapsed;
+
+  onFieldsetToggle(event: any): void {
+    console.log('Fieldset toggled:', event);
   }
 }

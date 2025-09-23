@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-input-group',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './input-group.html',
   styleUrl: './input-group.scss',

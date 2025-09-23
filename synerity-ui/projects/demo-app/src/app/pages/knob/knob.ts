@@ -13,9 +13,9 @@ import { Knob as SuiKnob } from '../../../../../ui-lib/src/lib/knob/knob';
 })
 export class KnobComponent {
   activeTab = 'demo';
-  showBasicCode = false;
-  showCustomCode = false;
-  showMultipleCode = false;
+  showBasicKnobCode = false;
+  showKnobSizesCode = false;
+  showKnobStatesCode = false;
 
   // Demo data
   basicValue = 50;
@@ -30,14 +30,14 @@ export class KnobComponent {
 
   toggleCode(type: string): void {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicKnob':
+        this.showBasicKnobCode = !this.showBasicKnobCode;
         break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'knobSizes':
+        this.showKnobSizesCode = !this.showKnobSizesCode;
         break;
-      case 'multiple':
-        this.showMultipleCode = !this.showMultipleCode;
+      case 'knobStates':
+        this.showKnobStatesCode = !this.showKnobStatesCode;
         break;
     }
   }

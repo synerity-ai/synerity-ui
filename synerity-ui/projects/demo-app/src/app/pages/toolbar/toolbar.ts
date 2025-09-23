@@ -1,74 +1,92 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Toolbar } from '../../../../../ui-lib/src/lib/toolbar/toolbar';
 import { Tabs } from '../../shared/tabs/tabs';
-import { Toolbar as SuiToolbar } from 'ui-lib';
 
 @Component({
   selector: 'app-toolbar',
-  imports: [CommonModule, FormsModule, Tabs, SuiToolbar],
+  standalone: true,
+  imports: [CommonModule, FormsModule, Toolbar, Tabs],
   templateUrl: './toolbar.html',
-  styleUrl: './toolbar.scss'
+  styleUrls: ['./toolbar.scss']
 })
-export class Toolbar {
+export class ToolbarComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  toolbarItems = [
-    { label: 'New', icon: '📄', command: () => this.newDocument() },
-    { label: 'Open', icon: '📂', command: () => this.openDocument() },
-    { label: 'Save', icon: '💾', command: () => this.saveDocument() },
-    { separator: true },
-    { label: 'Cut', icon: '✂️', command: () => this.cut() },
-    { label: 'Copy', icon: '📋', command: () => this.copy() },
-    { label: 'Paste', icon: '📌', command: () => this.paste() }
-  ];
-  
-  // Code visibility states
+
+  // Code visibility flags
   showBasicToolbarCode = false;
-  showCustomToolbarCode = false;
-  showGroupedToolbarCode = false;
-  
-  onTabChange(tab: string) {
-    this.activeTab = tab;
+  showToolbarVariantsCode = false;
+  showToolbarCustomCode = false;
+
+  // Demo data
+  basicLeftItems = [
+    { label: 'New', icon: '📄', command: () => this.onAction('New') },
+    { label: 'Open', icon: '📂', command: () => this.onAction('Open') },
+    { label: 'Save', icon: '💾', command: () => this.onAction('Save') }
+  ];
+
+  basicRightItems = [
+    { label: 'Settings', icon: '⚙️', command: () => this.onAction('Settings') },
+    { label: 'Help', icon: '❓', command: () => this.onAction('Help') }
+  ];
+
+  variantLeftItems = [
+    { label: 'Bold', icon: 'B', command: () => this.onAction('Bold') },
+    { label: 'Italic', icon: 'I', command: () => this.onAction('Italic') },
+    { label: 'Underline', icon: 'U', command: () => this.onAction('Underline') },
+    { separator: true },
+    { label: 'Align Left', icon: '⬅️', command: () => this.onAction('Align Left') },
+    { label: 'Align Center', icon: '↔️', command: () => this.onAction('Align Center') },
+    { label: 'Align Right', icon: '➡️', command: () => this.onAction('Align Right') }
+  ];
+
+  variantRightItems = [
+    { label: 'Undo', icon: '↶', command: () => this.onAction('Undo') },
+    { label: 'Redo', icon: '↷', command: () => this.onAction('Redo') },
+    { separator: true },
+    { label: 'Print', icon: '🖨️', command: () => this.onAction('Print') }
+  ];
+
+  customLeftItems = [
+    { label: 'Add User', icon: '👤', command: () => this.onAction('Add User') },
+    { label: 'Edit', icon: '✏️', command: () => this.onAction('Edit') },
+    { label: 'Delete', icon: '🗑️', command: () => this.onAction('Delete'), disabled: true }
+  ];
+
+  customRightItems = [
+    { label: 'Export', icon: '📤', command: () => this.onAction('Export') },
+    { label: 'Import', icon: '📥', command: () => this.onAction('Import') }
+  ];
+
+  lastAction = '';
+  customToolbarStyle = { backgroundColor: '#f8fafc', border: '1px solid #e2e8f0' };
+
+  // Event handlers
+  onTabChange(tabId: string): void {
+    this.activeTab = tabId;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicToolbar':
+
+  toggleCode(codeType: string): void {
+    switch (codeType) {
+      case 'basic':
         this.showBasicToolbarCode = !this.showBasicToolbarCode;
         break;
-      case 'customToolbar':
-        this.showCustomToolbarCode = !this.showCustomToolbarCode;
+      case 'variants':
+        this.showToolbarVariantsCode = !this.showToolbarVariantsCode;
         break;
-      case 'groupedToolbar':
-        this.showGroupedToolbarCode = !this.showGroupedToolbarCode;
+      case 'custom':
+        this.showToolbarCustomCode = !this.showToolbarCustomCode;
         break;
     }
   }
-  
-  // Toolbar demo methods
-  newDocument() {
-    console.log('New document created');
+
+  onAction(action: string): void {
+    this.lastAction = action;
+    console.log(`Toolbar action: ${action}`);
   }
-  
-  openDocument() {
-    console.log('Opening document');
-  }
-  
-  saveDocument() {
-    console.log('Document saved');
-  }
-  
-  cut() {
-    console.log('Cut operation');
-  }
-  
-  copy() {
-    console.log('Copy operation');
-  }
-  
-  paste() {
-    console.log('Paste operation');
+
+  onToolbarItemClick(item: any): void {
+    console.log('Toolbar item clicked:', item);
   }
 }

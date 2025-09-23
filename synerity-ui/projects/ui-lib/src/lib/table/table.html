@@ -1,39 +1,84 @@
-<div class="sui-table">
-  <div *ngIf="paginatedValue.length === 0" class="sui-table-empty">
-    {{ emptyMessage }}
+<div class="w-full">
+  <!-- Empty State -->
+  <div *ngIf="paginatedValue.length === 0" class="flex flex-col items-center justify-center py-12 px-4 text-center">
+    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+      <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+      </svg>
+    </div>
+    <h3 class="text-lg font-medium text-gray-900 mb-2">No data available</h3>
+    <p class="text-gray-500">{{ emptyMessage }}</p>
   </div>
   
-  <table *ngIf="paginatedValue.length > 0" class="sui-table-table">
-    <thead class="sui-table-header">
-      <tr class="sui-table-header-row">
-        <th *ngFor="let col of columns" class="sui-table-header-cell" [class.sui-table-sortable]="col.sortable">
-          <div class="sui-table-header-content">
-            <span class="sui-table-header-label">{{ col.header }}</span>
-            <span *ngIf="col.sortable" (click)="onSortColumn(col)" class="sui-table-sort-icon">
-              {{ getSortIcon(col) }}
-            </span>
-          </div>
-          <input 
-            *ngIf="col.filterable" 
-            type="text" 
-            (input)="onFilterColumn(col, $any($event.target).value)"
-            class="sui-table-filter-input"
-            placeholder="Filter"
-          />
-        </th>
-      </tr>
-    </thead>
-    <tbody class="sui-table-body">
-      <tr 
-        *ngFor="let row of paginatedValue; let i = index" 
-        class="sui-table-row" 
-        [class.sui-table-row-selected]="isRowSelected(row)"
-        (click)="onRowClick(row)"
-      >
-        <td *ngFor="let col of columns" class="sui-table-cell">
-          {{ row[col.field] }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- Table -->
+  <div *ngIf="paginatedValue.length > 0" class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th *ngFor="let col of columns" 
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                [class.cursor-pointer]="col.sortable"
+                [class.hover:bg-gray-100]="col.sortable"
+                (click)="col.sortable ? onSortColumn(col) : null">
+              <div class="flex items-center justify-between">
+                <span class="flex-1">{{ col.header }}</span>
+                <button *ngIf="col.sortable" 
+                        class="ml-2 p-1 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded"
+                        (click)="onSortColumn(col)">
+                  <svg class="w-4 h-4 transition-transform duration-200" 
+                       [class.rotate-180]="sortField === col.field && sortOrder === 'desc'"
+                       fill="none" 
+                       stroke="currentColor" 
+                       viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"></path>
+                  </svg>
+                </button>
+              </div>
+              <input 
+                *ngIf="col.filterable" 
+                type="text" 
+                (input)="onFilterColumn(col, $any($event.target).value)"
+                class="mt-2 w-full px-3 py-1 text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                placeholder="Filter {{ col.header }}"
+              />
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr 
+            *ngFor="let row of paginatedValue; let i = index" 
+            class="transition-colors duration-150"
+            [class.bg-primary-50]="isRowSelected(row)"
+            [class.cursor-pointer]="selectionMode"
+            [class.hover:bg-gray-50]="selectionMode"
+            [class.hover:bg-primary-100]="selectionMode && isRowSelected(row)"
+            (click)="onRowClick(row)">
+            <td *ngFor="let col of columns" 
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <div class="flex items-center">
+                <span *ngIf="selectionMode === 'multiple'" 
+                      class="mr-3 flex items-center">
+                  <input type="checkbox" 
+                         [checked]="isRowSelected(row)"
+                         class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                         (click)="$event.stopPropagation()"
+                         (change)="onRowClick(row)">
+                </span>
+                <span *ngIf="selectionMode === 'single'" 
+                      class="mr-3 flex items-center">
+                  <input type="radio" 
+                         [checked]="isRowSelected(row)"
+                         class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
+                         (click)="$event.stopPropagation()"
+                         (change)="onRowClick(row)">
+                </span>
+                <span class="flex-1">{{ row[col.field] }}</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

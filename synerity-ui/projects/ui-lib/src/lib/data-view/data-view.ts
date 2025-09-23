@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'sui-data-view',
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, NgTemplateOutlet],
   templateUrl: './data-view.html',
   styleUrl: './data-view.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -16,6 +16,7 @@ export class DataView {
   @Input() first = 0;
   @Input() totalRecords = 0;
   @Input() emptyMessage = 'No records found';
+  @Input() itemTemplate: TemplateRef<any> | null = null;
   @Output() onPage = new EventEmitter<any>();
   @Output() onLazyLoad = new EventEmitter<any>();
 

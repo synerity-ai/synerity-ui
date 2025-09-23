@@ -1,123 +1,125 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
 import { TreeTable as SuiTreeTable } from '../../../../../ui-lib/src/lib/tree-table/tree-table';
 
 @Component({
   selector: 'app-tree-table',
-  imports: [CommonModule, FormsModule, Tabs, SuiTreeTable],
+  standalone: true,
+  imports: [CommonModule, Tabs, SuiTreeTable],
   templateUrl: './tree-table.html',
   styleUrl: './tree-table.scss'
 })
 export class TreeTableComponent {
   activeTab = 'demo';
-  showBasicCode = false;
-  showSelectionCode = false;
-  showCustomCode = false;
+  showBasicTreeTableCode = false;
+  showSelectionTreeTableCode = false;
+  selectedNodes: any[] = [];
 
-  // Demo data
+  // Tree table columns
+  treeTableColumns = [
+    { field: 'name', header: 'Name', sortable: true },
+    { field: 'size', header: 'Size', sortable: true },
+    { field: 'type', header: 'Type', sortable: true },
+    { field: 'modified', header: 'Modified', sortable: true }
+  ];
+
+  // Basic tree table data
   basicTreeTableData = [
     {
-      key: '0',
-      data: {
-        name: 'Applications',
-        size: '100kb',
-        type: 'Folder',
-        date: '2023-01-01'
-      },
+      key: 'documents',
+      data: { name: 'Documents', size: '--', type: 'Folder', modified: '2024-01-15' },
+      expanded: true,
       children: [
         {
-          key: '0-0',
-          data: {
-            name: 'Angular',
-            size: '25kb',
-            type: 'Folder',
-            date: '2023-01-15'
-          },
+          key: 'work',
+          data: { name: 'Work', size: '--', type: 'Folder', modified: '2024-01-14' },
+          expanded: false,
           children: [
             {
-              key: '0-0-0',
-              data: {
-                name: 'angular.app',
-                size: '10kb',
-                type: 'Application',
-                date: '2023-01-20'
-              }
+              key: 'project1',
+              data: { name: 'Project 1', size: '2.5 MB', type: 'Folder', modified: '2024-01-13' }
             },
             {
-              key: '0-0-1',
-              data: {
-                name: 'cli.app',
-                size: '10kb',
-                type: 'Application',
-                date: '2023-01-22'
-              }
+              key: 'project2',
+              data: { name: 'Project 2', size: '1.8 MB', type: 'Folder', modified: '2024-01-12' }
             }
           ]
         },
         {
-          key: '0-1',
-          data: {
-            name: 'React',
-            size: '25kb',
-            type: 'Folder',
-            date: '2023-01-16'
-          },
+          key: 'personal',
+          data: { name: 'Personal', size: '--', type: 'Folder', modified: '2024-01-11' },
+          expanded: false,
           children: [
             {
-              key: '0-1-0',
-              data: {
-                name: 'react.app',
-                size: '10kb',
-                type: 'Application',
-                date: '2023-01-21'
-              }
+              key: 'photos',
+              data: { name: 'Photos', size: '15.2 MB', type: 'Folder', modified: '2024-01-10' }
+            },
+            {
+              key: 'videos',
+              data: { name: 'Videos', size: '45.7 MB', type: 'Folder', modified: '2024-01-09' }
             }
           ]
         }
       ]
     },
     {
-      key: '1',
-      data: {
-        name: 'Cloud',
-        size: '20kb',
-        type: 'Folder',
-        date: '2023-02-01'
-      },
+      key: 'applications',
+      data: { name: 'Applications', size: '--', type: 'Folder', modified: '2024-01-08' },
+      expanded: false,
       children: [
         {
-          key: '1-0',
-          data: {
-            name: 'Backup-1.zip',
-            size: '10kb',
-            type: 'Archive',
-            date: '2023-02-05'
-          }
+          key: 'app1',
+          data: { name: 'Application 1', size: '125 MB', type: 'Application', modified: '2024-01-07' }
         },
         {
-          key: '1-1',
-          data: {
-            name: 'Backup-2.zip',
-            size: '10kb',
-            type: 'Archive',
-            date: '2023-02-06'
-          }
+          key: 'app2',
+          data: { name: 'Application 2', size: '89 MB', type: 'Application', modified: '2024-01-06' }
         }
       ]
     }
   ];
 
-  columns = [
-    { field: 'name', header: 'Name', sortable: true },
-    { field: 'size', header: 'Size', sortable: true },
-    { field: 'type', header: 'Type', sortable: true },
-    { field: 'date', header: 'Date', sortable: true }
+  // Selection tree table data
+  selectionTreeTableData = [
+    {
+      key: 'permissions',
+      data: { name: 'User Permissions', size: '--', type: 'Category', modified: '2024-01-15' },
+      expanded: true,
+      children: [
+        {
+          key: 'admin',
+          data: { name: 'Admin', size: '--', type: 'Group', modified: '2024-01-14' },
+          expanded: false,
+          children: [
+            {
+              key: 'admin-users',
+              data: { name: 'Manage Users', size: '--', type: 'Permission', modified: '2024-01-13' }
+            },
+            {
+              key: 'admin-settings',
+              data: { name: 'System Settings', size: '--', type: 'Permission', modified: '2024-01-12' }
+            }
+          ]
+        },
+        {
+          key: 'user',
+          data: { name: 'User', size: '--', type: 'Group', modified: '2024-01-11' },
+          expanded: false,
+          children: [
+            {
+              key: 'user-profile',
+              data: { name: 'View Profile', size: '--', type: 'Permission', modified: '2024-01-10' }
+            },
+            {
+              key: 'user-edit',
+              data: { name: 'Edit Profile', size: '--', type: 'Permission', modified: '2024-01-09' }
+            }
+          ]
+        }
+      ]
+    }
   ];
-
-  selectedNodes: any[] = [];
-  selectedNode: any = null;
 
   onTabChange(tab: string): void {
     this.activeTab = tab;
@@ -125,47 +127,33 @@ export class TreeTableComponent {
 
   toggleCode(type: string): void {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicTreeTable':
+        this.showBasicTreeTableCode = !this.showBasicTreeTableCode;
         break;
-      case 'selection':
-        this.showSelectionCode = !this.showSelectionCode;
-        break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'selectionTreeTable':
+        this.showSelectionTreeTableCode = !this.showSelectionTreeTableCode;
         break;
     }
   }
 
-  onNodeSelect(event: any): void {
-    console.log('Node selected:', event);
-    this.selectedNode = event;
+  onNodeSelect(node: any): void {
+    console.log('Node selected:', node);
   }
 
-  onNodeUnselect(event: any): void {
-    console.log('Node unselected:', event);
-    this.selectedNode = null;
-  }
-
-  onSelectionChange(event: any): void {
-    console.log('Selection changed:', event);
-    this.selectedNodes = event;
-  }
-
-  onNodeExpand(event: any): void {
-    console.log('Node expanded:', event);
-  }
-
-  onNodeCollapse(event: any): void {
-    console.log('Node collapsed:', event);
+  onNodeExpand(node: any): void {
+    console.log('Node expanded:', node);
   }
 
   onSort(event: any): void {
     console.log('Sort event:', event);
   }
 
-  getSelectedNodesText(): string {
-    if (this.selectedNodes.length === 0) return 'No nodes selected';
-    return this.selectedNodes.map(node => node.data.name).join(', ');
+  onSelectionChange(selection: any[]): void {
+    this.selectedNodes = selection;
+    console.log('Selection changed:', selection);
+  }
+
+  clearSelection(): void {
+    this.selectedNodes = [];
   }
 }

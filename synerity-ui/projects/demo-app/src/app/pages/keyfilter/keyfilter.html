@@ -1,7 +1,7 @@
 <div class="max-w-6xl mx-auto">
   <!-- Page Header -->
   <div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">Key Filter</h1>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">KeyFilter</h1>
     <p class="text-lg text-gray-600">A component that filters keyboard input based on predefined patterns or custom regular expressions.</p>
   </div>
 
@@ -16,27 +16,33 @@
     (tabChange)="onTabChange($event)">
     
     <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'" class="space-y-8">
-      <!-- Basic Key Filters -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Basic Key Filters</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="space-y-6">
-            <p class="text-gray-700">Try typing in the inputs below to see how different key filters work.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="space-y-4">
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic KeyFilter -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic KeyFilter</h3>
+            <button 
+              (click)="toggleCode('basicKeyFilter')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicKeyFilterCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">Alphanumeric Only</label>
                   <sui-key-filter
                     [(ngModel)]="basicValue"
                     pattern="alphanum"
                     placeholder="Letters and numbers only"
-                    name="alphanum"
                     (change)="onInputChange($event, 'alphanum')"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></sui-key-filter>
-                  <p class="text-sm text-gray-500 mt-1">Current value: {{ basicValue }}</p>
                 </div>
                 
                 <div>
@@ -45,26 +51,20 @@
                     [(ngModel)]="alphaValue"
                     pattern="alpha"
                     placeholder="Letters only (A-Z, a-z)"
-                    name="alpha"
                     (change)="onInputChange($event, 'alpha')"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></sui-key-filter>
-                  <p class="text-sm text-gray-500 mt-1">Current value: {{ alphaValue }}</p>
                 </div>
-              </div>
-              
-              <div class="space-y-4">
+                
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">Integers Only</label>
                   <sui-key-filter
                     [(ngModel)]="numericValue"
                     pattern="int"
                     placeholder="Whole numbers only"
-                    name="int"
                     (change)="onInputChange($event, 'int')"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></sui-key-filter>
-                  <p class="text-sm text-gray-500 mt-1">Current value: {{ numericValue }}</p>
                 </div>
                 
                 <div>
@@ -73,51 +73,66 @@
                     [(ngModel)]="numberValue"
                     pattern="num"
                     placeholder="Numbers with decimals (+/-)"
-                    name="num"
                     (change)="onInputChange($event, 'num')"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></sui-key-filter>
-                  <p class="text-sm text-gray-500 mt-1">Current value: {{ numberValue }}</p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('basic')">
-          {{ showBasicCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-key-filter
-  [(ngModel)]="basicValue"
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicKeyFilterCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Alphanumeric Only --&gt;
+&lt;sui-key-filter
+  [(ngModel)]="value"
   pattern="alphanum"
   placeholder="Letters and numbers only"
-  (change)="onInputChange($event, 'alphanum')"
-&gt;&lt;/sui-key-filter&gt;</code></pre>
-        </div>
-      </div>
+  (change)="onChange($event)"
+&gt;&lt;/sui-key-filter&gt;
 
-      <!-- Custom Patterns -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Custom Patterns</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="space-y-6">
-            <p class="text-gray-700">Use custom regular expressions to create specialized input filters.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="space-y-4">
+&lt;!-- Letters Only --&gt;
+&lt;sui-key-filter
+  [(ngModel)]="alphaValue"
+  pattern="alpha"
+  placeholder="Letters only (A-Z, a-z)"
+  (change)="onChange($event)"
+&gt;&lt;/sui-key-filter&gt;
+
+&lt;!-- Integers Only --&gt;
+&lt;sui-key-filter
+  [(ngModel)]="numericValue"
+  pattern="int"
+  placeholder="Whole numbers only"
+  (change)="onChange($event)"
+&gt;&lt;/sui-key-filter&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- KeyFilter Patterns -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">KeyFilter Patterns</h3>
+            <button 
+              (click)="toggleCode('keyFilterPatterns')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showKeyFilterPatternsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">Email Format</label>
                   <sui-key-filter
                     [(ngModel)]="emailValue"
                     pattern="^[a-zA-Z0-9@._-]*$"
                     placeholder="email@domain.com"
-                    name="email"
                     (change)="onInputChange($event, 'email')"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></sui-key-filter>
-                  <p class="text-sm text-gray-500 mt-1">Current value: {{ emailValue }}</p>
                 </div>
                 
                 <div>
@@ -126,26 +141,20 @@
                     [(ngModel)]="phoneValue"
                     pattern="^[0-9-()+ ]*$"
                     placeholder="(555) 123-4567"
-                    name="phone"
                     (change)="onInputChange($event, 'phone')"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></sui-key-filter>
-                  <p class="text-sm text-gray-500 mt-1">Current value: {{ phoneValue }}</p>
                 </div>
-              </div>
-              
-              <div class="space-y-4">
+                
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">Hex Color Code</label>
                   <sui-key-filter
                     [(ngModel)]="hexValue"
                     pattern="^[A-Fa-f0-9#]*$"
                     placeholder="#FF5733"
-                    name="hex"
                     (change)="onInputChange($event, 'hex')"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></sui-key-filter>
-                  <p class="text-sm text-gray-500 mt-1">Current value: {{ hexValue }}</p>
                 </div>
                 
                 <div>
@@ -154,332 +163,320 @@
                     [(ngModel)]="cardValue"
                     pattern="^[0-9 ]*$"
                     placeholder="1234 5678 9012 3456"
-                    name="card"
                     (change)="onInputChange($event, 'card')"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></sui-key-filter>
-                  <p class="text-sm text-gray-500 mt-1">Current value: {{ cardValue }}</p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('custom')">
-          {{ showCustomCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-key-filter
+            
+            <!-- Code Example -->
+            <div *ngIf="showKeyFilterPatternsCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Email Format --&gt;
+&lt;sui-key-filter
   [(ngModel)]="emailValue"
   pattern="^[a-zA-Z0-9@._-]*$"
   placeholder="email@domain.com"
-  (change)="onInputChange($event, 'email')"
-&gt;&lt;/sui-key-filter&gt;</code></pre>
-        </div>
-      </div>
+  (change)="onChange($event)"
+&gt;&lt;/sui-key-filter&gt;
 
-      <!-- Form Integration -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Form Integration</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="space-y-6">
-            <p class="text-gray-700">KeyFilter works seamlessly with Angular forms and validation.</p>
-            
-            <form class="space-y-4" (ngSubmit)="onFormSubmit()">
+&lt;!-- Phone Number --&gt;
+&lt;sui-key-filter
+  [(ngModel)]="phoneValue"
+  pattern="^[0-9-()+ ]*$"
+  placeholder="(555) 123-4567"
+  (change)="onChange($event)"
+&gt;&lt;/sui-key-filter&gt;
+
+&lt;!-- Hex Color Code --&gt;
+&lt;sui-key-filter
+  [(ngModel)]="hexValue"
+  pattern="^[A-Fa-f0-9#]*$"
+  placeholder="#FF5733"
+  (change)="onChange($event)"
+&gt;&lt;/sui-key-filter&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- KeyFilter States -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">KeyFilter States</h3>
+            <button 
+              (click)="toggleCode('keyFilterStates')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showKeyFilterStatesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Username *</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Normal State</label>
                   <sui-key-filter
                     [(ngModel)]="formData.username"
                     pattern="alphanum"
                     placeholder="Enter username"
-                    name="username"
-                    required
+                    (change)="onInputChange($event, 'username')"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></sui-key-filter>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Age *</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Disabled State</label>
                   <sui-key-filter
-                    [(ngModel)]="formData.age"
-                    pattern="int"
-                    placeholder="Enter age"
-                    name="age"
-                    required
-                    class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    [(ngModel)]="disabledValue"
+                    pattern="alphanum"
+                    placeholder="Disabled input"
+                    [disabled]="true"
+                    class="w-full px-3 py-2 border border-gray-300 rounded bg-gray-100 text-gray-500"
                   ></sui-key-filter>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Required Field</label>
                   <sui-key-filter
                     [(ngModel)]="formData.email"
                     pattern="^[a-zA-Z0-9@._-]*$"
-                    placeholder="Enter email"
-                    name="email"
+                    placeholder="Enter email (required)"
                     required
+                    (change)="onInputChange($event, 'email')"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></sui-key-filter>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Custom Styling</label>
                   <sui-key-filter
-                    [(ngModel)]="formData.phone"
-                    pattern="^[0-9-()+ ]*$"
-                    placeholder="Enter phone"
-                    name="phone"
-                    class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    [(ngModel)]="customValue"
+                    pattern="alphanum"
+                    placeholder="Custom styled input"
+                    (change)="onInputChange($event, 'custom')"
+                    class="w-full px-3 py-2 border-2 border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   ></sui-key-filter>
                 </div>
               </div>
-              
-              <div class="flex space-x-4">
-                <button 
-                  type="submit"
-                  class="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  Submit Form
-                </button>
-                <button 
-                  type="button"
-                  (click)="resetForm()"
-                  class="px-6 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                >
-                  Reset
-                </button>
-              </div>
-            </form>
+            </div>
             
-            <div class="bg-white p-4 rounded-lg border">
-              <h3 class="font-semibold mb-2">Form Data:</h3>
-              <pre class="text-sm text-gray-600">{{ formData | json }}</pre>
+            <!-- Code Example -->
+            <div *ngIf="showKeyFilterStatesCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Normal State --&gt;
+&lt;sui-key-filter
+  [(ngModel)]="value"
+  pattern="alphanum"
+  placeholder="Enter username"
+  (change)="onChange($event)"
+&gt;&lt;/sui-key-filter&gt;
+
+&lt;!-- Disabled State --&gt;
+&lt;sui-key-filter
+  [(ngModel)]="disabledValue"
+  pattern="alphanum"
+  placeholder="Disabled input"
+  [disabled]="true"
+&gt;&lt;/sui-key-filter&gt;
+
+&lt;!-- Required Field --&gt;
+&lt;sui-key-filter
+  [(ngModel)]="emailValue"
+  pattern="^[a-zA-Z0-9@._-]*$"
+  placeholder="Enter email (required)"
+  required
+  (change)="onChange($event)"
+&gt;&lt;/sui-key-filter&gt;</code></pre>
             </div>
           </div>
         </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('form')">
-          {{ showFormCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showFormCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;form (ngSubmit)="onFormSubmit()"&gt;
-  &lt;sui-key-filter
-    [(ngModel)]="formData.username"
-    pattern="alphanum"
-    placeholder="Enter username"
-    name="username"
-    required
-  &gt;&lt;/sui-key-filter&gt;
-  
-  &lt;sui-key-filter
-    [(ngModel)]="formData.age"
-    pattern="int"
-    placeholder="Enter age"
-    name="age"
-    required
-  &gt;&lt;/sui-key-filter&gt;
-&lt;/form&gt;</code></pre>
-        </div>
+
       </div>
     </div>
 
     <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
-      <h2>How to Use Key Filter</h2>
-      
-      <h3>Installation</h3>
-      <p>Import the KeyFilter component from the UI library:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; KeyFilter &#125; from 'ui-lib';
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The KeyFilter component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
 
-// In your component imports
-imports: [KeyFilter]</code></pre>
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the KeyFilter component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} KeyFilter {{ '}' }} from '@synerity/ui';
 
-      <h3>Basic Usage</h3>
-      <p>Use the KeyFilter component with different patterns:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-key-filter
-  [(ngModel)]="value"
-  pattern="alphanum"
-  placeholder="Enter text"
-  (change)="onChange($event)"
-&gt;&lt;/sui-key-filter&gt;</code></pre>
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;sui-key-filter
+      [(ngModel)]="value"
+      pattern="alphanum"
+      placeholder="Enter text"
+      (change)="onChange($event)"
+    &gt;&lt;/sui-key-filter&gt;
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}
+  value = '';
+  
+  onChange(newValue: string) {{ '{' }}
+    console.log('Value changed:', newValue);
+  {{ '}' }}
+{{ '}' }}</code></pre>
+            </div>
+          </div>
+        </div>
 
-      <h3>Predefined Patterns</h3>
-      <ul>
-        <li><strong>int</strong>: Integers only (0-9)</li>
-        <li><strong>num</strong>: Numbers with decimals and signs (0-9, ., -, +)</li>
-        <li><strong>alpha</strong>: Letters only (A-Z, a-z)</li>
-        <li><strong>alphanum</strong>: Letters and numbers (A-Z, a-z, 0-9)</li>
-      </ul>
+        <!-- Predefined Patterns -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Predefined Patterns</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">KeyFilter comes with several predefined patterns for common use cases:</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">int</span>
+                <span class="text-gray-600">Integers only (0-9)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">num</span>
+                <span class="text-gray-600">Numbers with decimals and signs (0-9, ., -, +)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">alpha</span>
+                <span class="text-gray-600">Letters only (A-Z, a-z)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">alphanum</span>
+                <span class="text-gray-600">Letters and numbers (A-Z, a-z, 0-9)</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <h3>Custom Patterns</h3>
-      <p>Use regular expressions for custom filtering:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-key-filter
-  [(ngModel)]="email"
-  pattern="^[a-zA-Z0-9@._-]*$"
-  placeholder="Enter email"
-&gt;&lt;/sui-key-filter&gt;</code></pre>
-
-      <h3>Common Use Cases</h3>
-      <ul>
-        <li><strong>Username Input</strong>: Alphanumeric characters only</li>
-        <li><strong>Phone Numbers</strong>: Numbers, spaces, and common phone symbols</li>
-        <li><strong>Email Input</strong>: Letters, numbers, @, ., _, -</li>
-        <li><strong>Credit Cards</strong>: Numbers and spaces</li>
-        <li><strong>Currency Input</strong>: Numbers and decimal points</li>
-        <li><strong>Product Codes</strong>: Uppercase letters and numbers</li>
-      </ul>
-
-      <h3>Best Practices</h3>
-      <ul>
-        <li><strong>User Feedback</strong>: Provide clear placeholder text</li>
-        <li><strong>Validation</strong>: Combine with form validation</li>
-        <li><strong>Accessibility</strong>: Ensure screen reader compatibility</li>
-        <li><strong>Testing</strong>: Test with various input scenarios</li>
-        <li><strong>Performance</strong>: Use simple regex patterns when possible</li>
-      </ul>
-
-      <h3>Form Integration</h3>
-      <p>The component implements ControlValueAccessor for seamless form integration:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;form (ngSubmit)="onSubmit()"&gt;
-  &lt;sui-key-filter
-    [(ngModel)]="userData.username"
-    pattern="alphanum"
-    name="username"
-    required
-  &gt;&lt;/sui-key-filter&gt;
-&lt;/form&gt;</code></pre>
+      </div>
     </div>
 
     <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
-      <h2>API Documentation</h2>
-      
-      <h3>Properties</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">disabled</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Disable the input</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">name</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">''</td>
-              <td class="border border-gray-300 px-4 py-2">Name attribute for the input</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">inputId</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">''</td>
-              <td class="border border-gray-300 px-4 py-2">ID attribute for the input</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">placeholder</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">''</td>
-              <td class="border border-gray-300 px-4 py-2">Placeholder text</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">pattern</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">'alphanum'</td>
-              <td class="border border-gray-300 px-4 py-2">Filter pattern or regex</td>
-            </tr>
-          </tbody>
-        </table>
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">pattern</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'alphanum'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Filter pattern or regex expression</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Disable the input</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">placeholder</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Placeholder text for the input</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">name</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Name attribute for the input</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">inputId</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">ID attribute for the input</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">change</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;string&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the input value changes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation support with Tab key</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Focus indicators for keyboard users</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Proper ARIA attributes for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Disabled state properly communicated</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Input validation and filtering</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
-
-      <h3>Events</h3>
-      <ul>
-        <li><strong>change</strong>: Emitted when the input value changes</li>
-      </ul>
-
-      <h3>Predefined Patterns</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Pattern</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Regex</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">int</td>
-              <td class="border border-gray-300 px-4 py-2">Integers only</td>
-              <td class="border border-gray-300 px-4 py-2">/[0-9]/</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">num</td>
-              <td class="border border-gray-300 px-4 py-2">Numbers with decimals</td>
-              <td class="border border-gray-300 px-4 py-2">/[0-9.\-+]/</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">alpha</td>
-              <td class="border border-gray-300 px-4 py-2">Letters only</td>
-              <td class="border border-gray-300 px-4 py-2">/[A-Za-z]/</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">alphanum</td>
-              <td class="border border-gray-300 px-4 py-2">Letters and numbers</td>
-              <td class="border border-gray-300 px-4 py-2">/[A-Za-z0-9]/</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Examples</h3>
-      <h4>Basic Usage</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-key-filter
-  [(ngModel)]="username"
-  pattern="alphanum"
-  placeholder="Enter username"
-  (change)="onUsernameChange($event)"
-&gt;&lt;/sui-key-filter&gt;</code></pre>
-
-      <h4>Custom Pattern</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-key-filter
-  [(ngModel)]="phone"
-  pattern="^[0-9-()+ ]*$"
-  placeholder="(555) 123-4567"
-  name="phone"
-&gt;&lt;/sui-key-filter&gt;</code></pre>
-
-      <h4>Form Integration</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;form (ngSubmit)="onSubmit()"&gt;
-  &lt;sui-key-filter
-    [(ngModel)]="formData.email"
-    pattern="^[a-zA-Z0-9@._-]*$"
-    placeholder="email@domain.com"
-    name="email"
-    required
-  &gt;&lt;/sui-key-filter&gt;
-  
-  &lt;button type="submit"&gt;Submit&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-
-      <h4>Disabled State</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-key-filter
-  [(ngModel)]="value"
-  pattern="alphanum"
-  [disabled]="true"
-  placeholder="Disabled input"
-&gt;&lt;/sui-key-filter&gt;</code></pre>
     </div>
   </app-tabs>
 </div>

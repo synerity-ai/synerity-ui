@@ -1,137 +1,59 @@
-// Toolbar component styles
-// This file is intentionally minimal as we use Tailwind CSS for styling
-
-// Toolbar container
-.toolbar-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  flex-wrap: wrap;
-}
-
-// Toolbar item
-.toolbar-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border: none;
-  background: none;
-  border-radius: 0.375rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  color: #374151;
-  font-size: 0.875rem;
-  font-weight: 500;
-  
-  &:hover {
-    background-color: #e5e7eb;
-    color: #1f2937;
-  }
-  
-  &:active {
-    background-color: #d1d5db;
-  }
-  
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.toolbar-demo {
+  .demo-header {
+    margin-bottom: 2rem;
     
-    &:hover {
-      background-color: transparent;
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+    
+    p {
+      color: #6b7280;
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
   }
-}
 
-// Toolbar separator
-.toolbar-separator {
-  width: 1px;
-  height: 1.5rem;
-  background-color: #d1d5db;
-  margin: 0 0.5rem;
-}
-
-// Toolbar icon
-.toolbar-icon {
-  font-size: 1rem;
-  line-height: 1;
-}
-
-// Toolbar label
-.toolbar-label {
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-// Toolbar variants
-.toolbar-primary {
-  background-color: #eff6ff;
-  border-color: #dbeafe;
-  
-  .toolbar-item:hover {
-    background-color: #dbeafe;
+  .demo-content {
+    margin-top: 1.5rem;
   }
-}
 
-.toolbar-success {
-  background-color: #ecfdf5;
-  border-color: #d1fae5;
-  
-  .toolbar-item:hover {
-    background-color: #d1fae5;
+  .demo-section {
+    margin-bottom: 2rem;
   }
-}
 
-.toolbar-warning {
-  background-color: #fffbeb;
-  border-color: #fef3c7;
-  
-  .toolbar-item:hover {
-    background-color: #fef3c7;
+  // Custom styling for demo examples
+  .flex {
+    display: flex;
   }
-}
 
-.toolbar-danger {
-  background-color: #fef2f2;
-  border-color: #fee2e2;
-  
-  .toolbar-item:hover {
-    background-color: #fee2e2;
+  .items-center {
+    align-items: center;
   }
-}
 
-// Responsive toolbar
-@media (max-width: 768px) {
-  .toolbar-container {
-    flex-direction: column;
-    align-items: stretch;
+  .justify-between {
+    justify-content: space-between;
   }
-  
-  .toolbar-item {
-    justify-content: flex-start;
-  }
-  
-  .toolbar-separator {
-    width: 100%;
-    height: 1px;
-    margin: 0.5rem 0;
-  }
-}
 
-// Compact toolbar
-.toolbar-compact {
-  padding: 0.5rem;
-  
-  .toolbar-item {
-    padding: 0.375rem 0.5rem;
-    font-size: 0.8125rem;
+  .space-y-4 > * + * {
+    margin-top: 1rem;
   }
-  
-  .toolbar-icon {
-    font-size: 0.875rem;
+
+  .h-32 {
+    height: 8rem;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-gray-600 {
+    color: #4b5563;
+  }
+
+  .font-medium {
+    font-weight: 500;
   }
 }

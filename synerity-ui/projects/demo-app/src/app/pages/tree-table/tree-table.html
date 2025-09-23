@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">TreeTable</h1>
-    <p class="text-lg text-gray-600">A hierarchical data display component in table format with expandable rows and column sorting.</p>
+    <p class="text-lg text-gray-600">Hierarchical table component that combines tree structure with tabular data display and sorting capabilities.</p>
   </div>
 
   <!-- Tabs -->
@@ -16,396 +16,157 @@
     (tabChange)="onTabChange($event)">
     
     <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'" class="space-y-8">
-      <!-- Basic TreeTable -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Basic TreeTable</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="w-full overflow-x-auto">
-              <sui-tree-table 
-                [value]="basicTreeTableData"
-                [columns]="columns"
-                (onNodeExpand)="onNodeExpand($event)"
-                (onNodeCollapse)="onNodeCollapse($event)"
-                (onSort)="onSort($event)"
-              ></sui-tree-table>
-            </div>
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic TreeTable -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic TreeTable</h3>
+            <button 
+              (click)="toggleCode('basicTreeTable')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicTreeTableCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
           </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('basic')">
-          {{ showBasicCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-tree-table 
-  [value]="basicTreeTableData"
-  [columns]="columns"
-  (onNodeExpand)="onNodeExpand($event)"
-  (onNodeCollapse)="onNodeCollapse($event)"
-  (onSort)="onSort($event)"
-&gt;&lt;/sui-tree-table&gt;</code></pre>
-        </div>
-      </div>
-
-      <!-- TreeTable with Multiple Selection -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">TreeTable with Multiple Selection</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="w-full overflow-x-auto">
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
               <sui-tree-table 
                 [value]="basicTreeTableData"
-                [columns]="columns"
-                [selectionMode]="'multiple'"
-                (onSelectionChange)="onSelectionChange($event)"
-                (onNodeExpand)="onNodeExpand($event)"
-                (onNodeCollapse)="onNodeCollapse($event)"
-                (onSort)="onSort($event)"
-              ></sui-tree-table>
-            </div>
-            <div class="selection-info">
-              <p class="text-sm text-gray-600"><strong>Selected Nodes:</strong> {{ getSelectedNodesText() }}</p>
-            </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('selection')">
-          {{ showSelectionCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showSelectionCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-tree-table 
-  [value]="basicTreeTableData"
-  [columns]="columns"
-  [selectionMode]="'multiple'"
-  (onSelectionChange)="onSelectionChange($event)"
-  (onNodeExpand)="onNodeExpand($event)"
-  (onNodeCollapse)="onNodeCollapse($event)"
-  (onSort)="onSort($event)"
-&gt;&lt;/sui-tree-table&gt;</code></pre>
-        </div>
-      </div>
-
-      <!-- Single Selection TreeTable -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Single Selection TreeTable</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="w-full overflow-x-auto">
-              <sui-tree-table 
-                [value]="basicTreeTableData"
-                [columns]="columns"
-                [selectionMode]="'single'"
+                [columns]="treeTableColumns"
+                [emptyMessage]="'No data available'"
                 (onNodeSelect)="onNodeSelect($event)"
-                (onNodeUnselect)="onNodeUnselect($event)"
                 (onNodeExpand)="onNodeExpand($event)"
-                (onNodeCollapse)="onNodeCollapse($event)"
-                (onSort)="onSort($event)"
-              ></sui-tree-table>
+                (onSort)="onSort($event)">
+              </sui-tree-table>
             </div>
-            <div class="selection-info">
-              <p class="text-sm text-gray-600"><strong>Selected Node:</strong> {{ selectedNode?.data?.name || 'No node selected' }}</p>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicTreeTableCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-tree-table 
+  [value]="treeTableData"
+  [columns]="columns"
+  [emptyMessage]="'No data available'"
+  (onNodeSelect)="onNodeSelect($event)"
+  (onNodeExpand)="onNodeExpand($event)"
+  (onSort)="onSort($event)"&gt;
+&lt;/sui-tree-table&gt;</code></pre>
             </div>
           </div>
         </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('custom')">
-          {{ showCustomCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-tree-table 
-  [value]="basicTreeTableData"
+
+        <!-- TreeTable with Selection -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">TreeTable with Checkbox Selection</h3>
+            <button 
+              (click)="toggleCode('selectionTreeTable')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showSelectionTreeTableCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4 mb-4">
+                <span class="text-sm text-gray-600">Selected nodes: {{ selectedNodes.length }}</span>
+                <button 
+                  *ngIf="selectedNodes.length > 0"
+                  (click)="clearSelection()"
+                  class="px-3 py-1 text-sm bg-red-100 text-red-700 hover:bg-red-200 rounded-md transition-colors">
+                  Clear Selection
+                </button>
+              </div>
+              <sui-tree-table 
+                [value]="selectionTreeTableData"
+                [columns]="treeTableColumns"
+                selectionMode="checkbox"
+                (onNodeSelect)="onNodeSelect($event)"
+                (onSelectionChange)="onSelectionChange($event)">
+              </sui-tree-table>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showSelectionTreeTableCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-tree-table 
+  [value]="treeTableData"
   [columns]="columns"
-  [selectionMode]="'single'"
+  selectionMode="checkbox"
   (onNodeSelect)="onNodeSelect($event)"
-  (onNodeUnselect)="onNodeUnselect($event)"
-  (onNodeExpand)="onNodeExpand($event)"
-  (onNodeCollapse)="onNodeCollapse($event)"
-  (onSort)="onSort($event)"
-&gt;&lt;/sui-tree-table&gt;</code></pre>
+  (onSelectionChange)="onSelectionChange($event)"&gt;
+&lt;/sui-tree-table&gt;</code></pre>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
     <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
-      <h2>How to Use TreeTable</h2>
-      
-      <h3>Installation</h3>
-      <p>Import the TreeTable component from the UI library:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; TreeTable &#125; from 'ui-lib';
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The TreeTable component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
 
-// In your component imports
-imports: [TreeTable]</code></pre>
-
-      <h3>Basic Usage</h3>
-      <p>Use the component with hierarchical table data:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-tree-table 
-  [value]="treeTableData"
-  [columns]="columns"
-  (onNodeExpand)="onNodeExpand($event)"
-  (onNodeCollapse)="onNodeCollapse($event)"
-  (onSort)="onSort($event)"
-&gt;&lt;/sui-tree-table&gt;</code></pre>
-
-      <h3>Component Properties</h3>
-      <ul>
-        <li><strong>value</strong>: Array of hierarchical node objects</li>
-        <li><strong>columns</strong>: Array of column definitions</li>
-        <li><strong>selectionMode</strong>: Selection mode ('single', 'multiple', 'checkbox', null)</li>
-        <li><strong>metaKeySelection</strong>: Boolean for meta key selection behavior</li>
-        <li><strong>propagateSelectionUp</strong>: Boolean to propagate selection to parent nodes</li>
-        <li><strong>propagateSelectionDown</strong>: Boolean to propagate selection to child nodes</li>
-        <li><strong>sortField</strong>: Current sort field</li>
-        <li><strong>sortOrder</strong>: Sort order ('asc' or 'desc')</li>
-        <li><strong>emptyMessage</strong>: Message to display when no records found</li>
-      </ul>
-
-      <h3>Events</h3>
-      <ul>
-        <li><strong>onNodeSelect</strong>: Emitted when a node is selected</li>
-        <li><strong>onNodeUnselect</strong>: Emitted when a node is unselected</li>
-        <li><strong>onNodeExpand</strong>: Emitted when a node is expanded</li>
-        <li><strong>onNodeCollapse</strong>: Emitted when a node is collapsed</li>
-        <li><strong>onSort</strong>: Emitted when column sorting changes</li>
-        <li><strong>onSelectionChange</strong>: Emitted when selection changes</li>
-      </ul>
-
-      <h3>Column Structure</h3>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>columns = [
-  &#123; field: 'name', header: 'Name', sortable: true &#125;,
-  &#123; field: 'size', header: 'Size', sortable: true &#125;,
-  &#123; field: 'type', header: 'Type', sortable: false &#125;,
-  &#123; field: 'date', header: 'Date', sortable: true &#125;
-];</code></pre>
-
-      <h3>Data Structure</h3>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>treeTableData = [
-  &#123;
-    key: '0',
-    data: &#123;
-      name: 'Applications',
-      size: '100kb',
-      type: 'Folder',
-      date: '2023-01-01'
-    &#125;,
-    children: [
-      &#123;
-        key: '0-0',
-        data: &#123;
-          name: 'Angular',
-          size: '25kb',
-          type: 'Folder',
-          date: '2023-01-15'
-        &#125;,
-        children: []
-      &#125;
-    ]
-  &#125;
-];</code></pre>
-
-      <h3>Features</h3>
-      <ul>
-        <li><strong>Hierarchical Display</strong>: Tree structure with expandable rows</li>
-        <li><strong>Column Sorting</strong>: Sort by any column (if enabled)</li>
-        <li><strong>Selection Modes</strong>: Single, multiple, or checkbox selection</li>
-        <li><strong>Responsive Design</strong>: Horizontal scrolling for wide tables</li>
-        <li><strong>Custom Styling</strong>: Flexible styling options</li>
-      </ul>
+      </div>
     </div>
 
     <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
-      <h2>API Documentation</h2>
-      
-      <h3>Properties</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">value</td>
-              <td class="border border-gray-300 px-4 py-2">Array&lt;TreeNode&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">[]</td>
-              <td class="border border-gray-300 px-4 py-2">Array of tree nodes</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">columns</td>
-              <td class="border border-gray-300 px-4 py-2">Array&lt;Column&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">[]</td>
-              <td class="border border-gray-300 px-4 py-2">Column definitions</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">selectionMode</td>
-              <td class="border border-gray-300 px-4 py-2">'single' | 'multiple' | 'checkbox' | null</td>
-              <td class="border border-gray-300 px-4 py-2">null</td>
-              <td class="border border-gray-300 px-4 py-2">Selection mode</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">metaKeySelection</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">true</td>
-              <td class="border border-gray-300 px-4 py-2">Meta key selection behavior</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">propagateSelectionUp</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">true</td>
-              <td class="border border-gray-300 px-4 py-2">Propagate selection to parent nodes</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">propagateSelectionDown</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">true</td>
-              <td class="border border-gray-300 px-4 py-2">Propagate selection to child nodes</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">sortField</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">''</td>
-              <td class="border border-gray-300 px-4 py-2">Current sort field</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">sortOrder</td>
-              <td class="border border-gray-300 px-4 py-2">'asc' | 'desc'</td>
-              <td class="border border-gray-300 px-4 py-2">'asc'</td>
-              <td class="border border-gray-300 px-4 py-2">Sort order</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">emptyMessage</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">'No records found'</td>
-              <td class="border border-gray-300 px-4 py-2">Empty state message</td>
-            </tr>
-          </tbody>
-        </table>
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TreeNode[]</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Array of tree table nodes</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">columns</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Array&lt;{{ '{' }} field: string; header: string; sortable?: boolean {{ '}' }}&gt;</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Array of column definitions</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">selectionMode</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'single' | 'multiple' | 'checkbox' | null</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Selection mode for nodes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <h3>Events</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Event</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">onNodeSelect</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;TreeNode&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when a node is selected</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">onNodeUnselect</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;TreeNode&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when a node is unselected</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">onNodeExpand</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;TreeNode&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when a node is expanded</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">onNodeCollapse</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;TreeNode&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when a node is collapsed</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">onSort</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;&#123;field: string, order: string&#125;&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when column sorting changes</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">onSelectionChange</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;TreeNode[]&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when selection changes</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Interfaces</h3>
-      <h4>TreeNode</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>interface TreeNode &#123;
-  key: string;
-  data: any;
-  children?: TreeNode[];
-  expanded?: boolean;
-  selectable?: boolean;
-&#125;</code></pre>
-
-      <h4>Column</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>interface Column &#123;
-  field: string;
-  header: string;
-  sortable?: boolean;
-  filterable?: boolean;
-&#125;</code></pre>
-
-      <h3>Accessibility</h3>
-      <ul>
-        <li><strong>ARIA</strong>: Proper ARIA attributes for screen readers</li>
-        <li><strong>Keyboard Navigation</strong>: Arrow keys for tree navigation, Tab for table navigation</li>
-        <li><strong>Focus Management</strong>: Proper focus handling and visual indicators</li>
-        <li><strong>Screen Reader</strong>: Descriptive labels for all cells and headers</li>
-      </ul>
-
-      <h3>Styling</h3>
-      <p>The component uses CSS classes that can be customized:</p>
-      <ul>
-        <li><code>.sui-tree-table</code>: Main container</li>
-        <li><code>.sui-tree-table-header</code>: Table header</li>
-        <li><code>.sui-tree-table-body</code>: Table body</li>
-        <li><code>.sui-tree-table-row</code>: Table row</li>
-        <li><code>.sui-tree-table-cell</code>: Table cell</li>
-        <li><code>.sui-tree-table-node-selected</code>: Selected node styling</li>
-        <li><code>.sui-tree-table-node-expanded</code>: Expanded node styling</li>
-      </ul>
-
-      <h3>Examples</h3>
-      <h4>Basic Usage</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>export class ExampleComponent &#123;
-  treeTableData = [
-    &#123;
-      key: '0',
-      data: &#123; name: 'Applications', size: '100kb', type: 'Folder' &#125;,
-      children: []
-    &#123;
-  ];
-  
-  columns = [
-    &#123; field: 'name', header: 'Name', sortable: true &#125;,
-    &#123; field: 'size', header: 'Size', sortable: true &#125;,
-    &#123; field: 'type', header: 'Type', sortable: false &#125;
-  ];
-&#125;</code></pre>
-
-      <h4>With Selection</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-tree-table
-  [value]="treeTableData"
-  [columns]="columns"
-  [selectionMode]="'multiple'"
-  (onSelectionChange)="onSelectionChange($event)"
-&gt;&lt;/sui-tree-table&gt;</code></pre>
-
-      <h4>With Sorting</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-tree-table
-  [value]="treeTableData"
-  [columns]="columns"
-  (onSort)="onSort($event)"
-&gt;&lt;/sui-tree-table&gt;</code></pre>
     </div>
   </app-tabs>
 </div>

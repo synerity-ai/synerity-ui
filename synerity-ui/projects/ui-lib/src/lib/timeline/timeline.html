@@ -1,18 +1,75 @@
-<div class="sui-timeline" [class]="getLayoutClass()">
-  <div 
-    *ngFor="let event of value; let i = index" 
-    class="sui-timeline-event" 
-    [class]="getAlignmentClass(i) + ' ' + getStatusClass(event)"
-    (click)="onEventClickHandler(event)"
-  >
-    <div class="sui-timeline-marker">
-      <span *ngIf="event.icon" class="sui-timeline-icon">{{ event.icon }}</span>
-      <span *ngIf="!event.icon" class="sui-timeline-dot"></span>
+<div class="w-full" [class]="getLayoutClass()">
+  <!-- Vertical Timeline -->
+  <div *ngIf="layout === 'vertical'" class="relative">
+    <!-- Timeline Line -->
+    <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+    
+    <div 
+      *ngFor="let event of value; let i = index" 
+      class="relative flex items-start mb-8 last:mb-0"
+      [class]="getAlignmentClass(i)"
+      (click)="onEventClickHandler(event)"
+    >
+      <!-- Timeline Marker -->
+      <div class="relative z-10 flex items-center justify-center w-8 h-8 bg-white border-2 border-gray-300 rounded-full"
+           [class.border-primary-500]="event.status === 'completed'"
+           [class.bg-primary-500]="event.status === 'completed'"
+           [class.border-green-500]="event.status === 'success'"
+           [class.bg-green-500]="event.status === 'success'"
+           [class.border-red-500]="event.status === 'error'"
+           [class.bg-red-500]="event.status === 'error'"
+           [class.border-yellow-500]="event.status === 'warning'"
+           [class.bg-yellow-500]="event.status === 'warning'">
+        <span *ngIf="event.icon" class="text-sm text-white">{{ event.icon }}</span>
+        <span *ngIf="!event.icon && event.status === 'completed'" class="w-2 h-2 bg-white rounded-full"></span>
+        <span *ngIf="!event.icon && event.status === 'success'" class="w-2 h-2 bg-white rounded-full"></span>
+        <span *ngIf="!event.icon && event.status === 'error'" class="w-2 h-2 bg-white rounded-full"></span>
+        <span *ngIf="!event.icon && event.status === 'warning'" class="w-2 h-2 bg-white rounded-full"></span>
+        <span *ngIf="!event.icon && !event.status" class="w-2 h-2 bg-gray-400 rounded-full"></span>
+      </div>
+      
+      <!-- Timeline Content -->
+      <div class="ml-4 flex-1 min-w-0">
+        <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-200">
+          <div *ngIf="event.date" class="text-xs text-gray-500 mb-2 font-medium">{{ event.date }}</div>
+          <div *ngIf="event.content" class="text-sm text-gray-900">{{ event.content }}</div>
+          <ng-content></ng-content>
+        </div>
+      </div>
     </div>
-    <div class="sui-timeline-content">
-      <div *ngIf="event.date" class="sui-timeline-date">{{ event.date }}</div>
-      <div *ngIf="event.content" class="sui-timeline-text">{{ event.content }}</div>
-      <ng-content></ng-content>
+  </div>
+  
+  <!-- Horizontal Timeline -->
+  <div *ngIf="layout === 'horizontal'" class="flex items-center space-x-4 overflow-x-auto pb-4">
+    <div 
+      *ngFor="let event of value; let i = index" 
+      class="flex-shrink-0 flex flex-col items-center cursor-pointer"
+      (click)="onEventClickHandler(event)"
+    >
+      <!-- Timeline Marker -->
+      <div class="flex items-center justify-center w-8 h-8 bg-white border-2 border-gray-300 rounded-full mb-2"
+           [class.border-primary-500]="event.status === 'completed'"
+           [class.bg-primary-500]="event.status === 'completed'"
+           [class.border-green-500]="event.status === 'success'"
+           [class.bg-green-500]="event.status === 'success'"
+           [class.border-red-500]="event.status === 'error'"
+           [class.bg-red-500]="event.status === 'error'"
+           [class.border-yellow-500]="event.status === 'warning'"
+           [class.bg-yellow-500]="event.status === 'warning'">
+        <span *ngIf="event.icon" class="text-sm text-white">{{ event.icon }}</span>
+        <span *ngIf="!event.icon && event.status === 'completed'" class="w-2 h-2 bg-white rounded-full"></span>
+        <span *ngIf="!event.icon && event.status === 'success'" class="w-2 h-2 bg-white rounded-full"></span>
+        <span *ngIf="!event.icon && event.status === 'error'" class="w-2 h-2 bg-white rounded-full"></span>
+        <span *ngIf="!event.icon && event.status === 'warning'" class="w-2 h-2 bg-white rounded-full"></span>
+        <span *ngIf="!event.icon && !event.status" class="w-2 h-2 bg-gray-400 rounded-full"></span>
+      </div>
+      
+      <!-- Timeline Content -->
+      <div class="text-center max-w-32">
+        <div *ngIf="event.date" class="text-xs text-gray-500 mb-1 font-medium">{{ event.date }}</div>
+        <div *ngIf="event.content" class="text-xs text-gray-900 leading-tight">{{ event.content }}</div>
+        <ng-content></ng-content>
+      </div>
     </div>
   </div>
 </div>

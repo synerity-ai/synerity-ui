@@ -1,24 +1,40 @@
 <div 
   #splitterElement
-  class="sui-splitter" 
-  [class]="getSplitterClass()"
+  class="w-full h-full border border-gray-200 rounded-lg shadow-sm bg-white overflow-hidden"
+  [class]="layout === 'horizontal' ? 'flex' : 'flex flex-col'"
+  [class]="styleClass"
   [style]="getSplitterStyle()"
 >
   <div 
-    class="sui-splitter-panel sui-splitter-panel-1"
+    class="bg-gray-50 border-r border-gray-200 last:border-r-0 last:border-b-0"
+    [class.border-r]="layout === 'horizontal'"
+    [class.border-b]="layout === 'vertical'"
     [style]="getPanelStyle(0)"
   >
     <ng-content select="[slot='panel1']"></ng-content>
   </div>
   
   <div 
-    class="sui-splitter-gutter"
+    class="bg-gray-200 hover:bg-gray-300 transition-colors duration-150 cursor-col-resize"
+    [class.cursor-col-resize]="layout === 'horizontal'"
+    [class.cursor-row-resize]="layout === 'vertical'"
+    [class.flex]="layout === 'horizontal'"
+    [class.flex-col]="layout === 'vertical'"
+    [class.items-center]="layout === 'horizontal'"
+    [class.justify-center]="layout === 'vertical'"
     [style]="getGutterStyle()"
     (mousedown)="onGutterMouseDown($event, 0)"
-  ></div>
+  >
+    <div class="w-1 h-6 bg-gray-400 rounded-full" 
+         [class.w-6]="layout === 'horizontal'"
+         [class.h-1]="layout === 'vertical'"
+         [class.w-1]="layout === 'horizontal'"
+         [class.h-6]="layout === 'vertical'">
+    </div>
+  </div>
   
   <div 
-    class="sui-splitter-panel sui-splitter-panel-2"
+    class="bg-gray-50"
     [style]="getPanelStyle(1)"
   >
     <ng-content select="[slot='panel2']"></ng-content>

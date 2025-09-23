@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">OrderList</h1>
-    <p class="text-lg text-gray-600">A component for reordering items in a list with drag & drop support and filtering capabilities.</p>
+    <p class="text-lg text-gray-600">Reorderable list component with selection, filtering, and drag-and-drop capabilities.</p>
   </div>
 
   <!-- Tabs -->
@@ -16,289 +16,159 @@
     (tabChange)="onTabChange($event)">
     
     <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'" class="space-y-8">
-      <!-- Basic OrderList -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Basic OrderList</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="w-full max-w-md">
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic OrderList -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic OrderList</h3>
+            <button 
+              (click)="toggleCode('basicOrderList')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicOrderListCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
               <sui-order-list 
                 [value]="basicItems"
-                header="Basic Items"
-                (onReorder)="onReorder($event)"
-                (onSelectionChange)="onSelectionChange($event)"
-              ></sui-order-list>
-            </div>
-            <div class="selection-info">
-              <p class="text-sm text-gray-600"><strong>Selected Items:</strong> {{ getSelectedItemsText() }}</p>
-            </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('basic')">
-          {{ showBasicCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-order-list 
-  [value]="basicItems"
-  header="Basic Items"
-  (onReorder)="onReorder($event)"
-  (onSelectionChange)="onSelectionChange($event)"
-&gt;&lt;/sui-order-list&gt;</code></pre>
-        </div>
-      </div>
-
-      <!-- OrderList with Drag & Drop -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">OrderList with Drag & Drop</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="w-full max-w-md">
-              <sui-order-list 
-                [value]="dragDropItems"
-                header="Drag & Drop Items"
-                [dragdrop]="true"
-                (onReorder)="onReorder($event)"
-                (onSelectionChange)="onSelectionChange($event)"
-              ></sui-order-list>
-            </div>
-            <div class="selection-info">
-              <p class="text-sm text-gray-600"><strong>Selected Items:</strong> {{ getSelectedItemsText() }}</p>
-            </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('dragdrop')">
-          {{ showDragDropCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showDragDropCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-order-list 
-  [value]="dragDropItems"
-  header="Drag & Drop Items"
-  [dragdrop]="true"
-  (onReorder)="onReorder($event)"
-  (onSelectionChange)="onSelectionChange($event)"
-&gt;&lt;/sui-order-list&gt;</code></pre>
-        </div>
-      </div>
-
-      <!-- OrderList with Filter -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">OrderList with Filter</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="w-full max-w-md">
-              <sui-order-list 
-                [value]="filterItems"
-                header="Filterable Items"
+                header="Task List"
                 [filter]="true"
-                filterPlaceholder="Search fruits..."
+                filterPlaceholder="Search tasks..."
                 (onReorder)="onReorder($event)"
-                (onSelectionChange)="onSelectionChange($event)"
-              ></sui-order-list>
+                (onSelectionChange)="onSelectionChange($event)">
+              </sui-order-list>
             </div>
-            <div class="selection-info">
-              <p class="text-sm text-gray-600"><strong>Selected Items:</strong> {{ getSelectedItemsText() }}</p>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicOrderListCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-order-list 
+  [value]="items"
+  header="Task List"
+  [filter]="true"
+  filterPlaceholder="Search tasks..."
+  (onReorder)="onReorder($event)"
+  (onSelectionChange)="onSelectionChange($event)"&gt;
+&lt;/sui-order-list&gt;</code></pre>
             </div>
           </div>
         </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('filter')">
-          {{ showFilterCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showFilterCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-order-list 
-  [value]="filterItems"
-  header="Filterable Items"
+
+        <!-- OrderList with Selection -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">OrderList with Selection</h3>
+            <button 
+              (click)="toggleCode('selectionOrderList')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showSelectionOrderListCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4 mb-4">
+                <span class="text-sm text-gray-600">Selected items: {{ selectedItems.length }}</span>
+                <button 
+                  *ngIf="selectedItems.length > 0"
+                  (click)="clearSelection()"
+                  class="px-3 py-1 text-sm bg-red-100 text-red-700 hover:bg-red-200 rounded-md transition-colors">
+                  Clear Selection
+                </button>
+              </div>
+              <sui-order-list 
+                [value]="selectionItems"
+                header="Priority Items"
+                [filter]="true"
+                filterPlaceholder="Search items..."
+                (onReorder)="onReorder($event)"
+                (onSelectionChange)="onSelectionChange($event)">
+              </sui-order-list>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showSelectionOrderListCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-order-list 
+  [value]="items"
+  header="Priority Items"
   [filter]="true"
-  filterPlaceholder="Search fruits..."
+  filterPlaceholder="Search items..."
   (onReorder)="onReorder($event)"
-  (onSelectionChange)="onSelectionChange($event)"
-&gt;&lt;/sui-order-list&gt;</code></pre>
+  (onSelectionChange)="onSelectionChange($event)"&gt;
+&lt;/sui-order-list&gt;</code></pre>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
     <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
-      <h2>How to Use OrderList</h2>
-      
-      <h3>Installation</h3>
-      <p>Import the OrderList component from the UI library:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; OrderList &#125; from 'ui-lib';
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The OrderList component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
 
-// In your component imports
-imports: [OrderList]</code></pre>
-
-      <h3>Basic Usage</h3>
-      <p>Use the component with an array of items:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-order-list 
-  [value]="items"
-  header="My Items"
-  (onReorder)="onReorder($event)"
-  (onSelectionChange)="onSelectionChange($event)"
-&gt;&lt;/sui-order-list&gt;</code></pre>
-
-      <h3>Component Properties</h3>
-      <ul>
-        <li><strong>value</strong>: Array of items to display and reorder</li>
-        <li><strong>header</strong>: Optional header text for the list</li>
-        <li><strong>listStyle</strong>: Custom styling for the list container</li>
-        <li><strong>dragdrop</strong>: Boolean to enable drag & drop functionality</li>
-        <li><strong>filter</strong>: Boolean to enable filtering</li>
-        <li><strong>filterPlaceholder</strong>: Placeholder text for the filter input</li>
-      </ul>
-
-      <h3>Events</h3>
-      <ul>
-        <li><strong>onReorder</strong>: Emitted when items are reordered</li>
-        <li><strong>onSelectionChange</strong>: Emitted when item selection changes</li>
-      </ul>
-
-      <h3>Features</h3>
-      <ul>
-        <li><strong>Manual Reordering</strong>: Use up/down buttons to reorder items</li>
-        <li><strong>Drag & Drop</strong>: Enable drag & drop for intuitive reordering</li>
-        <li><strong>Filtering</strong>: Search and filter items in the list</li>
-        <li><strong>Selection</strong>: Select multiple items for bulk operations</li>
-        <li><strong>Custom Styling</strong>: Flexible styling options</li>
-      </ul>
-
-      <h3>Data Structure</h3>
-      <p>Items can be any objects, but typically include:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>items = [
-  &#123; id: 1, name: 'Item 1', description: 'Description' &#125;,
-  &#123; id: 2, name: 'Item 2', description: 'Description' &#125;
-];</code></pre>
+      </div>
     </div>
 
     <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
-      <h2>API Documentation</h2>
-      
-      <h3>Properties</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">value</td>
-              <td class="border border-gray-300 px-4 py-2">any[]</td>
-              <td class="border border-gray-300 px-4 py-2">[]</td>
-              <td class="border border-gray-300 px-4 py-2">Array of items to display</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">header</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">''</td>
-              <td class="border border-gray-300 px-4 py-2">Header text for the list</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">listStyle</td>
-              <td class="border border-gray-300 px-4 py-2">any</td>
-              <td class="border border-gray-300 px-4 py-2">&#123;&#125;</td>
-              <td class="border border-gray-300 px-4 py-2">Custom styling for the list</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">dragdrop</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Enable drag & drop functionality</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">filter</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Enable filtering</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">filterPlaceholder</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">'Search'</td>
-              <td class="border border-gray-300 px-4 py-2">Filter input placeholder</td>
-            </tr>
-          </tbody>
-        </table>
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">value</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any[]</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Array of items to display</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">header</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Header text for the list</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">filter</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Enable search/filter functionality</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <h3>Events</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Event</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">onReorder</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;&#123;items: any[], direction: string, index: number&#125;&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when items are reordered</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">onSelectionChange</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;any[]&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when selection changes</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Accessibility</h3>
-      <ul>
-        <li><strong>ARIA</strong>: Proper ARIA attributes for screen readers</li>
-        <li><strong>Keyboard Navigation</strong>: Full keyboard support for reordering</li>
-        <li><strong>Focus Management</strong>: Proper focus handling and visual indicators</li>
-        <li><strong>Screen Reader</strong>: Descriptive labels for all actions</li>
-      </ul>
-
-      <h3>Styling</h3>
-      <p>The component uses CSS classes that can be customized:</p>
-      <ul>
-        <li><code>.sui-order-list</code>: Main container</li>
-        <li><code>.sui-order-list-header</code>: Header styling</li>
-        <li><code>.sui-order-list-filter</code>: Filter input styling</li>
-        <li><code>.sui-order-list-items</code>: Items container</li>
-        <li><code>.sui-order-list-item</code>: Individual item styling</li>
-        <li><code>.sui-order-list-item-selected</code>: Selected item styling</li>
-        <li><code>.sui-order-list-controls</code>: Reorder controls styling</li>
-      </ul>
-
-      <h3>Examples</h3>
-      <h4>Basic Usage</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>export class ExampleComponent &#123;
-  items = [
-    &#123; id: 1, name: 'Item 1' &#125;,
-    &#123; id: 2, name: 'Item 2' &#125;
-  ];
-&#125;</code></pre>
-
-      <h4>With Drag & Drop</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-order-list
-  [value]="items"
-  [dragdrop]="true"
-  (onReorder)="onReorder($event)"
-&gt;&lt;/sui-order-list&gt;</code></pre>
-
-      <h4>With Filtering</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-order-list
-  [value]="items"
-  [filter]="true"
-  filterPlaceholder="Search items..."
-&gt;&lt;/sui-order-list&gt;</code></pre>
     </div>
   </app-tabs>
 </div>

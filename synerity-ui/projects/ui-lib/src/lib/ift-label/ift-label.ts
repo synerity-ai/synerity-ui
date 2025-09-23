@@ -3,6 +3,7 @@ import { NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-ift-label',
+  standalone: true,
   imports: [CommonModule, NgIf],
   templateUrl: './ift-label.html',
   styleUrl: './ift-label.css',

@@ -1,116 +1,63 @@
-// Divider component styles
-// This file is intentionally minimal as we use Tailwind CSS for styling
-
-// Divider base styles
-.divider {
-  border: none;
-  background-color: #e5e7eb;
-  margin: 1rem 0;
-}
-
-// Horizontal divider
-.divider-horizontal {
-  width: 100%;
-  height: 1px;
-}
-
-// Vertical divider
-.divider-vertical {
-  width: 1px;
-  height: 100%;
-  margin: 0 1rem;
-}
-
-// Divider types
-.divider-solid {
-  border-style: solid;
-}
-
-.divider-dashed {
-  border-style: dashed;
-}
-
-.divider-dotted {
-  border-style: dotted;
-}
-
-// Text divider
-.divider-text {
-  position: relative;
-  text-align: center;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: #e5e7eb;
-    z-index: 1;
+.divider-demo {
+  .demo-header {
+    margin-bottom: 2rem;
+    
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+    
+    p {
+      color: #6b7280;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
   }
-  
-  .divider-content {
-    position: relative;
-    z-index: 2;
-    background-color: white;
-    padding: 0 1rem;
-    color: #6b7280;
-    font-size: 0.875rem;
-  }
-}
 
-// Divider alignments
-.divider-left {
-  &::before {
-    left: 0;
-    right: 50%;
+  .demo-content {
+    margin-top: 1.5rem;
   }
-}
 
-.divider-center {
-  &::before {
-    left: 0;
-    right: 0;
+  .demo-section {
+    margin-bottom: 2rem;
   }
-}
 
-.divider-right {
-  &::before {
-    left: 50%;
-    right: 0;
+  // Custom styling for demo examples
+  .flex {
+    display: flex;
   }
-}
 
-// Divider variants
-.divider-primary {
-  background-color: #3b82f6;
-  
-  &.divider-text::before {
-    background-color: #3b82f6;
+  .items-center {
+    align-items: center;
   }
-}
 
-.divider-success {
-  background-color: #10b981;
-  
-  &.divider-text::before {
-    background-color: #10b981;
+  .justify-between {
+    justify-content: space-between;
   }
-}
 
-.divider-warning {
-  background-color: #f59e0b;
-  
-  &.divider-text::before {
-    background-color: #f59e0b;
+  .space-x-4 > * + * {
+    margin-left: 1rem;
   }
-}
 
-.divider-danger {
-  background-color: #ef4444;
-  
-  &.divider-text::before {
-    background-color: #ef4444;
+  .space-y-2 > * + * {
+    margin-top: 0.5rem;
+  }
+
+  .space-y-3 > * + * {
+    margin-top: 0.75rem;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+
+  .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .h-16 {
+    height: 4rem;
   }
 }

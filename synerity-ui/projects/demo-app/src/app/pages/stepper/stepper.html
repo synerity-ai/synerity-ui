@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Stepper</h1>
-    <p class="text-lg text-gray-600">Step-by-step navigation component for multi-step processes.</p>
+    <p class="text-lg text-gray-600">Step-by-step navigation component that guides users through a multi-step process with visual progress indicators.</p>
   </div>
 
   <!-- Tabs -->
@@ -19,60 +19,219 @@
     <div *ngIf="activeTab === 'demo'">
       <div class="space-y-8">
         
-        <!-- Basic Stepper -->
+        <!-- Basic Horizontal Stepper -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Basic Stepper</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Basic Horizontal Stepper</h3>
             <button 
-              (click)="toggleCode('basicStepper')"
+              (click)="toggleCode('basicHorizontalStepper')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showBasicStepperCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showBasicHorizontalStepperCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-6">
+            <div class="space-y-4">
               <sui-stepper 
-                [steps]="stepperItems"
-                [activeIndex]="currentStep"
-                (onActiveIndexChange)="goToStep($event)">
+                [steps]="basicSteps"
+                [activeIndex]="activeIndex"
+                orientation="horizontal"
+                (onActiveIndexChange)="onActiveIndexChange($event)">
+                
+                <div *ngIf="activeIndex === 0" class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Step 1: Personal Information</h4>
+                  <p class="text-gray-600">Please provide your personal details to get started.</p>
+                  <div class="grid grid-cols-2 gap-4">
+                    <input type="text" placeholder="First Name" class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    <input type="text" placeholder="Last Name" class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                  </div>
+                </div>
+                
+                <div *ngIf="activeIndex === 1" class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Step 2: Contact Information</h4>
+                  <p class="text-gray-600">We need your contact details to reach you.</p>
+                  <div class="space-y-4">
+                    <input type="email" placeholder="Email Address" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    <input type="tel" placeholder="Phone Number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                  </div>
+                </div>
+                
+                <div *ngIf="activeIndex === 2" class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Step 3: Review & Submit</h4>
+                  <p class="text-gray-600">Please review your information before submitting.</p>
+                  <div class="p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-600">All information has been collected. Click submit to complete the process.</p>
+                  </div>
+                </div>
               </sui-stepper>
               
-              <div class="flex justify-between">
+              <div class="flex justify-between pt-4">
                 <button 
-                  (click)="prevStep()"
-                  [disabled]="currentStep === 0"
-                  class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                  (click)="previousStep()"
+                  [disabled]="activeIndex === 0"
+                  class="px-4 py-2 text-sm bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                   Previous
                 </button>
                 <button 
                   (click)="nextStep()"
-                  [disabled]="currentStep === stepperItems.length - 1"
-                  class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                  [disabled]="activeIndex === basicSteps.length - 1"
+                  class="px-4 py-2 text-sm bg-primary-600 text-white hover:bg-primary-700 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                   Next
                 </button>
               </div>
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showBasicStepperCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-stepper 
-  [steps]="stepperItems"
-  [activeIndex]="currentStep"
-  (onActiveIndexChange)="goToStep($event)"&gt;
+            <div *ngIf="showBasicHorizontalStepperCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-stepper 
+  [steps]="basicSteps"
+  [activeIndex]="activeIndex"
+  orientation="horizontal"
+  (onActiveIndexChange)="onActiveIndexChange($event)"&gt;
+  
+  &lt;div *ngIf="activeIndex === 0" class="space-y-4"&gt;
+    &lt;h4 class="text-lg font-medium text-gray-900"&gt;Step 1: Personal Information&lt;/h4&gt;
+    &lt;p class="text-gray-600"&gt;Please provide your personal details.&lt;/p&gt;
+    &lt;div class="grid grid-cols-2 gap-4"&gt;
+      &lt;input type="text" placeholder="First Name" class="px-3 py-2 border border-gray-300 rounded-md"&gt;
+      &lt;input type="text" placeholder="Last Name" class="px-3 py-2 border border-gray-300 rounded-md"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/sui-stepper&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Coming Soon Placeholder -->
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">🚧</span>
-            <div>
-              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
-              <p class="text-blue-700">Vertical stepper, custom styling, and advanced features will be added soon.</p>
+        <!-- Vertical Stepper -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Vertical Stepper</h3>
+            <button 
+              (click)="toggleCode('verticalStepper')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showVerticalStepperCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <sui-stepper 
+                [steps]="verticalSteps"
+                [activeIndex]="verticalActiveIndex"
+                orientation="vertical"
+                (onActiveIndexChange)="onVerticalActiveIndexChange($event)">
+                
+                <div *ngIf="verticalActiveIndex === 0" class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Setup Account</h4>
+                  <p class="text-gray-600">Create your account and set up your profile.</p>
+                </div>
+                
+                <div *ngIf="verticalActiveIndex === 1" class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Configure Settings</h4>
+                  <p class="text-gray-600">Customize your application settings and preferences.</p>
+                </div>
+                
+                <div *ngIf="verticalActiveIndex === 2" class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Import Data</h4>
+                  <p class="text-gray-600">Import your existing data or start fresh.</p>
+                </div>
+                
+                <div *ngIf="verticalActiveIndex === 3" class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Complete Setup</h4>
+                  <p class="text-gray-600">Review everything and complete the setup process.</p>
+                </div>
+              </sui-stepper>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showVerticalStepperCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-stepper 
+  [steps]="verticalSteps"
+  [activeIndex]="verticalActiveIndex"
+  orientation="vertical"
+  (onActiveIndexChange)="onVerticalActiveIndexChange($event)"&gt;
+  
+  &lt;div *ngIf="verticalActiveIndex === 0" class="space-y-4"&gt;
+    &lt;h4 class="text-lg font-medium text-gray-900"&gt;Setup Account&lt;/h4&gt;
+    &lt;p class="text-gray-600"&gt;Create your account and set up your profile.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-stepper&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Linear Stepper -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Linear Stepper</h3>
+            <button 
+              (click)="toggleCode('linearStepper')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showLinearStepperCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <sui-stepper 
+                [steps]="linearSteps"
+                [activeIndex]="linearActiveIndex"
+                [linear]="true"
+                orientation="horizontal"
+                (onActiveIndexChange)="onLinearActiveIndexChange($event)">
+                
+                <div *ngIf="linearActiveIndex === 0" class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Step 1: Basic Info</h4>
+                  <p class="text-gray-600">Complete this step to proceed to the next one.</p>
+                  <button 
+                    (click)="completeLinearStep(0)"
+                    class="px-4 py-2 text-sm bg-primary-600 text-white hover:bg-primary-700 rounded-md transition-colors">
+                    Complete Step
+                  </button>
+                </div>
+                
+                <div *ngIf="linearActiveIndex === 1" class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Step 2: Advanced Settings</h4>
+                  <p class="text-gray-600">Configure advanced settings for your account.</p>
+                  <button 
+                    (click)="completeLinearStep(1)"
+                    class="px-4 py-2 text-sm bg-primary-600 text-white hover:bg-primary-700 rounded-md transition-colors">
+                    Complete Step
+                  </button>
+                </div>
+                
+                <div *ngIf="linearActiveIndex === 2" class="space-y-4">
+                  <h4 class="text-lg font-medium text-gray-900">Step 3: Final Review</h4>
+                  <p class="text-gray-600">Review all settings and complete the process.</p>
+                  <button 
+                    (click)="completeLinearStep(2)"
+                    class="px-4 py-2 text-sm bg-green-600 text-white hover:bg-green-700 rounded-md transition-colors">
+                    Finish Setup
+                  </button>
+                </div>
+              </sui-stepper>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showLinearStepperCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-stepper 
+  [steps]="linearSteps"
+  [activeIndex]="linearActiveIndex"
+  [linear]="true"
+  orientation="horizontal"
+  (onActiveIndexChange)="onLinearActiveIndexChange($event)"&gt;
+  
+  &lt;div *ngIf="linearActiveIndex === 0" class="space-y-4"&gt;
+    &lt;h4 class="text-lg font-medium text-gray-900"&gt;Step 1: Basic Info&lt;/h4&gt;
+    &lt;p class="text-gray-600"&gt;Complete this step to proceed.&lt;/p&gt;
+    &lt;button (click)="completeLinearStep(0)" class="px-4 py-2 text-sm bg-primary-600 text-white rounded-md"&gt;
+      Complete Step
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/sui-stepper&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -91,53 +250,6 @@
             <p class="text-gray-600 mb-4">The Stepper component is part of the Synerity UI library. Install it using npm:</p>
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
               <code>npm install @synerity/ui</code>
-            </div>
-          </div>
-        </div>
-
-        <!-- Basic Usage -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Import and use the Stepper component in your Angular application:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>import &#123; Stepper &#125; from '@synerity/ui';
-
-&#64;Component(&#123;
-  template: `
-    &lt;sui-stepper 
-      [steps]="steps"
-      [activeIndex]="currentStep"
-      (onActiveIndexChange)="onStepChange($event)"&gt;
-    &lt;/sui-stepper&gt;
-  `
-&#125;)
-export class MyComponent &#123;&#125;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Stepper Features -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Stepper Features</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-gray-900">Step Navigation</h4>
-                <p class="text-gray-600">Click on any step to navigate directly</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Visual Progress</h4>
-                <p class="text-gray-600">Clear indication of current step and progress</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Custom Icons</h4>
-                <p class="text-gray-600">Add icons to each step for better visual appeal</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Responsive Design</h4>
-                <p class="text-gray-600">Adapts to different screen sizes</p>
-              </div>
             </div>
           </div>
         </div>
@@ -165,88 +277,26 @@ export class MyComponent &#123;&#125;</code></pre>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">model</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MenuItem[]</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Array of step items</td>
-                  </tr>
-                  <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">activeIndex</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Index of the active step</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Index of the currently active step</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">readonly</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">orientation</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'horizontal' | 'vertical'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'horizontal'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Orientation of the stepper</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">linear</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether steps are clickable</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the stepper</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">CSS class for the stepper</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether steps must be completed in order</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
-
-        <!-- Events -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="overflow-x-auto">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">activeIndexChange</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;number&gt;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when active step changes</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Accessibility -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Keyboard navigation support</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>ARIA attributes for screen readers</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Focus management and indicators</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Step progress announcements</span>
-              </li>
-            </ul>
           </div>
         </div>
 

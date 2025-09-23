@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Captcha } from 'ui-lib';
+import { Tabs } from '../../shared/tabs/tabs';
 
 @Component({
   selector: 'app-captcha',
   standalone: true,
-  imports: [CommonModule, Captcha],
+  imports: [CommonModule, Captcha, Tabs],
   templateUrl: './captcha.html',
   styleUrls: ['./captcha.scss']
 })
 export class CaptchaComponent {
-  activeTab = 0;
-  showBasicCode = false;
-  showMathCode = false;
-  showTextCode = false;
-  showCustomCode = false;
+  activeTab = 'demo';
+  showBasicCaptchaCode = false;
+  showCaptchaTypesCode = false;
+  showCaptchaStatesCode = false;
 
   // Demo configurations
   basicConfig = {
@@ -46,23 +46,20 @@ export class CaptchaComponent {
     }
   };
 
-  onTabChange(index: number): void {
-    this.activeTab = index;
+  onTabChange(tabId: string): void {
+    this.activeTab = tabId;
   }
 
   toggleCode(type: string): void {
     switch (type) {
       case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+        this.showBasicCaptchaCode = !this.showBasicCaptchaCode;
         break;
-      case 'math':
-        this.showMathCode = !this.showMathCode;
+      case 'types':
+        this.showCaptchaTypesCode = !this.showCaptchaTypesCode;
         break;
-      case 'text':
-        this.showTextCode = !this.showTextCode;
-        break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'states':
+        this.showCaptchaStatesCode = !this.showCaptchaStatesCode;
         break;
     }
   }

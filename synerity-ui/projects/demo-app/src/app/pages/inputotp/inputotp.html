@@ -16,424 +16,380 @@
     (tabChange)="onTabChange($event)">
     
     <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'" class="space-y-8">
-      <!-- Basic OTP -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Basic OTP (6 digits)</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="flex flex-col items-center space-y-4">
-              <p class="text-sm text-gray-600">Enter the 6-digit verification code:</p>
-              <sui-input-otp
-                [(ngModel)]="basicOtpValue"
-                [length]="basicOtpLength"
-                (change)="onBasicOtpChange($event)"
-                (complete)="onBasicOtpComplete($event)"
-              ></sui-input-otp>
-              <p class="text-sm text-gray-600">Current value: {{ basicOtpValue || 'Empty' }}</p>
-              <button 
-                class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
-                (click)="clearBasicOtp()">
-                Clear
-              </button>
-            </div>
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic InputOTP -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic InputOTP</h3>
+            <button 
+              (click)="toggleCode('basicInputOtp')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicInputOtpCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
           </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('basic')">
-          {{ showBasicCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-input-otp
-  [(ngModel)]="basicOtpValue"
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex flex-col items-center space-y-4">
+                <p class="text-sm text-gray-600">Enter the 6-digit verification code:</p>
+                <sui-input-otp
+                  [(ngModel)]="basicOtpValue"
+                  [length]="basicOtpLength"
+                  (change)="onBasicOtpChange($event)"
+                  (complete)="onBasicOtpComplete($event)"
+                ></sui-input-otp>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicInputOtpCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Basic InputOTP --&gt;
+&lt;sui-input-otp
+  [(ngModel)]="otpValue"
   [length]="6"
-  (change)="onBasicOtpChange($event)"
-  (complete)="onBasicOtpComplete($event)"
+  (change)="onOtpChange($event)"
+  (complete)="onOtpComplete($event)"
 &gt;&lt;/sui-input-otp&gt;</code></pre>
-        </div>
-      </div>
-
-      <!-- Custom Length OTP -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Custom Length OTP (4 digits)</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="flex flex-col items-center space-y-4">
-              <p class="text-sm text-gray-600">Enter the 4-digit code:</p>
-              <sui-input-otp
-                [(ngModel)]="customOtpValue"
-                [length]="customOtpLength"
-                (change)="onCustomOtpChange($event)"
-                (complete)="onCustomOtpComplete($event)"
-              ></sui-input-otp>
-              <p class="text-sm text-gray-600">Current value: {{ customOtpValue || 'Empty' }}</p>
-              <button 
-                class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
-                (click)="clearCustomOtp()">
-                Clear
-              </button>
             </div>
           </div>
         </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('custom')">
-          {{ showCustomCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-input-otp
+
+        <!-- InputOTP Variants -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">InputOTP Variants</h3>
+            <button 
+              (click)="toggleCode('inputOtpVariants')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInputOtpVariantsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-6">
+              <div class="flex flex-col items-center space-y-4">
+                <p class="text-sm text-gray-600">4-digit code:</p>
+                <sui-input-otp
+                  [(ngModel)]="customOtpValue"
+                  [length]="customOtpLength"
+                  (change)="onCustomOtpChange($event)"
+                  (complete)="onCustomOtpComplete($event)"
+                ></sui-input-otp>
+              </div>
+              
+              <div class="flex flex-col items-center space-y-4">
+                <p class="text-sm text-gray-600">Alphanumeric code (8 characters):</p>
+                <sui-input-otp
+                  [(ngModel)]="alphanumericOtpValue"
+                  [length]="alphanumericOtpLength"
+                  [numericOnly]="false"
+                  (change)="onAlphanumericOtpChange($event)"
+                  (complete)="onAlphanumericOtpComplete($event)"
+                ></sui-input-otp>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showInputOtpVariantsCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- 4-digit OTP --&gt;
+&lt;sui-input-otp
   [(ngModel)]="customOtpValue"
   [length]="4"
   (change)="onCustomOtpChange($event)"
   (complete)="onCustomOtpComplete($event)"
-&gt;&lt;/sui-input-otp&gt;</code></pre>
-        </div>
-      </div>
+&gt;&lt;/sui-input-otp&gt;
 
-      <!-- Alphanumeric OTP -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Alphanumeric OTP</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="flex flex-col items-center space-y-4">
-              <p class="text-sm text-gray-600">Enter the alphanumeric code (letters and numbers allowed):</p>
-              <sui-input-otp
-                [(ngModel)]="alphanumericOtpValue"
-                [length]="alphanumericOtpLength"
-                [numericOnly]="false"
-                (change)="onAlphanumericOtpChange($event)"
-                (complete)="onAlphanumericOtpComplete($event)"
-              ></sui-input-otp>
-              <p class="text-sm text-gray-600">Current value: {{ alphanumericOtpValue || 'Empty' }}</p>
-              <button 
-                class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
-                (click)="clearAlphanumericOtp()">
-                Clear
-              </button>
-            </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('alphanumeric')">
-          {{ showAlphanumericCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showAlphanumericCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-input-otp
+&lt;!-- Alphanumeric OTP --&gt;
+&lt;sui-input-otp
   [(ngModel)]="alphanumericOtpValue"
   [length]="8"
   [numericOnly]="false"
   (change)="onAlphanumericOtpChange($event)"
   (complete)="onAlphanumericOtpComplete($event)"
 &gt;&lt;/sui-input-otp&gt;</code></pre>
-        </div>
-      </div>
-
-      <!-- Disabled OTP -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Disabled State</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="flex flex-col items-center space-y-4">
-              <p class="text-sm text-gray-600">Disabled OTP input:</p>
-              <sui-input-otp
-                [(ngModel)]="disabledOtpValue"
-                [length]="disabledOtpLength"
-                [disabled]="true"
-                (change)="onDisabledOtpChange($event)"
-              ></sui-input-otp>
-              <p class="text-sm text-gray-600">Current value: {{ disabledOtpValue }} (Disabled)</p>
             </div>
           </div>
         </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('disabled')">
-          {{ showDisabledCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showDisabledCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-input-otp
+
+        <!-- InputOTP States -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">InputOTP States</h3>
+            <button 
+              (click)="toggleCode('inputOtpStates')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInputOtpStatesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-6">
+              <div class="flex flex-col items-center space-y-4">
+                <p class="text-sm text-gray-600">Normal state:</p>
+                <sui-input-otp
+                  [(ngModel)]="smsOtpValue"
+                  [length]="smsOtpLength"
+                  (change)="onSmsOtpChange($event)"
+                  (complete)="onSmsOtpComplete($event)"
+                ></sui-input-otp>
+              </div>
+              
+              <div class="flex flex-col items-center space-y-4">
+                <p class="text-sm text-gray-600">Disabled state:</p>
+                <sui-input-otp
+                  [(ngModel)]="disabledOtpValue"
+                  [length]="disabledOtpLength"
+                  [disabled]="true"
+                  (change)="onDisabledOtpChange($event)"
+                ></sui-input-otp>
+              </div>
+              
+              <div class="flex flex-col items-center space-y-4">
+                <p class="text-sm text-gray-600">Email verification (alphanumeric):</p>
+                <sui-input-otp
+                  [(ngModel)]="emailOtpValue"
+                  [length]="emailOtpLength"
+                  [numericOnly]="false"
+                  (change)="onEmailOtpChange($event)"
+                  (complete)="onEmailOtpComplete($event)"
+                ></sui-input-otp>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showInputOtpStatesCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Normal State --&gt;
+&lt;sui-input-otp
+  [(ngModel)]="otpValue"
+  [length]="6"
+  (change)="onOtpChange($event)"
+  (complete)="onOtpComplete($event)"
+&gt;&lt;/sui-input-otp&gt;
+
+&lt;!-- Disabled State --&gt;
+&lt;sui-input-otp
   [(ngModel)]="disabledOtpValue"
   [length]="6"
   [disabled]="true"
   (change)="onDisabledOtpChange($event)"
-&gt;&lt;/sui-input-otp&gt;</code></pre>
-        </div>
-      </div>
+&gt;&lt;/sui-input-otp&gt;
 
-      <!-- SMS Verification -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">SMS Verification</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="flex flex-col items-center space-y-4">
-              <p class="text-sm text-gray-600">Enter the SMS verification code sent to your phone:</p>
-              <sui-input-otp
-                [(ngModel)]="smsOtpValue"
-                [length]="smsOtpLength"
-                (change)="onSmsOtpChange($event)"
-                (complete)="onSmsOtpComplete($event)"
-              ></sui-input-otp>
-              <p class="text-sm text-gray-600">Current value: {{ smsOtpValue || 'Empty' }}</p>
-              <div class="flex space-x-2">
-                <button 
-                  class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
-                  (click)="clearSmsOtp()">
-                  Clear
-                </button>
-                <button 
-                  class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
-                  [disabled]="smsOtpValue.length !== smsOtpLength">
-                  Verify
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('sms')">
-          {{ showSmsCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showSmsCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-input-otp
-  [(ngModel)]="smsOtpValue"
-  [length]="6"
-  (change)="onSmsOtpChange($event)"
-  (complete)="onSmsOtpComplete($event)"
-&gt;&lt;/sui-input-otp&gt;</code></pre>
-        </div>
-      </div>
-
-      <!-- Email Verification -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Email Verification</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col space-y-4">
-            <div class="flex flex-col items-center space-y-4">
-              <p class="text-sm text-gray-600">Enter the email verification code:</p>
-              <sui-input-otp
-                [(ngModel)]="emailOtpValue"
-                [length]="emailOtpLength"
-                [numericOnly]="false"
-                (change)="onEmailOtpChange($event)"
-                (complete)="onEmailOtpComplete($event)"
-              ></sui-input-otp>
-              <p class="text-sm text-gray-600">Current value: {{ emailOtpValue || 'Empty' }}</p>
-              <div class="flex space-x-2">
-                <button 
-                  class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
-                  (click)="clearEmailOtp()">
-                  Clear
-                </button>
-                <button 
-                  class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
-                  [disabled]="emailOtpValue.length !== emailOtpLength">
-                  Verify
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('email')">
-          {{ showEmailCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showEmailCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-input-otp
+&lt;!-- Email Verification --&gt;
+&lt;sui-input-otp
   [(ngModel)]="emailOtpValue"
   [length]="8"
   [numericOnly]="false"
   (change)="onEmailOtpChange($event)"
   (complete)="onEmailOtpComplete($event)"
 &gt;&lt;/sui-input-otp&gt;</code></pre>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
     <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
-      <h2>How to Use InputOTP</h2>
-      
-      <h3>Installation</h3>
-      <p>Import the InputOTP component from the UI library:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; InputOtp &#125; from 'ui-lib';
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The InputOTP component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
 
-// In your component imports
-imports: [InputOtp]</code></pre>
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the InputOTP component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import {{ '{' }} InputOTP {{ '}' }} from '@synerity/ui';
 
-      <h3>Basic Usage</h3>
-      <p>Use the component for verification codes:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-input-otp
-  [(ngModel)]="otpValue"
-  [length]="6"
-  (change)="onOtpChange($event)"
-  (complete)="onOtpComplete($event)"
-&gt;&lt;/sui-input-otp&gt;</code></pre>
+{{ '@' }}Component({{ '{' }}
+  template: `
+    &lt;sui-input-otp
+      [(ngModel)]="otpValue"
+      [length]="6"
+      (change)="onOtpChange($event)"
+      (complete)="onOtpComplete($event)"
+    &gt;&lt;/sui-input-otp&gt;
+  `
+{{ '}' }})
+export class MyComponent {{ '{' }}
+  otpValue = '';
+  
+  onOtpChange(value: string) {{ '{' }}
+    console.log('OTP changed:', value);
+  {{ '}' }}
+  
+  onOtpComplete(value: string) {{ '{' }}
+    console.log('OTP completed:', value);
+  {{ '}' }}
+{{ '}' }}</code></pre>
+            </div>
+          </div>
+        </div>
 
-      <h3>Component Properties</h3>
-      <ul>
-        <li><strong>length</strong>: Number of input fields (default: 6)</li>
-        <li><strong>disabled</strong>: Boolean to disable the entire component</li>
-        <li><strong>numericOnly</strong>: Boolean to allow only numeric input (default: true)</li>
-        <li><strong>inputType</strong>: HTML input type ('text' or 'tel', default: 'tel')</li>
-        <li><strong>name</strong>: String for form control name</li>
-        <li><strong>ngModel</strong>: Two-way binding for the OTP value</li>
-      </ul>
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Key Features</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">InputOTP provides several useful features for verification workflows:</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">auto-focus</span>
+                <span class="text-gray-600">Automatically moves to next input on digit entry</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">backspace</span>
+                <span class="text-gray-600">Moves to previous input on backspace</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">paste</span>
+                <span class="text-gray-600">Supports pasting multi-digit codes</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">validation</span>
+                <span class="text-gray-600">Filters input based on numericOnly setting</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono bg-gray-100 px-2 py-1 rounded">keyboard</span>
+                <span class="text-gray-600">Full keyboard navigation support</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <h3>Events</h3>
-      <ul>
-        <li><strong>change</strong>: Emitted when any digit changes</li>
-        <li><strong>complete</strong>: Emitted when all digits are filled</li>
-      </ul>
-
-      <h3>Features</h3>
-      <ul>
-        <li><strong>Auto-focus</strong>: Automatically moves to next input on digit entry</li>
-        <li><strong>Backspace handling</strong>: Moves to previous input on backspace</li>
-        <li><strong>Paste support</strong>: Supports pasting multi-digit codes</li>
-        <li><strong>Input validation</strong>: Filters input based on numericOnly setting</li>
-        <li><strong>Keyboard navigation</strong>: Full keyboard support</li>
-      </ul>
-
-      <h3>Common Use Cases</h3>
-      <ul>
-        <li><strong>SMS Verification</strong>: 6-digit codes sent via SMS</li>
-        <li><strong>Email Verification</strong>: Alphanumeric codes sent via email</li>
-        <li><strong>Two-Factor Authentication</strong>: TOTP codes from authenticator apps</li>
-        <li><strong>Account Recovery</strong>: Verification codes for password reset</li>
-      </ul>
+      </div>
     </div>
 
     <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
-      <h2>API Documentation</h2>
-      
-      <h3>Properties</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">length</td>
-              <td class="border border-gray-300 px-4 py-2">number</td>
-              <td class="border border-gray-300 px-4 py-2">6</td>
-              <td class="border border-gray-300 px-4 py-2">Number of input fields</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">disabled</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Disables the entire component</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">numericOnly</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">true</td>
-              <td class="border border-gray-300 px-4 py-2">Restricts input to numbers only</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">inputType</td>
-              <td class="border border-gray-300 px-4 py-2">'text' | 'tel'</td>
-              <td class="border border-gray-300 px-4 py-2">'tel'</td>
-              <td class="border border-gray-300 px-4 py-2">HTML input type attribute</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">name</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">''</td>
-              <td class="border border-gray-300 px-4 py-2">Name attribute for form control</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">ngModel</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">''</td>
-              <td class="border border-gray-300 px-4 py-2">OTP value (two-way binding)</td>
-            </tr>
-          </tbody>
-        </table>
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">length</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">6</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Number of input fields</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Disable the entire component</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">numericOnly</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Restrict input to numbers only</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">inputType</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'text' | 'tel'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'tel'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">HTML input type attribute</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">name</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Name attribute for form control</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">change</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;string&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when any digit changes</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">complete</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;string&gt;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when all digits are filled</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Keyboard navigation support with Tab and arrow keys</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Focus indicators for keyboard users</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Proper ARIA attributes for screen readers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Disabled state properly communicated</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Automatic focus management between inputs</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
-
-      <h3>Events</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Event</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">change</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;string&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when any digit changes</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">complete</td>
-              <td class="border border-gray-300 px-4 py-2">EventEmitter&lt;string&gt;</td>
-              <td class="border border-gray-300 px-4 py-2">Fired when all digits are filled</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Accessibility</h3>
-      <ul>
-        <li><strong>ARIA</strong>: Proper ARIA attributes for screen readers</li>
-        <li><strong>Keyboard Navigation</strong>: Arrow keys, Tab, and Backspace support</li>
-        <li><strong>Focus Management</strong>: Automatic focus handling between inputs</li>
-        <li><strong>Screen Reader</strong>: Descriptive labels and instructions</li>
-      </ul>
-
-      <h3>Styling</h3>
-      <p>The component uses CSS classes that can be customized:</p>
-      <ul>
-        <li><code>.input-otp-container</code>: Main container</li>
-        <li><code>.input-otp-field</code>: Individual input field</li>
-        <li><code>.input-otp-field-disabled</code>: Disabled input field</li>
-        <li><code>.input-otp-field-focused</code>: Focused input field</li>
-      </ul>
-
-      <h3>Examples</h3>
-      <h4>Basic Usage</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>export class ExampleComponent &#123;
-  otpValue = '';
-  
-  onOtpChange(value: string) &#123;
-    console.log('OTP changed:', value);
-  &#125;
-  
-  onOtpComplete(value: string) &#123;
-    console.log('OTP completed:', value);
-    // Verify with backend
-  &#125;
-&#125;</code></pre>
-
-      <h4>Alphanumeric OTP</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-input-otp
-  [(ngModel)]="alphanumericOtp"
-  [length]="8"
-  [numericOnly]="false"
-  (complete)="verifyCode($event)"
-&gt;&lt;/sui-input-otp&gt;</code></pre>
-
-      <h4>Custom Length</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-input-otp
-  [(ngModel)]="customOtp"
-  [length]="4"
-  inputType="text"
-&gt;&lt;/sui-input-otp&gt;</code></pre>
     </div>
   </app-tabs>
 </div>

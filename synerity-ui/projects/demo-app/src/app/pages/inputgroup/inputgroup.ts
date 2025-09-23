@@ -6,6 +6,7 @@ import { InputGroup as SuiInputGroup } from '../../../../../ui-lib/src/lib/input
 
 @Component({
   selector: 'app-inputgroup',
+  standalone: true,
   imports: [CommonModule, FormsModule, Tabs, SuiInputGroup],
   templateUrl: './inputgroup.html',
   styleUrl: './inputgroup.scss'
@@ -26,17 +27,11 @@ export class InputgroupComponent {
   customInputValue = '';
   customInputDisabled = false;
 
-  // Multiple Input Groups
-  firstNameValue = '';
-  lastNameValue = '';
-  emailValue = '';
-  phoneValue = '';
 
   // Code visibility flags
-  showBasicCode = false;
-  showSizeCode = false;
-  showCustomCode = false;
-  showMultipleCode = false;
+  showBasicInputGroupCode = false;
+  showInputGroupSizesCode = false;
+  showInputGroupStatesCode = false;
 
   onTabChange(tab: string) {
     this.activeTab = tab;
@@ -44,17 +39,14 @@ export class InputgroupComponent {
 
   toggleCode(type: string) {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicInputGroup':
+        this.showBasicInputGroupCode = !this.showBasicInputGroupCode;
         break;
-      case 'size':
-        this.showSizeCode = !this.showSizeCode;
+      case 'inputGroupSizes':
+        this.showInputGroupSizesCode = !this.showInputGroupSizesCode;
         break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
-        break;
-      case 'multiple':
-        this.showMultipleCode = !this.showMultipleCode;
+      case 'inputGroupStates':
+        this.showInputGroupStatesCode = !this.showInputGroupStatesCode;
         break;
     }
   }
@@ -84,25 +76,6 @@ export class InputgroupComponent {
     console.log('Custom input changed:', this.customInputValue);
   }
 
-  onFirstNameChange(event: any) {
-    this.firstNameValue = event.target.value;
-    console.log('First name changed:', this.firstNameValue);
-  }
-
-  onLastNameChange(event: any) {
-    this.lastNameValue = event.target.value;
-    console.log('Last name changed:', this.lastNameValue);
-  }
-
-  onEmailChange(event: any) {
-    this.emailValue = event.target.value;
-    console.log('Email changed:', this.emailValue);
-  }
-
-  onPhoneChange(event: any) {
-    this.phoneValue = event.target.value;
-    console.log('Phone changed:', this.phoneValue);
-  }
 
   toggleBasicDisabled() {
     this.basicInputDisabled = !this.basicInputDisabled;
@@ -120,10 +93,4 @@ export class InputgroupComponent {
     this.customInputValue = '';
   }
 
-  clearAllInputs() {
-    this.firstNameValue = '';
-    this.lastNameValue = '';
-    this.emailValue = '';
-    this.phoneValue = '';
-  }
 }

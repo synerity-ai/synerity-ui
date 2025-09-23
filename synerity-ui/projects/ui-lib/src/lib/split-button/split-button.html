@@ -1,14 +1,15 @@
-<div class="sui-split-button">
+<div class="relative inline-flex">
   <!-- Main button -->
   <button
     type="button"
     [disabled]="disabled"
     (click)="onMainClick()"
-    [class]="getButtonClass()"
+    class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-r-0 rounded-l-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 ease-in-out"
+    [class]="getMainButtonClasses()"
     [class.sui-split-button-disabled]="disabled"
   >
-    <span *ngIf="icon" class="sui-split-button-icon">{{ icon }}</span>
-    <span *ngIf="label" class="sui-split-button-label">{{ label }}</span>
+    <span *ngIf="icon" class="text-base leading-none">{{ icon }}</span>
+    <span *ngIf="label" class="whitespace-nowrap">{{ label }}</span>
   </button>
   
   <!-- Dropdown toggle -->
@@ -16,23 +17,39 @@
     type="button"
     [disabled]="disabled"
     (click)="toggleDropdown()"
-    class="sui-split-button-dropdown"
+    class="inline-flex items-center justify-center px-2 py-2 text-sm font-medium border rounded-r-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 ease-in-out"
+    [class]="getDropdownButtonClasses()"
     [class.sui-split-button-disabled]="disabled"
   >
-    <span class="sui-split-button-dropdown-icon">▼</span>
+    <svg class="w-4 h-4 transition-transform duration-200" 
+         [class.rotate-180]="open"
+         fill="none" 
+         stroke="currentColor" 
+         viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
   </button>
   
   <!-- Dropdown menu -->
-  <div *ngIf="open" class="sui-split-button-menu">
-    <div
-      *ngFor="let item of items"
-      (click)="onItemClick(item)"
-      class="sui-split-button-item"
-      [class.sui-split-button-item-disabled]="item.disabled"
-      [class.sui-split-button-separator]="item.separator"
-    >
-      <span *ngIf="item.icon" class="sui-split-button-item-icon">{{ item.icon }}</span>
-      <span class="sui-split-button-item-label">{{ item.label }}</span>
+  <div *ngIf="open" class="absolute z-50 w-56 mt-1 bg-white border border-gray-200 rounded-md shadow-lg focus:outline-none">
+    <div class="py-1">
+      <div
+        *ngFor="let item of items"
+        (click)="onItemClick(item)"
+        class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition-colors duration-150 ease-in-out"
+        [class.opacity-50]="item.disabled"
+        [class.cursor-not-allowed]="item.disabled"
+        [class.hover:bg-transparent]="item.disabled"
+        [class.border-t]="item.separator"
+        [class.border-gray-200]="item.separator"
+        [class.mt-1]="item.separator"
+        [class.pt-2]="item.separator"
+        [class.sui-split-button-item-disabled]="item.disabled"
+        [class.sui-split-button-separator]="item.separator"
+      >
+        <span *ngIf="item.icon" class="text-base leading-none">{{ item.icon }}</span>
+        <span class="flex-1 whitespace-nowrap">{{ item.label }}</span>
+      </div>
     </div>
   </div>
 </div>

@@ -119,10 +119,10 @@ export class TreeselectComponent {
   ];
 
   // Code visibility flags
-  showBasicCode = false;
-  showDepartmentCode = false;
-  showFileSystemCode = false;
-  showDisabledCode = false;
+  showBasicTreeSelectCode = false;
+  showDepartmentTreeSelectCode = false;
+  showFileSystemTreeSelectCode = false;
+  showDisabledTreeSelectCode = false;
 
   onTabChange(tab: string) {
     this.activeTab = tab;
@@ -130,17 +130,17 @@ export class TreeselectComponent {
 
   toggleCode(type: string) {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicTreeSelect':
+        this.showBasicTreeSelectCode = !this.showBasicTreeSelectCode;
         break;
-      case 'department':
-        this.showDepartmentCode = !this.showDepartmentCode;
+      case 'departmentTreeSelect':
+        this.showDepartmentTreeSelectCode = !this.showDepartmentTreeSelectCode;
         break;
-      case 'filesystem':
-        this.showFileSystemCode = !this.showFileSystemCode;
+      case 'fileSystemTreeSelect':
+        this.showFileSystemTreeSelectCode = !this.showFileSystemTreeSelectCode;
         break;
-      case 'disabled':
-        this.showDisabledCode = !this.showDisabledCode;
+      case 'disabledTreeSelect':
+        this.showDisabledTreeSelectCode = !this.showDisabledTreeSelectCode;
         break;
     }
   }

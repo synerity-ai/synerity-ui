@@ -3,6 +3,7 @@ import { NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-ifta-label',
+  standalone: true,
   imports: [CommonModule, NgIf],
   templateUrl: './ifta-label.html',
   styleUrl: './ifta-label.scss',

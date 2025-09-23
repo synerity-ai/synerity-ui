@@ -18,8 +18,8 @@ export class Sidebar {
 
   // Track which categories are expanded/collapsed
   expandedCategories: { [key: string]: boolean } = {
-    'Foundation': true,
-    'Form Components': true,
+    'Foundation': false,
+    'Form Components': false,
     'Button Components': false,
     'Data Components': false,
     'Panel Components': false,
@@ -100,7 +100,6 @@ export class Sidebar {
         { name: 'Rating', route: '/components/rating', icon: '⭐', comingSoon: false },
         { name: 'Select', route: '/components/select', icon: '📋', comingSoon: false },
         { name: 'Slider', route: '/components/slider', icon: '🎚️', comingSoon: false },
-        { name: 'Textarea', route: '/components/textarea', icon: '📄', comingSoon: false },
         { name: 'ToggleSwitch', route: '/components/toggleswitch', icon: '🔄', comingSoon: false },
         { name: 'CascadeSelect', route: '/components/cascadeselect', icon: '🌊', comingSoon: false },
         { name: 'FloatLabel', route: '/components/floatlabel', icon: '🏷️', comingSoon: false },
@@ -114,15 +113,16 @@ export class Sidebar {
         { name: 'Knob', route: '/components/knob', icon: '🎛️', comingSoon: false },
         { name: 'TreeSelect', route: '/components/treeselect', icon: '🌳', comingSoon: false },
         { name: 'InputOTP', route: '/components/inputotp', icon: '🔢', comingSoon: false },
-        { name: 'IftaLabel', route: '/components/iftalabel', icon: '🏷️', comingSoon: false },
-        { name: 'IftLabel', route: '/components/iftlabel', icon: '🏷️', comingSoon: false }
+        { name: 'Captcha', route: '/components/captcha', icon: '🔐', comingSoon: false },
+        { name: 'IftaLabel', route: '/components/ifta-label', icon: '🏷️', comingSoon: false },
+        { name: 'IftLabel', route: '/components/ift-label', icon: '🏷️', comingSoon: false }
       ]
     },
     {
       title: 'Button Components',
       items: [
-        { name: 'SpeedDial', route: '/components/speeddial', icon: '⚡', comingSoon: false },
-        { name: 'SplitButton', route: '/components/splitbutton', icon: '🔀', comingSoon: false }
+        { name: 'SpeedDial', route: '/components/speed-dial', icon: '⚡', comingSoon: false },
+        { name: 'SplitButton', route: '/components/split-button', icon: '🔀', comingSoon: false }
       ]
     },
     {

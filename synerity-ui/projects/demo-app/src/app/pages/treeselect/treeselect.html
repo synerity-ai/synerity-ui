@@ -16,11 +16,22 @@
     (tabChange)="onTabChange($event)">
     
     <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'" class="space-y-8">
-      <!-- Basic TreeSelect -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Basic TreeSelect</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic TreeSelect -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic TreeSelect</h3>
+            <button 
+              (click)="toggleCode('basicTreeSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicTreeSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
           <div class="flex flex-col space-y-4">
             <div class="w-80">
               <sui-tree-select
@@ -32,26 +43,34 @@
             </div>
             <p class="text-sm text-gray-600">Selected: {{ basicValue || 'None' }}</p>
           </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('basic')">
-          {{ showBasicCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-tree-select
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicTreeSelectCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Basic TreeSelect --&gt;
+&lt;sui-tree-select
   [(ngModel)]="basicValue"
   [options]="basicOptions"
   placeholder="Select a technology..."
   (change)="onBasicChange($event)"
 &gt;&lt;/sui-tree-select&gt;</code></pre>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- Department TreeSelect -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Department Structure</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+        <!-- Department TreeSelect -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Department Structure</h3>
+            <button 
+              (click)="toggleCode('departmentTreeSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showDepartmentTreeSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
           <div class="flex flex-col space-y-4">
             <div class="w-80">
               <sui-tree-select
@@ -63,26 +82,34 @@
             </div>
             <p class="text-sm text-gray-600">Selected: {{ departmentValue || 'None' }}</p>
           </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('department')">
-          {{ showDepartmentCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showDepartmentCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-tree-select
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showDepartmentTreeSelectCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Department TreeSelect --&gt;
+&lt;sui-tree-select
   [(ngModel)]="departmentValue"
   [options]="departmentOptions"
   placeholder="Select a department..."
   (change)="onDepartmentChange($event)"
 &gt;&lt;/sui-tree-select&gt;</code></pre>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- File System TreeSelect -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">File System Structure</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+        <!-- File System TreeSelect -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">File System Structure</h3>
+            <button 
+              (click)="toggleCode('fileSystemTreeSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showFileSystemTreeSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
           <div class="flex flex-col space-y-4">
             <div class="w-80">
               <sui-tree-select
@@ -94,26 +121,33 @@
             </div>
             <p class="text-sm text-gray-600">Selected: {{ fileSystemValue || 'None' }}</p>
           </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('filesystem')">
-          {{ showFileSystemCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showFileSystemCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-tree-select
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showFileSystemTreeSelectCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- File System TreeSelect --&gt;
+&lt;sui-tree-select
   [(ngModel)]="fileSystemValue"
   [options]="fileSystemOptions"
   placeholder="Select a folder..."
   (change)="onFileSystemChange($event)"
 &gt;&lt;/sui-tree-select&gt;</code></pre>
-        </div>
-      </div>
+            </div>
+          </div>
 
-      <!-- Disabled TreeSelect -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Disabled State</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
+        <!-- Disabled TreeSelect -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Disabled State</h3>
+            <button 
+              (click)="toggleCode('disabledTreeSelect')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showDisabledTreeSelectCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
           <div class="flex flex-col space-y-4">
             <div class="w-80">
               <sui-tree-select
@@ -126,23 +160,20 @@
             </div>
             <p class="text-sm text-gray-600">Selected: {{ disabledValue }} (Disabled)</p>
           </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('disabled')">
-          {{ showDisabledCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showDisabledCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-tree-select
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showDisabledTreeSelectCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Disabled TreeSelect --&gt;
+&lt;sui-tree-select
   [(ngModel)]="disabledValue"
   [options]="disabledOptions"
   placeholder="Select a framework..."
   [disabled]="true"
   (change)="onDisabledChange($event)"
 &gt;&lt;/sui-tree-select&gt;</code></pre>
-        </div>
-      </div>
-    </div>
+            </div>
+          </div>
 
     <!-- How to Use Tab -->
     <div *ngIf="activeTab === 'usage'" class="prose max-w-none">

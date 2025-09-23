@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'sui-accordion',
-  imports: [NgFor, NgIf],
+  standalone: true,
+  imports: [NgFor],
   templateUrl: './accordion.html',
   styleUrl: './accordion.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -14,9 +15,13 @@ export class Accordion {
   @Input() style: any = {};
   @Input() styleClass = '';
   @Input() tabs: Array<{ header: string; content?: any }> = [];
+  @Input() variant: 'default' | 'bordered' | 'minimal' = 'default';
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Output() onOpen = new EventEmitter<any>();
   @Output() onClose = new EventEmitter<any>();
   @Output() onActiveIndexChange = new EventEmitter<number | number[]>();
+
+  hoveredIndex: number | null = null;
 
   isActive(index: number): boolean {
     if (this.multiple) {
@@ -53,6 +58,14 @@ export class Accordion {
   }
 
   getAccordionClass(): string {
-    return `sui-accordion ${this.styleClass}`.trim();
+    return `sui-accordion sui-accordion-${this.variant} sui-accordion-${this.size} ${this.styleClass}`.trim();
+  }
+
+  onMouseEnter(index: number): void {
+    this.hoveredIndex = index;
+  }
+
+  onMouseLeave(): void {
+    this.hoveredIndex = null;
   }
 }

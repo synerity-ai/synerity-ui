@@ -3,19 +3,35 @@
     <div 
       class="sui-accordion-tab-header"
       [class.sui-accordion-tab-header-active]="isActive(i)"
+      [class.sui-accordion-tab-header-hover]="hoveredIndex === i"
       (click)="toggle(i)"
+      (mouseenter)="onMouseEnter(i)"
+      (mouseleave)="onMouseLeave()"
+      [attr.aria-expanded]="isActive(i)"
+      [attr.aria-controls]="'accordion-content-' + i"
+      role="button"
+      tabindex="0"
+      (keydown.enter)="toggle(i)"
+      (keydown.space)="toggle(i); $event.preventDefault()"
     >
-      <span class="sui-accordion-tab-header-label">{{ tab.header }}</span>
-      <span class="sui-accordion-tab-header-icon">
-        {{ isActive(i) ? '▼' : '▶' }}
-      </span>
+      <div class="sui-accordion-tab-header-content">
+        <span class="sui-accordion-tab-header-label">{{ tab.header }}</span>
+        <span class="sui-accordion-tab-header-icon" [class.sui-accordion-tab-header-icon-rotated]="isActive(i)">
+          <svg class="sui-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"></polyline>
+          </svg>
+        </span>
+      </div>
     </div>
     <div 
-      *ngIf="isActive(i)" 
       class="sui-accordion-tab-content"
+      [class.sui-accordion-tab-content-expanded]="isActive(i)"
+      [attr.id]="'accordion-content-' + i"
+      [attr.aria-hidden]="!isActive(i)"
+      role="region"
     >
       <div class="sui-accordion-tab-content-body">
-        <ng-content></ng-content>
+        <div class="sui-accordion-tab-content-inner" [innerHTML]="tab.content"></div>
       </div>
     </div>
   </div>

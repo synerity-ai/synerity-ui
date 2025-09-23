@@ -1,18 +1,31 @@
-<div class="sui-panel" [class]="getPanelClass()" [style]="getPanelStyle()">
+<div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden" [class]="styleClass" [style]="getPanelStyle()">
   <div 
     *ngIf="showHeader && header" 
-    class="sui-panel-header"
-    [class.sui-panel-header-toggleable]="toggleable"
+    class="px-4 py-3 border-b border-gray-200 bg-gray-50"
+    [class.cursor-pointer]="toggleable"
+    [class.hover:bg-gray-100]="toggleable"
     (click)="toggle()"
   >
-    <span class="sui-panel-header-text">{{ header }}</span>
-    <span *ngIf="toggleable" class="sui-panel-header-icon">
-      {{ collapsed ? '▶' : '▼' }}
-    </span>
+    <div class="flex items-center justify-between">
+      <h3 class="text-sm font-medium text-gray-900">{{ header }}</h3>
+      <button
+        *ngIf="toggleable"
+        type="button"
+        class="flex items-center justify-center w-5 h-5 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded"
+      >
+        <svg class="w-3 h-3 transition-transform duration-200" 
+             [class.rotate-90]="!collapsed"
+             fill="none" 
+             stroke="currentColor" 
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
   </div>
   <div 
     *ngIf="!collapsed" 
-    class="sui-panel-content"
+    class="p-4"
   >
     <ng-content></ng-content>
   </div>

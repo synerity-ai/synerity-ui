@@ -13,9 +13,9 @@ import { KeyFilter as SuiKeyFilter } from '../../../../../ui-lib/src/lib/key-fil
 })
 export class KeyfilterComponent {
   activeTab = 'demo';
-  showBasicCode = false;
-  showNumericCode = false;
-  showCustomCode = false;
+  showBasicKeyFilterCode = false;
+  showKeyFilterPatternsCode = false;
+  showKeyFilterStatesCode = false;
 
   // Demo data
   basicValue = '';
@@ -36,7 +36,9 @@ export class KeyfilterComponent {
     phone: ''
   };
   
-  showFormCode = false;
+  // Additional demo data
+  disabledValue = 'Disabled input';
+  
 
   onTabChange(tab: string): void {
     this.activeTab = tab;
@@ -44,17 +46,14 @@ export class KeyfilterComponent {
 
   toggleCode(type: string): void {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicKeyFilter':
+        this.showBasicKeyFilterCode = !this.showBasicKeyFilterCode;
         break;
-      case 'numeric':
-        this.showNumericCode = !this.showNumericCode;
+      case 'keyFilterPatterns':
+        this.showKeyFilterPatternsCode = !this.showKeyFilterPatternsCode;
         break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
-        break;
-      case 'form':
-        this.showFormCode = !this.showFormCode;
+      case 'keyFilterStates':
+        this.showKeyFilterStatesCode = !this.showKeyFilterStatesCode;
         break;
     }
   }

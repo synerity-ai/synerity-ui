@@ -1,91 +1,166 @@
-<div class="sui-pick-list">
-  <div class="sui-pick-list-source">
-    <div class="sui-pick-list-header">{{ sourceHeader }}</div>
-    
-    <div *ngIf="filter" class="sui-pick-list-filter">
-      <input
-        type="text"
-        [placeholder]="filterPlaceholder"
-        (input)="onSourceFilter($event)"
-        class="sui-pick-list-filter-input"
-      />
+<div class="flex gap-6 w-full">
+  <!-- Source List -->
+  <div class="flex-1 bg-white border border-gray-200 rounded-lg shadow-sm">
+    <!-- Source Header -->
+    <div class="px-4 py-3 border-b border-gray-200 bg-gray-50">
+      <h3 class="text-sm font-medium text-gray-900">{{ sourceHeader }}</h3>
     </div>
     
-    <div class="sui-pick-list-list">
+    <!-- Source Filter -->
+    <div *ngIf="filter" class="p-4 border-b border-gray-200">
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        <input
+          type="text"
+          [placeholder]="filterPlaceholder"
+          (input)="onSourceFilter($event)"
+          class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 text-sm"
+        />
+      </div>
+    </div>
+    
+    <!-- Source List -->
+    <div class="max-h-80 overflow-y-auto">
       <div
         *ngFor="let item of filteredSource; let i = index"
         (click)="selectSourceItem(item)"
-        class="sui-pick-list-item"
-        [class.sui-pick-list-item-selected]="isSourceSelected(item)"
+        class="flex items-center p-3 border-b border-gray-100 cursor-pointer transition-colors duration-150 hover:bg-gray-50"
+        [class.bg-primary-50]="isSourceSelected(item)"
+        [class.border-primary-200]="isSourceSelected(item)"
       >
-        {{ item.label || item.name || item }}
+        <input
+          type="checkbox"
+          [checked]="isSourceSelected(item)"
+          class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded mr-3"
+          (click)="$event.stopPropagation()"
+          (change)="selectSourceItem(item)"
+        />
+        <span class="text-sm text-gray-900 flex-1">{{ item.label || item.name || item }}</span>
+      </div>
+      
+      <!-- Empty State -->
+      <div *ngIf="filteredSource.length === 0" class="flex flex-col items-center justify-center py-8 px-4 text-center">
+        <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+          </svg>
+        </div>
+        <p class="text-sm text-gray-500">
+          {{ sourceFilterValue ? 'No items match your search' : 'No items available' }}
+        </p>
       </div>
     </div>
   </div>
   
-  <div class="sui-pick-list-buttons">
+  <!-- Control Buttons -->
+  <div class="flex flex-col justify-center items-center space-y-2">
     <button
       *ngIf="showSourceControls"
       type="button"
       (click)="moveToTarget()"
       [disabled]="selectedSourceItems.length === 0"
-      class="sui-pick-list-button"
+      class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
       title="Move to Target"
     >
-      ›
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
     </button>
     <button
       *ngIf="showSourceControls"
       type="button"
       (click)="moveAllToTarget()"
       [disabled]="source.length === 0"
-      class="sui-pick-list-button"
+      class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
       title="Move All to Target"
     >
-      »
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+      </svg>
     </button>
     <button
       *ngIf="showTargetControls"
       type="button"
       (click)="moveToSource()"
       [disabled]="selectedTargetItems.length === 0"
-      class="sui-pick-list-button"
+      class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
       title="Move to Source"
     >
-      ‹
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
     </button>
     <button
       *ngIf="showTargetControls"
       type="button"
       (click)="moveAllToSource()"
       [disabled]="target.length === 0"
-      class="sui-pick-list-button"
+      class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
       title="Move All to Source"
     >
-      «
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+      </svg>
     </button>
   </div>
   
-  <div class="sui-pick-list-target">
-    <div class="sui-pick-list-header">{{ targetHeader }}</div>
-    
-    <div *ngIf="filter" class="sui-pick-list-filter">
-      <input
-        type="text"
-        [placeholder]="filterPlaceholder"
-        (input)="onTargetFilter($event)"
-        class="sui-pick-list-filter-input"
-      />
+  <!-- Target List -->
+  <div class="flex-1 bg-white border border-gray-200 rounded-lg shadow-sm">
+    <!-- Target Header -->
+    <div class="px-4 py-3 border-b border-gray-200 bg-gray-50">
+      <h3 class="text-sm font-medium text-gray-900">{{ targetHeader }}</h3>
     </div>
     
-    <div class="sui-pick-list-list">
+    <!-- Target Filter -->
+    <div *ngIf="filter" class="p-4 border-b border-gray-200">
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        <input
+          type="text"
+          [placeholder]="filterPlaceholder"
+          (input)="onTargetFilter($event)"
+          class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 text-sm"
+        />
+      </div>
+    </div>
+    
+    <!-- Target List -->
+    <div class="max-h-80 overflow-y-auto">
       <div
         *ngFor="let item of filteredTarget; let i = index"
         (click)="selectTargetItem(item)"
-        class="sui-pick-list-item"
-        [class.sui-pick-list-item-selected]="isTargetSelected(item)"
+        class="flex items-center p-3 border-b border-gray-100 cursor-pointer transition-colors duration-150 hover:bg-gray-50"
+        [class.bg-primary-50]="isTargetSelected(item)"
+        [class.border-primary-200]="isTargetSelected(item)"
       >
-        {{ item.label || item.name || item }}
+        <input
+          type="checkbox"
+          [checked]="isTargetSelected(item)"
+          class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded mr-3"
+          (click)="$event.stopPropagation()"
+          (change)="selectTargetItem(item)"
+        />
+        <span class="text-sm text-gray-900 flex-1">{{ item.label || item.name || item }}</span>
+      </div>
+      
+      <!-- Empty State -->
+      <div *ngIf="filteredTarget.length === 0" class="flex flex-col items-center justify-center py-8 px-4 text-center">
+        <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+          </svg>
+        </div>
+        <p class="text-sm text-gray-500">
+          {{ targetFilterValue ? 'No items match your search' : 'No items available' }}
+        </p>
       </div>
     </div>
   </div>

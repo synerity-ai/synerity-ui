@@ -68,10 +68,12 @@ pre {
   @apply overflow-x-auto;
 }
 
-// Code block styles
+// Code block styles - override form data display
 .bg-gray-900 {
+  background-color: #111827 !important;
+  
   pre {
-    @apply text-sm;
+    @apply text-sm bg-transparent p-0 border-0;
     
     code {
       @apply font-mono;

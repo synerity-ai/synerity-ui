@@ -1,10 +1,10 @@
 <div 
   #scrollElement
-  class="sui-scroll-panel" 
-  [class]="getScrollPanelClass()"
+  class="w-full border border-gray-200 rounded-lg shadow-sm bg-white overflow-auto"
+  [class]="styleClass"
   [style]="getScrollPanelStyle()"
 >
-  <div class="sui-scroll-panel-content">
+  <div class="p-4">
     <ng-content></ng-content>
   </div>
 </div>

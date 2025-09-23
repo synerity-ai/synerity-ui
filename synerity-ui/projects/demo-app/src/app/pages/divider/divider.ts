@@ -1,37 +1,44 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Divider } from '../../../../../ui-lib/src/lib/divider/divider';
 import { Tabs } from '../../shared/tabs/tabs';
-import { Divider as SuiDivider } from '../../../../../ui-lib/src/lib/divider/divider';
 
 @Component({
   selector: 'app-divider',
-  imports: [CommonModule, FormsModule, Tabs, SuiDivider],
+  standalone: true,
+  imports: [CommonModule, FormsModule, Divider, Tabs],
   templateUrl: './divider.html',
-  styleUrl: './divider.scss'
+  styleUrls: ['./divider.scss']
 })
-export class Divider {
+export class DividerComponent {
   activeTab = 'demo';
-  
-  // Code visibility states
+
+  // Code visibility flags
   showBasicDividerCode = false;
-  showVerticalDividerCode = false;
-  showTextDividerCode = false;
-  
-  onTabChange(tab: string) {
-    this.activeTab = tab;
+  showDividerVariantsCode = false;
+  showDividerLayoutsCode = false;
+
+  // Demo data
+  dividerType: 'solid' | 'dashed' | 'dotted' = 'solid';
+  dividerLayout: 'horizontal' | 'vertical' = 'horizontal';
+  dividerAlign: 'left' | 'center' | 'right' = 'center';
+
+  // Event handlers
+  onTabChange(tabId: string): void {
+    this.activeTab = tabId;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicDivider':
+
+  toggleCode(codeType: string): void {
+    switch (codeType) {
+      case 'basic':
         this.showBasicDividerCode = !this.showBasicDividerCode;
         break;
-      case 'verticalDivider':
-        this.showVerticalDividerCode = !this.showVerticalDividerCode;
+      case 'variants':
+        this.showDividerVariantsCode = !this.showDividerVariantsCode;
         break;
-      case 'textDivider':
-        this.showTextDividerCode = !this.showTextDividerCode;
+      case 'layouts':
+        this.showDividerLayoutsCode = !this.showDividerLayoutsCode;
         break;
     }
   }

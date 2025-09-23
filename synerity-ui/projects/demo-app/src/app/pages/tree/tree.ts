@@ -1,126 +1,98 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
 import { Tree as SuiTree } from '../../../../../ui-lib/src/lib/tree/tree';
 
 @Component({
   selector: 'app-tree',
-  imports: [CommonModule, FormsModule, Tabs, SuiTree],
+  standalone: true,
+  imports: [CommonModule, Tabs, SuiTree],
   templateUrl: './tree.html',
   styleUrl: './tree.scss'
 })
 export class TreeComponent {
   activeTab = 'demo';
-  showBasicCode = false;
-  showSelectionCode = false;
-  showCustomCode = false;
+  showBasicTreeCode = false;
+  showSelectionTreeCode = false;
+  selectedNodes: any[] = [];
 
-  // Demo data
+  // Basic tree data
   basicTreeData = [
     {
-      key: '0',
+      key: 'documents',
       label: 'Documents',
-      data: 'Documents Folder',
+      expanded: true,
       children: [
         {
-          key: '0-0',
+          key: 'work',
           label: 'Work',
-          data: 'Work Folder',
+          expanded: false,
           children: [
-            { key: '0-0-0', label: 'Expenses.doc', data: 'Expenses Document' },
-            { key: '0-0-1', label: 'Resume.pdf', data: 'Resume Document' }
+            { key: 'project1', label: 'Project 1' },
+            { key: 'project2', label: 'Project 2' }
           ]
         },
         {
-          key: '0-1',
-          label: 'Home',
-          data: 'Home Folder',
+          key: 'personal',
+          label: 'Personal',
+          expanded: false,
           children: [
-            { key: '0-1-0', label: 'Invoices.txt', data: 'Invoices for this month' }
+            { key: 'photos', label: 'Photos' },
+            { key: 'videos', label: 'Videos' }
           ]
         }
       ]
     },
     {
-      key: '1',
-      label: 'Pictures',
-      data: 'Pictures Folder',
+      key: 'applications',
+      label: 'Applications',
+      expanded: false,
       children: [
-        { key: '1-0', label: 'barcelona.jpg', data: 'Barcelona Photo' },
-        { key: '1-1', label: 'logo.jpg', data: 'PrimeFaces Logo' },
-        { key: '1-2', label: 'primeui.png', data: 'PrimeUI Logo' }
-      ]
-    },
-    {
-      key: '2',
-      label: 'Movies',
-      data: 'Movies Folder',
-      children: [
-        {
-          key: '2-0',
-          label: 'Al Pacino',
-          data: 'Pacino Movies',
-          children: [
-            { key: '2-0-0', label: 'Scarface', data: 'Scarface Movie' },
-            { key: '2-0-1', label: 'Serpico', data: 'Serpico Movie' }
-          ]
-        },
-        {
-          key: '2-1',
-          label: 'Robert De Niro',
-          data: 'De Niro Movies',
-          children: [
-            { key: '2-1-0', label: 'Goodfellas', data: 'Goodfellas Movie' },
-            { key: '2-1-1', label: 'Untouchables', data: 'Untouchables Movie' }
-          ]
-        }
+        { key: 'app1', label: 'Application 1' },
+        { key: 'app2', label: 'Application 2' },
+        { key: 'app3', label: 'Application 3' }
       ]
     }
   ];
 
+  // Selection tree data
   selectionTreeData = [
     {
-      key: '0',
-      label: 'Documents',
-      data: 'Documents Folder',
-      selectable: true,
+      key: 'permissions',
+      label: 'User Permissions',
+      expanded: true,
       children: [
         {
-          key: '0-0',
-          label: 'Work',
-          data: 'Work Folder',
-          selectable: true,
+          key: 'admin',
+          label: 'Admin',
+          expanded: false,
           children: [
-            { key: '0-0-0', label: 'Expenses.doc', data: 'Expenses Document', selectable: true },
-            { key: '0-0-1', label: 'Resume.pdf', data: 'Resume Document', selectable: true }
+            { key: 'admin-users', label: 'Manage Users' },
+            { key: 'admin-settings', label: 'System Settings' }
           ]
         },
         {
-          key: '0-1',
-          label: 'Home',
-          data: 'Home Folder',
-          selectable: true,
+          key: 'user',
+          label: 'User',
+          expanded: false,
           children: [
-            { key: '0-1-0', label: 'Invoices.txt', data: 'Invoices for this month', selectable: true }
+            { key: 'user-profile', label: 'View Profile' },
+            { key: 'user-edit', label: 'Edit Profile' }
           ]
         }
       ]
     },
     {
-      key: '1',
-      label: 'Pictures',
-      data: 'Pictures Folder',
-      selectable: true,
+      key: 'modules',
+      label: 'Modules',
+      expanded: false,
       children: [
-        { key: '1-0', label: 'barcelona.jpg', data: 'Barcelona Photo', selectable: true },
-        { key: '1-1', label: 'logo.jpg', data: 'PrimeFaces Logo', selectable: true }
+        { key: 'dashboard', label: 'Dashboard' },
+        { key: 'reports', label: 'Reports' },
+        { key: 'analytics', label: 'Analytics' }
       ]
     }
   ];
-
-  selectedNodes: any[] = [];
-  selectedNode: any = null;
 
   onTabChange(tab: string): void {
     this.activeTab = tab;
@@ -128,43 +100,33 @@ export class TreeComponent {
 
   toggleCode(type: string): void {
     switch (type) {
-      case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+      case 'basicTree':
+        this.showBasicTreeCode = !this.showBasicTreeCode;
         break;
-      case 'selection':
-        this.showSelectionCode = !this.showSelectionCode;
-        break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'selectionTree':
+        this.showSelectionTreeCode = !this.showSelectionTreeCode;
         break;
     }
   }
 
-  onNodeSelect(event: any): void {
-    console.log('Node selected:', event);
-    this.selectedNode = event;
+  onNodeSelect(node: any): void {
+    console.log('Node selected:', node);
   }
 
-  onNodeUnselect(event: any): void {
-    console.log('Node unselected:', event);
-    this.selectedNode = null;
+  onNodeExpand(node: any): void {
+    console.log('Node expanded:', node);
   }
 
-  onSelectionChange(event: any): void {
-    console.log('Selection changed:', event);
-    this.selectedNodes = event;
+  onNodeCollapse(node: any): void {
+    console.log('Node collapsed:', node);
   }
 
-  onNodeExpand(event: any): void {
-    console.log('Node expanded:', event);
+  onSelectionChange(selection: any[]): void {
+    this.selectedNodes = selection;
+    console.log('Selection changed:', selection);
   }
 
-  onNodeCollapse(event: any): void {
-    console.log('Node collapsed:', event);
-  }
-
-  getSelectedNodesText(): string {
-    if (this.selectedNodes.length === 0) return 'No nodes selected';
-    return this.selectedNodes.map(node => node.label).join(', ');
+  clearSelection(): void {
+    this.selectedNodes = [];
   }
 }

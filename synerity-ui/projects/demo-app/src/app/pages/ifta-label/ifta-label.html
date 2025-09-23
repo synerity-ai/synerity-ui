@@ -1,0 +1,271 @@
+<div class="ifta-label-demo">
+  <div class="demo-header">
+    <h1>IftaLabel Component</h1>
+    <p>Conditional label component that displays different labels based on a condition with support for true, false, and alternative labels.</p>
+  </div>
+
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)"
+  ></app-tabs>
+
+  <!-- Demo Tab -->
+  <div *ngIf="activeTab === 'demo'" class="demo-content">
+    <!-- Basic IftaLabel -->
+    <div class="demo-section">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold text-gray-800">Basic IftaLabel</h2>
+        <button 
+          (click)="toggleCode('basic')"
+          class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+        >
+          {{ showBasicIftaLabelCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <sui-ifta-label 
+              [condition]="basicCondition"
+              [trueLabel]="basicTrueLabel"
+              [falseLabel]="basicFalseLabel"
+            ></sui-ifta-label>
+            <button 
+              (click)="toggleBasicCondition()"
+              class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+            >
+              Toggle Condition
+            </button>
+          </div>
+          <p class="text-sm text-gray-600">
+            Current condition: <span class="font-mono">{{ basicCondition }}</span>
+          </p>
+        </div>
+        
+        <!-- Code Example -->
+        <div *ngIf="showBasicIftaLabelCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-ifta-label 
+  [condition]="true"
+  [trueLabel]="'Active'"
+  [falseLabel]="'Inactive'"
+&gt;&lt;/sui-ifta-label&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- IftaLabel Variants -->
+    <div class="demo-section">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold text-gray-800">IftaLabel Variants</h2>
+        <button 
+          (click)="toggleCode('variants')"
+          class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+        >
+          {{ showIftaLabelVariantsCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <sui-ifta-label 
+              [condition]="variantCondition"
+              [trueLabel]="variantTrueLabel"
+              [falseLabel]="variantFalseLabel"
+              [altLabel]="variantAltLabel"
+            ></sui-ifta-label>
+            <button 
+              (click)="toggleVariantCondition()"
+              class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors"
+            >
+              Toggle Status
+            </button>
+          </div>
+          <p class="text-sm text-gray-600">
+            Shows alternative label when condition is false and altLabel is provided.
+          </p>
+        </div>
+        
+        <!-- Code Example -->
+        <div *ngIf="showIftaLabelVariantsCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-ifta-label 
+  [condition]="false"
+  [trueLabel]="'Online'"
+  [falseLabel]="'Offline'"
+  [altLabel]="'Maintenance'"
+&gt;&lt;/sui-ifta-label&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- IftaLabel States -->
+    <div class="demo-section">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold text-gray-800">IftaLabel States</h2>
+        <button 
+          (click)="toggleCode('states')"
+          class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+        >
+          {{ showIftaLabelStatesCode ? 'Hide' : 'Show' }} Code
+        </button>
+      </div>
+      
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <sui-ifta-label 
+              [condition]="stateCondition"
+              [trueLabel]="stateTrueLabel"
+              [falseLabel]="stateFalseLabel"
+              [altLabel]="stateAltLabel"
+              styleClass="custom-state-label"
+            ></sui-ifta-label>
+            <button 
+              (click)="toggleStateCondition()"
+              class="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition-colors"
+            >
+              Toggle Connection
+            </button>
+          </div>
+          <p class="text-sm text-gray-600">
+            Custom styling with styleClass for different visual states.
+          </p>
+        </div>
+        
+        <!-- Code Example -->
+        <div *ngIf="showIftaLabelStatesCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-ifta-label 
+  [condition]="true"
+  [trueLabel]="'Connected'"
+  [falseLabel]="'Disconnected'"
+  [altLabel]="'Connecting...'"
+  styleClass="custom-state-label"
+&gt;&lt;/sui-ifta-label&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Tab -->
+  <div *ngIf="activeTab === 'usage'" class="demo-content">
+    <div class="space-y-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Installation</h2>
+        <div class="bg-gray-900 text-white p-4 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>npm install @synerity/ui</code></pre>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Basic Usage</h2>
+        <p class="text-gray-600 mb-4">
+          The IftaLabel component displays different labels based on a condition. It supports three types of labels:
+        </p>
+        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-2">
+          <li><strong>trueLabel</strong>: Displayed when condition is true</li>
+          <li><strong>falseLabel</strong>: Displayed when condition is false</li>
+          <li><strong>altLabel</strong>: Alternative label displayed when condition is false (takes precedence over falseLabel)</li>
+        </ul>
+        <div class="bg-gray-900 text-white p-4 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-ifta-label 
+  [condition]="isActive"
+  [trueLabel]="'Active'"
+  [falseLabel]="'Inactive'"
+  [altLabel]="'Maintenance'"
+&gt;&lt;/sui-ifta-label&gt;</code></pre>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Styling</h2>
+        <p class="text-gray-600 mb-4">
+          You can customize the appearance using styleClass and style properties:
+        </p>
+        <div class="bg-gray-900 text-white p-4 rounded-lg">
+          <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-ifta-label 
+  [condition]="status"
+  [trueLabel]="'Online'"
+  [falseLabel]="'Offline'"
+  styleClass="status-badge"
+  [style]="&#123;'font-weight': 'bold'&#125;"
+&gt;&lt;/sui-ifta-label&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Tab -->
+  <div *ngIf="activeTab === 'docs'" class="demo-content">
+    <div class="space-y-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Props</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">condition</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Condition that determines which label to display</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">trueLabel</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Label displayed when condition is true</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">falseLabel</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Label displayed when condition is false</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">altLabel</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Alternative label displayed when condition is false (takes precedence over falseLabel)</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Custom CSS class for styling</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Inline styles object</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Accessibility</h2>
+        <ul class="list-disc list-inside text-gray-600 space-y-2">
+          <li>Semantic HTML with proper span elements</li>
+          <li>Screen reader friendly with clear label content</li>
+          <li>Supports custom styling for high contrast modes</li>
+          <li>No keyboard interaction required (display-only component)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

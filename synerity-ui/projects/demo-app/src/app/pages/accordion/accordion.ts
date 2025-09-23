@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Accordion } from 'ui-lib';
+import { Tabs } from '../../shared/tabs/tabs';
 
 @Component({
   selector: 'app-accordion',
   standalone: true,
-  imports: [CommonModule, Accordion],
+  imports: [CommonModule, Accordion, Tabs],
   templateUrl: './accordion.html',
   styleUrls: ['./accordion.scss']
 })
 export class AccordionComponent {
-  activeTab = 0;
-  showBasicCode = false;
-  showMultipleCode = false;
-  showCustomCode = false;
+  activeTab = 'demo';
+  showBasicAccordionCode = false;
+  showAccordionVariantsCode = false;
+  showAccordionStatesCode = false;
 
   // Demo data
   basicTabs = [
@@ -98,20 +99,20 @@ export class AccordionComponent {
     }
   ];
 
-  onTabChange(index: number): void {
-    this.activeTab = index;
+  onTabChange(tabId: string): void {
+    this.activeTab = tabId;
   }
 
   toggleCode(type: string): void {
     switch (type) {
       case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+        this.showBasicAccordionCode = !this.showBasicAccordionCode;
         break;
-      case 'multiple':
-        this.showMultipleCode = !this.showMultipleCode;
+      case 'variants':
+        this.showAccordionVariantsCode = !this.showAccordionVariantsCode;
         break;
-      case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+      case 'states':
+        this.showAccordionStatesCode = !this.showAccordionStatesCode;
         break;
     }
   }

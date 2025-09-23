@@ -3,6 +3,7 @@ import { NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-knob',
+  standalone: true,
   imports: [CommonModule, NgIf],
   templateUrl: './knob.html',
   styleUrl: './knob.scss',
@@ -20,6 +21,10 @@ export class Knob {
   @Input() showValue = true;
   @Input() style: any = {};
   @Input() styleClass = '';
+  @Input() label = '';
+  @Input() unit = '';
+  @Input() showTicks = true;
+  @Input() tickCount = 12;
   @Output() onChange = new EventEmitter<number>();
 
   @ViewChild('knobElement') knobElement!: ElementRef;
@@ -112,8 +117,11 @@ export class Knob {
 
   getProgressStyle(): any {
     const percentage = ((this.value - this.min) / (this.max - this.min)) * 100;
+    const radius = 42;
+    const circumference = 2 * Math.PI * radius;
+    const strokeDasharray = (percentage / 100) * circumference;
     return {
-      strokeDasharray: `${percentage * 2.83} 283`,
+      strokeDasharray: `${strokeDasharray} ${circumference}`,
       strokeWidth: this.strokeWidth
     };
   }
@@ -132,5 +140,43 @@ export class Knob {
 
   shouldShowValue(): boolean {
     return this.showValue;
+  }
+
+  getIndicatorStyle(): any {
+    const percentage = ((this.value - this.min) / (this.max - this.min)) * 100;
+    const angle = (percentage / 100) * 360 - 90; // Start from top (-90 degrees)
+    const radius = 35; // Distance from center
+    const centerX = 50;
+    const centerY = 50;
+    
+    const x = centerX + radius * Math.cos(angle * Math.PI / 180);
+    const y = centerY + radius * Math.sin(angle * Math.PI / 180);
+    
+    return {
+      cx: x,
+      cy: y
+    };
+  }
+
+  getTickMarks(): Array<{x1: number, y1: number, x2: number, y2: number}> {
+    if (!this.showTicks) return [];
+    
+    const ticks = [];
+    const radius = 38;
+    const tickLength = 2;
+    const centerX = 50;
+    const centerY = 50;
+    
+    for (let i = 0; i < this.tickCount; i++) {
+      const angle = (i / this.tickCount) * 360 - 90; // Start from top
+      const x1 = centerX + radius * Math.cos(angle * Math.PI / 180);
+      const y1 = centerY + radius * Math.sin(angle * Math.PI / 180);
+      const x2 = centerX + (radius - tickLength) * Math.cos(angle * Math.PI / 180);
+      const y2 = centerY + (radius - tickLength) * Math.sin(angle * Math.PI / 180);
+      
+      ticks.push({ x1, y1, x2, y2 });
+    }
+    
+    return ticks;
   }
 }

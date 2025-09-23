@@ -1,64 +1,92 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
-import { Stepper as SuiStepper } from 'ui-lib';
+import { Stepper as SuiStepper } from '../../../../../ui-lib/src/lib/stepper/stepper';
 
 @Component({
   selector: 'app-stepper',
-  imports: [CommonModule, FormsModule, Tabs, SuiStepper],
+  standalone: true,
+  imports: [CommonModule, Tabs, SuiStepper],
   templateUrl: './stepper.html',
   styleUrl: './stepper.scss'
 })
-export class Stepper {
+export class StepperComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  currentStep = 0;
-  stepperItems = [
-    { label: 'Personal Info', icon: '👤' },
-    { label: 'Contact Details', icon: '📞' },
-    { label: 'Review', icon: '📋' },
-    { label: 'Complete', icon: '✅' }
-  ];
-  
-  // Code visibility states
-  showBasicStepperCode = false;
+  showBasicHorizontalStepperCode = false;
   showVerticalStepperCode = false;
-  showCustomStepperCode = false;
-  
-  onTabChange(tab: string) {
+  showLinearStepperCode = false;
+
+  // Basic stepper
+  activeIndex = 0;
+  basicSteps = [
+    { label: 'Personal Info' },
+    { label: 'Contact Info' },
+    { label: 'Review' }
+  ];
+
+  // Vertical stepper
+  verticalActiveIndex = 0;
+  verticalSteps = [
+    { label: 'Setup Account' },
+    { label: 'Configure Settings' },
+    { label: 'Import Data' },
+    { label: 'Complete Setup' }
+  ];
+
+  // Linear stepper
+  linearActiveIndex = 0;
+  linearSteps = [
+    { label: 'Basic Info', completed: false },
+    { label: 'Advanced Settings', completed: false },
+    { label: 'Final Review', completed: false }
+  ];
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicStepper':
-        this.showBasicStepperCode = !this.showBasicStepperCode;
+
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basicHorizontalStepper':
+        this.showBasicHorizontalStepperCode = !this.showBasicHorizontalStepperCode;
         break;
       case 'verticalStepper':
         this.showVerticalStepperCode = !this.showVerticalStepperCode;
         break;
-      case 'customStepper':
-        this.showCustomStepperCode = !this.showCustomStepperCode;
+      case 'linearStepper':
+        this.showLinearStepperCode = !this.showLinearStepperCode;
         break;
     }
   }
-  
-  // Stepper demo methods
-  nextStep() {
-    if (this.currentStep < this.stepperItems.length - 1) {
-      this.currentStep++;
+
+  onActiveIndexChange(index: number): void {
+    this.activeIndex = index;
+  }
+
+  onVerticalActiveIndexChange(index: number): void {
+    this.verticalActiveIndex = index;
+  }
+
+  onLinearActiveIndexChange(index: number): void {
+    this.linearActiveIndex = index;
+  }
+
+  nextStep(): void {
+    if (this.activeIndex < this.basicSteps.length - 1) {
+      this.activeIndex++;
     }
   }
-  
-  prevStep() {
-    if (this.currentStep > 0) {
-      this.currentStep--;
+
+  previousStep(): void {
+    if (this.activeIndex > 0) {
+      this.activeIndex--;
     }
   }
-  
-  goToStep(step: number) {
-    this.currentStep = step;
+
+  completeLinearStep(index: number): void {
+    this.linearSteps[index].completed = true;
+    if (index < this.linearSteps.length - 1) {
+      this.linearActiveIndex = index + 1;
+    }
   }
 }

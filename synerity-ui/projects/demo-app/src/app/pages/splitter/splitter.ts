@@ -1,47 +1,45 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Tabs } from '../../shared/tabs/tabs';
-import { Splitter as SuiSplitter } from 'ui-lib';
+import { Splitter as SuiSplitter } from '../../../../../ui-lib/src/lib/splitter/splitter';
 
 @Component({
   selector: 'app-splitter',
-  imports: [CommonModule, FormsModule, Tabs, SuiSplitter],
+  standalone: true,
+  imports: [CommonModule, Tabs, SuiSplitter],
   templateUrl: './splitter.html',
   styleUrl: './splitter.scss'
 })
-export class Splitter {
+export class SplitterComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  splitterSizes = [30, 70];
-  verticalSplitterSizes = [40, 60];
-  
-  // Code visibility states
-  showBasicSplitterCode = false;
+  showHorizontalSplitterCode = false;
   showVerticalSplitterCode = false;
-  showNestedSplitterCode = false;
-  
-  onTabChange(tab: string) {
+  showCustomGutterSplitterCode = false;
+  gutterSize = 8;
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicSplitter':
-        this.showBasicSplitterCode = !this.showBasicSplitterCode;
+
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'horizontalSplitter':
+        this.showHorizontalSplitterCode = !this.showHorizontalSplitterCode;
         break;
       case 'verticalSplitter':
         this.showVerticalSplitterCode = !this.showVerticalSplitterCode;
         break;
-      case 'nestedSplitter':
-        this.showNestedSplitterCode = !this.showNestedSplitterCode;
+      case 'customGutterSplitter':
+        this.showCustomGutterSplitterCode = !this.showCustomGutterSplitterCode;
         break;
     }
   }
-  
-  // Splitter demo methods
-  onResize(event: any) {
-    console.log('Splitter resized:', event);
+
+  onResizeEnd(event: any): void {
+    console.log('Resize ended:', event);
+  }
+
+  updateGutterSize(event: any): void {
+    this.gutterSize = +event.target.value;
   }
 }

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'sui-divider',
+  standalone: true,
   imports: [],
   templateUrl: './divider.html',
   styleUrl: './divider.css',

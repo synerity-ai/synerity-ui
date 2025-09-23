@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Panel</h1>
-    <p class="text-lg text-gray-600">Collapsible content panel with header, body, and footer sections.</p>
+    <p class="text-lg text-gray-600">Container component with optional header and collapsible content for organizing related information.</p>
   </div>
 
   <!-- Tabs -->
@@ -34,77 +34,215 @@
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
               <sui-panel header="Basic Panel">
-                <div class="p-4">
-                  <p class="text-gray-600">This is the content area of the panel. You can put any content here including forms, text, images, and other components.</p>
+                <p class="text-gray-600">This is a basic panel with a header and content. The panel provides a clean container for organizing related information.</p>
+                <div class="mt-4 p-3 bg-gray-50 rounded-md">
+                  <h4 class="font-medium text-gray-900 mb-2">Panel Features</h4>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Clean, modern design</li>
+                    <li>• Optional header</li>
+                    <li>• Flexible content area</li>
+                    <li>• Consistent styling</li>
+                  </ul>
                 </div>
               </sui-panel>
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showBasicPanelCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-panel header="Basic Panel"&gt;
-  &lt;div class="p-4"&gt;
-    &lt;p&gt;Panel content goes here&lt;/p&gt;
+            <div *ngIf="showBasicPanelCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-panel header="Basic Panel"&gt;
+  &lt;p class="text-gray-600"&gt;This is a basic panel with a header and content.&lt;/p&gt;
+  &lt;div class="mt-4 p-3 bg-gray-50 rounded-md"&gt;
+    &lt;h4 class="font-medium text-gray-900 mb-2"&gt;Panel Features&lt;/h4&gt;
+    &lt;ul class="text-sm text-gray-600 space-y-1"&gt;
+      &lt;li&gt;• Clean, modern design&lt;/li&gt;
+      &lt;li&gt;• Optional header&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/div&gt;
 &lt;/sui-panel&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Collapsible Panel -->
+        <!-- Toggleable Panel -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Collapsible Panel</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Toggleable Panel</h3>
             <button 
-              (click)="toggleCode('collapsiblePanel')"
+              (click)="toggleCode('toggleablePanel')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showCollapsiblePanelCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showToggleablePanelCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
               <sui-panel 
-                header="Collapsible Panel"
+                header="Toggleable Panel" 
                 [toggleable]="true"
                 [collapsed]="panelCollapsed"
-                (onToggle)="togglePanel()">
-                <div class="p-4">
-                  <p class="text-gray-600">This panel can be collapsed and expanded by clicking the header.</p>
-                  <div class="mt-4">
-                    <button 
-                      (click)="togglePanel()"
-                      class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-                      {{ panelCollapsed ? 'Expand' : 'Collapse' }} Panel
-                    </button>
+                (onToggle)="onPanelToggle($event)">
+                <div class="space-y-4">
+                  <p class="text-gray-600">This panel can be collapsed and expanded by clicking the header. The content will be hidden when collapsed.</p>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-blue-50 rounded-lg">
+                      <h4 class="font-medium text-blue-900 mb-2">Feature 1</h4>
+                      <p class="text-sm text-blue-700">Collapsible content for better space management.</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg">
+                      <h4 class="font-medium text-green-900 mb-2">Feature 2</h4>
+                      <p class="text-sm text-green-700">Smooth animations and transitions.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-center gap-4 p-3 bg-yellow-50 rounded-lg">
+                    <div class="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center">
+                      <span class="text-yellow-800 text-sm">!</span>
+                    </div>
+                    <p class="text-sm text-yellow-800">Click the header to toggle this panel's visibility.</p>
                   </div>
                 </div>
               </sui-panel>
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showCollapsiblePanelCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-panel 
-  header="Collapsible Panel"
+            <div *ngIf="showToggleablePanelCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-panel 
+  header="Toggleable Panel" 
   [toggleable]="true"
   [collapsed]="panelCollapsed"
-  (onToggle)="togglePanel()"&gt;
-  &lt;div class="p-4"&gt;
-    &lt;p&gt;Panel content goes here&lt;/p&gt;
+  (onToggle)="onPanelToggle($event)"&gt;
+  &lt;div class="space-y-4"&gt;
+    &lt;p class="text-gray-600"&gt;This panel can be collapsed and expanded.&lt;/p&gt;
+    &lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
+      &lt;div class="p-4 bg-blue-50 rounded-lg"&gt;
+        &lt;h4 class="font-medium text-blue-900 mb-2"&gt;Feature 1&lt;/h4&gt;
+        &lt;p class="text-sm text-blue-700"&gt;Collapsible content.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/sui-panel&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Coming Soon Placeholder -->
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">🚧</span>
-            <div>
-              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
-              <p class="text-blue-700">Panel with footer, custom styling, and advanced features will be added soon.</p>
+        <!-- Panel without Header -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Panel without Header</h3>
+            <button 
+              (click)="toggleCode('noHeaderPanel')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showNoHeaderPanelCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <sui-panel [showHeader]="false">
+                <div class="text-center py-8">
+                  <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-lg font-medium text-gray-900 mb-2">No Header Panel</h3>
+                  <p class="text-gray-600">This panel doesn't have a header, providing a clean container for content without any title or controls.</p>
+                </div>
+              </sui-panel>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showNoHeaderPanelCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-panel [showHeader]="false"&gt;
+  &lt;div class="text-center py-8"&gt;
+    &lt;div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4"&gt;
+      &lt;svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+        &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"&gt;&lt;/path&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900 mb-2"&gt;No Header Panel&lt;/h3&gt;
+    &lt;p class="text-gray-600"&gt;This panel doesn't have a header.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-panel&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multiple Panels -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Multiple Panels</h3>
+            <button 
+              (click)="toggleCode('multiplePanels')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showMultiplePanelsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <sui-panel header="User Information" [toggleable]="true">
+                <div class="space-y-3">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                      <span class="text-primary-600 font-semibold">JD</span>
+                    </div>
+                    <div>
+                      <h4 class="font-medium text-gray-900">John Doe</h4>
+                      <p class="text-sm text-gray-500">john.doe@example.com</p>
+                    </div>
+                  </div>
+                  <div class="pt-3 border-t border-gray-200">
+                    <p class="text-sm text-gray-600"><span class="font-medium">Role:</span> Administrator</p>
+                    <p class="text-sm text-gray-600"><span class="font-medium">Last Login:</span> 2 hours ago</p>
+                  </div>
+                </div>
+              </sui-panel>
+
+              <sui-panel header="Quick Actions" [toggleable]="true">
+                <div class="space-y-3">
+                  <button class="w-full px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors">
+                    Edit Profile
+                  </button>
+                  <button class="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
+                    Change Password
+                  </button>
+                  <button class="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
+                    View Activity
+                  </button>
+                </div>
+              </sui-panel>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showMultiplePanelsCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;div class="grid grid-cols-1 lg:grid-cols-2 gap-6"&gt;
+  &lt;sui-panel header="User Information" [toggleable]="true"&gt;
+    &lt;div class="space-y-3"&gt;
+      &lt;div class="flex items-center gap-3"&gt;
+        &lt;div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center"&gt;
+          &lt;span class="text-primary-600 font-semibold"&gt;JD&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;h4 class="font-medium text-gray-900"&gt;John Doe&lt;/h4&gt;
+          &lt;p class="text-sm text-gray-500"&gt;john.doe@example.com&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/sui-panel&gt;
+
+  &lt;sui-panel header="Quick Actions" [toggleable]="true"&gt;
+    &lt;div class="space-y-3"&gt;
+      &lt;button class="w-full px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"&gt;
+        Edit Profile
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/sui-panel&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -123,53 +261,6 @@
             <p class="text-gray-600 mb-4">The Panel component is part of the Synerity UI library. Install it using npm:</p>
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
               <code>npm install @synerity/ui</code>
-            </div>
-          </div>
-        </div>
-
-        <!-- Basic Usage -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Import and use the Panel component in your Angular application:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>import &#123; Panel &#125; from '@synerity/ui';
-
-&#64;Component(&#123;
-  template: `
-    &lt;sui-panel header="My Panel"&gt;
-      &lt;div class="p-4"&gt;
-        &lt;p&gt;Panel content&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/sui-panel&gt;
-  `
-&#125;)
-export class MyComponent &#123;&#125;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Panel Features -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Panel Features</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-gray-900">Header Section</h4>
-                <p class="text-gray-600">Display title and optional toggle button</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Body Section</h4>
-                <p class="text-gray-600">Main content area with flexible layout</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Footer Section</h4>
-                <p class="text-gray-600">Optional footer for actions or additional info</p>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900">Collapsible</h4>
-                <p class="text-gray-600">Toggle panel visibility with smooth animations</p>
-              </div>
             </div>
           </div>
         </div>
@@ -200,85 +291,23 @@ export class MyComponent &#123;&#125;</code></pre>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">header</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Panel header text</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Header text for the panel</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">toggleable</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether the panel can be collapsed</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the panel can be collapsed/expanded</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">collapsed</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether the panel is collapsed</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the panel</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">CSS class for the panel</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Initial collapsed state</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
-
-        <!-- Events -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="overflow-x-auto">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onToggle</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;any&gt;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when panel is toggled</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Accessibility -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Keyboard navigation support</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>ARIA attributes for screen readers</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Focus management for collapsible panels</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Expand/collapse state announcements</span>
-              </li>
-            </ul>
           </div>
         </div>
 

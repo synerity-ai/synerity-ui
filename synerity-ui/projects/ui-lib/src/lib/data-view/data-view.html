@@ -1,19 +1,39 @@
-<div class="sui-data-view" [class]="getLayoutClass()">
-  <div *ngIf="paginatedValue.length === 0" class="sui-data-view-empty">
-    {{ emptyMessage }}
+<div class="w-full">
+  <!-- Empty State -->
+  <div *ngIf="paginatedValue.length === 0" class="flex flex-col items-center justify-center py-12 px-4 text-center">
+    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+      <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+      </svg>
+    </div>
+    <h3 class="text-lg font-medium text-gray-900 mb-2">No data available</h3>
+    <p class="text-gray-500">{{ emptyMessage }}</p>
   </div>
   
-  <div *ngIf="layout === 'list'" class="sui-data-view-list">
-    <div *ngFor="let item of paginatedValue; let i = index" class="sui-data-view-list-item">
-      <ng-content></ng-content>
+  <!-- List Layout -->
+  <div *ngIf="layout === 'list' && paginatedValue.length > 0" class="space-y-4">
+    <div *ngFor="let item of paginatedValue; let i = index" 
+         class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+      <ng-container *ngIf="itemTemplate; else defaultContent">
+        <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item, index: i }"></ng-container>
+      </ng-container>
+      <ng-template #defaultContent>
+        <ng-content></ng-content>
+      </ng-template>
     </div>
   </div>
   
-  <div *ngIf="layout === 'grid'" class="sui-data-view-grid">
-    <div *ngFor="let item of paginatedValue; let i = index" class="sui-data-view-grid-item">
-      <ng-content></ng-content>
+  <!-- Grid Layout -->
+  <div *ngIf="layout === 'grid' && paginatedValue.length > 0" 
+       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div *ngFor="let item of paginatedValue; let i = index" 
+         class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+      <ng-container *ngIf="itemTemplate; else defaultContent">
+        <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item, index: i }"></ng-container>
+      </ng-container>
+      <ng-template #defaultContent>
+        <ng-content></ng-content>
+      </ng-template>
     </div>
   </div>
-  
-  <!-- Pagination controls would be implemented separately to avoid circular dependency -->
 </div>
