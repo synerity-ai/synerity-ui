@@ -7,7 +7,7 @@ export interface DonationConfig {
 
 export const DONATION_CONFIG: DonationConfig = {
   // Replace with your actual PayPal email
-  paypalEmail: 'YOUR_PAYPAL_EMAIL@example.com',
+  paypalEmail: 'bhushangadekar01@gmail.com',
   
   // Default donation amount
   defaultAmount: '5.00',
