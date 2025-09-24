@@ -7,6 +7,7 @@
     "build": "ng build",
     "build:lib": "ng build ui-lib",
     "build:demo": "ng build demo-app --configuration production",
+    "build:demo:gh-pages": "ng build demo-app --configuration production --base-href /synerity-ui/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "publish:lib": "cd dist/ui-lib && npm publish",
