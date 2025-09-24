@@ -1,63 +1,150 @@
-# UiLib
+# @synerity/ui
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
+A comprehensive Angular UI component library with 90+ components including forms, data display, navigation, and utility components.
 
-## Code scaffolding
+## 🚀 Features
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **90+ Components**: Complete set of UI components for Angular applications
+- **Angular 17+ Support**: Compatible with Angular 17, 18, 19, and 20
+- **Tailwind CSS**: Built with Tailwind CSS for modern styling
+- **TypeScript**: Fully typed components with excellent IDE support
+- **Standalone Components**: Modern Angular standalone component architecture
+- **Accessibility**: WCAG compliant components with proper ARIA support
+- **Responsive**: Mobile-first responsive design
+- **Customizable**: Easy theming and customization options
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the library, run:
+## 📦 Installation
 
 ```bash
-ng build ui-lib
+npm install @synerity/ui
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+## 🎯 Quick Start
 
-### Publishing the Library
+### 1. Import the component you need
 
-Once the project is built, you can publish your library by following these steps:
+```typescript
+import { Button } from '@synerity/ui';
 
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/ui-lib
-   ```
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [Button],
+  template: `
+    <sui-button label="Click me" severity="primary"></sui-button>
+  `
+})
+export class ExampleComponent {}
+```
 
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 2. Add Tailwind CSS to your project
 
 ```bash
-ng test
+npm install -D tailwindcss
+npx tailwindcss init
 ```
 
-## Running end-to-end tests
+Update your `tailwind.config.js`:
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+```javascript
+module.exports = {
+  content: [
+    "./src/**/*.{html,ts}",
+    "./node_modules/@synerity/ui/**/*.{html,ts}"
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🧩 Component Categories
 
-## Additional Resources
+### Foundation Components
+- **Button** - Various button styles and states
+- **InputText** - Text input with validation
+- **InputTextarea** - Multi-line text input
+- **Card** - Content container with header and footer
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Form Components
+- **Checkbox** - Checkbox input with labels
+- **RadioButton** - Radio button groups
+- **Select** - Dropdown selection
+- **DatePicker** - Date selection component
+- **ColorPicker** - Color selection
+- **Slider** - Range input slider
+- **Rating** - Star rating component
+- **ToggleSwitch** - On/off toggle switch
+
+### Data Display
+- **Table** - Feature-rich data table
+- **DataView** - Flexible data display
+- **Tree** - Hierarchical data display
+- **TreeTable** - Tree structure in table format
+- **Paginator** - Data pagination
+- **Timeline** - Chronological data display
+
+### Navigation
+- **Menu** - Application navigation menu
+- **Menubar** - Horizontal menu bar
+- **Breadcrumb** - Navigation breadcrumbs
+- **Tabs** - Tabbed content interface
+- **Accordion** - Collapsible content sections
+
+### Overlay Components
+- **Dialog** - Modal dialogs
+- **Tooltip** - Contextual information
+- **Popover** - Floating content
+- **Sidebar** - Slide-out panel
+- **OverlayPanel** - Floating panel
+
+### Utility Components
+- **ProgressBar** - Progress indication
+- **ProgressSpinner** - Loading spinner
+- **Badge** - Status indicators
+- **Avatar** - User profile images
+- **Tag** - Label components
+- **Chip** - Compact information chips
+
+## 🎨 Theming
+
+All components support Tailwind CSS classes and can be customized using CSS custom properties:
+
+```css
+:root {
+  --sui-primary-color: #3b82f6;
+  --sui-secondary-color: #6b7280;
+  --sui-success-color: #10b981;
+  --sui-warning-color: #f59e0b;
+  --sui-danger-color: #ef4444;
+}
+```
+
+## 📚 Documentation
+
+- **Live Demo**: [View all components in action](https://synerity-ai.github.io/synerity-ui/)
+- **Component API**: Each component has detailed documentation with examples
+- **GitHub Repository**: [Source code and issues](https://github.com/synerity-ai/synerity-ui)
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](https://github.com/synerity-ai/synerity-ui/blob/main/CONTRIBUTING.md) for details.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/synerity-ai/synerity-ui/blob/main/LICENSE) file for details.
+
+## 🆘 Support
+
+- **Issues**: [GitHub Issues](https://github.com/synerity-ai/synerity-ui/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/synerity-ai/synerity-ui/discussions)
+- **Email**: support@synerity.ai
+
+## 🔗 Related Packages
+
+- [@synerity/charts](https://www.npmjs.com/package/@synerity/charts) - Chart components for Angular
+
+---
+
+Made with ❤️ by [Synerity AI](https://synerity.ai)
