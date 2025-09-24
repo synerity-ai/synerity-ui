@@ -1,0 +1,158 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Image Compare</h1>
+    <p class="text-lg text-gray-600">Interactive image comparison component that allows users to compare two images side by side with a draggable slider.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Image Compare -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Image Compare</h3>
+            <button 
+              (click)="toggleCode('basic')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicImageCompareCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <sui-image-compare 
+                [beforeSrc]="beforeImageSrc"
+                [afterSrc]="afterImageSrc"
+                [beforeAlt]="beforeImageAlt"
+                [afterAlt]="afterImageAlt">
+              </sui-image-compare>
+              
+              <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                <p class="text-sm text-blue-800">
+                  <strong>Interactive:</strong> Drag the slider to compare the before and after images. Perfect for showing transformations, edits, or comparisons.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicImageCompareCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-image-compare 
+  [beforeSrc]="beforeImageSrc"
+  [afterSrc]="afterImageSrc"
+  [beforeAlt]="beforeImageAlt"
+  [afterAlt]="afterImageAlt"&gt;
+&lt;/sui-image-compare&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-8">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Image Compare component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the Image Compare component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <pre><code>import &#123; ImageCompare &#125; from '@synerity/ui';
+
+&#64;Component(&#123;
+  selector: 'app-example',
+  imports: [ImageCompare],
+  template: `
+    &lt;sui-image-compare 
+      [beforeSrc]="beforeImage"
+      [afterSrc]="afterImage"&gt;
+    &lt;/sui-image-compare&gt;
+  `
+&#125;)
+export class ExampleComponent &#123;
+  beforeImage = 'path/to/before.jpg';
+  afterImage = 'path/to/after.jpg';
+&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-8">
+        
+        <!-- Props -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">beforeSrc</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">URL of the before image (required)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">afterSrc</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">URL of the after image (required)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">beforeAlt</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Alt text for the before image</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">afterAlt</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Alt text for the after image</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

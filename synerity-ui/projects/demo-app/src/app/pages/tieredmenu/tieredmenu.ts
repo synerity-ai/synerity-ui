@@ -1,140 +1,146 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { TieredMenu as SuiTieredMenu } from '../../../../../ui-lib/src/lib/tiered-menu/tiered-menu';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { TieredMenu as SuiTieredMenu } from 'ui-lib';
 
 @Component({
   selector: 'app-tieredmenu',
-  imports: [CommonModule, FormsModule, Tabs, SuiTieredMenu],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiTieredMenu],
   templateUrl: './tieredmenu.html',
   styleUrl: './tieredmenu.scss'
 })
-export class Tieredmenu {
+export class TieredmenuComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  tieredMenuItems = [
+  lastClickedItem: any = null;
+
+  basicMenuItems = [
+    { label: 'Home', icon: '🏠', command: () => this.executeAction('Home') },
+    { label: 'Features', icon: '✨', command: () => this.executeAction('Features') },
+    { label: 'Pricing', icon: '💰', command: () => this.executeAction('Pricing') },
+    { label: 'About', icon: 'ℹ️', command: () => this.executeAction('About') },
+    { label: 'Contact', icon: '📞', command: () => this.executeAction('Contact') }
+  ];
+
+  menuWithSubmenus = [
     {
       label: 'File',
       icon: '📁',
       items: [
-        {
-          label: 'New',
-          icon: '➕',
-          items: [
-            { label: 'Document', icon: '📄' },
-            { label: 'Spreadsheet', icon: '📊' },
-            { label: 'Presentation', icon: '📽️' }
-          ]
-        },
-        { label: 'Open', icon: '📂' },
-        { label: 'Save', icon: '💾' },
-        { label: 'Exit', icon: '❌' }
+        { label: 'New', icon: '📄', command: () => this.executeAction('New File') },
+        { label: 'Open', icon: '📂', command: () => this.executeAction('Open File') },
+        { label: 'Save', icon: '💾', command: () => this.executeAction('Save File') },
+        { label: '', separator: true },
+        { label: 'Exit', icon: '🚪', command: () => this.executeAction('Exit') }
       ]
     },
     {
       label: 'Edit',
       icon: '✏️',
       items: [
-        { label: 'Undo', icon: '↶' },
-        { label: 'Redo', icon: '↷' },
-        { label: 'Cut', icon: '✂️' },
-        { label: 'Copy', icon: '📋' },
-        { label: 'Paste', icon: '📌' }
+        { label: 'Undo', icon: '↶', command: () => this.executeAction('Undo') },
+        { label: 'Redo', icon: '↷', command: () => this.executeAction('Redo') },
+        { label: '', separator: true },
+        { label: 'Cut', icon: '✂️', command: () => this.executeAction('Cut') },
+        { label: 'Copy', icon: '📋', command: () => this.executeAction('Copy') },
+        { label: 'Paste', icon: '📌', command: () => this.executeAction('Paste') }
       ]
     },
     {
       label: 'View',
       icon: '👁️',
       items: [
-        { label: 'Zoom In', icon: '🔍➕' },
-        { label: 'Zoom Out', icon: '🔍➖' },
-        { label: 'Full Screen', icon: '⛶' }
+        { label: 'Zoom In', icon: '🔍+', command: () => this.executeAction('Zoom In') },
+        { label: 'Zoom Out', icon: '🔍-', command: () => this.executeAction('Zoom Out') },
+        { label: 'Reset Zoom', icon: '🔍', command: () => this.executeAction('Reset Zoom') }
       ]
     },
     {
       label: 'Help',
       icon: '❓',
       items: [
-        { label: 'Documentation', icon: '📚' },
-        { label: 'Support', icon: '🎧' }
+        { label: 'Documentation', icon: '📚', command: () => this.executeAction('Documentation') },
+        { label: 'Support', icon: '🆘', command: () => this.executeAction('Support') },
+        { label: 'About', icon: 'ℹ️', command: () => this.executeAction('About') }
       ]
     }
   ];
 
-  simpleTieredMenuItems = [
-    {
-      label: 'Home',
-      icon: '🏠'
-    },
+  menuWithDisabledItems = [
+    { label: 'Enabled Item', icon: '✅', command: () => this.executeAction('Enabled Item') },
+    { label: 'Disabled Item', icon: '❌', disabled: true },
+    { label: 'Another Enabled', icon: '✅', command: () => this.executeAction('Another Enabled') },
+    { label: '', separator: true },
+    { label: 'Last Item', icon: '🏁', command: () => this.executeAction('Last Item') }
+  ];
+
+  nestedSubmenuItems = [
     {
       label: 'Products',
       icon: '📦',
       items: [
-        { label: 'Electronics', icon: '📱' },
-        { label: 'Clothing', icon: '👕' },
-        { label: 'Books', icon: '📚' }
-      ]
-    },
-    {
-      label: 'About',
-      icon: 'ℹ️'
-    }
-  ];
-
-  nestedTieredMenuItems = [
-    {
-      label: 'Dashboard',
-      icon: '📊',
-      items: [
-        {
-          label: 'Analytics',
-          icon: '📈',
+        { label: 'Electronics', icon: '📱', command: () => this.executeAction('Electronics') },
+        { 
+          label: 'Clothing', 
+          icon: '👕',
           items: [
-            { label: 'Sales Report', icon: '💰' },
-            { label: 'User Activity', icon: '👥' },
-            { label: 'Performance', icon: '⚡' }
+            { label: 'Men', icon: '👨', command: () => this.executeAction('Men Clothing') },
+            { label: 'Women', icon: '👩', command: () => this.executeAction('Women Clothing') },
+            { label: 'Kids', icon: '👶', command: () => this.executeAction('Kids Clothing') }
           ]
         },
-        {
-          label: 'Settings',
-          icon: '⚙️',
+        { 
+          label: 'Books', 
+          icon: '📚',
           items: [
-            { label: 'General', icon: '🔧' },
-            { label: 'Security', icon: '🔒' },
-            { label: 'Notifications', icon: '🔔' }
+            { label: 'Fiction', icon: '📖', command: () => this.executeAction('Fiction Books') },
+            { label: 'Non-Fiction', icon: '📘', command: () => this.executeAction('Non-Fiction Books') }
           ]
         }
       ]
+    },
+    {
+      label: 'Services',
+      icon: '🔧',
+      items: [
+        { label: 'Consulting', icon: '💼', command: () => this.executeAction('Consulting') },
+        { label: 'Support', icon: '🆘', command: () => this.executeAction('Support') }
+      ]
     }
   ];
-  
-  // Code visibility states
-  showBasicTieredMenuCode = false;
-  showSimpleTieredMenuCode = false;
-  showNestedTieredMenuCode = false;
-  
-  onTabChange(tab: string) {
+
+  showBasicMenuCode = false;
+  showSubmenuMenuCode = false;
+  showDisabledMenuCode = false;
+  showNestedMenuCode = false;
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicTieredMenu':
-        this.showBasicTieredMenuCode = !this.showBasicTieredMenuCode;
+
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basicMenu':
+        this.showBasicMenuCode = !this.showBasicMenuCode;
         break;
-      case 'simpleTieredMenu':
-        this.showSimpleTieredMenuCode = !this.showSimpleTieredMenuCode;
+      case 'submenuMenu':
+        this.showSubmenuMenuCode = !this.showSubmenuMenuCode;
         break;
-      case 'nestedTieredMenu':
-        this.showNestedTieredMenuCode = !this.showNestedTieredMenuCode;
+      case 'disabledMenu':
+        this.showDisabledMenuCode = !this.showDisabledMenuCode;
+        break;
+      case 'nestedMenu':
+        this.showNestedMenuCode = !this.showNestedMenuCode;
         break;
     }
   }
-  
-  // Tiered menu demo methods
-  onTieredMenuItemClick(event: any) {
-    console.log('Tiered menu item clicked:', event);
+
+  onMenuItemClick(item: any): void {
+    this.lastClickedItem = item;
+    console.log('TieredMenu item clicked:', item);
+  }
+
+  executeAction(action: string): void {
+    console.log(`${action} action executed`);
   }
 }

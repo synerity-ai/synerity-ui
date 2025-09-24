@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectorRef } from '@angular/core';
 import { NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-image',
   imports: [CommonModule, NgIf],
   templateUrl: './image.html',
-  styleUrl: './image.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './image.css'
 })
 export class Image {
   @Input() src = '';
@@ -24,31 +23,40 @@ export class Image {
   imageLoaded = false;
   imageError = false;
   showPreview = false;
+  imageLoading = true;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   onImageLoad(event: Event): void {
     this.imageLoaded = true;
     this.imageError = false;
+    this.imageLoading = false;
+    this.cdr.detectChanges();
     this.onLoad.emit(event);
   }
 
   onImageError(event: Event): void {
     this.imageError = true;
     this.imageLoaded = false;
+    this.imageLoading = false;
+    this.cdr.detectChanges();
     this.onError.emit(event);
   }
 
   togglePreview(): void {
     if (this.preview) {
       this.showPreview = !this.showPreview;
+      this.cdr.detectChanges();
     }
   }
 
   closePreview(): void {
     this.showPreview = false;
+    this.cdr.detectChanges();
   }
 
   getImageClass(): string {
-    return `sui-image ${this.imageError ? 'sui-image-error' : ''} ${this.imageLoaded ? 'sui-image-loaded' : ''} ${this.styleClass}`.trim();
+    return `sui-image ${this.imageError ? 'sui-image-error' : ''} ${this.imageLoaded ? 'sui-image-loaded' : ''} ${this.imageLoading ? 'sui-image-loading' : ''} ${this.styleClass}`.trim();
   }
 
   getImageStyle(): any {
@@ -81,5 +89,9 @@ export class Image {
 
   isZoomEnabled(): boolean {
     return this.zoom;
+  }
+
+  isLoading(): boolean {
+    return this.imageLoading;
   }
 }

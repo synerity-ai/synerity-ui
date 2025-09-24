@@ -1,21 +1,59 @@
-<div class="sui-panel-menu" [class]="getMenuClass()" [style]="getMenuStyle()">
-  <div class="sui-panel-menu-items">
-    <div 
-      *ngFor="let item of model" 
-      class="sui-panel-menu-item" 
-      [class]="getItemClass(item)"
-    >
-      <div class="sui-panel-menu-item-content" (click)="onItemClickHandler($event, item)">
-        <span *ngIf="item.icon" class="sui-panel-menu-item-icon">{{ item.icon }}</span>
-        <span class="sui-panel-menu-item-label">{{ item.label }}</span>
-        <span *ngIf="hasSubmenu(item)" class="sui-panel-menu-item-arrow" [class.sui-panel-menu-item-arrow-expanded]="item.expanded">▶</span>
-      </div>
-
-      <div *ngIf="hasSubmenu(item) && item.expanded" class="sui-panel-menu-submenu">
-        <div class="sui-panel-menu-submenu-items">
-          <div *ngFor="let subItem of item.items" class="sui-panel-menu-submenu-item" (click)="onItemClickHandler($event, subItem)">
-            <span *ngIf="subItem.icon" class="sui-panel-menu-submenu-item-icon">{{ subItem.icon }}</span>
-            <span class="sui-panel-menu-submenu-item-label">{{ subItem.label }}</span>
+<div 
+  #menuElement
+  class="bg-white border border-gray-200 rounded-lg shadow-sm p-2 w-64"
+  [class]="getMenuClass()"
+  [style]="getMenuStyle()"
+  role="menu"
+>
+  <div class="space-y-1">
+    <div *ngFor="let item of model" class="relative">
+      <!-- Separator -->
+      <div *ngIf="item.separator" class="border-t border-gray-200 my-1"></div>
+      
+      <!-- Menu Item -->
+      <div *ngIf="!item.separator" class="relative">
+        <div 
+          class="flex items-center justify-between px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md"
+          [class.opacity-50]="item.disabled"
+          [class.cursor-not-allowed]="item.disabled"
+          [class.pointer-events-none]="item.disabled"
+          [class.bg-gray-50]="item.expanded"
+          (click)="onItemClickHandler($event, item)"
+          role="menuitem"
+          [attr.aria-disabled]="item.disabled"
+          [attr.tabindex]="item.disabled ? -1 : 0"
+          [attr.aria-expanded]="hasSubmenu(item) ? item.expanded : null"
+        >
+          <div class="flex items-center gap-2">
+            <span *ngIf="item.icon" class="text-sm">{{ item.icon }}</span>
+            <span>{{ item.label }}</span>
+          </div>
+          <span *ngIf="hasSubmenu(item)" class="text-xs transition-transform duration-200" [class.rotate-90]="item.expanded">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </span>
+        </div>
+        
+        <!-- Submenu -->
+        <div 
+          *ngIf="hasSubmenu(item) && item.expanded" 
+          class="ml-4 mt-1 space-y-1 border-l border-gray-200 pl-4"
+          role="submenu"
+        >
+          <div 
+            *ngFor="let subItem of item.items" 
+            class="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md"
+            [class.opacity-50]="subItem.disabled"
+            [class.cursor-not-allowed]="subItem.disabled"
+            [class.pointer-events-none]="subItem.disabled"
+            (click)="onItemClickHandler($event, subItem)"
+            role="menuitem"
+            [attr.aria-disabled]="subItem.disabled"
+            [attr.tabindex]="subItem.disabled ? -1 : 0"
+          >
+            <span *ngIf="subItem.icon" class="text-sm">{{ subItem.icon }}</span>
+            <span>{{ subItem.label }}</span>
           </div>
         </div>
       </div>

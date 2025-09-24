@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Chart } from './chart';
+import { Metergroup } from './metergroup';
 
-describe('Chart', () => {
-  let component: Chart;
-  let fixture: ComponentFixture<Chart>;
+describe('Metergroup', () => {
+  let component: Metergroup;
+  let fixture: ComponentFixture<Metergroup>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Chart]
+      imports: [Metergroup]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Chart);
+    fixture = TestBed.createComponent(Metergroup);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { ProgressSpinner as SuiProgressSpinner } from '../../../../../ui-lib/src/lib/progress-spinner/progress-spinner';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { ProgressSpinner as SuiProgressSpinner } from 'ui-lib';
 
 @Component({
   selector: 'app-progressspinner',
   standalone: true,
-  imports: [CommonModule, FormsModule, Tabs, SuiProgressSpinner],
+  imports: [CommonModule, FormsModule, AppTabs, SuiProgressSpinner],
   templateUrl: './progressspinner.html',
   styleUrl: './progressspinner.scss'
 })

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Carousel as SuiCarousel } from '../../../../../ui-lib/src/lib/carousel/carousel';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Carousel as SuiCarousel } from 'ui-lib';
 
 @Component({
   selector: 'app-carousel',
-  imports: [CommonModule, FormsModule, Tabs, SuiCarousel],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiCarousel],
   templateUrl: './carousel.html',
   styleUrl: './carousel.scss'
 })
@@ -82,19 +82,19 @@ export class CarouselComponent {
   showSimpleCarouselCode = false;
   showAutoplayCarouselCode = false;
   
-  onTabChange(tab: string) {
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
   
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicCarousel':
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
         this.showBasicCarouselCode = !this.showBasicCarouselCode;
         break;
-      case 'simpleCarousel':
+      case 'simple':
         this.showSimpleCarouselCode = !this.showSimpleCarouselCode;
         break;
-      case 'autoplayCarousel':
+      case 'autoplay':
         this.showAutoplayCarouselCode = !this.showAutoplayCarouselCode;
         break;
     }

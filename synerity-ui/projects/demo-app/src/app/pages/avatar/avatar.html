@@ -24,7 +24,7 @@
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Basic Avatar</h3>
             <button 
-              (click)="toggleCode('basicAvatar')"
+              (click)="toggleCode('basic')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showBasicAvatarCode ? 'Hide' : 'Show' }} Code</span>
@@ -50,23 +50,21 @@
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showBasicAvatarCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Image Avatar --&gt;
+            <div *ngIf="showBasicAvatarCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Image Avatar --&gt;
 &lt;sui-avatar 
   [image]="avatarImage"
-  [alt]="avatarName"&gt;
+  [label]="avatarName"&gt;
 &lt;/sui-avatar&gt;
 
 &lt;!-- Initials Avatar --&gt;
 &lt;sui-avatar 
-  [label]="avatarInitials"
-  [alt]="avatarName"&gt;
+  [label]="avatarInitials"&gt;
 &lt;/sui-avatar&gt;
 
 &lt;!-- Icon Avatar --&gt;
 &lt;sui-avatar 
-  [icon]="'👤'"
-  [alt]="'User'"&gt;
+  [icon]="'👤'"&gt;
 &lt;/sui-avatar&gt;</code></pre>
             </div>
           </div>
@@ -77,7 +75,7 @@
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Avatar Sizes</h3>
             <button 
-              (click)="toggleCode('avatarSizes')"
+              (click)="toggleCode('sizes')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showAvatarSizesCode ? 'Hide' : 'Show' }} Code</span>
@@ -110,22 +108,52 @@
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showAvatarSizesCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-avatar [label]="initials" size="sm"&gt;&lt;/sui-avatar&gt;
-&lt;sui-avatar [label]="initials" size="md"&gt;&lt;/sui-avatar&gt;
-&lt;sui-avatar [label]="initials" size="lg"&gt;&lt;/sui-avatar&gt;
-&lt;sui-avatar [label]="initials" size="xl"&gt;&lt;/sui-avatar&gt;</code></pre>
+            <div *ngIf="showAvatarSizesCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-avatar [label]="initials" size="small"&gt;&lt;/sui-avatar&gt;
+&lt;sui-avatar [label]="initials" size="normal"&gt;&lt;/sui-avatar&gt;
+&lt;sui-avatar [label]="initials" size="large"&gt;&lt;/sui-avatar&gt;
+&lt;sui-avatar [label]="initials" size="xlarge"&gt;&lt;/sui-avatar&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Coming Soon Placeholder -->
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">🚧</span>
-            <div>
-              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
-              <p class="text-blue-700">Avatar groups, status indicators, and custom styling examples will be added soon.</p>
+        <!-- Avatar Variants -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Avatar Shapes</h3>
+            <button 
+              (click)="toggleCode('variants')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showAvatarVariantsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <sui-avatar 
+                  [label]="avatarInitials"
+                  shape="circle">
+                </sui-avatar>
+                
+                <sui-avatar 
+                  [label]="avatarInitials"
+                  shape="square">
+                </sui-avatar>
+              </div>
+              
+              <div class="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-md">
+                <p class="text-sm text-purple-800">
+                  <strong>Shapes:</strong> Choose between circle (default) and square shapes for different design needs.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showAvatarVariantsCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-avatar [label]="initials" shape="circle"&gt;&lt;/sui-avatar&gt;
+&lt;sui-avatar [label]="initials" shape="square"&gt;&lt;/sui-avatar&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -232,15 +260,27 @@ export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg' | 'xl'</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'small' | 'normal' | 'large' | 'xlarge'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'normal'</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Avatar size</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">alt</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">shape</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'circle' | 'square'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'circle'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Avatar shape</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">object</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Custom inline styles</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Alt text for accessibility</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Additional CSS classes</td>
                   </tr>
                 </tbody>
               </table>

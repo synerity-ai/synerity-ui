@@ -1,539 +1,361 @@
-<div class="max-w-6xl mx-auto">
-  <!-- Page Header -->
-  <div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">Skeleton</h1>
-    <p class="text-lg text-gray-600">Loading placeholder component that mimics the structure of content while it's being loaded.</p>
-  </div>
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">Skeleton</h1>
+      <p class="text-lg text-gray-600">
+        A loading placeholder component that displays animated placeholders while content is being loaded.
+      </p>
+    </div>
 
-  <!-- Tabs -->
-  <app-tabs 
-    [tabs]="[
-      { id: 'demo', label: 'Demo', icon: '🎯' },
-      { id: 'usage', label: 'How to Use', icon: '📖' },
-      { id: 'docs', label: 'Documentation', icon: '📚' }
-    ]"
-    [activeTab]="activeTab"
-    (tabChange)="onTabChange($event)">
-    
+    <!-- Tabs -->
+    <app-tabs 
+      [tabs]="[
+        { id: 'demo', label: 'Demo', icon: '🎯' },
+        { id: 'usage', label: 'How to Use', icon: '📖' },
+        { id: 'docs', label: 'Documentation', icon: '📚' }
+      ]"
+      [activeTab]="activeTab" 
+      (tabChange)="onTabChange($event)"
+    ></app-tabs>
+
     <!-- Demo Tab -->
-    <div *ngIf="activeTab === 'demo'">
-      <div class="space-y-8">
+    <div *ngIf="activeTab === 'demo'" class="space-y-8">
+      <!-- Basic Skeleton -->
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Basic Skeleton</h2>
+          <button 
+            (click)="toggleCode('basic')"
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200 flex items-center gap-2"
+          >
+            <span class="text-lg">&lt;/&gt;</span>
+            Show Code
+          </button>
+        </div>
         
-        <!-- Basic Skeleton -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Basic Skeleton</h3>
-            <button 
-              (click)="toggleCode('basicSkeleton')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showBasicSkeletonCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <p class="text-gray-600">Basic skeleton placeholders with default settings.</p>
+            
             <div class="space-y-4">
-              <div class="space-y-3">
+              <div class="space-y-2">
                 <sui-skeleton width="100%" height="1rem"></sui-skeleton>
                 <sui-skeleton width="80%" height="1rem"></sui-skeleton>
                 <sui-skeleton width="60%" height="1rem"></sui-skeleton>
               </div>
-              
-              <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
-                <p class="text-sm text-blue-800">
-                  <strong>Loading State:</strong> Basic skeleton placeholders with different widths to simulate text content.
-                </p>
-              </div>
             </div>
             
-            <!-- Code Example -->
-            <div *ngIf="showBasicSkeletonCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-skeleton width="100%" height="1rem"&gt;&lt;/sui-skeleton&gt;
+            <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+              <p class="text-sm text-blue-800">
+                <strong>Basic:</strong> Default skeleton placeholders with animated shimmer effect.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Code Example -->
+          <div *ngIf="showBasicSkeletonCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+            <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-skeleton width="100%" height="1rem"&gt;&lt;/sui-skeleton&gt;
 &lt;sui-skeleton width="80%" height="1rem"&gt;&lt;/sui-skeleton&gt;
 &lt;sui-skeleton width="60%" height="1rem"&gt;&lt;/sui-skeleton&gt;</code></pre>
-            </div>
           </div>
         </div>
+      </div>
 
-        <!-- Shape Variants -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Shape Variants</h3>
-            <button 
-              (click)="toggleCode('shapeSkeleton')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showShapeSkeletonCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
-          
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <!-- Different Shapes -->
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Different Shapes</h2>
+          <button 
+            (click)="toggleCode('shape')"
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200 flex items-center gap-2"
+          >
+            <span class="text-lg">&lt;/&gt;</span>
+            Show Code
+          </button>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <p class="text-gray-600">Skeleton placeholders with different border radius for various shapes.</p>
+            
             <div class="space-y-4">
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="space-y-3">
-                  <h4 class="text-sm font-medium text-gray-700">Rectangle</h4>
-                  <sui-skeleton width="100%" height="2rem" borderRadius="4px"></sui-skeleton>
-                  <sui-skeleton width="80%" height="1rem" borderRadius="4px"></sui-skeleton>
+              <div class="flex items-center space-x-4">
+                <div class="text-center">
+                  <sui-skeleton width="60px" height="60px" borderRadius="4px"></sui-skeleton>
+                  <p class="text-sm text-gray-600 mt-2">Rectangle</p>
                 </div>
-                
-                <div class="space-y-3">
-                  <h4 class="text-sm font-medium text-gray-700">Rounded</h4>
-                  <sui-skeleton width="100%" height="2rem" borderRadius="12px"></sui-skeleton>
-                  <sui-skeleton width="80%" height="1rem" borderRadius="12px"></sui-skeleton>
+                <div class="text-center">
+                  <sui-skeleton width="60px" height="60px" borderRadius="8px"></sui-skeleton>
+                  <p class="text-sm text-gray-600 mt-2">Rounded</p>
                 </div>
-                
-                <div class="space-y-3">
-                  <h4 class="text-sm font-medium text-gray-700">Circle</h4>
-                  <div class="flex items-center gap-3">
-                    <sui-skeleton width="3rem" height="3rem" borderRadius="50%"></sui-skeleton>
-                    <div class="flex-1 space-y-2">
-                      <sui-skeleton width="100%" height="1rem"></sui-skeleton>
-                      <sui-skeleton width="60%" height="1rem"></sui-skeleton>
-                    </div>
-                  </div>
+                <div class="text-center">
+                  <sui-skeleton width="60px" height="60px" borderRadius="50%"></sui-skeleton>
+                  <p class="text-sm text-gray-600 mt-2">Circle</p>
                 </div>
-              </div>
-              
-              <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
-                <p class="text-sm text-green-800">
-                  <strong>Flexible Shapes:</strong> Customize border radius for different UI elements like cards, avatars, and buttons.
-                </p>
               </div>
             </div>
             
-            <!-- Code Example -->
-            <div *ngIf="showShapeSkeletonCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Rectangle --&gt;
-&lt;sui-skeleton width="100%" height="2rem" borderRadius="4px"&gt;&lt;/sui-skeleton&gt;
-
-&lt;!-- Rounded --&gt;
-&lt;sui-skeleton width="100%" height="2rem" borderRadius="12px"&gt;&lt;/sui-skeleton&gt;
-
-&lt;!-- Circle --&gt;
-&lt;sui-skeleton width="3rem" height="3rem" borderRadius="50%"&gt;&lt;/sui-skeleton&gt;</code></pre>
+            <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
+              <p class="text-sm text-green-800">
+                <strong>Shapes:</strong> Different border radius values to create rectangles, rounded corners, and circles.
+              </p>
             </div>
           </div>
-        </div>
-
-        <!-- Animation Variants -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Animation Variants</h3>
-            <button 
-              (click)="toggleCode('animationSkeleton')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showAnimationSkeletonCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
           
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <!-- Code Example -->
+          <div *ngIf="showShapeSkeletonCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+            <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-skeleton width="60px" height="60px" borderRadius="4px"&gt;&lt;/sui-skeleton&gt;
+&lt;sui-skeleton width="60px" height="60px" borderRadius="8px"&gt;&lt;/sui-skeleton&gt;
+&lt;sui-skeleton width="60px" height="60px" borderRadius="50%"&gt;&lt;/sui-skeleton&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animation Control -->
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Animation Control</h2>
+          <button 
+            (click)="toggleCode('animation')"
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200 flex items-center gap-2"
+          >
+            <span class="text-lg">&lt;/&gt;</span>
+            Show Code
+          </button>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <p class="text-gray-600">Skeleton placeholders with and without animation.</p>
+            
             <div class="space-y-4">
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="space-y-3">
-                  <h4 class="text-sm font-medium text-gray-700">Default Animation</h4>
-                  <sui-skeleton width="100%" height="1rem" [animation]="true"></sui-skeleton>
-                  <sui-skeleton width="80%" height="1rem" [animation]="true"></sui-skeleton>
-                  <sui-skeleton width="60%" height="1rem" [animation]="true"></sui-skeleton>
-                </div>
-                
-                <div class="space-y-3">
-                  <h4 class="text-sm font-medium text-gray-700">No Animation</h4>
-                  <sui-skeleton width="100%" height="1rem" [animation]="false"></sui-skeleton>
-                  <sui-skeleton width="80%" height="1rem" [animation]="false"></sui-skeleton>
-                  <sui-skeleton width="60%" height="1rem" [animation]="false"></sui-skeleton>
-                </div>
-                
-                <div class="space-y-3">
-                  <h4 class="text-sm font-medium text-gray-700">Pulse Effect</h4>
-                  <sui-skeleton width="100%" height="1rem" styleClass="pulse"></sui-skeleton>
-                  <sui-skeleton width="80%" height="1rem" styleClass="pulse"></sui-skeleton>
-                  <sui-skeleton width="60%" height="1rem" styleClass="pulse"></sui-skeleton>
-                </div>
+              <div class="space-y-2">
+                <p class="text-sm font-medium text-gray-700">With Animation (Default)</p>
+                <sui-skeleton width="100%" height="1rem" [animation]="true"></sui-skeleton>
+                <sui-skeleton width="80%" height="1rem" [animation]="true"></sui-skeleton>
               </div>
-              
-              <div class="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-md">
-                <p class="text-sm text-purple-800">
-                  <strong>Animation Options:</strong> Choose between shimmer animation, pulse effect, or no animation based on your design needs.
-                </p>
+              <div class="space-y-2">
+                <p class="text-sm font-medium text-gray-700">Without Animation</p>
+                <sui-skeleton width="100%" height="1rem" [animation]="false"></sui-skeleton>
+                <sui-skeleton width="80%" height="1rem" [animation]="false"></sui-skeleton>
               </div>
             </div>
             
-            <!-- Code Example -->
-            <div *ngIf="showAnimationSkeletonCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Default shimmer animation --&gt;
-&lt;sui-skeleton width="100%" height="1rem" [animation]="true"&gt;&lt;/sui-skeleton&gt;
-
-&lt;!-- No animation --&gt;
-&lt;sui-skeleton width="100%" height="1rem" [animation]="false"&gt;&lt;/sui-skeleton&gt;
-
-&lt;!-- Pulse animation --&gt;
-&lt;sui-skeleton width="100%" height="1rem" styleClass="pulse"&gt;&lt;/sui-skeleton&gt;</code></pre>
+            <div class="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-md">
+              <p class="text-sm text-purple-800">
+                <strong>Animation:</strong> Control the shimmer animation effect with the animation property.
+              </p>
             </div>
           </div>
-        </div>
-
-        <!-- Layout Examples -->
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Layout Examples</h3>
-            <button 
-              (click)="toggleCode('layoutSkeleton')"
-              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-              <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showLayoutSkeletonCode ? 'Hide' : 'Show' }} Code</span>
-            </button>
-          </div>
           
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <!-- Code Example -->
+          <div *ngIf="showAnimationSkeletonCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+            <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-skeleton width="100%" height="1rem" [animation]="true"&gt;&lt;/sui-skeleton&gt;
+&lt;sui-skeleton width="100%" height="1rem" [animation]="false"&gt;&lt;/sui-skeleton&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout Examples -->
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Layout Examples</h2>
+          <button 
+            (click)="toggleCode('layout')"
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200 flex items-center gap-2"
+          >
+            <span class="text-lg">&lt;/&gt;</span>
+            Show Code
+          </button>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <p class="text-gray-600">Common skeleton layouts for different content types.</p>
+            
             <div class="space-y-6">
               <!-- Card Layout -->
-              <div>
-                <h4 class="text-sm font-medium text-gray-700 mb-3">Card Layout</h4>
-                <div class="border border-gray-200 rounded-lg p-4 space-y-3">
-                  <div class="flex items-center gap-3">
-                    <sui-skeleton width="3rem" height="3rem" borderRadius="50%"></sui-skeleton>
-                    <div class="flex-1 space-y-2">
-                      <sui-skeleton width="40%" height="1rem"></sui-skeleton>
-                      <sui-skeleton width="20%" height="0.75rem"></sui-skeleton>
-                    </div>
+              <div class="border border-gray-200 rounded-lg p-4">
+                <p class="text-sm font-medium text-gray-700 mb-3">Card Layout</p>
+                <div class="flex space-x-4">
+                  <sui-skeleton width="80px" height="80px" borderRadius="8px"></sui-skeleton>
+                  <div class="flex-1 space-y-2">
+                    <sui-skeleton width="100%" height="1rem"></sui-skeleton>
+                    <sui-skeleton width="80%" height="1rem"></sui-skeleton>
+                    <sui-skeleton width="60%" height="1rem"></sui-skeleton>
                   </div>
-                  <sui-skeleton width="100%" height="1rem"></sui-skeleton>
-                  <sui-skeleton width="80%" height="1rem"></sui-skeleton>
-                  <sui-skeleton width="60%" height="1rem"></sui-skeleton>
                 </div>
               </div>
               
               <!-- List Layout -->
-              <div>
-                <h4 class="text-sm font-medium text-gray-700 mb-3">List Layout</h4>
+              <div class="border border-gray-200 rounded-lg p-4">
+                <p class="text-sm font-medium text-gray-700 mb-3">List Layout</p>
                 <div class="space-y-3">
-                  <div *ngFor="let item of [1,2,3]" class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
-                    <sui-skeleton width="2.5rem" height="2.5rem" borderRadius="4px"></sui-skeleton>
-                    <div class="flex-1 space-y-2">
-                      <sui-skeleton width="60%" height="1rem"></sui-skeleton>
-                      <sui-skeleton width="30%" height="0.75rem"></sui-skeleton>
+                  <div class="flex items-center space-x-3">
+                    <sui-skeleton width="40px" height="40px" borderRadius="50%"></sui-skeleton>
+                    <div class="flex-1 space-y-1">
+                      <sui-skeleton width="70%" height="1rem"></sui-skeleton>
+                      <sui-skeleton width="50%" height="0.75rem"></sui-skeleton>
                     </div>
-                    <sui-skeleton width="4rem" height="2rem" borderRadius="4px"></sui-skeleton>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <sui-skeleton width="40px" height="40px" borderRadius="50%"></sui-skeleton>
+                    <div class="flex-1 space-y-1">
+                      <sui-skeleton width="70%" height="1rem"></sui-skeleton>
+                      <sui-skeleton width="50%" height="0.75rem"></sui-skeleton>
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <!-- Table Layout -->
-              <div>
-                <h4 class="text-sm font-medium text-gray-700 mb-3">Table Layout</h4>
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                  <div class="grid grid-cols-3 gap-4 p-3 bg-gray-50">
-                    <sui-skeleton width="80%" height="1rem"></sui-skeleton>
-                    <sui-skeleton width="60%" height="1rem"></sui-skeleton>
-                    <sui-skeleton width="40%" height="1rem"></sui-skeleton>
-                  </div>
-                  <div *ngFor="let item of [1,2,3]" class="grid grid-cols-3 gap-4 p-3 border-t border-gray-200">
-                    <sui-skeleton width="90%" height="1rem"></sui-skeleton>
-                    <sui-skeleton width="70%" height="1rem"></sui-skeleton>
-                    <sui-skeleton width="50%" height="1rem"></sui-skeleton>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mt-4 p-3 bg-indigo-50 border border-indigo-200 rounded-md">
-                <p class="text-sm text-indigo-800">
-                  <strong>Real-world Layouts:</strong> Common skeleton patterns for cards, lists, and tables to improve perceived performance.
-                </p>
               </div>
             </div>
             
-            <!-- Code Example -->
-            <div *ngIf="showLayoutSkeletonCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;!-- Card Layout --&gt;
-&lt;div class="card"&gt;
-  &lt;div class="flex items-center gap-3"&gt;
-    &lt;sui-skeleton width="3rem" height="3rem" borderRadius="50%"&gt;&lt;/sui-skeleton&gt;
-    &lt;div class="flex-1 space-y-2"&gt;
-      &lt;sui-skeleton width="40%" height="1rem"&gt;&lt;/sui-skeleton&gt;
-      &lt;sui-skeleton width="20%" height="0.75rem"&gt;&lt;/sui-skeleton&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;sui-skeleton width="100%" height="1rem"&gt;&lt;/sui-skeleton&gt;
-&lt;/div&gt;
-
-&lt;!-- List Layout --&gt;
-&lt;div class="list-item"&gt;
-  &lt;sui-skeleton width="2.5rem" height="2.5rem" borderRadius="4px"&gt;&lt;/sui-skeleton&gt;
-  &lt;div class="flex-1"&gt;
-    &lt;sui-skeleton width="60%" height="1rem"&gt;&lt;/sui-skeleton&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+            <div class="mt-4 p-3 bg-orange-50 border border-orange-200 rounded-md">
+              <p class="text-sm text-orange-800">
+                <strong>Layouts:</strong> Common patterns for cards, lists, and other content structures.
+              </p>
             </div>
           </div>
+          
+          <!-- Code Example -->
+          <div *ngIf="showLayoutSkeletonCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+            <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;!-- Card Layout --&gt;
+&lt;div class="flex space-x-4"&gt;
+  &lt;sui-skeleton width="80px" height="80px" borderRadius="8px"&gt;&lt;/sui-skeleton&gt;
+  &lt;div class="flex-1 space-y-2"&gt;
+    &lt;sui-skeleton width="100%" height="1rem"&gt;&lt;/sui-skeleton&gt;
+    &lt;sui-skeleton width="80%" height="1rem"&gt;&lt;/sui-skeleton&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
         </div>
-
       </div>
     </div>
 
     <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'">
-      <div class="space-y-6">
-        
-        <!-- Installation -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">The Skeleton component is part of the Synerity UI library. Install it using npm:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <code>npm install @synerity/ui</code>
-            </div>
+    <div *ngIf="activeTab === 'usage'" class="space-y-6">
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Installation</h2>
+        <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+          <code>npm install ui-lib</code>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Basic Usage</h2>
+        <div class="space-y-4">
+          <p class="text-gray-600">Import the Skeleton component and use it in your template:</p>
+          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+            <pre><code>import &#123; Skeleton &#125; from 'ui-lib';
+
+// In your template
+&lt;sui-skeleton width="100%" height="1rem"&gt;&lt;/sui-skeleton&gt;</code></pre>
           </div>
         </div>
+      </div>
 
-        <!-- Basic Usage -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Import and use the Skeleton component in your Angular application:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>import &#123; Skeleton &#125; from '@synerity/ui';
-
-@Component(&#123;
-  template: `
-    &lt;sui-skeleton width="100%" height="1rem"&gt;&lt;/sui-skeleton&gt;
-  `
-&#125;)
-export class MyComponent &#123;&#125;</code></pre>
-            </div>
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Common Use Cases</h2>
+        <div class="space-y-4">
+          <div>
+            <h4 class="font-semibold text-gray-900">Loading States</h4>
+            <p class="text-gray-600">Show skeleton placeholders while data is being fetched from APIs</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-900">Content Placeholders</h4>
+            <p class="text-gray-600">Display loading placeholders for images, text, and other content</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-900">Layout Preservation</h4>
+            <p class="text-gray-600">Maintain layout structure while content is loading</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-900">User Experience</h4>
+            <p class="text-gray-600">Improve perceived performance and reduce loading anxiety</p>
           </div>
         </div>
-
-        <!-- Configuration Options -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Configuration Options</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Size and Shape</h4>
-                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
-                  <code>&lt;sui-skeleton width="200px" height="20px" borderRadius="8px"&gt;</code>
-                </div>
-                <p class="text-sm text-gray-600 mt-2">Control the dimensions and border radius of the skeleton.</p>
-              </div>
-              
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Animation Control</h4>
-                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
-                  <code>&lt;sui-skeleton [animation]="true|false"&gt;</code>
-                </div>
-                <p class="text-sm text-gray-600 mt-2">Enable or disable the shimmer animation effect.</p>
-              </div>
-              
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Custom Styling</h4>
-                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
-                  <code>&lt;sui-skeleton styleClass="pulse primary"&gt;</code>
-                </div>
-                <p class="text-sm text-gray-600 mt-2">Apply custom CSS classes for additional styling variants.</p>
-              </div>
-              
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Inline Styles</h4>
-                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
-                  <code>&lt;sui-skeleton [style]="&#123;backgroundColor: '#f0f0f0'&#125;"&gt;</code>
-                </div>
-                <p class="text-sm text-gray-600 mt-2">Apply inline styles for precise control over appearance.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Best Practices -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Best Practices</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Match Content Structure</h4>
-                <p class="text-gray-600 mb-2">Design your skeleton to closely match the actual content structure:</p>
-                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
-                  <pre><code>&lt;!-- For a user profile card --&gt;
-&lt;div class="profile-skeleton"&gt;
-  &lt;sui-skeleton width="3rem" height="3rem" borderRadius="50%"&gt;&lt;/sui-skeleton&gt;
-  &lt;sui-skeleton width="8rem" height="1.25rem"&gt;&lt;/sui-skeleton&gt;
-  &lt;sui-skeleton width="6rem" height="1rem"&gt;&lt;/sui-skeleton&gt;
-&lt;/div&gt;</code></pre>
-                </div>
-              </div>
-              
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Use Appropriate Timing</h4>
-                <p class="text-gray-600 mb-2">Show skeleton for at least 200ms to avoid flickering, and hide it when content loads:</p>
-                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
-                  <pre><code>// Show skeleton immediately
-const skeletonTimer = setTimeout(() =&gt; &#123;
-  showSkeleton = false;
-  showContent = true;
-&#125;, 200);</code></pre>
-                </div>
-              </div>
-              
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Consider Accessibility</h4>
-                <p class="text-gray-600 mb-2">Provide loading state announcements for screen readers:</p>
-                <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
-                  <pre><code>&lt;sui-skeleton 
-  width="100%" 
-  height="1rem"
-  [style]="&#123;'aria-label': 'Loading content...'&#125;"&gt;
-&lt;/sui-skeleton&gt;</code></pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
 
     <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'">
-      <div class="space-y-6">
-        
-        <!-- Props -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
-          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div class="overflow-x-auto">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">width</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'100%'</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Width of the skeleton element</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">height</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'1rem'</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Height of the skeleton element</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">borderRadius</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'4px'</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Border radius of the skeleton element</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">animation</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Enable shimmer animation effect</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the skeleton</td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">CSS class name for custom styling</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+    <div *ngIf="activeTab === 'docs'" class="space-y-6">
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Properties</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">width</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'100%'</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Width of the skeleton placeholder</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">height</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'1rem'</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Height of the skeleton placeholder</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">borderRadius</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'4px'</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Border radius for rounded corners</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">animation</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Enable or disable the shimmer animation</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the component</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                <td class="px-6 py-4 text-sm text-gray-500">CSS class for the component</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
 
-        <!-- Styling Classes -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Available Styling Classes</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Animation Classes</h4>
-                <ul class="space-y-1 text-gray-600">
-                  <li><code class="bg-gray-100 px-1 rounded">pulse</code> - Pulse animation effect</li>
-                  <li><code class="bg-gray-100 px-1 rounded">fade</code> - Fade animation effect</li>
-                  <li><code class="bg-gray-100 px-1 rounded">loading</code> - Enhanced loading animation</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Size Classes</h4>
-                <ul class="space-y-1 text-gray-600">
-                  <li><code class="bg-gray-100 px-1 rounded">small</code> - Small height (0.75rem)</li>
-                  <li><code class="bg-gray-100 px-1 rounded">medium</code> - Medium height (1rem)</li>
-                  <li><code class="bg-gray-100 px-1 rounded">large</code> - Large height (1.5rem)</li>
-                  <li><code class="bg-gray-100 px-1 rounded">xlarge</code> - Extra large height (2rem)</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Shape Classes</h4>
-                <ul class="space-y-1 text-gray-600">
-                  <li><code class="bg-gray-100 px-1 rounded">circle</code> - Circular shape</li>
-                  <li><code class="bg-gray-100 px-1 rounded">rounded</code> - Rounded corners</li>
-                  <li><code class="bg-gray-100 px-1 rounded">square</code> - Square corners</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 class="font-medium text-gray-900 mb-2">Color Classes</h4>
-                <ul class="space-y-1 text-gray-600">
-                  <li><code class="bg-gray-100 px-1 rounded">primary</code> - Primary color</li>
-                  <li><code class="bg-gray-100 px-1 rounded">secondary</code> - Secondary color</li>
-                  <li><code class="bg-gray-100 px-1 rounded">success</code> - Success color</li>
-                  <li><code class="bg-gray-100 px-1 rounded">warning</code> - Warning color</li>
-                  <li><code class="bg-gray-100 px-1 rounded">danger</code> - Danger color</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Accessibility</h2>
+        <div class="space-y-4">
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">✓</span>
+              <span>ARIA live region for screen readers</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">✓</span>
+              <span>Reduced motion support</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">✓</span>
+              <span>High contrast mode support</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">✓</span>
+              <span>Semantic loading indicators</span>
+            </li>
+          </ul>
         </div>
-
-        <!-- Accessibility -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Screen reader support with proper ARIA labels</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Reduced motion support for users with motion sensitivity</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>High contrast mode support</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Proper semantic HTML structure</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Focus management for interactive skeletons</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Print-friendly styles</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
       </div>
     </div>
-  </app-tabs>
+  </div>
 </div>

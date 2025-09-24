@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Skeleton as SuiSkeleton } from '../../../../../ui-lib/src/lib/skeleton/skeleton';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Skeleton as SuiSkeleton } from 'ui-lib';
 
 @Component({
   selector: 'app-skeleton',
-  imports: [CommonModule, FormsModule, Tabs, SuiSkeleton],
+  standalone: true,
+  imports: [CommonModule, FormsModule, AppTabs, SuiSkeleton],
   templateUrl: './skeleton.html',
   styleUrl: './skeleton.scss'
 })
@@ -24,29 +25,29 @@ export class SkeletonComponent {
   showAnimationSkeletonCode = false;
   showLayoutSkeletonCode = false;
   
-  onTabChange(tab: string) {
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
   
-  toggleCode(example: string) {
+  toggleCode(example: string): void {
     switch (example) {
-      case 'basicSkeleton':
+      case 'basic':
         this.showBasicSkeletonCode = !this.showBasicSkeletonCode;
         break;
-      case 'shapeSkeleton':
+      case 'shape':
         this.showShapeSkeletonCode = !this.showShapeSkeletonCode;
         break;
-      case 'animationSkeleton':
+      case 'animation':
         this.showAnimationSkeletonCode = !this.showAnimationSkeletonCode;
         break;
-      case 'layoutSkeleton':
+      case 'layout':
         this.showLayoutSkeletonCode = !this.showLayoutSkeletonCode;
         break;
     }
   }
   
   // Skeleton demo methods
-  onSkeletonClick(event: any) {
+  onSkeletonClick(event: any): void {
     console.log('Skeleton clicked:', event);
   }
 }

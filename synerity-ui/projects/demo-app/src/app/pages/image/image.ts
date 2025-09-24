@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Image as SuiImage } from '../../../../../ui-lib/src/lib/image/image';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Image as SuiImage } from 'ui-lib';
 
 @Component({
   selector: 'app-image',
-  imports: [CommonModule, FormsModule, Tabs, SuiImage],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiImage],
   templateUrl: './image.html',
   styleUrl: './image.scss'
 })
@@ -32,22 +32,22 @@ export class ImageComponent {
   showZoomImageCode = false;
   showErrorImageCode = false;
   
-  onTabChange(tab: string) {
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
   
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicImage':
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
         this.showBasicImageCode = !this.showBasicImageCode;
         break;
-      case 'previewImage':
+      case 'preview':
         this.showPreviewImageCode = !this.showPreviewImageCode;
         break;
-      case 'zoomImage':
+      case 'zoom':
         this.showZoomImageCode = !this.showZoomImageCode;
         break;
-      case 'errorImage':
+      case 'error':
         this.showErrorImageCode = !this.showErrorImageCode;
         break;
     }

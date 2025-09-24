@@ -4,6 +4,25 @@
   @apply mb-8;
 }
 
+// Demo element states for StyleClass component
+.demo-element-1 {
+  &.active-state {
+    @apply bg-green-500 ring-4 ring-green-300;
+  }
+}
+
+.demo-element-2 {
+  &.highlighted-state {
+    @apply bg-yellow-300 shadow-lg;
+  }
+}
+
+.demo-element-3 {
+  &.animated-state {
+    @apply rotate-180 scale-110 bg-red-500;
+  }
+}
+
 .demo-container {
   @apply bg-gray-50 p-6 rounded-lg border;
 }

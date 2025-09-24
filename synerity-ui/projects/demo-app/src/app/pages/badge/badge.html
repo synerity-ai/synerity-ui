@@ -24,7 +24,7 @@
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Basic Badge</h3>
             <button 
-              (click)="toggleCode('basicBadge')"
+              (click)="toggleCode('basic')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showBasicBadgeCode ? 'Hide' : 'Show' }} Code</span>
@@ -47,8 +47,8 @@
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showBasicBadgeCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;button class="relative px-4 py-2 bg-blue-600 text-white rounded-md"&gt;
+            <div *ngIf="showBasicBadgeCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;button class="relative px-4 py-2 bg-blue-600 text-white rounded-md"&gt;
   Messages
   &lt;sui-badge [value]="badgeCount" class="absolute -top-2 -right-2"&gt;&lt;/sui-badge&gt;
 &lt;/button&gt;</code></pre>
@@ -61,7 +61,7 @@
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Badge Variants</h3>
             <button 
-              (click)="toggleCode('badgeVariants')"
+              (click)="toggleCode('variants')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showBadgeVariantsCode ? 'Hide' : 'Show' }} Code</span>
@@ -71,32 +71,57 @@
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="space-y-4">
               <div class="flex items-center gap-4">
-                <sui-badge [value]="badgeCount" variant="primary"></sui-badge>
-                <sui-badge [value]="badgeCount" variant="secondary"></sui-badge>
-                <sui-badge [value]="badgeCount" variant="success"></sui-badge>
-                <sui-badge [value]="badgeCount" variant="warning"></sui-badge>
-                <sui-badge [value]="badgeCount" variant="danger"></sui-badge>
+                <sui-badge [value]="badgeCount" severity="info"></sui-badge>
+                <sui-badge [value]="badgeCount" severity="success"></sui-badge>
+                <sui-badge [value]="badgeCount" severity="warning"></sui-badge>
+                <sui-badge [value]="badgeCount" severity="danger"></sui-badge>
+                <sui-badge [value]="badgeCount" severity="contrast"></sui-badge>
               </div>
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showBadgeVariantsCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-badge [value]="count" variant="primary"&gt;&lt;/sui-badge&gt;
-&lt;sui-badge [value]="count" variant="secondary"&gt;&lt;/sui-badge&gt;
-&lt;sui-badge [value]="count" variant="success"&gt;&lt;/sui-badge&gt;
-&lt;sui-badge [value]="count" variant="warning"&gt;&lt;/sui-badge&gt;
-&lt;sui-badge [value]="count" variant="danger"&gt;&lt;/sui-badge&gt;</code></pre>
+            <div *ngIf="showBadgeVariantsCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-badge [value]="count" severity="info"&gt;&lt;/sui-badge&gt;
+&lt;sui-badge [value]="count" severity="success"&gt;&lt;/sui-badge&gt;
+&lt;sui-badge [value]="count" severity="warning"&gt;&lt;/sui-badge&gt;
+&lt;sui-badge [value]="count" severity="danger"&gt;&lt;/sui-badge&gt;
+&lt;sui-badge [value]="count" severity="contrast"&gt;&lt;/sui-badge&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Coming Soon Placeholder -->
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">🚧</span>
-            <div>
-              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
-              <p class="text-blue-700">Badge positions, sizes, and custom styling examples will be added soon.</p>
+        <!-- Badge Sizes -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Badge Sizes</h3>
+            <button 
+              (click)="toggleCode('sizes')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBadgeSizesCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <sui-badge [value]="badgeCount" size="small"></sui-badge>
+                <sui-badge [value]="badgeCount" size="normal"></sui-badge>
+                <sui-badge [value]="badgeCount" size="large"></sui-badge>
+              </div>
+              
+              <div class="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-md">
+                <p class="text-sm text-purple-800">
+                  <strong>Sizes:</strong> Choose from small, normal, and large sizes to fit different UI contexts.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBadgeSizesCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-badge [value]="count" size="small"&gt;&lt;/sui-badge&gt;
+&lt;sui-badge [value]="count" size="normal"&gt;&lt;/sui-badge&gt;
+&lt;sui-badge [value]="count" size="large"&gt;&lt;/sui-badge&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -180,22 +205,28 @@ export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
                     <td class="px-6 py-4 text-sm text-gray-500">Badge content (text or number)</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary' | 'secondary' | 'success' | 'warning' | 'danger'</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'primary'</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Badge color variant</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">severity</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'info' | 'success' | 'warning' | 'danger' | 'contrast'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'info'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Badge color severity</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">size</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'sm' | 'md' | 'lg'</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'md'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'small' | 'normal' | 'large'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'normal'</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Badge size</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">dot</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Whether to show as a dot without text</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">object</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Custom inline styles</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Additional CSS classes</td>
                   </tr>
                 </tbody>
               </table>

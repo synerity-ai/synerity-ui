@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { StyleClass as SuiStyleClass } from '../../../../../ui-lib/src/lib/style-class/style-class';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { StyleClass as SuiStyleClass } from 'ui-lib';
 
 @Component({
   selector: 'app-styleclass',
   standalone: true,
-  imports: [CommonModule, FormsModule, Tabs, SuiStyleClass],
+  imports: [CommonModule, FormsModule, AppTabs, SuiStyleClass],
   templateUrl: './styleclass.html',
   styleUrl: './styleclass.scss'
 })

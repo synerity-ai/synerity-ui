@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Avatar as SuiAvatar } from '../../../../../ui-lib/src/lib/avatar/avatar';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Avatar as SuiAvatar } from 'ui-lib';
 
 @Component({
   selector: 'app-avatar',
-  imports: [CommonModule, FormsModule, Tabs, SuiAvatar],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiAvatar],
   templateUrl: './avatar.html',
   styleUrl: './avatar.scss'
 })
-export class Avatar {
+export class AvatarComponent {
   activeTab = 'demo';
   
   // Demo data
@@ -23,19 +23,19 @@ export class Avatar {
   showAvatarSizesCode = false;
   showAvatarVariantsCode = false;
   
-  onTabChange(tab: string) {
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
   
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicAvatar':
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
         this.showBasicAvatarCode = !this.showBasicAvatarCode;
         break;
-      case 'avatarSizes':
+      case 'sizes':
         this.showAvatarSizesCode = !this.showAvatarSizesCode;
         break;
-      case 'avatarVariants':
+      case 'variants':
         this.showAvatarVariantsCode = !this.showAvatarVariantsCode;
         break;
     }

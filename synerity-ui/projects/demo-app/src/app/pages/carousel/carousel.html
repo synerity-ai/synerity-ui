@@ -24,7 +24,7 @@
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Basic Carousel</h3>
             <button 
-              (click)="toggleCode('basicCarousel')"
+              (click)="toggleCode('basic')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showBasicCarouselCode ? 'Hide' : 'Show' }} Code</span>
@@ -49,8 +49,8 @@
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showBasicCarouselCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-carousel 
+            <div *ngIf="showBasicCarouselCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-carousel 
   [value]="carouselItems"
   [showIndicators]="true"
   [showNavigators]="true"
@@ -76,7 +76,7 @@ carouselItems = [
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Simple Carousel</h3>
             <button 
-              (click)="toggleCode('simpleCarousel')"
+              (click)="toggleCode('simple')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showSimpleCarouselCode ? 'Hide' : 'Show' }} Code</span>
@@ -100,8 +100,8 @@ carouselItems = [
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showSimpleCarouselCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-carousel 
+            <div *ngIf="showSimpleCarouselCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-carousel 
   [value]="simpleCarouselItems"
   [showIndicators]="true"
   [showNavigators]="false"
@@ -123,7 +123,7 @@ simpleCarouselItems = [
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Autoplay Carousel</h3>
             <button 
-              (click)="toggleCode('autoplayCarousel')"
+              (click)="toggleCode('autoplay')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showAutoplayCarouselCode ? 'Hide' : 'Show' }} Code</span>
@@ -148,8 +148,8 @@ simpleCarouselItems = [
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showAutoplayCarouselCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-carousel 
+            <div *ngIf="showAutoplayCarouselCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-carousel 
   [value]="autoplayCarouselItems"
   [autoplayInterval]="3000"
   [showIndicators]="true"

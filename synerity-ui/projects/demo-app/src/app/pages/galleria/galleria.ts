@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Galleria as SuiGalleria } from '../../../../../ui-lib/src/lib/galleria/galleria';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Galleria as SuiGalleria } from 'ui-lib';
 
 @Component({
   selector: 'app-galleria',
-  imports: [CommonModule, FormsModule, Tabs, SuiGalleria],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiGalleria],
   templateUrl: './galleria.html',
   styleUrl: './galleria.scss'
 })
@@ -92,19 +92,19 @@ export class GalleriaComponent {
   showSimpleGalleriaCode = false;
   showThumbnailGalleriaCode = false;
   
-  onTabChange(tab: string) {
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
   
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicGalleria':
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
         this.showBasicGalleriaCode = !this.showBasicGalleriaCode;
         break;
-      case 'simpleGalleria':
+      case 'simple':
         this.showSimpleGalleriaCode = !this.showSimpleGalleriaCode;
         break;
-      case 'thumbnailGalleria':
+      case 'thumbnail':
         this.showThumbnailGalleriaCode = !this.showThumbnailGalleriaCode;
         break;
     }

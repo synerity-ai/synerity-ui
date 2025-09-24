@@ -14,11 +14,11 @@
   @apply transform scale-105;
 }
 
-.sui-image-loaded img {
+.sui-image img {
   @apply opacity-100;
 }
 
-.sui-image img:not(.sui-image-loaded) {
+.sui-image.sui-image-loading img {
   @apply opacity-0;
 }
 

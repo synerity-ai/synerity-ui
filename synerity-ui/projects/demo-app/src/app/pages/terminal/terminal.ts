@@ -1,46 +1,47 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Terminal } from 'ui-lib';
+import { FormsModule } from '@angular/forms';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Terminal as SuiTerminal } from 'ui-lib';
 
 @Component({
   selector: 'app-terminal',
   standalone: true,
-  imports: [CommonModule, Terminal],
+  imports: [CommonModule, FormsModule, AppTabs, SuiTerminal],
   templateUrl: './terminal.html',
-  styleUrls: ['./terminal.scss']
+  styleUrl: './terminal.scss'
 })
 export class TerminalComponent {
-  activeTab = 0;
-  showBasicTerminal = false;
-  showCustomTerminal = false;
-  showInteractiveTerminal = false;
-
-  showBasicCode = false;
-  showCustomCode = false;
-  showInteractiveCode = false;
-
+  activeTab = 'demo';
+  
+  // Demo data
   terminalWelcomeMessage = 'Welcome to Synerity Terminal Demo';
   terminalPrompt = '$';
   terminalHeight = '400px';
-
-  onTabChange(index: number): void {
-    this.activeTab = index;
+  
+  // Code visibility states
+  showBasicTerminalCode = false;
+  showCustomTerminalCode = false;
+  showInteractiveTerminalCode = false;
+  
+  onTabChange(tab: string): void {
+    this.activeTab = tab;
   }
-
+  
   toggleCode(type: string): void {
     switch (type) {
       case 'basic':
-        this.showBasicCode = !this.showBasicCode;
+        this.showBasicTerminalCode = !this.showBasicTerminalCode;
         break;
       case 'custom':
-        this.showCustomCode = !this.showCustomCode;
+        this.showCustomTerminalCode = !this.showCustomTerminalCode;
         break;
       case 'interactive':
-        this.showInteractiveCode = !this.showInteractiveCode;
+        this.showInteractiveTerminalCode = !this.showInteractiveTerminalCode;
         break;
     }
   }
-
+  
   onTerminalCommand(command: string): void {
     console.log('Terminal command:', command);
   }

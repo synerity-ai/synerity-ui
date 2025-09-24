@@ -24,7 +24,7 @@
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Basic Chip</h3>
             <button 
-              (click)="toggleCode('basicChip')"
+              (click)="toggleCode('basic')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showBasicChipCode ? 'Hide' : 'Show' }} Code</span>
@@ -39,8 +39,8 @@
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showBasicChipCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-chip [label]="'Angular'"&gt;&lt;/sui-chip&gt;
+            <div *ngIf="showBasicChipCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-chip [label]="'Angular'"&gt;&lt;/sui-chip&gt;
 &lt;sui-chip [label]="'TypeScript'"&gt;&lt;/sui-chip&gt;
 &lt;sui-chip [label]="'Tailwind CSS'"&gt;&lt;/sui-chip&gt;</code></pre>
             </div>
@@ -52,7 +52,7 @@
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Removable Chip</h3>
             <button 
-              (click)="toggleCode('removableChip')"
+              (click)="toggleCode('removable')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
               <span>{{ showRemovableChipCode ? 'Hide' : 'Show' }} Code</span>
@@ -78,8 +78,8 @@
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showRemovableChipCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-chip 
+            <div *ngIf="showRemovableChipCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-chip 
   [label]="chip"
   [removable]="true"
   (onRemove)="removeChip(chip)"&gt;
@@ -88,13 +88,39 @@
           </div>
         </div>
 
-        <!-- Coming Soon Placeholder -->
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">🚧</span>
-            <div>
-              <h4 class="text-lg font-semibold text-blue-900">More Examples Coming Soon</h4>
-              <p class="text-blue-700">Chip variants, icons, and custom styling examples will be added soon.</p>
+        <!-- Chip Variants -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Chip with Icons</h3>
+            <button 
+              (click)="toggleCode('variants')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showChipVariantsCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="space-y-4">
+              <div class="flex flex-wrap gap-2">
+                <sui-chip label="Angular" icon="🅰️"></sui-chip>
+                <sui-chip label="React" icon="⚛️"></sui-chip>
+                <sui-chip label="Vue.js" icon="💚"></sui-chip>
+                <sui-chip label="TypeScript" icon="🔷"></sui-chip>
+              </div>
+              
+              <div class="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-md">
+                <p class="text-sm text-purple-800">
+                  <strong>Icons:</strong> Add icons to chips for better visual identification and enhanced user experience.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showChipVariantsCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-chip label="Angular" icon="🅰️"&gt;&lt;/sui-chip&gt;
+&lt;sui-chip label="React" icon="⚛️"&gt;&lt;/sui-chip&gt;
+&lt;sui-chip label="Vue.js" icon="💚"&gt;&lt;/sui-chip&gt;</code></pre>
             </div>
           </div>
         </div>
@@ -197,10 +223,28 @@ export class MyComponent {{ '{' }}{{ '}' }}</code></pre>
                     <td class="px-6 py-4 text-sm text-gray-500">Icon to display in the chip</td>
                   </tr>
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">variant</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'default'</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Chip color variant</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">image</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Image URL to display in the chip</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the chip is disabled</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">object</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Custom inline styles</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Additional CSS classes</td>
                   </tr>
                 </tbody>
               </table>

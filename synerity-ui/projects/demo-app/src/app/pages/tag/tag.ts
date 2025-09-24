@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Tag as SuiTag } from '../../../../../ui-lib/src/lib/tag/tag';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Tag as SuiTag } from 'ui-lib';
 
 @Component({
   selector: 'app-tag',
-  imports: [CommonModule, FormsModule, Tabs, SuiTag],
+  standalone: true,
+  imports: [CommonModule, FormsModule, AppTabs, SuiTag],
   templateUrl: './tag.html',
   styleUrl: './tag.scss'
 })
@@ -43,34 +44,34 @@ export class TagComponent {
   showRemovableTagCode = false;
   showStyledTagCode = false;
   
-  onTabChange(tab: string) {
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
   
-  toggleCode(example: string) {
+  toggleCode(example: string): void {
     switch (example) {
-      case 'basicTag':
+      case 'basic':
         this.showBasicTagCode = !this.showBasicTagCode;
         break;
-      case 'iconTag':
+      case 'icon':
         this.showIconTagCode = !this.showIconTagCode;
         break;
-      case 'removableTag':
+      case 'removable':
         this.showRemovableTagCode = !this.showRemovableTagCode;
         break;
-      case 'styledTag':
+      case 'styled':
         this.showStyledTagCode = !this.showStyledTagCode;
         break;
     }
   }
   
   // Tag demo methods
-  onTagRemove(tag: any) {
+  onTagRemove(tag: any): void {
     console.log('Tag removed:', tag);
     // In a real application, you would remove the tag from the array
   }
   
-  onTagClick(event: any) {
+  onTagClick(event: any): void {
     console.log('Tag clicked:', event);
   }
 }

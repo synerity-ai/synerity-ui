@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Badge as SuiBadge } from '../../../../../ui-lib/src/lib/badge/badge';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Badge as SuiBadge } from 'ui-lib';
 
 @Component({
   selector: 'app-badge',
-  imports: [CommonModule, FormsModule, Tabs, SuiBadge],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiBadge],
   templateUrl: './badge.html',
   styleUrl: './badge.scss'
 })
-export class Badge {
+export class BadgeComponent {
   activeTab = 'demo';
   
   // Demo data
@@ -20,22 +20,22 @@ export class Badge {
   // Code visibility states
   showBasicBadgeCode = false;
   showBadgeVariantsCode = false;
-  showBadgePositionsCode = false;
+  showBadgeSizesCode = false;
   
-  onTabChange(tab: string) {
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
   
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicBadge':
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
         this.showBasicBadgeCode = !this.showBasicBadgeCode;
         break;
-      case 'badgeVariants':
+      case 'variants':
         this.showBadgeVariantsCode = !this.showBadgeVariantsCode;
         break;
-      case 'badgePositions':
-        this.showBadgePositionsCode = !this.showBadgePositionsCode;
+      case 'sizes':
+        this.showBadgeSizesCode = !this.showBadgeSizesCode;
         break;
     }
   }

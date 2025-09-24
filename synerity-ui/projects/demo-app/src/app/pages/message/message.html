@@ -1,0 +1,473 @@
+<div class="max-w-6xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Message</h1>
+    <p class="text-lg text-gray-600">A component to display inline messages with different severity levels and optional close functionality.</p>
+  </div>
+
+  <!-- Tabs -->
+  <app-tabs 
+    [tabs]="[
+      { id: 'demo', label: 'Demo', icon: '🎯' },
+      { id: 'usage', label: 'How to Use', icon: '📖' },
+      { id: 'docs', label: 'Documentation', icon: '📚' }
+    ]"
+    [activeTab]="activeTab"
+    (tabChange)="onTabChange($event)">
+    
+    <!-- Demo Tab -->
+    <div *ngIf="activeTab === 'demo'">
+      <div class="space-y-8">
+        
+        <!-- Basic Message -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Basic Message</h3>
+            <button 
+              (click)="toggleCode('basicMessage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showBasicMessageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A simple message component with default styling and content.</p>
+            <sui-message severity="info" text="This is a basic message component."></sui-message>
+            
+            <!-- Code Example -->
+            <div *ngIf="showBasicMessageCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-message 
+  severity="info" 
+  text="This is a basic message component."&gt;
+&lt;/sui-message&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Message -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Info Message</h3>
+            <button 
+              (click)="toggleCode('infoMessage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showInfoMessageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">An informational message with blue styling to convey neutral information.</p>
+            <sui-message severity="info" text="This is an informational message."></sui-message>
+            
+            <!-- Code Example -->
+            <div *ngIf="showInfoMessageCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-message 
+  severity="info" 
+  text="This is an informational message."&gt;
+&lt;/sui-message&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success Message -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Success Message</h3>
+            <button 
+              (click)="toggleCode('successMessage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showSuccessMessageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A success message with green styling to indicate successful operations.</p>
+            <sui-message severity="success" text="Operation completed successfully!"></sui-message>
+            
+            <!-- Code Example -->
+            <div *ngIf="showSuccessMessageCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-message 
+  severity="success" 
+  text="Operation completed successfully!"&gt;
+&lt;/sui-message&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warning Message -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Warning Message</h3>
+            <button 
+              (click)="toggleCode('warningMessage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showWarningMessageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A warning message with orange styling to alert users about potential issues.</p>
+            <sui-message severity="warn" text="Please review your input before proceeding."></sui-message>
+            
+            <!-- Code Example -->
+            <div *ngIf="showWarningMessageCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-message 
+  severity="warn" 
+  text="Please review your input before proceeding."&gt;
+&lt;/sui-message&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Error Message</h3>
+            <button 
+              (click)="toggleCode('errorMessage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showErrorMessageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">An error message with red styling to indicate critical issues or failures.</p>
+            <sui-message severity="error" text="An error occurred while processing your request."></sui-message>
+            
+            <!-- Code Example -->
+            <div *ngIf="showErrorMessageCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-message 
+  severity="error" 
+  text="An error occurred while processing your request."&gt;
+&lt;/sui-message&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Closable Message -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Closable Message</h3>
+            <button 
+              (click)="toggleCode('closableMessage')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showClosableMessageCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">A message with a close button that allows users to dismiss it.</p>
+            <sui-message 
+              severity="info" 
+              text="This message can be closed by clicking the X button."
+              [closable]="true"
+              (onClose)="onMessageClose()">
+            </sui-message>
+            
+            <!-- Code Example -->
+            <div *ngIf="showClosableMessageCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-message 
+  severity="info" 
+  text="This message can be closed by clicking the X button."
+  [closable]="true"
+  (onClose)="onMessageClose()"&gt;
+&lt;/sui-message&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Tab -->
+    <div *ngIf="activeTab === 'usage'">
+      <div class="space-y-6">
+        
+        <!-- Installation -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Message component is part of the Synerity UI library. Install it using npm:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>npm install @synerity/ui</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Usage -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Import and use the Message component in your Angular application:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>import &#123; Message &#125; from '@synerity/ui';</code>
+            </div>
+            <p class="text-gray-600 mt-4 mb-4">Then use it in your template:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>&lt;sui-message 
+  severity="info"
+  text="Your message text here"&gt;
+&lt;/sui-message&gt;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Severity Levels -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Severity Levels</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">The Message component supports different severity levels:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>// Available severity levels
+&lt;sui-message severity="info" text="Info message"&gt;&lt;/sui-message&gt;
+&lt;sui-message severity="success" text="Success message"&gt;&lt;/sui-message&gt;
+&lt;sui-message severity="warn" text="Warning message"&gt;&lt;/sui-message&gt;
+&lt;sui-message severity="error" text="Error message"&gt;&lt;/sui-message&gt;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Component Properties -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Properties</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">severity</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'info'</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Severity level of the message (info, success, warn, error)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">text</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Text content of the message</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">closable</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the message can be closed</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">object</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Inline style of the component</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Style class of the component</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Events</h3>
+          <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onClose</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Emitted when the message is closed</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Overview -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Overview</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">
+              The Message component is used to display inline messages with different severity levels. It provides a consistent way to show informational, success, warning, and error messages to users.
+            </p>
+            <p class="text-gray-600">
+              Messages are essential for providing feedback to users about the status of their actions and system states.
+            </p>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Severity Levels</h4>
+                    <p class="text-sm text-gray-600">Support for info, success, warning, and error severity levels</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Closable Messages</h4>
+                    <p class="text-sm text-gray-600">Optional close functionality for dismissible messages</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Custom Styling</h4>
+                    <p class="text-sm text-gray-600">Support for custom styles and CSS classes</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Event Handling</h4>
+                    <p class="text-sm text-gray-600">Close event callbacks for user interactions</p>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Accessibility</h4>
+                    <p class="text-sm text-gray-600">ARIA attributes and proper semantic markup</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Responsive Design</h4>
+                    <p class="text-sm text-gray-600">Works on all screen sizes and devices</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Icon Support</h4>
+                    <p class="text-sm text-gray-600">Automatic icons for different severity levels</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Keyboard Navigation</h4>
+                    <p class="text-sm text-gray-600">Full keyboard support for accessibility</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Use Cases -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Use Cases</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">Form Validation</h4>
+                <p class="text-sm text-gray-600">Display validation errors and success messages in forms.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">API Responses</h4>
+                <p class="text-sm text-gray-600">Show success or error messages after API calls.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">System Notifications</h4>
+                <p class="text-sm text-gray-600">Inform users about system status and updates.</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-2">User Guidance</h4>
+                <p class="text-sm text-gray-600">Provide helpful tips and warnings to users.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Browser Support -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Browser Support</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="text-center">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-green-600 font-bold">Ch</span>
+                </div>
+                <p class="text-sm text-gray-600">Chrome 60+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">FF</span>
+                </div>
+                <p class="text-sm text-gray-600">Firefox 55+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">Sa</span>
+                </div>
+                <p class="text-sm text-gray-600">Safari 12+</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <span class="text-blue-600 font-bold">Ed</span>
+                </div>
+                <p class="text-sm text-gray-600">Edge 79+</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-tabs>
+</div>

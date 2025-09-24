@@ -78,8 +78,6 @@ export * from './lib/tooltip/tooltip';
 export * from './lib/file-upload-advanced/file-upload-advanced';
 export * from './lib/upload/upload';
 
-// Chart Components
-export * from './lib/chart/chart';
 
 // Media Components
 export * from './lib/carousel/carousel';

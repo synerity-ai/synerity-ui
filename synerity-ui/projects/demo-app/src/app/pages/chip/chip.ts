@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Chip as SuiChip } from '../../../../../ui-lib/src/lib/chip/chip';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Chip as SuiChip } from 'ui-lib';
 
 @Component({
   selector: 'app-chip',
-  imports: [CommonModule, FormsModule, Tabs, SuiChip],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiChip],
   templateUrl: './chip.html',
   styleUrl: './chip.scss'
 })
-export class Chip {
+export class ChipComponent {
   activeTab = 'demo';
   
   // Demo data
@@ -22,33 +22,33 @@ export class Chip {
   showRemovableChipCode = false;
   showChipVariantsCode = false;
   
-  onTabChange(tab: string) {
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
   
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicChip':
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
         this.showBasicChipCode = !this.showBasicChipCode;
         break;
-      case 'removableChip':
+      case 'removable':
         this.showRemovableChipCode = !this.showRemovableChipCode;
         break;
-      case 'chipVariants':
+      case 'variants':
         this.showChipVariantsCode = !this.showChipVariantsCode;
         break;
     }
   }
   
   // Chip demo methods
-  removeChip(chip: string) {
+  removeChip(chip: string): void {
     const index = this.removableChips.indexOf(chip);
     if (index > -1) {
       this.removableChips.splice(index, 1);
     }
   }
   
-  addChip() {
+  addChip(): void {
     const newChip = prompt('Enter chip text:');
     if (newChip && newChip.trim()) {
       this.removableChips.push(newChip.trim());

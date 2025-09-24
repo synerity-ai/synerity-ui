@@ -64,8 +64,8 @@
           (click)="toggleCode('basic')">
           {{ showBasicCode ? 'Hide' : 'Show' }} Code
         </button>
-        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-focus-trap 
+        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
+          <pre class="font-mono"><code>&lt;sui-focus-trap 
   [enabled]="true"
   [autoFocus]="true"
   class="focus-trap-demo"
@@ -167,8 +167,8 @@
           (click)="toggleCode('modal')">
           {{ showModalCode ? 'Hide' : 'Show' }} Code
         </button>
-        <div *ngIf="showModalCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;div *ngIf="isModalOpen" class="modal-overlay"&gt;
+        <div *ngIf="showModalCode" class="mt-4 bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
+          <pre class="font-mono"><code>&lt;div *ngIf="isModalOpen" class="modal-overlay"&gt;
   &lt;sui-focus-trap [enabled]="true" [autoFocus]="true"&gt;
     &lt;div class="modal-content"&gt;
       &lt;h3&gt;Contact Form&lt;/h3&gt;
@@ -229,8 +229,8 @@
           (click)="toggleCode('custom')">
           {{ showCustomCode ? 'Hide' : 'Show' }} Code
         </button>
-        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-focus-trap 
+        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
+          <pre class="font-mono"><code>&lt;sui-focus-trap 
   [enabled]="true"
   [autoFocus]="false"
   styleClass="custom-focus-trap"

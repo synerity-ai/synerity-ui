@@ -1,31 +1,62 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgFor, NgIf, CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 
 interface PanelMenuItem {
   label?: string;
   icon?: string;
   command?: () => void;
   disabled?: boolean;
+  separator?: boolean;
   expanded?: boolean;
   items?: PanelMenuItem[];
 }
 
 @Component({
   selector: 'sui-panel-menu',
-  imports: [CommonModule, NgFor, NgIf],
+  imports: [NgFor, NgIf],
   templateUrl: './panel-menu.html',
   styleUrl: './panel-menu.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PanelMenu {
+export class PanelMenu implements AfterViewInit, OnDestroy {
   @Input() model: PanelMenuItem[] = [];
   @Input() multiple = false;
   @Input() style: any = {};
   @Input() styleClass = '';
   @Output() onItemClick = new EventEmitter<PanelMenuItem>();
 
+  @ViewChild('menuElement') menuElement!: ElementRef;
+
+  ngAfterViewInit(): void {
+    this.setupEventListeners();
+  }
+
+  ngOnDestroy(): void {
+    this.removeEventListeners();
+  }
+
+  private setupEventListeners(): void {
+    document.addEventListener('click', this.onDocumentClick.bind(this));
+  }
+
+  private removeEventListeners(): void {
+    document.removeEventListener('click', this.onDocumentClick.bind(this));
+  }
+
+  private onDocumentClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    const isInsideMenu = this.menuElement?.nativeElement.contains(target);
+    
+    if (!isInsideMenu) {
+      // Close all expanded items when clicking outside
+      this.model.forEach(item => {
+        item.expanded = false;
+      });
+    }
+  }
+
   onItemClickHandler(event: Event, item: PanelMenuItem): void {
-    if (item.disabled) {
+    if (item.disabled || item.separator) {
       event.preventDefault();
       return;
     }
@@ -57,16 +88,13 @@ export class PanelMenu {
   }
 
   getMenuClass(): string {
-    return `sui-panel-menu ${this.styleClass}`.trim();
+    const baseClasses = 'bg-white border border-gray-200 rounded-lg shadow-sm p-2 w-64';
+    return `${baseClasses} ${this.styleClass}`.trim();
   }
 
   getMenuStyle(): any {
     return {
       ...this.style
     };
-  }
-
-  getItemClass(item: PanelMenuItem): string {
-    return `sui-panel-menu-item ${item.disabled ? 'sui-panel-menu-item-disabled' : ''} ${item.expanded ? 'sui-panel-menu-item-expanded' : ''}`.trim();
   }
 }

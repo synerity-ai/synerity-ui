@@ -94,11 +94,11 @@ export class ImageCompare {
   getSliderStyle(): any {
     if (this.orientation === 'horizontal') {
       return {
-        left: `${this.sliderPosition}%`
+        left: `calc(${this.sliderPosition}% - 2px)` // Adjust for half slider width (4px/2 = 2px)
       };
     } else {
       return {
-        top: `${this.sliderPosition}%`
+        top: `calc(${this.sliderPosition}% - 2px)` // Adjust for half slider height (4px/2 = 2px)
       };
     }
   }

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { FocusTrap as SuiFocusTrap } from '../../../../../ui-lib/src/lib/focus-trap/focus-trap';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { FocusTrap as SuiFocusTrap } from 'ui-lib';
 
 @Component({
   selector: 'app-focustrap',
   standalone: true,
-  imports: [CommonModule, FormsModule, Tabs, SuiFocusTrap],
+  imports: [CommonModule, FormsModule, AppTabs, SuiFocusTrap],
   templateUrl: './focustrap.html',
   styleUrl: './focustrap.scss'
 })

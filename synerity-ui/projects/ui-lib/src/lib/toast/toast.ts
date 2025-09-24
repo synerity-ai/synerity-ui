@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ElementRef, ViewChild, AfterViewInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-toast',
   imports: [NgFor, NgIf],
   templateUrl: './toast.html',
-  styleUrl: './toast.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './toast.css'
 })
 export class Toast implements AfterViewInit, OnDestroy {
   @Input() position: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center' = 'top-right';
@@ -15,6 +14,8 @@ export class Toast implements AfterViewInit, OnDestroy {
   @Output() onClose = new EventEmitter<any>();
 
   @ViewChild('toastContainer') toastContainer!: ElementRef;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   messages: Array<{ 
     id: string; 
@@ -50,6 +51,9 @@ export class Toast implements AfterViewInit, OnDestroy {
     
     this.messages.push(toastMessage);
     
+    // Trigger change detection to update the DOM
+    this.cdr.detectChanges();
+    
     if (toastMessage.life > 0) {
       setTimeout(() => {
         this.remove(id);
@@ -63,11 +67,13 @@ export class Toast implements AfterViewInit, OnDestroy {
       const message = this.messages[index];
       this.messages.splice(index, 1);
       this.onClose.emit(message);
+      this.cdr.detectChanges();
     }
   }
 
   clearAll(): void {
     this.messages = [];
+    this.cdr.detectChanges();
   }
 
   private generateId(): string {

@@ -1,121 +1,107 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { Menubar as SuiMenubar } from '../../../../../ui-lib/src/lib/menubar/menubar';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { Menubar as SuiMenubar } from 'ui-lib';
 
 @Component({
   selector: 'app-menubar',
-  imports: [CommonModule, FormsModule, Tabs, SuiMenubar],
+  standalone: true,
+  imports: [CommonModule, AppTabs, SuiMenubar],
   templateUrl: './menubar.html',
   styleUrl: './menubar.scss'
 })
 export class MenubarComponent {
   activeTab = 'demo';
-  
-  // Demo data
-  menubarItems = [
-    {
-      label: 'File',
+  lastClickedItem: any = null;
+
+  basicMenubarItems = [
+    { label: 'Home', icon: '🏠', command: () => this.executeAction('Home') },
+    { label: 'About', icon: 'ℹ️', command: () => this.executeAction('About') },
+    { label: 'Contact', icon: '📞', command: () => this.executeAction('Contact') },
+    { label: 'Services', icon: '⚙️', command: () => this.executeAction('Services') }
+  ];
+
+  menubarWithSubmenus = [
+    { 
+      label: 'File', 
+      icon: '📁',
       items: [
-        { label: 'New', icon: '📄' },
-        { label: 'Open', icon: '📂' },
-        { label: 'Save', icon: '💾' },
-        { label: 'Exit', icon: '❌' }
+        { label: 'New', icon: '📄', command: () => this.executeAction('New File') },
+        { label: 'Open', icon: '📂', command: () => this.executeAction('Open File') },
+        { label: 'Save', icon: '💾', command: () => this.executeAction('Save File') },
+        { label: '', separator: true },
+        { label: 'Exit', icon: '🚪', command: () => this.executeAction('Exit') }
       ]
     },
-    {
-      label: 'Edit',
+    { 
+      label: 'Edit', 
+      icon: '✏️',
       items: [
-        { label: 'Undo', icon: '↶' },
-        { label: 'Redo', icon: '↷' },
-        { label: 'Cut', icon: '✂️' },
-        { label: 'Copy', icon: '📋' },
-        { label: 'Paste', icon: '📌' }
+        { label: 'Undo', icon: '↶', command: () => this.executeAction('Undo') },
+        { label: 'Redo', icon: '↷', command: () => this.executeAction('Redo') },
+        { label: '', separator: true },
+        { label: 'Cut', icon: '✂️', command: () => this.executeAction('Cut') },
+        { label: 'Copy', icon: '📋', command: () => this.executeAction('Copy') },
+        { label: 'Paste', icon: '📌', command: () => this.executeAction('Paste') }
       ]
     },
-    {
-      label: 'View',
+    { 
+      label: 'View', 
+      icon: '👁️',
       items: [
-        { label: 'Zoom In', icon: '🔍' },
-        { label: 'Zoom Out', icon: '🔍' },
-        { label: 'Full Screen', icon: '⛶' }
+        { label: 'Zoom In', icon: '🔍+', command: () => this.executeAction('Zoom In') },
+        { label: 'Zoom Out', icon: '🔍-', command: () => this.executeAction('Zoom Out') },
+        { label: 'Reset Zoom', icon: '🔍', command: () => this.executeAction('Reset Zoom') }
+      ]
+    },
+    { 
+      label: 'Help', 
+      icon: '❓',
+      items: [
+        { label: 'Documentation', icon: '📚', command: () => this.executeAction('Documentation') },
+        { label: 'Support', icon: '🆘', command: () => this.executeAction('Support') },
+        { label: 'About', icon: 'ℹ️', command: () => this.executeAction('About') }
       ]
     }
   ];
 
-  nestedMenubarItems = [
-    {
-      label: 'Products',
-      items: [
-        { 
-          label: 'Electronics',
-          items: [
-            { label: 'Phones', icon: '📱' },
-            { label: 'Laptops', icon: '💻' },
-            { label: 'Tablets', icon: '📱' }
-          ]
-        },
-        { 
-          label: 'Clothing',
-          items: [
-            { label: 'Shirts', icon: '👕' },
-            { label: 'Pants', icon: '👖' },
-            { label: 'Shoes', icon: '👟' }
-          ]
-        }
-      ]
-    },
-    {
-      label: 'Services',
-      items: [
-        { label: 'Consulting', icon: '💼' },
-        { label: 'Support', icon: '🛠️' },
-        { label: 'Training', icon: '🎓' }
-      ]
-    }
+  menubarWithDisabledItems = [
+    { label: 'Enabled Item', icon: '✅', command: () => this.executeAction('Enabled Item') },
+    { label: 'Disabled Item', icon: '❌', disabled: true },
+    { label: 'Another Enabled', icon: '✅', command: () => this.executeAction('Another Enabled') },
+    { label: '', separator: true },
+    { label: 'Last Item', icon: '🏁', command: () => this.executeAction('Last Item') }
   ];
 
-  customMenubarItems = [
-    {
-      label: 'Home',
-      icon: '🏠'
-    },
-    {
-      label: 'About',
-      icon: 'ℹ️'
-    },
-    {
-      label: 'Contact',
-      icon: '📞'
-    }
-  ];
-  
-  // Code visibility states
+  // Code visibility toggles
   showBasicMenubarCode = false;
-  showNestedMenubarCode = false;
-  showCustomMenubarCode = false;
-  
-  onTabChange(tab: string) {
+  showSubmenuMenubarCode = false;
+  showDisabledMenubarCode = false;
+
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
-  
-  toggleCode(example: string) {
-    switch (example) {
+
+  toggleCode(type: string): void {
+    switch (type) {
       case 'basicMenubar':
         this.showBasicMenubarCode = !this.showBasicMenubarCode;
         break;
-      case 'nestedMenubar':
-        this.showNestedMenubarCode = !this.showNestedMenubarCode;
+      case 'submenuMenubar':
+        this.showSubmenuMenubarCode = !this.showSubmenuMenubarCode;
         break;
-      case 'customMenubar':
-        this.showCustomMenubarCode = !this.showCustomMenubarCode;
+      case 'disabledMenubar':
+        this.showDisabledMenubarCode = !this.showDisabledMenubarCode;
         break;
     }
   }
-  
-  // Menubar demo methods
-  onMenubarItemClick(event: any) {
-    console.log('Menubar item clicked:', event);
+
+  onMenubarItemClick(item: any): void {
+    this.lastClickedItem = item;
+    console.log('Menubar item clicked:', item);
+  }
+
+  executeAction(action: string): void {
+    console.log(`${action} action executed`);
   }
 }

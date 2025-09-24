@@ -2,7 +2,7 @@
   <!-- Page Header -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">TieredMenu</h1>
-    <p class="text-lg text-gray-600">Multi-level hierarchical menu component with nested submenus.</p>
+    <p class="text-lg text-gray-600">A horizontal menu component with multi-level submenu support and hover interactions.</p>
   </div>
 
   <!-- Tabs -->
@@ -24,153 +24,130 @@
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Basic TieredMenu</h3>
             <button 
-              (click)="toggleCode('basicTieredMenu')"
+              (click)="toggleCode('basicMenu')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showBasicTieredMenuCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showBasicMenuCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
+            <p class="text-gray-600 mb-4">A simple horizontal menu with basic navigation items.</p>
+            <div class="p-6 bg-gray-50 rounded-lg">
               <sui-tiered-menu 
-                [model]="tieredMenuItems"
-                (onItemClick)="onTieredMenuItemClick($event)">
+                [model]="basicMenuItems" 
+                (onItemClick)="onMenuItemClick($event)">
               </sui-tiered-menu>
-              
-              <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
-                <p class="text-sm text-blue-800">
-                  <strong>Interactive:</strong> Click on menu items to expand submenus. Hover over items with arrows to see nested options.
-                </p>
-              </div>
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showBasicTieredMenuCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-tiered-menu 
-  [model]="tieredMenuItems"
-  (onItemClick)="onTieredMenuItemClick($event)"&gt;
-&lt;/sui-tiered-menu&gt;
-
-// Component data
-tieredMenuItems = [
-  &#123;
-    label: 'File',
-    icon: '📁',
-    items: [
-      &#123; label: 'New', icon: '➕' &#125;,
-      &#123; label: 'Open', icon: '📂' &#125;,
-      &#123; label: 'Save', icon: '💾' &#125;
-    ]
-  &#125;
-];</code></pre>
+            <div *ngIf="showBasicMenuCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-tiered-menu 
+  [model]="menuItems" 
+  (onItemClick)="onMenuItemClick($event)"&gt;
+&lt;/sui-tiered-menu&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Simple TieredMenu -->
+        <!-- TieredMenu with Submenus -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Simple TieredMenu</h3>
+            <h3 class="text-xl font-semibold text-gray-900">TieredMenu with Submenus</h3>
             <button 
-              (click)="toggleCode('simpleTieredMenu')"
+              (click)="toggleCode('submenuMenu')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showSimpleTieredMenuCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showSubmenuMenuCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
+            <p class="text-gray-600 mb-4">Horizontal menu with dropdown submenus that appear on hover.</p>
+            <div class="p-6 bg-gray-50 rounded-lg">
               <sui-tiered-menu 
-                [model]="simpleTieredMenuItems"
-                (onItemClick)="onTieredMenuItemClick($event)">
+                [model]="menuWithSubmenus" 
+                (onItemClick)="onMenuItemClick($event)">
               </sui-tiered-menu>
-              
-              <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
-                <p class="text-sm text-green-800">
-                  <strong>Simplified:</strong> Clean menu structure with basic navigation items and single-level submenus.
-                </p>
-              </div>
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showSimpleTieredMenuCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-tiered-menu 
-  [model]="simpleTieredMenuItems"
-  (onItemClick)="onTieredMenuItemClick($event)"&gt;
-&lt;/sui-tiered-menu&gt;
-
-// Simple menu data
-simpleTieredMenuItems = [
-  &#123; label: 'Home', icon: '🏠' &#125;,
-  &#123;
-    label: 'Products',
-    icon: '📦',
-    items: [
-      &#123; label: 'Electronics', icon: '📱' &#125;,
-      &#123; label: 'Clothing', icon: '👕' &#125;
-    ]
-  &#125;
-];</code></pre>
+            <div *ngIf="showSubmenuMenuCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-tiered-menu 
+  [model]="menuWithSubmenus" 
+  (onItemClick)="onMenuItemClick($event)"&gt;
+&lt;/sui-tiered-menu&gt;</code></pre>
             </div>
           </div>
         </div>
 
-        <!-- Nested TieredMenu -->
+        <!-- TieredMenu with Disabled Items -->
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Deeply Nested TieredMenu</h3>
+            <h3 class="text-xl font-semibold text-gray-900">TieredMenu with Disabled Items</h3>
             <button 
-              (click)="toggleCode('nestedTieredMenu')"
+              (click)="toggleCode('disabledMenu')"
               class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
               <span class="text-lg">&lt;/&gt;</span>
-              <span>{{ showNestedTieredMenuCode ? 'Hide' : 'Show' }} Code</span>
+              <span>{{ showDisabledMenuCode ? 'Hide' : 'Show' }} Code</span>
             </button>
           </div>
           
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <div class="space-y-4">
+            <p class="text-gray-600 mb-4">Horizontal menu with disabled items and separators.</p>
+            <div class="p-6 bg-gray-50 rounded-lg">
               <sui-tiered-menu 
-                [model]="nestedTieredMenuItems"
-                (onItemClick)="onTieredMenuItemClick($event)">
+                [model]="menuWithDisabledItems" 
+                (onItemClick)="onMenuItemClick($event)">
               </sui-tiered-menu>
-              
-              <div class="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-md">
-                <p class="text-sm text-purple-800">
-                  <strong>Multi-level:</strong> Demonstrates deeply nested menu structures with multiple submenu levels.
-                </p>
-              </div>
             </div>
             
             <!-- Code Example -->
-            <div *ngIf="showNestedTieredMenuCode" class="mt-6 p-4 bg-gray-50 rounded-lg">
-              <pre class="text-sm text-gray-800 overflow-x-auto"><code>&lt;sui-tiered-menu 
-  [model]="nestedTieredMenuItems"
-  (onItemClick)="onTieredMenuItemClick($event)"&gt;
-&lt;/sui-tiered-menu&gt;
-
-// Nested menu data
-nestedTieredMenuItems = [
-  &#123;
-    label: 'Dashboard',
-    icon: '📊',
-    items: [
-      &#123;
-        label: 'Analytics',
-        icon: '📈',
-        items: [
-          &#123; label: 'Sales Report', icon: '💰' &#125;,
-          &#123; label: 'User Activity', icon: '👥' &#125;
-        ]
-      &#125;
-    ]
-  &#125;
-];</code></pre>
+            <div *ngIf="showDisabledMenuCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-tiered-menu 
+  [model]="menuWithDisabledItems" 
+  (onItemClick)="onMenuItemClick($event)"&gt;
+&lt;/sui-tiered-menu&gt;</code></pre>
             </div>
           </div>
         </div>
 
+        <!-- Nested Submenus -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">Nested Submenus</h3>
+            <button 
+              (click)="toggleCode('nestedMenu')"
+              class="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+              <span class="text-lg">&lt;/&gt;</span>
+              <span>{{ showNestedMenuCode ? 'Hide' : 'Show' }} Code</span>
+            </button>
+          </div>
+          
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Horizontal menu with multi-level nested submenus.</p>
+            <div class="p-6 bg-gray-50 rounded-lg">
+              <sui-tiered-menu 
+                [model]="nestedSubmenuItems" 
+                (onItemClick)="onMenuItemClick($event)">
+              </sui-tiered-menu>
+            </div>
+            
+            <!-- Code Example -->
+            <div *ngIf="showNestedMenuCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+              <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-tiered-menu 
+  [model]="nestedSubmenuItems" 
+  (onItemClick)="onMenuItemClick($event)"&gt;
+&lt;/sui-tiered-menu&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Last Clicked Item Display -->
+        <div *ngIf="lastClickedItem" class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <h3 class="text-sm font-medium text-blue-900 mb-2">Last Clicked Item:</h3>
+          <p class="text-blue-700">{{ lastClickedItem.label }}</p>
+        </div>
       </div>
     </div>
 
@@ -178,125 +155,88 @@ nestedTieredMenuItems = [
     <div *ngIf="activeTab === 'usage'">
       <div class="space-y-6">
         
-        <!-- Installation -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Installation</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">The TieredMenu component is part of the Synerity UI library. Install it using npm:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <code>npm install @synerity/ui</code>
-            </div>
-          </div>
-        </div>
-
         <!-- Basic Usage -->
         <div>
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Import and use the TieredMenu component in your Angular application:</p>
+            <p class="text-gray-600 mb-4">Import the TieredMenu component and use it in your template:</p>
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>import &#123; TieredMenu &#125; from '@synerity/ui';
+              <code>// Component imports
+import {{ '{' }} TieredMenu as SuiTieredMenu {{ '}' }} from 'ui-lib';
 
-@Component(&#123;
-  template: `
-    &lt;sui-tiered-menu [model]="menuItems"&gt;&lt;/sui-tiered-menu&gt;
-  `,
-  data: &#123;
-    menuItems: [
-      &#123; label: 'Home', icon: '🏠' &#125;,
-      &#123;
-        label: 'Products',
-        icon: '📦',
+@Component({{ '{' }}
+  imports: [SuiTieredMenu],
+  template: \`
+    &lt;sui-tiered-menu 
+      [model]="menuItems" 
+      (onItemClick)="onItemClick($event)"&gt;
+    &lt;/sui-tiered-menu&gt;
+  \`
+{{ '}' }})
+export class MyComponent {{ '{' }}
+  menuItems = [
+    {{ '{' }} label: 'Home', icon: '🏠', command: () => this.goHome() {{ '}' }},
+    {{ '{' }} label: 'About', icon: 'ℹ️', command: () => this.goAbout() {{ '}' }}
+  ];
+
+  onItemClick(item: any): void {{ '{' }}
+    console.log('Item clicked:', item);
+  {{ '}' }}
+{{ '}' }}</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Items -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Menu Items</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Define your menu items in your component:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>// Component data
+menuItems = [
+  &#123; 
+    label: 'Products', 
+    icon: '📦',
+    items: [
+      &#123; label: 'Electronics', command: () => this.showElectronics() &#125;,
+      &#123; label: 'Clothing', command: () => this.showClothing() &#125;,
+      &#123; label: 'Books', command: () => this.showBooks() &#125;
+    ]
+  &#125;,
+  &#123; label: 'Services', icon: '🔧', command: () => this.showServices() &#125;
+];</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nested Submenus -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Nested Submenus</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">Create multi-level nested submenus:</p>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+              <code>nestedItems = [
+  &#123; 
+    label: 'Products',
+    items: [
+      &#123; 
+        label: 'Electronics',
         items: [
-          &#123; label: 'Electronics', icon: '📱' &#125;
+          &#123; label: 'Phones', command: () => this.showPhones() &#125;,
+          &#123; label: 'Laptops', command: () => this.showLaptops() &#125;
         ]
       &#125;
     ]
   &#125;
-&#125;)
-export class MyComponent &#123;&#125;</code></pre>
+];</code>
             </div>
           </div>
         </div>
 
-        <!-- Menu Item Structure -->
+        <!-- Component Properties -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Menu Item Structure</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Each menu item can have the following properties:</p>
-            <div class="space-y-2 text-sm">
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">label</span>
-                <span class="text-gray-600">Optional. Display text for the menu item</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">icon</span>
-                <span class="text-gray-600">Optional. Icon to display before the label</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">command</span>
-                <span class="text-gray-600">Optional. Function to execute when clicked</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">disabled</span>
-                <span class="text-gray-600">Optional. Boolean to disable the menu item</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">items</span>
-                <span class="text-gray-600">Optional. Array of submenu items</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Event Handling -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Event Handling</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Handle menu item clicks using the onItemClick event:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>&lt;sui-tiered-menu 
-  [model]="menuItems"
-  (onItemClick)="onMenuItemClick($event)"&gt;
-&lt;/sui-tiered-menu&gt;
-
-onMenuItemClick(item: TieredMenuItem) &#123;
-  console.log('Menu item clicked:', item.label);
-  
-  // Execute custom command
-  if (item.command) &#123;
-    item.command();
-  &#125;
-&#125;</code></pre>
-            </div>
-          </div>
-        </div>
-
-        <!-- Popup Mode -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Popup Mode</h3>
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600 mb-4">Use popup mode to show the menu as an overlay:</p>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>&lt;sui-tiered-menu 
-  [model]="menuItems"
-  [popup]="true"
-  (onItemClick)="onMenuItemClick($event)"&gt;
-&lt;/sui-tiered-menu&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'">
-      <div class="space-y-6">
-        
-        <!-- Props -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Props</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Component Properties</h3>
           <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
             <div class="overflow-x-auto">
               <table class="min-w-full divide-y divide-gray-200">
@@ -311,27 +251,27 @@ onMenuItemClick(item: TieredMenuItem) &#123;
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">model</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Array&lt;TieredMenuItem&gt;</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TieredMenuItem[]</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">[]</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Array of menu items to display</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Array of menu items</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">popup</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Show menu as popup overlay</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Whether the menu should be displayed as a popup</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the menu</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">object</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Inline style of the component</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">CSS class name for custom styling</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Style class of the component</td>
                   </tr>
                 </tbody>
               </table>
@@ -348,18 +288,120 @@ onMenuItemClick(item: TieredMenuItem) &#123;
                 <thead class="bg-gray-50">
                   <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onItemClick</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EventEmitter&lt;TieredMenuItem&gt;</td>
                     <td class="px-6 py-4 text-sm text-gray-500">Emitted when a menu item is clicked</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Tab -->
+    <div *ngIf="activeTab === 'docs'">
+      <div class="space-y-6">
+        
+        <!-- Overview -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Overview</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600 mb-4">
+              The TieredMenu component provides a horizontal navigation menu with multi-level submenu support. It's designed for top navigation bars and complex menu structures where users need to access hierarchical content through hover interactions.
+            </p>
+            <p class="text-gray-600">
+              TieredMenu supports nested submenus, icons, disabled items, and smooth hover transitions to create intuitive navigation experiences.
+            </p>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Horizontal Layout</h4>
+                    <p class="text-sm text-gray-600">Perfect for top navigation bars</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Multi-level Submenus</h4>
+                    <p class="text-sm text-gray-600">Support for nested menu structures</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Hover Interactions</h4>
+                    <p class="text-sm text-gray-600">Smooth hover-based menu activation</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Icons Support</h4>
+                    <p class="text-sm text-gray-600">Icons for menu items and submenus</p>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Disabled Items</h4>
+                    <p class="text-sm text-gray-600">Support for disabled menu items</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Separators</h4>
+                    <p class="text-sm text-gray-600">Visual separators between menu groups</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Custom Styling</h4>
+                    <p class="text-sm text-gray-600">Support for custom styles and CSS classes</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <span class="text-primary-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Accessibility</h4>
+                    <p class="text-sm text-gray-600">ARIA attributes and keyboard navigation</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -369,50 +411,53 @@ onMenuItemClick(item: TieredMenuItem) &#123;
           <h3 class="text-xl font-semibold text-gray-900 mb-4">TieredMenuItem Interface</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-              <pre><code>interface TieredMenuItem &#123;
-  label?: string;                    // Display text
-  icon?: string;                     // Icon to display
-  command?: () =&gt; void;              // Click handler function
-  disabled?: boolean;                // Disabled state
-  items?: TieredMenuItem[];          // Submenu items
-&#125;</code></pre>
+              <code>interface TieredMenuItem &#123;
+  label?: string;           // Display text for the menu item
+  icon?: string;            // Icon to display (emoji or icon class)
+  command?: () => void;     // Function to execute when clicked
+  disabled?: boolean;       // Whether the item is disabled
+  separator?: boolean;      // Whether this is a separator line
+  items?: TieredMenuItem[]; // Child menu items
+&#125;</code>
             </div>
           </div>
         </div>
 
-        <!-- Accessibility -->
+        <!-- Best Practices -->
         <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Accessibility</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Best Practices</h3>
           <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Proper semantic HTML with ul and li elements</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Keyboard navigation support</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Focus indicators for keyboard users</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Screen reader friendly structure</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Disabled state properly communicated</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green-500 mt-1">✓</span>
-                <span>Submenu navigation with ARIA attributes</span>
-              </li>
-            </ul>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                  <span class="text-blue-600 text-sm">💡</span>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-900">Logical Hierarchy</h4>
+                  <p class="text-sm text-gray-600">Organize menu items in a logical hierarchy that matches your application structure</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                  <span class="text-blue-600 text-sm">💡</span>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-900">Hover Timing</h4>
+                  <p class="text-sm text-gray-600">Consider hover timing for better user experience on touch devices</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                  <span class="text-blue-600 text-sm">💡</span>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-900">Menu Depth</h4>
+                  <p class="text-sm text-gray-600">Limit menu depth to avoid overwhelming users with too many levels</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   </app-tabs>

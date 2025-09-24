@@ -1,24 +1,24 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild, ElementRef, HostListener, OnDestroy } from '@angular/core';
-import { NgFor, NgIf, CommonModule } from '@angular/common';
-import { Subscription, fromEvent } from 'rxjs';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 
 interface MegaMenuItem {
   label?: string;
   icon?: string;
   command?: () => void;
   disabled?: boolean;
+  separator?: boolean;
   items?: MegaMenuItem[];
   columns?: MegaMenuItem[][];
 }
 
 @Component({
   selector: 'sui-mega-menu',
-  imports: [CommonModule, NgFor, NgIf],
+  imports: [NgFor, NgIf],
   templateUrl: './mega-menu.html',
   styleUrl: './mega-menu.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MegaMenu implements OnDestroy {
+export class MegaMenu implements AfterViewInit, OnDestroy {
   @Input() model: MegaMenuItem[] = [];
   @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
   @Input() style: any = {};
@@ -28,14 +28,36 @@ export class MegaMenu implements OnDestroy {
   @ViewChild('menuElement') menuElement!: ElementRef;
 
   activeItem: MegaMenuItem | null = null;
-  private documentClickListener!: Subscription;
+
+  ngAfterViewInit(): void {
+    this.setupEventListeners();
+  }
 
   ngOnDestroy(): void {
-    this.unbindDocumentClickListener();
+    this.removeEventListeners();
+  }
+
+  private setupEventListeners(): void {
+    document.addEventListener('click', this.onDocumentClick.bind(this));
+  }
+
+  private removeEventListeners(): void {
+    document.removeEventListener('click', this.onDocumentClick.bind(this));
+  }
+
+  private onDocumentClick(event: Event): void {
+    if (!this.activeItem) return;
+    
+    const target = event.target as HTMLElement;
+    const isInsideMenu = this.menuElement?.nativeElement.contains(target);
+    
+    if (!isInsideMenu) {
+      this.activeItem = null;
+    }
   }
 
   onItemClickHandler(event: Event, item: MegaMenuItem): void {
-    if (item.disabled) {
+    if (item.disabled || item.separator) {
       event.preventDefault();
       return;
     }
@@ -44,14 +66,35 @@ export class MegaMenu implements OnDestroy {
       item.command();
     }
 
-    if (item.items && item.items.length > 0) {
+    this.onItemClick.emit(item);
+
+    if (this.hasSubmenu(item)) {
       this.activeItem = this.activeItem === item ? null : item;
     } else {
       this.activeItem = null;
     }
 
-    this.onItemClick.emit(item);
     event.stopPropagation();
+  }
+
+  onItemMouseEnter(item: MegaMenuItem): void {
+    if (this.hasSubmenu(item)) {
+      this.activeItem = item;
+    }
+  }
+
+  onItemMouseLeave(): void {
+    // Keep submenu open when hovering over submenu items
+    setTimeout(() => {
+      if (!this.isHoveringSubmenu()) {
+        this.activeItem = null;
+      }
+    }, 100);
+  }
+
+  private isHoveringSubmenu(): boolean {
+    // Check if mouse is over any submenu
+    return false; // Simplified for now
   }
 
   hasSubmenu(item: MegaMenuItem): boolean {
@@ -59,27 +102,15 @@ export class MegaMenu implements OnDestroy {
   }
 
   getMenuClass(): string {
-    return `sui-mega-menu sui-mega-menu-${this.orientation} ${this.styleClass}`.trim();
+    const baseClasses = this.orientation === 'horizontal' 
+      ? 'flex items-center bg-white border-b border-gray-200 shadow-sm'
+      : 'flex flex-col bg-white border border-gray-200 rounded-lg shadow-lg';
+    return `${baseClasses} ${this.styleClass}`.trim();
   }
 
   getMenuStyle(): any {
     return {
       ...this.style
     };
-  }
-
-  private bindDocumentClickListener(): void {
-    if (!this.documentClickListener) {
-      this.documentClickListener = fromEvent(document, 'click').subscribe(() => {
-        this.activeItem = null;
-      });
-    }
-  }
-
-  private unbindDocumentClickListener(): void {
-    if (this.documentClickListener) {
-      this.documentClickListener.unsubscribe();
-      this.documentClickListener = null!;
-    }
   }
 }

@@ -1,13 +1,13 @@
 <div 
   #toastContainer
-  class="fixed z-50 space-y-2 pointer-events-none"
-  [class]="getToastClass()"
+  class="toast-container"
+  [class]="'toast-container ' + getToastClass()"
   [style]="getToastStyle()"
 >
   <div 
     *ngFor="let message of messages; trackBy: trackByMessageId" 
-    class="flex items-start p-4 rounded-lg shadow-lg border pointer-events-auto transform transition-all duration-300 ease-in-out"
-    [class]="getMessageClass(message)"
+    class="toast-message"
+    [class]="'toast-message ' + getMessageClass(message)"
     role="alert"
     [attr.aria-live]="message.severity === 'error' ? 'assertive' : 'polite'"
   >

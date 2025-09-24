@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tabs } from '../../shared/tabs/tabs';
-import { ProgressBar as SuiProgressBar } from '../../../../../ui-lib/src/lib/progress-bar/progress-bar';
+import { Tabs as AppTabs } from '../../shared/tabs/tabs';
+import { ProgressBar as SuiProgressBar } from 'ui-lib';
 
 @Component({
   selector: 'app-progressbar',
-  imports: [CommonModule, FormsModule, Tabs, SuiProgressBar],
+  standalone: true,
+  imports: [CommonModule, FormsModule, AppTabs, SuiProgressBar],
   templateUrl: './progressbar.html',
   styleUrl: './progressbar.scss'
 })
-export class Progressbar {
+export class ProgressBarComponent {
   activeTab = 'demo';
   
   // Demo data
@@ -23,26 +24,26 @@ export class Progressbar {
   showIndeterminateProgressCode = false;
   showCustomProgressCode = false;
   
-  onTabChange(tab: string) {
+  onTabChange(tab: string): void {
     this.activeTab = tab;
   }
   
-  toggleCode(example: string) {
-    switch (example) {
-      case 'basicProgress':
+  toggleCode(type: string): void {
+    switch (type) {
+      case 'basic':
         this.showBasicProgressCode = !this.showBasicProgressCode;
         break;
-      case 'indeterminateProgress':
+      case 'indeterminate':
         this.showIndeterminateProgressCode = !this.showIndeterminateProgressCode;
         break;
-      case 'customProgress':
+      case 'custom':
         this.showCustomProgressCode = !this.showCustomProgressCode;
         break;
     }
   }
   
   // Progress demo methods
-  startProgress() {
+  startProgress(): void {
     this.progressValue = 0;
     const interval = setInterval(() => {
       this.progressValue += 10;
@@ -52,7 +53,7 @@ export class Progressbar {
     }, 200);
   }
   
-  toggleIndeterminate() {
+  toggleIndeterminate(): void {
     this.progressIndeterminate = !this.progressIndeterminate;
   }
 }

@@ -1,61 +1,81 @@
-<div class="max-w-6xl mx-auto">
-  <!-- Page Header -->
-  <div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">Ripple</h1>
-    <p class="text-lg text-gray-600">A material design ripple effect component for providing visual feedback on user interactions.</p>
-  </div>
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">Ripple</h1>
+      <p class="text-lg text-gray-600">
+        A material design ripple effect component for providing visual feedback on user interactions.
+      </p>
+    </div>
 
-  <!-- Tabs -->
-  <app-tabs 
-    [tabs]="[
-      { id: 'demo', label: 'Demo', icon: '🎯' },
-      { id: 'usage', label: 'How to Use', icon: '📖' },
-      { id: 'docs', label: 'Documentation', icon: '📚' }
-    ]"
-    [activeTab]="activeTab"
-    (tabChange)="onTabChange($event)">
-    
+    <!-- Tabs -->
+    <app-tabs 
+      [tabs]="[
+        { id: 'demo', label: 'Demo', icon: '🎯' },
+        { id: 'usage', label: 'How to Use', icon: '📖' },
+        { id: 'docs', label: 'Documentation', icon: '📚' }
+      ]"
+      [activeTab]="activeTab" 
+      (tabChange)="onTabChange($event)"
+    ></app-tabs>
+
     <!-- Demo Tab -->
     <div *ngIf="activeTab === 'demo'" class="space-y-8">
       <!-- Basic Ripple -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Basic Ripple</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col items-center space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="flex flex-col items-center space-y-4">
-                <sui-ripple 
-                  class="ripple-button ripple-button-primary"
-                  (click)="onRippleClick()"
-                >
-                  <button class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-                    Click Me
-                  </button>
-                </sui-ripple>
-                <span class="text-sm text-gray-600">Primary Button</span>
-              </div>
-              
-              <div class="flex flex-col items-center space-y-4">
-                <sui-ripple 
-                  class="ripple-button ripple-button-secondary"
-                  (click)="onRippleClick()"
-                >
-                  <button class="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors">
-                    Click Me
-                  </button>
-                </sui-ripple>
-                <span class="text-sm text-gray-600">Secondary Button</span>
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Basic Ripple</h2>
+          <button 
+            (click)="toggleCode('basic')"
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200 flex items-center gap-2"
+          >
+            <span class="text-lg">&lt;/&gt;</span>
+            Show Code
+          </button>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <p class="text-gray-600">Basic ripple effects on buttons with default settings.</p>
+            
+            <div class="flex flex-col items-center space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex flex-col items-center space-y-4">
+                  <sui-ripple 
+                    class="ripple-button ripple-button-primary"
+                    (click)="onRippleClick()"
+                  >
+                    <button class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                      Click Me
+                    </button>
+                  </sui-ripple>
+                  <span class="text-sm text-gray-600">Primary Button</span>
+                </div>
+                
+                <div class="flex flex-col items-center space-y-4">
+                  <sui-ripple 
+                    class="ripple-button ripple-button-secondary"
+                    (click)="onRippleClick()"
+                  >
+                    <button class="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors">
+                      Click Me
+                    </button>
+                  </sui-ripple>
+                  <span class="text-sm text-gray-600">Secondary Button</span>
+                </div>
               </div>
             </div>
+            
+            <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+              <p class="text-sm text-blue-800">
+                <strong>Basic:</strong> Default ripple effects with white color and 600ms duration.
+              </p>
+            </div>
           </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('basic')">
-          {{ showBasicCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showBasicCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-ripple 
+          
+          <!-- Code Example -->
+          <div *ngIf="showBasicRippleCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+            <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-ripple 
   class="ripple-button"
   (click)="onRippleClick()"
 &gt;
@@ -63,63 +83,80 @@
     Click Me
   &lt;/button&gt;
 &lt;/sui-ripple&gt;</code></pre>
+          </div>
         </div>
       </div>
 
       <!-- Different Colors -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Different Colors</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col items-center space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="flex flex-col items-center space-y-4">
-                <sui-ripple 
-                  color="rgba(255, 255, 255, 0.8)"
-                  class="ripple-button ripple-button-red"
-                  (click)="onRippleClick()"
-                >
-                  <button class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
-                    Red Ripple
-                  </button>
-                </sui-ripple>
-                <span class="text-sm text-gray-600">White Ripple</span>
-              </div>
-              
-              <div class="flex flex-col items-center space-y-4">
-                <sui-ripple 
-                  color="rgba(0, 0, 0, 0.3)"
-                  class="ripple-button ripple-button-green"
-                  (click)="onRippleClick()"
-                >
-                  <button class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
-                    Green Ripple
-                  </button>
-                </sui-ripple>
-                <span class="text-sm text-gray-600">Dark Ripple</span>
-              </div>
-              
-              <div class="flex flex-col items-center space-y-4">
-                <sui-ripple 
-                  color="rgba(255, 255, 0, 0.6)"
-                  class="ripple-button ripple-button-purple"
-                  (click)="onRippleClick()"
-                >
-                  <button class="px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">
-                    Purple Ripple
-                  </button>
-                </sui-ripple>
-                <span class="text-sm text-gray-600">Yellow Ripple</span>
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Different Colors</h2>
+          <button 
+            (click)="toggleCode('color')"
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200 flex items-center gap-2"
+          >
+            <span class="text-lg">&lt;/&gt;</span>
+            Show Code
+          </button>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <p class="text-gray-600">Ripple effects with different colors to match various button styles.</p>
+            
+            <div class="flex flex-col items-center space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="flex flex-col items-center space-y-4">
+                  <sui-ripple 
+                    color="rgba(255, 255, 255, 0.8)"
+                    class="ripple-button ripple-button-red"
+                    (click)="onRippleClick()"
+                  >
+                    <button class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                      Red Ripple
+                    </button>
+                  </sui-ripple>
+                  <span class="text-sm text-gray-600">White Ripple</span>
+                </div>
+                
+                <div class="flex flex-col items-center space-y-4">
+                  <sui-ripple 
+                    color="rgba(0, 0, 0, 0.3)"
+                    class="ripple-button ripple-button-green"
+                    (click)="onRippleClick()"
+                  >
+                    <button class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                      Green Ripple
+                    </button>
+                  </sui-ripple>
+                  <span class="text-sm text-gray-600">Dark Ripple</span>
+                </div>
+                
+                <div class="flex flex-col items-center space-y-4">
+                  <sui-ripple 
+                    color="rgba(255, 255, 0, 0.6)"
+                    class="ripple-button ripple-button-purple"
+                    (click)="onRippleClick()"
+                  >
+                    <button class="px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">
+                      Purple Ripple
+                    </button>
+                  </sui-ripple>
+                  <span class="text-sm text-gray-600">Yellow Ripple</span>
+                </div>
               </div>
             </div>
+            
+            <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
+              <p class="text-sm text-green-800">
+                <strong>Color Variants:</strong> Different ripple colors to match button backgrounds and provide better visual contrast.
+              </p>
+            </div>
           </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('color')">
-          {{ showColorCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showColorCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-ripple 
+          
+          <!-- Code Example -->
+          <div *ngIf="showColorRippleCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+            <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-ripple 
   color="rgba(255, 255, 255, 0.8)"
   class="ripple-button"
   (click)="onRippleClick()"
@@ -128,54 +165,71 @@
     Red Ripple
   &lt;/button&gt;
 &lt;/sui-ripple&gt;</code></pre>
+          </div>
         </div>
       </div>
 
       <!-- Custom Duration and Cards -->
-      <div class="demo-section">
-        <h2 class="text-xl font-semibold mb-4">Custom Duration and Cards</h2>
-        <div class="demo-container bg-gray-50 p-6 rounded-lg">
-          <div class="flex flex-col items-center space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="flex flex-col items-center space-y-4">
-                <sui-ripple 
-                  [duration]="300"
-                  color="rgba(59, 130, 246, 0.4)"
-                  class="ripple-card"
-                  (click)="onRippleClick()"
-                >
-                  <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <h3 class="text-lg font-semibold mb-2">Fast Ripple</h3>
-                    <p class="text-gray-600">300ms duration</p>
-                  </div>
-                </sui-ripple>
-                <span class="text-sm text-gray-600">Fast Animation</span>
-              </div>
-              
-              <div class="flex flex-col items-center space-y-4">
-                <sui-ripple 
-                  [duration]="1200"
-                  color="rgba(16, 185, 129, 0.4)"
-                  class="ripple-card"
-                  (click)="onRippleClick()"
-                >
-                  <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <h3 class="text-lg font-semibold mb-2">Slow Ripple</h3>
-                    <p class="text-gray-600">1200ms duration</p>
-                  </div>
-                </sui-ripple>
-                <span class="text-sm text-gray-600">Slow Animation</span>
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Custom Duration and Cards</h2>
+          <button 
+            (click)="toggleCode('custom')"
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200 flex items-center gap-2"
+          >
+            <span class="text-lg">&lt;/&gt;</span>
+            Show Code
+          </button>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <p class="text-gray-600">Ripple effects with custom durations and on card elements.</p>
+            
+            <div class="flex flex-col items-center space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex flex-col items-center space-y-4">
+                  <sui-ripple 
+                    [duration]="300"
+                    color="rgba(59, 130, 246, 0.4)"
+                    class="ripple-card"
+                    (click)="onRippleClick()"
+                  >
+                    <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                      <h3 class="text-lg font-semibold mb-2">Fast Ripple</h3>
+                      <p class="text-gray-600">300ms duration</p>
+                    </div>
+                  </sui-ripple>
+                  <span class="text-sm text-gray-600">Fast Animation</span>
+                </div>
+                
+                <div class="flex flex-col items-center space-y-4">
+                  <sui-ripple 
+                    [duration]="1200"
+                    color="rgba(16, 185, 129, 0.4)"
+                    class="ripple-card"
+                    (click)="onRippleClick()"
+                  >
+                    <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                      <h3 class="text-lg font-semibold mb-2">Slow Ripple</h3>
+                      <p class="text-gray-600">1200ms duration</p>
+                    </div>
+                  </sui-ripple>
+                  <span class="text-sm text-gray-600">Slow Animation</span>
+                </div>
               </div>
             </div>
+            
+            <div class="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-md">
+              <p class="text-sm text-purple-800">
+                <strong>Custom Duration:</strong> Different animation speeds for various interaction types - fast for buttons, slow for cards.
+              </p>
+            </div>
           </div>
-        </div>
-        <button 
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          (click)="toggleCode('custom')">
-          {{ showCustomCode ? 'Hide' : 'Show' }} Code
-        </button>
-        <div *ngIf="showCustomCode" class="mt-4 bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-          <pre><code>&lt;sui-ripple 
+          
+          <!-- Code Example -->
+          <div *ngIf="showCustomRippleCode" class="mt-6 p-4 bg-gray-900 rounded-lg">
+            <pre class="text-sm text-green-400 overflow-x-auto font-mono"><code>&lt;sui-ripple 
   [duration]="300"
   color="rgba(59, 130, 246, 0.4)"
   class="ripple-card"
@@ -186,177 +240,131 @@
     &lt;p&gt;300ms duration&lt;/p&gt;
   &lt;/div&gt;
 &lt;/sui-ripple&gt;</code></pre>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- How to Use Tab -->
-    <div *ngIf="activeTab === 'usage'" class="prose max-w-none">
-      <h2>How to Use Ripple</h2>
-      
-      <h3>Installation</h3>
-      <p>Import the Ripple component from the UI library:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>import &#123; Ripple &#125; from 'ui-lib';
+    <div *ngIf="activeTab === 'usage'" class="space-y-6">
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Installation</h2>
+        <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+          <code>npm install ui-lib</code>
+        </div>
+      </div>
 
-// In your component imports
-imports: [Ripple]</code></pre>
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Basic Usage</h2>
+        <div class="space-y-4">
+          <p class="text-gray-600">Import the Ripple component and wrap any clickable element:</p>
+          <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+            <pre><code>import {{ '{' }} Ripple {{ '}' }} from 'ui-lib';
 
-      <h3>Basic Usage</h3>
-      <p>Wrap any clickable element with the ripple component:</p>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-ripple&gt;
+// In your template
+&lt;sui-ripple&gt;
   &lt;button class="my-button"&gt;Click Me&lt;/button&gt;
 &lt;/sui-ripple&gt;</code></pre>
+          </div>
+        </div>
+      </div>
 
-      <h3>Component Properties</h3>
-      <ul>
-        <li><strong>disabled</strong>: Boolean to disable the ripple effect</li>
-        <li><strong>color</strong>: Color of the ripple effect (CSS color value)</li>
-        <li><strong>duration</strong>: Duration of the ripple animation in milliseconds</li>
-        <li><strong>style</strong>: Custom CSS styles</li>
-        <li><strong>styleClass</strong>: Custom CSS class</li>
-      </ul>
-
-      <h3>Common Use Cases</h3>
-      <ul>
-        <li><strong>Buttons</strong>: Add visual feedback to button clicks</li>
-        <li><strong>Cards</strong>: Enhance card interaction feedback</li>
-        <li><strong>List Items</strong>: Provide touch feedback on mobile</li>
-        <li><strong>Navigation Elements</strong>: Improve user interaction feedback</li>
-        <li><strong>Custom Components</strong>: Add material design effects to any element</li>
-      </ul>
-
-      <h3>Best Practices</h3>
-      <ul>
-        <li><strong>Appropriate Colors</strong>: Choose ripple colors that contrast well with the background</li>
-        <li><strong>Duration</strong>: Use shorter durations for buttons (300-600ms), longer for cards (600-1000ms)</li>
-        <li><strong>Accessibility</strong>: Ensure ripple doesn't interfere with focus indicators</li>
-        <li><strong>Performance</strong>: Ripple effects are automatically cleaned up after animation</li>
-        <li><strong>Consistency</strong>: Use consistent ripple styling across your application</li>
-      </ul>
-
-      <h3>Customization Examples</h3>
-      <h4>Custom Color</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-ripple color="rgba(255, 255, 255, 0.8)"&gt;
-  &lt;button class="bg-red-500 text-white px-4 py-2 rounded"&gt;
-    Red Button
-  &lt;/button&gt;
-&lt;/sui-ripple&gt;</code></pre>
-
-      <h4>Custom Duration</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-ripple [duration]="300"&gt;
-  &lt;div class="card"&gt;Fast Ripple Effect&lt;/div&gt;
-&lt;/sui-ripple&gt;</code></pre>
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Common Use Cases</h2>
+        <div class="space-y-4">
+          <div>
+            <h4 class="font-semibold text-gray-900">Buttons</h4>
+            <p class="text-gray-600">Add visual feedback to button clicks with material design ripple effects</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-900">Cards</h4>
+            <p class="text-gray-600">Enhance card interaction feedback for better user experience</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-900">List Items</h4>
+            <p class="text-gray-600">Provide touch feedback on mobile devices and desktop interactions</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-900">Navigation Elements</h4>
+            <p class="text-gray-600">Improve user interaction feedback for menu items and links</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Documentation Tab -->
-    <div *ngIf="activeTab === 'docs'" class="prose max-w-none">
-      <h2>API Documentation</h2>
-      
-      <h3>Properties</h3>
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left">Property</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
-              <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">disabled</td>
-              <td class="border border-gray-300 px-4 py-2">boolean</td>
-              <td class="border border-gray-300 px-4 py-2">false</td>
-              <td class="border border-gray-300 px-4 py-2">Disable the ripple effect</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">color</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">'rgba(255, 255, 255, 0.6)'</td>
-              <td class="border border-gray-300 px-4 py-2">Color of the ripple effect</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">duration</td>
-              <td class="border border-gray-300 px-4 py-2">number</td>
-              <td class="border border-gray-300 px-4 py-2">600</td>
-              <td class="border border-gray-300 px-4 py-2">Animation duration in milliseconds</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">style</td>
-              <td class="border border-gray-300 px-4 py-2">any</td>
-              <td class="border border-gray-300 px-4 py-2">&#123;&#125;</td>
-              <td class="border border-gray-300 px-4 py-2">Custom CSS styles</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">styleClass</td>
-              <td class="border border-gray-300 px-4 py-2">string</td>
-              <td class="border border-gray-300 px-4 py-2">''</td>
-              <td class="border border-gray-300 px-4 py-2">Custom CSS class</td>
-            </tr>
-          </tbody>
-        </table>
+    <div *ngIf="activeTab === 'docs'" class="space-y-6">
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Properties</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">disabled</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">boolean</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Disable the ripple effect</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">color</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">'rgba(255, 255, 255, 0.6)'</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Color of the ripple effect</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">duration</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">number</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">600</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Animation duration in milliseconds</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">style</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">any</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">&#123;&#125;</td>
+                <td class="px-6 py-4 text-sm text-gray-500">Inline styles for the component</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">styleClass</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">string</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">''</td>
+                <td class="px-6 py-4 text-sm text-gray-500">CSS class for the component</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <h3>Events</h3>
-      <p>The component forwards click events from the wrapped element.</p>
-
-      <h3>Methods</h3>
-      <ul>
-        <li><strong>getRippleClass()</strong>: Returns CSS classes for the ripple container</li>
-        <li><strong>getRippleStyle()</strong>: Returns inline styles for the ripple container</li>
-        <li><strong>isDisabled()</strong>: Checks if ripple is disabled</li>
-      </ul>
-
-      <h3>Accessibility</h3>
-      <ul>
-        <li><strong>ARIA</strong>: Preserves accessibility attributes of wrapped elements</li>
-        <li><strong>Keyboard Navigation</strong>: Works with keyboard interactions</li>
-        <li><strong>Screen Reader</strong>: Does not interfere with screen reader announcements</li>
-        <li><strong>Focus Management</strong>: Maintains focus on wrapped elements</li>
-      </ul>
-
-      <h3>Styling</h3>
-      <p>The component uses CSS classes that can be customized:</p>
-      <ul>
-        <li><code>.sui-ripple</code>: Main container</li>
-        <li><code>.sui-ripple-disabled</code>: Disabled state styling</li>
-        <li><code>.sui-ripple-effect</code>: The animated ripple element</li>
-      </ul>
-
-      <h3>Examples</h3>
-      <h4>Basic Button with Ripple</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-ripple&gt;
-  &lt;button class="btn btn-primary"&gt;Click Me&lt;/button&gt;
-&lt;/sui-ripple&gt;</code></pre>
-
-      <h4>Card with Custom Ripple</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-ripple 
-  color="rgba(59, 130, 246, 0.3)"
-  [duration]="800"
-  class="card-ripple"
-&gt;
-  &lt;div class="card"&gt;
-    &lt;h3&gt;Card Title&lt;/h3&gt;
-    &lt;p&gt;Card content&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/sui-ripple&gt;</code></pre>
-
-      <h4>Disabled Ripple</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;sui-ripple [disabled]="true"&gt;
-  &lt;button class="btn btn-disabled"&gt;Disabled&lt;/button&gt;
-&lt;/sui-ripple&gt;</code></pre>
-
-      <h4>Multiple Ripple Colors</h4>
-      <pre class="bg-gray-900 text-white p-4 rounded-lg"><code>&lt;!-- White ripple on dark background --&gt;
-&lt;sui-ripple color="rgba(255, 255, 255, 0.8)"&gt;
-  &lt;button class="bg-red-500 text-white"&gt;Red Button&lt;/button&gt;
-&lt;/sui-ripple&gt;
-
-&lt;!-- Dark ripple on light background --&gt;
-&lt;sui-ripple color="rgba(0, 0, 0, 0.3)"&gt;
-  &lt;button class="bg-white text-black"&gt;White Button&lt;/button&gt;
-&lt;/sui-ripple&gt;</code></pre>
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Accessibility</h2>
+        <div class="space-y-4">
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">✓</span>
+              <span>Preserves accessibility attributes of wrapped elements</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">✓</span>
+              <span>Works with keyboard interactions</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">✓</span>
+              <span>Does not interfere with screen reader announcements</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">✓</span>
+              <span>Maintains focus on wrapped elements</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </app-tabs>
+  </div>
 </div>

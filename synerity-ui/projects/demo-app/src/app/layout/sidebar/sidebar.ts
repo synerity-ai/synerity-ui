@@ -26,7 +26,6 @@ export class Sidebar {
     'Overlay Components': false,
     'File Components': false,
     'Menu Components': false,
-    'Chart Components': false,
     'Messages Components': false,
     'Media Components': false,
     'Misc Components': false,
@@ -183,12 +182,6 @@ export class Sidebar {
         { name: 'MegaMenu', route: '/components/megamenu', icon: '📋', comingSoon: false },
         { name: 'PanelMenu', route: '/components/panelmenu', icon: '📁', comingSoon: false },
         { name: 'TieredMenu', route: '/components/tieredmenu', icon: '📊', comingSoon: false }
-      ]
-    },
-    {
-      title: 'Chart Components',
-      items: [
-        { name: 'Chart', route: '/components/chart', icon: '📈', comingSoon: false }
       ]
     },
     {
