@@ -34,6 +34,11 @@ jobs:
           cd synerity-ui
           npm install
         
+      - name: Install Angular CLI
+        run: |
+          cd synerity-ui
+          npm install -g @angular/cli
+        
       - name: Build Angular app
         run: |
           cd synerity-ui
