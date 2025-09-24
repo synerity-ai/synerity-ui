@@ -1,6 +1,6 @@
 {
   "name": "@synerity/ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A comprehensive Angular UI component library with 90+ components including forms, data display, navigation, and utility components.",
   "keywords": [
     "angular",
@@ -23,7 +23,7 @@
     "type": "git",
     "url": "https://github.com/synerity-ai/synerity-ui.git"
   },
-  "homepage": "https://github.com/synerity-ai/synerity-ui#readme",
+  "homepage": "https://synerity-ai.github.io/synerity-ui",
   "bugs": {
     "url": "https://github.com/synerity-ai/synerity-ui/issues"
   },
