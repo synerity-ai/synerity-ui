@@ -1,16 +1,17 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DONATION_CONFIG } from '../../config/donation.config';
+import { DonationModal } from '../../shared/donation-modal/donation-modal';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule],
+  imports: [CommonModule, DonationModal],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
 export class Navbar {
   isMenuOpen = false;
   isSidebarOpen = false;
+  isDonationModalOpen = false;
   
   @Output() sidebarToggle = new EventEmitter<void>();
 
@@ -24,15 +25,11 @@ export class Navbar {
   }
 
   buyMeCoffee() {
-    const config = DONATION_CONFIG;
-    
-    // Create PayPal donation URL
-    const paypalUrl = `https://www.paypal.com/donate/?business=${encodeURIComponent(config.paypalEmail)}&amount=${config.defaultAmount}&currency_code=${config.currency}&item_name=${encodeURIComponent(config.message)}`;
-    
-    // Open PayPal in new tab
-    window.open(paypalUrl, '_blank', 'noopener,noreferrer');
-    
-    // Close mobile menu if open
-    this.isMenuOpen = false;
+    this.isDonationModalOpen = true;
+    this.isMenuOpen = false; // Close mobile menu if open
+  }
+
+  closeDonationModal() {
+    this.isDonationModalOpen = false;
   }
 }
