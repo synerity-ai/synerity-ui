@@ -15,7 +15,7 @@ export const DONATION_CONFIG: DonationConfig = {
   koFiUsername: 'bhushangadekar', // Replace with your Ko-fi username
   
   // GitHub Sponsors URL
-  githubSponsorsUrl: 'https://github.com/sponsors/bhushangadekar', // Replace with your GitHub username
+  githubSponsorsUrl: 'https://github.com/sponsors/bhushan001',
   
   // Default donation amount
   defaultAmount: '5.00',
