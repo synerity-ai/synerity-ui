@@ -33,4 +33,19 @@ export class DonationModal {
     window.open(paypalUrl, '_blank', 'noopener,noreferrer');
     this.closeModal();
   }
+
+  openUPI() {
+    // Create UPI payment URL
+    const upiUrl = `upi://pay?pa=${this.config.upiId}&pn=Synerity%20UI%20Support&am=${this.config.defaultAmount}&cu=INR&tn=${encodeURIComponent(this.config.message)}`;
+    window.open(upiUrl, '_blank', 'noopener,noreferrer');
+    this.closeModal();
+  }
+
+  copyUPIId() {
+    navigator.clipboard.writeText(this.config.upiId).then(() => {
+      // You could add a toast notification here
+      console.log('UPI ID copied to clipboard');
+    });
+    this.closeModal();
+  }
 }
