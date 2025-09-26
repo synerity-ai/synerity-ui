@@ -1,0 +1,646 @@
+/* Synerity UI - Consolidated SCSS File */
+
+/* Import Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Synerity UI Component Styles */
+
+/* Button Component Styles */
+.sui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.sui-button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.sui-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Button Sizes */
+.sui-button-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.sui-button-md {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.sui-button-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+/* Button Variants */
+.sui-button-primary {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.sui-button-primary:hover:not(:disabled) {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.sui-button-primary:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.sui-button-secondary {
+  background-color: #6b7280;
+  color: white;
+  border-color: #6b7280;
+}
+
+.sui-button-secondary:hover:not(:disabled) {
+  background-color: #4b5563;
+  border-color: #4b5563;
+}
+
+.sui-button-outline {
+  background-color: transparent;
+  color: #374151;
+  border-color: #d1d5db;
+}
+
+.sui-button-outline:hover:not(:disabled) {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.sui-button-ghost {
+  background-color: transparent;
+  color: #374151;
+  border-color: transparent;
+}
+
+.sui-button-ghost:hover:not(:disabled) {
+  background-color: #f3f4f6;
+}
+
+.sui-button-danger {
+  background-color: #dc2626;
+  color: white;
+  border-color: #dc2626;
+}
+
+.sui-button-danger:hover:not(:disabled) {
+  background-color: #b91c1c;
+  border-color: #b91c1c;
+}
+
+/* Full Width */
+.sui-button-full-width {
+  width: 100%;
+}
+
+/* Loading State */
+.sui-button-loading {
+  position: relative;
+  color: transparent;
+}
+
+.sui-button-loading::after {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  top: 50%;
+  left: 50%;
+  margin-left: -0.5rem;
+  margin-top: -0.5rem;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: sui-button-spin 1s linear infinite;
+}
+
+@keyframes sui-button-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Button Additional Styles */
+.sui-button-spinner {
+  animation: sui-button-spin 1s linear infinite;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.sui-button-icon-left {
+  margin-right: 0.5rem;
+}
+
+.sui-button-icon-right {
+  margin-left: 0.5rem;
+}
+
+/* Badge Component Styles */
+.sui-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: 9999px;
+  white-space: nowrap;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* Badge Sizes */
+.sui-badge-small {
+  padding: 0.125rem 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.sui-badge-normal {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.sui-badge-large {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+/* Badge Severity Variants */
+.sui-badge-info {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.sui-badge-success {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.sui-badge-warning {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.sui-badge-danger {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.sui-badge-contrast {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+/* Badge with no value (dot indicator) */
+.sui-badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.sui-badge-dot.sui-badge-small {
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+.sui-badge-dot.sui-badge-large {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+/* Avatar Component Styles */
+.sui-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #6b7280;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Avatar Sizes */
+.sui-avatar-small {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.sui-avatar-normal {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.sui-avatar-large {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.sui-avatar-xlarge {
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+/* Avatar Shapes */
+.sui-avatar-circle {
+  border-radius: 50%;
+}
+
+.sui-avatar-square {
+  border-radius: 0.375rem;
+}
+
+/* Avatar Image */
+.sui-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* Progress Bar Component Styles */
+.sui-progress-bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.sui-progress-bar-fill {
+  height: 100%;
+  background-color: #3b82f6;
+  border-radius: inherit;
+  transition: width 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Progress Bar Additional Styles */
+.sui-progress-bar-track {
+  width: 100%;
+  height: 100%;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.sui-progress-bar-value {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* Input Text Component Styles */
+.sui-input-text {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.sui-input-text {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #111827;
+  background-color: #ffffff;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.sui-input-text:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.sui-input-text:disabled {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* Input Text Sizes */
+.sui-input-text-small {
+  padding: 0.375rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.sui-input-text-normal {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.sui-input-text-large {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+/* Input Text Additional Styles */
+.sui-input-text-container {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.sui-input-text-wrapper {
+  position: relative;
+  display: block;
+}
+
+.sui-input-text-prefix {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sui-input-text-suffix {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sui-input-text-clear {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sui-input-text-clear:hover {
+  color: #374151;
+  background-color: #f3f4f6;
+}
+
+.sui-input-text-password-toggle {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sui-input-text-password-toggle:hover {
+  color: #374151;
+  background-color: #f3f4f6;
+}
+
+.sui-input-text-suffix-text {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.sui-input-text-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.sui-input-text-required {
+  color: #dc2626;
+  margin-left: 0.25rem;
+}
+
+.sui-input-text-helper {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.sui-input-text-error {
+  color: #dc2626;
+}
+
+/* Textarea Component Styles */
+.sui-textarea-container {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.sui-textarea-input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #111827;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  min-height: 2.5rem;
+  resize: vertical;
+  transition: all 0.2s ease-in-out;
+}
+
+.sui-textarea-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.sui-textarea-input:disabled {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.sui-textarea-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Card Component Styles */
+.sui-card {
+  position: relative;
+  display: block;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+}
+
+/* Card Sizes */
+.sui-card-sm {
+  padding: 1rem;
+}
+
+.sui-card-md {
+  padding: 1.5rem;
+}
+
+.sui-card-lg {
+  padding: 2rem;
+}
+
+/* Card Variants */
+.sui-card-default {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+.sui-card-outlined {
+  background-color: #ffffff;
+  border: 2px solid #d1d5db;
+}
+
+.sui-card-elevated {
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f3f4f6;
+}
+
+.sui-card-filled {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+/* Card States */
+.sui-card-clickable {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.sui-card-clickable:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.sui-card-hoverable {
+  transition: all 0.2s ease-in-out;
+}
+
+.sui-card-hoverable:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: scale(1.02);
+}
+
+.sui-card-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sui-card-borderless {
+  border: none;
+}
+
+/* Card Loading */
+.sui-card-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  z-index: 10;
+}
+
+.sui-card-loading-spinner {
+  animation: spin 1s linear infinite;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #3b82f6;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Stats card hover effect */
+.stats-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.stats-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Ensure Synerity UI components inherit proper styling */
+.sui-button {
+  font-family: inherit;
+}
+
+.sui-input-text input {
+  font-family: inherit;
+}

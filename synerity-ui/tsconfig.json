@@ -40,6 +40,12 @@
     },
     {
       "path": "./projects/demo-app/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/rapid/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/rapid/tsconfig.spec.json"
     }
   ]
 }

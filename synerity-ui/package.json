@@ -4,9 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:demo": "ng serve demo-app",
+    "start:rapid": "ng serve rapid --port 4201",
     "build": "ng build",
     "build:lib": "ng build ui-lib",
     "build:demo": "ng build demo-app --configuration production",
+    "build:rapid": "ng build rapid --configuration production",
     "build:demo:gh-pages": "ng build demo-app --configuration production --base-href /synerity-ui/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -33,6 +36,7 @@
     "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
+    "@synerity/ui": "file:dist/ui-lib",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -51,6 +55,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^20.3.0",
     "postcss": "^8.5.6",
+    "sass": "^1.93.2",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.9.2"
   }

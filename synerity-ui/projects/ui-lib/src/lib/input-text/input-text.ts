@@ -127,30 +127,14 @@ export class InputText implements ControlValueAccessor, OnInit, OnDestroy {
   }
 
   get inputClasses(): string {
-    const baseClasses = 'block w-full border transition-colors focus:outline-none focus:ring-2 focus:ring-offset-0';
+    const baseClasses = 'sui-input-text';
+    const sizeClass = `sui-input-text-${this.size}`;
+    const variantClass = `sui-input-text-${this.variant}`;
+    const stateClass = this.validationState !== 'none' ? `sui-input-text-${this.validationState}` : '';
+    const disabledClass = this.disabled ? 'sui-input-text-disabled' : '';
+    const readonlyClass = this.readonly ? 'sui-input-text-readonly' : '';
     
-    const sizeClasses = {
-      sm: 'px-3 py-1.5 text-sm rounded-md',
-      md: 'px-3 py-2 text-sm rounded-md',
-      lg: 'px-4 py-3 text-base rounded-lg'
-    };
-
-    const variantClasses = {
-      default: 'border-gray-300 bg-white',
-      filled: 'border-transparent bg-gray-100',
-      outlined: 'border-gray-300 bg-transparent'
-    };
-
-    const stateClasses = {
-      none: 'focus:border-primary-500 focus:ring-primary-500',
-      valid: 'border-green-300 focus:border-green-500 focus:ring-green-500',
-      invalid: 'border-red-300 focus:border-red-500 focus:ring-red-500'
-    };
-
-    const disabledClasses = this.disabled ? 'bg-gray-50 text-gray-500 cursor-not-allowed' : '';
-    const readonlyClasses = this.readonly ? 'bg-gray-50 cursor-default' : '';
-
-    return `${baseClasses} ${sizeClasses[this.size]} ${variantClasses[this.variant]} ${stateClasses[this.validationState]} ${disabledClasses} ${readonlyClasses}`.trim();
+    return `${baseClasses} ${sizeClass} ${variantClass} ${stateClass} ${disabledClass} ${readonlyClass}`.trim();
   }
 
   get containerClasses(): string {

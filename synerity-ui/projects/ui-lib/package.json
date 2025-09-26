@@ -1,6 +1,6 @@
 {
   "name": "@synerity/ui",
-  "version": "1.0.3",
+  "version": "1.0.10",
   "description": "A comprehensive Angular UI component library with 90+ components including forms, data display, navigation, and utility components.",
   "keywords": [
     "angular",
@@ -34,9 +34,11 @@
   "fesm2022": "fesm2022/ui-lib.mjs",
   "typings": "index.d.ts",
   "exports": {
-    ".": {
-      "import": "./fesm2022/ui-lib.mjs",
-      "require": "./fesm2022/ui-lib.mjs"
+    "./synerity-ui.css": {
+      "default": "./src/lib/synerity-ui.css"
+    },
+    "./synerity-ui.scss": {
+      "default": "./src/lib/synerity-ui.scss"
     }
   },
   "peerDependencies": {

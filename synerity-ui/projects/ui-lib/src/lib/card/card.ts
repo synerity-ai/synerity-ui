@@ -38,27 +38,15 @@ export class Card {
   }
 
   get cardClasses(): string {
-    const baseClasses = 'bg-white rounded-lg transition-all duration-200 relative';
+    const baseClasses = 'sui-card';
+    const sizeClass = `sui-card-${this.size}`;
+    const variantClass = `sui-card-${this.variant}`;
+    const interactiveClass = this.clickable && !this.disabled ? 'sui-card-clickable' : '';
+    const hoverClass = this.hoverable && !this.disabled ? 'sui-card-hoverable' : '';
+    const disabledClass = this.disabled ? 'sui-card-disabled' : '';
+    const borderlessClass = this.borderless ? 'sui-card-borderless' : '';
     
-    const sizeClasses = {
-      sm: 'p-4',
-      md: 'p-6',
-      lg: 'p-8'
-    };
-
-    const variantClasses = {
-      default: 'border border-gray-200',
-      outlined: 'border-2 border-gray-300',
-      elevated: 'shadow-lg border border-gray-100',
-      filled: 'bg-gray-50 border border-gray-200'
-    };
-
-    const interactiveClasses = this.clickable && !this.disabled ? 'cursor-pointer hover:shadow-md' : '';
-    const hoverClasses = this.hoverable && !this.disabled ? 'hover:shadow-md hover:scale-[1.02]' : '';
-    const disabledClasses = this.disabled ? 'opacity-50 cursor-not-allowed' : '';
-    const borderlessClasses = this.borderless ? 'border-0' : '';
-
-    return `${baseClasses} ${sizeClasses[this.size]} ${variantClasses[this.variant]} ${interactiveClasses} ${hoverClasses} ${disabledClasses} ${borderlessClasses}`.trim();
+    return `${baseClasses} ${sizeClass} ${variantClass} ${interactiveClass} ${hoverClass} ${disabledClass} ${borderlessClass}`.trim();
   }
 
   get headerClasses(): string {
