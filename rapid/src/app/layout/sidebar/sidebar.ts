@@ -88,8 +88,8 @@ export class Sidebar {
     {
       title: 'Form Components',
       items: [
-        { name: 'AutoComplete', route: '/components/autocomplete', icon: '🔍', comingSoon: true },
-        { name: 'Checkbox', route: '/components/checkbox', icon: '☑️', comingSoon: true },
+        { name: 'AutoComplete', route: '/components/autocomplete', icon: '🔍', comingSoon: false },
+        { name: 'Checkbox', route: '/components/checkbox', icon: '☑️', comingSoon: false },
         { name: 'RadioButton', route: '/components/radiobutton', icon: '🔘', comingSoon: true },
         { name: 'ColorPicker', route: '/components/colorpicker', icon: '🎨', comingSoon: true },
         { name: 'DatePicker', route: '/components/datepicker', icon: '📅', comingSoon: true },
@@ -205,8 +205,8 @@ export class Sidebar {
       items: [
         { name: 'AnimateOnScroll', route: '/components/animateonscroll', icon: '✨', comingSoon: true },
         { name: 'AutoFocus', route: '/components/autofocus', icon: '🎯', comingSoon: true },
-        { name: 'Avatar', route: '/components/avatar', icon: '👤', comingSoon: true },
-        { name: 'Badge', route: '/components/badge', icon: '🏷️', comingSoon: true },
+        { name: 'Avatar', route: '/components/avatar', icon: '👤', comingSoon: false },
+        { name: 'Badge', route: '/components/badge', icon: '🏷️', comingSoon: false },
         { name: 'BlockUI', route: '/components/blockui', icon: '🚫', comingSoon: true },
         { name: 'Chip', route: '/components/chip', icon: '🏷️', comingSoon: true },
         { name: 'FocusTrap', route: '/components/focustrap', icon: '🎯', comingSoon: true },

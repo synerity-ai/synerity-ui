@@ -1,4 +1,4 @@
-<label [attr.for]="inputId" class="inline-flex items-center gap-2 cursor-pointer select-none">
+<label [attr.for]="inputId" [class]="'sui-checkbox ' + (cssClass || '')">
 	<input
 		type="checkbox"
 		[class.opacity-50]="disabled"

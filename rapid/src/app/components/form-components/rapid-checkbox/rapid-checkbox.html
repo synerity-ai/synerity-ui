@@ -1,0 +1,212 @@
+<div class="demo-container">
+    <h3>Synerity-UI Checkbox</h3>
+    <div class="checkbox-demo">
+        <!-- Basic Checkbox -->
+        <div class="demo-section">
+            <h4>Basic Checkbox</h4>
+            <div class="checkbox-examples">
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="basicChecked"
+                        (change)="onCheckboxChange($event, 'basic')"
+                        inputId="basic-checkbox">
+                        Basic Checkbox
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="disabledChecked"
+                        [disabled]="true"
+                        inputId="disabled-checkbox">
+                        Disabled Checkbox
+                    </sui-checkbox>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkbox States -->
+        <div class="demo-section">
+            <h4>Checkbox States</h4>
+            <div class="checkbox-examples">
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="basicChecked"
+                        inputId="unchecked-checkbox">
+                        Unchecked
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="disabledChecked"
+                        inputId="checked-checkbox">
+                        Checked
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="indeterminateChecked"
+                        inputId="indeterminate-checkbox">
+                        Indeterminate
+                    </sui-checkbox>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Integration -->
+        <div class="demo-section">
+            <h4>Form Integration</h4>
+            <div class="checkbox-examples">
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="formData.terms"
+                        inputId="terms-checkbox">
+                        I agree to the terms and conditions
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="formData.newsletter"
+                        inputId="newsletter-checkbox">
+                        Subscribe to newsletter
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="formData.notifications"
+                        inputId="notifications-checkbox">
+                        Enable notifications
+                    </sui-checkbox>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkbox Group -->
+        <div class="demo-section">
+            <h4>Checkbox Group</h4>
+            <div class="checkbox-examples">
+                <div class="form-group">
+                    <label>Select multiple options:</label>
+                    <div class="checkbox-group">
+                        <div *ngFor="let option of availableOptions" class="checkbox-item">
+                            <sui-checkbox 
+                                [ngModel]="isOptionSelected(option.value)"
+                                (change)="onOptionToggle(option.value)"
+                                [inputId]="'group-' + option.value">
+                                {{ option.label }}
+                            </sui-checkbox>
+                        </div>
+                    </div>
+                    <p class="selected-info">Selected: {{ selectedOptions.join(', ') || 'None' }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Size Variants -->
+        <div class="demo-section">
+            <h4>Size Variants</h4>
+            <div class="checkbox-examples">
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="smallChecked"
+                        inputId="small-checkbox"
+                        cssClass="checkbox-sm">
+                        Small Checkbox
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="normalChecked"
+                        inputId="normal-checkbox">
+                        Normal Checkbox
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="largeChecked"
+                        inputId="large-checkbox"
+                        cssClass="checkbox-lg">
+                        Large Checkbox
+                    </sui-checkbox>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Variants -->
+        <div class="demo-section">
+            <h4>Color Variants</h4>
+            <div class="checkbox-examples">
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="primaryChecked"
+                        inputId="primary-checkbox"
+                        cssClass="checkbox-primary">
+                        Primary Checkbox
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="secondaryChecked"
+                        inputId="secondary-checkbox"
+                        cssClass="checkbox-secondary">
+                        Secondary Checkbox
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="successChecked"
+                        inputId="success-checkbox"
+                        cssClass="checkbox-success">
+                        Success Checkbox
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="warningChecked"
+                        inputId="warning-checkbox"
+                        cssClass="checkbox-warning">
+                        Warning Checkbox
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="dangerChecked"
+                        inputId="danger-checkbox"
+                        cssClass="checkbox-danger">
+                        Danger Checkbox
+                    </sui-checkbox>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Styling -->
+        <div class="demo-section">
+            <h4>Enhanced Styling</h4>
+            <div class="checkbox-examples">
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="basicChecked"
+                        inputId="enhanced-checkbox"
+                        cssClass="checkbox-enhanced">
+                        Enhanced Checkbox
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="basicChecked"
+                        inputId="animated-checkbox"
+                        cssClass="checkbox-animated">
+                        Animated Checkbox
+                    </sui-checkbox>
+                </div>
+                <div class="form-group">
+                    <sui-checkbox 
+                        [(ngModel)]="basicChecked"
+                        inputId="glow-checkbox"
+                        cssClass="checkbox-glow">
+                        Glow Effect Checkbox
+                    </sui-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

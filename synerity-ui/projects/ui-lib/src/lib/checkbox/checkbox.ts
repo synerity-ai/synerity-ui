@@ -6,7 +6,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   selector: 'sui-checkbox',
   imports: [FormsModule],
   templateUrl: './checkbox.html',
-  styleUrl: './checkbox.scss',
+  // styleUrl: './checkbox.scss', // Using main CSS instead
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
@@ -21,6 +21,7 @@ export class Checkbox implements ControlValueAccessor {
   @Input() name = '';
   @Input() value: unknown = true;
   @Input() inputId = '';
+  @Input() cssClass = '';
   @Output() change = new EventEmitter<boolean>();
 
   checked = false;

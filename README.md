@@ -450,37 +450,37 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 - **Tree Shaking**: Full support for optimal bundle sizes
 - **Memory Usage**: Optimized for large applications
 
-## 🗺️ Roadmap
+## 🗺️ 2025 Roadmap
 
-### Phase 1: Foundation (Completed ✅)
+### Q1 2025: Foundation & Forms (Jan-Mar) 🚧
 - [x] Project setup and architecture
 - [x] Core components (Button, Input, Card)
 - [x] Tailwind CSS integration
 - [x] Demo application
 - [x] Basic documentation
-
-### Phase 2: Form Components (In Progress 🚧)
-- [x] InputText, Button, Card
 - [ ] Complete form component suite (30 components)
 - [ ] Advanced form validation
 - [ ] Form builder utilities
+- [ ] **Goal**: 1K+ GitHub stars, 10K+ weekly downloads
 
-### Phase 3: Data & Layout (Planned 📋)
+### Q2 2025: Data & Layout (Apr-Jun) 📋
 - [ ] Data display components (Table, Tree, etc.)
 - [ ] Panel and layout components
 - [ ] Advanced data visualization
+- [ ] **Goal**: 2.5K+ GitHub stars, 25K+ weekly downloads
 
-### Phase 4: Advanced Features (Planned 📋)
+### Q3 2025: Interaction & Navigation (Jul-Sep) 📋
 - [ ] Overlay and modal components
+- [ ] Menu and navigation components
 - [ ] File handling components
-- [ ] Chart integration
-- [ ] Advanced animations
+- [ ] **Goal**: 5K+ GitHub stars, 50K+ weekly downloads
 
-### Phase 5: Enterprise Features (Planned 📋)
+### Q4 2025: Polish & Scale (Oct-Dec) 📋
+- [ ] Media and utility components
 - [ ] Advanced theming system
 - [ ] Internationalization (i18n)
 - [ ] Performance monitoring
-- [ ] Enterprise support
+- [ ] **Goal**: 7.5K+ GitHub stars, 75K+ weekly downloads, Top 5 Angular UI library
 
 ## 📄 License
 

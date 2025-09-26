@@ -7,6 +7,10 @@ import { RapidButtonsComponent } from '../foundation/rapid-buttons/rapid-buttons
 import { RapidInputTextComponent } from '../foundation/rapid-input-text/rapid-input-text';
 import { RapidInputTextareaComponent } from '../foundation/rapid-input-textarea/rapid-input-textarea';
 import { RapidCardComponent } from '../foundation/rapid-card/rapid-card';
+import { RapidBadgeComponent } from '../misc-components/rapid-badge/rapid-badge';
+import { RapidAvatarComponent } from '../misc-components/rapid-avatar/rapid-avatar';
+import { RapidAutocompleteComponent } from '../form-components/rapid-autocomplete/rapid-autocomplete';
+import { RapidCheckbox } from '../form-components/rapid-checkbox/rapid-checkbox';
 
 @Component({
   selector: 'app-component-viewer',
@@ -16,7 +20,11 @@ import { RapidCardComponent } from '../foundation/rapid-card/rapid-card';
     RapidButtonsComponent,
     RapidInputTextComponent,
     RapidInputTextareaComponent,
-    RapidCardComponent
+    RapidCardComponent,
+    RapidBadgeComponent,
+    RapidAvatarComponent,
+    RapidAutocompleteComponent,
+    RapidCheckbox
   ],
   templateUrl: './component-viewer.html',
   styleUrl: './component-viewer.scss'
@@ -43,7 +51,9 @@ export class ComponentViewerComponent {
       'card': 'Card',
       'badge': 'Badge',
       'avatar': 'Avatar',
-      'progressbar': 'ProgressBar'
+      'progressbar': 'ProgressBar',
+      'autocomplete': 'AutoComplete',
+      'checkbox': 'Checkbox'
     };
     
     return routeMap[route.toLowerCase()] || route.charAt(0).toUpperCase() + route.slice(1);
@@ -57,7 +67,9 @@ export class ComponentViewerComponent {
       'Card': 'Flexible container component for grouping related content.',
       'Badge': 'Small status indicators and labels for highlighting information.',
       'Avatar': 'User profile images with fallback options and different sizes.',
-      'ProgressBar': 'Visual progress indicators for showing completion status.'
+      'ProgressBar': 'Visual progress indicators for showing completion status.',
+      'AutoComplete': 'Searchable dropdown with suggestions and async data filtering.',
+      'Checkbox': 'Form input component for boolean values with various styling options.'
     };
     
     this.componentDescription = descriptions[this.componentName] || 'Component description coming soon.';
