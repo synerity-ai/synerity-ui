@@ -31,8 +31,8 @@ This document tracks the implementation of all Synerity UI components in the rap
 |-----------|--------|-------|
 | AutoComplete | ✅ | Basic, Sizes, Icons, States, Validation, Custom Template variants |
 | Checkbox | ✅ | Basic, Size variants (Small, Normal, Large), Color variants (Primary, Secondary, Success, Warning, Danger), Enhanced styling (Enhanced, Animated, Glow), Form integration, Checkbox groups |
-| RadioButton | ⏳ | Pending implementation |
-| ColorPicker | ⏳ | Pending implementation |
+| RadioButton | ✅ | Basic, States, Form integration, Size variants, Color variants, Group layouts (Vertical, Horizontal) |
+| ColorPicker | ✅ | Basic, States, Form integration, Size variants, Format variants (HEX, RGB, HSL), Preset colors, Theme integration |
 | DatePicker | ⏳ | Pending implementation |
 | Editor | ⏳ | Pending implementation |
 | InputNumber | ⏳ | Pending implementation |

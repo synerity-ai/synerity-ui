@@ -11,6 +11,8 @@ import { RapidBadgeComponent } from '../misc-components/rapid-badge/rapid-badge'
 import { RapidAvatarComponent } from '../misc-components/rapid-avatar/rapid-avatar';
 import { RapidAutocompleteComponent } from '../form-components/rapid-autocomplete/rapid-autocomplete';
 import { RapidCheckbox } from '../form-components/rapid-checkbox/rapid-checkbox';
+import { RapidRadioButton } from '../form-components/rapid-radio-button/rapid-radio-button';
+import { RapidColorPicker } from '../form-components/rapid-color-picker/rapid-color-picker';
 
 @Component({
   selector: 'app-component-viewer',
@@ -24,7 +26,9 @@ import { RapidCheckbox } from '../form-components/rapid-checkbox/rapid-checkbox'
     RapidBadgeComponent,
     RapidAvatarComponent,
     RapidAutocompleteComponent,
-    RapidCheckbox
+    RapidCheckbox,
+    RapidRadioButton,
+    RapidColorPicker
   ],
   templateUrl: './component-viewer.html',
   styleUrl: './component-viewer.scss'
@@ -53,7 +57,9 @@ export class ComponentViewerComponent {
       'avatar': 'Avatar',
       'progressbar': 'ProgressBar',
       'autocomplete': 'AutoComplete',
-      'checkbox': 'Checkbox'
+      'checkbox': 'Checkbox',
+      'radiobutton': 'RadioButton',
+      'colorpicker': 'ColorPicker'
     };
     
     return routeMap[route.toLowerCase()] || route.charAt(0).toUpperCase() + route.slice(1);
@@ -69,7 +75,9 @@ export class ComponentViewerComponent {
       'Avatar': 'User profile images with fallback options and different sizes.',
       'ProgressBar': 'Visual progress indicators for showing completion status.',
       'AutoComplete': 'Searchable dropdown with suggestions and async data filtering.',
-      'Checkbox': 'Form input component for boolean values with various styling options.'
+      'Checkbox': 'Form input component for boolean values with various styling options.',
+      'RadioButton': 'Single-selection form input component with multiple options and group support.',
+      'ColorPicker': 'Advanced color selection component with multiple formats and preset colors.'
     };
     
     this.componentDescription = descriptions[this.componentName] || 'Component description coming soon.';

@@ -967,3 +967,289 @@
 .sui-checkbox input[type="checkbox"] {
   font-family: inherit;
 }
+
+/* RadioButton Component Styles */
+.sui-radio-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sui-radio-input {
+  width: 1rem;
+  height: 1rem;
+  color: #3b82f6;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.sui-radio-input:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+  background-size: 6px 6px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.sui-radio-input:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.sui-radio-input:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.sui-radio-input:hover:not(:disabled) {
+  border-color: #9ca3af;
+}
+
+.sui-radio-input {
+  font-family: inherit;
+}
+
+/* ColorPicker Component Styles */
+.sui-color-picker {
+  position: relative;
+  display: inline-block;
+}
+
+/* Size variants */
+.sui-color-picker-small {
+  .sui-color-picker-trigger {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .sui-color-picker-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.sui-color-picker-medium {
+  .sui-color-picker-trigger {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .sui-color-picker-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.sui-color-picker-large {
+  .sui-color-picker-trigger {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .sui-color-picker-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.sui-color-picker-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: all 0.15s ease;
+  overflow: hidden;
+
+  &:hover {
+    border-color: #9ca3af;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &:focus-within {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+}
+
+.sui-color-picker-preview {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-image: 
+    linear-gradient(45deg, #ccc 25%, transparent 25%), 
+    linear-gradient(-45deg, #ccc 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #ccc 75%), 
+    linear-gradient(-45deg, transparent 75%, #ccc 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  
+  /* The selected color will be applied via inline style and will override this background */
+  /* This checkerboard pattern serves as a fallback for transparent colors */
+}
+
+.sui-color-picker-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  z-index: 1;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.sui-color-picker-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  margin-top: 4px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  min-width: 280px;
+}
+
+.sui-color-picker-input-native {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: 4px;
+  }
+}
+
+.sui-color-picker-presets {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px;
+}
+
+.sui-color-picker-preset {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    border-color: #3b82f6;
+  }
+}
+
+.sui-color-picker-inline-panel {
+  margin-top: 12px;
+  padding: 16px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+.sui-color-picker-disabled {
+  .sui-color-picker-trigger {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f9fafb;
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: #d1d5db;
+    }
+  }
+
+  .sui-color-picker-preview {
+    opacity: 0.5;
+  }
+
+  .sui-color-picker-icon {
+    opacity: 0.3;
+  }
+
+  .sui-color-picker-preset {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .sui-color-picker-input-native {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.sui-color-picker-inline {
+  .sui-color-picker-trigger {
+    border: none;
+    background: transparent;
+    cursor: default;
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+/* Ensure dropdown is visible above other elements */
+.sui-color-picker-panel {
+  position: absolute !important;
+  z-index: 9999 !important;
+}
+
+/* Override parent container overflow */
+:host-context(.overflow-hidden) {
+  overflow: visible !important;
+}
+
+:host-context(.overflow-auto) {
+  overflow: visible !important;
+}

@@ -87,6 +87,9 @@
     linear-gradient(-45deg, transparent 75%, #ccc 75%);
   background-size: 8px 8px;
   background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  
+  /* The selected color will be applied via inline style and will override this background */
+  /* This checkerboard pattern serves as a fallback for transparent colors */
 }
 
 .sui-color-picker-icon {

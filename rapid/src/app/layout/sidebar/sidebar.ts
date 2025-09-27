@@ -90,8 +90,8 @@ export class Sidebar {
       items: [
         { name: 'AutoComplete', route: '/components/autocomplete', icon: '🔍', comingSoon: false },
         { name: 'Checkbox', route: '/components/checkbox', icon: '☑️', comingSoon: false },
-        { name: 'RadioButton', route: '/components/radiobutton', icon: '🔘', comingSoon: true },
-        { name: 'ColorPicker', route: '/components/colorpicker', icon: '🎨', comingSoon: true },
+        { name: 'RadioButton', route: '/components/radiobutton', icon: '🔘', comingSoon: false },
+        { name: 'ColorPicker', route: '/components/colorpicker', icon: '🎨', comingSoon: false },
         { name: 'DatePicker', route: '/components/datepicker', icon: '📅', comingSoon: true },
         { name: 'Editor', route: '/components/editor', icon: '✏️', comingSoon: true },
         { name: 'InputNumber', route: '/components/inputnumber', icon: '🔢', comingSoon: true },

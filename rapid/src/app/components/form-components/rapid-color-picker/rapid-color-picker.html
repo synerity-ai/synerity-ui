@@ -1,0 +1,258 @@
+<div class="demo-container">
+    <h3>Synerity-UI ColorPicker</h3>
+    <div class="colorpicker-demo">
+        <!-- Basic ColorPicker -->
+        <div class="demo-section">
+            <h4>Basic ColorPicker</h4>
+            <div class="colorpicker-examples">
+                <div class="form-group">
+                    <label for="basic-colorpicker">Choose Color:</label>
+                    <sui-color-picker 
+                        id="basic-colorpicker"
+                        [(ngModel)]="selectedColor"
+                        (change)="onColorChange($event, 'basic')"
+                        placeholder="Select a color">
+                    </sui-color-picker>
+                    <div class="color-preview" [style]="getColorPreview(selectedColor)">
+                        <span class="color-value">{{ selectedColor }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ColorPicker States -->
+        <div class="demo-section">
+            <h4>ColorPicker States</h4>
+            <div class="colorpicker-examples">
+                <div class="form-group">
+                    <label>Enabled ColorPicker:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="selectedColor"
+                        (change)="onColorChange($event, 'enabled')"
+                        placeholder="Choose color">
+                    </sui-color-picker>
+                </div>
+                <div class="form-group">
+                    <label>Disabled ColorPicker:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="disabledColor"
+                        [disabled]="true"
+                        placeholder="Disabled">
+                    </sui-color-picker>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Integration -->
+        <div class="demo-section">
+            <h4>Form Integration</h4>
+            <div class="colorpicker-examples">
+                <div class="form-group">
+                    <label>Primary Color:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="formData.primaryColor"
+                        (change)="onPrimaryColorChange($event)"
+                        placeholder="Select primary color">
+                    </sui-color-picker>
+                    <div class="color-preview" [style]="getColorPreview(formData.primaryColor)">
+                        <span class="color-value">{{ formData.primaryColor }}</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Secondary Color:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="formData.secondaryColor"
+                        (change)="onSecondaryColorChange($event)"
+                        placeholder="Select secondary color">
+                    </sui-color-picker>
+                    <div class="color-preview" [style]="getColorPreview(formData.secondaryColor)">
+                        <span class="color-value">{{ formData.secondaryColor }}</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Accent Color:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="formData.accentColor"
+                        (change)="onAccentColorChange($event)"
+                        placeholder="Select accent color">
+                    </sui-color-picker>
+                    <div class="color-preview" [style]="getColorPreview(formData.accentColor)">
+                        <span class="color-value">{{ formData.accentColor }}</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Background Color:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="formData.backgroundColor"
+                        (change)="onBackgroundColorChange($event)"
+                        placeholder="Select background color">
+                    </sui-color-picker>
+                    <div class="color-preview" [style]="getColorPreview(formData.backgroundColor)">
+                        <span class="color-value">{{ formData.backgroundColor }}</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Text Color:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="formData.textColor"
+                        (change)="onTextColorChange($event)"
+                        placeholder="Select text color">
+                    </sui-color-picker>
+                    <div class="color-preview" [style]="getColorPreview(formData.textColor)">
+                        <span class="color-value">{{ formData.textColor }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Size Variants -->
+        <div class="demo-section">
+            <h4>Size Variants</h4>
+            <div class="colorpicker-examples">
+                <div class="form-group">
+                    <label>Small Size:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="selectedColor"
+                        size="small"
+                        placeholder="Small">
+                    </sui-color-picker>
+                </div>
+                <div class="form-group">
+                    <label>Medium Size:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="selectedColor"
+                        size="medium"
+                        placeholder="Medium">
+                    </sui-color-picker>
+                </div>
+                <div class="form-group">
+                    <label>Large Size:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="selectedColor"
+                        size="large"
+                        placeholder="Large">
+                    </sui-color-picker>
+                </div>
+            </div>
+        </div>
+
+        <!-- Format Variants -->
+        <div class="demo-section">
+            <h4>Format Variants</h4>
+            <div class="colorpicker-examples">
+                <div class="form-group">
+                    <label>HEX Format:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="selectedColor"
+                        format="hex"
+                        placeholder="HEX format">
+                    </sui-color-picker>
+                </div>
+                <div class="form-group">
+                    <label>RGB Format:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="selectedColor"
+                        format="rgb"
+                        placeholder="RGB format">
+                    </sui-color-picker>
+                </div>
+                <div class="form-group">
+                    <label>HSL Format:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="selectedColor"
+                        format="hsl"
+                        placeholder="HSL format">
+                    </sui-color-picker>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preset Colors -->
+        <div class="demo-section">
+            <h4>Preset Colors</h4>
+            <div class="colorpicker-examples">
+                <div class="form-group">
+                    <label>ColorPicker with Presets:</label>
+                    <sui-color-picker 
+                        [(ngModel)]="selectedColor"
+                        placeholder="Choose from presets">
+                    </sui-color-picker>
+                </div>
+                <div class="preset-colors">
+                    <h5>Available Presets:</h5>
+                    <div class="preset-grid">
+                        <div *ngFor="let color of presetColors" 
+                             class="preset-item" 
+                             [style]="getColorPreview(color)"
+                             [title]="color">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Theme Integration -->
+        <div class="demo-section">
+            <h4>Theme Integration</h4>
+            <div class="colorpicker-examples">
+                <div class="theme-colors">
+                    <div class="form-group">
+                        <label>Theme Color Picker:</label>
+                        <sui-color-picker 
+                            [(ngModel)]="selectedColor"
+                            placeholder="Theme colors">
+                        </sui-color-picker>
+                    </div>
+                    <div class="theme-preview">
+                        <h5>Current Theme:</h5>
+                        <div class="theme-palette">
+                            <div class="theme-item" *ngFor="let color of colorVariants">
+                                <div class="theme-swatch" [style]="getColorPreview(color.color)"></div>
+                                <span class="theme-label">{{ color.label }}</span>
+                                <span class="theme-value">{{ color.color }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="demo-section">
+            <h4>Actions</h4>
+            <div class="colorpicker-examples">
+                <div class="form-group">
+                    <button type="button" (click)="resetColors()" class="reset-button">
+                        Reset All Colors
+                    </button>
+                </div>
+                <div class="form-group">
+                    <div class="current-colors">
+                        <h5>Current Form Colors:</h5>
+                        <div class="colors-summary">
+                            <div class="color-item">
+                                <span class="color-label">Primary:</span>
+                                <div class="color-swatch" [style]="getColorPreview(formData.primaryColor)"></div>
+                                <span class="color-hex">{{ formData.primaryColor }}</span>
+                            </div>
+                            <div class="color-item">
+                                <span class="color-label">Secondary:</span>
+                                <div class="color-swatch" [style]="getColorPreview(formData.secondaryColor)"></div>
+                                <span class="color-hex">{{ formData.secondaryColor }}</span>
+                            </div>
+                            <div class="color-item">
+                                <span class="color-label">Accent:</span>
+                                <div class="color-swatch" [style]="getColorPreview(formData.accentColor)"></div>
+                                <span class="color-hex">{{ formData.accentColor }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
