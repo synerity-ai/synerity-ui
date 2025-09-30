@@ -3,6 +3,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 
 @Component({
   selector: 'sui-slider',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './slider.html',
   styleUrl: './slider.scss',

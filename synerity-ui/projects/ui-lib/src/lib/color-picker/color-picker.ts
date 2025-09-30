@@ -5,6 +5,7 @@ import { Subscription, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'sui-color-picker',
+  standalone: true,
   imports: [CommonModule, NgIf],
   templateUrl: './color-picker.html',
   styleUrl: './color-picker.scss',

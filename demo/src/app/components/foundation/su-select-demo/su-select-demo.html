@@ -1,0 +1,229 @@
+<div class="select-demo-container">
+  <div class="demo-header">
+    <h1>Select Component Demo</h1>
+    <p>Explore the Synerity UI Select component with single/multiple selection, search, and form integration.</p>
+  </div>
+
+  <!-- Basic Select States -->
+  <div class="demo-section">
+    <h2>Basic Select States</h2>
+    <p>Different select states for various use cases.</p>
+    <div class="select-group">
+      <div class="select-item">
+        <label class="select-label">Normal Select</label>
+        <sui-select 
+          [(ngModel)]="basicSelected"
+          [options]="basicOptions"
+          placeholder="Choose an option..."
+          [clearable]="true"
+          (change)="onSelectChange($event, 'basic')">
+        </sui-select>
+        <span class="select-value">Selected: {{ basicSelected || 'None' }}</span>
+      </div>
+
+      <div class="select-item">
+        <label class="select-label">Disabled Select</label>
+        <sui-select 
+          [(ngModel)]="disabledSelected"
+          [options]="basicOptions"
+          placeholder="Choose an option..."
+          [disabled]="true">
+        </sui-select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Single Select Examples -->
+  <div class="demo-section">
+    <h2>Single Select Examples</h2>
+    <p>Single selection dropdowns with different features.</p>
+    
+    <div class="select-grid">
+      <div class="select-item">
+        <label class="select-label">Country Selection</label>
+        <sui-select 
+          [(ngModel)]="countrySelected"
+          [options]="countryOptions"
+          placeholder="Select your country..."
+          [clearable]="true"
+          [searchable]="true"
+          searchPlaceholder="Search countries..."
+          (change)="onSelectChange($event, 'country')">
+        </sui-select>
+        <span class="select-value">Selected: {{ countrySelected || 'None' }}</span>
+      </div>
+
+      <div class="select-item">
+        <label class="select-label">Theme Selection</label>
+        <sui-select 
+          [(ngModel)]="themeSelected"
+          [options]="themeOptions"
+          placeholder="Choose theme..."
+          [clearable]="true"
+          (change)="onSelectChange($event, 'theme')">
+        </sui-select>
+        <span class="select-value">Selected: {{ themeSelected || 'None' }}</span>
+      </div>
+
+      <div class="select-item">
+        <label class="select-label">Size Selection</label>
+        <sui-select 
+          [(ngModel)]="sizeSelected"
+          [options]="sizeOptions"
+          placeholder="Select size..."
+          (change)="onSelectChange($event, 'size')">
+        </sui-select>
+        <span class="select-value">Selected: {{ sizeSelected || 'None' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multiple Select Examples -->
+  <div class="demo-section">
+    <h2>Multiple Select Examples</h2>
+    <p>Multiple selection dropdowns with advanced features.</p>
+    
+    <div class="select-grid">
+      <div class="select-item">
+        <label class="select-label">Skills (Multiple Selection)</label>
+        <sui-select 
+          [(ngModel)]="skillsSelected"
+          [options]="skillsOptions"
+          placeholder="Select your skills..."
+          [multiple]="true"
+          [searchable]="true"
+          [selectAll]="true"
+          [clearable]="true"
+          [maxDisplayItems]="2"
+          searchPlaceholder="Search skills..."
+          (change)="onSelectChange($event, 'skills')">
+        </sui-select>
+        <span class="select-value">Selected: {{ skillsSelected.length }} skill(s)</span>
+      </div>
+
+      <div class="select-item">
+        <label class="select-label">Interests (Multiple Selection)</label>
+        <sui-select 
+          [(ngModel)]="interestsSelected"
+          [options]="interestsOptions"
+          placeholder="Select your interests..."
+          [multiple]="true"
+          [searchable]="true"
+          [selectAll]="true"
+          [clearable]="true"
+          searchPlaceholder="Search interests..."
+          (change)="onSelectChange($event, 'interests')">
+        </sui-select>
+        <span class="select-value">Selected: {{ interestsSelected.length }} interest(s)</span>
+      </div>
+
+      <div class="select-item">
+        <label class="select-label">Colors (Multiple Selection)</label>
+        <sui-select 
+          [(ngModel)]="colorsSelected"
+          [options]="colorsOptions"
+          placeholder="Select colors..."
+          [multiple]="true"
+          [clearable]="true"
+          [maxDisplayItems]="3"
+          (change)="onSelectChange($event, 'colors')">
+        </sui-select>
+        <span class="select-value">Selected: {{ colorsSelected.length }} color(s)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Integration -->
+  <div class="demo-section">
+    <h2>Form Integration</h2>
+    <p>Complete form example with multiple select components.</p>
+    
+    <form class="demo-form">
+      <div class="form-section">
+        <h3>User Preferences</h3>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="select-label">Country</label>
+            <sui-select 
+              [(ngModel)]="countrySelected"
+              [options]="countryOptions"
+              name="country"
+              placeholder="Select your country..."
+              [searchable]="true"
+              [clearable]="true"
+              (change)="onSelectChange($event, 'country')">
+            </sui-select>
+          </div>
+
+          <div class="form-field">
+            <label class="select-label">Preferred Theme</label>
+            <sui-select 
+              [(ngModel)]="themeSelected"
+              [options]="themeOptions"
+              name="theme"
+              placeholder="Choose theme..."
+              [clearable]="true"
+              (change)="onSelectChange($event, 'theme')">
+            </sui-select>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Skills & Interests</h3>
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="select-label">Technical Skills</label>
+              <sui-select 
+                [(ngModel)]="skillsSelected"
+                [options]="skillsOptions"
+                name="skills"
+                placeholder="Select your skills..."
+                [multiple]="true"
+                [searchable]="true"
+                [selectAll]="true"
+                [clearable]="true"
+                (change)="onSelectChange($event, 'skills')">
+              </sui-select>
+            </div>
+
+            <div class="form-field">
+              <label class="select-label">Areas of Interest</label>
+              <sui-select 
+                [(ngModel)]="interestsSelected"
+                [options]="interestsOptions"
+                name="interests"
+                placeholder="Select your interests..."
+                [multiple]="true"
+                [searchable]="true"
+                [selectAll]="true"
+                [clearable]="true"
+                (change)="onSelectChange($event, 'interests')">
+              </sui-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-primary" (click)="resetForm()">Reset Form</button>
+          <button type="button" class="btn btn-secondary" (click)="setDefaultValues()">Set Defaults</button>
+          <button type="button" class="btn btn-warning" (click)="clearAllSelections()">Clear All</button>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="form-data-display">
+      <h3>Form Data (Live Preview)</h3>
+      <pre>{{ formData | json }}</pre>
+      <div class="selection-summary">
+        <strong>Current Selections:</strong>
+        <ul>
+          <li><strong>Country:</strong> {{ countrySelected || 'None' }}</li>
+          <li><strong>Theme:</strong> {{ themeSelected || 'None' }}</li>
+          <li><strong>Skills:</strong> {{ skillsSelected.length }} selected</li>
+          <li><strong>Interests:</strong> {{ interestsSelected.length }} selected</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

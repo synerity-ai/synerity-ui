@@ -1,0 +1,302 @@
+<div class="date-picker-demo-container">
+  <div class="demo-header">
+    <h1>Date Picker Component</h1>
+    <p>Comprehensive date and time selection controls with calendar interface, constraints, and customizable formatting.</p>
+  </div>
+
+  <!-- Basic Date Picker States -->
+  <div class="demo-section">
+    <h2>Basic Date Picker States</h2>
+    <p>Standard date picker controls with different interaction states.</p>
+    
+    <div class="date-picker-group">
+      <div class="date-picker-grid">
+        <div class="date-picker-item">
+          <div class="date-picker-label">Interactive Date Picker</div>
+          <sui-date-picker
+            [(ngModel)]="basicDate"
+            [placeholder]="'Select a date'"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onDateChange($event, 'basicDate')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedDate(basicDate) }}</div>
+        </div>
+
+        <div class="date-picker-item">
+          <div class="date-picker-label">Disabled Date Picker</div>
+          <sui-date-picker
+            [(ngModel)]="disabledDate"
+            [placeholder]="'Disabled picker'"
+            [disabled]="true"
+            [showTodayButton]="true"
+            [showClearButton]="true">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedDate(disabledDate) }}</div>
+        </div>
+
+        <div class="date-picker-item">
+          <div class="date-picker-label">Readonly Date Picker</div>
+          <sui-date-picker
+            [(ngModel)]="readonlyDate"
+            [placeholder]="'Readonly picker'"
+            [readonly]="true"
+            [showTodayButton]="true"
+            [showClearButton]="true">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedDate(readonlyDate) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Size Variants -->
+  <div class="demo-section">
+    <h2>Size Variants</h2>
+    <p>Date picker controls in different sizes for various interface needs.</p>
+    
+    <div class="date-picker-group">
+      <div class="date-picker-grid">
+        <div class="date-picker-item">
+          <div class="date-picker-label">Small Date Picker</div>
+          <sui-date-picker
+            [(ngModel)]="smallDate"
+            [placeholder]="'Small size'"
+            [size]="'compact'"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onDateChange($event, 'smallDate')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedDate(smallDate) }}</div>
+        </div>
+
+        <div class="date-picker-item">
+          <div class="date-picker-label">Medium Date Picker</div>
+          <sui-date-picker
+            [(ngModel)]="mediumDate"
+            [placeholder]="'Medium size'"
+            [size]="'normal'"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onDateChange($event, 'mediumDate')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedDate(mediumDate) }}</div>
+        </div>
+
+        <div class="date-picker-item">
+          <div class="date-picker-label">Large Date Picker</div>
+          <sui-date-picker
+            [(ngModel)]="largeDate"
+            [placeholder]="'Large size'"
+            [size]="'normal'"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onDateChange($event, 'largeDate')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedDate(largeDate) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Date Constraints -->
+  <div class="demo-section">
+    <h2>Date Constraints</h2>
+    <p>Date picker controls with minimum, maximum, and disabled date restrictions.</p>
+    
+    <div class="date-picker-group">
+      <div class="date-picker-grid">
+        <div class="date-picker-item">
+          <div class="date-picker-label">Min/Max Date Range</div>
+          <sui-date-picker
+            [(ngModel)]="restrictedDate"
+            [placeholder]="'Select date in range'"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onDateChange($event, 'restrictedDate')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedDate(restrictedDate) }}</div>
+          <div class="date-picker-info">Range: {{ getFormattedDate(minDate) }} - {{ getFormattedDate(maxDate) }}</div>
+        </div>
+
+        <div class="date-picker-item">
+          <div class="date-picker-label">Disabled Weekends</div>
+          <sui-date-picker
+            [(ngModel)]="presetDate"
+            [placeholder]="'Weekdays only'"
+            [disabledDates]="disabledWeekendDates"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onDateChange($event, 'presetDate')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedDate(presetDate) }}</div>
+          <div class="date-picker-info">Weekends are disabled</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Time Picker -->
+  <div class="demo-section">
+    <h2>Date & Time Selection</h2>
+    <p>Date picker controls with time selection capabilities.</p>
+    
+    <div class="date-picker-group">
+      <div class="date-picker-grid">
+        <div class="date-picker-item">
+          <div class="date-picker-label">Date & Time Picker</div>
+          <sui-date-picker
+            [(ngModel)]="dateTime"
+            [placeholder]="'Select date and time'"
+            [showTime]="true"
+            [timeFormat]="'12'"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onDateChange($event, 'dateTime')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedDateTime(dateTime) }}</div>
+        </div>
+
+        <div class="date-picker-item">
+          <div class="date-picker-label">24-Hour Time Format</div>
+          <sui-date-picker
+            [(ngModel)]="timeOnly"
+            [placeholder]="'Select date and time'"
+            [showTime]="true"
+            [timeFormat]="'24'"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onDateChange($event, 'timeOnly')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedDateTime(timeOnly) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Range Date Picker -->
+  <div class="demo-section">
+    <h2>Date Range Selection</h2>
+    <p>Date picker controls for selecting date ranges with start and end dates.</p>
+    
+    <div class="date-picker-group">
+      <div class="date-picker-grid">
+        <div class="date-picker-item">
+          <div class="date-picker-label">Basic Date Range</div>
+          <sui-date-picker
+            [rangeValue]="rangeValue"
+            [variant]="'range'"
+            [placeholder]="'Select date range'"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onRangeChange($event, 'rangeValue')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedRange(rangeValue) }}</div>
+          <div class="date-picker-info">Duration: {{ getRangeDuration(rangeValue) }}</div>
+        </div>
+
+        <div class="date-picker-item">
+          <div class="date-picker-label">Vacation Range</div>
+          <sui-date-picker
+            [rangeValue]="vacationRange"
+            [variant]="'range'"
+            [placeholder]="'Select vacation dates'"
+            [minDate]="today"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onRangeChange($event, 'vacationRange')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedRange(vacationRange) }}</div>
+          <div class="date-picker-info">Duration: {{ getRangeDuration(vacationRange) }}</div>
+        </div>
+
+        <div class="date-picker-item">
+          <div class="date-picker-label">Project Timeline</div>
+          <sui-date-picker
+            [rangeValue]="projectRange"
+            [variant]="'range'"
+            [placeholder]="'Select project dates'"
+            [showTodayButton]="true"
+            [showClearButton]="true"
+            (onChange)="onRangeChange($event, 'projectRange')">
+          </sui-date-picker>
+          <div class="date-picker-value">{{ getFormattedRange(projectRange) }}</div>
+          <div class="date-picker-info">Duration: {{ getRangeDuration(projectRange) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Integration -->
+  <div class="demo-section">
+    <h2>Form Integration</h2>
+    <p>Date picker controls integrated with Angular forms for data binding and validation.</p>
+    
+    <div class="demo-form">
+      <div class="form-section">
+        <h3>Event Planning Form</h3>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="date-picker-label">Birth Date</label>
+            <sui-date-picker
+              [(ngModel)]="formData.birthDate"
+              [placeholder]="'Select birth date'"
+              [maxDate]="today"
+              [showTodayButton]="false"
+              [showClearButton]="true"
+              (onChange)="onFormDateChange($event, 'birthDate')">
+            </sui-date-picker>
+            <div class="date-picker-value">{{ getFormattedDate(formData.birthDate) }}</div>
+          </div>
+
+          <div class="form-field">
+            <label class="date-picker-label">Event Date</label>
+            <sui-date-picker
+              [(ngModel)]="formData.eventDate"
+              [placeholder]="'Select event date'"
+              [minDate]="today"
+              [showTodayButton]="true"
+              [showClearButton]="true"
+              (onChange)="onFormDateChange($event, 'eventDate')">
+            </sui-date-picker>
+            <div class="date-picker-value">{{ getFormattedDate(formData.eventDate) }}</div>
+          </div>
+
+          <div class="form-field">
+            <label class="date-picker-label">Deadline</label>
+            <sui-date-picker
+              [(ngModel)]="formData.deadline"
+              [placeholder]="'Select deadline'"
+              [minDate]="today"
+              [showTodayButton]="true"
+              [showClearButton]="true"
+              (onChange)="onFormDateChange($event, 'deadline')">
+            </sui-date-picker>
+            <div class="date-picker-value">{{ getFormattedDate(formData.deadline) }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" (click)="resetForm()">Reset Form</button>
+        <button class="btn btn-secondary" (click)="setDefaultValues()">Set Defaults</button>
+      </div>
+    </div>
+
+    <div class="form-data-display">
+      <h3>Live Form Data</h3>
+      <pre>{{ formData | json }}</pre>
+      
+      <div class="selection-summary">
+        <strong>Event Planning Summary:</strong>
+        <ul>
+          <li>Birth Date: {{ getFormattedDate(formData.birthDate) }}</li>
+          <li>Event Date: {{ getFormattedDate(formData.eventDate) }}</li>
+          <li>Deadline: {{ getFormattedDate(formData.deadline) }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

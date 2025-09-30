@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-input-text',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './input-text.html',
   styleUrl: './input-text.css',

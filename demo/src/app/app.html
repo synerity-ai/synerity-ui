@@ -1,0 +1,8 @@
+<div class="app-layout">
+  <app-navbar (sidebarToggle)="onSidebarToggle()"></app-navbar>
+  
+  <div class="app-body">
+    <app-sidebar [isCollapsed]="isSidebarCollapsed"></app-sidebar>
+    <app-main></app-main>
+  </div>
+</div>

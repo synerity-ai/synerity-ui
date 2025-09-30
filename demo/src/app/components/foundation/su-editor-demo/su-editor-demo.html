@@ -1,0 +1,317 @@
+<div class="editor-demo-container">
+  <div class="demo-header">
+    <h1>Editor Component</h1>
+    <p>Rich text editor with comprehensive formatting options, multiple themes, and customizable toolbar for content creation and editing.</p>
+  </div>
+
+  <!-- Basic Editor States -->
+  <div class="demo-section">
+    <h2>Basic Editor States</h2>
+    <p>Rich text editor controls with different interaction states and toolbar configurations.</p>
+    
+    <div class="editor-group">
+      <div class="editor-grid">
+        <div class="editor-item">
+          <div class="editor-label">Interactive Editor</div>
+          <sui-editor
+            [value]="basicContent"
+            [placeholder]="'Enter your content here...'"
+            [height]="'200px'"
+            [showToolbar]="true"
+            (onChange)="onContentChange($event, 'basicContent')">
+          </sui-editor>
+          <div class="editor-info">
+            <span>Words: {{ getWordCount(basicContent) }}</span>
+            <span>Characters: {{ getCharacterCount(basicContent) }}</span>
+          </div>
+          <div class="editor-preview">{{ getContentPreview(basicContent) }}</div>
+        </div>
+
+        <div class="editor-item">
+          <div class="editor-label">Disabled Editor</div>
+          <sui-editor
+            [value]="disabledContent"
+            [placeholder]="'This editor is disabled'"
+            [height]="'200px'"
+            [showToolbar]="true"
+            [disabled]="true">
+          </sui-editor>
+          <div class="editor-info">
+            <span>Words: {{ getWordCount(disabledContent) }}</span>
+            <span>Characters: {{ getCharacterCount(disabledContent) }}</span>
+          </div>
+          <div class="editor-preview">{{ getContentPreview(disabledContent) }}</div>
+        </div>
+
+        <div class="editor-item">
+          <div class="editor-label">Readonly Editor</div>
+          <sui-editor
+            [value]="readonlyContent"
+            [placeholder]="'This editor is readonly'"
+            [height]="'200px'"
+            [showToolbar]="true"
+            [readonly]="true">
+          </sui-editor>
+          <div class="editor-info">
+            <span>Words: {{ getWordCount(readonlyContent) }}</span>
+            <span>Characters: {{ getCharacterCount(readonlyContent) }}</span>
+          </div>
+          <div class="editor-preview">{{ getContentPreview(readonlyContent) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Size Variants -->
+  <div class="demo-section">
+    <h2>Size Variants</h2>
+    <p>Editor controls in different sizes for various content creation needs.</p>
+    
+    <div class="editor-group">
+      <div class="editor-grid">
+        <div class="editor-item">
+          <div class="editor-label">Small Editor</div>
+          <sui-editor
+            [value]="smallContent"
+            [placeholder]="'Small editor for compact forms'"
+            [height]="'150px'"
+            [showToolbar]="true"
+            (onChange)="onContentChange($event, 'smallContent')">
+          </sui-editor>
+          <div class="editor-info">
+            <span>Words: {{ getWordCount(smallContent) }}</span>
+            <span>Characters: {{ getCharacterCount(smallContent) }}</span>
+          </div>
+          <div class="editor-preview">{{ getContentPreview(smallContent) }}</div>
+        </div>
+
+        <div class="editor-item">
+          <div class="editor-label">Medium Editor</div>
+          <sui-editor
+            [value]="mediumContent"
+            [placeholder]="'Medium editor for standard content'"
+            [height]="'250px'"
+            [showToolbar]="true"
+            (onChange)="onContentChange($event, 'mediumContent')">
+          </sui-editor>
+          <div class="editor-info">
+            <span>Words: {{ getWordCount(mediumContent) }}</span>
+            <span>Characters: {{ getCharacterCount(mediumContent) }}</span>
+          </div>
+          <div class="editor-preview">{{ getContentPreview(mediumContent) }}</div>
+        </div>
+
+        <div class="editor-item">
+          <div class="editor-label">Large Editor</div>
+          <sui-editor
+            [value]="largeContent"
+            [placeholder]="'Large editor for extensive content'"
+            [height]="'350px'"
+            [showToolbar]="true"
+            (onChange)="onContentChange($event, 'largeContent')">
+          </sui-editor>
+          <div class="editor-info">
+            <span>Words: {{ getWordCount(largeContent) }}</span>
+            <span>Characters: {{ getCharacterCount(largeContent) }}</span>
+          </div>
+          <div class="editor-preview">{{ getContentPreview(largeContent) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme Variants -->
+  <div class="demo-section">
+    <h2>Theme Variants</h2>
+    <p>Editor controls with different visual themes for various environments.</p>
+    
+    <div class="editor-group">
+      <div class="editor-grid">
+        <div class="editor-item">
+          <div class="editor-label">Light Theme</div>
+          <sui-editor
+            [value]="lightContent"
+            [placeholder]="'Light theme editor'"
+            [height]="'200px'"
+            [showToolbar]="true"
+            [theme]="'light'"
+            (onChange)="onContentChange($event, 'lightContent')">
+          </sui-editor>
+          <div class="editor-info">
+            <span>Words: {{ getWordCount(lightContent) }}</span>
+            <span>Characters: {{ getCharacterCount(lightContent) }}</span>
+          </div>
+          <div class="editor-preview">{{ getContentPreview(lightContent) }}</div>
+        </div>
+
+        <div class="editor-item">
+          <div class="editor-label">Dark Theme</div>
+          <sui-editor
+            [value]="darkContent"
+            [placeholder]="'Dark theme editor'"
+            [height]="'200px'"
+            [showToolbar]="true"
+            [theme]="'dark'"
+            (onChange)="onContentChange($event, 'darkContent')">
+          </sui-editor>
+          <div class="editor-info">
+            <span>Words: {{ getWordCount(darkContent) }}</span>
+            <span>Characters: {{ getCharacterCount(darkContent) }}</span>
+          </div>
+          <div class="editor-preview">{{ getContentPreview(darkContent) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toolbar Variants -->
+  <div class="demo-section">
+    <h2>Toolbar Configuration</h2>
+    <p>Editor controls with different toolbar configurations for various use cases.</p>
+    
+    <div class="editor-group">
+      <div class="editor-grid">
+        <div class="editor-item">
+          <div class="editor-label">With Toolbar</div>
+          <sui-editor
+            [value]="withToolbarContent"
+            [placeholder]="'Editor with full toolbar'"
+            [height]="'200px'"
+            [showToolbar]="true"
+            (onChange)="onContentChange($event, 'withToolbarContent')">
+          </sui-editor>
+          <div class="editor-info">
+            <span>Words: {{ getWordCount(withToolbarContent) }}</span>
+            <span>Characters: {{ getCharacterCount(withToolbarContent) }}</span>
+          </div>
+          <div class="editor-preview">{{ getContentPreview(withToolbarContent) }}</div>
+        </div>
+
+        <div class="editor-item">
+          <div class="editor-label">Without Toolbar</div>
+          <sui-editor
+            [value]="withoutToolbarContent"
+            [placeholder]="'Editor without toolbar'"
+            [height]="'200px'"
+            [showToolbar]="false"
+            (onChange)="onContentChange($event, 'withoutToolbarContent')">
+          </sui-editor>
+          <div class="editor-info">
+            <span>Words: {{ getWordCount(withoutToolbarContent) }}</span>
+            <span>Characters: {{ getCharacterCount(withoutToolbarContent) }}</span>
+          </div>
+          <div class="editor-preview">{{ getContentPreview(withoutToolbarContent) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Templates -->
+  <div class="demo-section">
+    <h2>Content Templates</h2>
+    <p>Pre-built content templates for common use cases like blog posts, emails, and documentation.</p>
+    
+    <div class="template-section">
+      <div class="template-controls">
+        <select [value]="selectedTemplate" class="template-select">
+          <option value="">Select a template...</option>
+          <option *ngFor="let template of templateOptions" [value]="template.value">
+            {{ template.label }}
+          </option>
+        </select>
+        <button class="btn btn-primary" (click)="loadSelectedTemplate()" [disabled]="!selectedTemplate">
+          Load Template
+        </button>
+      </div>
+      
+      <div class="editor-item full-width">
+        <div class="editor-label">Template Editor</div>
+        <sui-editor
+          [value]="basicContent"
+          [placeholder]="'Select and load a template to get started'"
+          [height]="'300px'"
+          [showToolbar]="true"
+          (onChange)="onContentChange($event, 'basicContent')">
+        </sui-editor>
+        <div class="editor-info">
+          <span>Words: {{ getWordCount(basicContent) }}</span>
+          <span>Characters: {{ getCharacterCount(basicContent) }}</span>
+        </div>
+        <div class="editor-preview">{{ getContentPreview(basicContent) }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Integration -->
+  <div class="demo-section">
+    <h2>Form Integration</h2>
+    <p>Rich text editors integrated with Angular forms for content management systems.</p>
+    
+    <div class="demo-form">
+      <div class="form-section">
+        <h3>Article Creation Form</h3>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label">Article Title</label>
+            <input type="text" [value]="formData.title" placeholder="Enter article title..." class="form-input">
+          </div>
+
+          <div class="form-field full-width">
+            <label class="form-label">Article Content</label>
+            <sui-editor
+              [value]="formData.content"
+              [placeholder]="'Write your article content here...'"
+              [height]="'300px'"
+              [showToolbar]="true"
+              (onChange)="onFormContentChange($event, 'content')">
+            </sui-editor>
+            <div class="editor-info">
+              <span>Words: {{ getWordCount(formData.content) }}</span>
+              <span>Characters: {{ getCharacterCount(formData.content) }}</span>
+            </div>
+          </div>
+
+          <div class="form-field full-width">
+            <label class="form-label">Article Summary</label>
+            <sui-editor
+              [value]="formData.summary"
+              [placeholder]="'Brief summary of your article...'"
+              [height]="'150px'"
+              [showToolbar]="true"
+              (onChange)="onFormContentChange($event, 'summary')">
+            </sui-editor>
+            <div class="editor-info">
+              <span>Words: {{ getWordCount(formData.summary) }}</span>
+              <span>Characters: {{ getCharacterCount(formData.summary) }}</span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">Tags</label>
+            <input type="text" [value]="formData.tags" placeholder="Enter tags (comma-separated)" class="form-input">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" (click)="resetForm()">Reset Form</button>
+        <button class="btn btn-secondary" (click)="setDefaultValues()">Set Defaults</button>
+      </div>
+    </div>
+
+    <div class="form-data-display">
+      <h3>Live Form Data</h3>
+      <pre>{{ formData | json }}</pre>
+      
+      <div class="selection-summary">
+        <strong>Article Summary:</strong>
+        <ul>
+          <li>Title: {{ formData.title || 'No title' }}</li>
+          <li>Content Words: {{ getWordCount(formData.content) }}</li>
+          <li>Summary Words: {{ getWordCount(formData.summary) }}</li>
+          <li>Tags: {{ formData.tags || 'No tags' }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

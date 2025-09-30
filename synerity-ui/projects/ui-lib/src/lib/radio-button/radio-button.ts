@@ -3,6 +3,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 
 @Component({
   selector: 'sui-radio-button',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './radio-button.html',
   styleUrl: './radio-button.scss',

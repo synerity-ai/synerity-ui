@@ -69,6 +69,7 @@ export interface DatePickerConfig {
 
 @Component({
   selector: 'sui-date-picker',
+  standalone: true,
   imports: [CommonModule, NgIf],
   templateUrl: './date-picker.html',
   styleUrl: './date-picker.scss',

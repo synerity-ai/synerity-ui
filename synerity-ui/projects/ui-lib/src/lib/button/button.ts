@@ -4,6 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'sui-button',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './button.html',
   styleUrl: './button.css',

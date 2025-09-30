@@ -3,6 +3,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 
 @Component({
   selector: 'sui-toggle-switch',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './toggle-switch.html',
   styleUrl: './toggle-switch.scss',

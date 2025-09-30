@@ -1,14 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild, ElementRef, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild, ElementRef, OnDestroy, OnInit, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-editor',
+  standalone: true,
   imports: [CommonModule, NgIf],
   templateUrl: './editor.html',
   styleUrl: './editor.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Editor implements OnInit, OnDestroy {
+export class Editor implements OnInit, OnDestroy, OnChanges {
   @Input() value = '';
   @Input() placeholder = 'Enter text...';
   @Input() disabled = false;
@@ -30,15 +31,56 @@ export class Editor implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Initialize editor if needed
+    this.setEditorContent();
   }
 
   ngOnDestroy(): void {
     // Cleanup if needed
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['value'] && this.editorElement) {
+      this.setEditorContent();
+    }
+  }
+
+  setEditorContent(): void {
+    if (this.editorElement) {
+      // Try a completely different approach - use setTimeout to ensure DOM is ready
+      setTimeout(() => {
+        const element = this.editorElement.nativeElement;
+        
+        // Force focus and blur to reset any browser state
+        element.focus();
+        element.blur();
+        
+        // Clear all content and attributes
+        element.innerHTML = '';
+        element.removeAttribute('dir');
+        
+        // Set attributes and styles
+        element.setAttribute('dir', 'ltr');
+        element.style.direction = 'ltr';
+        element.style.textAlign = 'left';
+        element.style.unicodeBidi = 'normal';
+        element.style.writingMode = 'horizontal-tb';
+        
+        // Create a text node and append it
+        const textNode = document.createTextNode(this.value);
+        element.appendChild(textNode);
+        
+        // Force a reflow
+        element.offsetHeight;
+        
+        // Set focus back
+        element.focus();
+      }, 0);
+    }
+  }
+
   onContentChange(): void {
     if (this.editorElement) {
-      this.value = this.editorElement.nativeElement.innerHTML;
+      this.value = this.editorElement.nativeElement.textContent || '';
       this.onChange.emit(this.value);
       this.cdr.detectChanges();
     }

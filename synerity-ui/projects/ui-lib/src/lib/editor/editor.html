@@ -124,6 +124,8 @@
     #editorElement
     class="sui-editor-content"
     contenteditable="true"
+    dir="ltr"
+    style="direction: ltr !important; text-align: left !important; unicode-bidi: normal !important; writing-mode: horizontal-tb !important;"
     [attr.placeholder]="placeholder"
     [attr.disabled]="isDisabled()"
     [attr.readonly]="isReadonly()"
@@ -132,6 +134,5 @@
     (blur)="onBlurHandler()"
     (keydown)="onKeyDown($event)"
     (paste)="onPaste($event)"
-    [innerHTML]="value"
   ></div>
 </div>

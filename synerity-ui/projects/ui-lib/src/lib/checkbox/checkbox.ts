@@ -4,6 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'sui-checkbox',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './checkbox.html',
   // styleUrl: './checkbox.scss', // Using main CSS instead

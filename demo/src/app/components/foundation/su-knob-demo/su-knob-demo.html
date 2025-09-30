@@ -1,0 +1,409 @@
+<div class="knob-demo-container">
+  <div class="demo-header">
+    <h1>Knob Component</h1>
+    <p>Interactive circular knob controls for precise value input with visual feedback and smooth animations.</p>
+  </div>
+
+  <!-- Basic Knob States -->
+  <div class="demo-section">
+    <h2>Basic Knob States</h2>
+    <p>Standard knob controls with different interaction states.</p>
+    
+    <div class="knob-group">
+      <div class="knob-grid">
+        <div class="knob-item">
+          <div class="knob-label">Interactive Knob</div>
+          <sui-knob
+            [value]="basicKnob"
+            [min]="0"
+            [max]="100"
+            [step]="1"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Volume"
+            unit="%"
+            (onChange)="onKnobChange($event, 'basicKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ basicKnob }}</div>
+        </div>
+
+        <div class="knob-item">
+          <div class="knob-label">Disabled Knob</div>
+          <sui-knob
+            [value]="disabledKnob"
+            [min]="0"
+            [max]="100"
+            [step]="1"
+            [size]="120"
+            [disabled]="true"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Disabled"
+            unit="%">
+          </sui-knob>
+          <div class="knob-value">Value: {{ disabledKnob }}</div>
+        </div>
+
+        <div class="knob-item">
+          <div class="knob-label">Readonly Knob</div>
+          <sui-knob
+            [value]="readonlyKnob"
+            [min]="0"
+            [max]="100"
+            [step]="1"
+            [size]="120"
+            [readonly]="true"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Readonly"
+            unit="%">
+          </sui-knob>
+          <div class="knob-value">Value: {{ readonlyKnob }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Size Variants -->
+  <div class="demo-section">
+    <h2>Size Variants</h2>
+    <p>Knob controls in different sizes for various use cases.</p>
+    
+    <div class="knob-group">
+      <div class="knob-grid">
+        <div class="knob-item">
+          <div class="knob-label">Small Knob (80px)</div>
+          <sui-knob
+            [value]="smallKnob"
+            [min]="0"
+            [max]="100"
+            [step]="1"
+            [size]="80"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="8"
+            label="Small"
+            unit="%"
+            (onChange)="onKnobChange($event, 'smallKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ smallKnob }}</div>
+        </div>
+
+        <div class="knob-item">
+          <div class="knob-label">Medium Knob (120px)</div>
+          <sui-knob
+            [value]="mediumKnob"
+            [min]="0"
+            [max]="100"
+            [step]="1"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Medium"
+            unit="%"
+            (onChange)="onKnobChange($event, 'mediumKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ mediumKnob }}</div>
+        </div>
+
+        <div class="knob-item">
+          <div class="knob-label">Large Knob (160px)</div>
+          <sui-knob
+            [value]="largeKnob"
+            [min]="0"
+            [max]="100"
+            [step]="1"
+            [size]="160"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="16"
+            label="Large"
+            unit="%"
+            (onChange)="onKnobChange($event, 'largeKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ largeKnob }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Controls -->
+  <div class="demo-section">
+    <h2>Audio Controls</h2>
+    <p>Professional audio mixer-style knob controls with precise control ranges.</p>
+    
+    <div class="knob-group">
+      <div class="knob-grid">
+        <div class="knob-item">
+          <div class="knob-label">Volume Control</div>
+          <sui-knob
+            [value]="volumeKnob"
+            [min]="0"
+            [max]="100"
+            [step]="1"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Volume"
+            unit="%"
+            (onChange)="onKnobChange($event, 'volumeKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ volumeKnob }}%</div>
+        </div>
+
+        <div class="knob-item">
+          <div class="knob-label">Bass Control</div>
+          <sui-knob
+            [value]="bassKnob"
+            [min]="-50"
+            [max]="50"
+            [step]="1"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Bass"
+            unit="dB"
+            (onChange)="onKnobChange($event, 'bassKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ bassKnob }}dB</div>
+        </div>
+
+        <div class="knob-item">
+          <div class="knob-label">Treble Control</div>
+          <sui-knob
+            [value]="trebleKnob"
+            [min]="-50"
+            [max]="50"
+            [step]="1"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Treble"
+            unit="dB"
+            (onChange)="onKnobChange($event, 'trebleKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ trebleKnob }}dB</div>
+        </div>
+
+        <div class="knob-item">
+          <div class="knob-label">Balance Control</div>
+          <sui-knob
+            [value]="balanceKnob"
+            [min]="-100"
+            [max]="100"
+            [step]="1"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Balance"
+            unit="%"
+            (onChange)="onKnobChange($event, 'balanceKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ balanceKnob }}%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Temperature Controls -->
+  <div class="demo-section">
+    <h2>Temperature & Environment Controls</h2>
+    <p>Knob controls for environmental monitoring and HVAC systems.</p>
+    
+    <div class="knob-group">
+      <div class="knob-grid">
+        <div class="knob-item">
+          <div class="knob-label">Temperature Control</div>
+          <sui-knob
+            [value]="temperatureKnob"
+            [min]="10"
+            [max]="35"
+            [step]="0.5"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Temperature"
+            unit="°C"
+            (onChange)="onKnobChange($event, 'temperatureKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ temperatureKnob }}°C</div>
+        </div>
+
+        <div class="knob-item">
+          <div class="knob-label">Humidity Control</div>
+          <sui-knob
+            [value]="humidityKnob"
+            [min]="0"
+            [max]="100"
+            [step]="1"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Humidity"
+            unit="%"
+            (onChange)="onKnobChange($event, 'humidityKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ humidityKnob }}%</div>
+        </div>
+
+        <div class="knob-item">
+          <div class="knob-label">Pressure Control</div>
+          <sui-knob
+            [value]="pressureKnob"
+            [min]="980"
+            [max]="1040"
+            [step]="1"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Pressure"
+            unit="hPa"
+            (onChange)="onKnobChange($event, 'pressureKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ pressureKnob }}hPa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step Controls -->
+  <div class="demo-section">
+    <h2>Step Controls</h2>
+    <p>Knob controls with different step values for fine and coarse adjustments.</p>
+    
+    <div class="knob-group">
+      <div class="knob-grid">
+        <div class="knob-item">
+          <div class="knob-label">Coarse Steps (5)</div>
+          <sui-knob
+            [value]="stepKnob"
+            [min]="0"
+            [max]="100"
+            [step]="5"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Coarse"
+            unit=""
+            (onChange)="onKnobChange($event, 'stepKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ stepKnob }}</div>
+        </div>
+
+        <div class="knob-item">
+          <div class="knob-label">Fine Steps (0.5)</div>
+          <sui-knob
+            [value]="fineStepKnob"
+            [min]="0"
+            [max]="10"
+            [step]="0.5"
+            [size]="120"
+            [showValue]="true"
+            [showTicks]="true"
+            [tickCount]="12"
+            label="Fine"
+            unit=""
+            (onChange)="onKnobChange($event, 'fineStepKnob')">
+          </sui-knob>
+          <div class="knob-value">Value: {{ fineStepKnob }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Integration -->
+  <div class="demo-section">
+    <h2>Form Integration</h2>
+    <p>Knob controls integrated with Angular forms for data binding and validation.</p>
+    
+    <div class="demo-form">
+      <div class="form-section">
+        <h3>System Controls</h3>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="knob-label">Volume Control</label>
+            <sui-knob
+              [value]="formData.volume"
+              [min]="0"
+              [max]="100"
+              [step]="1"
+              [size]="100"
+              [showValue]="true"
+              [showTicks]="true"
+              [tickCount]="10"
+              label="Volume"
+              unit="%"
+              (onChange)="onFormKnobChange($event, 'volume')">
+            </sui-knob>
+          </div>
+
+          <div class="form-field">
+            <label class="knob-label">Temperature Control</label>
+            <sui-knob
+              [value]="formData.temperature"
+              [min]="15"
+              [max]="30"
+              [step]="0.5"
+              [size]="100"
+              [showValue]="true"
+              [showTicks]="true"
+              [tickCount]="10"
+              label="Temp"
+              unit="°C"
+              (onChange)="onFormKnobChange($event, 'temperature')">
+            </sui-knob>
+          </div>
+
+          <div class="form-field">
+            <label class="knob-label">Pressure Control</label>
+            <sui-knob
+              [value]="formData.pressure"
+              [min]="1000"
+              [max]="1020"
+              [step]="1"
+              [size]="100"
+              [showValue]="true"
+              [showTicks]="true"
+              [tickCount]="10"
+              label="Pressure"
+              unit="hPa"
+              (onChange)="onFormKnobChange($event, 'pressure')">
+            </sui-knob>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" (click)="resetForm()">Reset Form</button>
+        <button class="btn btn-secondary" (click)="setDefaultValues()">Set Defaults</button>
+      </div>
+    </div>
+
+    <div class="form-data-display">
+      <h3>Live Form Data</h3>
+      <pre>{{ formData | json }}</pre>
+      
+      <div class="selection-summary">
+        <strong>Current Settings:</strong>
+        <ul>
+          <li>Volume: {{ formData.volume }}%</li>
+          <li>Temperature: {{ formData.temperature }}°C</li>
+          <li>Pressure: {{ formData.pressure }}hPa</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

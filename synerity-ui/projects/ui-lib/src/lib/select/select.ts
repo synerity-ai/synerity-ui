@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-select',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './select.html',
   styleUrl: './select.scss',

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-rating',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './rating.html',
   styleUrl: './rating.scss',
