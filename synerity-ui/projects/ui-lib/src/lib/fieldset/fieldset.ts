@@ -6,7 +6,7 @@ import { NgIf } from '@angular/common';
   standalone: true,
   imports: [NgIf],
   templateUrl: './fieldset.html',
-  styleUrl: './fieldset.css',
+  styleUrl: './fieldset.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Fieldset {

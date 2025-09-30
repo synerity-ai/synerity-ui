@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'sui-auto-focus',
   imports: [CommonModule],
   templateUrl: './auto-focus.html',
-  styleUrl: './auto-focus.css',
+  styleUrl: './auto-focus.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutoFocus implements OnInit {

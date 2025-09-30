@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-pick-list',
   imports: [NgFor, NgIf],
   templateUrl: './pick-list.html',
-  styleUrl: './pick-list.css',
+  styleUrl: './pick-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PickList {

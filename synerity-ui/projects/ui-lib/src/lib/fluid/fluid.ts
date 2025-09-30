@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'sui-fluid',
   imports: [CommonModule],
   templateUrl: './fluid.html',
-  styleUrl: './fluid.css',
+  styleUrl: './fluid.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Fluid {

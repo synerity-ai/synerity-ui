@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-tooltip',
   imports: [NgIf],
   templateUrl: './tooltip.html',
-  styleUrl: './tooltip.css',
+  styleUrl: './tooltip.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Tooltip implements AfterViewInit, OnDestroy {

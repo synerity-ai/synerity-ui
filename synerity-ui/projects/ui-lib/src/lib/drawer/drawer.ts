@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-drawer',
   imports: [NgIf],
   templateUrl: './drawer.html',
-  styleUrl: './drawer.css',
+  styleUrl: './drawer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Drawer implements AfterViewInit, OnDestroy {

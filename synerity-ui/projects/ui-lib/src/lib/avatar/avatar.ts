@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-avatar',
   imports: [NgIf],
   templateUrl: './avatar.html',
-  styleUrl: './avatar.css',
+  styleUrl: './avatar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Avatar {

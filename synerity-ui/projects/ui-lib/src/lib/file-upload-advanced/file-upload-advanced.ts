@@ -17,7 +17,7 @@ interface FileUploadItem {
   selector: 'sui-file-upload-advanced',
   imports: [CommonModule, NgFor, NgIf],
   templateUrl: './file-upload-advanced.html',
-  styleUrl: './file-upload-advanced.css',
+  styleUrl: './file-upload-advanced.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileUploadAdvanced implements OnInit, OnDestroy {

@@ -13,7 +13,7 @@ interface DockItem {
   selector: 'sui-dock',
   imports: [CommonModule, NgFor, NgIf],
   templateUrl: './dock.html',
-  styleUrl: './dock.css',
+  styleUrl: './dock.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Dock {

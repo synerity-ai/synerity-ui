@@ -6,7 +6,7 @@ import { NgFor, NgIf } from '@angular/common';
   standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './speed-dial.html',
-  styleUrl: './speed-dial.css',
+  styleUrl: './speed-dial.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpeedDial {

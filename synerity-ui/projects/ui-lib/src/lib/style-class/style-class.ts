@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'sui-style-class',
   imports: [CommonModule],
   templateUrl: './style-class.html',
-  styleUrl: './style-class.css',
+  styleUrl: './style-class.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StyleClass implements OnInit {

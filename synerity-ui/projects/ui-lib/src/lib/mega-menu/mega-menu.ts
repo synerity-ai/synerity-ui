@@ -15,7 +15,7 @@ interface MegaMenuItem {
   selector: 'sui-mega-menu',
   imports: [NgFor, NgIf],
   templateUrl: './mega-menu.html',
-  styleUrl: './mega-menu.css',
+  styleUrl: './mega-menu.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MegaMenu implements AfterViewInit, OnDestroy {

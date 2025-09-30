@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, Elemen
   selector: 'sui-scroll-panel',
   imports: [],
   templateUrl: './scroll-panel.html',
-  styleUrl: './scroll-panel.css',
+  styleUrl: './scroll-panel.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScrollPanel implements AfterViewInit {

@@ -5,7 +5,7 @@ import { NgIf, CommonModule } from '@angular/common';
   selector: 'sui-inplace',
   imports: [CommonModule, NgIf],
   templateUrl: './inplace.html',
-  styleUrl: './inplace.css',
+  styleUrl: './inplace.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Inplace {

@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-message',
   imports: [NgIf],
   templateUrl: './message.html',
-  styleUrl: './message.css',
+  styleUrl: './message.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Message {

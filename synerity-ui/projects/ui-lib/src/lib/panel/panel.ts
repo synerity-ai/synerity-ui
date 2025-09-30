@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-panel',
   imports: [NgIf],
   templateUrl: './panel.html',
-  styleUrl: './panel.css',
+  styleUrl: './panel.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Panel {

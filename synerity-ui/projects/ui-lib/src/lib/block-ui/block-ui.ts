@@ -5,7 +5,7 @@ import { NgIf, CommonModule } from '@angular/common';
   selector: 'sui-block-ui',
   imports: [CommonModule, NgIf],
   templateUrl: './block-ui.html',
-  styleUrl: './block-ui.css',
+  styleUrl: './block-ui.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BlockUi {

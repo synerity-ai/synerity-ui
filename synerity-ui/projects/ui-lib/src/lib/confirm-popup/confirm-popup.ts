@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-confirm-popup',
   imports: [NgIf],
   templateUrl: './confirm-popup.html',
-  styleUrl: './confirm-popup.css',
+  styleUrl: './confirm-popup.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfirmPopup implements AfterViewInit, OnDestroy {

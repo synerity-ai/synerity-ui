@@ -5,7 +5,7 @@ import { NgIf, CommonModule } from '@angular/common';
   selector: 'sui-image',
   imports: [CommonModule, NgIf],
   templateUrl: './image.html',
-  styleUrl: './image.css'
+  styleUrl: './image.scss'
 })
 export class Image {
   @Input() src = '';

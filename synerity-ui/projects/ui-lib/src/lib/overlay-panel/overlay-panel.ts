@@ -6,7 +6,7 @@ import { Subscription, fromEvent } from 'rxjs';
   selector: 'sui-overlay-panel',
   imports: [CommonModule, NgIf],
   templateUrl: './overlay-panel.html',
-  styleUrl: './overlay-panel.css',
+  styleUrl: './overlay-panel.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverlayPanel implements OnInit, OnDestroy {

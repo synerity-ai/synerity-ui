@@ -6,7 +6,7 @@ import { NgFor } from '@angular/common';
   standalone: true,
   imports: [NgFor],
   templateUrl: './accordion.html',
-  styleUrl: './accordion.css',
+  styleUrl: './accordion.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Accordion {

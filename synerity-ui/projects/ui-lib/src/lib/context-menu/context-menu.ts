@@ -15,7 +15,7 @@ interface MenuItem {
   selector: 'sui-context-menu',
   imports: [CommonModule, NgFor, NgIf],
   templateUrl: './context-menu.html',
-  styleUrl: './context-menu.css',
+  styleUrl: './context-menu.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContextMenu implements OnDestroy {

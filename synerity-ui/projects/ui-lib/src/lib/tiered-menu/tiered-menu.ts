@@ -14,7 +14,7 @@ interface TieredMenuItem {
   selector: 'sui-tiered-menu',
   imports: [NgFor, NgIf],
   templateUrl: './tiered-menu.html',
-  styleUrl: './tiered-menu.css',
+  styleUrl: './tiered-menu.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TieredMenu implements AfterViewInit, OnDestroy {

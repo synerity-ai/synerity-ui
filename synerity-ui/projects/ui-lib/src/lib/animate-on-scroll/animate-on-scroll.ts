@@ -7,7 +7,7 @@ import { debounceTime } from 'rxjs/operators';
   selector: 'sui-animate-on-scroll',
   imports: [CommonModule],
   templateUrl: './animate-on-scroll.html',
-  styleUrl: './animate-on-scroll.css',
+  styleUrl: './animate-on-scroll.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AnimateOnScroll implements OnInit, OnDestroy {

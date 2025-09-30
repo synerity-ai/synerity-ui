@@ -12,7 +12,7 @@ interface CaptchaChallenge {
   selector: 'sui-captcha',
   imports: [CommonModule, FormsModule],
   templateUrl: './captcha.html',
-  styleUrl: './captcha.css',
+  styleUrl: './captcha.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Captcha implements OnInit {

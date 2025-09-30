@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-dynamic-dialog',
   imports: [NgIf],
   templateUrl: './dynamic-dialog.html',
-  styleUrl: './dynamic-dialog.css',
+  styleUrl: './dynamic-dialog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicDialog implements AfterViewInit, OnDestroy {

@@ -5,7 +5,7 @@ import { NgFor } from '@angular/common';
   selector: 'sui-virtual-scroller',
   imports: [NgFor],
   templateUrl: './virtual-scroller.html',
-  styleUrl: './virtual-scroller.css',
+  styleUrl: './virtual-scroller.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VirtualScroller implements OnInit, OnDestroy {

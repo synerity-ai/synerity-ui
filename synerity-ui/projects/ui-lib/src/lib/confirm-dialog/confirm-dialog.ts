@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-confirm-dialog',
   imports: [NgIf],
   templateUrl: './confirm-dialog.html',
-  styleUrl: './confirm-dialog.css',
+  styleUrl: './confirm-dialog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfirmDialog {

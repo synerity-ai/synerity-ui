@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, Elemen
   selector: 'sui-splitter',
   imports: [],
   templateUrl: './splitter.html',
-  styleUrl: './splitter.css',
+  styleUrl: './splitter.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Splitter implements AfterViewInit {

@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-tree-table',
   imports: [NgFor, NgIf],
   templateUrl: './tree-table.html',
-  styleUrl: './tree-table.css',
+  styleUrl: './tree-table.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeTable {

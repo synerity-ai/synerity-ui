@@ -13,7 +13,7 @@ interface TerminalCommand {
   selector: 'sui-terminal',
   imports: [CommonModule, NgFor, NgIf, FormsModule],
   templateUrl: './terminal.html',
-  styleUrl: './terminal.css',
+  styleUrl: './terminal.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Terminal implements OnDestroy {

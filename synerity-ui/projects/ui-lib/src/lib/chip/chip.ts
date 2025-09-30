@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-chip',
   imports: [NgIf],
   templateUrl: './chip.html',
-  styleUrl: './chip.css',
+  styleUrl: './chip.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Chip {

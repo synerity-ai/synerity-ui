@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-menubar',
   imports: [NgFor, NgIf],
   templateUrl: './menubar.html',
-  styleUrl: './menubar.css',
+  styleUrl: './menubar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Menubar implements AfterViewInit, OnDestroy {

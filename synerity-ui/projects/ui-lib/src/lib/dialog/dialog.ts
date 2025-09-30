@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-dialog',
   imports: [NgIf],
   templateUrl: './dialog.html',
-  styleUrl: './dialog.css',
+  styleUrl: './dialog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Dialog implements AfterViewInit {

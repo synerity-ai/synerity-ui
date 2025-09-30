@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './divider.html',
-  styleUrl: './divider.css',
+  styleUrl: './divider.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Divider {

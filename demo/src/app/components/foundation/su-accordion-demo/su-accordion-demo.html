@@ -1,0 +1,288 @@
+<div class="demo-container">
+  <header>
+    <h1>Accordion Component Demo</h1>
+    <p>Collapsible content panels with single or multiple selection, different variants, and interactive features.</p>
+  </header>
+
+  <div class="demo-section">
+    <h2>Basic Accordion</h2>
+    <p>Simple accordion with default styling</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default Accordion</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="basicTabs"
+            [activeIndex]="singleActiveIndex"
+            [multiple]="false"
+            variant="default"
+            size="medium">
+          </sui-accordion>
+        </div>
+        <div class="code-block">
+          &lt;sui-accordion 
+            [tabs]="tabs"
+            [activeIndex]="0"
+            [multiple]="false"
+            variant="default"
+            size="medium"&gt;
+          &lt;/sui-accordion&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Selection Variants</h2>
+    <p>Different selection modes for various use cases</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Single Selection</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="basicTabs"
+            [activeIndex]="singleActiveIndex"
+            [multiple]="false"
+            variant="default"
+            size="medium"
+            (onActiveIndexChange)="onSingleAccordionChange($event)">
+          </sui-accordion>
+        </div>
+        <div class="code-block">
+          &lt;sui-accordion 
+            [tabs]="tabs"
+            [activeIndex]="activeIndex"
+            [multiple]="false"&gt;
+          &lt;/sui-accordion&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Multiple Selection</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="multipleTabs"
+            [activeIndex]="multipleActiveIndexes"
+            [multiple]="true"
+            variant="bordered"
+            size="medium"
+            (onActiveIndexChange)="onMultipleAccordionChange($event)">
+          </sui-accordion>
+        </div>
+        <div class="code-block">
+          &lt;sui-accordion 
+            [tabs]="tabs"
+            [activeIndex]="activeIndexes"
+            [multiple]="true"&gt;
+          &lt;/sui-accordion&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Variant Styles</h2>
+    <p>Different visual styles for various contexts</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default Variant</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="basicTabs"
+            [activeIndex]="0"
+            variant="default"
+            size="medium">
+          </sui-accordion>
+        </div>
+        <div class="code-block">
+          &lt;sui-accordion 
+            [tabs]="tabs"
+            variant="default"&gt;
+          &lt;/sui-accordion&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Bordered Variant</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="basicTabs"
+            [activeIndex]="0"
+            variant="bordered"
+            size="medium">
+          </sui-accordion>
+        </div>
+        <div class="code-block">
+          &lt;sui-accordion 
+            [tabs]="tabs"
+            variant="bordered"&gt;
+          &lt;/sui-accordion&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Minimal Variant</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="basicTabs"
+            [activeIndex]="0"
+            variant="minimal"
+            size="medium">
+          </sui-accordion>
+        </div>
+        <div class="code-block">
+          &lt;sui-accordion 
+            [tabs]="tabs"
+            variant="minimal"&gt;
+          &lt;/sui-accordion&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Size Variants</h2>
+    <p>Different sizes for various contexts</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Small Size</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="basicTabs"
+            [activeIndex]="0"
+            variant="default"
+            size="small">
+          </sui-accordion>
+        </div>
+        <div class="code-block">
+          &lt;sui-accordion 
+            [tabs]="tabs"
+            size="small"&gt;
+          &lt;/sui-accordion&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Medium Size</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="basicTabs"
+            [activeIndex]="0"
+            variant="default"
+            size="medium">
+          </sui-accordion>
+        </div>
+        <div class="code-block">
+          &lt;sui-accordion 
+            [tabs]="tabs"
+            size="medium"&gt;
+          &lt;/sui-accordion&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Large Size</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="basicTabs"
+            [activeIndex]="0"
+            variant="default"
+            size="large">
+          </sui-accordion>
+        </div>
+        <div class="code-block">
+          &lt;sui-accordion 
+            [tabs]="tabs"
+            size="large"&gt;
+          &lt;/sui-accordion&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Interactive Examples</h2>
+    <p>Live examples with dynamic values</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Dynamic Variant</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="basicTabs"
+            [activeIndex]="0"
+            [variant]="selectedVariant"
+            size="medium">
+          </sui-accordion>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" id="default" name="variant" value="default" [(ngModel)]="selectedVariant">
+              <label for="default">Default</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="bordered" name="variant" value="bordered" [(ngModel)]="selectedVariant">
+              <label for="bordered">Bordered</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="minimal" name="variant" value="minimal" [(ngModel)]="selectedVariant">
+              <label for="minimal">Minimal</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Dynamic Size</h4>
+        <div class="demo-content">
+          <sui-accordion 
+            [tabs]="basicTabs"
+            [activeIndex]="0"
+            variant="default"
+            [size]="selectedSize">
+          </sui-accordion>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" id="small" name="size" value="small" [(ngModel)]="selectedSize">
+              <label for="small">Small</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="medium" name="size" value="medium" [(ngModel)]="selectedSize">
+              <label for="medium">Medium</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="large" name="size" value="large" [(ngModel)]="selectedSize">
+              <label for="large">Large</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>API Reference</h2>
+    <div class="component-card">
+      <h4>Properties</h4>
+      <div class="code-block">
+        @Input() tabs: AccordionTab[];                    // Array of accordion tabs
+        @Input() activeIndex: number | number[];          // Active tab index(es)
+        @Input() multiple: boolean = false;               // Allow multiple open tabs
+        @Input() variant: 'default' | 'bordered' | 'minimal' = 'default';
+        @Input() size: 'small' | 'medium' | 'large' = 'medium';
+        @Input() style: any = {{ '{' }}{{ '}' }};                       // Custom styles
+        @Input() styleClass: string = '';                // Custom CSS classes
+      </div>
+      
+      <h4>Events</h4>
+      <div class="code-block">
+        @Output() onActiveIndexChange: EventEmitter&lt;number | number[]&gt;;
+        @Output() onOpen: EventEmitter&lt;AccordionTab&gt;;
+        @Output() onClose: EventEmitter&lt;AccordionTab&gt;;
+      </div>
+    </div>
+  </div>
+</div>

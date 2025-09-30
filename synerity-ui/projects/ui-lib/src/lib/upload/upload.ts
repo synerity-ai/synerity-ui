@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-upload',
   imports: [NgFor, NgIf],
   templateUrl: './upload.html',
-  styleUrl: './upload.css',
+  styleUrl: './upload.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Upload {

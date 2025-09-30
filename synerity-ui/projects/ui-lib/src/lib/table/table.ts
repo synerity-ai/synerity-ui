@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-table',
   imports: [NgFor, NgIf],
   templateUrl: './table.html',
-  styleUrl: './table.css',
+  styleUrl: './table.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Table {

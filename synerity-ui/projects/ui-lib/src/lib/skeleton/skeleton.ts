@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'sui-skeleton',
   imports: [],
   templateUrl: './skeleton.html',
-  styleUrl: './skeleton.css',
+  styleUrl: './skeleton.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Skeleton {

@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './input-text.html',
-  styleUrl: './input-text.css',
+  styleUrl: './input-text.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

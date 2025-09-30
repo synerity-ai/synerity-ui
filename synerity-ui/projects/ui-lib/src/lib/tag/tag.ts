@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-tag',
   imports: [NgIf],
   templateUrl: './tag.html',
-  styleUrl: './tag.css',
+  styleUrl: './tag.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Tag {

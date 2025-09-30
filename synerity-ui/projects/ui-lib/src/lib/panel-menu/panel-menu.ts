@@ -15,7 +15,7 @@ interface PanelMenuItem {
   selector: 'sui-panel-menu',
   imports: [NgFor, NgIf],
   templateUrl: './panel-menu.html',
-  styleUrl: './panel-menu.css',
+  styleUrl: './panel-menu.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PanelMenu implements AfterViewInit, OnDestroy {

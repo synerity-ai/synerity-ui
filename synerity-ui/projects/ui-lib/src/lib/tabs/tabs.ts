@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-tabs',
   imports: [NgFor, NgIf],
   templateUrl: './tabs.html',
-  styleUrl: './tabs.css',
+  styleUrl: './tabs.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Tabs {

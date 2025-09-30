@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-order-list',
   imports: [NgFor, NgIf],
   templateUrl: './order-list.html',
-  styleUrl: './order-list.css',
+  styleUrl: './order-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderList {

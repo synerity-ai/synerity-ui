@@ -6,7 +6,7 @@ import { NgFor, NgIf } from '@angular/common';
   standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './split-button.html',
-  styleUrl: './split-button.css',
+  styleUrl: './split-button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SplitButton {

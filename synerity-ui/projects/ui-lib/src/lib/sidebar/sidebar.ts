@@ -15,7 +15,7 @@ interface SidebarMenuItem {
   selector: 'sui-sidebar',
   imports: [CommonModule, NgFor, NgIf],
   templateUrl: './sidebar.html',
-  styleUrl: './sidebar.css',
+  styleUrl: './sidebar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Sidebar implements OnInit, OnDestroy {

@@ -1,0 +1,154 @@
+.sui-captcha {
+  @apply border border-gray-200 rounded-lg p-4 bg-white;
+  max-width: 400px;
+
+  &-header {
+    @apply flex items-center justify-between mb-4;
+  }
+
+  &-title {
+    @apply text-lg font-semibold text-gray-800 m-0;
+  }
+
+  &-refresh {
+    @apply w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors;
+    font-size: 1.2rem;
+    line-height: 1;
+
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed;
+    }
+  }
+
+  &-challenge {
+    @apply mb-4;
+  }
+
+  &-question {
+    @apply text-base text-gray-700 mb-3 font-medium;
+  }
+
+  &-input-container {
+    @apply flex gap-2;
+  }
+
+  &-input {
+    @apply flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+    font-size: 0.875rem;
+
+    &:disabled {
+      @apply bg-gray-100 cursor-not-allowed;
+    }
+
+    &-error {
+      @apply border-red-300 focus:ring-red-500;
+    }
+
+    &-success {
+      @apply border-green-300 focus:ring-green-500;
+    }
+  }
+
+  &-verify {
+    @apply px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  &-error-message {
+    @apply text-red-600 text-sm mt-2;
+  }
+
+  &-success {
+    @apply text-green-600 text-sm mt-2 font-medium;
+  }
+
+  &-info {
+    @apply pt-2 border-t border-gray-100;
+  }
+
+  &-help {
+    @apply text-gray-500;
+  }
+
+  /* Verification states */
+  &-verified {
+    @apply border-green-200 bg-green-50;
+  }
+
+  &-error {
+    @apply border-red-200 bg-red-50;
+  }
+
+  /* Size variants */
+  &-small {
+    @apply p-3;
+
+    .sui-captcha-title {
+      @apply text-base;
+    }
+
+    .sui-captcha-question {
+      @apply text-sm;
+    }
+  }
+
+  &-large {
+    @apply p-6;
+
+    .sui-captcha-title {
+      @apply text-xl;
+    }
+
+    .sui-captcha-question {
+      @apply text-lg;
+    }
+
+    .sui-captcha-input {
+      @apply py-3 text-base;
+    }
+  }
+}
+
+/* Dark mode */
+.dark {
+  .sui-captcha {
+    @apply border-gray-600 bg-gray-800;
+
+    &-title {
+      @apply text-gray-200;
+    }
+
+    &-question {
+      @apply text-gray-300;
+    }
+
+    &-input {
+      @apply bg-gray-700 border-gray-600 text-gray-200;
+
+      &:focus {
+        @apply border-blue-400;
+      }
+
+      &:disabled {
+        @apply bg-gray-600;
+      }
+    }
+
+    &-help {
+      @apply text-gray-400;
+    }
+
+    &-info {
+      @apply border-gray-600;
+    }
+
+    &-verified {
+      @apply border-green-600 bg-green-900;
+    }
+
+    &-error {
+      @apply border-red-600 bg-red-900;
+    }
+  }
+}

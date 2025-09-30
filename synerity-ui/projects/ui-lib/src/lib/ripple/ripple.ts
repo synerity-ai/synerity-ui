@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'sui-ripple',
   imports: [CommonModule],
   templateUrl: './ripple.html',
-  styleUrl: './ripple.css',
+  styleUrl: './ripple.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Ripple {

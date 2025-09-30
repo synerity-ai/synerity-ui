@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-breadcrumb',
   imports: [NgFor, NgIf],
   templateUrl: './breadcrumb.html',
-  styleUrl: './breadcrumb.css',
+  styleUrl: './breadcrumb.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Breadcrumb {

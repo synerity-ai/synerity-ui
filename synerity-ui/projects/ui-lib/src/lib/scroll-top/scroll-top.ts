@@ -7,7 +7,7 @@ import { debounceTime } from 'rxjs/operators';
   selector: 'sui-scroll-top',
   imports: [CommonModule, NgIf],
   templateUrl: './scroll-top.html',
-  styleUrl: './scroll-top.css',
+  styleUrl: './scroll-top.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScrollTop implements OnInit, OnDestroy {

@@ -7,7 +7,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './button.html',
-  styleUrl: './button.css',
+  styleUrl: './button.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

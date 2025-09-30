@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-timeline',
   imports: [NgFor, NgIf],
   templateUrl: './timeline.html',
-  styleUrl: './timeline.css',
+  styleUrl: './timeline.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Timeline {

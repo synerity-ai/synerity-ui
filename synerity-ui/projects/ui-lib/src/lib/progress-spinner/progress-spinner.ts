@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'sui-progress-spinner',
   imports: [],
   templateUrl: './progress-spinner.html',
-  styleUrl: './progress-spinner.css',
+  styleUrl: './progress-spinner.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressSpinner {

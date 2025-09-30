@@ -5,7 +5,7 @@ import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
   selector: 'sui-data-view',
   imports: [NgFor, NgIf, NgTemplateOutlet],
   templateUrl: './data-view.html',
-  styleUrl: './data-view.css',
+  styleUrl: './data-view.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataView {

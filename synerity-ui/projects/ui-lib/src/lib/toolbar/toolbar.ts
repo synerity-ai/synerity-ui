@@ -6,7 +6,7 @@ import { NgFor, NgIf } from '@angular/common';
   standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './toolbar.html',
-  styleUrl: './toolbar.css',
+  styleUrl: './toolbar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Toolbar {

@@ -13,6 +13,9 @@ import { SuRatingDemo } from './components/foundation/su-rating-demo/su-rating-d
 import { SuDatePickerDemo } from './components/foundation/su-date-picker-demo/su-date-picker-demo';
 import { SuColorPickerDemo } from './components/foundation/su-color-picker-demo/su-color-picker-demo';
 import { SuEditorDemo } from './components/foundation/su-editor-demo/su-editor-demo';
+import { SuAccordionDemo } from './components/foundation/su-accordion-demo/su-accordion-demo';
+import { SuAvatarDemo } from './components/foundation/su-avatar-demo/su-avatar-demo';
+import { SuBadgeDemo } from './components/foundation/su-badge-demo/su-badge-demo';
 
 export const routes: Routes = [
   {
@@ -75,5 +78,17 @@ export const routes: Routes = [
   {
     path: 'components/editor',
     component: SuEditorDemo
+  },
+  {
+    path: 'components/accordion',
+    component: SuAccordionDemo
+  },
+  {
+    path: 'components/avatar',
+    component: SuAvatarDemo
+  },
+  {
+    path: 'components/badge',
+    component: SuBadgeDemo
   }
 ];

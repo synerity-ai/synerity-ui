@@ -12,7 +12,7 @@ interface MeterItem {
   selector: 'sui-meter-group',
   imports: [CommonModule, NgFor, NgIf],
   templateUrl: './meter-group.html',
-  styleUrl: './meter-group.css',
+  styleUrl: './meter-group.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MeterGroup {

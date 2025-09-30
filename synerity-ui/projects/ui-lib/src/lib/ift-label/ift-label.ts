@@ -6,7 +6,7 @@ import { NgIf, CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, NgIf],
   templateUrl: './ift-label.html',
-  styleUrl: './ift-label.css',
+  styleUrl: './ift-label.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IftLabel {

@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-progress-bar',
   imports: [NgIf],
   templateUrl: './progress-bar.html',
-  styleUrl: './progress-bar.css',
+  styleUrl: './progress-bar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressBar {

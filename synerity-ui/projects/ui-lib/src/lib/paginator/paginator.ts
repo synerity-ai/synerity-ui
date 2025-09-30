@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-paginator',
   imports: [NgFor, NgIf],
   templateUrl: './paginator.html',
-  styleUrl: './paginator.css',
+  styleUrl: './paginator.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Paginator {

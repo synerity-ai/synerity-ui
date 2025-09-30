@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-org-chart',
   imports: [NgFor, NgIf],
   templateUrl: './org-chart.html',
-  styleUrl: './org-chart.css',
+  styleUrl: './org-chart.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrgChart {

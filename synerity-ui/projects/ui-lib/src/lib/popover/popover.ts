@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
   selector: 'sui-popover',
   imports: [NgIf],
   templateUrl: './popover.html',
-  styleUrl: './popover.css',
+  styleUrl: './popover.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Popover implements AfterViewInit, OnDestroy {

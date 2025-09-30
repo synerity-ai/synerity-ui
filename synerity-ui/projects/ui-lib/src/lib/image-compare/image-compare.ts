@@ -5,7 +5,7 @@ import { NgIf, CommonModule } from '@angular/common';
   selector: 'sui-image-compare',
   imports: [CommonModule, NgIf],
   templateUrl: './image-compare.html',
-  styleUrl: './image-compare.css',
+  styleUrl: './image-compare.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageCompare {

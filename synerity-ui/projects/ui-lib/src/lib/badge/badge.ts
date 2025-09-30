@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'sui-badge',
   imports: [],
   templateUrl: './badge.html',
-  styleUrl: './badge.css',
+  styleUrl: './badge.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Badge {

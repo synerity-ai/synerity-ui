@@ -1,0 +1,226 @@
+.sui-galleria {
+  @apply fixed inset-0 z-50 bg-black/90 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300;
+  backdrop-filter: blur(8px);
+
+  &-visible {
+    @apply opacity-100 pointer-events-auto;
+    animation: galleriaFadeIn 0.3s ease-out;
+  }
+
+  &-container {
+    @apply relative w-full h-full flex items-center justify-center p-8;
+  }
+
+  &-content {
+    @apply relative max-w-5xl max-h-full;
+  }
+
+  &-item {
+    @apply relative opacity-0 transition-opacity duration-500 ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
+
+    img {
+      @apply transition-opacity duration-300;
+
+      &[src=""] {
+        @apply opacity-0;
+      }
+    }
+
+    &-active {
+      @apply opacity-100;
+
+      &:hover .sui-galleria-image {
+        @apply scale-105;
+      }
+    }
+  }
+
+  &-image {
+    @apply max-w-full max-h-full object-contain rounded-lg shadow-2xl transition-transform duration-300;
+  }
+
+  &-caption {
+    @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white rounded-b-lg;
+  }
+
+  &-title {
+    @apply text-xl font-semibold mb-2;
+  }
+
+  &-text {
+    @apply text-sm opacity-90;
+  }
+
+  &-prev,
+  &-next {
+    @apply absolute top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center text-2xl font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+
+    &:hover {
+      @apply scale-110;
+    }
+
+    &:focus {
+      @apply outline-none ring-2 ring-white ring-offset-2;
+    }
+  }
+
+  &-prev {
+    @apply left-8;
+  }
+
+  &-next {
+    @apply right-8;
+  }
+
+  &-close {
+    @apply absolute top-8 right-8 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center text-xl font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+
+    &:hover {
+      @apply scale-110;
+    }
+
+    &:focus {
+      @apply outline-none ring-2 ring-white ring-offset-2;
+    }
+  }
+
+  &-indicators {
+    @apply absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2;
+  }
+
+  &-indicator {
+    @apply w-3 h-3 rounded-full bg-white/50 hover:bg-white/70 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+
+    &-active {
+      @apply bg-white;
+    }
+
+    &:focus {
+      @apply outline-none ring-2 ring-white ring-offset-2;
+    }
+  }
+
+  &-thumbnails {
+    @apply absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-2 max-w-4xl overflow-x-auto;
+  }
+
+  &-thumbnail {
+    @apply w-16 h-16 rounded-lg overflow-hidden cursor-pointer transition-all duration-200 border-2 border-transparent hover:border-white/50;
+
+    &:hover {
+      @apply transform scale-110;
+    }
+
+    &-active {
+      @apply border-white;
+    }
+
+    &-image {
+      @apply w-full h-full object-cover;
+    }
+  }
+
+  /* Fullscreen mode */
+  &-fullscreen &-container {
+    @apply p-4;
+  }
+
+  &-fullscreen &-content {
+    @apply max-w-none max-h-none w-full h-full;
+  }
+
+  &-fullscreen &-image {
+    @apply w-full h-full object-contain rounded-none;
+  }
+
+  /* Custom styling variants */
+  &.compact &-thumbnails {
+    @apply bottom-12;
+  }
+
+  &.large &-thumbnails {
+    @apply bottom-24;
+  }
+
+  /* Keyboard navigation */
+  &:focus-within {
+    @apply outline-none;
+  }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes galleriaFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .sui-galleria {
+    @apply bg-black/95;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sui-galleria {
+    &-container {
+      @apply p-4;
+    }
+
+    &-prev,
+    &-next {
+      @apply w-10 h-10 text-lg;
+
+      &-prev {
+        @apply left-4;
+      }
+
+      &-next {
+        @apply right-4;
+      }
+    }
+
+    &-close {
+      @apply top-4 right-4 w-8 h-8 text-lg;
+    }
+
+    &-caption {
+      @apply p-4;
+    }
+
+    &-title {
+      @apply text-lg;
+    }
+
+    &-text {
+      @apply text-xs;
+    }
+
+    &-thumbnails {
+      @apply bottom-16 space-x-1;
+    }
+
+    &-thumbnail {
+      @apply w-12 h-12;
+    }
+  }
+}

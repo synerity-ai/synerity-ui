@@ -1,0 +1,162 @@
+.sui-carousel {
+  @apply relative w-full max-w-4xl mx-auto;
+
+  &-container {
+    @apply relative overflow-hidden rounded-lg shadow-lg;
+    touch-action: pan-y;
+  }
+
+  &-content {
+    @apply relative w-full h-80;
+  }
+
+  &-item {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
+
+    img {
+      @apply transition-opacity duration-300;
+
+      &[src=""] {
+        @apply opacity-0;
+      }
+    }
+
+    &-active {
+      @apply opacity-100;
+    }
+  }
+
+  &-image {
+    @apply w-full h-full object-cover;
+  }
+
+  &-caption {
+    @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-white;
+  }
+
+  &-title {
+    @apply text-xl font-semibold mb-2;
+  }
+
+  &-text {
+    @apply text-sm opacity-90;
+  }
+
+  &-prev,
+  &-next {
+    @apply absolute top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center text-2xl font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 opacity-0;
+
+    &:hover {
+      @apply scale-110;
+    }
+
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed hover:scale-100;
+    }
+
+    &:focus {
+      @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+    }
+  }
+
+  &-prev {
+    @apply left-4;
+  }
+
+  &-next {
+    @apply right-4;
+  }
+
+  &-indicators {
+    @apply flex justify-center space-x-2 mt-4;
+  }
+
+  &-indicator {
+    @apply w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+
+    &-active {
+      @apply bg-blue-500;
+    }
+
+    &:focus {
+      @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+    }
+  }
+
+  /* Custom styling variants */
+  &.compact &-content {
+    @apply h-48;
+  }
+
+  &.large &-content {
+    @apply h-96;
+  }
+
+  &.square &-content {
+    @apply aspect-square;
+  }
+
+  /* Autoplay pause on hover */
+  &:hover &-prev,
+  &:hover &-next {
+    @apply opacity-100;
+  }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .sui-carousel {
+    &-indicator {
+      @apply bg-gray-600 hover:bg-gray-500;
+
+      &-active {
+        @apply bg-blue-400;
+      }
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sui-carousel {
+    &-content {
+      @apply h-64;
+    }
+
+    &-prev,
+    &-next {
+      @apply w-10 h-10 text-lg;
+
+      &-prev {
+        @apply left-2;
+      }
+
+      &-next {
+        @apply right-2;
+      }
+    }
+
+    &-caption {
+      @apply p-4;
+    }
+
+    &-title {
+      @apply text-lg;
+    }
+
+    &-text {
+      @apply text-xs;
+    }
+  }
+}

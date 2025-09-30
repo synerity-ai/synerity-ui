@@ -1,0 +1,45 @@
+/* Toast Component Styles */
+.toast-container {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+
+  &.top-right {
+    top: 16px;
+    right: 16px;
+  }
+
+  &.top-left {
+    top: 16px;
+    left: 16px;
+  }
+
+  &.bottom-right {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  &.bottom-left {
+    bottom: 16px;
+    left: 16px;
+  }
+
+  &.top-center {
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.bottom-center {
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.toast-message {
+  pointer-events: auto;
+  margin-bottom: 8px;
+  max-width: 400px;
+  min-width: 300px;
+}

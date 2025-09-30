@@ -1,18 +1,19 @@
 {
   "name": "synerity-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "start:demo": "ng serve demo-app",
     "start:rapid": "ng serve rapid --port 4201",
     "build": "ng build",
-    "build:lib": "ng build ui-lib",
+    "build:lib": "npm run compile:scss && ng build ui-lib",
     "build:demo": "ng build demo-app --configuration production",
     "build:rapid": "ng build rapid --configuration production",
     "build:demo:gh-pages": "ng build demo-app --configuration production --base-href /synerity-ui/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "compile:scss": "node scripts/compile-scss-to-css.js",
     "publish:lib": "cd dist/ui-lib && npm publish",
     "prepublishOnly": "npm run build:lib"
   },
@@ -28,7 +29,6 @@
       }
     ]
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",

@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-toast',
   imports: [NgFor, NgIf],
   templateUrl: './toast.html',
-  styleUrl: './toast.css'
+  styleUrl: './toast.scss'
 })
 export class Toast implements AfterViewInit, OnDestroy {
   @Input() position: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center' = 'top-right';

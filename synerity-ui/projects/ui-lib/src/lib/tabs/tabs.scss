@@ -1,0 +1,33 @@
+/* Enterprise Standard Tabs Styling */
+.sui-tabs {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  .sui-tabs-tab {
+    position: relative;
+    user-select: none;
+    transition: all 0.15s ease-in-out;
+
+    &:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: -2px;
+    }
+
+    &-active {
+      font-weight: 600;
+      color: #1e40af;
+      border-bottom-color: #1e40af;
+    }
+
+    &-disabled {
+      pointer-events: none;
+    }
+
+    &:hover:not(.sui-tabs-tab-disabled) {
+      color: #1f2937;
+    }
+  }
+
+  .sui-tabs-content {
+    min-height: 120px;
+  }
+}

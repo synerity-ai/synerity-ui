@@ -1,0 +1,240 @@
+/* Image Compare Component Styles */
+.sui-image-compare {
+  @apply relative overflow-hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  @apply transition-all duration-300 ease-in-out;
+
+  &-horizontal {
+    @apply block;
+    aspect-ratio: 16 / 9;
+  }
+
+  &-vertical {
+    @apply block;
+    aspect-ratio: 9 / 16;
+    max-height: 600px;
+  }
+
+  /* Container for both images */
+  &-container {
+    @apply relative w-full h-full;
+  }
+
+  /* Before image (left/top) - on top so it can be clipped to reveal after image */
+  &-before {
+    @apply absolute inset-0 w-full h-full object-cover;
+    z-index: 2;
+  }
+
+  /* After image (right/bottom) - underneath so it shows through clipped before image */
+  &-after {
+    @apply absolute inset-0 w-full h-full object-cover;
+    z-index: 1;
+  }
+
+  /* Slider line */
+  &-slider {
+    @apply absolute bg-white shadow-lg;
+    z-index: 10;
+    transition: all 0.1s ease;
+  }
+
+  /* Horizontal slider */
+  &-horizontal &-slider {
+    @apply w-1 h-full;
+    top: 0;
+    cursor: ew-resize;
+  }
+
+  /* Vertical slider */
+  &-vertical &-slider {
+    @apply h-1 w-full;
+    left: 0;
+    cursor: ns-resize;
+  }
+
+  /* Slider handle */
+  &-handle {
+    @apply absolute bg-white rounded-full shadow-lg border-2 border-gray-300;
+    z-index: 11;
+    transition: all 0.1s ease;
+
+    &::before {
+      content: '';
+      @apply absolute inset-0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 9l4-4 4 4m0 6l-4 4-4-4'/%3E%3C/svg%3E");
+      background-size: 16px 16px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  /* Horizontal handle */
+  &-horizontal &-handle {
+    @apply w-8 h-8;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+    }
+  }
+
+  /* Vertical handle */
+  &-vertical &-handle {
+    @apply w-8 h-8;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    }
+  }
+
+  /* Hover effects */
+  &:hover {
+    .sui-image-compare-handle {
+      @apply border-blue-500 shadow-xl;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .sui-image-compare-slider {
+      @apply shadow-xl;
+    }
+  }
+
+  /* Focus styles for accessibility */
+  &:focus-within &-handle {
+    @apply ring-2 ring-blue-500 ring-offset-2;
+  }
+
+  /* Loading state */
+  &-loading {
+    @apply animate-pulse bg-gray-200;
+  }
+
+  /* Error state */
+  &-error {
+    @apply flex items-center justify-center bg-red-50 border-2 border-red-200 rounded-lg text-red-600 p-8;
+
+    &-icon {
+      @apply text-2xl mr-2;
+    }
+
+    &-text {
+      @apply font-medium;
+    }
+  }
+
+  /* Labels */
+  &-label {
+    @apply absolute z-20 px-3 py-1 text-sm font-medium text-white bg-black/50 rounded-md backdrop-blur-sm;
+    pointer-events: none;
+
+    &-before {
+      @apply top-4 left-4;
+    }
+
+    &-after {
+      @apply top-4 right-4;
+    }
+  }
+
+  &-vertical &-label {
+    &-before {
+      @apply top-4 left-4;
+    }
+
+    &-after {
+      @apply bottom-4 left-4;
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sui-image-compare {
+    @apply rounded-md;
+
+    &-horizontal {
+      aspect-ratio: 4 / 3;
+    }
+
+    &-vertical {
+      aspect-ratio: 3 / 4;
+      max-height: 500px;
+    }
+
+    &-handle {
+      @apply w-6 h-6;
+
+      &::before {
+        background-size: 12px 12px;
+      }
+    }
+
+    &-label {
+      @apply px-2 py-1 text-xs;
+    }
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .sui-image-compare {
+    &-slider {
+      @apply bg-gray-800;
+    }
+
+    &-handle {
+      @apply bg-gray-800 border-gray-600;
+
+      &::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d1d5db'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+      }
+    }
+
+    &-horizontal &-handle::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d1d5db'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+    }
+
+    &-vertical &-handle::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d1d5db'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    }
+
+    &-error {
+      @apply bg-red-900/20 border-red-800 text-red-400;
+    }
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .sui-image-compare {
+    &-slider {
+      @apply bg-white border-2 border-black;
+    }
+
+    &-handle {
+      @apply bg-white border-4 border-black;
+    }
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sui-image-compare,
+  .sui-image-compare-handle {
+    @apply transition-none;
+  }
+
+  .sui-image-compare:hover .sui-image-compare-handle {
+    transform: translate(-50%, -50%);
+  }
+}

@@ -13,7 +13,7 @@ interface CarouselItem {
   selector: 'sui-carousel',
   imports: [CommonModule, NgFor, NgIf],
   templateUrl: './carousel.html',
-  styleUrl: './carousel.css',
+  styleUrl: './carousel.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Carousel implements OnInit, OnDestroy {

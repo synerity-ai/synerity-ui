@@ -1,0 +1,98 @@
+.sui-context-menu {
+  @apply absolute bg-white border border-gray-200 rounded-md shadow-lg z-50 min-w-48;
+
+  &-list {
+    @apply list-none m-0 p-1;
+  }
+
+  &-item {
+    @apply relative;
+
+    &-content {
+      @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-sm;
+    }
+
+    &:hover &-content {
+      @apply bg-gray-100 text-gray-900;
+    }
+
+    &-disabled &-content {
+      @apply text-gray-400 cursor-not-allowed hover:bg-transparent hover:text-gray-400;
+    }
+
+    &-icon {
+      @apply text-sm w-4 text-center;
+    }
+
+    &-label {
+      @apply flex-1;
+    }
+
+    &-arrow {
+      @apply text-xs text-gray-400;
+    }
+  }
+
+  &-separator {
+    @apply h-px bg-gray-200 my-1 mx-2;
+  }
+
+  &-submenu {
+    @apply absolute left-full top-0 bg-white border border-gray-200 rounded-md shadow-lg z-50 min-w-40 ml-1;
+
+    &-items {
+      @apply py-1;
+    }
+
+    &-item {
+      @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-sm;
+
+      &-icon {
+        @apply text-sm w-4 text-center;
+      }
+
+      &-label {
+        @apply flex-1;
+      }
+
+      &:hover {
+        @apply bg-gray-100 text-gray-900;
+      }
+    }
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .sui-context-menu {
+    @apply bg-gray-800 border-gray-700;
+
+    &-item-content {
+      @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+
+      &:hover {
+        @apply bg-gray-700 text-white;
+      }
+    }
+
+    &-item-disabled &-item-content {
+      @apply text-gray-600 hover:bg-transparent hover:text-gray-600;
+    }
+
+    &-separator {
+      @apply bg-gray-700;
+    }
+
+    &-submenu {
+      @apply bg-gray-800 border-gray-700;
+
+      &-item {
+        @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+
+        &:hover {
+          @apply bg-gray-700 text-white;
+        }
+      }
+    }
+  }
+}

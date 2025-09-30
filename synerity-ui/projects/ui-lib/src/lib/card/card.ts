@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'sui-card',
   imports: [CommonModule],
   templateUrl: './card.html',
-  styleUrl: './card.css'
+  styleUrl: './card.scss'
 })
 export class Card {
   @Input() variant: 'default' | 'outlined' | 'elevated' | 'filled' = 'default';

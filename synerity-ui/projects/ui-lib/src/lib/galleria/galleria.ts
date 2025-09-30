@@ -14,7 +14,7 @@ interface GalleriaItem {
   selector: 'sui-galleria',
   imports: [CommonModule, NgFor, NgIf],
   templateUrl: './galleria.html',
-  styleUrl: './galleria.css',
+  styleUrl: './galleria.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Galleria implements OnInit, OnDestroy {

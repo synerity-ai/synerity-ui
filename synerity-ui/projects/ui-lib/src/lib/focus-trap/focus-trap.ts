@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'sui-focus-trap',
   imports: [CommonModule],
   templateUrl: './focus-trap.html',
-  styleUrl: './focus-trap.css',
+  styleUrl: './focus-trap.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FocusTrap implements OnInit, OnDestroy {

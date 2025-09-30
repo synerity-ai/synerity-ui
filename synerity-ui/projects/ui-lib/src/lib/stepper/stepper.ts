@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-stepper',
   imports: [NgFor, NgIf],
   templateUrl: './stepper.html',
-  styleUrl: './stepper.css',
+  styleUrl: './stepper.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Stepper {

@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'sui-menu',
   imports: [NgFor, NgIf],
   templateUrl: './menu.html',
-  styleUrl: './menu.css',
+  styleUrl: './menu.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Menu implements AfterViewInit, OnDestroy {
