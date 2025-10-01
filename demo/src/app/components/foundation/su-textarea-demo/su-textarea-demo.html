@@ -1,0 +1,287 @@
+<div class="demo-container">
+  <header>
+    <h1>Textarea Component Demo</h1>
+    <p>Multi-line text input for longer content like comments, descriptions, and messages with character counting and auto-resize features.</p>
+  </header>
+
+  <div class="demo-section">
+    <h2>Basic Textarea</h2>
+    <p>Simple multi-line text input with default settings</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default Textarea</h4>
+        <div class="demo-content">
+          <sui-textarea 
+            [(ngModel)]="basicText" 
+            placeholder="Enter your text here..."
+            (change)="onTextareaChange($event)">
+          </sui-textarea>
+          <div class="value-display">
+            Characters: {{ getCharacterCount(basicText) }} | Words: {{ getWordCount(basicText) }}
+          </div>
+        </div>
+        <div class="code-block">
+&lt;sui-textarea 
+  [(ngModel)]="basicText" 
+  placeholder="Enter your text here..."
+  (change)="onTextareaChange($event)"&gt;
+&lt;/sui-textarea&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Row Configurations</h2>
+    <p>Different row heights for various use cases</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>2 Rows (Compact)</h4>
+        <div class="demo-content">
+          <sui-textarea 
+            [(ngModel)]="commentText" 
+            [rows]="2"
+            placeholder="Short comment...">
+          </sui-textarea>
+        </div>
+        <div class="code-block">
+&lt;sui-textarea 
+  [(ngModel)]="commentText" 
+  [rows]="2"&gt;
+&lt;/sui-textarea&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>5 Rows (Medium)</h4>
+        <div class="demo-content">
+          <sui-textarea 
+            [(ngModel)]="descriptionText" 
+            [rows]="5"
+            placeholder="Product description...">
+          </sui-textarea>
+        </div>
+        <div class="code-block">
+&lt;sui-textarea 
+  [(ngModel)]="descriptionText" 
+  [rows]="5"&gt;
+&lt;/sui-textarea&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>10 Rows (Large)</h4>
+        <div class="demo-content">
+          <sui-textarea 
+            [(ngModel)]="largeText" 
+            [rows]="10"
+            placeholder="Long form content...">
+          </sui-textarea>
+        </div>
+        <div class="code-block">
+&lt;sui-textarea 
+  [(ngModel)]="largeText" 
+  [rows]="10"&gt;
+&lt;/sui-textarea&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Textarea Features</h2>
+    <p>Special features and states</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Auto-Resize</h4>
+        <div class="demo-content">
+          <sui-textarea 
+            [(ngModel)]="autosizeText" 
+            [autosize]="true"
+            [rows]="2"
+            placeholder="Type to expand automatically..."
+            (change)="onTextareaChange($event)">
+          </sui-textarea>
+          <div class="value-display">
+            Auto-resizes as you type | Length: {{ autosizeText.length }}
+          </div>
+        </div>
+        <div class="code-block">
+&lt;sui-textarea 
+  [(ngModel)]="autosizeText" 
+  [autosize]="true"
+  [rows]="2"&gt;
+&lt;/sui-textarea&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Disabled State</h4>
+        <div class="demo-content">
+          <sui-textarea 
+            [(ngModel)]="disabledText" 
+            [disabled]="true"
+            [rows]="3"
+            placeholder="Cannot edit">
+          </sui-textarea>
+        </div>
+        <div class="code-block">
+&lt;sui-textarea 
+  [(ngModel)]="disabledText" 
+  [disabled]="true"&gt;
+&lt;/sui-textarea&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Feedback Form Example</h2>
+    <p>Complete form with multiple textarea fields</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>User Feedback Form</h4>
+        <div class="demo-content">
+          <div class="form-field">
+            <label>Your Feedback (min 10 characters)</label>
+            <sui-textarea 
+              [(ngModel)]="formData.feedback" 
+              [rows]="4"
+              placeholder="Share your feedback with us...">
+            </sui-textarea>
+            <div class="char-count">
+              {{ getCharacterCount(formData.feedback) }} characters
+              <span [class]="formData.feedback.length >= 10 ? 'text-green-600' : 'text-red-600'">
+                {{ formData.feedback.length >= 10 ? '✓' : '(min 10)' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Suggestions (min 10 characters)</label>
+            <sui-textarea 
+              [(ngModel)]="formData.suggestions" 
+              [rows]="4"
+              placeholder="Any suggestions for improvement?">
+            </sui-textarea>
+            <div class="char-count">
+              {{ getCharacterCount(formData.suggestions) }} characters
+              <span [class]="formData.suggestions.length >= 10 ? 'text-green-600' : 'text-red-600'">
+                {{ formData.suggestions.length >= 10 ? '✓' : '(min 10)' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Additional Comments (optional)</label>
+            <sui-textarea 
+              [(ngModel)]="formData.additionalComments" 
+              [rows]="3"
+              placeholder="Anything else you'd like to add?">
+            </sui-textarea>
+          </div>
+
+          <button 
+            (click)="submitFeedback()"
+            [disabled]="!isFormValid()"
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed">
+            Submit Feedback
+          </button>
+        </div>
+        <div class="code-block">
+&lt;sui-textarea [(ngModel)]="formData.feedback" [rows]="4"&gt;&lt;/sui-textarea&gt;
+&lt;sui-textarea [(ngModel)]="formData.suggestions" [rows]="4"&gt;&lt;/sui-textarea&gt;
+&lt;sui-textarea [(ngModel)]="formData.additionalComments" [rows]="3"&gt;&lt;/sui-textarea&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Interactive Examples</h2>
+    <p>Live examples with dynamic configurations</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Dynamic Configuration</h4>
+        <div class="demo-content">
+          <sui-textarea 
+            [(ngModel)]="currentText" 
+            [rows]="currentRows"
+            [autosize]="currentAutosize"
+            [disabled]="currentDisabled"
+            placeholder="Configure me..."
+            (change)="onTextareaChange($event)">
+          </sui-textarea>
+          <div class="value-display">
+            Characters: {{ getCharacterCount(currentText) }}
+            <br>
+            Words: {{ getWordCount(currentText) }}
+          </div>
+        </div>
+        
+        <div class="controls-section">
+          <h5>Rows:</h5>
+          <div class="radio-group">
+            <div class="radio-item" *ngFor="let option of rowOptions">
+              <input type="radio" [id]="'rows-' + option.value" name="rows" [value]="option.value" [(ngModel)]="currentRows">
+              <label [for]="'rows-' + option.value">{{ option.label }}</label>
+            </div>
+          </div>
+
+          <h5>Features:</h5>
+          <div class="checkbox-group">
+            <label><input type="checkbox" [(ngModel)]="currentAutosize"> Auto-resize</label>
+            <label><input type="checkbox" [(ngModel)]="currentDisabled"> Disabled</label>
+          </div>
+
+          <button (click)="resetValues()" class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+            Reset All Values
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>API Reference</h2>
+    <div class="component-card">
+      <h4>Properties</h4>
+      <div class="code-block">
+@Input() disabled: boolean = false;  // Disable the textarea
+@Input() name: string = '';  // Form field name
+@Input() inputId: string = '';  // Input element ID
+@Input() placeholder: string = '';  // Placeholder text
+@Input() rows: number = 3;  // Number of visible rows
+@Input() autosize: boolean = false;  // Auto-resize based on content
+@Output() change: EventEmitter&lt;string&gt;;  // Value change event
+      </div>
+      
+      <h4>Methods</h4>
+      <div class="code-block">
+onInput(event: Event): void;  // Handle input changes
+onBlur(): void;  // Handle blur event
+adjustHeight(): void;  // Adjust height for autosize (private)
+      </div>
+
+      <h4>CSS Classes</h4>
+      <div class="code-block">
+.sui-textarea-container  // Container wrapper
+.sui-textarea-input      // Textarea input element
+      </div>
+
+      <h4>Best Practices</h4>
+      <div class="code-block">
+// Set appropriate rows for content type
+// Use autosize for dynamic content
+// Provide character/word count feedback
+// Set placeholder for user guidance
+// Consider minimum/maximum length validation
+      </div>
+    </div>
+  </div>
+</div>

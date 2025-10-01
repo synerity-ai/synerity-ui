@@ -1,0 +1,385 @@
+<div class="demo-container">
+  <!-- Header Section -->
+  <div class="demo-header">
+    <h1>Float Label Component</h1>
+    <p class="demo-description">
+      Float Label provides an animated floating label for form inputs, textareas, and selects.
+      The label floats above the input when focused or when the field has a value.
+    </p>
+  </div>
+
+  <!-- Basic Usage -->
+  <div class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Simple floating label with text input</p>
+    <div class="demo-content">
+      <sui-float-label label="Username">
+        <input type="text" [(ngModel)]="username" placeholder=" " />
+      </sui-float-label>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-float-label label="Username"&gt;
+  &lt;input type="text" [(ngModel)]="username" placeholder=" " /&gt;
+&lt;/sui-float-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Multiple Inputs -->
+  <div class="demo-section">
+    <h2>Multiple Input Types</h2>
+    <p>Float labels work with different input types</p>
+    <div class="demo-content">
+      <div class="form-grid">
+        <sui-float-label label="Email Address">
+          <input type="email" [(ngModel)]="email" placeholder=" " />
+        </sui-float-label>
+        
+        <sui-float-label label="Password">
+          <input type="password" [(ngModel)]="password" placeholder=" " />
+        </sui-float-label>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-float-label label="Email Address"&gt;
+  &lt;input type="email" [(ngModel)]="email" placeholder=" " /&gt;
+&lt;/sui-float-label&gt;
+
+&lt;sui-float-label label="Password"&gt;
+  &lt;input type="password" [(ngModel)]="password" placeholder=" " /&gt;
+&lt;/sui-float-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- With Textarea -->
+  <div class="demo-section">
+    <h2>With Textarea</h2>
+    <p>Float label works with multiline textareas</p>
+    <div class="demo-content">
+      <sui-float-label label="Message">
+        <textarea [(ngModel)]="message" placeholder=" " rows="4"></textarea>
+      </sui-float-label>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-float-label label="Message"&gt;
+  &lt;textarea [(ngModel)]="message" placeholder=" " rows="4"&gt;&lt;/textarea&gt;
+&lt;/sui-float-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- With Select -->
+  <div class="demo-section">
+    <h2>With Select Dropdown</h2>
+    <p>Float label works with select elements</p>
+    <div class="demo-content">
+      <sui-float-label label="Country">
+        <select [(ngModel)]="country">
+          <option *ngFor="let c of countries" [value]="c.value">{{ c.label }}</option>
+        </select>
+      </sui-float-label>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-float-label label="Country"&gt;
+  &lt;select [(ngModel)]="country"&gt;
+    &lt;option value=""&gt;Select a country&lt;/option&gt;
+    &lt;option value="us"&gt;United States&lt;/option&gt;
+    &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/sui-float-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Required Field -->
+  <div class="demo-section">
+    <h2>Required Field</h2>
+    <p>Show required indicator with asterisk</p>
+    <div class="demo-content">
+      <sui-float-label label="Full Name" [required]="true">
+        <input type="text" [(ngModel)]="requiredField" placeholder=" " required />
+      </sui-float-label>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-float-label label="Full Name" [required]="true"&gt;
+  &lt;input type="text" [(ngModel)]="requiredField" placeholder=" " required /&gt;
+&lt;/sui-float-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div class="demo-section">
+    <h2>Error State</h2>
+    <p>Show validation error state</p>
+    <div class="demo-content">
+      <sui-float-label label="Email (Invalid)" styleClass="sui-float-label-error">
+        <input type="email" [(ngModel)]="errorField" placeholder=" " />
+      </sui-float-label>
+      <p class="error-message">Please enter a valid email address</p>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-float-label label="Email (Invalid)" styleClass="sui-float-label-error"&gt;
+  &lt;input type="email" [(ngModel)]="errorField" placeholder=" " /&gt;
+&lt;/sui-float-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Success State -->
+  <div class="demo-section">
+    <h2>Success State</h2>
+    <p>Show validation success state</p>
+    <div class="demo-content">
+      <sui-float-label label="Email (Valid)" styleClass="sui-float-label-success">
+        <input type="email" [(ngModel)]="successField" placeholder=" " />
+      </sui-float-label>
+      <p class="success-message">Email is valid!</p>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-float-label label="Email (Valid)" styleClass="sui-float-label-success"&gt;
+  &lt;input type="email" [(ngModel)]="successField" placeholder=" " /&gt;
+&lt;/sui-float-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Outlined Variant -->
+  <div class="demo-section">
+    <h2>Outlined Variant</h2>
+    <p>Thicker border style</p>
+    <div class="demo-content">
+      <sui-float-label label="Username" styleClass="sui-float-label-outlined">
+        <input type="text" [(ngModel)]="outlinedField" placeholder=" " />
+      </sui-float-label>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-float-label label="Username" styleClass="sui-float-label-outlined"&gt;
+  &lt;input type="text" [(ngModel)]="outlinedField" placeholder=" " /&gt;
+&lt;/sui-float-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Filled Variant -->
+  <div class="demo-section">
+    <h2>Filled Variant</h2>
+    <p>Material Design filled input style</p>
+    <div class="demo-content">
+      <sui-float-label label="Username" styleClass="sui-float-label-filled">
+        <input type="text" [(ngModel)]="filledField" placeholder=" " />
+      </sui-float-label>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-float-label label="Username" styleClass="sui-float-label-filled"&gt;
+  &lt;input type="text" [(ngModel)]="filledField" placeholder=" " /&gt;
+&lt;/sui-float-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Disabled State -->
+  <div class="demo-section">
+    <h2>Disabled State</h2>
+    <p>Non-interactive disabled input</p>
+    <div class="demo-content">
+      <sui-float-label label="Disabled Field" styleClass="sui-float-label-disabled">
+        <input type="text" [(ngModel)]="disabledField" placeholder=" " disabled />
+      </sui-float-label>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-float-label label="Disabled Field" styleClass="sui-float-label-disabled"&gt;
+  &lt;input type="text" [(ngModel)]="disabledField" placeholder=" " disabled /&gt;
+&lt;/sui-float-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Interactive Example -->
+  <div class="demo-section">
+    <h2>Interactive Example</h2>
+    <p>Customize the float label with different options</p>
+    
+    <div class="interactive-controls">
+      <div class="control-group">
+        <label>Label Text:</label>
+        <input 
+          type="text" 
+          [(ngModel)]="labelText" 
+          placeholder="Enter label text"
+          class="demo-input"
+        />
+      </div>
+
+      <div class="control-group">
+        <label>Variant:</label>
+        <div class="radio-group">
+          <label *ngFor="let variant of variants" class="radio-label">
+            <input 
+              type="radio" 
+              name="variant" 
+              [value]="variant.value"
+              [(ngModel)]="currentVariant"
+            />
+            {{ variant.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>State:</label>
+        <div class="radio-group">
+          <label *ngFor="let state of states" class="radio-label">
+            <input 
+              type="radio" 
+              name="state" 
+              [value]="state.value"
+              [(ngModel)]="currentState"
+            />
+            {{ state.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="checkbox-label">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="isRequired"
+          />
+          Required
+        </label>
+      </div>
+
+      <div class="control-group">
+        <label class="checkbox-label">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="isDisabled"
+          />
+          Disabled
+        </label>
+      </div>
+    </div>
+
+    <div class="demo-content">
+      <h3>Result:</h3>
+      <sui-float-label 
+        [label]="labelText"
+        [required]="isRequired"
+        [styleClass]="getFloatLabelClass()"
+      >
+        <input 
+          type="text" 
+          [(ngModel)]="inputValue" 
+          placeholder=" "
+          [disabled]="isDisabled"
+        />
+      </sui-float-label>
+    </div>
+
+    <div class="code-block">
+      <h3>Generated Code:</h3>
+      <pre><code>{{ getCodeExample() }}</code></pre>
+    </div>
+  </div>
+
+  <!-- API Reference -->
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>label</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Text label that floats above the input</td>
+          </tr>
+          <tr>
+            <td><code>for</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>ID of the associated input element</td>
+          </tr>
+          <tr>
+            <td><code>required</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether to show required indicator (*)</td>
+          </tr>
+          <tr>
+            <td><code>style</code></td>
+            <td>any</td>
+            <td>&#123;&#125;</td>
+            <td>Inline styles to apply to the container</td>
+          </tr>
+          <tr>
+            <td><code>styleClass</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Additional CSS class(es) to apply</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>CSS Classes</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>sui-float-label</code></td>
+            <td>Base float label class</td>
+          </tr>
+          <tr>
+            <td><code>sui-float-label-focused</code></td>
+            <td>Applied when input is focused or has value</td>
+          </tr>
+          <tr>
+            <td><code>sui-float-label-required</code></td>
+            <td>Required field indicator</td>
+          </tr>
+          <tr>
+            <td><code>sui-float-label-error</code></td>
+            <td>Error state styling</td>
+          </tr>
+          <tr>
+            <td><code>sui-float-label-success</code></td>
+            <td>Success state styling</td>
+          </tr>
+          <tr>
+            <td><code>sui-float-label-disabled</code></td>
+            <td>Disabled state styling</td>
+          </tr>
+          <tr>
+            <td><code>sui-float-label-outlined</code></td>
+            <td>Outlined variant with thicker border</td>
+          </tr>
+          <tr>
+            <td><code>sui-float-label-filled</code></td>
+            <td>Filled variant (Material Design style)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Usage Notes</h3>
+    <div class="api-notes">
+      <ul>
+        <li><strong>Placeholder Requirement:</strong> Always use <code>placeholder=" "</code> (single space) for proper label animation</li>
+        <li><strong>Input Types:</strong> Works with input, textarea, and select elements</li>
+        <li><strong>Label Animation:</strong> Label floats up when input is focused or has a value</li>
+        <li><strong>Accessibility:</strong> Use the <code>for</code> attribute to associate label with input ID</li>
+        <li><strong>Styling:</strong> Combine multiple styleClass values separated by spaces</li>
+      </ul>
+    </div>
+  </div>
+</div>

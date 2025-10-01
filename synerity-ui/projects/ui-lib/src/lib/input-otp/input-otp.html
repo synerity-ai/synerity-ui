@@ -1,8 +1,7 @@
-<div class="flex gap-2" (paste)="onPaste($event)">
+<div class="sui-input-otp" [class.sui-input-otp-disabled]="disabled" (paste)="onPaste($event)">
 	<input
 		*ngFor="let v of values; let i = index"
 		#otpInput
-		[class.opacity-50]="disabled"
 		[type]="inputType"
 		[attr.maxlength]="1"
 		[disabled]="disabled"
@@ -10,6 +9,6 @@
 		(input)="onInput($event, i)"
 		(keydown)="onKeyDown($event, i)"
 		(blur)="onBlur()"
-		class="w-10 h-10 text-center border rounded"
+		class="sui-input-otp-digit"
 	/>
 </div>

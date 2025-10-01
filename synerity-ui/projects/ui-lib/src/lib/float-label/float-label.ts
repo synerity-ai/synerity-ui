@@ -3,6 +3,7 @@ import { NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-float-label',
+  standalone: true,
   imports: [CommonModule, NgIf],
   templateUrl: './float-label.html',
   styleUrl: './float-label.scss',

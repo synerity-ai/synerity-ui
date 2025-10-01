@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-auto-focus',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './auto-focus.html',
   styleUrl: './auto-focus.scss',

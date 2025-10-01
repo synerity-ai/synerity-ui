@@ -4,6 +4,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-auto-complete',
+  standalone: true,
   imports: [FormsModule, NgFor, NgIf],
   templateUrl: './auto-complete.html',
   styleUrl: './auto-complete.scss',

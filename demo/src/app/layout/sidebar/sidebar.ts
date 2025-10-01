@@ -41,6 +41,7 @@ export class Sidebar {
         { label: 'Select', route: '/components/select' },
         { label: 'Select Button', route: '/components/select-button' },
         { label: 'Slider', route: '/components/slider' },
+        { label: 'Tabs', route: '/components/tabs' },
         { label: 'Toggle Switch', route: '/components/toggle-switch' }
       ]
     },
@@ -49,7 +50,7 @@ export class Sidebar {
       icon: '📝', 
       isExpanded: false,
       children: [
-        { label: 'Auto Complete', route: '/components/auto-complete' },
+        { label: 'Auto-Complete', route: '/components/auto-complete' },
         { label: 'Auto Focus', route: '/components/auto-focus' },
         { label: 'Cascade Select', route: '/components/cascade-select' },
         { label: 'Chip', route: '/components/chip' },
@@ -95,7 +96,6 @@ export class Sidebar {
         { label: 'Panel', route: '/components/panel' },
         { label: 'Splitter', route: '/components/splitter' },
         { label: 'Stepper', route: '/components/stepper' },
-        { label: 'Tabs', route: '/components/tabs' },
         { label: 'Timeline', route: '/components/timeline' },
         { label: 'Toolbar', route: '/components/toolbar' }
       ]

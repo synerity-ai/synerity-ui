@@ -1,0 +1,172 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Toggle Button Component</h1>
+    <p class="demo-description">
+      Toggle Button provides mutually exclusive or multiple selection options in a button group format.
+    </p>
+  </div>
+
+  <div class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Single selection toggle</p>
+    <div class="demo-content">
+      <sui-toggle-button [options]="viewOptions" [(ngModel)]="selectedView" (change)="handleChange($event)"></sui-toggle-button>
+      <p class="value-display">Selected: {{ selectedView }}</p>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-toggle-button [options]="viewOptions" [(ngModel)]="selectedView"&gt;&lt;/sui-toggle-button&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>With Icons</h2>
+    <p>Buttons with icon decorations</p>
+    <div class="demo-content">
+      <div class="toggle-grid">
+        <div>
+          <h3>Text Alignment</h3>
+          <sui-toggle-button [options]="alignOptions" [(ngModel)]="selectedAlign"></sui-toggle-button>
+        </div>
+        <div>
+          <h3>Text Format</h3>
+          <sui-toggle-button [options]="formatOptions" [(ngModel)]="selectedFormat" [multiple]="true"></sui-toggle-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Multiple Selection</h2>
+    <p>Select multiple options</p>
+    <div class="demo-content">
+      <sui-toggle-button [options]="multipleOptions" [(ngModel)]="selectedOptions" [multiple]="true"></sui-toggle-button>
+      <p class="value-display">Selected: {{ selectedOptions.length > 0 ? selectedOptions.join(', ') : '(none)' }}</p>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-toggle-button [options]="options" [(ngModel)]="selected" [multiple]="true"&gt;&lt;/sui-toggle-button&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Size Variants</h2>
+    <div class="demo-content">
+      <div class="size-examples">
+        <div>
+          <p class="size-label">Small</p>
+          <sui-toggle-button [options]="viewOptions" size="sm" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+        <div>
+          <p class="size-label">Medium (Default)</p>
+          <sui-toggle-button [options]="viewOptions" size="md" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+        <div>
+          <p class="size-label">Large</p>
+          <sui-toggle-button [options]="viewOptions" size="lg" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Color Variants</h2>
+    <div class="demo-content">
+      <div class="color-grid">
+        <div>
+          <p class="variant-label">Default</p>
+          <sui-toggle-button [options]="viewOptions" variant="default" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+        <div>
+          <p class="variant-label">Success</p>
+          <sui-toggle-button [options]="viewOptions" variant="success" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+        <div>
+          <p class="variant-label">Warning</p>
+          <sui-toggle-button [options]="viewOptions" variant="warning" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+        <div>
+          <p class="variant-label">Danger</p>
+          <sui-toggle-button [options]="viewOptions" variant="danger" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+        <div>
+          <p class="variant-label">Purple</p>
+          <sui-toggle-button [options]="viewOptions" variant="purple" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Style Variants</h2>
+    <div class="demo-content">
+      <div class="style-grid">
+        <div>
+          <p class="variant-label">Default (Filled)</p>
+          <sui-toggle-button [options]="viewOptions" style="default" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+        <div>
+          <p class="variant-label">Outline</p>
+          <sui-toggle-button [options]="viewOptions" style="outline" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+        <div>
+          <p class="variant-label">Ghost</p>
+          <sui-toggle-button [options]="viewOptions" style="ghost" [(ngModel)]="selectedView"></sui-toggle-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>options</code></td>
+            <td>Array&lt;&#123; label, value, icon? &#125;&gt;</td>
+            <td>[]</td>
+            <td>Button options</td>
+          </tr>
+          <tr>
+            <td><code>multiple</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Allow multiple selections</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>'sm' | 'md' | 'lg'</td>
+            <td>'md'</td>
+            <td>Size variant</td>
+          </tr>
+          <tr>
+            <td><code>variant</code></td>
+            <td>'default' | 'success' | 'warning' | 'danger' | 'purple'</td>
+            <td>'default'</td>
+            <td>Color variant</td>
+          </tr>
+          <tr>
+            <td><code>style</code></td>
+            <td>'default' | 'outline' | 'ghost'</td>
+            <td>'default'</td>
+            <td>Style variant</td>
+          </tr>
+          <tr>
+            <td><code>shape</code></td>
+            <td>'default' | 'rounded' | 'pill'</td>
+            <td>'default'</td>
+            <td>Shape variant</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

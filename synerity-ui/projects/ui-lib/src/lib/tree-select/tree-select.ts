@@ -4,6 +4,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-tree-select',
+  standalone: true,
   imports: [FormsModule, NgFor, NgIf],
   templateUrl: './tree-select.html',
   styleUrl: './tree-select.scss',

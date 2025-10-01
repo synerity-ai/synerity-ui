@@ -3,6 +3,7 @@ import { NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-icon-field',
+  standalone: true,
   imports: [CommonModule, NgIf],
   templateUrl: './icon-field.html',
   styleUrl: './icon-field.scss',

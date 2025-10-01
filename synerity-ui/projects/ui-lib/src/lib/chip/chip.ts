@@ -3,6 +3,7 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-chip',
+  standalone: true,
   imports: [NgIf],
   templateUrl: './chip.html',
   styleUrl: './chip.scss',

@@ -4,6 +4,7 @@ import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'sui-cascade-select',
+  standalone: true,
   imports: [FormsModule, NgFor],
   templateUrl: './cascade-select.html',
   styleUrl: './cascade-select.scss',

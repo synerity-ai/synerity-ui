@@ -1,0 +1,193 @@
+<div class="demo-container">
+  <header>
+    <h1>Auto-Focus Component Demo</h1>
+    <p>Auto-focus directive automatically focuses an element when the component loads, improving user experience by directing attention to the primary action.</p>
+  </header>
+
+  <div class="demo-section">
+    <h2>Basic Auto-Focus</h2>
+    <p>Input automatically receives focus on page load</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Auto-Focused Input</h4>
+        <div class="demo-content">
+          <sui-auto-focus>
+            <input 
+              type="text" 
+              [(ngModel)]="basicInput"
+              placeholder="This input is auto-focused on load..."
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </sui-auto-focus>
+          <div class="value-display">Value: {{ basicInput || 'Empty' }}</div>
+          <p class="text-sm text-gray-600 mt-2">Notice: This input was automatically focused when you loaded the page!</p>
+        </div>
+        <div class="code-block">
+&lt;sui-auto-focus&gt;
+  &lt;input type="text" [(ngModel)]="basicInput" /&gt;
+&lt;/sui-auto-focus&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Delayed Focus</h2>
+    <p>Focus with a delay for better UX in complex forms</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Focus After Delay</h4>
+        <div class="demo-content">
+          <sui-auto-focus [delay]="currentDelay">
+            <input 
+              type="text" 
+              [(ngModel)]="delayedInput"
+              placeholder="Will focus after delay..."
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </sui-auto-focus>
+          <div class="value-display">Current delay: {{ currentDelay }}ms</div>
+        </div>
+        
+        <div class="controls-section">
+          <h5>Delay:</h5>
+          <div class="radio-group">
+            <div class="radio-item" *ngFor="let option of delayOptions">
+              <input type="radio" [id]="'delay-' + option.value" name="delay" [value]="option.value" [(ngModel)]="currentDelay">
+              <label [for]="'delay-' + option.value">{{ option.label }}</label>
+            </div>
+          </div>
+          <button (click)="resetPage()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            Reload Page to Test Delay
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Conditional Focus</h2>
+    <p>Only focus when condition is met</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Conditional Auto-Focus</h4>
+        <div class="demo-content">
+          <div class="checkbox-group">
+            <label><input type="checkbox" [(ngModel)]="focusCondition"> Enable Auto-Focus</label>
+          </div>
+          
+          <sui-auto-focus [condition]="focusCondition">
+            <input 
+              type="text" 
+              [(ngModel)]="conditionalInput"
+              placeholder="Focused only if condition is true..."
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </sui-auto-focus>
+          
+          <p class="text-sm text-gray-600 mt-2">
+            {{ focusCondition ? '✓ Auto-focus enabled - reload to test' : '✗ Auto-focus disabled' }}
+          </p>
+          
+          <button (click)="resetPage()" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            Reload Page to Test Condition
+          </button>
+        </div>
+        <div class="code-block">
+&lt;sui-auto-focus [condition]="focusCondition"&gt;
+  &lt;input type="text" [(ngModel)]="conditionalInput" /&gt;
+&lt;/sui-auto-focus&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Login Form Example</h2>
+    <p>Real-world use case - focus username field on page load</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Login Form with Auto-Focus</h4>
+        <div class="demo-content">
+          <div class="form-field">
+            <label>Username</label>
+            <sui-auto-focus>
+              <input 
+                type="text" 
+                [(ngModel)]="formData.username"
+                placeholder="Enter username"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </sui-auto-focus>
+            <p class="text-xs text-gray-500 mt-1">Auto-focused for quick login</p>
+          </div>
+
+          <div class="form-field">
+            <label>Email</label>
+            <input 
+              type="email" 
+              [(ngModel)]="formData.email"
+              placeholder="Enter email"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div class="form-field">
+            <label>Password</label>
+            <input 
+              type="password" 
+              [(ngModel)]="formData.password"
+              placeholder="Enter password"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+        <div class="code-block">
+&lt;sui-auto-focus&gt;
+  &lt;input type="text" [(ngModel)]="formData.username" /&gt;
+&lt;/sui-auto-focus&gt;
+&lt;input type="email" [(ngModel)]="formData.email" /&gt;
+&lt;input type="password" [(ngModel)]="formData.password" /&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>API Reference</h2>
+    <div class="component-card">
+      <h4>Properties</h4>
+      <div class="code-block">
+@Input() delay: number = 0;  // Delay before focusing (milliseconds)
+@Input() condition: boolean = true;  // Only focus if condition is true
+@Input() style: any = &#123;&#125;;  // Custom styles
+@Input() styleClass: string = '';  // Custom CSS classes
+      </div>
+      
+      <h4>Methods</h4>
+      <div class="code-block">
+focus(): void;  // Programmatically focus the element
+      </div>
+
+      <h4>CSS Classes</h4>
+      <div class="code-block">
+.sui-auto-focus  // Base component class
+      </div>
+
+      <h4>Usage Notes</h4>
+      <div class="code-block">
+// Auto-focus is a wrapper component
+// Place it around the element you want to focus
+// Commonly used for:
+// - First field in forms
+// - Search inputs
+// - Modal dialogs
+// - Error messages requiring attention
+      </div>
+    </div>
+  </div>
+</div>

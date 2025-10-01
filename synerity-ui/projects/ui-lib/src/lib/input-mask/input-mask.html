@@ -1,6 +1,5 @@
 <input
 	[type]="'text'"
-	[class.opacity-50]="disabled"
 	[id]="inputId"
 	[name]="name"
 	[disabled]="disabled"
@@ -8,5 +7,6 @@
 	[value]="viewValue"
 	(input)="onInput($event)"
 	(blur)="onBlur()"
-	class="px-2 py-1 outline-none"
+	class="sui-input-mask"
+	[class.sui-input-mask-disabled]="disabled"
 />

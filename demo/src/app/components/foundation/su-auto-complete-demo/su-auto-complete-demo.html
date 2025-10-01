@@ -1,0 +1,266 @@
+<div class="demo-container">
+  <header>
+    <h1>Auto-Complete Component Demo</h1>
+    <p>Auto-complete provides type-ahead suggestions as users type, improving data entry speed and accuracy with real-time filtering.</p>
+  </header>
+
+  <div class="demo-section">
+    <h2>Basic Auto-Complete</h2>
+    <p>Simple autocomplete with string array options</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Fruit Selection</h4>
+        <div class="demo-content">
+          <sui-auto-complete 
+            [(ngModel)]="basicValue" 
+            [options]="basicOptions"
+            placeholder="Type to search fruits..."
+            (change)="onAutoCompleteChange($event)">
+          </sui-auto-complete>
+          <div class="value-display">Selected: {{ basicValue || 'None' }}</div>
+        </div>
+        <div class="code-block">
+&lt;sui-auto-complete 
+  [(ngModel)]="basicValue" 
+  [options]="basicOptions"
+  placeholder="Type to search fruits..."
+  (change)="onAutoCompleteChange($event)"&gt;
+&lt;/sui-auto-complete&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Object-Based Options</h2>
+    <p>Autocomplete with label/value pairs for complex data</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>City Selection</h4>
+        <div class="demo-content">
+          <sui-auto-complete 
+            [(ngModel)]="cityValue" 
+            [options]="cities"
+            placeholder="Search cities..."
+            (change)="onAutoCompleteChange($event)">
+          </sui-auto-complete>
+          <div class="value-display">Selected Value: {{ cityValue || 'None' }}</div>
+        </div>
+        <div class="code-block">
+&lt;sui-auto-complete 
+  [(ngModel)]="cityValue" 
+  [options]="cities"
+  placeholder="Search cities..."&gt;
+&lt;/sui-auto-complete&gt;
+
+// cities = [
+//   &#123; label: 'New York', value: 'ny' &#125;,
+//   &#123; label: 'Los Angeles', value: 'la' &#125;
+// ];
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Product Search</h4>
+        <div class="demo-content">
+          <sui-auto-complete 
+            [(ngModel)]="productValue" 
+            [options]="products"
+            placeholder="Search products..."
+            (change)="onAutoCompleteChange($event)">
+          </sui-auto-complete>
+          <div class="value-display">Selected: {{ productValue || 'None' }}</div>
+        </div>
+        <div class="code-block">
+&lt;sui-auto-complete 
+  [(ngModel)]="productValue" 
+  [options]="products"
+  placeholder="Search products..."&gt;
+&lt;/sui-auto-complete&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Use Cases</h2>
+    <p>Common real-world autocomplete scenarios</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Country Selection</h4>
+        <div class="demo-content">
+          <sui-auto-complete 
+            [(ngModel)]="countryValue" 
+            [options]="countries"
+            placeholder="Select your country..."
+            (change)="onAutoCompleteChange($event)">
+          </sui-auto-complete>
+          <div class="value-display">Selected: {{ countryValue || 'None' }}</div>
+        </div>
+        <div class="code-block">
+&lt;sui-auto-complete 
+  [(ngModel)]="countryValue" 
+  [options]="countries"
+  placeholder="Select your country..."&gt;
+&lt;/sui-auto-complete&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Email Autocomplete</h4>
+        <div class="demo-content">
+          <sui-auto-complete 
+            [(ngModel)]="emailValue" 
+            [options]="emailSuggestions"
+            placeholder="Enter email address..."
+            (change)="onAutoCompleteChange($event)">
+          </sui-auto-complete>
+          <div class="value-display">Email: {{ emailValue || 'None' }}</div>
+        </div>
+        <div class="code-block">
+&lt;sui-auto-complete 
+  [(ngModel)]="emailValue" 
+  [options]="emailSuggestions"
+  placeholder="Enter email address..."&gt;
+&lt;/sui-auto-complete&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>States and Configuration</h2>
+    <p>Different states and configurations</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Disabled State</h4>
+        <div class="demo-content">
+          <sui-auto-complete 
+            [(ngModel)]="disabledValue" 
+            [options]="disabledOptions"
+            [disabled]="true"
+            placeholder="This is disabled...">
+          </sui-auto-complete>
+        </div>
+        <div class="code-block">
+&lt;sui-auto-complete 
+  [(ngModel)]="disabledValue" 
+  [options]="disabledOptions"
+  [disabled]="true"&gt;
+&lt;/sui-auto-complete&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Minimum Length (3 chars)</h4>
+        <div class="demo-content">
+          <sui-auto-complete 
+            [(ngModel)]="minLengthValue" 
+            [options]="minLengthOptions"
+            [minLength]="3"
+            placeholder="Type at least 3 characters..."
+            (change)="onAutoCompleteChange($event)">
+          </sui-auto-complete>
+          <div class="value-display">Selected: {{ minLengthValue || 'None' }}</div>
+        </div>
+        <div class="code-block">
+&lt;sui-auto-complete 
+  [(ngModel)]="minLengthValue" 
+  [options]="minLengthOptions"
+  [minLength]="3"
+  placeholder="Type at least 3 characters..."&gt;
+&lt;/sui-auto-complete&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Interactive Examples</h2>
+    <p>Live examples with dynamic configurations</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Dynamic Configuration</h4>
+        <div class="demo-content">
+          <sui-auto-complete 
+            [(ngModel)]="currentValue" 
+            [options]="basicOptions"
+            [minLength]="currentMinLength"
+            [disabled]="currentDisabled"
+            placeholder="Configure me..."
+            (change)="onAutoCompleteChange($event)">
+          </sui-auto-complete>
+          <div class="value-display">Value: {{ currentValue || 'None' }}</div>
+        </div>
+        
+        <div class="controls-section">
+          <h5>Minimum Length:</h5>
+          <div class="radio-group">
+            <div class="radio-item" *ngFor="let variant of minLengthVariants">
+              <input type="radio" [id]="'minlen-' + variant.value" name="minLength" [value]="variant.value" [(ngModel)]="currentMinLength">
+              <label [for]="'minlen-' + variant.value">{{ variant.label }}</label>
+            </div>
+          </div>
+
+          <h5>Features:</h5>
+          <div class="checkbox-group">
+            <label><input type="checkbox" [(ngModel)]="currentDisabled"> Disabled</label>
+          </div>
+
+          <button (click)="resetValues()" class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+            Reset All Values
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>API Reference</h2>
+    <div class="component-card">
+      <h4>Properties</h4>
+      <div class="code-block">
+@Input() disabled: boolean = false;  // Disable the input
+@Input() name: string = '';  // Form field name
+@Input() inputId: string = '';  // Input element ID
+@Input() placeholder: string = '';  // Placeholder text
+@Input() minLength: number = 1;  // Minimum characters before showing suggestions
+@Input() options: Array&lt;string | &#123; label: string; value: unknown &#125;&gt; = [];  // Suggestion options
+@Output() change: EventEmitter&lt;unknown&gt;;  // Value change event
+      </div>
+      
+      <h4>Methods</h4>
+      <div class="code-block">
+onInput(event: Event): void;  // Handle input changes
+onFocus(): void;  // Handle focus event
+onBlur(): void;  // Handle blur event
+onKeyDown(event: KeyboardEvent): void;  // Handle keyboard navigation
+select(item: string | object): void;  // Select an item
+clear(): void;  // Clear the selected value
+      </div>
+
+      <h4>Keyboard Navigation</h4>
+      <div class="code-block">
+ArrowDown  // Navigate to next suggestion
+ArrowUp    // Navigate to previous suggestion
+Enter      // Select highlighted suggestion
+Escape     // Close dropdown
+      </div>
+
+      <h4>CSS Classes</h4>
+      <div class="code-block">
+.sui-auto-complete        // Base component class
+.sui-auto-complete-small  // Small size variant
+.sui-auto-complete-normal // Normal size variant (default)
+.sui-auto-complete-large  // Large size variant
+.sui-auto-complete-error  // Error state
+.sui-auto-complete-success // Success state
+      </div>
+    </div>
+  </div>
+</div>

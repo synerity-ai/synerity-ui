@@ -1,0 +1,190 @@
+<div class="demo-container">
+  <header>
+    <h1>Cascade-Select Component Demo</h1>
+    <p>Hierarchical selection through multiple connected dropdowns, ideal for location selection, category browsing, and nested data navigation.</p>
+  </header>
+
+  <div class="demo-section">
+    <h2>Basic Cascade-Select</h2>
+    <p>Select location through hierarchical dropdowns (Country → State → City)</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Location Selection</h4>
+        <div class="demo-content">
+          <sui-cascade-select
+            [(ngModel)]="locationValue"
+            [options]="locationOptions"
+            [levelsPlaceholder]="locationPlaceholders"
+            (change)="onCascadeChange($event)">
+          </sui-cascade-select>
+          <div class="value-display">Selected Value: {{ locationValue || 'None' }}</div>
+        </div>
+        <div class="code-block">
+&lt;sui-cascade-select
+  [(ngModel)]="locationValue"
+  [options]="locationOptions"
+  [levelsPlaceholder]="locationPlaceholders"
+  (change)="onCascadeChange($event)"&gt;
+&lt;/sui-cascade-select&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Product Category Selection</h2>
+    <p>Navigate through product categories and subcategories</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Product Categories</h4>
+        <div class="demo-content">
+          <sui-cascade-select
+            [(ngModel)]="productValue"
+            [options]="productOptions"
+            [levelsPlaceholder]="productPlaceholders"
+            (change)="onCascadeChange($event)">
+          </sui-cascade-select>
+          <div class="value-display">Selected Product: {{ productValue || 'None' }}</div>
+        </div>
+        <div class="code-block">
+&lt;sui-cascade-select
+  [(ngModel)]="productValue"
+  [options]="productOptions"
+  [levelsPlaceholder]="productPlaceholders"&gt;
+&lt;/sui-cascade-select&gt;
+
+// Options structure:
+// [
+//   &#123; label: 'Electronics', value: 'electronics',
+//     children: [
+//       &#123; label: 'Computers', value: 'computers',
+//         children: [
+//           &#123; label: 'Laptops', value: 'laptops' &#125;
+//         ]
+//       &#125;
+//     ]
+//   &#125;
+// ]
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>States and Features</h2>
+    <p>Different states and configurations</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Disabled State</h4>
+        <div class="demo-content">
+          <sui-cascade-select
+            [(ngModel)]="disabledValue"
+            [options]="disabledOptions"
+            [levelsPlaceholder]="disabledPlaceholders"
+            [disabled]="true">
+          </sui-cascade-select>
+          <p class="text-sm text-gray-600 mt-2">This cascade select is disabled and cannot be interacted with.</p>
+        </div>
+        <div class="code-block">
+&lt;sui-cascade-select
+  [(ngModel)]="disabledValue"
+  [options]="disabledOptions"
+  [disabled]="true"&gt;
+&lt;/sui-cascade-select&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Custom Placeholders</h4>
+        <div class="demo-content">
+          <sui-cascade-select
+            [(ngModel)]="locationValue"
+            [options]="locationOptions"
+            [levelsPlaceholder]="['Choose Country', 'Choose State', 'Choose City']"
+            (change)="onCascadeChange($event)">
+          </sui-cascade-select>
+          <p class="text-sm text-gray-600 mt-2">Custom placeholders for each level.</p>
+        </div>
+        <div class="code-block">
+&lt;sui-cascade-select
+  [levelsPlaceholder]="['Choose Country', 'Choose State', 'Choose City']"&gt;
+&lt;/sui-cascade-select&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Reset Example</h2>
+    <p>Clear selections and start over</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Reset Functionality</h4>
+        <div class="demo-content">
+          <sui-cascade-select
+            [(ngModel)]="locationValue"
+            [options]="locationOptions"
+            [levelsPlaceholder]="locationPlaceholders"
+            (change)="onCascadeChange($event)">
+          </sui-cascade-select>
+          <div class="value-display">
+            Location Value: {{ locationValue || 'None selected' }}
+          </div>
+          <button (click)="resetValues()" class="mt-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+            Reset All Selections
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>API Reference</h2>
+    <div class="component-card">
+      <h4>Properties</h4>
+      <div class="code-block">
+@Input() disabled: boolean = false;  // Disable all dropdowns
+@Input() name: string = '';  // Form field name
+@Input() levelsPlaceholder: string[] = [];  // Placeholder for each level
+@Input() options: HierarchicalOption[] = [];  // Hierarchical data structure
+@Output() change: EventEmitter&lt;unknown&gt;;  // Value change event
+      </div>
+      
+      <h4>HierarchicalOption Interface</h4>
+      <div class="code-block">
+interface HierarchicalOption &#123;
+  label: string;           // Display text
+  value?: unknown;         // Option value
+  children?: HierarchicalOption[];  // Child options for next level
+&#125;
+      </div>
+
+      <h4>Methods</h4>
+      <div class="code-block">
+levelOptions(level: number): HierarchicalOption[];  // Get options for specific level
+onSelect(level: number, idx: number): void;  // Handle selection at level
+      </div>
+
+      <h4>CSS Classes</h4>
+      <div class="code-block">
+.sui-cascade-select           // Base component class
+.sui-cascade-select-disabled  // Disabled state
+.cascade-select-dropdown      // Individual dropdown
+      </div>
+
+      <h4>Usage Notes</h4>
+      <div class="code-block">
+// Perfect for:
+// - Country/State/City selection
+// - Product category navigation
+// - Organization hierarchy
+// - File system browsing
+// - Department/Team selection
+      </div>
+    </div>
+  </div>
+</div>

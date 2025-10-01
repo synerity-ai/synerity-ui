@@ -1,0 +1,147 @@
+<div class="demo-container">
+  <header>
+    <h1>Breadcrumb Component Demo</h1>
+    <p>Navigation breadcrumbs help users understand their location within the application hierarchy and provide quick navigation to parent pages.</p>
+  </header>
+
+  <div class="demo-section">
+    <h2>Basic Breadcrumb</h2>
+    <p>Simple breadcrumb with default styling and navigation</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default Breadcrumb</h4>
+        <div class="demo-content">
+          <sui-breadcrumb [model]="basicBreadcrumbs"></sui-breadcrumb>
+        </div>
+        <div class="code-block">
+&lt;sui-breadcrumb [model]="basicBreadcrumbs"&gt;&lt;/sui-breadcrumb&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Breadcrumb Variants</h2>
+    <p>Different configurations and styling options</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>With Icons</h4>
+        <div class="demo-content">
+          <sui-breadcrumb [model]="iconBreadcrumbs"></sui-breadcrumb>
+        </div>
+        <div class="code-block">
+&lt;sui-breadcrumb [model]="iconBreadcrumbs"&gt;&lt;/sui-breadcrumb&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Custom Home</h4>
+        <div class="demo-content">
+          <sui-breadcrumb [model]="basicBreadcrumbs" [home]="customHome"></sui-breadcrumb>
+        </div>
+        <div class="code-block">
+&lt;sui-breadcrumb [model]="basicBreadcrumbs" [home]="customHome"&gt;&lt;/sui-breadcrumb&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>With Disabled Items</h4>
+        <div class="demo-content">
+          <sui-breadcrumb [model]="disabledBreadcrumbs"></sui-breadcrumb>
+        </div>
+        <div class="code-block">
+&lt;sui-breadcrumb [model]="disabledBreadcrumbs"&gt;&lt;/sui-breadcrumb&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Interactive (Commands)</h4>
+        <div class="demo-content">
+          <sui-breadcrumb [model]="interactiveBreadcrumbs" (onItemClick)="onBreadcrumbClick($event)"></sui-breadcrumb>
+        </div>
+        <div class="code-block">
+&lt;sui-breadcrumb [model]="interactiveBreadcrumbs" (onItemClick)="onBreadcrumbClick($event)"&gt;&lt;/sui-breadcrumb&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Interactive Examples</h2>
+    <p>Live examples with dynamic configurations</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Style Variants</h4>
+        <div class="demo-content">
+          <sui-breadcrumb [model]="basicBreadcrumbs" [style]="getBreadcrumbStyle()"></sui-breadcrumb>
+          <div class="radio-group">
+            <div class="radio-item" *ngFor="let variant of styleVariants">
+              <input type="radio" [id]="'style-' + variant.value" name="style" [value]="variant.value" [(ngModel)]="currentStyle">
+              <label [for]="'style-' + variant.value">{{ variant.label }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Home Configuration</h4>
+        <div class="demo-content">
+          <sui-breadcrumb [model]="basicBreadcrumbs" [home]="getHomeConfig()"></sui-breadcrumb>
+          <div class="radio-group">
+            <div class="radio-item" *ngFor="let variant of homeVariants">
+              <input type="radio" [id]="'home-' + variant.value" name="home" [value]="variant.value" [(ngModel)]="currentHome">
+              <label [for]="'home-' + variant.value">{{ variant.label }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>API Reference</h2>
+    <div class="component-card">
+      <h4>Properties</h4>
+      <div class="code-block">
+@Input() model: Array&lt;BreadcrumbItem&gt; = [];  // Array of breadcrumb items
+@Input() home: BreadcrumbHome = &#123; label: 'Home', icon: '🏠' &#125;;  // Home item configuration
+@Input() style: any = &#123;&#125;;  // Custom styles
+@Input() styleClass: string = '';  // Custom CSS classes
+@Output() onItemClick: EventEmitter&lt;any&gt;;  // Item click event
+      </div>
+      
+      <h4>BreadcrumbItem Interface</h4>
+      <div class="code-block">
+interface BreadcrumbItem &#123;
+  label: string;        // Display text
+  url?: string;         // Navigation URL
+  command?: () => void; // Click handler function
+  icon?: string;        // Icon (emoji or icon class)
+  disabled?: boolean;   // Disable the item
+&#125;
+      </div>
+
+      <h4>BreadcrumbHome Interface</h4>
+      <div class="code-block">
+interface BreadcrumbHome &#123;
+  label?: string;       // Display text
+  url?: string;         // Navigation URL
+  command?: () => void; // Click handler function
+  icon?: string;        // Icon (emoji or icon class)
+&#125;
+      </div>
+      
+      <h4>Methods</h4>
+      <div class="code-block">
+onItemClickHandler(item: BreadcrumbItem, index: number): void;  // Handle item clicks
+onHomeClick(): void;  // Handle home item clicks
+isLastItem(index: number): boolean;  // Check if item is last
+getBreadcrumbClass(): string;  // Get computed CSS classes
+getBreadcrumbStyle(): any;  // Get computed styles
+      </div>
+    </div>
+  </div>
+</div>

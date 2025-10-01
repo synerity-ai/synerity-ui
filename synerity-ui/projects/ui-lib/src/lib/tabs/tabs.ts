@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-tabs',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './tabs.html',
   styleUrl: './tabs.scss',

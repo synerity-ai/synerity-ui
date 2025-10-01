@@ -3,6 +3,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 
 @Component({
   selector: 'sui-key-filter',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './key-filter.html',
   styleUrl: './key-filter.scss',

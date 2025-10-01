@@ -1,31 +1,34 @@
-<div class="relative inline-block w-64">
+<div class="sui-tree-select" [class.sui-tree-select-disabled]="disabled">
 	<button
 		type="button"
 		[disabled]="disabled"
 		(click)="toggle()"
 		(blur)="onBlur()"
-		class="w-full px-3 py-2 text-left border rounded bg-white"
+		class="sui-tree-select-trigger"
+		[class.sui-tree-select-open]="open"
 	>
-		{{ displayValue() }}
+		<span class="sui-tree-select-value">{{ displayValue() }}</span>
+		<span class="sui-tree-select-arrow">▼</span>
 	</button>
-	<div *ngIf="open" class="absolute z-10 mt-1 w-full bg-white border rounded shadow max-h-60 overflow-auto">
-		<div *ngFor="let item of options" class="px-3 py-2">
+	<div *ngIf="open" class="sui-tree-select-dropdown">
+		<div *ngFor="let item of options" class="sui-tree-select-node">
 			<button
 				type="button"
 				[disabled]="item.children?.length"
 				(click)="select(item)"
-				[class.cursor-pointer]="!item.children?.length"
-				[class.cursor-default]="item.children?.length"
-				class="w-full text-left"
+				class="sui-tree-select-option"
+				[class.sui-tree-select-parent]="item.children?.length"
+				[class.sui-tree-select-leaf]="!item.children?.length"
 			>
+				<span *ngIf="item.children?.length" class="sui-tree-select-expand">▶</span>
 				{{ item.label }}
 			</button>
-			<div *ngIf="item.children?.length" class="ml-4">
-				<div *ngFor="let child of item.children" class="px-3 py-1">
+			<div *ngIf="item.children?.length" class="sui-tree-select-children">
+				<div *ngFor="let child of item.children" class="sui-tree-select-child-node">
 					<button
 						type="button"
 						(click)="select(child)"
-						class="w-full text-left text-sm"
+						class="sui-tree-select-option sui-tree-select-leaf"
 					>
 						{{ child.label }}
 					</button>

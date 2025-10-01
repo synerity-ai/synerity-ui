@@ -1,0 +1,353 @@
+<div class="demo-container">
+  <!-- Header Section -->
+  <div class="demo-header">
+    <h1>Icon Field Component</h1>
+    <p class="demo-description">
+      Icon Field adds decorative icons to input fields with flexible positioning (left or right).
+      Supports different sizes and automatically adjusts input padding for proper icon placement.
+    </p>
+  </div>
+
+  <!-- Basic Usage -->
+  <div class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Simple icon field with left-positioned icon</p>
+    <div class="demo-content">
+      <sui-icon-field icon="🔍">
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Search..." />
+      </sui-icon-field>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-icon-field icon="🔍"&gt;
+  &lt;input type="text" [(ngModel)]="searchQuery" placeholder="Search..." /&gt;
+&lt;/sui-icon-field&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Icon Positioning -->
+  <div class="demo-section">
+    <h2>Icon Positioning</h2>
+    <p>Icons can be positioned on the left or right side</p>
+    <div class="demo-content">
+      <div class="form-grid">
+        <div>
+          <label class="input-label">Left Position (Default)</label>
+          <sui-icon-field icon="📧" position="left">
+            <input type="email" [(ngModel)]="emailAddress" placeholder="Email address" />
+          </sui-icon-field>
+        </div>
+        
+        <div>
+          <label class="input-label">Right Position</label>
+          <sui-icon-field icon="📞" position="right">
+            <input type="tel" [(ngModel)]="phoneNumber" placeholder="Phone number" />
+          </sui-icon-field>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;!-- Left positioned (default) --&gt;
+&lt;sui-icon-field icon="📧" position="left"&gt;
+  &lt;input type="email" placeholder="Email address" /&gt;
+&lt;/sui-icon-field&gt;
+
+&lt;!-- Right positioned --&gt;
+&lt;sui-icon-field icon="📞" position="right"&gt;
+  &lt;input type="tel" placeholder="Phone number" /&gt;
+&lt;/sui-icon-field&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Size Variants -->
+  <div class="demo-section">
+    <h2>Size Variants</h2>
+    <p>Three size options: small, normal (default), and large</p>
+    <div class="demo-content">
+      <div class="form-grid">
+        <div>
+          <label class="input-label">Small</label>
+          <sui-icon-field icon="🔍" size="small">
+            <input type="text" [(ngModel)]="smallInput" placeholder="Small input" />
+          </sui-icon-field>
+        </div>
+        
+        <div>
+          <label class="input-label">Normal</label>
+          <sui-icon-field icon="🔍" size="normal">
+            <input type="text" [(ngModel)]="normalInput" placeholder="Normal input" />
+          </sui-icon-field>
+        </div>
+        
+        <div>
+          <label class="input-label">Large</label>
+          <sui-icon-field icon="🔍" size="large">
+            <input type="text" [(ngModel)]="largeInput" placeholder="Large input" />
+          </sui-icon-field>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;!-- Small --&gt;
+&lt;sui-icon-field icon="🔍" size="small"&gt;
+  &lt;input type="text" placeholder="Small input" /&gt;
+&lt;/sui-icon-field&gt;
+
+&lt;!-- Normal (default) --&gt;
+&lt;sui-icon-field icon="🔍" size="normal"&gt;
+  &lt;input type="text" placeholder="Normal input" /&gt;
+&lt;/sui-icon-field&gt;
+
+&lt;!-- Large --&gt;
+&lt;sui-icon-field icon="🔍" size="large"&gt;
+  &lt;input type="text" placeholder="Large input" /&gt;
+&lt;/sui-icon-field&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Different Icons -->
+  <div class="demo-section">
+    <h2>Different Icon Examples</h2>
+    <p>Use various emojis or icon characters</p>
+    <div class="demo-content">
+      <div class="form-grid">
+        <sui-icon-field icon="👤">
+          <input type="text" [(ngModel)]="userInput" placeholder="Username" />
+        </sui-icon-field>
+        
+        <sui-icon-field icon="🔒">
+          <input type="password" [(ngModel)]="lockInput" placeholder="Password" />
+        </sui-icon-field>
+        
+        <sui-icon-field icon="📅">
+          <input type="date" [(ngModel)]="calendarInput" />
+        </sui-icon-field>
+        
+        <sui-icon-field icon="📍" position="right">
+          <input type="text" [(ngModel)]="locationInput" placeholder="Location" />
+        </sui-icon-field>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-icon-field icon="👤"&gt;
+  &lt;input type="text" placeholder="Username" /&gt;
+&lt;/sui-icon-field&gt;
+
+&lt;sui-icon-field icon="🔒"&gt;
+  &lt;input type="password" placeholder="Password" /&gt;
+&lt;/sui-icon-field&gt;
+
+&lt;sui-icon-field icon="📅"&gt;
+  &lt;input type="date" /&gt;
+&lt;/sui-icon-field&gt;
+
+&lt;sui-icon-field icon="📍" position="right"&gt;
+  &lt;input type="text" placeholder="Location" /&gt;
+&lt;/sui-icon-field&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Disabled State -->
+  <div class="demo-section">
+    <h2>Disabled State</h2>
+    <p>Icon field with disabled input</p>
+    <div class="demo-content">
+      <sui-icon-field icon="🔒">
+        <input type="text" [(ngModel)]="disabledInput" disabled />
+      </sui-icon-field>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-icon-field icon="🔒"&gt;
+  &lt;input type="text" [(ngModel)]="disabledInput" disabled /&gt;
+&lt;/sui-icon-field&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Interactive Example -->
+  <div class="demo-section">
+    <h2>Interactive Example</h2>
+    <p>Customize the icon field with different options</p>
+    
+    <div class="interactive-controls">
+      <div class="control-group">
+        <label>Icon:</label>
+        <div class="radio-group">
+          <label *ngFor="let option of iconOptions" class="radio-label">
+            <input 
+              type="radio" 
+              name="icon" 
+              [value]="option.value"
+              [(ngModel)]="currentIcon"
+            />
+            {{ option.value }} {{ option.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Position:</label>
+        <div class="radio-group">
+          <label *ngFor="let pos of positions" class="radio-label">
+            <input 
+              type="radio" 
+              name="position" 
+              [value]="pos.value"
+              [(ngModel)]="currentPosition"
+            />
+            {{ pos.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Size:</label>
+        <div class="radio-group">
+          <label *ngFor="let size of sizes" class="radio-label">
+            <input 
+              type="radio" 
+              name="size" 
+              [value]="size.value"
+              [(ngModel)]="currentSize"
+            />
+            {{ size.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="checkbox-label">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="isDisabled"
+          />
+          Disabled
+        </label>
+      </div>
+    </div>
+
+    <div class="demo-content">
+      <h3>Result:</h3>
+      <sui-icon-field 
+        [icon]="currentIcon"
+        [position]="currentPosition"
+        [size]="currentSize"
+      >
+        <input 
+          type="text" 
+          [(ngModel)]="interactiveValue" 
+          placeholder="Enter text..."
+          [disabled]="isDisabled"
+        />
+      </sui-icon-field>
+    </div>
+
+    <div class="code-block">
+      <h3>Generated Code:</h3>
+      <pre><code>{{ getCodeExample() }}</code></pre>
+    </div>
+  </div>
+
+  <!-- API Reference -->
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>icon</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Icon character or emoji to display</td>
+          </tr>
+          <tr>
+            <td><code>position</code></td>
+            <td>'left' | 'right'</td>
+            <td>'left'</td>
+            <td>Position of the icon relative to the input</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>'small' | 'normal' | 'large'</td>
+            <td>'normal'</td>
+            <td>Size variant affecting icon and padding</td>
+          </tr>
+          <tr>
+            <td><code>style</code></td>
+            <td>any</td>
+            <td>&#123;&#125;</td>
+            <td>Inline styles to apply to the container</td>
+          </tr>
+          <tr>
+            <td><code>styleClass</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Additional CSS class(es) to apply</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>CSS Classes</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>sui-icon-field</code></td>
+            <td>Base icon field class</td>
+          </tr>
+          <tr>
+            <td><code>sui-icon-field-left</code></td>
+            <td>Left positioned icon</td>
+          </tr>
+          <tr>
+            <td><code>sui-icon-field-right</code></td>
+            <td>Right positioned icon</td>
+          </tr>
+          <tr>
+            <td><code>sui-icon-field-small</code></td>
+            <td>Small size variant</td>
+          </tr>
+          <tr>
+            <td><code>sui-icon-field-normal</code></td>
+            <td>Normal size variant (default)</td>
+          </tr>
+          <tr>
+            <td><code>sui-icon-field-large</code></td>
+            <td>Large size variant</td>
+          </tr>
+          <tr>
+            <td><code>sui-icon-field-icon</code></td>
+            <td>Icon element styling</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Usage Notes</h3>
+    <div class="api-notes">
+      <ul>
+        <li><strong>Icon Characters:</strong> Use emojis or icon font characters (e.g., Font Awesome, Material Icons)</li>
+        <li><strong>Automatic Padding:</strong> Input padding is automatically adjusted based on icon position and size</li>
+        <li><strong>Focus State:</strong> Icon color changes to blue when input is focused</li>
+        <li><strong>Disabled State:</strong> Icon becomes gray and semi-transparent when input is disabled</li>
+        <li><strong>Input Types:</strong> Works with all standard HTML input types (text, email, password, search, tel, url, date, etc.)</li>
+        <li><strong>Responsive:</strong> Icon and padding scale appropriately across different screen sizes</li>
+      </ul>
+    </div>
+  </div>
+</div>

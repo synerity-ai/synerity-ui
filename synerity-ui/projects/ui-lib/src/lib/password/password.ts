@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-password',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './password.html',
   styleUrl: './password.scss',

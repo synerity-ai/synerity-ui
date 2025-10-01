@@ -1,0 +1,412 @@
+<div class="demo-container">
+  <!-- Header Section -->
+  <div class="demo-header">
+    <h1>Chip Component</h1>
+    <p class="demo-description">
+      Chip component represents entities using icons, labels and images with optional remove functionality.
+      Supports different colors, sizes, and interactive features.
+    </p>
+  </div>
+
+  <!-- Basic Usage -->
+  <div class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Simple chip with label</p>
+    <div class="demo-content">
+      <sui-chip label="Basic Chip"></sui-chip>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-chip label="Basic Chip"&gt;&lt;/sui-chip&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Color Variants -->
+  <div class="demo-section">
+    <h2>Color Variants</h2>
+    <p>Different color options for various contexts</p>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card" *ngFor="let chip of basicChips">
+          <sui-chip 
+            [label]="chip.label" 
+            [styleClass]="chip.class || ''"
+          ></sui-chip>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;!-- Default --&gt;
+&lt;sui-chip label="Default"&gt;&lt;/sui-chip&gt;
+
+&lt;!-- Primary --&gt;
+&lt;sui-chip label="Primary" styleClass="sui-chip-primary"&gt;&lt;/sui-chip&gt;
+
+&lt;!-- Success --&gt;
+&lt;sui-chip label="Success" styleClass="sui-chip-success"&gt;&lt;/sui-chip&gt;
+
+&lt;!-- Warning --&gt;
+&lt;sui-chip label="Warning" styleClass="sui-chip-warning"&gt;&lt;/sui-chip&gt;
+
+&lt;!-- Danger --&gt;
+&lt;sui-chip label="Danger" styleClass="sui-chip-danger"&gt;&lt;/sui-chip&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- With Icons -->
+  <div class="demo-section">
+    <h2>With Icons</h2>
+    <p>Chips with icon decorations</p>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card" *ngFor="let chip of iconChips">
+          <sui-chip 
+            [label]="chip.label" 
+            [icon]="chip.icon"
+          ></sui-chip>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-chip label="Home" icon="🏠"&gt;&lt;/sui-chip&gt;
+&lt;sui-chip label="Settings" icon="⚙️"&gt;&lt;/sui-chip&gt;
+&lt;sui-chip label="Notifications" icon="🔔"&gt;&lt;/sui-chip&gt;
+&lt;sui-chip label="Profile" icon="👤"&gt;&lt;/sui-chip&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- With Images -->
+  <div class="demo-section">
+    <h2>With Images</h2>
+    <p>Chips with avatar images</p>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card" *ngFor="let chip of imageChips">
+          <sui-chip 
+            [label]="chip.label" 
+            [image]="chip.image"
+          ></sui-chip>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-chip 
+  label="John Doe" 
+  image="https://i.pravatar.cc/150?img=1"
+&gt;&lt;/sui-chip&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Removable Chips -->
+  <div class="demo-section">
+    <h2>Removable Chips</h2>
+    <p>Chips with remove functionality (click × to remove)</p>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card" *ngFor="let tag of tags">
+          <sui-chip 
+            [label]="tag.label" 
+            [removable]="true"
+            (onRemove)="removeTag(tag.id)"
+            styleClass="sui-chip-primary"
+          ></sui-chip>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-chip 
+  label="Angular" 
+  [removable]="true"
+  (onRemove)="handleRemove()"
+  styleClass="sui-chip-primary"
+&gt;&lt;/sui-chip&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Size Variants -->
+  <div class="demo-section">
+    <h2>Size Variants</h2>
+    <p>Different size options</p>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card" *ngFor="let size of sizes">
+          <sui-chip 
+            [label]="size.label" 
+            [styleClass]="size.class || ''"
+          ></sui-chip>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;!-- Small --&gt;
+&lt;sui-chip label="Small" styleClass="sui-chip-small"&gt;&lt;/sui-chip&gt;
+
+&lt;!-- Default --&gt;
+&lt;sui-chip label="Default"&gt;&lt;/sui-chip&gt;
+
+&lt;!-- Large --&gt;
+&lt;sui-chip label="Large" styleClass="sui-chip-large"&gt;&lt;/sui-chip&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Disabled State -->
+  <div class="demo-section">
+    <h2>Disabled State</h2>
+    <p>Chip in disabled state</p>
+    <div class="demo-content">
+      <sui-chip 
+        label="Disabled Chip" 
+        [disabled]="true"
+        [removable]="true"
+        styleClass="sui-chip-primary"
+      ></sui-chip>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-chip 
+  label="Disabled Chip" 
+  [disabled]="true"
+  [removable]="true"
+  styleClass="sui-chip-primary"
+&gt;&lt;/sui-chip&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Interactive Example -->
+  <div class="demo-section">
+    <h2>Interactive Example</h2>
+    <p>Customize the chip with different options</p>
+    
+    <div class="interactive-controls">
+      <div class="control-group">
+        <label>Label:</label>
+        <input 
+          type="text" 
+          [(ngModel)]="chipLabel" 
+          placeholder="Enter label"
+          class="demo-input"
+        />
+      </div>
+
+      <div class="control-group">
+        <label>Color:</label>
+        <div class="radio-group">
+          <label *ngFor="let option of colorOptions" class="radio-label">
+            <input 
+              type="radio" 
+              name="color" 
+              [value]="option.value"
+              [(ngModel)]="currentColor"
+            />
+            {{ option.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Size:</label>
+        <div class="radio-group">
+          <label *ngFor="let option of sizeOptions" class="radio-label">
+            <input 
+              type="radio" 
+              name="size" 
+              [value]="option.value"
+              [(ngModel)]="currentSize"
+            />
+            {{ option.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Icon:</label>
+        <div class="radio-group">
+          <label *ngFor="let option of iconOptions" class="radio-label">
+            <input 
+              type="radio" 
+              name="icon" 
+              [value]="option.value"
+              [(ngModel)]="currentIcon"
+            />
+            {{ option.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Image URL:</label>
+        <input 
+          type="text" 
+          [(ngModel)]="currentImage" 
+          placeholder="Enter image URL"
+          class="demo-input"
+        />
+      </div>
+
+      <div class="control-group">
+        <label class="checkbox-label">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="showRemoveButton"
+          />
+          Removable
+        </label>
+      </div>
+
+      <div class="control-group">
+        <label class="checkbox-label">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="isDisabled"
+          />
+          Disabled
+        </label>
+      </div>
+    </div>
+
+    <div class="demo-content">
+      <h3>Result:</h3>
+      <sui-chip 
+        [label]="chipLabel"
+        [icon]="currentIcon"
+        [image]="currentImage"
+        [removable]="showRemoveButton"
+        [disabled]="isDisabled"
+        [styleClass]="getChipClass()"
+        (onRemove)="handleRemove()"
+      ></sui-chip>
+    </div>
+
+    <div class="code-block">
+      <h3>Generated Code:</h3>
+      <pre><code>{{ getCodeExample() }}</code></pre>
+    </div>
+  </div>
+
+  <!-- API Reference -->
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>label</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Text label for the chip</td>
+          </tr>
+          <tr>
+            <td><code>icon</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Icon character or emoji to display</td>
+          </tr>
+          <tr>
+            <td><code>image</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>URL of the image to display (takes precedence over icon)</td>
+          </tr>
+          <tr>
+            <td><code>removable</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether to show a remove button</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Whether the chip is disabled</td>
+          </tr>
+          <tr>
+            <td><code>style</code></td>
+            <td>any</td>
+            <td>&#123;&#125;</td>
+            <td>Inline styles to apply to the chip</td>
+          </tr>
+          <tr>
+            <td><code>styleClass</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Additional CSS class(es) to apply</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Events (Outputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>onRemove</code></td>
+            <td>void</td>
+            <td>Emitted when the remove button is clicked</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>CSS Classes</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>sui-chip</code></td>
+            <td>Base chip class</td>
+          </tr>
+          <tr>
+            <td><code>sui-chip-primary</code></td>
+            <td>Primary color variant</td>
+          </tr>
+          <tr>
+            <td><code>sui-chip-success</code></td>
+            <td>Success color variant</td>
+          </tr>
+          <tr>
+            <td><code>sui-chip-warning</code></td>
+            <td>Warning color variant</td>
+          </tr>
+          <tr>
+            <td><code>sui-chip-danger</code></td>
+            <td>Danger color variant</td>
+          </tr>
+          <tr>
+            <td><code>sui-chip-small</code></td>
+            <td>Small size variant</td>
+          </tr>
+          <tr>
+            <td><code>sui-chip-large</code></td>
+            <td>Large size variant</td>
+          </tr>
+          <tr>
+            <td><code>sui-chip-disabled</code></td>
+            <td>Disabled state</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-toggle-button',
+  standalone: true,
   imports: [FormsModule, NgFor, NgIf],
   templateUrl: './toggle-button.html',
   styleUrl: './toggle-button.scss',

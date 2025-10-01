@@ -16,6 +16,27 @@ import { SuEditorDemo } from './components/foundation/su-editor-demo/su-editor-d
 import { SuAccordionDemo } from './components/foundation/su-accordion-demo/su-accordion-demo';
 import { SuAvatarDemo } from './components/foundation/su-avatar-demo/su-avatar-demo';
 import { SuBadgeDemo } from './components/foundation/su-badge-demo/su-badge-demo';
+import { SuBreadcrumbDemo } from './components/foundation/su-breadcrumb-demo/su-breadcrumb-demo';
+import { SuCardDemo } from './components/foundation/su-card-demo/su-card-demo';
+import { SuTabsDemo } from './components/foundation/su-tabs-demo/su-tabs-demo';
+import { SuAutoCompleteDemo } from './components/foundation/su-auto-complete-demo/su-auto-complete-demo';
+import { SuPasswordDemo } from './components/foundation/su-password-demo/su-password-demo';
+import { SuTextareaDemo } from './components/foundation/su-textarea-demo/su-textarea-demo';
+import { SuAutoFocusDemo } from './components/foundation/su-auto-focus-demo/su-auto-focus-demo';
+import { SuCascadeSelectDemo } from './components/foundation/su-cascade-select-demo/su-cascade-select-demo';
+import { SuChipDemo } from './components/foundation/su-chip-demo/su-chip-demo';
+import { SuFloatLabelDemo } from './components/foundation/su-float-label-demo/su-float-label-demo';
+import { SuIconFieldDemo } from './components/foundation/su-icon-field-demo/su-icon-field-demo';
+import { SuIftLabelDemo } from './components/foundation/su-ift-label-demo/su-ift-label-demo';
+import { SuIftaLabelDemo } from './components/foundation/su-ifta-label-demo/su-ifta-label-demo';
+import { SuInputGroupDemo } from './components/foundation/su-input-group-demo/su-input-group-demo';
+import { SuInputMaskDemo } from './components/foundation/su-input-mask-demo/su-input-mask-demo';
+import { SuInputNumberDemo } from './components/foundation/su-input-number-demo/su-input-number-demo';
+import { SuInputOtpDemo } from './components/foundation/su-input-otp-demo/su-input-otp-demo';
+import { SuKeyFilterDemo } from './components/foundation/su-key-filter-demo/su-key-filter-demo';
+import { SuListboxDemo } from './components/foundation/su-listbox-demo/su-listbox-demo';
+import { SuToggleButtonDemo } from './components/foundation/su-toggle-button-demo/su-toggle-button-demo';
+import { SuTreeSelectDemo } from './components/foundation/su-tree-select-demo/su-tree-select-demo';
 
 export const routes: Routes = [
   {
@@ -90,5 +111,89 @@ export const routes: Routes = [
   {
     path: 'components/badge',
     component: SuBadgeDemo
+  },
+  {
+    path: 'components/breadcrumb',
+    component: SuBreadcrumbDemo
+  },
+  {
+    path: 'components/card',
+    component: SuCardDemo
+  },
+  {
+    path: 'components/tabs',
+    component: SuTabsDemo
+  },
+  {
+    path: 'components/auto-complete',
+    component: SuAutoCompleteDemo
+  },
+  {
+    path: 'components/password',
+    component: SuPasswordDemo
+  },
+  {
+    path: 'components/textarea',
+    component: SuTextareaDemo
+  },
+  {
+    path: 'components/auto-focus',
+    component: SuAutoFocusDemo
+  },
+  {
+    path: 'components/cascade-select',
+    component: SuCascadeSelectDemo
+  },
+  {
+    path: 'components/chip',
+    component: SuChipDemo
+  },
+  {
+    path: 'components/float-label',
+    component: SuFloatLabelDemo
+  },
+  {
+    path: 'components/icon-field',
+    component: SuIconFieldDemo
+  },
+  {
+    path: 'components/ift-label',
+    component: SuIftLabelDemo
+  },
+  {
+    path: 'components/ifta-label',
+    component: SuIftaLabelDemo
+  },
+  {
+    path: 'components/input-group',
+    component: SuInputGroupDemo
+  },
+  {
+    path: 'components/input-mask',
+    component: SuInputMaskDemo
+  },
+  {
+    path: 'components/input-number',
+    component: SuInputNumberDemo
+  },
+  {
+    path: 'components/input-otp',
+    component: SuInputOtpDemo
+  },
+  {
+    path: 'components/key-filter',
+    component: SuKeyFilterDemo
+  },
+  {
+    path: 'components/listbox',
+    component: SuListboxDemo
+  },
+  {
+    path: 'components/toggle-button',
+    component: SuToggleButtonDemo
+  },
+  {
+    path: 'components/tree-select',
+    component: SuTreeSelectDemo
   }
 ];

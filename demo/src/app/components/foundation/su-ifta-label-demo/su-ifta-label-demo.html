@@ -1,0 +1,188 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>IFTA Label Component</h1>
+    <p class="demo-description">
+      IFTA (If-True-False-Alt) Label displays conditional labels with an additional alternative state.
+      Perfect for three-state scenarios like Approved/Pending/Rejected.
+    </p>
+  </div>
+
+  <div class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Conditional label with alternative state</p>
+    <div class="demo-content">
+      <sui-ifta-label [condition]="true" trueLabel="Approved" falseLabel="Rejected" altLabel="Pending"></sui-ifta-label>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-ifta-label [condition]="true" trueLabel="Approved" falseLabel="Rejected" altLabel="Pending"&gt;&lt;/sui-ifta-label&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Three States</h2>
+    <p>Toggle between states to see true/false/alt labels</p>
+    <div class="demo-content">
+      <div class="examples-grid">
+        <div>
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="isActive" />
+            Toggle Active
+          </label>
+          <sui-ifta-label [condition]="isActive" trueLabel="Active" falseLabel="Inactive" altLabel="Suspended"></sui-ifta-label>
+        </div>
+        <div>
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="hasPermission" />
+            Toggle Permission
+          </label>
+          <sui-ifta-label [condition]="hasPermission" trueLabel="Granted" falseLabel="Denied" altLabel="Pending"></sui-ifta-label>
+        </div>
+        <div>
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="isVerified" />
+            Toggle Verified
+          </label>
+          <sui-ifta-label [condition]="isVerified" trueLabel="Verified" falseLabel="Unverified" altLabel="In Review"></sui-ifta-label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Variants</h2>
+    <div class="demo-content">
+      <div class="variants-grid">
+        <div>
+          <h3>Default</h3>
+          <sui-ifta-label [condition]="true" trueLabel="Success" falseLabel="Failed" altLabel="Warning"></sui-ifta-label>
+        </div>
+        <div>
+          <h3>Outlined</h3>
+          <sui-ifta-label [condition]="true" trueLabel="Success" falseLabel="Failed" altLabel="Warning" styleClass="sui-ifta-label-outlined"></sui-ifta-label>
+        </div>
+        <div>
+          <h3>Minimal</h3>
+          <sui-ifta-label [condition]="true" trueLabel="Success" falseLabel="Failed" altLabel="Warning" styleClass="sui-ifta-label-minimal"></sui-ifta-label>
+        </div>
+        <div>
+          <h3>Bold</h3>
+          <sui-ifta-label [condition]="true" trueLabel="Success" falseLabel="Failed" altLabel="Warning" styleClass="sui-ifta-label-bold"></sui-ifta-label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Interactive Example</h2>
+    <div class="interactive-controls">
+      <div class="control-group">
+        <label>Condition:</label>
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="condition" />
+          {{ condition ? 'True (shows true label)' : 'False (shows alt or false label)' }}
+        </label>
+      </div>
+      <div class="control-group">
+        <label>True Label:</label>
+        <input type="text" [(ngModel)]="trueLabel" class="demo-input" />
+      </div>
+      <div class="control-group">
+        <label>False Label:</label>
+        <input type="text" [(ngModel)]="falseLabel" class="demo-input" />
+      </div>
+      <div class="control-group">
+        <label>Alt Label:</label>
+        <input type="text" [(ngModel)]="altLabel" class="demo-input" />
+      </div>
+      <div class="control-group">
+        <label>Variant:</label>
+        <div class="radio-group">
+          <label *ngFor="let v of variants" class="radio-label">
+            <input type="radio" name="variant" [value]="v.value" [(ngModel)]="variant" />
+            {{ v.label }}
+          </label>
+        </div>
+      </div>
+      <div class="control-group">
+        <label>Size:</label>
+        <div class="radio-group">
+          <label *ngFor="let s of sizes" class="radio-label">
+            <input type="radio" name="size" [value]="s.value" [(ngModel)]="size" />
+            {{ s.label }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-content">
+      <h3>Result:</h3>
+      <sui-ifta-label 
+        [condition]="condition"
+        [trueLabel]="trueLabel"
+        [falseLabel]="falseLabel"
+        [altLabel]="altLabel"
+        [styleClass]="getStyleClass()"
+      ></sui-ifta-label>
+    </div>
+
+    <div class="code-block">
+      <h3>Generated Code:</h3>
+      <pre><code>{{ getCodeExample() }}</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>condition</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Determines which label to display</td>
+          </tr>
+          <tr>
+            <td><code>trueLabel</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Label shown when condition is true</td>
+          </tr>
+          <tr>
+            <td><code>falseLabel</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Label shown when condition is false and no alt label</td>
+          </tr>
+          <tr>
+            <td><code>altLabel</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Alternative label shown when condition is false (takes precedence over falseLabel)</td>
+          </tr>
+          <tr>
+            <td><code>style</code></td>
+            <td>any</td>
+            <td>&#123;&#125;</td>
+            <td>Inline styles</td>
+          </tr>
+          <tr>
+            <td><code>styleClass</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Additional CSS classes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-breadcrumb',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './breadcrumb.html',
   styleUrl: './breadcrumb.scss',

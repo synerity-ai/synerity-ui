@@ -1,0 +1,180 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Tree Select Component</h1>
+    <p class="demo-description">
+      Tree Select displays hierarchical data in a dropdown tree structure.
+      Only leaf nodes (items without children) are selectable.
+    </p>
+  </div>
+
+  <div class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Simple hierarchical selection</p>
+    <div class="demo-content">
+      <label class="input-label">Select Location</label>
+      <sui-tree-select 
+        [options]="locations" 
+        [(ngModel)]="selectedLocation"
+        placeholder="Choose a location"
+        (change)="handleChange($event)"
+      ></sui-tree-select>
+      <p class="value-display">Selected: {{ selectedLocation || '(none)' }}</p>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-tree-select 
+  [options]="locations" 
+  [(ngModel)]="selectedLocation"
+  placeholder="Choose a location"
+&gt;&lt;/sui-tree-select&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Multiple Examples</h2>
+    <p>Different hierarchical data sets</p>
+    <div class="demo-content">
+      <div class="tree-grid">
+        <div>
+          <label class="input-label">Locations (Continents → Countries)</label>
+          <sui-tree-select 
+            [options]="locations" 
+            [(ngModel)]="selectedLocation"
+            placeholder="Select location"
+          ></sui-tree-select>
+          <p class="value-display">{{ selectedLocation || '(none)' }}</p>
+        </div>
+        
+        <div>
+          <label class="input-label">Categories (Categories → Products)</label>
+          <sui-tree-select 
+            [options]="categories" 
+            [(ngModel)]="selectedCategory"
+            placeholder="Select category"
+          ></sui-tree-select>
+          <p class="value-display">{{ selectedCategory || '(none)' }}</p>
+        </div>
+        
+        <div>
+          <label class="input-label">Departments (Dept → Teams)</label>
+          <sui-tree-select 
+            [options]="departments" 
+            [(ngModel)]="selectedDepartment"
+            placeholder="Select department"
+          ></sui-tree-select>
+          <p class="value-display">{{ selectedDepartment || '(none)' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code>// Define hierarchical data
+locations = [
+  &#123;
+    label: 'United States',
+    children: [
+      &#123; label: 'California', value: 'CA' &#125;,
+      &#123; label: 'New York', value: 'NY' &#125;
+    ]
+  &#125;,
+  &#123;
+    label: 'Europe',
+    children: [
+      &#123; label: 'United Kingdom', value: 'UK' &#125;,
+      &#123; label: 'Germany', value: 'DE' &#125;
+    ]
+  &#125;
+];
+
+&lt;sui-tree-select [options]="locations" [(ngModel)]="selected"&gt;&lt;/sui-tree-select&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Disabled State</h2>
+    <p>Non-interactive tree select</p>
+    <div class="demo-content">
+      <sui-tree-select 
+        [options]="locations" 
+        [disabled]="true"
+        placeholder="Disabled"
+      ></sui-tree-select>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-tree-select [options]="locations" [disabled]="true"&gt;&lt;/sui-tree-select&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>options</code></td>
+            <td>Array&lt;&#123; label, value?, children? &#125;&gt;</td>
+            <td>[]</td>
+            <td>Hierarchical tree data</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Disabled state</td>
+          </tr>
+          <tr>
+            <td><code>name</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Name attribute</td>
+          </tr>
+          <tr>
+            <td><code>placeholder</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Placeholder text</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Events (Outputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>change</code></td>
+            <td>unknown</td>
+            <td>Emitted when selection changes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Usage Notes</h3>
+    <div class="api-notes">
+      <ul>
+        <li><strong>Hierarchical Data:</strong> Define parent nodes with <code>children</code> array</li>
+        <li><strong>Leaf Nodes:</strong> Only leaf nodes (items without children) are selectable</li>
+        <li><strong>Parent Nodes:</strong> Parent nodes (with children) are displayed but not selectable</li>
+        <li><strong>Value Display:</strong> Shows the label of the selected leaf node</li>
+        <li><strong>Dropdown:</strong> Click trigger to open/close the tree dropdown</li>
+      </ul>
+    </div>
+  </div>
+</div>

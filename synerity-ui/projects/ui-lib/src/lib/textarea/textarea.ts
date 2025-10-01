@@ -3,6 +3,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 
 @Component({
   selector: 'sui-textarea',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './textarea.html',
   styleUrl: './textarea.scss',

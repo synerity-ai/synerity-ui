@@ -3,6 +3,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 
 @Component({
   selector: 'sui-input-number',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './input-number.html',
   styleUrl: './input-number.scss',

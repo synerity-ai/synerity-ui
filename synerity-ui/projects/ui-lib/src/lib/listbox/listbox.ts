@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sui-listbox',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './listbox.html',
   styleUrl: './listbox.scss',

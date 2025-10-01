@@ -3,6 +3,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 
 @Component({
   selector: 'sui-input-mask',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './input-mask.html',
   styleUrl: './input-mask.scss',

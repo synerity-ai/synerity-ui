@@ -1,17 +1,19 @@
 <ul
 	role="listbox"
 	tabindex="0"
-	(class.opacity-50)="disabled"
 	(keydown)="onKeyDown($event)"
-	class="border rounded divide-y max-h-64 overflow-auto"
+	class="sui-listbox"
+	[class.sui-listbox-disabled]="disabled"
 >
 	<li
 		*ngFor="let opt of options; let i = index"
 		role="option"
 		[aria-selected]="isSelected(opt)"
 		(click)="select(opt, i)"
-		[class.bg-gray-100]="isSelected(opt) || activeIndex === i"
-		class="px-3 py-2 cursor-pointer"
+		class="sui-listbox-item"
+		[class.sui-listbox-item-selected]="isSelected(opt)"
+		[class.sui-listbox-item-active]="activeIndex === i"
+		[class.sui-listbox-item-disabled]="opt.disabled"
 	>
 		{{ opt.label }}
 	</li>

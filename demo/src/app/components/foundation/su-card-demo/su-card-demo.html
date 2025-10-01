@@ -1,0 +1,339 @@
+<div class="demo-container">
+  <header>
+    <h1>Card Component Demo</h1>
+    <p>Cards are flexible containers for grouping related content and actions. They provide a clean way to display information with optional headers, content, and footers.</p>
+  </header>
+
+  <div class="demo-section">
+    <h2>Basic Card</h2>
+    <p>Simple card with default styling and basic content</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default Card</h4>
+        <div class="demo-content">
+          <sui-card header="Card Title" subheader="This is a subtitle">
+            This is the main content of the card. It can contain any HTML elements, text, images, forms, or other components.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card header="Card Title" subheader="This is a subtitle"&gt;
+  This is the main content of the card...
+&lt;/sui-card&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Card Variants</h2>
+    <p>Different visual styles and appearances</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default</h4>
+        <div class="demo-content">
+          <sui-card variant="default" header="Default Card">
+            Clean and minimal design with subtle borders.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card variant="default" header="Default Card"&gt;
+  Clean and minimal design...
+&lt;/sui-card&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Outlined</h4>
+        <div class="demo-content">
+          <sui-card variant="outlined" header="Outlined Card">
+            Card with prominent border styling.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card variant="outlined" header="Outlined Card"&gt;
+  Card with prominent border...
+&lt;/sui-card&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Elevated</h4>
+        <div class="demo-content">
+          <sui-card variant="elevated" header="Elevated Card">
+            Card with shadow elevation for depth.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card variant="elevated" header="Elevated Card"&gt;
+  Card with shadow elevation...
+&lt;/sui-card&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Filled</h4>
+        <div class="demo-content">
+          <sui-card variant="filled" header="Filled Card">
+            Card with background fill color.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card variant="filled" header="Filled Card"&gt;
+  Card with background fill...
+&lt;/sui-card&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Card Sizes</h2>
+    <p>Different size options for various use cases</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Small</h4>
+        <div class="demo-content">
+          <sui-card size="sm" header="Small Card">
+            Compact card for dense layouts.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card size="sm" header="Small Card"&gt;
+  Compact card for dense layouts.
+&lt;/sui-card&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Medium</h4>
+        <div class="demo-content">
+          <sui-card size="md" header="Medium Card">
+            Standard size card for most use cases.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card size="md" header="Medium Card"&gt;
+  Standard size card for most use cases.
+&lt;/sui-card&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Large</h4>
+        <div class="demo-content">
+          <sui-card size="lg" header="Large Card">
+            Spacious card for detailed content.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card size="lg" header="Large Card"&gt;
+  Spacious card for detailed content.
+&lt;/sui-card&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Interactive Features</h2>
+    <p>Cards with interactive behaviors and states</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Clickable Card</h4>
+        <div class="demo-content">
+          <sui-card header="Clickable Card" [clickable]="true" (click)="onCardClick($event)">
+            Click anywhere on this card to trigger an action.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card header="Clickable Card" [clickable]="true" (click)="onCardClick($event)"&gt;
+  Click anywhere on this card...
+&lt;/sui-card&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Hoverable Card</h4>
+        <div class="demo-content">
+          <sui-card header="Hoverable Card" [hoverable]="true">
+            Hover over this card to see the effect.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card header="Hoverable Card" [hoverable]="true"&gt;
+  Hover over this card to see the effect.
+&lt;/sui-card&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Loading Card</h4>
+        <div class="demo-content">
+          <sui-card header="Loading Card" [loading]="true">
+            This card shows a loading state.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card header="Loading Card" [loading]="true"&gt;
+  This card shows a loading state.
+&lt;/sui-card&gt;
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Disabled Card</h4>
+        <div class="demo-content">
+          <sui-card header="Disabled Card" [disabled]="true">
+            This card is disabled and non-interactive.
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card header="Disabled Card" [disabled]="true"&gt;
+  This card is disabled and non-interactive.
+&lt;/sui-card&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Card with Footer</h2>
+    <p>Cards with footer sections for actions or additional information</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Card with Footer</h4>
+        <div class="demo-content">
+          <sui-card header="Product Card" subheader="Premium Quality" [showFooter]="true">
+            This is a high-quality product with excellent features and great value for money.
+            <div slot="footer">
+              <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add to Cart</button>
+              <button class="ml-2 border border-gray-300 px-4 py-2 rounded hover:bg-gray-50">View Details</button>
+            </div>
+          </sui-card>
+        </div>
+        <div class="code-block">
+&lt;sui-card header="Product Card" subheader="Premium Quality" [showFooter]="true"&gt;
+  This is a high-quality product...
+  &lt;div slot="footer"&gt;
+    &lt;button class="bg-blue-500..."&gt;Add to Cart&lt;/button&gt;
+    &lt;button class="ml-2..."&gt;View Details&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/sui-card&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Interactive Examples</h2>
+    <p>Live examples with dynamic configurations</p>
+    
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Dynamic Card Configuration</h4>
+        <div class="demo-content">
+          <sui-card 
+            [header]="sampleHeader" 
+            [subheader]="sampleSubheader"
+            [variant]="currentVariant"
+            [size]="currentSize"
+            [clickable]="currentClickable"
+            [disabled]="currentDisabled"
+            [hoverable]="currentHoverable"
+            [borderless]="currentBorderless"
+            [loading]="currentLoading"
+            [showHeader]="currentShowHeader"
+            [showFooter]="currentShowFooter"
+            (click)="onCardClick($event)">
+            {{ sampleContent }}
+            <div *ngIf="currentShowFooter" slot="footer">
+              <button class="bg-blue-500 text-white px-3 py-1 rounded text-sm">Action</button>
+            </div>
+          </sui-card>
+        </div>
+        
+        <div class="controls-section">
+          <h5>Variant:</h5>
+          <div class="radio-group">
+            <div class="radio-item" *ngFor="let variant of variants">
+              <input type="radio" [id]="'variant-' + variant.value" name="variant" [value]="variant.value" [(ngModel)]="currentVariant">
+              <label [for]="'variant-' + variant.value">{{ variant.label }}</label>
+            </div>
+          </div>
+
+          <h5>Size:</h5>
+          <div class="radio-group">
+            <div class="radio-item" *ngFor="let size of sizes">
+              <input type="radio" [id]="'size-' + size.value" name="size" [value]="size.value" [(ngModel)]="currentSize">
+              <label [for]="'size-' + size.value">{{ size.label }}</label>
+            </div>
+          </div>
+
+          <h5>Features:</h5>
+          <div class="checkbox-group">
+            <label><input type="checkbox" [(ngModel)]="currentClickable"> Clickable</label>
+            <label><input type="checkbox" [(ngModel)]="currentHoverable"> Hoverable</label>
+            <label><input type="checkbox" [(ngModel)]="currentDisabled"> Disabled</label>
+            <label><input type="checkbox" [(ngModel)]="currentBorderless"> Borderless</label>
+            <label><input type="checkbox" [(ngModel)]="currentLoading"> Loading</label>
+            <label><input type="checkbox" [(ngModel)]="currentShowHeader"> Show Header</label>
+            <label><input type="checkbox" [(ngModel)]="currentShowFooter"> Show Footer</label>
+          </div>
+
+          <button (click)="resetToDefaults()" class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+            Reset to Defaults
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>API Reference</h2>
+    <div class="component-card">
+      <h4>Properties</h4>
+      <div class="code-block">
+@Input() variant: 'default' | 'outlined' | 'elevated' | 'filled' = 'default';  // Visual style variant
+@Input() size: 'sm' | 'md' | 'lg' = 'md';  // Card size
+@Input() clickable: boolean = false;  // Make card clickable
+@Input() disabled: boolean = false;  // Disable card interactions
+@Input() header: string = '';  // Card header text
+@Input() subheader: string = '';  // Card subheader text
+@Input() showHeader: boolean = true;  // Show/hide header section
+@Input() showFooter: boolean = false;  // Show/hide footer section
+@Input() loading: boolean = false;  // Show loading state
+@Input() hoverable: boolean = false;  // Enable hover effects
+@Input() borderless: boolean = false;  // Remove card borders
+@Output() click: EventEmitter&lt;MouseEvent&gt;;  // Card click event
+@Output() headerClick: EventEmitter&lt;MouseEvent&gt;;  // Header click event
+      </div>
+      
+      <h4>Methods</h4>
+      <div class="code-block">
+onCardClick(event: MouseEvent): void;  // Handle card clicks
+onHeaderClick(event: MouseEvent): void;  // Handle header clicks
+      </div>
+
+      <h4>CSS Classes</h4>
+      <div class="code-block">
+.sui-card              // Base card class
+.sui-card-sm           // Small size
+.sui-card-md           // Medium size
+.sui-card-lg           // Large size
+.sui-card-default      // Default variant
+.sui-card-outlined     // Outlined variant
+.sui-card-elevated     // Elevated variant
+.sui-card-filled       // Filled variant
+.sui-card-clickable    // Applied when clickable
+.sui-card-hoverable    // Applied when hoverable
+.sui-card-disabled     // Applied when disabled
+.sui-card-borderless   // Applied when borderless
+      </div>
+    </div>
+  </div>
+</div>

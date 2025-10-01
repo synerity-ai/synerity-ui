@@ -187,6 +187,49 @@
 }
 ```
 
+## **⚠️ CRITICAL: Avoid Infinite Change Detection Loops**
+
+### **Angular Template Best Practices:**
+
+**❌ NEVER use methods that return new objects/arrays in templates:**
+```typescript
+// ❌ BAD - Creates new array on every change detection cycle
+getVariants() {
+  return [
+    { value: 'default', label: 'Default' },
+    { value: 'primary', label: 'Primary' }
+  ];
+}
+```
+
+```html
+<!-- ❌ BAD - Causes infinite loop and app freezing -->
+<div *ngFor="let variant of getVariants()">
+```
+
+**✅ ALWAYS use properties for static data:**
+```typescript
+// ✅ GOOD - Array created once as a property
+variants = [
+  { value: 'default', label: 'Default' },
+  { value: 'primary', label: 'Primary' }
+];
+```
+
+```html
+<!-- ✅ GOOD - Uses stable reference -->
+<div *ngFor="let variant of variants">
+```
+
+### **Why This Matters:**
+- Methods that return new object/array references trigger infinite change detection
+- Each change detection cycle calls the method again, creating a new reference
+- Angular sees it as a "change" and runs change detection again
+- This causes the app to freeze and become unresponsive
+- **ALWAYS define static options as class properties, NOT as methods**
+
+---
+
 ## **Component-Specific Requirements**
 
 ### **For Form Components:**

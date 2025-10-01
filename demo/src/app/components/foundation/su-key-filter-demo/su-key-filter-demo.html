@@ -1,0 +1,132 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Key Filter Component</h1>
+    <p class="demo-description">
+      Key Filter restricts keyboard input based on patterns. Prevents unwanted characters in real-time.
+    </p>
+  </div>
+
+  <div class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Integer only input</p>
+    <div class="demo-content">
+      <label class="input-label">Integers Only (0-9)</label>
+      <sui-key-filter pattern="int" [(ngModel)]="intValue" placeholder="Type only numbers..."></sui-key-filter>
+      <p class="value-display">Value: {{ intValue || '(empty)' }}</p>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-key-filter pattern="int" [(ngModel)]="intValue"&gt;&lt;/sui-key-filter&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Preset Patterns</h2>
+    <p>Common filtering patterns</p>
+    <div class="demo-content">
+      <div class="form-grid">
+        <div>
+          <label class="input-label">Integer (int)</label>
+          <sui-key-filter pattern="int" [(ngModel)]="intValue" placeholder="0-9 only"></sui-key-filter>
+          <p class="hint">Allows: 0-9</p>
+        </div>
+        <div>
+          <label class="input-label">Number (num)</label>
+          <sui-key-filter pattern="num" [(ngModel)]="numValue" placeholder="Numbers with decimals"></sui-key-filter>
+          <p class="hint">Allows: 0-9, ., -, +</p>
+        </div>
+        <div>
+          <label class="input-label">Alphabetic (alpha)</label>
+          <sui-key-filter pattern="alpha" [(ngModel)]="alphaValue" placeholder="Letters only"></sui-key-filter>
+          <p class="hint">Allows: A-Z, a-z</p>
+        </div>
+        <div>
+          <label class="input-label">Alphanumeric (alphanum)</label>
+          <sui-key-filter pattern="alphanum" [(ngModel)]="alphanumValue" placeholder="Letters and numbers"></sui-key-filter>
+          <p class="hint">Allows: A-Z, a-z, 0-9</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Custom Regex Pattern</h2>
+    <p>Define your own validation pattern</p>
+    <div class="demo-content">
+      <label class="input-label">Hexadecimal (Custom: [0-9A-Fa-f])</label>
+      <sui-key-filter pattern="[0-9A-Fa-f]" [(ngModel)]="customValue" placeholder="Enter hex digits"></sui-key-filter>
+      <p class="value-display">Value: {{ customValue || '(empty)' }}</p>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-key-filter pattern="[0-9A-Fa-f]" [(ngModel)]="customValue"&gt;&lt;/sui-key-filter&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Interactive Example</h2>
+    <div class="interactive-controls">
+      <div class="control-group">
+        <label>Select Pattern:</label>
+        <div class="patterns-list">
+          <label *ngFor="let p of patterns" class="pattern-option">
+            <input type="radio" name="pattern" [value]="p.value" [(ngModel)]="selectedPattern" />
+            <div class="pattern-info">
+              <strong>{{ p.label }}</strong>
+              <span>{{ p.desc }}</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="control-group" *ngIf="selectedPattern === 'custom'">
+        <label>Custom Regex Pattern:</label>
+        <input type="text" [(ngModel)]="customPattern" placeholder="e.g., [0-9A-F]" class="demo-input" />
+      </div>
+    </div>
+
+    <div class="demo-content">
+      <h3>Result:</h3>
+      <sui-key-filter 
+        [pattern]="getActivePattern()"
+        [(ngModel)]="filterValue"
+        placeholder="Type here..."
+      ></sui-key-filter>
+      <p class="value-display">Current Value: {{ filterValue || '(empty)' }}</p>
+    </div>
+
+    <div class="code-block">
+      <h3>Generated Code:</h3>
+      <pre><code>{{ getCodeExample() }}</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>pattern</code></td>
+            <td>'int' | 'num' | 'alpha' | 'alphanum' | string</td>
+            <td>'alphanum'</td>
+            <td>Filter pattern (preset or custom regex)</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Disabled state</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

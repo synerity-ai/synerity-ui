@@ -1,0 +1,105 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Listbox Component</h1>
+    <p class="demo-description">
+      Listbox provides a scrollable list of selectable options with keyboard navigation support.
+    </p>
+  </div>
+
+  <div class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Simple listbox selection</p>
+    <div class="demo-content">
+      <sui-listbox [options]="cities" [(ngModel)]="selectedCity" (change)="handleChange($event)"></sui-listbox>
+      <p class="value-display">Selected: {{ selectedCity || '(none)' }}</p>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-listbox [options]="cities" [(ngModel)]="selectedCity"&gt;&lt;/sui-listbox&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Multiple Examples</h2>
+    <p>Different option sets</p>
+    <div class="demo-content">
+      <div class="listbox-grid">
+        <div>
+          <h3>Cities (10 items)</h3>
+          <sui-listbox [options]="cities" [(ngModel)]="selectedCity"></sui-listbox>
+        </div>
+        <div>
+          <h3>Countries (6 items)</h3>
+          <sui-listbox [options]="countries" [(ngModel)]="selectedCountry"></sui-listbox>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>With Disabled Options</h2>
+    <p>Some options can be disabled</p>
+    <div class="demo-content">
+      <sui-listbox [options]="colors" [(ngModel)]="selectedColor"></sui-listbox>
+      <p class="value-display">Selected Color: {{ selectedColor || '(none)' }}</p>
+      <p class="hint">Note: Green is disabled</p>
+    </div>
+  </div>
+
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>options</code></td>
+            <td>Array&lt;&#123; label, value, disabled? &#125;&gt;</td>
+            <td>[]</td>
+            <td>List of selectable options</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Disable entire listbox</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Events (Outputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>change</code></td>
+            <td>unknown</td>
+            <td>Emitted when selection changes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Keyboard Navigation</h3>
+    <div class="api-notes">
+      <ul>
+        <li><strong>Arrow Up/Down:</strong> Navigate through options</li>
+        <li><strong>Enter:</strong> Select highlighted option</li>
+        <li><strong>Focus:</strong> Click or tab to focus listbox</li>
+      </ul>
+    </div>
+  </div>
+</div>
