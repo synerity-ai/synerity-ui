@@ -1,21 +1,21 @@
 <div 
   #scrollElement
-  class="w-full border border-gray-200 rounded-lg shadow-sm overflow-auto bg-white"
-  [class]="orientation === 'horizontal' ? 'flex' : 'block'"
+  class="sui-virtual-scroller"
+  [class.sui-virtual-scroller-horizontal]="orientation === 'horizontal'"
   [style.height]="scrollHeight"
   [style.width]="scrollWidth"
   (scroll)="onScrollEvent($event)"
 >
   <div 
-    class="relative"
-    [class]="orientation === 'horizontal' ? 'flex' : 'block'"
+    class="sui-virtual-scroller-content"
+    [class.sui-virtual-scroller-content-horizontal]="orientation === 'horizontal'"
     [style.height]="getTotalHeight()"
     [style.width]="getTotalWidth()"
   >
     <div 
       *ngFor="let item of visibleItems; let i = index"
-      class="border-b border-gray-100 last:border-b-0 transition-colors duration-150 hover:bg-gray-50"
-      [class.flex-shrink-0]="orientation === 'horizontal'"
+      class="sui-virtual-scroller-item"
+      [class.sui-virtual-scroller-item-horizontal]="orientation === 'horizontal'"
       [style]="getItemStyle(i)"
     >
       <ng-content></ng-content>

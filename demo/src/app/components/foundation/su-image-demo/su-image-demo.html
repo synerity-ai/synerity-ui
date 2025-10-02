@@ -1,0 +1,249 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1 class="demo-title">Image Component</h1>
+    <p class="demo-description">
+      An image component that provides enhanced image display with preview, zoom, loading states, and various styling options.
+      Perfect for galleries, portfolios, and any application requiring image display with interactive features.
+    </p>
+  </div>
+
+  <!-- Basic Usage Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Basic Usage</h2>
+    <p class="demo-section-description">
+      Simple image display with various styling options and interactive features.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Image Gallery</h3>
+          <div class="demo-area">
+            <div class="image-gallery">
+              <div class="image-grid">
+                <div class="image-item" *ngFor="let image of getSampleImages()">
+                  <div class="sui-image rounded shadow" sui-image-zoom="true" sui-preview="true">
+                    <img [src]="image.src" [alt]="image.alt" class="rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-200" />
+                  </div>
+                  <div class="image-caption">
+                    <h4 class="font-medium text-gray-800">{{ image.alt }}</h4>
+                    <p class="text-sm text-gray-600">{{ image.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Styling Variants Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Styling Variants</h2>
+    <p class="demo-section-description">
+      Different image styles and aspect ratios for various use cases.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Image Variants</h3>
+          <div class="demo-area">
+            <div class="variant-grid">
+              <div class="variant-item">
+                <h4 class="variant-label">Default</h4>
+                <div class="sui-image">
+                  <img [src]="getSelectedImage().src" [alt]="getSelectedImage().alt" class="w-32 h-32 object-cover" />
+                </div>
+              </div>
+              <div class="variant-item">
+                <h4 class="variant-label">Rounded</h4>
+                <div class="sui-image rounded">
+                  <img [src]="getSelectedImage().src" [alt]="getSelectedImage().alt" class="w-32 h-32 object-cover rounded-lg" />
+                </div>
+              </div>
+              <div class="variant-item">
+                <h4 class="variant-label">Circle</h4>
+                <div class="sui-image circle">
+                  <img [src]="getSelectedImage().src" [alt]="getSelectedImage().alt" class="w-32 h-32 object-cover rounded-full" />
+                </div>
+              </div>
+              <div class="variant-item">
+                <h4 class="variant-label">With Shadow</h4>
+                <div class="sui-image shadow">
+                  <img [src]="getSelectedImage().src" [alt]="getSelectedImage().alt" class="w-32 h-32 object-cover shadow-lg" />
+                </div>
+              </div>
+              <div class="variant-item">
+                <h4 class="variant-label">With Border</h4>
+                <div class="sui-image border">
+                  <img [src]="getSelectedImage().src" [alt]="getSelectedImage().alt" class="w-32 h-32 object-cover border-2 border-gray-300" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Controls Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Interactive Controls</h2>
+    <p class="demo-section-description">
+      Customize the image appearance and behavior with these controls.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Image Configuration</h3>
+          <div class="controls-grid">
+            <div class="control-group">
+              <label class="control-label">Sample Image:</label>
+              <div class="radio-group">
+                <label *ngFor="let image of getSampleImages()" class="radio-item">
+                  <input type="radio" 
+                         [value]="image.src" 
+                         [checked]="selectedImage.src === image.src"
+                         (change)="selectImage(image)"
+                         name="image">
+                  <span class="radio-label">{{ image.alt }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Variant:</label>
+              <div class="radio-group">
+                <label *ngFor="let variant of variants" class="radio-item">
+                  <input type="radio" 
+                         [value]="variant.value" 
+                         [(ngModel)]="selectedVariant"
+                         name="variant">
+                  <span class="radio-label">{{ variant.label }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Aspect Ratio:</label>
+              <div class="radio-group">
+                <label *ngFor="let ratio of aspectRatios" class="radio-item">
+                  <input type="radio" 
+                         [value]="ratio.value" 
+                         [(ngModel)]="selectedAspectRatio"
+                         name="aspectRatio">
+                  <span class="radio-label">{{ ratio.label }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Hover Effect:</label>
+              <div class="radio-group">
+                <label *ngFor="let effect of hoverEffects" class="radio-item">
+                  <input type="radio" 
+                         [value]="effect.value" 
+                         [(ngModel)]="selectedHoverEffect"
+                         name="hoverEffect">
+                  <span class="radio-label">{{ effect.label }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Options:</label>
+              <div class="checkbox-group">
+                <label class="checkbox-item">
+                  <input type="checkbox" [(ngModel)]="previewEnabled">
+                  <span class="checkbox-label">Preview Enabled</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" [(ngModel)]="zoomEnabled">
+                  <span class="checkbox-label">Zoom Enabled</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Loading:</label>
+              <div class="radio-group">
+                <label *ngFor="let option of loadingOptions" class="radio-item">
+                  <input type="radio" 
+                         [value]="option.value" 
+                         [(ngModel)]="loading"
+                         name="loading">
+                  <span class="radio-label">{{ option.label }}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Live Preview</h3>
+          <div class="demo-area">
+            <div class="image-preview-container">
+              <div [class]="getImageClass()" [style]="getImageStyle()">
+                <img 
+                  [src]="getSelectedImage().src" 
+                  [alt]="getSelectedImage().alt"
+                  [loading]="loading"
+                  class="max-w-full h-auto"
+                  (load)="onImageLoad($event)"
+                  (error)="onImageError($event)"
+                />
+              </div>
+              <div class="image-info">
+                <h4 class="font-medium text-gray-800">{{ getSelectedImage().alt }}</h4>
+                <p class="text-sm text-gray-600">{{ getSelectedImage().description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Reference Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">API Reference</h2>
+    <p class="demo-section-description">
+      Complete API documentation for the Image component.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Properties</h3>
+          <div class="code-block">
+            <p>src, alt, width, height, preview, zoom, loading, style, styleClass</p>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Events</h3>
+          <div class="code-block">
+            <p>onError, onLoad event handlers for image loading states</p>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Usage Example</h3>
+          <div class="code-block">
+            <p>Use sui-image component with preview and zoom functionality</p>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Styling Classes</h3>
+          <div class="code-block">
+            <p>Available CSS classes for variants, aspect ratios, and hover effects</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

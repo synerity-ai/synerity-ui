@@ -11,6 +11,7 @@ interface CarouselItem {
 
 @Component({
   selector: 'sui-carousel',
+  standalone: true,
   imports: [CommonModule, NgFor, NgIf],
   templateUrl: './carousel.html',
   styleUrl: './carousel.scss',

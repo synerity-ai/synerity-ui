@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-order-list',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './order-list.html',
   styleUrl: './order-list.scss',

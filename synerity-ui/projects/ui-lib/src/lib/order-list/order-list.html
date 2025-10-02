@@ -1,14 +1,14 @@
-<div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+<div class="sui-order-list">
   <!-- Header -->
-  <div *ngIf="header" class="px-4 py-3 border-b border-gray-200 bg-gray-50">
-    <h3 class="text-sm font-medium text-gray-900">{{ header }}</h3>
+  <div *ngIf="header" class="sui-order-list-header">
+    <h3>{{ header }}</h3>
   </div>
   
   <!-- Filter -->
-  <div *ngIf="filter" class="p-4 border-b border-gray-200">
-    <div class="relative">
-      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div *ngIf="filter" class="sui-order-list-filter">
+    <div class="sui-order-list-filter-container">
+      <div class="sui-order-list-filter-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
       </div>
@@ -16,41 +16,39 @@
         type="text"
         [placeholder]="filterPlaceholder"
         (input)="onFilter($event)"
-        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 text-sm"
+        class="sui-order-list-filter-input"
       />
     </div>
   </div>
   
   <!-- List Content -->
-  <div class="divide-y divide-gray-200" [style]="listStyle">
+  <div class="sui-order-list-content" [style]="listStyle">
     <div *ngFor="let item of filteredValue; let i = index" 
-         class="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors duration-150"
-         [class.bg-primary-50]="isSelected(item)">
+         class="sui-order-list-item"
+         [class.sui-order-list-item-selected]="isSelected(item)">
       
       <!-- Item Content -->
-      <div class="flex items-center flex-1 cursor-pointer" (click)="onItemSelect(item)">
-        <div class="flex items-center">
-          <input
-            type="checkbox"
-            [checked]="isSelected(item)"
-            class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded mr-3"
-            (click)="$event.stopPropagation()"
-            (change)="onItemSelect(item)"
-          />
-          <span class="text-sm font-medium text-gray-900">{{ item.label || item.name || item }}</span>
-        </div>
+      <div class="sui-order-list-item-content" (click)="onItemSelect(item)">
+        <input
+          type="checkbox"
+          [checked]="isSelected(item)"
+          class="sui-order-list-checkbox"
+          (click)="$event.stopPropagation()"
+          (change)="onItemSelect(item)"
+        />
+        <span class="sui-order-list-item-label">{{ item.label || item.name || item }}</span>
       </div>
       
       <!-- Controls -->
-      <div class="flex items-center space-x-1 ml-4">
+      <div class="sui-order-list-controls">
         <button
           type="button"
           (click)="moveUp(i)"
           [disabled]="i === 0"
-          class="p-1 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+          class="sui-order-list-btn"
           title="Move Up"
         >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
           </svg>
         </button>
@@ -58,10 +56,10 @@
           type="button"
           (click)="moveDown(i)"
           [disabled]="i === filteredValue.length - 1"
-          class="p-1 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+          class="sui-order-list-btn"
           title="Move Down"
         >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
@@ -70,13 +68,13 @@
   </div>
   
   <!-- Empty State -->
-  <div *ngIf="filteredValue.length === 0" class="flex flex-col items-center justify-center py-8 px-4 text-center">
-    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-      <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div *ngIf="filteredValue.length === 0" class="sui-order-list-empty">
+    <div class="sui-order-list-empty-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
       </svg>
     </div>
-    <p class="text-sm text-gray-500">
+    <p class="sui-order-list-empty-message">
       {{ filterValue ? 'No items match your search' : 'No items available' }}
     </p>
   </div>

@@ -1,0 +1,161 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Virtual Scroller Component</h1>
+    <p class="demo-description">
+      Virtual Scroller renders only visible items for optimal performance with large datasets (10,000+ items).
+    </p>
+  </div>
+
+  <div class="demo-section">
+    <h2>Vertical Scrolling (10,000 Items)</h2>
+    <p>Only renders visible items for performance</p>
+    <div class="demo-content">
+      <sui-virtual-scroller 
+        [value]="items" 
+        [itemSize]="60"
+        scrollHeight="400px"
+        (onScroll)="handleScroll($event)"
+        (onScrollIndexChange)="handleScrollIndexChange($event)"
+      >
+        <!-- Note: Template content goes here in actual usage -->
+      </sui-virtual-scroller>
+      <p class="performance-note">⚡ Rendering 10,000 items with virtual scrolling for optimal performance!</p>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-virtual-scroller 
+  [value]="items" 
+  [itemSize]="60"
+  scrollHeight="400px"
+&gt;
+  &lt;!-- Item template here --&gt;
+&lt;/sui-virtual-scroller&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Custom Item Size</h2>
+    <p>Different item heights</p>
+    <div class="demo-content">
+      <div class="scroller-grid">
+        <div>
+          <p class="size-label">Small Items (40px)</p>
+          <sui-virtual-scroller 
+            [value]="items.slice(0, 1000)" 
+            [itemSize]="40"
+            scrollHeight="300px"
+          ></sui-virtual-scroller>
+        </div>
+        <div>
+          <p class="size-label">Large Items (80px)</p>
+          <sui-virtual-scroller 
+            [value]="items.slice(0, 1000)" 
+            [itemSize]="80"
+            scrollHeight="300px"
+          ></sui-virtual-scroller>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>value</code></td>
+            <td>any[]</td>
+            <td>[]</td>
+            <td>Array of items to scroll</td>
+          </tr>
+          <tr>
+            <td><code>itemSize</code></td>
+            <td>number</td>
+            <td>50</td>
+            <td>Height of each item in pixels</td>
+          </tr>
+          <tr>
+            <td><code>scrollHeight</code></td>
+            <td>string</td>
+            <td>'200px'</td>
+            <td>Height of scroll viewport</td>
+          </tr>
+          <tr>
+            <td><code>scrollWidth</code></td>
+            <td>string</td>
+            <td>'100%'</td>
+            <td>Width of scroll viewport</td>
+          </tr>
+          <tr>
+            <td><code>orientation</code></td>
+            <td>'vertical' | 'horizontal'</td>
+            <td>'vertical'</td>
+            <td>Scroll direction</td>
+          </tr>
+          <tr>
+            <td><code>lazy</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Enable lazy loading</td>
+          </tr>
+          <tr>
+            <td><code>delay</code></td>
+            <td>number</td>
+            <td>0</td>
+            <td>Delay for lazy load (ms)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Events (Outputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>onScroll</code></td>
+            <td>&#123; scrollTop, scrollLeft &#125;</td>
+            <td>Emitted when user scrolls</td>
+          </tr>
+          <tr>
+            <td><code>onScrollIndexChange</code></td>
+            <td>&#123; first, last &#125;</td>
+            <td>Emitted when visible range changes</td>
+          </tr>
+          <tr>
+            <td><code>onLazyLoad</code></td>
+            <td>&#123; first, last &#125;</td>
+            <td>Emitted for lazy loading</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Performance Benefits</h3>
+    <div class="api-notes">
+      <ul>
+        <li><strong>Optimized Rendering:</strong> Only renders items visible in viewport</li>
+        <li><strong>Large Datasets:</strong> Handles 10,000+ items smoothly</li>
+        <li><strong>Memory Efficient:</strong> Minimal DOM nodes at any time</li>
+        <li><strong>Smooth Scrolling:</strong> 60fps performance with large lists</li>
+      </ul>
+    </div>
+  </div>
+</div>

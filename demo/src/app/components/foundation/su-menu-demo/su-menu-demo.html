@@ -1,0 +1,21 @@
+<div class="demo-container">
+  <header>
+    <h1>Menu Component Demo</h1>
+    <p>Menu provides a flexible dropdown menu with support for submenus, separators, icons, and various styling options.</p>
+  </header>
+
+  <div class="demo-section">
+    <h2>Basic Menu</h2>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default Menu</h4>
+        <div class="demo-content">
+          <sui-menu 
+            [model]="basicMenuItems"
+            (onItemClick)="onMenuClick($event)">
+          </sui-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

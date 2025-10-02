@@ -1,0 +1,199 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Meter Group Component</h1>
+    <p class="demo-description">
+      Meter Group displays proportional data as horizontal or vertical bars. Perfect for budget allocation, performance metrics, and data visualization.
+    </p>
+  </div>
+
+  <div class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Simple horizontal meter with default colors</p>
+    <div class="demo-content">
+      <sui-meter-group 
+        [value]="simpleData"
+        [showValue]="showValues"
+        [showLabel]="showLabels"
+      ></sui-meter-group>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-meter-group 
+  [value]="simpleData"
+  [showValue]="true"
+  [showLabel]="true"
+&gt;&lt;/sui-meter-group&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Sales Data with Colors</h2>
+    <p>Quarterly sales with custom colors and icons</p>
+    <div class="demo-content">
+      <sui-meter-group 
+        [value]="salesData"
+        [showValue]="showValues"
+        [showLabel]="showLabels"
+      ></sui-meter-group>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-meter-group 
+  [value]="salesData"
+&gt;&lt;/sui-meter-group&gt;
+
+// Data structure
+salesData = [
+  &#123; label: 'Q1', value: 25, color: '#3b82f6', icon: '📈' &#125;,
+  &#123; label: 'Q2', value: 35, color: '#10b981', icon: '📊' &#125;
+];</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Budget Allocation</h2>
+    <p>Department budget distribution</p>
+    <div class="demo-content">
+      <sui-meter-group 
+        [value]="budgetData"
+        [showValue]="showValues"
+        [showLabel]="showLabels"
+      ></sui-meter-group>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Performance Metrics</h2>
+    <p>System resource utilization</p>
+    <div class="demo-content">
+      <sui-meter-group 
+        [value]="performanceData"
+        [showValue]="showValues"
+        [showLabel]="showLabels"
+      ></sui-meter-group>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Vertical Orientation</h2>
+    <p>Monthly data in vertical layout</p>
+    <div class="demo-content">
+      <sui-meter-group 
+        [value]="verticalData"
+        orientation="vertical"
+        [showValue]="showValues"
+        [showLabel]="showLabels"
+      ></sui-meter-group>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-meter-group 
+  [value]="verticalData"
+  orientation="vertical"
+&gt;&lt;/sui-meter-group&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Interactive Controls</h2>
+    <p>Toggle display options</p>
+    <div class="demo-content">
+      <div class="controls">
+        <label class="control-item">
+          <input type="checkbox" [(ngModel)]="showValues" />
+          Show Values
+        </label>
+        <label class="control-item">
+          <input type="checkbox" [(ngModel)]="showLabels" />
+          Show Labels
+        </label>
+        <label class="control-item">
+          <select [(ngModel)]="selectedOrientation">
+            <option value="horizontal">Horizontal</option>
+            <option value="vertical">Vertical</option>
+          </select>
+        </label>
+      </div>
+      <sui-meter-group 
+        [value]="salesData"
+        [orientation]="selectedOrientation"
+        [showValue]="showValues"
+        [showLabel]="showLabels"
+      ></sui-meter-group>
+    </div>
+  </div>
+
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>value</code></td>
+            <td>MeterItem[]</td>
+            <td>[]</td>
+            <td>Array of meter items</td>
+          </tr>
+          <tr>
+            <td><code>min</code></td>
+            <td>number</td>
+            <td>0</td>
+            <td>Minimum value for calculations</td>
+          </tr>
+          <tr>
+            <td><code>max</code></td>
+            <td>number</td>
+            <td>100</td>
+            <td>Maximum value for calculations</td>
+          </tr>
+          <tr>
+            <td><code>showValue</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Display item values</td>
+          </tr>
+          <tr>
+            <td><code>showLabel</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Display item labels</td>
+          </tr>
+          <tr>
+            <td><code>orientation</code></td>
+            <td>'horizontal' | 'vertical'</td>
+            <td>'horizontal'</td>
+            <td>Meter orientation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Data Structure</h3>
+    <div class="api-notes">
+      <ul>
+        <li><strong>label:</strong> Display text for the meter item</li>
+        <li><strong>value:</strong> Numeric value (determines bar width)</li>
+        <li><strong>color:</strong> Custom color (optional, auto-generated if not provided)</li>
+        <li><strong>icon:</strong> Icon character (optional)</li>
+      </ul>
+    </div>
+
+    <h3>Features</h3>
+    <div class="api-notes">
+      <ul>
+        <li><strong>Proportional Display:</strong> Bar widths based on relative values</li>
+        <li><strong>Color Coding:</strong> Automatic or custom colors</li>
+        <li><strong>Icons:</strong> Support for emoji or character icons</li>
+        <li><strong>Responsive:</strong> Adapts to container size</li>
+        <li><strong>Interactive:</strong> Hover effects and scaling</li>
+      </ul>
+    </div>
+  </div>
+</div>

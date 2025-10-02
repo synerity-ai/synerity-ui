@@ -12,6 +12,7 @@ interface GalleriaItem {
 
 @Component({
   selector: 'sui-galleria',
+  standalone: true,
   imports: [CommonModule, NgFor, NgIf],
   templateUrl: './galleria.html',
   styleUrl: './galleria.scss',

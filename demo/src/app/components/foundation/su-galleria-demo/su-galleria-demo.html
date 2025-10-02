@@ -1,0 +1,247 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Galleria Component</h1>
+    <p class="demo-description">
+      Galleria provides a fullscreen image gallery with thumbnails, navigation, and advanced viewing options. Perfect for showcasing high-resolution images and photo collections.
+    </p>
+  </div>
+
+  <div class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Click on any image to open the fullscreen gallery</p>
+    <div class="demo-content">
+      <div class="image-grid">
+        <div 
+          *ngFor="let image of galleryImages; let i = index" 
+          class="image-thumbnail"
+          (click)="showGallery(i)"
+        >
+          <img [src]="image.thumbnailSrc || image.src" [alt]="image.alt" />
+          <div class="image-overlay">
+            <span class="image-title">{{ image.title }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <sui-galleria 
+        [value]="galleryImages"
+        [activeIndex]="currentImageIndex"
+        [visible]="galleryVisible"
+        [showThumbnails]="showThumbnails"
+        [showIndicators]="showIndicators"
+        [circular]="circular"
+        [fullScreen]="fullScreen"
+        (onImageChange)="onImageChange($event)"
+        (onShow)="onGalleryShow()"
+        (onHide)="onGalleryHide()"
+      ></sui-galleria>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-galleria 
+  [value]="galleryImages"
+  [visible]="galleryVisible"
+  [showThumbnails]="true"
+  [showIndicators]="true"
+  (onImageChange)="onImageChange($event)"
+&gt;&lt;/sui-galleria&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Product Showcase</h2>
+    <p>Gallery with product images and detailed captions</p>
+    <div class="demo-content">
+      <div class="image-grid">
+        <div 
+          *ngFor="let image of productImages; let i = index" 
+          class="image-thumbnail"
+          (click)="showGallery(i)"
+        >
+          <img [src]="image.thumbnailSrc || image.src" [alt]="image.alt" />
+          <div class="image-overlay">
+            <span class="image-title">{{ image.title }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Gallery Configuration</h2>
+    <p>Customize gallery behavior and appearance</p>
+    <div class="demo-content">
+      <div class="controls">
+        <label class="control-item">
+          <input type="checkbox" [(ngModel)]="showThumbnails" />
+          Show Thumbnails
+        </label>
+        <label class="control-item">
+          <input type="checkbox" [(ngModel)]="showIndicators" />
+          Show Indicators
+        </label>
+        <label class="control-item">
+          <input type="checkbox" [(ngModel)]="circular" />
+          Circular Navigation
+        </label>
+        <label class="control-item">
+          <input type="checkbox" [(ngModel)]="fullScreen" />
+          Full Screen Mode
+        </label>
+      </div>
+      
+      <div class="controls">
+        <label class="control-item">
+          <select [(ngModel)]="selectedGallery">
+            <option value="gallery">Nature Gallery</option>
+            <option value="products">Product Gallery</option>
+            <option value="simple">Simple Gallery</option>
+          </select>
+          Gallery Type
+        </label>
+      </div>
+      
+      <div class="image-grid">
+        <div 
+          *ngFor="let image of getSelectedImages(); let i = index" 
+          class="image-thumbnail"
+          (click)="showGallery(i)"
+        >
+          <img [src]="image.thumbnailSrc || image.src" [alt]="image.alt" />
+          <div class="image-overlay">
+            <span class="image-title">{{ image.title || image.alt }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Gallery Events</h2>
+    <p>Monitor gallery interactions and state changes</p>
+    <div class="demo-content">
+      <div class="event-log">
+        <h4>Event Log:</h4>
+        <div class="log-content">
+          <p>Gallery State: {{ galleryVisible ? 'Open' : 'Closed' }}</p>
+          <p>Current Image: {{ currentImageIndex + 1 }} of {{ getSelectedImages().length }}</p>
+          <p>Configuration: Thumbnails={{ showThumbnails ? 'On' : 'Off' }}, Indicators={{ showIndicators ? 'On' : 'Off' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>value</code></td>
+            <td>GalleriaItem[]</td>
+            <td>[]</td>
+            <td>Array of gallery items</td>
+          </tr>
+          <tr>
+            <td><code>activeIndex</code></td>
+            <td>number</td>
+            <td>0</td>
+            <td>Index of the currently active image</td>
+          </tr>
+          <tr>
+            <td><code>visible</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Gallery visibility state</td>
+          </tr>
+          <tr>
+            <td><code>showThumbnails</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Show thumbnail navigation</td>
+          </tr>
+          <tr>
+            <td><code>showIndicators</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Show dot indicators</td>
+          </tr>
+          <tr>
+            <td><code>circular</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Enable circular navigation</td>
+          </tr>
+          <tr>
+            <td><code>fullScreen</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Enable fullscreen mode</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Events (Outputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>onImageChange</code></td>
+            <td>number</td>
+            <td>Emitted when the active image changes</td>
+          </tr>
+          <tr>
+            <td><code>onShow</code></td>
+            <td>void</td>
+            <td>Emitted when gallery is shown</td>
+          </tr>
+          <tr>
+            <td><code>onHide</code></td>
+            <td>void</td>
+            <td>Emitted when gallery is hidden</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Item Data Structure</h3>
+    <div class="api-notes">
+      <ul>
+        <li><strong>src:</strong> High-resolution image URL (required)</li>
+        <li><strong>alt:</strong> Alt text for accessibility (optional)</li>
+        <li><strong>title:</strong> Image title (optional)</li>
+        <li><strong>caption:</strong> Image description (optional)</li>
+        <li><strong>thumbnailSrc:</strong> Thumbnail image URL (optional, falls back to src)</li>
+      </ul>
+    </div>
+
+    <h3>Features</h3>
+    <div class="api-notes">
+      <ul>
+        <li><strong>Fullscreen Display:</strong> Immersive viewing experience</li>
+        <li><strong>Thumbnail Navigation:</strong> Quick image selection</li>
+        <li><strong>Keyboard Navigation:</strong> Arrow keys and ESC support</li>
+        <li><strong>Touch Gestures:</strong> Swipe navigation on mobile</li>
+        <li><strong>Backdrop Blur:</strong> Modern glassmorphism effect</li>
+        <li><strong>Responsive Design:</strong> Optimized for all screen sizes</li>
+      </ul>
+    </div>
+  </div>
+</div>

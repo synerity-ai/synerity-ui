@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-table',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './table.html',
   styleUrl: './table.scss',

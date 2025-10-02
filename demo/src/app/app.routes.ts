@@ -16,9 +16,7 @@ import { SuEditorDemo } from './components/foundation/su-editor-demo/su-editor-d
 import { SuAccordionDemo } from './components/foundation/su-accordion-demo/su-accordion-demo';
 import { SuAvatarDemo } from './components/foundation/su-avatar-demo/su-avatar-demo';
 import { SuBadgeDemo } from './components/foundation/su-badge-demo/su-badge-demo';
-import { SuBreadcrumbDemo } from './components/foundation/su-breadcrumb-demo/su-breadcrumb-demo';
 import { SuCardDemo } from './components/foundation/su-card-demo/su-card-demo';
-import { SuTabsDemo } from './components/foundation/su-tabs-demo/su-tabs-demo';
 import { SuAutoCompleteDemo } from './components/foundation/su-auto-complete-demo/su-auto-complete-demo';
 import { SuPasswordDemo } from './components/foundation/su-password-demo/su-password-demo';
 import { SuTextareaDemo } from './components/foundation/su-textarea-demo/su-textarea-demo';
@@ -37,6 +35,38 @@ import { SuKeyFilterDemo } from './components/foundation/su-key-filter-demo/su-k
 import { SuListboxDemo } from './components/foundation/su-listbox-demo/su-listbox-demo';
 import { SuToggleButtonDemo } from './components/foundation/su-toggle-button-demo/su-toggle-button-demo';
 import { SuTreeSelectDemo } from './components/foundation/su-tree-select-demo/su-tree-select-demo';
+import { SuTableDemo } from './components/foundation/su-table-demo/su-table-demo';
+import { SuTreeDemo } from './components/foundation/su-tree-demo/su-tree-demo';
+import { SuDataViewDemo } from './components/foundation/su-data-view-demo/su-data-view-demo';
+import { SuPaginatorDemo } from './components/foundation/su-paginator-demo/su-paginator-demo';
+import { SuOrderListDemo } from './components/foundation/su-order-list-demo/su-order-list-demo';
+import { SuPickListDemo } from './components/foundation/su-pick-list-demo/su-pick-list-demo';
+import { SuTreeTableDemo } from './components/foundation/su-tree-table-demo/su-tree-table-demo';
+import { SuVirtualScrollerDemo } from './components/foundation/su-virtual-scroller-demo/su-virtual-scroller-demo';
+import { SuUploadDemo } from './components/foundation/su-upload-demo/su-upload-demo';
+import { SuMeterGroupDemo } from './components/foundation/su-meter-group-demo/su-meter-group-demo';
+import { SuOrgChartDemo } from './components/foundation/su-org-chart-demo/su-org-chart-demo';
+import { SuCarouselDemo } from './components/foundation/su-carousel-demo/su-carousel-demo';
+import { SuGalleriaDemo } from './components/foundation/su-galleria-demo/su-galleria-demo';
+import { SuDividerDemo } from './components/foundation/su-divider-demo/su-divider-demo';
+import { SuFieldsetDemo } from './components/foundation/su-fieldset-demo/su-fieldset-demo';
+import { SuFluidDemo } from './components/foundation/su-fluid-demo/su-fluid-demo';
+import { SuPanelDemo } from './components/foundation/su-panel-demo/su-panel-demo';
+import { SuSplitterDemo } from './components/foundation/su-splitter-demo/su-splitter-demo';
+import { SuStepperDemo } from './components/foundation/su-stepper-demo/su-stepper-demo';
+import { SuTabsDemo } from './components/foundation/su-tabs-demo/su-tabs-demo';
+import { SuTimelineDemo } from './components/foundation/su-timeline-demo/su-timeline-demo';
+import { SuToolbarDemo } from './components/foundation/su-toolbar-demo/su-toolbar-demo';
+import { SuMenuDemo } from './components/foundation/su-menu-demo/su-menu-demo';
+import { SuBreadcrumbDemo } from './components/foundation/su-breadcrumb-demo/su-breadcrumb-demo';
+import { SuContextMenuDemo } from './components/foundation/su-context-menu-demo/su-context-menu-demo';
+import { SuDockDemo } from './components/foundation/su-dock-demo/su-dock-demo';
+import { SuMenubarDemo } from './components/foundation/su-menubar-demo/su-menubar-demo';
+import { SuMegaMenuDemo } from './components/foundation/su-mega-menu-demo/su-mega-menu-demo';
+import { SuPanelMenuDemo } from './components/foundation/su-panel-menu-demo/su-panel-menu-demo';
+import { SuTieredMenuDemo } from './components/foundation/su-tiered-menu-demo/su-tiered-menu-demo';
+import { SuImageDemo } from './components/foundation/su-image-demo/su-image-demo';
+import { SuImageCompareDemo } from './components/foundation/su-image-compare-demo/su-image-compare-demo';
 
 export const routes: Routes = [
   {
@@ -111,10 +141,6 @@ export const routes: Routes = [
   {
     path: 'components/badge',
     component: SuBadgeDemo
-  },
-  {
-    path: 'components/breadcrumb',
-    component: SuBreadcrumbDemo
   },
   {
     path: 'components/card',
@@ -195,5 +221,137 @@ export const routes: Routes = [
   {
     path: 'components/tree-select',
     component: SuTreeSelectDemo
+  },
+  {
+    path: 'components/table',
+    component: SuTableDemo
+  },
+  {
+    path: 'components/tree',
+    component: SuTreeDemo
+  },
+  {
+    path: 'components/data-view',
+    component: SuDataViewDemo
+  },
+  {
+    path: 'components/paginator',
+    component: SuPaginatorDemo
+  },
+  {
+    path: 'components/order-list',
+    component: SuOrderListDemo
+  },
+  {
+    path: 'components/pick-list',
+    component: SuPickListDemo
+  },
+  {
+    path: 'components/tree-table',
+    component: SuTreeTableDemo
+  },
+  {
+    path: 'components/virtual-scroller',
+    component: SuVirtualScrollerDemo
+  },
+  {
+    path: 'components/timeline',
+    component: SuTimelineDemo
+  },
+  {
+    path: 'components/upload',
+    component: SuUploadDemo
+  },
+  {
+    path: 'components/meter-group',
+    component: SuMeterGroupDemo
+  },
+  {
+    path: 'components/org-chart',
+    component: SuOrgChartDemo
+  },
+  {
+    path: 'components/carousel',
+    component: SuCarouselDemo
+  },
+  {
+    path: 'components/galleria',
+    component: SuGalleriaDemo
+  },
+  {
+    path: 'components/divider',
+    component: SuDividerDemo
+  },
+  {
+    path: 'components/fieldset',
+    component: SuFieldsetDemo
+  },
+  {
+    path: 'components/fluid',
+    component: SuFluidDemo
+  },
+  {
+    path: 'components/panel',
+    component: SuPanelDemo
+  },
+  {
+    path: 'components/splitter',
+    component: SuSplitterDemo
+  },
+  {
+    path: 'components/stepper',
+    component: SuStepperDemo
+  },
+  {
+    path: 'components/tabs',
+    component: SuTabsDemo
+  },
+  {
+    path: 'components/timeline',
+    component: SuTimelineDemo
+  },
+  {
+    path: 'components/toolbar',
+    component: SuToolbarDemo
+  },
+  {
+    path: 'components/menu',
+    component: SuMenuDemo
+  },
+  {
+    path: 'components/breadcrumb',
+    component: SuBreadcrumbDemo
+  },
+  {
+    path: 'components/context-menu',
+    component: SuContextMenuDemo
+  },
+  {
+    path: 'components/dock',
+    component: SuDockDemo
+  },
+  {
+    path: 'components/menubar',
+    component: SuMenubarDemo
+  },
+  {
+    path: 'components/mega-menu',
+    component: SuMegaMenuDemo
+  },
+  {
+    path: 'components/panel-menu',
+    component: SuPanelMenuDemo
+  },
+  {
+    path: 'components/tiered-menu',
+    component: SuTieredMenuDemo
+  },
+  {
+    path: 'components/image',
+    component: SuImageDemo
+  },
+  {
+    path: 'components/image-compare',
+    component: SuImageCompareDemo
   }
 ];

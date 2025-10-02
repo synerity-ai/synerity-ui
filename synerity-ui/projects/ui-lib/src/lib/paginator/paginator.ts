@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-paginator',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './paginator.html',
   styleUrl: './paginator.scss',

@@ -10,6 +10,7 @@ interface MeterItem {
 
 @Component({
   selector: 'sui-meter-group',
+  standalone: true,
   imports: [CommonModule, NgFor, NgIf],
   templateUrl: './meter-group.html',
   styleUrl: './meter-group.scss',

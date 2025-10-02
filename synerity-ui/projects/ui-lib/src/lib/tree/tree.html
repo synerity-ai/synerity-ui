@@ -1,9 +1,9 @@
-<div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+<div class="sui-tree-wrapper">
   <!-- Filter -->
-  <div *ngIf="filter" class="p-4 border-b border-gray-200">
-    <div class="relative">
-      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div *ngIf="filter" class="sui-tree-filter">
+    <div class="sui-tree-filter-container">
+      <div class="sui-tree-filter-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
       </div>
@@ -11,20 +11,19 @@
         type="text"
         [placeholder]="filterPlaceholder"
         (input)="onFilter($event)"
-        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 text-sm"
+        class="sui-tree-filter-input"
       />
     </div>
   </div>
   
   <!-- Tree Container -->
-  <div class="p-4">
-    <div class="space-y-1">
-      <div *ngFor="let node of filteredValue" class="tree-node">
+  <div class="sui-tree-content">
+    <div class="sui-tree-nodes">
+      <div *ngFor="let node of filteredValue" class="sui-tree-node">
         <!-- Root Node -->
         <div 
-          class="flex items-center p-2 rounded-md cursor-pointer transition-colors duration-150 hover:bg-gray-50"
-          [class.bg-primary-50]="isNodeSelected(node)"
-          [class.border-primary-200]="isNodeSelected(node)"
+          class="sui-tree-node-item"
+          [class.sui-tree-node-selected]="isNodeSelected(node)"
           (click)="onNodeClick(node, $event)"
         >
           <!-- Toggle Button -->
@@ -32,41 +31,37 @@
             *ngIf="hasChildren(node)"
             type="button"
             (click)="toggleNode(node); $event.stopPropagation()"
-            class="flex items-center justify-center w-5 h-5 mr-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded"
+            class="sui-tree-toggle"
+            [class.sui-tree-toggle-expanded]="node.expanded"
           >
-            <svg class="w-3 h-3 transition-transform duration-200" 
-                 [class.rotate-90]="node.expanded"
-                 fill="none" 
-                 stroke="currentColor" 
-                 viewBox="0 0 24 24">
+            <svg class="sui-tree-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
           </button>
           
           <!-- Spacer for leaf nodes -->
-          <div *ngIf="!hasChildren(node)" class="w-5 h-5 mr-2"></div>
+          <div *ngIf="!hasChildren(node)" class="sui-tree-spacer"></div>
           
           <!-- Selection Checkbox -->
           <input
             *ngIf="selectionMode === 'checkbox'"
             type="checkbox"
             [checked]="isNodeSelected(node)"
-            class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded mr-2"
+            class="sui-tree-checkbox"
             (click)="$event.stopPropagation()"
             (change)="onNodeClick(node, $event)"
           />
           
           <!-- Node Label -->
-          <span class="text-sm text-gray-900 flex-1">{{ node.label }}</span>
+          <span class="sui-tree-node-label">{{ node.label }}</span>
         </div>
         
         <!-- Children -->
-        <div *ngIf="hasChildren(node) && node.expanded" class="ml-6 mt-1 space-y-1">
-          <div *ngFor="let child of node.children" class="tree-child">
+        <div *ngIf="hasChildren(node) && node.expanded" class="sui-tree-children">
+          <div *ngFor="let child of node.children" class="sui-tree-child">
             <div 
-              class="flex items-center p-2 rounded-md cursor-pointer transition-colors duration-150 hover:bg-gray-50"
-              [class.bg-primary-50]="isNodeSelected(child)"
-              [class.border-primary-200]="isNodeSelected(child)"
+              class="sui-tree-node-item"
+              [class.sui-tree-node-selected]="isNodeSelected(child)"
               (click)="onNodeClick(child, $event)"
             >
               <!-- Toggle Button -->
@@ -74,32 +69,29 @@
                 *ngIf="hasChildren(child)"
                 type="button"
                 (click)="toggleNode(child); $event.stopPropagation()"
-                class="flex items-center justify-center w-5 h-5 mr-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded"
+                class="sui-tree-toggle"
+                [class.sui-tree-toggle-expanded]="child.expanded"
               >
-                <svg class="w-3 h-3 transition-transform duration-200" 
-                     [class.rotate-90]="child.expanded"
-                     fill="none" 
-                     stroke="currentColor" 
-                     viewBox="0 0 24 24">
+                <svg class="sui-tree-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
               </button>
               
               <!-- Spacer for leaf nodes -->
-              <div *ngIf="!hasChildren(child)" class="w-5 h-5 mr-2"></div>
+              <div *ngIf="!hasChildren(child)" class="sui-tree-spacer"></div>
               
               <!-- Selection Checkbox -->
               <input
                 *ngIf="selectionMode === 'checkbox'"
                 type="checkbox"
                 [checked]="isNodeSelected(child)"
-                class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded mr-2"
+                class="sui-tree-checkbox"
                 (click)="$event.stopPropagation()"
                 (change)="onNodeClick(child, $event)"
               />
               
               <!-- Node Label -->
-              <span class="text-sm text-gray-900 flex-1">{{ child.label }}</span>
+              <span class="sui-tree-node-label">{{ child.label }}</span>
             </div>
           </div>
         </div>
@@ -107,13 +99,13 @@
     </div>
     
     <!-- Empty State -->
-    <div *ngIf="filteredValue.length === 0" class="flex flex-col items-center justify-center py-8 px-4 text-center">
-      <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div *ngIf="filteredValue.length === 0" class="sui-tree-empty">
+      <div class="sui-tree-empty-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
         </svg>
       </div>
-      <p class="text-sm text-gray-500">
+      <p class="sui-tree-empty-message">
         {{ filterValue ? 'No nodes match your search' : 'No nodes available' }}
       </p>
     </div>

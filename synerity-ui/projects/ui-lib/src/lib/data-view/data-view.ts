@@ -3,6 +3,7 @@ import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'sui-data-view',
+  standalone: true,
   imports: [NgFor, NgIf, NgTemplateOutlet],
   templateUrl: './data-view.html',
   styleUrl: './data-view.scss',

@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-upload',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './upload.html',
   styleUrl: './upload.scss',

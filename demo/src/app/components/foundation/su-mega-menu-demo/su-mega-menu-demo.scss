@@ -1,0 +1,96 @@
+.demo-container {
+  @apply p-6 max-w-7xl mx-auto;
+}
+
+.demo-header {
+  @apply mb-8;
+}
+
+.demo-title {
+  @apply text-3xl font-bold text-gray-900 mb-4;
+}
+
+.demo-description {
+  @apply text-lg text-gray-600;
+}
+
+.demo-section {
+  @apply mb-12;
+}
+
+.demo-section-title {
+  @apply text-2xl font-semibold text-gray-800 mb-3;
+}
+
+.demo-section-description {
+  @apply text-gray-600 mb-6;
+}
+
+.demo-content {
+  @apply space-y-6;
+}
+
+.component-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.component-card {
+  @apply bg-white rounded-lg border border-gray-200 p-6;
+}
+
+.component-card h3 {
+  @apply text-lg font-semibold text-gray-800 mb-4;
+}
+
+.demo-area {
+  @apply bg-gray-50 rounded-lg p-4 min-h-48 flex items-center justify-center;
+}
+
+.mega-menu-preview {
+  @apply w-full;
+}
+
+.demo-overlay {
+  @apply absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center;
+}
+
+// Demo-specific styles for mega menu preview
+.mega-menu-preview {
+  .sui-mega-menu {
+    @apply w-full;
+    
+    &-container {
+      @apply w-full;
+    }
+    
+    &-item {
+      @apply flex-1;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .demo-container {
+    @apply p-4;
+  }
+  
+  .component-grid {
+    @apply grid-cols-1;
+  }
+  
+  .mega-menu-preview {
+    .sui-mega-menu {
+      @apply text-sm;
+      
+      &-item-content {
+        @apply px-2 py-2;
+      }
+      
+      &-submenu-columns-column-item,
+      &-submenu-items-item {
+        @apply px-2 py-1;
+      }
+    }
+  }
+}

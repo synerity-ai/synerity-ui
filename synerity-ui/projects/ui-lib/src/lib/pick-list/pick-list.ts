@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-pick-list',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './pick-list.html',
   styleUrl: './pick-list.scss',

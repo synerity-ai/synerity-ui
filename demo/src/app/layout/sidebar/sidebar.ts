@@ -96,15 +96,17 @@ export class Sidebar {
         { label: 'Panel', route: '/components/panel' },
         { label: 'Splitter', route: '/components/splitter' },
         { label: 'Stepper', route: '/components/stepper' },
+        { label: 'Tabs', route: '/components/tabs' },
         { label: 'Timeline', route: '/components/timeline' },
         { label: 'Toolbar', route: '/components/toolbar' }
       ]
     },
-    { 
-      label: 'Navigation Components', 
-      icon: '🧭', 
+    {
+      label: 'Navigation Components',
+      icon: '🎪',
       isExpanded: false,
       children: [
+        { label: 'Breadcrumb', route: '/components/breadcrumb' },
         { label: 'Context Menu', route: '/components/context-menu' },
         { label: 'Dock', route: '/components/dock' },
         { label: 'Menu', route: '/components/menu' },

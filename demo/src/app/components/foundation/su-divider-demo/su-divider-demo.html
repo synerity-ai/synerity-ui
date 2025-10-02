@@ -1,0 +1,185 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h1 class="demo-title">Divider Component</h1>
+    <p class="demo-description">
+      A visual separator component that creates horizontal or vertical dividers with different styles and alignments.
+      Perfect for separating content sections and creating visual hierarchy.
+    </p>
+  </div>
+
+  <!-- Basic Usage -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Basic Usage</h2>
+    <div class="demo-content">
+      <p>This is content above the divider.</p>
+      <sui-divider></sui-divider>
+      <p>This is content below the divider.</p>
+    </div>
+    
+    <div class="code-block">
+      <pre><code>&lt;sui-divider&gt;&lt;/sui-divider&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Types -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Types</h2>
+    <div class="demo-content">
+      <p>Different divider line styles:</p>
+      
+      <p>Solid divider:</p>
+      <sui-divider type="solid"></sui-divider>
+      
+      <p>Dashed divider:</p>
+      <sui-divider type="dashed"></sui-divider>
+      
+      <p>Dotted divider:</p>
+      <sui-divider type="dotted"></sui-divider>
+    </div>
+    
+    <div class="code-block">
+      <pre><code>&lt;sui-divider type="solid"&gt;&lt;/sui-divider&gt;
+&lt;sui-divider type="dashed"&gt;&lt;/sui-divider&gt;
+&lt;sui-divider type="dotted"&gt;&lt;/sui-divider&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Layouts -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Layouts</h2>
+    <div class="demo-content">
+      <p>Horizontal divider (default):</p>
+      <sui-divider layout="horizontal"></sui-divider>
+      
+      <p>Vertical divider:</p>
+      <div style="display: flex; height: 100px; align-items: center;">
+        <span>Content left</span>
+        <sui-divider layout="vertical"></sui-divider>
+        <span>Content right</span>
+      </div>
+    </div>
+    
+    <div class="code-block">
+      <pre><code>&lt;sui-divider layout="horizontal"&gt;&lt;/sui-divider&gt;
+&lt;sui-divider layout="vertical"&gt;&lt;/sui-divider&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Alignment -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Alignment</h2>
+    <div class="demo-content">
+      <p>Left aligned:</p>
+      <sui-divider align="left"></sui-divider>
+      
+      <p>Center aligned (default):</p>
+      <sui-divider align="center"></sui-divider>
+      
+      <p>Right aligned:</p>
+      <sui-divider align="right"></sui-divider>
+    </div>
+    
+    <div class="code-block">
+      <pre><code>&lt;sui-divider align="left"&gt;&lt;/sui-divider&gt;
+&lt;sui-divider align="center"&gt;&lt;/sui-divider&gt;
+&lt;sui-divider align="right"&gt;&lt;/sui-divider&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Interactive Examples -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Interactive Examples</h2>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Custom Divider</h3>
+          <sui-divider 
+            [type]="selectedType" 
+            [layout]="selectedLayout" 
+            [align]="selectedAlign">
+          </sui-divider>
+          
+          <div class="radio-group">
+            <div>
+              <label>Type:</label>
+              <select [(ngModel)]="selectedType">
+                <option *ngFor="let type of types" [value]="type.value">
+                  {{ type.label }}
+                </option>
+              </select>
+            </div>
+            
+            <div>
+              <label>Layout:</label>
+              <select [(ngModel)]="selectedLayout">
+                <option *ngFor="let layout of layouts" [value]="layout.value">
+                  {{ layout.label }}
+                </option>
+              </select>
+            </div>
+            
+            <div>
+              <label>Alignment:</label>
+              <select [(ngModel)]="selectedAlign">
+                <option *ngFor="let align of aligns" [value]="align.value">
+                  {{ align.label }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Reference -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">API Reference</h2>
+    <div class="demo-content">
+      <div class="api-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>type</td>
+              <td>'solid' | 'dashed' | 'dotted'</td>
+              <td>'solid'</td>
+              <td>Style of the divider line</td>
+            </tr>
+            <tr>
+              <td>layout</td>
+              <td>'horizontal' | 'vertical'</td>
+              <td>'horizontal'</td>
+              <td>Orientation of the divider</td>
+            </tr>
+            <tr>
+              <td>align</td>
+              <td>'left' | 'center' | 'right'</td>
+              <td>'center'</td>
+              <td>Alignment of the divider</td>
+            </tr>
+            <tr>
+              <td>style</td>
+              <td>any</td>
+              <td>&#123;&#125;</td>
+              <td>Inline styles for the divider</td>
+            </tr>
+            <tr>
+              <td>styleClass</td>
+              <td>string</td>
+              <td>''</td>
+              <td>CSS class names for the divider</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

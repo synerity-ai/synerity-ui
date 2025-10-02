@@ -1,0 +1,357 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h1 class="demo-title">Panel Component</h1>
+    <p class="demo-description">
+      A versatile container component with optional header and toggleable content.
+      Perfect for organizing content, creating collapsible sections, and building dashboard layouts.
+    </p>
+  </div>
+
+  <!-- Basic Usage -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Basic Usage</h2>
+    <div class="demo-content">
+      <sui-panel header="Basic Panel">
+        <p>This is a basic panel with a header and content area.</p>
+        <p>You can put any content inside the panel body.</p>
+      </sui-panel>
+    </div>
+    
+    <div class="code-block">
+      <pre><code>&lt;sui-panel header="Basic Panel"&gt;
+  &lt;p&gt;This is a basic panel with a header and content area.&lt;/p&gt;
+  &lt;p&gt;You can put any content inside the panel body.&lt;/p&gt;
+&lt;/sui-panel&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Toggleable Panel -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Toggleable Panel</h2>
+    <div class="demo-content">
+      <sui-panel 
+        header="Toggleable Panel" 
+        [toggleable]="true"
+        [collapsed]="isCollapsed"
+        (onToggle)="onPanelToggle($event)">
+        <p>This panel can be collapsed and expanded by clicking the header.</p>
+        <p>The toggle functionality is controlled by the <code>toggleable</code> property.</p>
+        <p>Current state: {{ isCollapsed ? 'Collapsed' : 'Expanded' }}</p>
+      </sui-panel>
+    </div>
+    
+    <div class="code-block">
+      <pre><code>&lt;sui-panel 
+  header="Toggleable Panel" 
+  [toggleable]="true"
+  [collapsed]="isCollapsed"
+  (onToggle)="onPanelToggle($event)"&gt;
+  &lt;p&gt;Panel content here...&lt;/p&gt;
+&lt;/sui-panel&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Panel Variants -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Panel Variants</h2>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Default Panel</h3>
+          <sui-panel header="Default Style">
+            <p>Standard panel with subtle border and shadow.</p>
+          </sui-panel>
+        </div>
+        
+        <div class="component-card">
+          <h3>Outlined Panel</h3>
+          <sui-panel header="Outlined Style" styleClass="sui-panel-outlined">
+            <p>Panel with prominent border and transparent background.</p>
+          </sui-panel>
+        </div>
+        
+        <div class="component-card">
+          <h3>Filled Panel</h3>
+          <sui-panel header="Filled Style" styleClass="sui-panel-filled">
+            <p>Panel with filled background color.</p>
+          </sui-panel>
+        </div>
+        
+        <div class="component-card">
+          <h3>Floating Panel</h3>
+          <sui-panel header="Floating Style" styleClass="sui-panel-floating">
+            <p>Panel with enhanced shadow for floating effect.</p>
+          </sui-panel>
+        </div>
+        
+        <div class="component-card">
+          <h3>Flat Panel</h3>
+          <sui-panel header="Flat Style" styleClass="sui-panel-flat">
+            <p>Panel without border or shadow for minimal appearance.</p>
+          </sui-panel>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel Sizes -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Panel Sizes</h2>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Small Panel</h3>
+          <sui-panel header="Small Panel" styleClass="sui-panel-sm">
+            <p>Compact panel with reduced padding.</p>
+          </sui-panel>
+        </div>
+        
+        <div class="component-card">
+          <h3>Default Panel</h3>
+          <sui-panel header="Default Panel">
+            <p>Standard panel with normal padding.</p>
+          </sui-panel>
+        </div>
+        
+        <div class="component-card">
+          <h3>Large Panel</h3>
+          <sui-panel header="Large Panel" styleClass="sui-panel-lg">
+            <p>Spacious panel with increased padding.</p>
+          </sui-panel>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel States -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Panel States</h2>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Success Panel</h3>
+          <sui-panel header="Success Panel" styleClass="sui-panel-success">
+            <p>Panel indicating successful operation or positive status.</p>
+          </sui-panel>
+        </div>
+        
+        <div class="component-card">
+          <h3>Warning Panel</h3>
+          <sui-panel header="Warning Panel" styleClass="sui-panel-warning">
+            <p>Panel indicating caution or warning status.</p>
+          </sui-panel>
+        </div>
+        
+        <div class="component-card">
+          <h3>Error Panel</h3>
+          <sui-panel header="Error Panel" styleClass="sui-panel-error">
+            <p>Panel indicating error or critical status.</p>
+          </sui-panel>
+        </div>
+        
+        <div class="component-card">
+          <h3>Info Panel</h3>
+          <sui-panel header="Info Panel" styleClass="sui-panel-info">
+            <p>Panel indicating informational content.</p>
+          </sui-panel>
+        </div>
+        
+        <div class="component-card">
+          <h3>Disabled Panel</h3>
+          <sui-panel header="Disabled Panel" styleClass="sui-panel-disabled">
+            <p>Panel in disabled state (non-interactive).</p>
+          </sui-panel>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Examples -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Interactive Examples</h2>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Custom Panel</h3>
+          <sui-panel 
+            header="Custom Panel"
+            [toggleable]="true"
+            [collapsed]="false"
+            [styleClass]="getPanelClass()">
+            <p>This panel demonstrates custom styling combinations.</p>
+            <p>Try changing the variant and size options below.</p>
+            <p>Current state: {{ isCollapsed ? 'Collapsed' : 'Expanded' }}</p>
+          </sui-panel>
+          
+          <div class="radio-group">
+            <div>
+              <label>Variant:</label>
+              <select [(ngModel)]="selectedVariant">
+                <option *ngFor="let variant of variants" [value]="variant.value">
+                  {{ variant.label }}
+                </option>
+              </select>
+            </div>
+            
+            <div>
+              <label>Size:</label>
+              <select [(ngModel)]="selectedSize">
+                <option *ngFor="let size of sizes" [value]="size.value">
+                  {{ size.label }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Complex Content Example -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Complex Content Example</h2>
+    <div class="demo-content">
+      <sui-panel header="User Profile" [toggleable]="true">
+        <div class="profile-content">
+          <div class="profile-header">
+            <div class="avatar">👤</div>
+            <div class="user-info">
+              <h4>John Doe</h4>
+              <p>Software Developer</p>
+            </div>
+          </div>
+          
+          <div class="profile-details">
+            <div class="detail-row">
+              <strong>Email:</strong> john.doe@example.com
+            </div>
+            <div class="detail-row">
+              <strong>Phone:</strong> +1 (555) 123-4567
+            </div>
+            <div class="detail-row">
+              <strong>Location:</strong> San Francisco, CA
+            </div>
+            <div class="detail-row">
+              <strong>Department:</strong> Engineering
+            </div>
+          </div>
+          
+          <div class="profile-actions">
+            <button class="btn btn-primary">Edit Profile</button>
+            <button class="btn btn-secondary">Send Message</button>
+          </div>
+        </div>
+      </sui-panel>
+    </div>
+  </div>
+
+  <!-- Form Panel Example -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Form Panel Example</h2>
+    <div class="demo-content">
+      <sui-panel header="Contact Form" [toggleable]="true">
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" class="form-control" placeholder="Enter subject">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" class="form-control" rows="4" placeholder="Enter your message"></textarea>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Send Message</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+          </div>
+        </form>
+      </sui-panel>
+    </div>
+  </div>
+
+  <!-- API Reference -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">API Reference</h2>
+    <div class="demo-content">
+      <div class="api-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>header</td>
+              <td>string</td>
+              <td>''</td>
+              <td>Header text for the panel</td>
+            </tr>
+            <tr>
+              <td>toggleable</td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Whether the panel can be collapsed/expanded</td>
+            </tr>
+            <tr>
+              <td>collapsed</td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Initial collapsed state of the panel</td>
+            </tr>
+            <tr>
+              <td>showHeader</td>
+              <td>boolean</td>
+              <td>true</td>
+              <td>Whether to show the panel header</td>
+            </tr>
+            <tr>
+              <td>style</td>
+              <td>any</td>
+              <td>&#123;&#125;</td>
+              <td>Inline styles for the panel</td>
+            </tr>
+            <tr>
+              <td>styleClass</td>
+              <td>string</td>
+              <td>''</td>
+              <td>CSS class names for the panel</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <h4>Events</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>onToggle</td>
+              <td>EventEmitter&#60;any&#62;</td>
+              <td>Fired when the panel is toggled (if toggleable)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

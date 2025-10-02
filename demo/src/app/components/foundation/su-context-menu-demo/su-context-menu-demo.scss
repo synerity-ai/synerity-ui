@@ -1,0 +1,119 @@
+.demo-container {
+  @apply max-w-6xl mx-auto p-6;
+}
+
+.demo-header {
+  @apply mb-8;
+}
+
+.demo-title {
+  @apply text-3xl font-bold text-gray-900 mb-2;
+}
+
+.demo-description {
+  @apply text-lg text-gray-600;
+}
+
+.demo-section {
+  @apply mb-12;
+}
+
+.demo-section-title {
+  @apply text-2xl font-semibold text-gray-800 mb-3;
+}
+
+.demo-section-description {
+  @apply text-gray-600 mb-6;
+}
+
+.demo-content {
+  @apply space-y-6;
+}
+
+.component-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.component-card {
+  @apply bg-white border border-gray-200 rounded-lg p-6 shadow-sm;
+}
+
+.component-card h3 {
+  @apply text-lg font-semibold text-gray-800 mb-4;
+}
+
+.demo-area {
+  @apply border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer transition-colors duration-200;
+}
+
+.demo-area:hover {
+  @apply border-gray-400 bg-gray-50;
+}
+
+.controls-grid {
+  @apply space-y-4;
+}
+
+.control-group {
+  @apply space-y-2;
+}
+
+.control-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.radio-group {
+  @apply flex flex-wrap gap-4;
+}
+
+.radio-item {
+  @apply flex items-center space-x-2 cursor-pointer;
+}
+
+.radio-item input[type="radio"] {
+  @apply text-blue-600 focus:ring-blue-500;
+}
+
+.radio-label {
+  @apply text-sm text-gray-700;
+}
+
+.checkbox-group {
+  @apply space-y-2;
+}
+
+.checkbox-item {
+  @apply flex items-center space-x-2 cursor-pointer;
+}
+
+.checkbox-item input[type="checkbox"] {
+  @apply text-blue-600 focus:ring-blue-500 rounded;
+}
+
+.checkbox-label {
+  @apply text-sm text-gray-700;
+}
+
+.code-block {
+  @apply bg-gray-50 border border-gray-200 rounded-lg p-4 overflow-x-auto;
+}
+
+.code-block pre {
+  @apply text-sm text-gray-800 font-mono;
+}
+
+.code-block code {
+  @apply text-sm text-gray-800 font-mono;
+}
+
+.text-center {
+  @apply text-center;
+}
+
+.text-4xl {
+  @apply text-4xl;
+}
+
+.mb-2 {
+  @apply mb-2;
+}

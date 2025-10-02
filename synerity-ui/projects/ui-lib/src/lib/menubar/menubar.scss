@@ -1,1 +1,146 @@
-/* Menubar component styles - using pure Tailwind CSS classes in template */
+.sui-menubar {
+  @apply flex items-center bg-white border-b border-gray-200 shadow-sm;
+
+  // Container
+  &-container {
+    @apply flex items-center list-none m-0 p-0;
+  }
+
+  // Menu items
+  &-item {
+    @apply relative;
+
+    &-disabled {
+      @apply opacity-50 cursor-not-allowed pointer-events-none;
+    }
+
+    &-content {
+      @apply flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 cursor-pointer transition-colors duration-200;
+
+      &:hover {
+        @apply text-gray-900 bg-gray-50;
+      }
+    }
+
+    &-icon {
+      @apply text-sm;
+    }
+
+    &-label {
+      @apply whitespace-nowrap;
+    }
+
+    &-arrow {
+      @apply text-xs ml-1 transition-transform duration-200;
+
+      svg {
+        @apply w-4 h-4;
+      }
+    }
+
+    &-separator {
+      @apply border-t border-gray-200 my-1;
+    }
+  }
+
+  // Submenu
+  &-submenu {
+    @apply absolute top-full left-0 bg-white border border-gray-200 rounded-md shadow-lg z-50 min-w-48 py-1;
+
+    &-item {
+      @apply flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200;
+
+      &:hover {
+        @apply bg-gray-50 text-gray-900;
+      }
+
+      &-disabled {
+        @apply opacity-50 cursor-not-allowed pointer-events-none;
+
+        &:hover {
+          @apply bg-transparent text-gray-700;
+        }
+      }
+
+      &-icon {
+        @apply text-sm w-4 text-center;
+      }
+
+      &-label {
+        @apply flex-1;
+      }
+    }
+  }
+
+  // Variants
+  &-primary {
+    @apply bg-blue-600 border-blue-700;
+
+    .sui-menubar-item-content {
+      @apply text-white hover:text-white hover:bg-blue-700;
+    }
+
+    .sui-menubar-submenu-item {
+      @apply text-gray-700 hover:bg-gray-50 hover:text-gray-900;
+    }
+  }
+
+  &-dark {
+    @apply bg-gray-800 border-gray-700;
+
+    .sui-menubar-item-content {
+      @apply text-gray-200 hover:text-white hover:bg-gray-700;
+    }
+
+    .sui-menubar-submenu {
+      @apply bg-gray-800 border-gray-700;
+    }
+
+    .sui-menubar-submenu-item {
+      @apply text-gray-200 hover:bg-gray-700 hover:text-white;
+    }
+  }
+
+  &-compact {
+    .sui-menubar-item-content {
+      @apply px-2 py-2 text-xs;
+    }
+
+    .sui-menubar-submenu-item {
+      @apply px-3 py-1 text-xs;
+    }
+  }
+
+  &-large {
+    .sui-menubar-item-content {
+      @apply px-6 py-4 text-base;
+    }
+
+    .sui-menubar-submenu-item {
+      @apply px-5 py-3 text-base;
+    }
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .sui-menubar {
+    @apply bg-gray-800 border-gray-700;
+
+    &-item-content {
+      @apply text-gray-200 hover:text-white hover:bg-gray-700;
+    }
+
+    &-submenu {
+      @apply bg-gray-800 border-gray-700;
+    }
+
+    &-submenu-item {
+      @apply text-gray-200 hover:bg-gray-700 hover:text-white;
+    }
+
+    &-item-separator {
+      @apply border-gray-700;
+    }
+  }
+}

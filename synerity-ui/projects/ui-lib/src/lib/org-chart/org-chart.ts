@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-org-chart',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './org-chart.html',
   styleUrl: './org-chart.scss',

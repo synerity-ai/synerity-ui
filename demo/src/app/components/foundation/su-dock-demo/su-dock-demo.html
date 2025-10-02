@@ -1,0 +1,199 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1 class="demo-title">Dock Component</h1>
+    <p class="demo-description">
+      A dock component that provides a floating application launcher or navigation bar.
+      Perfect for creating macOS-style docks or application launchers.
+    </p>
+  </div>
+
+  <!-- Basic Usage Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Basic Usage</h2>
+    <p class="demo-section-description">
+      Simple dock with basic navigation items positioned at the bottom.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Basic Dock</h3>
+          <div class="demo-area" style="height: 300px; position: relative; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="dock-preview">
+              <div class="dock-placeholder">
+                <p>Dock component would appear here</p>
+              </div>
+            </div>
+            <div class="demo-overlay">
+              <p class="text-white text-center">Basic dock with navigation items</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Position Variants Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Position Variants</h2>
+    <p class="demo-section-description">
+      Dock can be positioned at any edge of the screen.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Application Dock</h3>
+          <div class="demo-area" style="height: 300px; position: relative; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <div class="dock-preview">
+              <div class="dock-placeholder">
+                <p>Application dock would appear here</p>
+              </div>
+            </div>
+            <div class="demo-overlay">
+              <p class="text-white text-center">Application launcher dock</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Media Dock</h3>
+          <div class="demo-area" style="height: 300px; position: relative; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <div class="dock-preview">
+              <div class="dock-placeholder">
+                <p>Media dock would appear here</p>
+              </div>
+            </div>
+            <div class="demo-overlay">
+              <p class="text-white text-center">Media player dock</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Controls Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Interactive Controls</h2>
+    <p class="demo-section-description">
+      Customize the dock appearance and behavior with these controls.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Dock Configuration</h3>
+          <div class="controls-grid">
+            <div class="control-group">
+              <label class="control-label">Position:</label>
+              <div class="radio-group">
+                <label *ngFor="let position of positions" class="radio-item">
+                  <input type="radio" 
+                         [value]="position.value" 
+                         [(ngModel)]="selectedPosition"
+                         name="position">
+                  <span class="radio-label">{{ position.label }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Size:</label>
+              <div class="radio-group">
+                <label *ngFor="let size of sizes" class="radio-item">
+                  <input type="radio" 
+                         [value]="size.value" 
+                         [(ngModel)]="selectedSize"
+                         name="size">
+                  <span class="radio-label">{{ size.label }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Style:</label>
+              <div class="radio-group">
+                <label *ngFor="let style of styles" class="radio-item">
+                  <input type="radio" 
+                         [value]="style.value" 
+                         [(ngModel)]="selectedStyle"
+                         name="style">
+                  <span class="radio-label">{{ style.label }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Options:</label>
+              <div class="checkbox-group">
+                <label class="checkbox-item">
+                  <input type="checkbox" [(ngModel)]="showLabels">
+                  <span class="checkbox-label">Show Labels</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" [(ngModel)]="disabled">
+                  <span class="checkbox-label">Disabled State</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Live Preview</h3>
+          <div class="demo-area" style="height: 300px; position: relative; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+            <div class="dock-preview">
+              <div class="dock-placeholder">
+                <p>Live dock preview would appear here</p>
+              </div>
+            </div>
+            <div class="demo-overlay">
+              <p class="text-white text-center">Live dock preview</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Reference Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">API Reference</h2>
+    <p class="demo-section-description">
+      Complete API documentation for the Dock component.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Properties</h3>
+          <div class="code-block">
+            <p>DockItem interface with properties like label, icon, command, disabled, and tooltip.</p>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Events</h3>
+          <div class="code-block">
+            <p>onItemClick event handler for dock item interactions.</p>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Usage Example</h3>
+          <div class="code-block">
+            <p>Use sui-dock component with model binding and position property.</p>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Styling Classes</h3>
+          <div class="code-block">
+            <p>Available CSS classes for positioning, sizing, and styling variants.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

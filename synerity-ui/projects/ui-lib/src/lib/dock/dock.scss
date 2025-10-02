@@ -1,0 +1,132 @@
+.sui-dock {
+  @apply fixed z-40 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg p-2;
+
+  // Position variants
+  &-bottom {
+    @apply bottom-4 left-1/2 transform -translate-x-1/2;
+  }
+
+  &-top {
+    @apply top-4 left-1/2 transform -translate-x-1/2;
+  }
+
+  &-left {
+    @apply left-4 top-1/2 transform -translate-y-1/2;
+  }
+
+  &-right {
+    @apply right-4 top-1/2 transform -translate-y-1/2;
+  }
+
+  // Container
+  &-container {
+    @apply flex items-center;
+
+    &.vertical {
+      @apply flex-col space-y-2;
+    }
+
+    &.horizontal {
+      @apply space-x-2;
+    }
+  }
+
+  // Items
+  &-item {
+    @apply flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 cursor-pointer group relative;
+
+    &:hover {
+      @apply bg-gray-200 scale-105;
+    }
+
+    &-disabled {
+      @apply opacity-50 cursor-not-allowed pointer-events-none;
+
+      &:hover {
+        @apply bg-gray-100 scale-100;
+      }
+    }
+
+    &-icon {
+      @apply text-xl;
+    }
+
+    &-label {
+      @apply ml-2 text-sm font-medium text-gray-700 whitespace-nowrap;
+
+      &.horizontal-only {
+        @apply ml-0;
+      }
+    }
+
+    // Tooltip
+    &-tooltip {
+      @apply absolute bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50;
+
+      &-bottom {
+        @apply top-full left-1/2 transform -translate-x-1/2 mt-2;
+      }
+
+      &-top {
+        @apply bottom-full left-1/2 transform -translate-x-1/2 mb-2;
+      }
+    }
+  }
+
+  // Size variants
+  &-sm {
+    .sui-dock-item {
+      @apply w-10 h-10;
+    }
+  }
+
+  &-lg {
+    .sui-dock-item {
+      @apply w-14 h-14;
+    }
+  }
+
+  // Style variants
+  &-glass {
+    @apply bg-white/80 backdrop-blur-md;
+  }
+
+  &-solid {
+    @apply bg-white backdrop-blur-none;
+  }
+
+  &-dark {
+    @apply bg-gray-800/90 border-gray-700;
+
+    .sui-dock-item {
+      @apply bg-gray-700 hover:bg-gray-600 text-gray-200;
+
+      &-label {
+        @apply text-gray-200;
+      }
+
+      &-tooltip {
+        @apply bg-gray-900;
+      }
+    }
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .sui-dock {
+    @apply bg-gray-800/90 border-gray-700;
+
+    &-item {
+      @apply bg-gray-700 hover:bg-gray-600 text-gray-200;
+
+      &-label {
+        @apply text-gray-200;
+      }
+
+      &-tooltip {
+        @apply bg-gray-900;
+      }
+    }
+  }
+}

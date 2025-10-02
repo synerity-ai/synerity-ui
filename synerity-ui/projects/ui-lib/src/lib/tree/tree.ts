@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-tree',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './tree.html',
   styleUrl: './tree.scss',

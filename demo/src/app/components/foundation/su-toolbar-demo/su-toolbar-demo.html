@@ -1,0 +1,77 @@
+<div class="demo-container">
+  <header>
+    <h1>Toolbar Component Demo</h1>
+    <p>Toolbar provides a flexible container for organizing action buttons and controls.</p>
+  </header>
+
+  <div class="demo-section">
+    <h2>Basic Toolbar</h2>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default Toolbar</h4>
+        <div class="demo-content">
+          <sui-toolbar 
+            [leftItems]="basicLeftItems" 
+            [rightItems]="basicRightItems"
+            (onItemClick)="onItemClick($event)">
+          </sui-toolbar>
+        </div>
+        <div class="code-block">
+&lt;sui-toolbar 
+  [leftItems]="basicLeftItems" 
+  [rightItems]="basicRightItems"
+  (onItemClick)="onItemClick($event)"&gt;
+&lt;/sui-toolbar&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Style Variants</h2>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Primary Color</h4>
+        <div class="demo-content">
+          <sui-toolbar 
+            [leftItems]="basicLeftItems" 
+            [rightItems]="basicRightItems"
+            styleClass="sui-toolbar-primary">
+          </sui-toolbar>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>API Reference</h2>
+    <div class="api-reference">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>orientation</code></td>
+            <td>'horizontal' | 'vertical'</td>
+            <td>Toolbar orientation</td>
+          </tr>
+          <tr>
+            <td><code>leftItems</code></td>
+            <td>Array</td>
+            <td>Items displayed on the left side</td>
+          </tr>
+          <tr>
+            <td><code>rightItems</code></td>
+            <td>Array</td>
+            <td>Items displayed on the right side</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

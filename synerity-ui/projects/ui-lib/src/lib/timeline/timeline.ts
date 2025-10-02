@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sui-timeline',
+  standalone: true,
   imports: [NgFor, NgIf],
   templateUrl: './timeline.html',
   styleUrl: './timeline.scss',

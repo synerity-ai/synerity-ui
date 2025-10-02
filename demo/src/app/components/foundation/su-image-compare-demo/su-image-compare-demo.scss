@@ -1,0 +1,174 @@
+.demo-container {
+  @apply p-6 max-w-7xl mx-auto;
+}
+
+.demo-header {
+  @apply mb-8;
+}
+
+.demo-title {
+  @apply text-3xl font-bold text-gray-900 mb-4;
+}
+
+.demo-description {
+  @apply text-lg text-gray-600;
+}
+
+.demo-section {
+  @apply mb-12;
+}
+
+.demo-section-title {
+  @apply text-2xl font-semibold text-gray-800 mb-3;
+}
+
+.demo-section-description {
+  @apply text-gray-600 mb-6;
+}
+
+.demo-content {
+  @apply space-y-6;
+}
+
+.component-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.component-card {
+  @apply bg-white rounded-lg border border-gray-200 p-6;
+}
+
+.component-card h3 {
+  @apply text-lg font-semibold text-gray-800 mb-4;
+}
+
+.demo-area {
+  @apply bg-gray-50 rounded-lg p-4 min-h-48 flex items-center justify-center;
+}
+
+.controls-grid {
+  @apply space-y-6;
+}
+
+.control-group {
+  @apply space-y-3;
+}
+
+.control-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.radio-group {
+  @apply space-y-2;
+}
+
+.radio-item {
+  @apply flex items-center space-x-2 cursor-pointer;
+}
+
+.radio-item input[type="radio"] {
+  @apply text-blue-600 focus:ring-blue-500;
+}
+
+.radio-label {
+  @apply text-sm text-gray-700;
+}
+
+.code-block {
+  @apply bg-gray-100 rounded p-3 text-sm text-gray-700;
+}
+
+// Demo-specific styles for image compare
+.image-compare-container {
+  @apply w-full space-y-4;
+  
+  &.vertical {
+    max-width: 400px;
+  }
+}
+
+.image-compare-info {
+  @apply text-center;
+}
+
+// Demo-specific styles for comparison grid
+.comparison-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+}
+
+.comparison-item {
+  @apply space-y-2;
+}
+
+.comparison-preview {
+  @apply cursor-pointer transition-transform duration-200 hover:scale-105;
+}
+
+.comparison-caption {
+  @apply text-center;
+}
+
+// Demo-specific styles for controls
+.slider-container {
+  @apply w-full;
+}
+
+.slider {
+  @apply w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer;
+  
+  &::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 bg-blue-600 rounded-full cursor-pointer;
+  }
+  
+  &::-moz-range-thumb {
+    @apply w-4 h-4 bg-blue-600 rounded-full cursor-pointer border-0;
+  }
+}
+
+.input-group {
+  @apply space-y-3;
+}
+
+.input-item {
+  @apply space-y-1;
+}
+
+.input-label {
+  @apply block text-xs font-medium text-gray-600;
+}
+
+.input-field {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+.reset-button {
+  @apply px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200;
+}
+
+// Demo-specific styles for preview
+.image-compare-preview-container {
+  @apply space-y-4;
+}
+
+.preview-info {
+  @apply text-center;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .demo-container {
+    @apply p-4;
+  }
+  
+  .component-grid {
+    @apply grid-cols-1;
+  }
+  
+  .comparison-grid {
+    @apply grid-cols-1 gap-2;
+  }
+  
+  .image-compare-container.vertical {
+    max-width: 300px;
+  }
+}

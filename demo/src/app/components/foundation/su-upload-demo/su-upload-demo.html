@@ -1,0 +1,269 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Upload Component</h1>
+    <p class="demo-description">
+      Upload component provides drag-and-drop file upload functionality with validation, progress tracking, and customizable options.
+    </p>
+  </div>
+
+  <div class="demo-section">
+    <h2>Basic Upload</h2>
+    <p>Simple file upload without restrictions</p>
+    <div class="demo-content">
+      <sui-upload 
+        [multiple]="basicConfig.multiple"
+        [accept]="basicConfig.accept"
+        [maxFileSize]="basicConfig.maxFileSize"
+        [disabled]="basicConfig.disabled"
+        [auto]="basicConfig.auto"
+        (onUpload)="handleUpload($event)"
+        (onSelect)="handleSelect($event)"
+        (onRemove)="handleRemove($event)"
+      ></sui-upload>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-upload 
+  [multiple]="false"
+  (onUpload)="handleUpload($event)"
+&gt;&lt;/sui-upload&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Image Upload</h2>
+    <p>Multiple image files with size limit (5MB max)</p>
+    <div class="demo-content">
+      <sui-upload 
+        [multiple]="imageConfig.multiple"
+        [accept]="imageConfig.accept"
+        [maxFileSize]="imageConfig.maxFileSize"
+        [disabled]="imageConfig.disabled"
+        [auto]="imageConfig.auto"
+        (onUpload)="handleUpload($event)"
+        (onSelect)="handleSelect($event)"
+        (onError)="handleError($event)"
+      ></sui-upload>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-upload 
+  [multiple]="true"
+  accept="image/*"
+  [maxFileSize]="5242880"
+  (onError)="handleError($event)"
+&gt;&lt;/sui-upload&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Document Upload</h2>
+    <p>Specific file types with validation</p>
+    <div class="demo-content">
+      <sui-upload 
+        [multiple]="documentConfig.multiple"
+        [accept]="documentConfig.accept"
+        [maxFileSize]="documentConfig.maxFileSize"
+        [disabled]="documentConfig.disabled"
+        [auto]="documentConfig.auto"
+        (onUpload)="handleUpload($event)"
+        (onSelect)="handleSelect($event)"
+        (onError)="handleError($event)"
+      ></sui-upload>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-upload 
+  [multiple]="true"
+  accept=".pdf,.doc,.docx,.txt"
+  [maxFileSize]="10485760"
+&gt;&lt;/sui-upload&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Auto Upload</h2>
+    <p>Files upload automatically when selected</p>
+    <div class="demo-content">
+      <sui-upload 
+        [multiple]="autoUploadConfig.multiple"
+        [accept]="autoUploadConfig.accept"
+        [maxFileSize]="autoUploadConfig.maxFileSize"
+        [disabled]="autoUploadConfig.disabled"
+        [auto]="autoUploadConfig.auto"
+        (onUpload)="handleUpload($event)"
+        (onBeforeUpload)="handleBeforeUpload($event)"
+        (onProgress)="handleProgress($event)"
+      ></sui-upload>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-upload 
+  [multiple]="true"
+  [auto]="true"
+  (onBeforeUpload)="handleBeforeUpload($event)"
+  (onProgress)="handleProgress($event)"
+&gt;&lt;/sui-upload&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Disabled State</h2>
+    <p>Upload component in disabled state</p>
+    <div class="demo-content">
+      <sui-upload 
+        [multiple]="disabledConfig.multiple"
+        [accept]="disabledConfig.accept"
+        [maxFileSize]="disabledConfig.maxFileSize"
+        [disabled]="disabledConfig.disabled"
+        [auto]="disabledConfig.auto"
+      ></sui-upload>
+    </div>
+    <div class="code-block">
+      <pre><code>&lt;sui-upload 
+  [disabled]="true"
+&gt;&lt;/sui-upload&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Event Log</h2>
+    <p>Upload events and interactions</p>
+    <div class="demo-content">
+      <div class="event-log">
+        <div class="event-log-header">
+          <h4>Upload Events</h4>
+          <button 
+            type="button" 
+            class="clear-btn"
+            (click)="clearResults()"
+          >
+            Clear Log
+          </button>
+        </div>
+        <div class="event-log-content">
+          <div 
+            *ngFor="let result of uploadResults" 
+            class="event-item"
+            [class]="'event-' + result.type"
+          >
+            <span class="event-time">{{ result.timestamp }}</span>
+            <span class="event-message">{{ result.message }}</span>
+          </div>
+          <div *ngIf="uploadResults.length === 0" class="event-empty">
+            No events yet. Try uploading files to see events here.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section api-section">
+    <h2>API Reference</h2>
+    
+    <h3>Properties (Inputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>multiple</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Allow multiple file selection</td>
+          </tr>
+          <tr>
+            <td><code>accept</code></td>
+            <td>string</td>
+            <td>''</td>
+            <td>Accepted file types (e.g., 'image/*', '.pdf')</td>
+          </tr>
+          <tr>
+            <td><code>maxFileSize</code></td>
+            <td>number</td>
+            <td>0</td>
+            <td>Maximum file size in bytes</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Disable the upload component</td>
+          </tr>
+          <tr>
+            <td><code>auto</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Auto-upload files when selected</td>
+          </tr>
+          <tr>
+            <td><code>customUpload</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Use custom upload handler</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Events (Outputs)</h3>
+    <div class="api-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>onUpload</code></td>
+            <td>&#123; files: File[] &#125;</td>
+            <td>Emitted when files are uploaded</td>
+          </tr>
+          <tr>
+            <td><code>onBeforeUpload</code></td>
+            <td>&#123; files: File[] &#125;</td>
+            <td>Emitted before upload starts</td>
+          </tr>
+          <tr>
+            <td><code>onProgress</code></td>
+            <td>&#123; progress: number &#125;</td>
+            <td>Emitted during upload progress</td>
+          </tr>
+          <tr>
+            <td><code>onError</code></td>
+            <td>&#123; file: File, error: string &#125;</td>
+            <td>Emitted on upload error</td>
+          </tr>
+          <tr>
+            <td><code>onSelect</code></td>
+            <td>&#123; files: File[] &#125;</td>
+            <td>Emitted when files are selected</td>
+          </tr>
+          <tr>
+            <td><code>onRemove</code></td>
+            <td>&#123; file: File &#125;</td>
+            <td>Emitted when file is removed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Features</h3>
+    <div class="api-notes">
+      <ul>
+        <li><strong>Drag & Drop:</strong> Native drag-and-drop support</li>
+        <li><strong>File Validation:</strong> Type and size validation</li>
+        <li><strong>Progress Tracking:</strong> Upload progress monitoring</li>
+        <li><strong>Error Handling:</strong> Comprehensive error reporting</li>
+        <li><strong>Accessibility:</strong> ARIA labels and keyboard support</li>
+        <li><strong>Responsive:</strong> Mobile-friendly design</li>
+      </ul>
+    </div>
+  </div>
+</div>

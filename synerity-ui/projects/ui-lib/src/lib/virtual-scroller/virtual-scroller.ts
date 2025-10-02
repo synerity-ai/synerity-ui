@@ -3,6 +3,7 @@ import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'sui-virtual-scroller',
+  standalone: true,
   imports: [NgFor],
   templateUrl: './virtual-scroller.html',
   styleUrl: './virtual-scroller.scss',

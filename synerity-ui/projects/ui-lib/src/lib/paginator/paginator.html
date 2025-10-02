@@ -1,13 +1,13 @@
-<div class="flex items-center justify-between bg-white px-4 py-3 border-t border-gray-200" *ngIf="totalRecords > 0">
+<div class="sui-paginator" *ngIf="totalRecords > 0">
   <!-- Left Section -->
-  <div class="flex items-center space-x-4">
+  <div class="sui-paginator-left">
     <!-- Rows Per Page -->
-    <div *ngIf="showRowsPerPageOptions" class="flex items-center space-x-2">
-      <label class="text-sm text-gray-700">Rows per page:</label>
+    <div *ngIf="showRowsPerPageOptions" class="sui-paginator-rpp">
+      <label class="sui-paginator-rpp-label">Rows per page:</label>
       <select
         [value]="rows"
         (change)="changeRowsPerPage(+$any($event.target).value)"
-        class="block w-16 px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+        class="sui-paginator-rpp-select"
       >
         <option *ngFor="let option of rowsPerPageOptions" [value]="option">
           {{ option }}
@@ -16,23 +16,23 @@
     </div>
     
     <!-- Current Page Report -->
-    <span *ngIf="showCurrentPageReport" class="text-sm text-gray-700">
+    <span *ngIf="showCurrentPageReport" class="sui-paginator-report">
       {{ currentPageReport }}
     </span>
   </div>
   
   <!-- Center Section - Pagination Controls -->
-  <div class="flex items-center space-x-1">
+  <div class="sui-paginator-controls">
     <!-- First Page -->
     <button
       *ngIf="showFirstLastIcon"
       type="button"
       (click)="firstPage()"
       [disabled]="page === 0"
-      class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+      class="sui-paginator-btn"
       title="First Page"
     >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
       </svg>
     </button>
@@ -42,29 +42,22 @@
       type="button"
       (click)="prevPage()"
       [disabled]="page === 0"
-      class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+      class="sui-paginator-btn"
       title="Previous Page"
     >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
       </svg>
     </button>
     
     <!-- Page Links -->
-    <div *ngIf="showPageLinks" class="flex items-center space-x-1">
+    <div *ngIf="showPageLinks" class="sui-paginator-pages">
       <button
         *ngFor="let pageLink of pageLinks"
         type="button"
         (click)="changePage(pageLink)"
-        class="px-3 py-2 text-sm font-medium rounded-md transition-colors duration-150"
-        [class.bg-primary-600]="pageLink === page"
-        [class.text-white]="pageLink === page"
-        [class.text-gray-700]="pageLink !== page"
-        [class.hover:bg-gray-100]="pageLink !== page"
-        [class.focus:outline-none]="true"
-        [class.focus:ring-2]="true"
-        [class.focus:ring-primary-500]="true"
-        [class.focus:ring-offset-1]="true"
+        class="sui-paginator-page"
+        [class.sui-paginator-page-active]="pageLink === page"
       >
         {{ pageLink + 1 }}
       </button>
@@ -75,10 +68,10 @@
       type="button"
       (click)="nextPage()"
       [disabled]="page === totalPages - 1"
-      class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+      class="sui-paginator-btn"
       title="Next Page"
     >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
       </svg>
     </button>
@@ -89,10 +82,10 @@
       type="button"
       (click)="lastPage()"
       [disabled]="page === totalPages - 1"
-      class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+      class="sui-paginator-btn"
       title="Last Page"
     >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
       </svg>
     </button>

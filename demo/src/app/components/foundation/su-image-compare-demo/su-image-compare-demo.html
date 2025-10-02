@@ -1,0 +1,284 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1 class="demo-title">Image Compare Component</h1>
+    <p class="demo-description">
+      An image comparison component that allows users to compare two images using a draggable slider.
+      Perfect for before/after comparisons, design reviews, and showcasing differences between images.
+    </p>
+  </div>
+
+  <!-- Basic Usage Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Basic Usage</h2>
+    <p class="demo-section-description">
+      Simple image comparison with horizontal and vertical orientations.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Horizontal Comparison</h3>
+          <div class="demo-area">
+            <div class="image-compare-container">
+              <div class="sui-image-compare sui-image-compare-horizontal">
+                <div class="sui-image-compare-container">
+                  <img 
+                    [src]="getSelectedImagePair().beforeSrc" 
+                    [alt]="getSelectedImagePair().beforeAlt" 
+                    class="sui-image-compare-before"
+                    [style]="getBeforeImageStyle()"
+                  />
+                  <img 
+                    [src]="getSelectedImagePair().afterSrc" 
+                    [alt]="getSelectedImagePair().afterAlt" 
+                    class="sui-image-compare-after"
+                  />
+                  <div class="sui-image-compare-slider" [style]="getSliderStyle()">
+                    <div class="sui-image-compare-handle"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="image-compare-info">
+                <h4 class="font-medium text-gray-800">{{ getSelectedImagePair().title }}</h4>
+                <p class="text-sm text-gray-600">Drag the slider to compare images</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orientation Examples Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Orientation Examples</h2>
+    <p class="demo-section-description">
+      Image comparison in both horizontal and vertical orientations.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Vertical Comparison</h3>
+          <div class="demo-area">
+            <div class="image-compare-container vertical">
+              <div class="sui-image-compare sui-image-compare-vertical">
+                <div class="sui-image-compare-container">
+                  <img 
+                    [src]="getSelectedImagePair().beforeSrc" 
+                    [alt]="getSelectedImagePair().beforeAlt" 
+                    class="sui-image-compare-before"
+                    [style]="getBeforeImageStyle()"
+                  />
+                  <img 
+                    [src]="getSelectedImagePair().afterSrc" 
+                    [alt]="getSelectedImagePair().afterAlt" 
+                    class="sui-image-compare-after"
+                  />
+                  <div class="sui-image-compare-slider" [style]="getSliderStyle()">
+                    <div class="sui-image-compare-handle"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="image-compare-info">
+                <h4 class="font-medium text-gray-800">Vertical Slider</h4>
+                <p class="text-sm text-gray-600">Drag vertically to compare images</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sample Comparisons Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Sample Comparisons</h2>
+    <p class="demo-section-description">
+      Different image pairs to demonstrate various comparison scenarios.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Available Comparisons</h3>
+          <div class="demo-area">
+            <div class="comparison-grid">
+              <div class="comparison-item" *ngFor="let pair of getSampleImagePairs()">
+                <div class="comparison-preview" (click)="selectImagePair(pair)">
+                  <div class="sui-image-compare sui-image-compare-horizontal" style="max-width: 200px;">
+                    <div class="sui-image-compare-container">
+                      <img [src]="pair.beforeSrc" [alt]="pair.beforeAlt" class="sui-image-compare-before" />
+                      <img [src]="pair.afterSrc" [alt]="pair.afterAlt" class="sui-image-compare-after" />
+                    </div>
+                  </div>
+                  <div class="comparison-caption">
+                    <h4 class="font-medium text-gray-800">{{ pair.title }}</h4>
+                    <p class="text-xs text-gray-600">Click to select</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Controls Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Interactive Controls</h2>
+    <p class="demo-section-description">
+      Customize the image comparison behavior and appearance with these controls.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Image Compare Configuration</h3>
+          <div class="controls-grid">
+            <div class="control-group">
+              <label class="control-label">Sample Comparison:</label>
+              <div class="radio-group">
+                <label *ngFor="let pair of getSampleImagePairs()" class="radio-item">
+                  <input type="radio" 
+                         [value]="pair.title" 
+                         [checked]="selectedImagePair.title === pair.title"
+                         (change)="selectImagePair(pair)"
+                         name="comparison">
+                  <span class="radio-label">{{ pair.title }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Orientation:</label>
+              <div class="radio-group">
+                <label *ngFor="let orientation of orientations" class="radio-item">
+                  <input type="radio" 
+                         [value]="orientation.value" 
+                         [(ngModel)]="selectedOrientation"
+                         (change)="onOrientationChange()"
+                         name="orientation">
+                  <span class="radio-label">{{ orientation.label }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Slider Position: {{ sliderPosition }}%</label>
+              <div class="slider-container">
+                <input type="range" 
+                       min="0" 
+                       max="100" 
+                       [(ngModel)]="sliderPosition"
+                       (input)="onSliderChange($event)"
+                       class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Custom Images (Optional):</label>
+              <div class="input-group">
+                <div class="input-item">
+                  <label class="input-label">Before Image URL:</label>
+                  <input type="url" 
+                         [(ngModel)]="customBeforeSrc"
+                         placeholder="Enter before image URL"
+                         class="input-field">
+                </div>
+                <div class="input-item">
+                  <label class="input-label">After Image URL:</label>
+                  <input type="url" 
+                         [(ngModel)]="customAfterSrc"
+                         placeholder="Enter after image URL"
+                         class="input-field">
+                </div>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <button type="button" 
+                      (click)="resetToDefault()"
+                      class="reset-button">
+                Reset to Default
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Live Preview</h3>
+          <div class="demo-area">
+            <div class="image-compare-preview-container">
+              <div [class]="getImageCompareClass()">
+                <div class="sui-image-compare-container">
+                  <img 
+                    *ngIf="hasBeforeImage()"
+                    [src]="getImageCompareProps().beforeSrc" 
+                    [alt]="getImageCompareProps().beforeAlt" 
+                    class="sui-image-compare-before"
+                    [style]="getBeforeImageStyle()"
+                  />
+                  <img 
+                    *ngIf="hasAfterImage()"
+                    [src]="getImageCompareProps().afterSrc" 
+                    [alt]="getImageCompareProps().afterAlt" 
+                    class="sui-image-compare-after"
+                  />
+                  <div class="sui-image-compare-slider" [style]="getSliderStyle()">
+                    <div class="sui-image-compare-handle"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-info">
+                <h4 class="font-medium text-gray-800">{{ getSelectedImagePair().title }}</h4>
+                <p class="text-sm text-gray-600">{{ selectedOrientation | titlecase }} orientation - Position: {{ sliderPosition }}%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Reference Section -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">API Reference</h2>
+    <p class="demo-section-description">
+      Complete API documentation for the Image Compare component.
+    </p>
+    
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Properties</h3>
+          <div class="code-block">
+            <p>beforeSrc, afterSrc, beforeAlt, afterAlt, orientation, sliderPosition, style, styleClass</p>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Features</h3>
+          <div class="code-block">
+            <p>Drag to compare, touch support, keyboard navigation, accessibility features</p>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Usage Example</h3>
+          <div class="code-block">
+            <p>Use sui-image-compare component with before/after images and slider control</p>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <h3>Styling Classes</h3>
+          <div class="code-block">
+            <p>Available CSS classes for orientations, slider styles, and responsive behavior</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

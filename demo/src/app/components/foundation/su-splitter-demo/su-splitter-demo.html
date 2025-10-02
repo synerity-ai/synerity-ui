@@ -1,0 +1,335 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h1 class="demo-title">Splitter Component</h1>
+    <p class="demo-description">
+      A resizable panel component that allows users to split content into adjustable sections.
+      Perfect for creating layouts with draggable dividers, code editors, and dashboard panels.
+    </p>
+  </div>
+
+  <!-- Basic Usage -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Basic Usage</h2>
+    <div class="demo-content">
+      <div class="splitter-demo-container">
+        <sui-splitter 
+          [layout]="'horizontal'" 
+          [gutterSize]="4"
+          (onResizeEnd)="onResizeEnd($event)">
+          <div slot="panel1" class="panel-content">
+            <h3>Left Panel</h3>
+            <p>This is the left panel content. You can drag the gutter to resize the panels.</p>
+            <p>The splitter allows users to adjust the layout according to their preferences.</p>
+          </div>
+          <div slot="panel2" class="panel-content">
+            <h3>Right Panel</h3>
+            <p>This is the right panel content. Try dragging the gutter between the panels.</p>
+            <p>The panels will resize dynamically as you drag the divider.</p>
+          </div>
+        </sui-splitter>
+      </div>
+    </div>
+    
+    <div class="code-block">
+      <pre><code>&lt;sui-splitter [layout]="'horizontal'" [gutterSize]="4"&gt;
+  &lt;div slot="panel1"&gt;
+    &lt;h3&gt;Left Panel&lt;/h3&gt;
+    &lt;p&gt;Panel content here...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div slot="panel2"&gt;
+    &lt;h3&gt;Right Panel&lt;/h3&gt;
+    &lt;p&gt;Panel content here...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/sui-splitter&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Layout Variations -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Layout Variations</h2>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Horizontal Splitter</h3>
+          <div class="splitter-demo-small">
+            <sui-splitter [layout]="'horizontal'" [gutterSize]="4">
+              <div slot="panel1" class="panel-content-small">
+                <h4>Left</h4>
+                <p>Horizontal split</p>
+              </div>
+              <div slot="panel2" class="panel-content-small">
+                <h4>Right</h4>
+                <p>Drag to resize</p>
+              </div>
+            </sui-splitter>
+          </div>
+        </div>
+        
+        <div class="component-card">
+          <h3>Vertical Splitter</h3>
+          <div class="splitter-demo-small vertical">
+            <sui-splitter [layout]="'vertical'" [gutterSize]="4">
+              <div slot="panel1" class="panel-content-small">
+                <h4>Top</h4>
+                <p>Vertical split</p>
+              </div>
+              <div slot="panel2" class="panel-content-small">
+                <h4>Bottom</h4>
+                <p>Drag to resize</p>
+              </div>
+            </sui-splitter>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gutter Size Variations -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Gutter Size Variations</h2>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Small Gutter (2px)</h3>
+          <div class="splitter-demo-small">
+            <sui-splitter [layout]="'horizontal'" [gutterSize]="2">
+              <div slot="panel1" class="panel-content-small">
+                <p>Small gutter</p>
+              </div>
+              <div slot="panel2" class="panel-content-small">
+                <p>2px width</p>
+              </div>
+            </sui-splitter>
+          </div>
+        </div>
+        
+        <div class="component-card">
+          <h3>Large Gutter (8px)</h3>
+          <div class="splitter-demo-small">
+            <sui-splitter [layout]="'horizontal'" [gutterSize]="8">
+              <div slot="panel1" class="panel-content-small">
+                <p>Large gutter</p>
+              </div>
+              <div slot="panel2" class="panel-content-small">
+                <p>8px width</p>
+              </div>
+            </sui-splitter>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Examples -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Interactive Examples</h2>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Custom Splitter</h3>
+          <div class="splitter-demo-container">
+            <sui-splitter 
+              [layout]="selectedLayout" 
+              [gutterSize]="selectedGutterSize"
+              [minSizes]="[selectedMinSize1, selectedMinSize2]"
+              [maxSizes]="[selectedMaxSize1, selectedMaxSize2]"
+              (onResizeEnd)="onResizeEnd($event)">
+              <div slot="panel1" class="panel-content">
+                <h4>Panel 1</h4>
+                <p>Custom configuration panel</p>
+                <p>Min: {{ selectedMinSize1 }}% | Max: {{ selectedMaxSize1 }}%</p>
+              </div>
+              <div slot="panel2" class="panel-content">
+                <h4>Panel 2</h4>
+                <p>Adjustable constraints</p>
+                <p>Min: {{ selectedMinSize2 }}% | Max: {{ selectedMaxSize2 }}%</p>
+              </div>
+            </sui-splitter>
+          </div>
+          
+          <div class="radio-group">
+            <div>
+              <label>Layout:</label>
+              <select [(ngModel)]="selectedLayout">
+                <option *ngFor="let layout of layouts" [value]="layout.value">
+                  {{ layout.label }}
+                </option>
+              </select>
+            </div>
+            
+            <div>
+              <label>Gutter Size:</label>
+              <select [(ngModel)]="selectedGutterSize">
+                <option *ngFor="let size of gutterSizes" [value]="size.value">
+                  {{ size.label }}
+                </option>
+              </select>
+            </div>
+            
+            <div>
+              <label>Panel 1 Min Size (%):</label>
+              <input type="range" [(ngModel)]="selectedMinSize1" min="10" max="50" step="5">
+              <span>{{ selectedMinSize1 }}%</span>
+            </div>
+            
+            <div>
+              <label>Panel 1 Max Size (%):</label>
+              <input type="range" [(ngModel)]="selectedMaxSize1" min="50" max="90" step="5">
+              <span>{{ selectedMaxSize1 }}%</span>
+            </div>
+            
+            <div>
+              <label>Panel 2 Min Size (%):</label>
+              <input type="range" [(ngModel)]="selectedMinSize2" min="10" max="50" step="5">
+              <span>{{ selectedMinSize2 }}%</span>
+            </div>
+            
+            <div>
+              <label>Panel 2 Max Size (%):</label>
+              <input type="range" [(ngModel)]="selectedMaxSize2" min="50" max="90" step="5">
+              <span>{{ selectedMaxSize2 }}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">Real-world Examples</h2>
+    <div class="demo-content">
+      <div class="component-grid">
+        <div class="component-card">
+          <h3>Code Editor Layout</h3>
+          <div class="splitter-demo-container code-editor">
+            <sui-splitter [layout]="'horizontal'" [gutterSize]="4">
+              <div slot="panel1" class="panel-content code-panel">
+                <h4>📁 File Explorer</h4>
+                <div class="file-tree">
+                  <div class="file-item">📁 src</div>
+                  <div class="file-item">📁 components</div>
+                  <div class="file-item">📄 app.component.ts</div>
+                  <div class="file-item">📄 app.component.html</div>
+                  <div class="file-item">📁 styles</div>
+                  <div class="file-item">📄 main.css</div>
+                </div>
+              </div>
+              <div slot="panel2" class="panel-content code-panel">
+                <h4>💻 Code Editor</h4>
+                <div class="code-editor-content">
+                  <pre><code>import &#123; Component &#125; from '@angular/core';
+
+@Component(&#123;
+  selector: 'app-root',
+  templateUrl: './app.component.html'
+&#125;)
+export class AppComponent &#123;
+  title = 'My App';
+&#125;</code></pre>
+                </div>
+              </div>
+            </sui-splitter>
+          </div>
+        </div>
+        
+        <div class="component-card">
+          <h3>Dashboard Layout</h3>
+          <div class="splitter-demo-container dashboard">
+            <sui-splitter [layout]="'vertical'" [gutterSize]="6">
+              <div slot="panel1" class="panel-content dashboard-panel">
+                <h4>📊 Charts & Analytics</h4>
+                <div class="dashboard-content">
+                  <div class="chart-placeholder">📈 Sales Chart</div>
+                  <div class="chart-placeholder">📊 Revenue Graph</div>
+                </div>
+              </div>
+              <div slot="panel2" class="panel-content dashboard-panel">
+                <h4>📋 Data Tables</h4>
+                <div class="dashboard-content">
+                  <div class="table-placeholder">📄 Recent Orders</div>
+                  <div class="table-placeholder">👥 User Activity</div>
+                </div>
+              </div>
+            </sui-splitter>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Reference -->
+  <div class="demo-section">
+    <h2 class="demo-section-title">API Reference</h2>
+    <div class="demo-content">
+      <div class="api-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>layout</td>
+              <td>'horizontal' | 'vertical'</td>
+              <td>'horizontal'</td>
+              <td>Orientation of the splitter</td>
+            </tr>
+            <tr>
+              <td>gutterSize</td>
+              <td>number</td>
+              <td>4</td>
+              <td>Size of the draggable gutter in pixels</td>
+            </tr>
+            <tr>
+              <td>minSizes</td>
+              <td>number[]</td>
+              <td>[0, 0]</td>
+              <td>Minimum sizes for panels as percentages</td>
+            </tr>
+            <tr>
+              <td>maxSizes</td>
+              <td>number[]</td>
+              <td>[100, 100]</td>
+              <td>Maximum sizes for panels as percentages</td>
+            </tr>
+            <tr>
+              <td>style</td>
+              <td>any</td>
+              <td>&#123;&#125;</td>
+              <td>Inline styles for the splitter</td>
+            </tr>
+            <tr>
+              <td>styleClass</td>
+              <td>string</td>
+              <td>''</td>
+              <td>CSS class names for the splitter</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <h4>Events</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>onResizeEnd</td>
+              <td>EventEmitter&#60;any&#62;</td>
+              <td>Fired when resizing is completed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

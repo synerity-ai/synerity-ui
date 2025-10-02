@@ -1,24 +1,23 @@
-<div class="w-full overflow-auto p-4" [class]="getOrientationClass()">
-  <div class="flex flex-col items-center space-y-6">
-    <div *ngFor="let node of value" class="flex flex-col items-center">
+<div class="sui-org-chart" [class]="getOrientationClass()">
+  <div class="sui-org-chart-container">
+    <div *ngFor="let node of value" class="sui-org-chart-level">
       <!-- Root Node -->
-      <div class="relative">
+      <div class="sui-org-chart-node-container">
         <div 
-          class="bg-white border-2 border-gray-200 rounded-lg shadow-sm p-4 min-w-48 cursor-pointer transition-all duration-200 hover:shadow-md"
-          [class.border-primary-500]="isNodeSelected(node)"
-          [class.bg-primary-50]="isNodeSelected(node)"
-          [class.shadow-lg]="isNodeSelected(node)"
+          class="sui-org-chart-node"
+          [class]="getNodeTypeClass(node)"
+          [class.sui-org-chart-node-selected]="isNodeSelected(node)"
           (click)="onNodeClick(node)"
         >
-          <div class="text-center">
-            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <span class="text-primary-600 font-semibold text-lg">{{ node.label.charAt(0) }}</span>
+          <div class="sui-org-chart-node-content">
+            <div class="sui-org-chart-avatar">
+              <span class="sui-org-chart-avatar-text">{{ node.label.charAt(0) }}</span>
             </div>
-            <h3 class="text-sm font-semibold text-gray-900 mb-2">{{ node.label }}</h3>
-            <div *ngIf="node.data" class="text-xs text-gray-600 space-y-1">
-              <div *ngFor="let key of getObjectKeys(node.data)" class="flex justify-between">
-                <span class="font-medium">{{ key }}:</span>
-                <span>{{ node.data[key] }}</span>
+            <h3 class="sui-org-chart-title">{{ node.label }}</h3>
+            <div *ngIf="node.data" class="sui-org-chart-data">
+              <div *ngFor="let key of getObjectKeys(node.data)" class="sui-org-chart-data-item">
+                <span class="sui-org-chart-data-label">{{ key }}:</span>
+                <span class="sui-org-chart-data-value">{{ node.data[key] }}</span>
               </div>
             </div>
           </div>
@@ -26,31 +25,30 @@
       </div>
       
       <!-- Children -->
-      <div *ngIf="hasChildren(node)" class="mt-6">
+      <div *ngIf="hasChildren(node)" class="sui-org-chart-children">
         <!-- Connector Line -->
-        <div class="flex justify-center mb-4">
-          <div class="w-px h-6 bg-gray-300"></div>
+        <div class="sui-org-chart-connector">
+          <div class="sui-org-chart-connector-line"></div>
         </div>
         
         <!-- Children Container -->
-        <div class="flex flex-wrap justify-center gap-4">
-          <div *ngFor="let child of node.children" class="relative">
+        <div class="sui-org-chart-children-container">
+          <div *ngFor="let child of node.children" class="sui-org-chart-child-container">
             <div 
-              class="bg-white border-2 border-gray-200 rounded-lg shadow-sm p-3 min-w-40 cursor-pointer transition-all duration-200 hover:shadow-md"
-              [class.border-primary-500]="isNodeSelected(child)"
-              [class.bg-primary-50]="isNodeSelected(child)"
-              [class.shadow-lg]="isNodeSelected(child)"
+              class="sui-org-chart-child"
+              [class]="getNodeTypeClass(child)"
+              [class.sui-org-chart-node-selected]="isNodeSelected(child)"
               (click)="onNodeClick(child)"
             >
-              <div class="text-center">
-                <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <span class="text-gray-600 font-semibold text-sm">{{ child.label.charAt(0) }}</span>
+              <div class="sui-org-chart-child-content">
+                <div class="sui-org-chart-child-avatar">
+                  <span class="sui-org-chart-child-avatar-text">{{ child.label.charAt(0) }}</span>
                 </div>
-                <h4 class="text-xs font-semibold text-gray-900 mb-1">{{ child.label }}</h4>
-                <div *ngIf="child.data" class="text-xs text-gray-600 space-y-1">
-                  <div *ngFor="let key of getObjectKeys(child.data)" class="flex justify-between">
-                    <span class="font-medium">{{ key }}:</span>
-                    <span>{{ child.data[key] }}</span>
+                <h4 class="sui-org-chart-child-title">{{ child.label }}</h4>
+                <div *ngIf="child.data" class="sui-org-chart-child-data">
+                  <div *ngFor="let key of getObjectKeys(child.data)" class="sui-org-chart-child-data-item">
+                    <span class="sui-org-chart-child-data-label">{{ key }}:</span>
+                    <span class="sui-org-chart-child-data-value">{{ child.data[key] }}</span>
                   </div>
                 </div>
               </div>
