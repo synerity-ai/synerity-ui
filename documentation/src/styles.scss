@@ -1,14 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Import Synerity UI styles with built-in Tailwind */
-@import '@synerity/ui/synerity-ui.scss';
+/* Import Tailwind CSS - App controls the theme */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Synerity UI styles - Components will inherit app theme (import after Tailwind to ensure proper precedence) */
+@import '@synerity/ui/synerity-ui.css';
 
 :root {
-  /* Light theme colors */
-  --color-primary: #3b82f6;
-  --color-secondary: #64748b;
-  --color-accent: #f59e0b;
-  --color-neutral: #6b7280;
+  /* Purple & Blue theme colors */
+  --color-primary: #a855f7;
+  --color-secondary: #3b82f6;
+  --color-accent: #c084fc;
+  --color-neutral: #71717a;
   --color-base: #ffffff;
   --color-info: #0ea5e9;
   --color-success: #10b981;

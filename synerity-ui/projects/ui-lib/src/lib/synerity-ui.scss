@@ -1,9 +1,7 @@
 /* Synerity UI - Consolidated SCSS File */
 
-/* Import Tailwind CSS */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Note: Tailwind CSS should be imported by the consuming application */
+/* This allows the app to control the theme and prevents conflicts */
 
 /* Synerity UI Component Styles */
 
@@ -54,62 +52,58 @@
 }
 
 /* Button Variants */
-.sui-button-primary {
-  background-color: #3b82f6;
-  color: white;
-  border-color: #3b82f6;
+button.sui-button.sui-button-primary,
+.sui-button.sui-button-primary {
+  @apply bg-primary-600 text-white border-primary-600;
 }
 
-.sui-button-primary:hover:not(:disabled) {
-  background-color: #2563eb;
-  border-color: #2563eb;
+button.sui-button.sui-button-primary:hover:not(:disabled),
+.sui-button.sui-button-primary:hover:not(:disabled) {
+  @apply bg-primary-700 border-primary-700;
 }
 
 .sui-button-primary:focus {
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+  @apply ring-2 ring-primary-500 ring-offset-2;
 }
 
-.sui-button-secondary {
-  background-color: #6b7280;
-  color: white;
-  border-color: #6b7280;
+button.sui-button.sui-button-secondary,
+.sui-button.sui-button-secondary {
+  @apply bg-gray-600 text-white border-gray-600;
 }
 
-.sui-button-secondary:hover:not(:disabled) {
-  background-color: #4b5563;
-  border-color: #4b5563;
+button.sui-button.sui-button-secondary:hover:not(:disabled),
+.sui-button.sui-button-secondary:hover:not(:disabled) {
+  @apply bg-gray-700 border-gray-700;
 }
 
-.sui-button-outline {
-  background-color: transparent;
-  color: #374151;
-  border-color: #d1d5db;
+button.sui-button.sui-button-outline,
+.sui-button.sui-button-outline {
+  @apply bg-transparent text-gray-700 border-gray-300;
 }
 
-.sui-button-outline:hover:not(:disabled) {
-  background-color: #f9fafb;
-  border-color: #9ca3af;
+button.sui-button.sui-button-outline:hover:not(:disabled),
+.sui-button.sui-button-outline:hover:not(:disabled) {
+  @apply bg-gray-50 border-gray-400;
 }
 
-.sui-button-ghost {
-  background-color: transparent;
-  color: #374151;
-  border-color: transparent;
+button.sui-button.sui-button-ghost,
+.sui-button.sui-button-ghost {
+  @apply bg-transparent text-gray-700 border-transparent;
 }
 
-.sui-button-ghost:hover:not(:disabled) {
-  background-color: #f3f4f6;
+button.sui-button.sui-button-ghost:hover:not(:disabled),
+.sui-button.sui-button-ghost:hover:not(:disabled) {
+  @apply bg-gray-100;
 }
 
-.sui-button-danger {
-  background-color: #dc2626;
-  color: white;
-  border-color: #dc2626;
+button.sui-button.sui-button-danger,
+.sui-button.sui-button-danger {
+  @apply bg-red-600 text-white border-red-600;
 }
 
-.sui-button-danger:hover:not(:disabled) {
-  background-color: #b91c1c;
-  border-color: #b91c1c;
+button.sui-button.sui-button-danger:hover:not(:disabled),
+.sui-button.sui-button-danger:hover:not(:disabled) {
+  @apply bg-red-700 border-red-700;
 }
 
 /* Full Width */
@@ -12273,7 +12267,7 @@
 
   // Items
   &-item {
-    @apply flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 cursor-pointer group relative;
+    @apply flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 cursor-pointer relative;
 
     &:hover {
       @apply bg-gray-200 scale-105;
@@ -12301,7 +12295,8 @@
 
     // Tooltip
     &-tooltip {
-      @apply absolute bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50;
+      @apply absolute bg-gray-900 text-white text-xs px-2 py-1 opacity-0 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50;
+      border-radius: 0.25rem;
 
       &-bottom {
         @apply top-full left-1/2 transform -translate-x-1/2 mt-2;
@@ -13029,7 +13024,8 @@
     }
 
     .sui-tiered-menu-submenu {
-      @apply relative top-auto left-auto shadow-none border-none rounded-none min-w-auto;
+      @apply relative top-auto left-auto shadow-none border-none rounded-none;
+      min-width: auto;
     }
   }
 
@@ -13141,7 +13137,8 @@
     }
 
     &:focus-visible {
-      @apply outline-none ring-2 ring-blue-500 ring-offset-2 rounded;
+      @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+      border-radius: 0.25rem;
     }
   }
 
@@ -13231,11 +13228,11 @@
 
   /* Custom styling variants */
   &.rounded img {
-    @apply rounded-lg;
+    border-radius: 0.5rem;
   }
 
   &.circle img {
-    @apply rounded-full;
+    border-radius: 9999px;
   }
 
   &.shadow img {
@@ -13635,7 +13632,8 @@
   }
   
   &-button {
-    @apply p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded transition-colors duration-200;
+    @apply p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 transition-colors duration-200;
+    border-radius: 0.25rem;
   }
   
   &-body {
@@ -14291,7 +14289,7 @@
   }
 
   &-item {
-    @apply group flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 ease-in-out transform hover:scale-105;
+    @apply flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 ease-in-out transform hover:scale-105;
 
     &-disabled {
       @apply opacity-50 cursor-not-allowed hover:scale-100;
@@ -14407,7 +14405,8 @@
 
 /* Animate On Scroll Component Styles */
 .sui-animate-on-scroll {
-  @apply transition-all duration-1000 ease-out;
+  @apply transition-all ease-out;
+  transition-duration: 1000ms;
 
   /* Animation states */
   &-visible {
@@ -14552,21 +14551,25 @@
 
   &-flipInX {
     &.sui-animate-hidden {
-      @apply opacity-0 transform rotate-x-90;
+      @apply opacity-0 transform;
+      transform: rotateX(90deg);
     }
 
     &.sui-animate-visible {
-      @apply opacity-100 transform rotate-x-0;
+      @apply opacity-100 transform;
+      transform: rotateX(0deg);
     }
   }
 
   &-flipInY {
     &.sui-animate-hidden {
-      @apply opacity-0 transform rotate-y-90;
+      @apply opacity-0 transform;
+      transform: rotateY(90deg);
     }
 
     &.sui-animate-visible {
-      @apply opacity-100 transform rotate-y-0;
+      @apply opacity-100 transform;
+      transform: rotateY(0deg);
     }
   }
 
@@ -14585,7 +14588,7 @@
   }
 
   &--slow {
-    @apply duration-2000;
+    animation-duration: 2000ms;
   }
 }
 
@@ -15342,7 +15345,8 @@
     }
 
     .sui-block-ui-spinner {
-      @apply w-12 h-12 border-6;
+      @apply w-12 h-12;
+      border-width: 6px;
     }
 
     .sui-block-ui-message {
@@ -17912,7 +17916,7 @@
   }
 
   &--rotate-270 {
-    @apply rotate-270;
+    transform: rotate(270deg);
   }
 
   &--scale-50 {

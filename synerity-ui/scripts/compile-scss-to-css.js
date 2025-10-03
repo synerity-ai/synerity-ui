@@ -6,6 +6,9 @@
  */
 
 const sass = require('sass');
+const postcss = require('postcss');
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
 const fs = require('fs');
 const path = require('path');
 
@@ -15,21 +18,33 @@ const cssMapFile = path.join(__dirname, '../projects/ui-lib/src/lib/synerity-ui.
 
 console.log('🔄 Compiling synerity-ui.scss to CSS...');
 
+(async () => {
 try {
-  const result = sass.compile(scssFile, {
+  // Step 1: Compile SCSS to CSS
+  const sassResult = sass.compile(scssFile, {
     style: 'expanded',
     sourceMap: true,
     sourceMapIncludeSources: true,
     verbose: true
   });
 
+  // Step 2: Process CSS with Tailwind and PostCSS
+  const postcssResult = await postcss([
+    tailwindcss('./tailwind.config.js'), // Use the library's Tailwind config
+    autoprefixer()
+  ]).process(sassResult.css, {
+    from: scssFile,
+    to: cssFile,
+    map: { inline: false, sourcesContent: true }
+  });
+
   // Write CSS file
-  fs.writeFileSync(cssFile, result.css);
+  fs.writeFileSync(cssFile, postcssResult.css);
   console.log(`✅ CSS file written: ${cssFile}`);
 
   // Write source map file
-  if (result.sourceMap) {
-    fs.writeFileSync(cssMapFile, JSON.stringify(result.sourceMap, null, 2));
+  if (postcssResult.map) {
+    fs.writeFileSync(cssMapFile, postcssResult.map.toString());
     console.log(`✅ Source map written: ${cssMapFile}`);
   }
 
@@ -48,3 +63,4 @@ try {
   console.error(error.message);
   process.exit(1);
 }
+})();
