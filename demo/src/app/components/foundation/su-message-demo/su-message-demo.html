@@ -1,0 +1,187 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Message Component Demo</h2>
+    <p>Interactive messages with various severity levels and configurations.</p>
+  </div>
+
+  <!-- Basic Messages -->
+  <div class="demo-section">
+    <h3>Basic Messages</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Success Message</h4>
+        <p>Shows a success message with green styling.</p>
+        <sui-message
+          severity="success"
+          text="Operation completed successfully!"
+          [closable]="true"
+          (onClose)="onMessageClose()">
+        </sui-message>
+      </div>
+
+      <div class="component-card">
+        <h4>Info Message</h4>
+        <p>Shows an informational message with blue styling.</p>
+        <sui-message
+          severity="info"
+          text="Here is some useful information for you."
+          [closable]="true"
+          (onClose)="onMessageClose()">
+        </sui-message>
+      </div>
+
+      <div class="component-card">
+        <h4>Warning Message</h4>
+        <p>Shows a warning message with yellow styling.</p>
+        <sui-message
+          severity="warn"
+          text="Please be careful with this action."
+          [closable]="true"
+          (onClose)="onMessageClose()">
+        </sui-message>
+      </div>
+
+      <div class="component-card">
+        <h4>Error Message</h4>
+        <p>Shows an error message with red styling.</p>
+        <sui-message
+          severity="error"
+          text="Something went wrong. Please try again."
+          [closable]="true"
+          (onClose)="onMessageClose()">
+        </sui-message>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Messages -->
+  <div class="demo-section">
+    <h3>Interactive Messages</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Show Different Messages</h4>
+        <p>Click buttons to show different message types.</p>
+        <div class="btn-group">
+          <button class="btn btn-success" (click)="showSuccess()">Success</button>
+          <button class="btn btn-info" (click)="showInfo()">Info</button>
+          <button class="btn btn-warning" (click)="showWarning()">Warning</button>
+          <button class="btn btn-danger" (click)="showError()">Error</button>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Message Controls</h4>
+        <p>Control message visibility and content.</p>
+        <div class="btn-group">
+          <button class="btn btn-primary" (click)="showCustomMessage()">Show Message</button>
+          <button class="btn btn-secondary" (click)="hideMessage()">Hide Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Message Configuration -->
+  <div class="demo-section">
+    <h3>Custom Message Configuration</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Message Severity:</label>
+        <div class="radio-options">
+          <label *ngFor="let severity of severities">
+            <input
+              type="radio"
+              name="severity"
+              [value]="severity.value"
+              [(ngModel)]="selectedSeverity">
+            {{ severity.icon }} {{ severity.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="customText">Message Text:</label>
+        <input
+          type="text"
+          id="customText"
+          class="form-control"
+          [(ngModel)]="customText"
+          placeholder="Enter message text">
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input
+            type="checkbox"
+            [(ngModel)]="closable">
+          Closable
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <button class="btn btn-primary" (click)="showCustomMessage()">
+          Show Custom Message
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Message Display -->
+  <div class="demo-section">
+    <h3>Dynamic Message Display</h3>
+    <div class="demo-content">
+      <sui-message
+        *ngIf="showMessage"
+        [severity]="selectedSeverity"
+        [text]="customText"
+        [closable]="closable"
+        (onClose)="onMessageClose()">
+      </sui-message>
+    </div>
+  </div>
+
+  <!-- Message Examples -->
+  <div class="demo-section">
+    <h3>Message Examples</h3>
+    <div class="demo-content">
+      <div class="mb-4">
+        <h4>Form Validation Messages</h4>
+        <sui-message
+          severity="error"
+          text="Please fill in all required fields."
+          [closable]="true"
+          (onClose)="onMessageClose()">
+        </sui-message>
+      </div>
+
+      <div class="mb-4">
+        <h4>Success Notification</h4>
+        <sui-message
+          severity="success"
+          text="Your changes have been saved successfully."
+          [closable]="true"
+          (onClose)="onMessageClose()">
+        </sui-message>
+      </div>
+
+      <div class="mb-4">
+        <h4>System Information</h4>
+        <sui-message
+          severity="info"
+          text="The system will be undergoing maintenance tonight from 2 AM to 4 AM."
+          [closable]="true"
+          (onClose)="onMessageClose()">
+        </sui-message>
+      </div>
+
+      <div class="mb-4">
+        <h4>Warning Alert</h4>
+        <sui-message
+          severity="warn"
+          text="Your session will expire in 5 minutes. Please save your work."
+          [closable]="true"
+          (onClose)="onMessageClose()">
+        </sui-message>
+      </div>
+    </div>
+  </div>
+</div>

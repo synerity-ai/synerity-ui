@@ -1,0 +1,132 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Scroll Top Component Demo</h2>
+    <p>Floating button that appears when users scroll down, allowing them to quickly return to the top of the page.</p>
+  </div>
+
+  <!-- Basic Scroll Top -->
+  <div class="demo-section">
+    <h3>Basic Scroll Top</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default Scroll Top</h4>
+        <p>Appears after scrolling 400px down the page.</p>
+        <sui-scroll-top [threshold]="400" icon="↑" behavior="smooth" (click)="onScrollTopClick()"></sui-scroll-top>
+        <p class="text-sm text-gray-600 mt-2">Scroll down to see the button appear.</p>
+      </div>
+
+      <div class="component-card">
+        <h4>Custom Icon</h4>
+        <p>Uses a custom emoji icon.</p>
+        <sui-scroll-top [threshold]="200" icon="🔝" behavior="smooth" (click)="onScrollTopClick()"></sui-scroll-top>
+        <p class="text-sm text-gray-600 mt-2">Appears after 200px scroll.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Style Variants -->
+  <div class="demo-section">
+    <h3>Style Variants</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Primary Style</h4>
+        <sui-scroll-top [threshold]="300" icon="↑" behavior="smooth" styleClass="sui-scroll-top--primary" (click)="onScrollTopClick()"></sui-scroll-top>
+      </div>
+
+      <div class="component-card">
+        <h4>Success Style</h4>
+        <sui-scroll-top [threshold]="300" icon="🔝" behavior="smooth" styleClass="sui-scroll-top--success" (click)="onScrollTopClick()"></sui-scroll-top>
+      </div>
+
+      <div class="component-card">
+        <h4>Warning Style</h4>
+        <sui-scroll-top [threshold]="300" icon="▲" behavior="smooth" styleClass="sui-scroll-top--warning" (click)="onScrollTopClick()"></sui-scroll-top>
+      </div>
+
+      <div class="component-card">
+        <h4>Error Style</h4>
+        <sui-scroll-top [threshold]="300" icon="^" behavior="smooth" styleClass="sui-scroll-top--error" (click)="onScrollTopClick()"></sui-scroll-top>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Configuration -->
+  <div class="demo-section">
+    <h3>Interactive Configuration</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Threshold:</label>
+        <div class="radio-options">
+          <label *ngFor="let threshold of thresholds">
+            <input
+              type="radio"
+              name="threshold"
+              [value]="threshold.value"
+              [(ngModel)]="selectedThreshold">
+            {{ threshold.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Icon:</label>
+        <div class="radio-options">
+          <label *ngFor="let icon of icons">
+            <input
+              type="radio"
+              name="icon"
+              [value]="icon.value"
+              [(ngModel)]="selectedIcon">
+            {{ icon.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Behavior:</label>
+        <div class="radio-options">
+          <label *ngFor="let behavior of behaviors">
+            <input
+              type="radio"
+              name="behavior"
+              [value]="behavior.value"
+              [(ngModel)]="selectedBehavior">
+            {{ behavior.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-sm text-gray-600">{{ getConfigDescription() }}</p>
+      </div>
+
+      <div class="mt-8">
+        <sui-scroll-top
+          [threshold]="selectedThreshold"
+          [icon]="selectedIcon"
+          [behavior]="selectedBehavior"
+          [styleClass]="getScrollTopClass()"
+          (click)="onScrollTopClick()">
+        </sui-scroll-top>
+        <p class="text-sm text-gray-600 mt-2">Scroll down to see the configured scroll-to-top button.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Tracking -->
+  <div class="demo-section">
+    <h3>Event Tracking</h3>
+    <div class="demo-content">
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <h4 class="font-medium text-blue-900 mb-2">Scroll Top Events</h4>
+        <div class="text-blue-700 text-sm mb-4">
+          <div>Total Scroll Top Clicks: {{ scrollTopCount }}</div>
+          <div>Last Scroll Top: {{ lastScrollTopTime || 'None' }}</div>
+        </div>
+        <button class="btn btn-secondary" (click)="resetCounters()">
+          Reset Counters
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

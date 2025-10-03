@@ -11471,3 +11471,3629 @@
     transform: translate(-50%, -50%);
   }
 }
+/* Dialog Component Styles */
+.sui-dialog {
+  @apply fixed inset-0 z-50 overflow-y-auto;
+}
+.sui-dialog-backdrop {
+  @apply fixed inset-0 bg-black bg-opacity-50 transition-opacity;
+}
+.sui-dialog-container {
+  @apply flex min-h-full items-center justify-center p-4;
+}
+.sui-dialog-content {
+  @apply relative bg-white rounded-lg shadow-xl border border-gray-200 w-full max-w-lg mx-auto transform transition-all;
+}
+.sui-dialog-content--maximized {
+  @apply max-w-none h-screen rounded-none;
+}
+.sui-dialog-content--resizable {
+  @apply resize;
+}
+.sui-dialog-header {
+  @apply flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-lg;
+}
+.sui-dialog-header--maximized {
+  @apply rounded-t-none;
+}
+.sui-dialog-title {
+  @apply text-lg font-semibold text-gray-900;
+}
+.sui-dialog-controls {
+  @apply flex items-center space-x-2;
+}
+.sui-dialog-button {
+  @apply p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded transition-colors duration-200;
+}
+.sui-dialog-body {
+  @apply px-6 py-4;
+}
+.sui-dialog-resize-handle {
+  @apply absolute bottom-0 right-0 w-4 h-4 cursor-se-resize opacity-0 hover:opacity-100 transition-opacity duration-200;
+}
+.sui-dialog-resize-handle::after {
+  @apply w-full h-full bg-gray-300 hover:bg-gray-400;
+  content: "";
+}
+
+/* Confirm Dialog Component Styles */
+.sui-confirm-dialog {
+  @apply fixed inset-0 z-50 overflow-y-auto;
+}
+.sui-confirm-dialog-backdrop {
+  @apply fixed inset-0 bg-black bg-opacity-50 transition-opacity;
+}
+.sui-confirm-dialog-container {
+  @apply flex min-h-full items-center justify-center p-4;
+}
+.sui-confirm-dialog-content {
+  @apply relative bg-white rounded-lg shadow-xl max-w-md w-full mx-auto transform transition-all;
+}
+.sui-confirm-dialog-header {
+  @apply px-6 py-4 border-b border-gray-200;
+}
+.sui-confirm-dialog-title {
+  @apply text-lg font-medium text-gray-900;
+}
+.sui-confirm-dialog-body {
+  @apply px-6 py-4;
+}
+.sui-confirm-dialog-message {
+  @apply text-sm text-gray-600;
+}
+.sui-confirm-dialog-footer {
+  @apply px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end space-x-3;
+}
+.sui-confirm-dialog-button {
+  @apply px-4 py-2 text-sm font-medium transition-colors;
+}
+.sui-confirm-dialog-button--cancel {
+  @apply text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+}
+.sui-confirm-dialog-button--accept {
+  @apply text-white bg-primary-600 border border-transparent rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+}
+.sui-confirm-dialog-icon {
+  @apply mr-2;
+}
+
+/* Toast Component Styles */
+.sui-toast {
+  @apply fixed z-50 space-y-2 pointer-events-none;
+}
+.sui-toast-container {
+  @apply fixed z-50 space-y-2 pointer-events-none;
+}
+.sui-toast-message {
+  @apply flex items-start p-4 rounded-lg shadow-lg border pointer-events-auto transform transition-all duration-300 ease-in-out;
+}
+.sui-toast-message--success {
+  @apply bg-green-50 border-green-200 text-green-800;
+}
+.sui-toast-message--info {
+  @apply bg-blue-50 border-blue-200 text-blue-800;
+}
+.sui-toast-message--warn {
+  @apply bg-yellow-50 border-yellow-200 text-yellow-800;
+}
+.sui-toast-message--error {
+  @apply bg-red-50 border-red-200 text-red-800;
+}
+.sui-toast-icon {
+  @apply flex-shrink-0 mr-3 text-lg;
+}
+.sui-toast-content {
+  @apply flex-1 min-w-0;
+}
+.sui-toast-summary {
+  @apply text-sm font-medium;
+}
+.sui-toast-detail {
+  @apply text-sm opacity-90 mt-1;
+}
+.sui-toast-close {
+  @apply flex-shrink-0 ml-3 text-lg font-bold hover:opacity-70 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded;
+}
+.sui-toast {
+  /* Position variants */
+}
+.sui-toast--top-right {
+  @apply top-4 right-4;
+}
+.sui-toast--top-left {
+  @apply top-4 left-4;
+}
+.sui-toast--bottom-right {
+  @apply bottom-4 right-4;
+}
+.sui-toast--bottom-left {
+  @apply bottom-4 left-4;
+}
+.sui-toast--top-center {
+  @apply top-4 left-1/2 transform -translate-x-1/2;
+}
+.sui-toast--bottom-center {
+  @apply bottom-4 left-1/2 transform -translate-x-1/2;
+}
+.sui-toast {
+  /* Animation states */
+}
+.sui-toast-enter {
+  @apply opacity-0 transform translate-x-full;
+}
+.sui-toast-enter-active {
+  @apply opacity-100 transform translate-x-0 transition-all duration-300 ease-out;
+}
+.sui-toast-exit {
+  @apply opacity-100 transform translate-x-0;
+}
+.sui-toast-exit-active {
+  @apply opacity-0 transform translate-x-full transition-all duration-300 ease-in;
+}
+
+/* Progress Bar Component Styles */
+.sui-progress-bar {
+  @apply w-full;
+}
+.sui-progress-bar-track {
+  @apply w-full bg-gray-200 rounded-full overflow-hidden;
+  height: 8px;
+}
+.sui-progress-bar-fill {
+  @apply h-full transition-all duration-300 ease-out;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+.sui-progress-bar-fill--indeterminate {
+  @apply animate-pulse;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8, #3b82f6);
+  background-size: 200% 100%;
+  animation: progressIndeterminate 1.5s ease-in-out infinite;
+}
+.sui-progress-bar-value {
+  @apply text-sm font-medium text-gray-700 mt-1;
+}
+.sui-progress-bar {
+  /* Size variants */
+}
+.sui-progress-bar--small .sui-progress-bar-track {
+  height: 4px;
+}
+.sui-progress-bar--large .sui-progress-bar-track {
+  height: 12px;
+}
+.sui-progress-bar {
+  /* Color variants */
+}
+.sui-progress-bar--success .sui-progress-bar-fill {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+.sui-progress-bar--warning .sui-progress-bar-fill {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+.sui-progress-bar--error .sui-progress-bar-fill {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+.sui-progress-bar--info .sui-progress-bar-fill {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+.sui-progress-bar {
+  /* Striped variant */
+}
+.sui-progress-bar--striped .sui-progress-bar-fill {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+  animation: progressStriped 1s linear infinite;
+}
+
+/* Captcha Component Styles */
+.sui-captcha {
+  @apply bg-white border border-gray-200 rounded-lg shadow-sm p-4;
+}
+.sui-captcha-header {
+  @apply flex items-center justify-between mb-4;
+}
+.sui-captcha-title {
+  @apply text-lg font-semibold text-gray-900;
+}
+.sui-captcha-refresh {
+  @apply p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500;
+}
+.sui-captcha-challenge {
+  @apply mb-4;
+}
+.sui-captcha-question {
+  @apply text-sm font-medium text-gray-700 mb-3;
+}
+.sui-captcha-input-container {
+  @apply flex items-center space-x-2;
+}
+.sui-captcha-input {
+  @apply flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
+}
+.sui-captcha-input-error {
+  @apply border-red-300 focus:ring-red-500 focus:border-red-500;
+}
+.sui-captcha-input-success {
+  @apply border-green-300 focus:ring-green-500 focus:border-green-500;
+}
+.sui-captcha-verify {
+  @apply px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.sui-captcha-error-message {
+  @apply text-sm text-red-600 mt-2;
+}
+.sui-captcha-success {
+  @apply text-sm text-green-600 mt-2 font-medium;
+}
+.sui-captcha-info {
+  @apply mt-4 pt-3 border-t border-gray-200;
+}
+.sui-captcha-help {
+  @apply text-xs text-gray-500;
+}
+.sui-captcha {
+  /* State variants */
+}
+.sui-captcha-verified {
+  @apply border-green-200 bg-green-50;
+}
+.sui-captcha-error {
+  @apply border-red-200 bg-red-50;
+}
+.sui-captcha {
+  /* Size variants */
+}
+.sui-captcha--small {
+  @apply p-3;
+}
+.sui-captcha--small .sui-captcha-title {
+  @apply text-base;
+}
+.sui-captcha--small .sui-captcha-question {
+  @apply text-xs;
+}
+.sui-captcha--small .sui-captcha-input {
+  @apply px-2 py-1 text-xs;
+}
+.sui-captcha--small .sui-captcha-verify {
+  @apply px-3 py-1 text-xs;
+}
+.sui-captcha--large {
+  @apply p-6;
+}
+.sui-captcha--large .sui-captcha-title {
+  @apply text-xl;
+}
+.sui-captcha--large .sui-captcha-question {
+  @apply text-base;
+}
+.sui-captcha--large .sui-captcha-input {
+  @apply px-4 py-3 text-base;
+}
+.sui-captcha--large .sui-captcha-verify {
+  @apply px-6 py-3 text-base;
+}
+.sui-captcha {
+  /* Color variants */
+}
+.sui-captcha--primary {
+  @apply border-primary-200 bg-primary-50;
+}
+.sui-captcha--primary .sui-captcha-title {
+  @apply text-primary-900;
+}
+.sui-captcha--primary .sui-captcha-question {
+  @apply text-primary-700;
+}
+.sui-captcha--success {
+  @apply border-green-200 bg-green-50;
+}
+.sui-captcha--success .sui-captcha-title {
+  @apply text-green-900;
+}
+.sui-captcha--success .sui-captcha-question {
+  @apply text-green-700;
+}
+.sui-captcha--warning {
+  @apply border-yellow-200 bg-yellow-50;
+}
+.sui-captcha--warning .sui-captcha-title {
+  @apply text-yellow-900;
+}
+.sui-captcha--warning .sui-captcha-question {
+  @apply text-yellow-700;
+}
+.sui-captcha--error {
+  @apply border-red-200 bg-red-50;
+}
+.sui-captcha--error .sui-captcha-title {
+  @apply text-red-900;
+}
+.sui-captcha--error .sui-captcha-question {
+  @apply text-red-700;
+}
+
+/* Org Chart Component Styles */
+.sui-org-chart {
+  @apply w-full overflow-auto;
+}
+.sui-org-chart-container {
+  @apply flex flex-col items-center p-4;
+}
+.sui-org-chart-level {
+  @apply flex flex-col items-center mb-8;
+}
+.sui-org-chart-node-container {
+  @apply flex justify-center mb-4;
+}
+.sui-org-chart-node {
+  @apply bg-white border border-gray-200 rounded-lg shadow-sm p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-primary-300;
+}
+.sui-org-chart-node-selected {
+  @apply border-primary-500 bg-primary-50 shadow-md;
+}
+.sui-org-chart-node-content {
+  @apply flex flex-col items-center text-center space-y-2;
+}
+.sui-org-chart-avatar {
+  @apply w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center text-white font-semibold text-lg;
+}
+.sui-org-chart-title {
+  @apply text-lg font-semibold text-gray-900;
+}
+.sui-org-chart-data {
+  @apply text-sm text-gray-600 space-y-1;
+}
+.sui-org-chart-data-item {
+  @apply flex justify-between space-x-2;
+}
+.sui-org-chart-data-label {
+  @apply font-medium;
+}
+.sui-org-chart-data-value {
+  @apply text-gray-500;
+}
+.sui-org-chart-children {
+  @apply flex flex-col items-center;
+}
+.sui-org-chart-connector {
+  @apply w-px h-4 bg-gray-300 mb-4;
+}
+.sui-org-chart-connector-line {
+  @apply w-full h-px bg-gray-300;
+}
+.sui-org-chart-children-container {
+  @apply flex flex-wrap justify-center gap-4;
+}
+.sui-org-chart-child-container {
+  @apply flex flex-col items-center;
+}
+.sui-org-chart-child {
+  @apply bg-white border border-gray-200 rounded-lg shadow-sm p-3 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-primary-300;
+}
+.sui-org-chart-child-content {
+  @apply flex flex-col items-center text-center space-y-1;
+}
+.sui-org-chart-child-avatar {
+  @apply w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center text-white font-medium text-sm;
+}
+.sui-org-chart-child-title {
+  @apply text-sm font-medium text-gray-900;
+}
+.sui-org-chart-child-data {
+  @apply text-xs text-gray-600 space-y-1;
+}
+.sui-org-chart-child-data-item {
+  @apply flex justify-between space-x-1;
+}
+.sui-org-chart-child-data-label {
+  @apply font-medium;
+}
+.sui-org-chart-child-data-value {
+  @apply text-gray-500;
+}
+.sui-org-chart {
+  /* Orientation variants */
+}
+.sui-org-chart-vertical .sui-org-chart-container {
+  @apply flex-col;
+}
+.sui-org-chart-vertical .sui-org-chart-children-container {
+  @apply flex-row;
+}
+.sui-org-chart-horizontal .sui-org-chart-container {
+  @apply flex-row;
+}
+.sui-org-chart-horizontal .sui-org-chart-level {
+  @apply flex-row mb-0 mr-8;
+}
+.sui-org-chart-horizontal .sui-org-chart-children-container {
+  @apply flex-col;
+}
+.sui-org-chart {
+  /* Size variants */
+}
+.sui-org-chart--small .sui-org-chart-node {
+  @apply p-2;
+}
+.sui-org-chart--small .sui-org-chart-avatar {
+  @apply w-8 h-8 text-sm;
+}
+.sui-org-chart--small .sui-org-chart-title {
+  @apply text-sm;
+}
+.sui-org-chart--small .sui-org-chart-child {
+  @apply p-2;
+}
+.sui-org-chart--small .sui-org-chart-child-avatar {
+  @apply w-6 h-6 text-xs;
+}
+.sui-org-chart--small .sui-org-chart-child-title {
+  @apply text-xs;
+}
+.sui-org-chart--large .sui-org-chart-node {
+  @apply p-6;
+}
+.sui-org-chart--large .sui-org-chart-avatar {
+  @apply w-16 h-16 text-xl;
+}
+.sui-org-chart--large .sui-org-chart-title {
+  @apply text-xl;
+}
+.sui-org-chart--large .sui-org-chart-child {
+  @apply p-4;
+}
+.sui-org-chart--large .sui-org-chart-child-avatar {
+  @apply w-10 h-10 text-base;
+}
+.sui-org-chart--large .sui-org-chart-child-title {
+  @apply text-base;
+}
+.sui-org-chart {
+  /* Color variants */
+}
+.sui-org-chart--primary .sui-org-chart-node {
+  @apply border-primary-200 hover:border-primary-400;
+}
+.sui-org-chart--primary .sui-org-chart-node.sui-org-chart-node-selected {
+  @apply border-primary-500 bg-primary-50;
+}
+.sui-org-chart--primary .sui-org-chart-avatar {
+  @apply bg-primary-500;
+}
+.sui-org-chart--success .sui-org-chart-node {
+  @apply border-green-200 hover:border-green-400;
+}
+.sui-org-chart--success .sui-org-chart-node.sui-org-chart-node-selected {
+  @apply border-green-500 bg-green-50;
+}
+.sui-org-chart--success .sui-org-chart-avatar {
+  @apply bg-green-500;
+}
+.sui-org-chart--warning .sui-org-chart-node {
+  @apply border-yellow-200 hover:border-yellow-400;
+}
+.sui-org-chart--warning .sui-org-chart-node.sui-org-chart-node-selected {
+  @apply border-yellow-500 bg-yellow-50;
+}
+.sui-org-chart--warning .sui-org-chart-avatar {
+  @apply bg-yellow-500;
+}
+.sui-org-chart--error .sui-org-chart-node {
+  @apply border-red-200 hover:border-red-400;
+}
+.sui-org-chart--error .sui-org-chart-node.sui-org-chart-node-selected {
+  @apply border-red-500 bg-red-50;
+}
+.sui-org-chart--error .sui-org-chart-avatar {
+  @apply bg-red-500;
+}
+
+/* Speed Dial Component Styles */
+.sui-speed-dial {
+  @apply relative inline-block;
+}
+.sui-speed-dial-button {
+  @apply flex items-center justify-center w-12 h-12 text-white bg-primary-600 rounded-full shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 ease-in-out transform hover:scale-105;
+}
+.sui-speed-dial-button-disabled {
+  @apply opacity-50 cursor-not-allowed hover:scale-100;
+}
+.sui-speed-dial-item {
+  @apply group flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 ease-in-out transform hover:scale-105;
+}
+.sui-speed-dial-item-disabled {
+  @apply opacity-50 cursor-not-allowed hover:scale-100;
+}
+.sui-speed-dial {
+  /* Direction variants */
+}
+.sui-speed-dial-up .sui-speed-dial-items {
+  @apply bottom-full mb-2;
+}
+.sui-speed-dial-down .sui-speed-dial-items {
+  @apply top-full mt-2;
+}
+.sui-speed-dial-left .sui-speed-dial-items {
+  @apply right-full mr-2 flex-row-reverse;
+}
+.sui-speed-dial-right .sui-speed-dial-items {
+  @apply left-full ml-2 flex-row;
+}
+.sui-speed-dial {
+  /* Size variants */
+}
+.sui-speed-dial--small .sui-speed-dial-button {
+  @apply w-10 h-10;
+}
+.sui-speed-dial--small .sui-speed-dial-item {
+  @apply px-2 py-1 text-xs;
+}
+.sui-speed-dial--large .sui-speed-dial-button {
+  @apply w-14 h-14;
+}
+.sui-speed-dial--large .sui-speed-dial-item {
+  @apply px-4 py-3 text-base;
+}
+.sui-speed-dial {
+  /* Color variants */
+}
+.sui-speed-dial--primary .sui-speed-dial-button {
+  @apply bg-primary-600 hover:bg-primary-700;
+}
+.sui-speed-dial--primary .sui-speed-dial-item {
+  @apply bg-primary-800 hover:bg-primary-700;
+}
+.sui-speed-dial--success .sui-speed-dial-button {
+  @apply bg-green-600 hover:bg-green-700;
+}
+.sui-speed-dial--success .sui-speed-dial-item {
+  @apply bg-green-800 hover:bg-green-700;
+}
+.sui-speed-dial--warning .sui-speed-dial-button {
+  @apply bg-yellow-600 hover:bg-yellow-700;
+}
+.sui-speed-dial--warning .sui-speed-dial-item {
+  @apply bg-yellow-800 hover:bg-yellow-700;
+}
+.sui-speed-dial--error .sui-speed-dial-button {
+  @apply bg-red-600 hover:bg-red-700;
+}
+.sui-speed-dial--error .sui-speed-dial-item {
+  @apply bg-red-800 hover:bg-red-700;
+}
+.sui-speed-dial {
+  /* Animation variants */
+}
+.sui-speed-dial-animate .sui-speed-dial-item {
+  animation: speedDialSlideIn 0.3s ease-out;
+}
+.sui-speed-dial-fade .sui-speed-dial-item {
+  animation: speedDialFadeIn 0.2s ease-out;
+}
+.sui-speed-dial-scale .sui-speed-dial-item {
+  animation: speedDialScaleIn 0.2s ease-out;
+}
+
+/* Animate On Scroll Component Styles */
+.sui-animate-on-scroll {
+  @apply transition-all duration-1000 ease-out;
+  /* Animation states */
+}
+.sui-animate-on-scroll-visible {
+  @apply opacity-100 transform-none;
+}
+.sui-animate-on-scroll-hidden {
+  @apply opacity-0;
+}
+.sui-animate-on-scroll {
+  /* Animation variants */
+}
+.sui-animate-on-scroll-fadeInUp.sui-animate-hidden {
+  @apply opacity-0 transform translate-y-8;
+}
+.sui-animate-on-scroll-fadeInUp.sui-animate-visible {
+  @apply opacity-100 transform translate-y-0;
+}
+.sui-animate-on-scroll-fadeInDown.sui-animate-hidden {
+  @apply opacity-0 transform -translate-y-8;
+}
+.sui-animate-on-scroll-fadeInDown.sui-animate-visible {
+  @apply opacity-100 transform translate-y-0;
+}
+.sui-animate-on-scroll-fadeInLeft.sui-animate-hidden {
+  @apply opacity-0 transform -translate-x-8;
+}
+.sui-animate-on-scroll-fadeInLeft.sui-animate-visible {
+  @apply opacity-100 transform translate-x-0;
+}
+.sui-animate-on-scroll-fadeInRight.sui-animate-hidden {
+  @apply opacity-0 transform translate-x-8;
+}
+.sui-animate-on-scroll-fadeInRight.sui-animate-visible {
+  @apply opacity-100 transform translate-x-0;
+}
+.sui-animate-on-scroll-fadeIn.sui-animate-hidden {
+  @apply opacity-0;
+}
+.sui-animate-on-scroll-fadeIn.sui-animate-visible {
+  @apply opacity-100;
+}
+.sui-animate-on-scroll-slideInUp.sui-animate-hidden {
+  @apply transform translate-y-full;
+}
+.sui-animate-on-scroll-slideInUp.sui-animate-visible {
+  @apply transform translate-y-0;
+}
+.sui-animate-on-scroll-slideInDown.sui-animate-hidden {
+  @apply transform -translate-y-full;
+}
+.sui-animate-on-scroll-slideInDown.sui-animate-visible {
+  @apply transform translate-y-0;
+}
+.sui-animate-on-scroll-slideInLeft.sui-animate-hidden {
+  @apply transform -translate-x-full;
+}
+.sui-animate-on-scroll-slideInLeft.sui-animate-visible {
+  @apply transform translate-x-0;
+}
+.sui-animate-on-scroll-slideInRight.sui-animate-hidden {
+  @apply transform translate-x-full;
+}
+.sui-animate-on-scroll-slideInRight.sui-animate-visible {
+  @apply transform translate-x-0;
+}
+.sui-animate-on-scroll-zoomIn.sui-animate-hidden {
+  @apply opacity-0 transform scale-50;
+}
+.sui-animate-on-scroll-zoomIn.sui-animate-visible {
+  @apply opacity-100 transform scale-100;
+}
+.sui-animate-on-scroll-zoomOut.sui-animate-hidden {
+  @apply opacity-0 transform scale-150;
+}
+.sui-animate-on-scroll-zoomOut.sui-animate-visible {
+  @apply opacity-100 transform scale-100;
+}
+.sui-animate-on-scroll-rotateIn.sui-animate-hidden {
+  @apply opacity-0 transform rotate-180;
+}
+.sui-animate-on-scroll-rotateIn.sui-animate-visible {
+  @apply opacity-100 transform rotate-0;
+}
+.sui-animate-on-scroll-bounceIn.sui-animate-hidden {
+  @apply opacity-0 transform scale-0;
+}
+.sui-animate-on-scroll-bounceIn.sui-animate-visible {
+  @apply opacity-100 transform scale-100;
+  animation: bounceIn 0.6s ease-out;
+}
+.sui-animate-on-scroll-flipInX.sui-animate-hidden {
+  @apply opacity-0 transform rotate-x-90;
+}
+.sui-animate-on-scroll-flipInX.sui-animate-visible {
+  @apply opacity-100 transform rotate-x-0;
+}
+.sui-animate-on-scroll-flipInY.sui-animate-hidden {
+  @apply opacity-0 transform rotate-y-90;
+}
+.sui-animate-on-scroll-flipInY.sui-animate-visible {
+  @apply opacity-100 transform rotate-y-0;
+}
+.sui-animate-on-scroll {
+  /* Size variants */
+}
+.sui-animate-on-scroll--small {
+  @apply text-sm;
+}
+.sui-animate-on-scroll--large {
+  @apply text-lg;
+}
+.sui-animate-on-scroll {
+  /* Speed variants */
+}
+.sui-animate-on-scroll--fast {
+  @apply duration-300;
+}
+.sui-animate-on-scroll--slow {
+  @apply duration-2000;
+}
+
+/* Focus Trap Component Styles */
+.sui-focus-trap {
+  @apply relative outline-none;
+  /* Focus trap indicators */
+}
+.sui-focus-trap-enabled {
+  @apply ring-2 ring-primary-500 ring-opacity-50;
+}
+.sui-focus-trap-disabled {
+  @apply ring-0;
+}
+.sui-focus-trap {
+  /* Focus trap content */
+}
+.sui-focus-trap-content {
+  @apply relative;
+}
+.sui-focus-trap {
+  /* Focus trap overlay */
+}
+.sui-focus-trap-overlay {
+  @apply absolute inset-0 bg-transparent pointer-events-none;
+}
+.sui-focus-trap {
+  /* Size variants */
+}
+.sui-focus-trap--small {
+  @apply text-sm;
+}
+.sui-focus-trap--large {
+  @apply text-lg;
+}
+.sui-focus-trap {
+  /* Style variants */
+}
+.sui-focus-trap--primary {
+  @apply ring-primary-500;
+}
+.sui-focus-trap--success {
+  @apply ring-green-500;
+}
+.sui-focus-trap--warning {
+  @apply ring-yellow-500;
+}
+.sui-focus-trap--error {
+  @apply ring-red-500;
+}
+
+/* Split Button Component Styles */
+.sui-split-button {
+  @apply relative inline-flex;
+}
+.sui-split-button-main {
+  @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-r-0 rounded-l-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 ease-in-out;
+}
+.sui-split-button-dropdown {
+  @apply inline-flex items-center justify-center px-2 py-2 text-sm font-medium border rounded-r-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 ease-in-out;
+}
+.sui-split-button-menu {
+  @apply absolute z-50 w-56 mt-1 bg-white border border-gray-200 rounded-md shadow-lg focus:outline-none;
+}
+.sui-split-button-item {
+  @apply flex items-center gap-2 px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition-colors duration-150 ease-in-out;
+}
+.sui-split-button-item-disabled {
+  @apply opacity-50 cursor-not-allowed hover:bg-transparent;
+}
+.sui-split-button-separator {
+  @apply border-t border-gray-200 mt-1 pt-2;
+}
+.sui-split-button-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+.sui-split-button {
+  /* Style variants */
+}
+.sui-split-button-primary .sui-split-button-main {
+  @apply bg-primary-600 text-white border-primary-600 hover:bg-primary-700 focus:ring-primary-500;
+}
+.sui-split-button-primary .sui-split-button-dropdown {
+  @apply bg-primary-600 text-white border-primary-600 hover:bg-primary-700 focus:ring-primary-500;
+}
+.sui-split-button-secondary .sui-split-button-main {
+  @apply bg-gray-600 text-white border-gray-600 hover:bg-gray-700 focus:ring-gray-500;
+}
+.sui-split-button-secondary .sui-split-button-dropdown {
+  @apply bg-gray-600 text-white border-gray-600 hover:bg-gray-700 focus:ring-gray-500;
+}
+.sui-split-button-success .sui-split-button-main {
+  @apply bg-green-600 text-white border-green-600 hover:bg-green-700 focus:ring-green-500;
+}
+.sui-split-button-success .sui-split-button-dropdown {
+  @apply bg-green-600 text-white border-green-600 hover:bg-green-700 focus:ring-green-500;
+}
+.sui-split-button-info .sui-split-button-main {
+  @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700 focus:ring-blue-500;
+}
+.sui-split-button-info .sui-split-button-dropdown {
+  @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700 focus:ring-blue-500;
+}
+.sui-split-button-warning .sui-split-button-main {
+  @apply bg-yellow-600 text-white border-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500;
+}
+.sui-split-button-warning .sui-split-button-dropdown {
+  @apply bg-yellow-600 text-white border-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500;
+}
+.sui-split-button-help .sui-split-button-main {
+  @apply bg-purple-600 text-white border-purple-600 hover:bg-purple-700 focus:ring-purple-500;
+}
+.sui-split-button-help .sui-split-button-dropdown {
+  @apply bg-purple-600 text-white border-purple-600 hover:bg-purple-700 focus:ring-purple-500;
+}
+.sui-split-button-danger .sui-split-button-main {
+  @apply bg-red-600 text-white border-red-600 hover:bg-red-700 focus:ring-red-500;
+}
+.sui-split-button-danger .sui-split-button-dropdown {
+  @apply bg-red-600 text-white border-red-600 hover:bg-red-700 focus:ring-red-500;
+}
+.sui-split-button {
+  /* Size variants */
+}
+.sui-split-button--small .sui-split-button-main {
+  @apply px-2 py-1 text-xs;
+}
+.sui-split-button--small .sui-split-button-dropdown {
+  @apply px-1 py-1 text-xs;
+}
+.sui-split-button--small .sui-split-button-item {
+  @apply px-2 py-1 text-xs;
+}
+.sui-split-button--large .sui-split-button-main {
+  @apply px-6 py-3 text-base;
+}
+.sui-split-button--large .sui-split-button-dropdown {
+  @apply px-3 py-3 text-base;
+}
+.sui-split-button--large .sui-split-button-item {
+  @apply px-6 py-3 text-base;
+}
+.sui-split-button {
+  /* Animation variants */
+}
+.sui-split-button-animate .sui-split-button-menu {
+  animation: splitButtonSlideDown 0.2s ease-out;
+}
+.sui-split-button-fade .sui-split-button-menu {
+  animation: splitButtonFadeIn 0.15s ease-out;
+}
+
+/* Scroll Panel Component Styles */
+.sui-scroll-panel {
+  @apply w-full border border-gray-200 rounded-lg shadow-sm bg-white overflow-auto;
+}
+.sui-scroll-panel-content {
+  @apply p-4;
+}
+.sui-scroll-panel {
+  /* Size variants */
+}
+.sui-scroll-panel--small {
+  @apply text-sm;
+}
+.sui-scroll-panel--small .sui-scroll-panel-content {
+  @apply p-2;
+}
+.sui-scroll-panel--large {
+  @apply text-lg;
+}
+.sui-scroll-panel--large .sui-scroll-panel-content {
+  @apply p-6;
+}
+.sui-scroll-panel {
+  /* Color variants */
+}
+.sui-scroll-panel--primary {
+  @apply border-primary-200;
+}
+.sui-scroll-panel--success {
+  @apply border-green-200;
+}
+.sui-scroll-panel--warning {
+  @apply border-yellow-200;
+}
+.sui-scroll-panel--error {
+  @apply border-red-200;
+}
+.sui-scroll-panel {
+  /* Scrollbar styles */
+}
+.sui-scroll-panel::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+.sui-scroll-panel::-webkit-scrollbar-track {
+  @apply bg-gray-100 rounded;
+}
+.sui-scroll-panel::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded hover:bg-gray-400;
+}
+.sui-scroll-panel::-webkit-scrollbar-corner {
+  @apply bg-gray-100;
+}
+
+/* Inplace Component Styles */
+.sui-inplace {
+  @apply relative inline-block;
+}
+.sui-inplace-display {
+  @apply cursor-pointer p-2 border border-dashed border-gray-300 rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-200;
+}
+.sui-inplace-display:hover {
+  @apply shadow-sm;
+}
+.sui-inplace-content {
+  @apply p-4 border border-gray-200 rounded-lg bg-white shadow-sm;
+}
+.sui-inplace-close {
+  @apply absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500;
+}
+.sui-inplace-active .sui-inplace-display {
+  @apply border-primary-300 bg-primary-50;
+}
+.sui-inplace-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+.sui-inplace-disabled .sui-inplace-display {
+  @apply cursor-not-allowed hover:border-gray-300 hover:bg-transparent;
+}
+.sui-inplace {
+  /* Size variants */
+}
+.sui-inplace--small .sui-inplace-display {
+  @apply p-1 text-sm;
+}
+.sui-inplace--small .sui-inplace-content {
+  @apply p-2;
+}
+.sui-inplace--large .sui-inplace-display {
+  @apply p-4 text-lg;
+}
+.sui-inplace--large .sui-inplace-content {
+  @apply p-6;
+}
+.sui-inplace {
+  /* Color variants */
+}
+.sui-inplace--primary .sui-inplace-display {
+  @apply border-primary-300 hover:border-primary-400 hover:bg-primary-50;
+}
+.sui-inplace--primary.sui-inplace-active .sui-inplace-display {
+  @apply border-primary-500 bg-primary-100;
+}
+.sui-inplace--success .sui-inplace-display {
+  @apply border-green-300 hover:border-green-400 hover:bg-green-50;
+}
+.sui-inplace--success.sui-inplace-active .sui-inplace-display {
+  @apply border-green-500 bg-green-100;
+}
+.sui-inplace--warning .sui-inplace-display {
+  @apply border-yellow-300 hover:border-yellow-400 hover:bg-yellow-50;
+}
+.sui-inplace--warning.sui-inplace-active .sui-inplace-display {
+  @apply border-yellow-500 bg-yellow-100;
+}
+.sui-inplace--error .sui-inplace-display {
+  @apply border-red-300 hover:border-red-400 hover:bg-red-50;
+}
+.sui-inplace--error.sui-inplace-active .sui-inplace-display {
+  @apply border-red-500 bg-red-100;
+}
+.sui-inplace {
+  /* Animation variants */
+}
+.sui-inplace-animate .sui-inplace-content {
+  animation: inplaceSlideIn 0.3s ease-out;
+}
+.sui-inplace-fade .sui-inplace-content {
+  animation: inplaceFadeIn 0.2s ease-out;
+}
+.sui-inplace-scale .sui-inplace-content {
+  animation: inplaceScaleIn 0.2s ease-out;
+}
+
+/* Meter Group Component Styles */
+.sui-meter-group {
+  @apply flex rounded-lg overflow-hidden border border-gray-200;
+}
+.sui-meter-group-horizontal {
+  @apply flex-row;
+}
+.sui-meter-group-vertical {
+  @apply flex-col;
+}
+.sui-meter-group-item {
+  @apply flex items-center justify-center text-white text-sm font-medium transition-all duration-300;
+}
+.sui-meter-group-item-content {
+  @apply flex items-center space-x-2 px-2 py-1;
+}
+.sui-meter-group-item-icon {
+  @apply text-lg;
+}
+.sui-meter-group-item-label {
+  @apply font-medium;
+}
+.sui-meter-group-item-value {
+  @apply font-bold;
+}
+.sui-meter-group {
+  /* Size variants */
+}
+.sui-meter-group--small {
+  @apply h-6;
+}
+.sui-meter-group--small .sui-meter-group-item {
+  @apply text-xs px-1 py-0.5;
+}
+.sui-meter-group--small .sui-meter-group-item-content {
+  @apply space-x-1;
+}
+.sui-meter-group--large {
+  @apply h-12;
+}
+.sui-meter-group--large .sui-meter-group-item {
+  @apply text-base px-3 py-2;
+}
+.sui-meter-group--large .sui-meter-group-item-content {
+  @apply space-x-3;
+}
+.sui-meter-group--xlarge {
+  @apply h-16;
+}
+.sui-meter-group--xlarge .sui-meter-group-item {
+  @apply text-lg px-4 py-3;
+}
+.sui-meter-group--xlarge .sui-meter-group-item-content {
+  @apply space-x-4;
+}
+.sui-meter-group {
+  /* Color variants */
+}
+.sui-meter-group--primary {
+  @apply border-primary-200;
+}
+.sui-meter-group--primary .sui-meter-group-item {
+  @apply bg-primary-500;
+}
+.sui-meter-group--success {
+  @apply border-green-200;
+}
+.sui-meter-group--success .sui-meter-group-item {
+  @apply bg-green-500;
+}
+.sui-meter-group--warning {
+  @apply border-yellow-200;
+}
+.sui-meter-group--warning .sui-meter-group-item {
+  @apply bg-yellow-500;
+}
+.sui-meter-group--error {
+  @apply border-red-200;
+}
+.sui-meter-group--error .sui-meter-group-item {
+  @apply bg-red-500;
+}
+.sui-meter-group--info {
+  @apply border-blue-200;
+}
+.sui-meter-group--info .sui-meter-group-item {
+  @apply bg-blue-500;
+}
+.sui-meter-group {
+  /* Animation variants */
+}
+.sui-meter-group-animate .sui-meter-group-item {
+  animation: meterGroupSlideIn 0.5s ease-out;
+}
+.sui-meter-group-pulse .sui-meter-group-item {
+  animation: meterGroupPulse 2s ease-in-out infinite;
+}
+.sui-meter-group-bounce .sui-meter-group-item {
+  animation: meterGroupBounce 1s ease-in-out;
+}
+
+/* Tooltip Component Styles */
+.sui-tooltip {
+  @apply absolute z-50 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg max-w-xs;
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+.sui-tooltip-top {
+  @apply transform -translate-y-2;
+}
+.sui-tooltip-bottom {
+  @apply transform translate-y-2;
+}
+.sui-tooltip-left {
+  @apply transform -translate-x-2;
+}
+.sui-tooltip-right {
+  @apply transform translate-x-2;
+}
+.sui-tooltip {
+  /* Size variants */
+}
+.sui-tooltip--small {
+  @apply px-2 py-1 text-xs max-w-48;
+}
+.sui-tooltip--large {
+  @apply px-4 py-3 text-base max-w-sm;
+}
+.sui-tooltip--xlarge {
+  @apply px-5 py-4 text-lg max-w-md;
+}
+.sui-tooltip {
+  /* Color variants */
+}
+.sui-tooltip--primary {
+  @apply bg-primary-600 text-white;
+}
+.sui-tooltip--success {
+  @apply bg-green-600 text-white;
+}
+.sui-tooltip--warning {
+  @apply bg-yellow-600 text-white;
+}
+.sui-tooltip--error {
+  @apply bg-red-600 text-white;
+}
+.sui-tooltip--info {
+  @apply bg-blue-600 text-white;
+}
+.sui-tooltip--light {
+  @apply bg-white text-gray-900 border border-gray-200;
+}
+.sui-tooltip--dark {
+  @apply bg-gray-800 text-white;
+}
+.sui-tooltip {
+  /* Arrow styles */
+}
+.sui-tooltip-arrow {
+  @apply absolute w-2 h-2 transform rotate-45;
+}
+.sui-tooltip-arrow-top {
+  @apply -bottom-1 left-1/2 transform -translate-x-1/2;
+}
+.sui-tooltip-arrow-bottom {
+  @apply -top-1 left-1/2 transform -translate-x-1/2;
+}
+.sui-tooltip-arrow-left {
+  @apply -right-1 top-1/2 transform -translate-y-1/2;
+}
+.sui-tooltip-arrow-right {
+  @apply -left-1 top-1/2 transform -translate-y-1/2;
+}
+.sui-tooltip {
+  /* Animation variants */
+}
+.sui-tooltip-fade {
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+.sui-tooltip-slide {
+  animation: tooltipSlideIn 0.3s ease-out;
+}
+.sui-tooltip-scale {
+  animation: tooltipScaleIn 0.2s ease-out;
+}
+
+/* Dynamic Dialog Component Styles */
+.sui-dynamic-dialog {
+  @apply fixed inset-0 z-50 overflow-y-auto;
+}
+.sui-dynamic-dialog-header {
+  @apply flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-lg;
+}
+.sui-dynamic-dialog-title {
+  @apply text-lg font-semibold text-gray-900;
+}
+.sui-dynamic-dialog-close {
+  @apply p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded transition-colors duration-200;
+}
+.sui-dynamic-dialog-content {
+  @apply px-6 py-4;
+}
+.sui-dynamic-dialog {
+  /* Position variants */
+}
+.sui-dynamic-dialog-center {
+  @apply flex min-h-full items-center justify-center p-4;
+}
+.sui-dynamic-dialog-top {
+  @apply flex min-h-full items-start justify-center p-4 pt-20;
+}
+.sui-dynamic-dialog-bottom {
+  @apply flex min-h-full items-end justify-center p-4 pb-20;
+}
+.sui-dynamic-dialog-left {
+  @apply flex min-h-full items-center justify-start p-4 pl-20;
+}
+.sui-dynamic-dialog-right {
+  @apply flex min-h-full items-center justify-end p-4 pr-20;
+}
+.sui-dynamic-dialog {
+  /* Size variants */
+}
+.sui-dynamic-dialog--small .sui-dynamic-dialog {
+  @apply max-w-sm;
+}
+.sui-dynamic-dialog--large .sui-dynamic-dialog {
+  @apply max-w-2xl;
+}
+.sui-dynamic-dialog--xlarge .sui-dynamic-dialog {
+  @apply max-w-4xl;
+}
+.sui-dynamic-dialog {
+  /* Color variants */
+}
+.sui-dynamic-dialog--primary {
+  @apply border-primary-200;
+}
+.sui-dynamic-dialog--primary .sui-dynamic-dialog-header {
+  @apply bg-primary-50 border-primary-200;
+}
+.sui-dynamic-dialog--primary .sui-dynamic-dialog-title {
+  @apply text-primary-900;
+}
+.sui-dynamic-dialog--success {
+  @apply border-green-200;
+}
+.sui-dynamic-dialog--success .sui-dynamic-dialog-header {
+  @apply bg-green-50 border-green-200;
+}
+.sui-dynamic-dialog--success .sui-dynamic-dialog-title {
+  @apply text-green-900;
+}
+.sui-dynamic-dialog--warning {
+  @apply border-yellow-200;
+}
+.sui-dynamic-dialog--warning .sui-dynamic-dialog-header {
+  @apply bg-yellow-50 border-yellow-200;
+}
+.sui-dynamic-dialog--warning .sui-dynamic-dialog-title {
+  @apply text-yellow-900;
+}
+.sui-dynamic-dialog--error {
+  @apply border-red-200;
+}
+.sui-dynamic-dialog--error .sui-dynamic-dialog-header {
+  @apply bg-red-50 border-red-200;
+}
+.sui-dynamic-dialog--error .sui-dynamic-dialog-title {
+  @apply text-red-900;
+}
+
+/* Block UI Component Styles */
+.sui-block-ui {
+  @apply relative;
+}
+.sui-block-ui-overlay {
+  @apply absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50;
+  animation: blockUiFadeIn 0.2s ease-out;
+}
+.sui-block-ui-content {
+  @apply flex flex-col items-center space-y-4 p-6 bg-white rounded-lg shadow-lg border border-gray-200;
+  animation: blockUiSlideIn 0.3s ease-out;
+}
+.sui-block-ui-spinner {
+  @apply w-8 h-8 border-4 border-gray-200 border-t-primary-600 rounded-full animate-spin;
+}
+.sui-block-ui-message {
+  @apply text-sm font-medium text-gray-700 text-center;
+}
+.sui-block-ui {
+  /* Size variants */
+}
+.sui-block-ui--small .sui-block-ui-content {
+  @apply p-4;
+}
+.sui-block-ui--small .sui-block-ui-spinner {
+  @apply w-6 h-6 border-2;
+}
+.sui-block-ui--small .sui-block-ui-message {
+  @apply text-xs;
+}
+.sui-block-ui--large .sui-block-ui-content {
+  @apply p-8;
+}
+.sui-block-ui--large .sui-block-ui-spinner {
+  @apply w-12 h-12 border-6;
+}
+.sui-block-ui--large .sui-block-ui-message {
+  @apply text-lg;
+}
+.sui-block-ui {
+  /* Color variants */
+}
+.sui-block-ui--primary .sui-block-ui-overlay {
+  @apply bg-primary-50 bg-opacity-75;
+}
+.sui-block-ui--primary .sui-block-ui-content {
+  @apply bg-primary-50 border-primary-200;
+}
+.sui-block-ui--primary .sui-block-ui-spinner {
+  @apply border-primary-200 border-t-primary-600;
+}
+.sui-block-ui--primary .sui-block-ui-message {
+  @apply text-primary-700;
+}
+.sui-block-ui--success .sui-block-ui-overlay {
+  @apply bg-green-50 bg-opacity-75;
+}
+.sui-block-ui--success .sui-block-ui-content {
+  @apply bg-green-50 border-green-200;
+}
+.sui-block-ui--success .sui-block-ui-spinner {
+  @apply border-green-200 border-t-green-600;
+}
+.sui-block-ui--success .sui-block-ui-message {
+  @apply text-green-700;
+}
+.sui-block-ui--warning .sui-block-ui-overlay {
+  @apply bg-yellow-50 bg-opacity-75;
+}
+.sui-block-ui--warning .sui-block-ui-content {
+  @apply bg-yellow-50 border-yellow-200;
+}
+.sui-block-ui--warning .sui-block-ui-spinner {
+  @apply border-yellow-200 border-t-yellow-600;
+}
+.sui-block-ui--warning .sui-block-ui-message {
+  @apply text-yellow-700;
+}
+.sui-block-ui--error .sui-block-ui-overlay {
+  @apply bg-red-50 bg-opacity-75;
+}
+.sui-block-ui--error .sui-block-ui-content {
+  @apply bg-red-50 border-red-200;
+}
+.sui-block-ui--error .sui-block-ui-spinner {
+  @apply border-red-200 border-t-red-600;
+}
+.sui-block-ui--error .sui-block-ui-message {
+  @apply text-red-700;
+}
+
+/* Drawer Component Styles */
+.sui-drawer {
+  @apply fixed inset-0 z-50 overflow-hidden;
+}
+.sui-drawer-left {
+  @apply transform -translate-x-full;
+  transition: transform 0.3s ease-in-out;
+}
+.sui-drawer-left.sui-drawer-visible {
+  @apply transform translate-x-0;
+}
+.sui-drawer-right {
+  @apply transform translate-x-full;
+  transition: transform 0.3s ease-in-out;
+}
+.sui-drawer-right.sui-drawer-visible {
+  @apply transform translate-x-0;
+}
+.sui-drawer-top {
+  @apply transform -translate-y-full;
+  transition: transform 0.3s ease-in-out;
+}
+.sui-drawer-top.sui-drawer-visible {
+  @apply transform translate-y-0;
+}
+.sui-drawer-bottom {
+  @apply transform translate-y-full;
+  transition: transform 0.3s ease-in-out;
+}
+.sui-drawer-bottom.sui-drawer-visible {
+  @apply transform translate-y-0;
+}
+.sui-drawer {
+  /* Size variants */
+}
+.sui-drawer--small.sui-drawer-left, .sui-drawer--small.sui-drawer-right {
+  width: 250px;
+}
+.sui-drawer--small.sui-drawer-top, .sui-drawer--small.sui-drawer-bottom {
+  height: 250px;
+}
+.sui-drawer--large.sui-drawer-left, .sui-drawer--large.sui-drawer-right {
+  width: 400px;
+}
+.sui-drawer--large.sui-drawer-top, .sui-drawer--large.sui-drawer-bottom {
+  height: 400px;
+}
+.sui-drawer--xlarge.sui-drawer-left, .sui-drawer--xlarge.sui-drawer-right {
+  width: 500px;
+}
+.sui-drawer--xlarge.sui-drawer-top, .sui-drawer--xlarge.sui-drawer-bottom {
+  height: 500px;
+}
+.sui-drawer {
+  /* Color variants */
+}
+.sui-drawer--primary {
+  @apply bg-primary-50 border-primary-200;
+}
+.sui-drawer--primary .sui-drawer-header {
+  @apply bg-primary-100 border-primary-200;
+}
+.sui-drawer--success {
+  @apply bg-green-50 border-green-200;
+}
+.sui-drawer--success .sui-drawer-header {
+  @apply bg-green-100 border-green-200;
+}
+.sui-drawer--warning {
+  @apply bg-yellow-50 border-yellow-200;
+}
+.sui-drawer--warning .sui-drawer-header {
+  @apply bg-yellow-100 border-yellow-200;
+}
+.sui-drawer--error {
+  @apply bg-red-50 border-red-200;
+}
+.sui-drawer--error .sui-drawer-header {
+  @apply bg-red-100 border-red-200;
+}
+
+/* Overlay Panel Component Styles */
+.sui-overlay-panel {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+  background: rgba(0, 0, 0, 0.5);
+  animation: overlayPanelFadeIn 0.2s ease-out;
+}
+.sui-overlay-panel-content {
+  @apply relative bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 p-6;
+  animation: overlayPanelSlideIn 0.3s ease-out;
+}
+.sui-overlay-panel-close {
+  @apply absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500;
+}
+.sui-overlay-panel-visible {
+  @apply block;
+}
+.sui-overlay-panel-modal {
+  @apply fixed inset-0;
+}
+.sui-overlay-panel {
+  /* Size variants */
+}
+.sui-overlay-panel--small .sui-overlay-panel-content {
+  @apply max-w-sm;
+}
+.sui-overlay-panel--large .sui-overlay-panel-content {
+  @apply max-w-2xl;
+}
+.sui-overlay-panel--xlarge .sui-overlay-panel-content {
+  @apply max-w-4xl;
+}
+.sui-overlay-panel {
+  /* Position variants */
+}
+.sui-overlay-panel--top {
+  @apply items-start pt-20;
+}
+.sui-overlay-panel--bottom {
+  @apply items-end pb-20;
+}
+.sui-overlay-panel--left {
+  @apply justify-start pl-20;
+}
+.sui-overlay-panel--right {
+  @apply justify-end pr-20;
+}
+
+/* Popover Component Styles */
+.sui-popover {
+  @apply absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-4 min-w-64 max-w-sm;
+  animation: popoverFadeIn 0.2s ease-out;
+}
+.sui-popover-top {
+  @apply transform -translate-y-2;
+}
+.sui-popover-bottom {
+  @apply transform translate-y-2;
+}
+.sui-popover-left {
+  @apply transform -translate-x-2;
+}
+.sui-popover-right {
+  @apply transform translate-x-2;
+}
+.sui-popover-top-left {
+  @apply transform -translate-y-2 -translate-x-2;
+}
+.sui-popover-top-right {
+  @apply transform -translate-y-2 translate-x-2;
+}
+.sui-popover-bottom-left {
+  @apply transform translate-y-2 -translate-x-2;
+}
+.sui-popover-bottom-right {
+  @apply transform translate-y-2 translate-x-2;
+}
+.sui-popover {
+  /* Size variants */
+}
+.sui-popover--small {
+  @apply min-w-48 max-w-xs;
+}
+.sui-popover--large {
+  @apply min-w-80 max-w-md;
+}
+.sui-popover--xlarge {
+  @apply min-w-96 max-w-lg;
+}
+.sui-popover {
+  /* Color variants */
+}
+.sui-popover--primary {
+  @apply bg-primary-50 border-primary-200;
+}
+.sui-popover--success {
+  @apply bg-green-50 border-green-200;
+}
+.sui-popover--warning {
+  @apply bg-yellow-50 border-yellow-200;
+}
+.sui-popover--error {
+  @apply bg-red-50 border-red-200;
+}
+.sui-popover--info {
+  @apply bg-blue-50 border-blue-200;
+}
+
+/* Progress Spinner Component Styles */
+.sui-progress-spinner {
+  @apply inline-block;
+}
+.sui-progress-spinner-svg {
+  @apply animate-spin;
+}
+.sui-progress-spinner-circle {
+  @apply stroke-current;
+  stroke-dasharray: 0, 100;
+  stroke-dashoffset: 0;
+  animation: progressSpinnerRotate 2s linear infinite;
+}
+.sui-progress-spinner {
+  /* Size variants */
+}
+.sui-progress-spinner-small {
+  @apply w-5 h-5;
+}
+.sui-progress-spinner-normal {
+  @apply w-10 h-10;
+}
+.sui-progress-spinner-large {
+  @apply w-16 h-16;
+}
+.sui-progress-spinner {
+  /* Color variants */
+}
+.sui-progress-spinner--primary {
+  @apply text-primary-600;
+}
+.sui-progress-spinner--secondary {
+  @apply text-gray-600;
+}
+.sui-progress-spinner--success {
+  @apply text-green-600;
+}
+.sui-progress-spinner--warning {
+  @apply text-yellow-600;
+}
+.sui-progress-spinner--error {
+  @apply text-red-600;
+}
+.sui-progress-spinner--info {
+  @apply text-blue-600;
+}
+
+/* Skeleton Component Styles */
+.sui-skeleton {
+  @apply bg-gray-200 rounded;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+}
+.sui-skeleton-animated {
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+}
+.sui-skeleton {
+  /* Shape variants */
+}
+.sui-skeleton--circle {
+  @apply rounded-full;
+}
+.sui-skeleton--square {
+  @apply rounded-none;
+}
+.sui-skeleton--rounded {
+  @apply rounded-lg;
+}
+.sui-skeleton {
+  /* Size variants */
+}
+.sui-skeleton--small {
+  @apply h-2;
+}
+.sui-skeleton--medium {
+  @apply h-4;
+}
+.sui-skeleton--large {
+  @apply h-6;
+}
+.sui-skeleton--xlarge {
+  @apply h-8;
+}
+.sui-skeleton {
+  /* Color variants */
+}
+.sui-skeleton--light {
+  background: linear-gradient(90deg, #f8f9fa 25%, #e9ecef 50%, #f8f9fa 75%);
+  background-size: 200% 100%;
+}
+.sui-skeleton--dark {
+  background: linear-gradient(90deg, #343a40 25%, #495057 50%, #343a40 75%);
+  background-size: 200% 100%;
+}
+.sui-skeleton--primary {
+  background: linear-gradient(90deg, #e3f2fd 25%, #bbdefb 50%, #e3f2fd 75%);
+  background-size: 200% 100%;
+}
+.sui-skeleton--success {
+  background: linear-gradient(90deg, #e8f5e8 25%, #c8e6c9 50%, #e8f5e8 75%);
+  background-size: 200% 100%;
+}
+.sui-skeleton--warning {
+  background: linear-gradient(90deg, #fff3e0 25%, #ffcc02 50%, #fff3e0 75%);
+  background-size: 200% 100%;
+}
+.sui-skeleton--error {
+  background: linear-gradient(90deg, #ffebee 25%, #ffcdd2 50%, #ffebee 75%);
+  background-size: 200% 100%;
+}
+
+/* File Upload Advanced Component Styles */
+.sui-file-upload-advanced {
+  @apply w-full;
+}
+.sui-file-upload-advanced-dropzone {
+  @apply border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer transition-all duration-200;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+.sui-file-upload-advanced-dropzone:hover {
+  @apply border-primary-400 bg-primary-50;
+}
+.sui-file-upload-advanced-dropzone-active {
+  @apply border-primary-500 bg-primary-100 scale-105;
+  animation: fileUploadPulse 0.5s ease-in-out infinite alternate;
+}
+.sui-file-upload-advanced-dropzone-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+.sui-file-upload-advanced-content {
+  @apply flex flex-col items-center space-y-4;
+}
+.sui-file-upload-advanced-icon {
+  @apply text-4xl text-gray-400;
+}
+.sui-file-upload-advanced-text {
+  @apply space-y-2;
+}
+.sui-file-upload-advanced-title {
+  @apply text-lg font-medium text-gray-700;
+}
+.sui-file-upload-advanced-subtitle {
+  @apply text-sm text-gray-500;
+}
+.sui-file-upload-advanced-list {
+  @apply mt-6 space-y-4;
+}
+.sui-file-upload-advanced-header {
+  @apply flex justify-between items-center p-4 bg-gray-50 rounded-lg;
+}
+.sui-file-upload-advanced-count {
+  @apply text-sm font-medium text-gray-700;
+}
+.sui-file-upload-advanced-actions {
+  @apply flex space-x-2;
+}
+.sui-file-upload-advanced-upload-btn {
+  @apply px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.sui-file-upload-advanced-clear-btn {
+  @apply px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.sui-file-upload-advanced-items {
+  @apply space-y-2;
+}
+.sui-file-upload-advanced-item {
+  @apply flex items-center p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-all duration-200;
+}
+.sui-file-upload-advanced-item-success {
+  @apply border-green-200 bg-green-50;
+}
+.sui-file-upload-advanced-item-error {
+  @apply border-red-200 bg-red-50;
+}
+.sui-file-upload-advanced-item-icon {
+  @apply text-2xl mr-4;
+}
+.sui-file-upload-advanced-item-content {
+  @apply flex-1 min-w-0;
+}
+.sui-file-upload-advanced-item-header {
+  @apply flex justify-between items-center;
+}
+.sui-file-upload-advanced-item-name {
+  @apply text-sm font-medium text-gray-900 truncate;
+}
+.sui-file-upload-advanced-item-status {
+  @apply text-lg;
+}
+.sui-file-upload-advanced-item-details {
+  @apply flex items-center space-x-2 mt-1;
+}
+.sui-file-upload-advanced-item-size {
+  @apply text-xs text-gray-500;
+}
+.sui-file-upload-advanced-item-error-text {
+  @apply text-xs text-red-600;
+}
+.sui-file-upload-advanced-progress {
+  @apply mt-2;
+}
+.sui-file-upload-advanced-progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
+}
+.sui-file-upload-advanced-progress-fill {
+  @apply h-full bg-primary-600 transition-all duration-300 ease-out;
+}
+.sui-file-upload-advanced-progress-text {
+  @apply text-xs text-gray-500 mt-1;
+}
+.sui-file-upload-advanced-item-remove {
+  @apply ml-4 p-1 text-gray-400 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 rounded;
+}
+
+/* Confirm Popup Component Styles */
+.sui-confirm-popup {
+  @apply relative inline-block;
+}
+.sui-confirm-popup-popup {
+  @apply absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-4 min-w-64;
+  animation: confirmPopupFadeIn 0.2s ease-out;
+}
+.sui-confirm-popup-message {
+  @apply mb-4;
+}
+.sui-confirm-popup-title {
+  @apply text-sm font-medium text-gray-900;
+}
+.sui-confirm-popup-actions {
+  @apply flex justify-end space-x-3;
+}
+.sui-confirm-popup-button {
+  @apply px-3 py-2 text-sm font-medium transition-colors;
+}
+.sui-confirm-popup-button--reject {
+  @apply text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+}
+.sui-confirm-popup-button--accept {
+  @apply text-white bg-primary-600 border border-transparent rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+}
+.sui-confirm-popup-arrow {
+  @apply absolute w-2 h-2 bg-white border border-gray-200 transform rotate-45;
+}
+.sui-confirm-popup-arrow--top {
+  @apply -bottom-1 left-1/2 transform -translate-x-1/2 border-t-0 border-l-0;
+}
+.sui-confirm-popup-arrow--bottom {
+  @apply -top-1 left-1/2 transform -translate-x-1/2 border-b-0 border-r-0;
+}
+.sui-confirm-popup-arrow--left {
+  @apply -right-1 top-1/2 transform -translate-y-1/2 border-l-0 border-b-0;
+}
+.sui-confirm-popup-arrow--right {
+  @apply -left-1 top-1/2 transform -translate-y-1/2 border-r-0 border-t-0;
+}
+.sui-confirm-popup {
+  /* Position variants */
+}
+.sui-confirm-popup--top .sui-confirm-popup-popup {
+  @apply transform -translate-y-full;
+}
+.sui-confirm-popup--bottom .sui-confirm-popup-popup {
+  @apply transform translate-y-full;
+}
+.sui-confirm-popup--left .sui-confirm-popup-popup {
+  @apply transform -translate-x-full;
+}
+.sui-confirm-popup--right .sui-confirm-popup-popup {
+  @apply transform translate-x-full;
+}
+
+/* Message Component Styles */
+.sui-message {
+  @apply flex items-center p-4 rounded-lg border transition-all duration-200;
+}
+.sui-message--success {
+  @apply bg-green-50 border-green-200 text-green-800;
+}
+.sui-message--info {
+  @apply bg-blue-50 border-blue-200 text-blue-800;
+}
+.sui-message--warn {
+  @apply bg-yellow-50 border-yellow-200 text-yellow-800;
+}
+.sui-message--error {
+  @apply bg-red-50 border-red-200 text-red-800;
+}
+.sui-message-content {
+  @apply flex items-center w-full;
+}
+.sui-message-icon {
+  @apply flex-shrink-0 mr-3 text-lg;
+}
+.sui-message-text {
+  @apply flex-1 text-sm font-medium;
+}
+.sui-message-close {
+  @apply flex-shrink-0 ml-3 text-lg font-bold hover:opacity-70 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded;
+}
+.sui-message {
+  /* Size variants */
+}
+.sui-message--small {
+  @apply p-2 text-sm;
+}
+.sui-message--large {
+  @apply p-6 text-lg;
+}
+.sui-message {
+  /* Animation states */
+}
+.sui-message-enter {
+  @apply opacity-0 transform scale-95;
+}
+.sui-message-enter-active {
+  @apply opacity-100 transform scale-100 transition-all duration-200 ease-out;
+}
+.sui-message-exit {
+  @apply opacity-100 transform scale-100;
+}
+.sui-message-exit-active {
+  @apply opacity-0 transform scale-95 transition-all duration-200 ease-in;
+}
+
+/* Speed Dial Animations */
+@keyframes speedDialSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes speedDialFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes speedDialScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* Animate On Scroll Animations */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideInUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes zoomOut {
+  0% {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes rotateIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-200deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+@keyframes flipInX {
+  0% {
+    opacity: 0;
+    transform: perspective(400px) rotateX(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(400px) rotateX(0deg);
+  }
+}
+@keyframes flipInY {
+  0% {
+    opacity: 0;
+    transform: perspective(400px) rotateY(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(400px) rotateY(0deg);
+  }
+}
+/* Split Button Animations */
+@keyframes splitButtonSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes splitButtonFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* Inplace Animations */
+@keyframes inplaceSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes inplaceFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes inplaceScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* Meter Group Animations */
+@keyframes meterGroupSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes meterGroupPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+@keyframes meterGroupBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+/* Tooltip Animations */
+@keyframes tooltipFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes tooltipSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes tooltipScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* Captcha Animations */
+@keyframes captchaShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+@keyframes captchaSuccess {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Dynamic Dialog Animations */
+@keyframes dynamicDialogFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes dynamicDialogSlideIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+/* Block UI Animations */
+@keyframes blockUiFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes blockUiSlideIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+/* Drawer Animations */
+@keyframes drawerSlideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes drawerSlideOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+/* Overlay Panel Animations */
+@keyframes overlayPanelFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes overlayPanelSlideIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+/* Popover Animations */
+@keyframes popoverFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* Progress Spinner Animations */
+@keyframes progressSpinnerRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Skeleton Animations */
+@keyframes skeletonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+/* File Upload Animations */
+@keyframes fileUploadPulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+@keyframes fileUploadSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Confirm Popup Animations */
+@keyframes confirmPopupFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+/* Progress Bar Animations */
+@keyframes progressIndeterminate {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+@keyframes progressStriped {
+  0% {
+    background-position: 1rem 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+/* Dialog Animations */
+.sui-dialog-enter {
+  @apply opacity-0 scale-95;
+}
+
+.sui-dialog-enter-active {
+  @apply opacity-100 scale-100 transition-all duration-200;
+}
+
+.sui-dialog-exit {
+  @apply opacity-100 scale-100;
+}
+
+.sui-dialog-exit-active {
+  @apply opacity-0 scale-95 transition-all duration-200;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .sui-dialog-content,
+  .sui-confirm-dialog-content {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-dialog-header,
+  .sui-confirm-dialog-header {
+    @apply bg-gray-900 border-gray-700;
+  }
+  .sui-dialog-title,
+  .sui-confirm-dialog-title {
+    @apply text-gray-100;
+  }
+  .sui-confirm-dialog-message {
+    @apply text-gray-300;
+  }
+  .sui-confirm-dialog-footer {
+    @apply bg-gray-900;
+  }
+  .sui-confirm-dialog-button--cancel {
+    @apply text-gray-300 bg-gray-800 border-gray-600 hover:bg-gray-700;
+  }
+  /* Toast dark mode */
+  .sui-toast-message--success {
+    @apply bg-green-900 border-green-700 text-green-100;
+  }
+  .sui-toast-message--info {
+    @apply bg-blue-900 border-blue-700 text-blue-100;
+  }
+  .sui-toast-message--warn {
+    @apply bg-yellow-900 border-yellow-700 text-yellow-100;
+  }
+  .sui-toast-message--error {
+    @apply bg-red-900 border-red-700 text-red-100;
+  }
+  /* Progress bar dark mode */
+  .sui-progress-bar-track {
+    @apply bg-gray-700;
+  }
+  .sui-progress-bar-value {
+    @apply text-gray-300;
+  }
+  /* Confirm popup dark mode */
+  .sui-confirm-popup-popup {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-confirm-popup-title {
+    @apply text-gray-100;
+  }
+  .sui-confirm-popup-button--reject {
+    @apply text-gray-300 bg-gray-800 border-gray-600 hover:bg-gray-700;
+  }
+  .sui-confirm-popup-arrow {
+    @apply bg-gray-800 border-gray-700;
+  }
+  /* Message dark mode */
+  .sui-message--success {
+    @apply bg-green-900 border-green-700 text-green-100;
+  }
+  .sui-message--info {
+    @apply bg-blue-900 border-blue-700 text-blue-100;
+  }
+  .sui-message--warn {
+    @apply bg-yellow-900 border-yellow-700 text-yellow-100;
+  }
+  .sui-message--error {
+    @apply bg-red-900 border-red-700 text-red-100;
+  }
+  /* File Upload Advanced dark mode */
+  .sui-file-upload-advanced-dropzone {
+    @apply border-gray-600;
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  }
+  .sui-file-upload-advanced-dropzone:hover {
+    @apply border-primary-400 bg-primary-900;
+  }
+  .sui-file-upload-advanced-dropzone-active {
+    @apply border-primary-500 bg-primary-800;
+  }
+  .sui-file-upload-advanced-title {
+    @apply text-gray-200;
+  }
+  .sui-file-upload-advanced-subtitle {
+    @apply text-gray-400;
+  }
+  .sui-file-upload-advanced-header {
+    @apply bg-gray-800;
+  }
+  .sui-file-upload-advanced-count {
+    @apply text-gray-300;
+  }
+  .sui-file-upload-advanced-item {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-file-upload-advanced-item-success {
+    @apply border-green-700 bg-green-900;
+  }
+  .sui-file-upload-advanced-item-error {
+    @apply border-red-700 bg-red-900;
+  }
+  .sui-file-upload-advanced-item-name {
+    @apply text-gray-200;
+  }
+  .sui-file-upload-advanced-item-size {
+    @apply text-gray-400;
+  }
+  .sui-file-upload-advanced-progress-bar {
+    @apply bg-gray-700;
+  }
+  /* Upload dark mode */
+  .sui-upload {
+    @apply border-gray-600;
+  }
+  .sui-upload:hover {
+    @apply border-primary-400 bg-primary-900;
+  }
+  .sui-upload-content .sui-upload-title {
+    @apply text-gray-200;
+  }
+  .sui-upload-content .sui-upload-accept,
+  .sui-upload-content .sui-upload-size {
+    @apply text-gray-400;
+  }
+  .sui-upload-file {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-upload-file .sui-upload-file-name {
+    @apply text-gray-200;
+  }
+  .sui-upload-file .sui-upload-file-size {
+    @apply text-gray-400;
+  }
+  /* Progress Spinner dark mode */
+  .sui-progress-spinner--primary {
+    @apply text-primary-400;
+  }
+  .sui-progress-spinner--secondary {
+    @apply text-gray-400;
+  }
+  .sui-progress-spinner--success {
+    @apply text-green-400;
+  }
+  .sui-progress-spinner--warning {
+    @apply text-yellow-400;
+  }
+  .sui-progress-spinner--error {
+    @apply text-red-400;
+  }
+  .sui-progress-spinner--info {
+    @apply text-blue-400;
+  }
+  /* Skeleton dark mode */
+  .sui-skeleton {
+    @apply bg-gray-700;
+    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    background-size: 200% 100%;
+  }
+  .sui-skeleton--light {
+    background: linear-gradient(90deg, #f8f9fa 25%, #e9ecef 50%, #f8f9fa 75%);
+    background-size: 200% 100%;
+  }
+  .sui-skeleton--dark {
+    background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+    background-size: 200% 100%;
+  }
+  .sui-skeleton--primary {
+    background: linear-gradient(90deg, #1e3a8a 25%, #3b82f6 50%, #1e3a8a 75%);
+    background-size: 200% 100%;
+  }
+  .sui-skeleton--success {
+    background: linear-gradient(90deg, #064e3b 25%, #10b981 50%, #064e3b 75%);
+    background-size: 200% 100%;
+  }
+  .sui-skeleton--warning {
+    background: linear-gradient(90deg, #92400e 25%, #f59e0b 50%, #92400e 75%);
+    background-size: 200% 100%;
+  }
+  .sui-skeleton--error {
+    background: linear-gradient(90deg, #991b1b 25%, #ef4444 50%, #991b1b 75%);
+    background-size: 200% 100%;
+  }
+  /* Overlay Panel dark mode */
+  .sui-overlay-panel {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .sui-overlay-panel-content {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-overlay-panel-close {
+    @apply text-gray-400 hover:text-gray-200 hover:bg-gray-700;
+  }
+  /* Popover dark mode */
+  .sui-popover {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-popover--primary {
+    @apply bg-primary-900 border-primary-700;
+  }
+  .sui-popover--success {
+    @apply bg-green-900 border-green-700;
+  }
+  .sui-popover--warning {
+    @apply bg-yellow-900 border-yellow-700;
+  }
+  .sui-popover--error {
+    @apply bg-red-900 border-red-700;
+  }
+  .sui-popover--info {
+    @apply bg-blue-900 border-blue-700;
+  }
+  /* Block UI dark mode */
+  .sui-block-ui-overlay {
+    @apply bg-gray-900 bg-opacity-75;
+  }
+  .sui-block-ui-content {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-block-ui-message {
+    @apply text-gray-200;
+  }
+  .sui-block-ui--primary .sui-block-ui-overlay {
+    @apply bg-primary-900 bg-opacity-75;
+  }
+  .sui-block-ui--primary .sui-block-ui-content {
+    @apply bg-primary-900 border-primary-700;
+  }
+  .sui-block-ui--primary .sui-block-ui-message {
+    @apply text-primary-200;
+  }
+  .sui-block-ui--success .sui-block-ui-overlay {
+    @apply bg-green-900 bg-opacity-75;
+  }
+  .sui-block-ui--success .sui-block-ui-content {
+    @apply bg-green-900 border-green-700;
+  }
+  .sui-block-ui--success .sui-block-ui-message {
+    @apply text-green-200;
+  }
+  .sui-block-ui--warning .sui-block-ui-overlay {
+    @apply bg-yellow-900 bg-opacity-75;
+  }
+  .sui-block-ui--warning .sui-block-ui-content {
+    @apply bg-yellow-900 border-yellow-700;
+  }
+  .sui-block-ui--warning .sui-block-ui-message {
+    @apply text-yellow-200;
+  }
+  .sui-block-ui--error .sui-block-ui-overlay {
+    @apply bg-red-900 bg-opacity-75;
+  }
+  .sui-block-ui--error .sui-block-ui-content {
+    @apply bg-red-900 border-red-700;
+  }
+  .sui-block-ui--error .sui-block-ui-message {
+    @apply text-red-200;
+  }
+  /* Drawer dark mode */
+  .sui-drawer {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-drawer--primary {
+    @apply bg-primary-900 border-primary-700;
+  }
+  .sui-drawer--primary .sui-drawer-header {
+    @apply bg-primary-800 border-primary-700;
+  }
+  .sui-drawer--success {
+    @apply bg-green-900 border-green-700;
+  }
+  .sui-drawer--success .sui-drawer-header {
+    @apply bg-green-800 border-green-700;
+  }
+  .sui-drawer--warning {
+    @apply bg-yellow-900 border-yellow-700;
+  }
+  .sui-drawer--warning .sui-drawer-header {
+    @apply bg-yellow-800 border-yellow-700;
+  }
+  .sui-drawer--error {
+    @apply bg-red-900 border-red-700;
+  }
+  .sui-drawer--error .sui-drawer-header {
+    @apply bg-red-800 border-red-700;
+  }
+  /* Captcha dark mode */
+  .sui-captcha {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-captcha-title {
+    @apply text-gray-100;
+  }
+  .sui-captcha-question {
+    @apply text-gray-300;
+  }
+  .sui-captcha-input {
+    @apply bg-gray-700 border-gray-600 text-gray-100;
+  }
+  .sui-captcha-input-error {
+    @apply border-red-400;
+  }
+  .sui-captcha-input-success {
+    @apply border-green-400;
+  }
+  .sui-captcha-verify {
+    @apply bg-primary-600 hover:bg-primary-700;
+  }
+  .sui-captcha-error-message {
+    @apply text-red-400;
+  }
+  .sui-captcha-success {
+    @apply text-green-400;
+  }
+  .sui-captcha-help {
+    @apply text-gray-400;
+  }
+  .sui-captcha-verified {
+    @apply border-green-700 bg-green-900;
+  }
+  .sui-captcha-error {
+    @apply border-red-700 bg-red-900;
+  }
+  .sui-captcha--primary {
+    @apply border-primary-700 bg-primary-900;
+  }
+  .sui-captcha--primary .sui-captcha-title {
+    @apply text-primary-100;
+  }
+  .sui-captcha--primary .sui-captcha-question {
+    @apply text-primary-300;
+  }
+  .sui-captcha--success {
+    @apply border-green-700 bg-green-900;
+  }
+  .sui-captcha--success .sui-captcha-title {
+    @apply text-green-100;
+  }
+  .sui-captcha--success .sui-captcha-question {
+    @apply text-green-300;
+  }
+  .sui-captcha--warning {
+    @apply border-yellow-700 bg-yellow-900;
+  }
+  .sui-captcha--warning .sui-captcha-title {
+    @apply text-yellow-100;
+  }
+  .sui-captcha--warning .sui-captcha-question {
+    @apply text-yellow-300;
+  }
+  .sui-captcha--error {
+    @apply border-red-700 bg-red-900;
+  }
+  .sui-captcha--error .sui-captcha-title {
+    @apply text-red-100;
+  }
+  .sui-captcha--error .sui-captcha-question {
+    @apply text-red-300;
+  }
+  /* Dynamic Dialog dark mode */
+  .sui-dynamic-dialog {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-dynamic-dialog-header {
+    @apply bg-gray-700 border-gray-600;
+  }
+  .sui-dynamic-dialog-title {
+    @apply text-gray-100;
+  }
+  .sui-dynamic-dialog-close {
+    @apply text-gray-400 hover:text-gray-200 hover:bg-gray-600;
+  }
+  .sui-dynamic-dialog--primary {
+    @apply border-primary-700;
+  }
+  .sui-dynamic-dialog--primary .sui-dynamic-dialog-header {
+    @apply bg-primary-900 border-primary-700;
+  }
+  .sui-dynamic-dialog--primary .sui-dynamic-dialog-title {
+    @apply text-primary-100;
+  }
+  .sui-dynamic-dialog--success {
+    @apply border-green-700;
+  }
+  .sui-dynamic-dialog--success .sui-dynamic-dialog-header {
+    @apply bg-green-900 border-green-700;
+  }
+  .sui-dynamic-dialog--success .sui-dynamic-dialog-title {
+    @apply text-green-100;
+  }
+  .sui-dynamic-dialog--warning {
+    @apply border-yellow-700;
+  }
+  .sui-dynamic-dialog--warning .sui-dynamic-dialog-header {
+    @apply bg-yellow-900 border-yellow-700;
+  }
+  .sui-dynamic-dialog--warning .sui-dynamic-dialog-title {
+    @apply text-yellow-100;
+  }
+  .sui-dynamic-dialog--error {
+    @apply border-red-700;
+  }
+  .sui-dynamic-dialog--error .sui-dynamic-dialog-header {
+    @apply bg-red-900 border-red-700;
+  }
+  .sui-dynamic-dialog--error .sui-dynamic-dialog-title {
+    @apply text-red-100;
+  }
+  /* Tooltip dark mode */
+  .sui-tooltip {
+    @apply bg-gray-800 text-gray-100;
+  }
+  .sui-tooltip--primary {
+    @apply bg-primary-700 text-white;
+  }
+  .sui-tooltip--success {
+    @apply bg-green-700 text-white;
+  }
+  .sui-tooltip--warning {
+    @apply bg-yellow-700 text-white;
+  }
+  .sui-tooltip--error {
+    @apply bg-red-700 text-white;
+  }
+  .sui-tooltip--info {
+    @apply bg-blue-700 text-white;
+  }
+  .sui-tooltip--light {
+    @apply bg-gray-100 text-gray-900 border-gray-300;
+  }
+  .sui-tooltip--dark {
+    @apply bg-gray-900 text-white;
+  }
+  /* Meter Group dark mode */
+  .sui-meter-group {
+    @apply border-gray-700;
+  }
+  .sui-meter-group--primary {
+    @apply border-primary-700;
+  }
+  .sui-meter-group--primary .sui-meter-group-item {
+    @apply bg-primary-600;
+  }
+  .sui-meter-group--success {
+    @apply border-green-700;
+  }
+  .sui-meter-group--success .sui-meter-group-item {
+    @apply bg-green-600;
+  }
+  .sui-meter-group--warning {
+    @apply border-yellow-700;
+  }
+  .sui-meter-group--warning .sui-meter-group-item {
+    @apply bg-yellow-600;
+  }
+  .sui-meter-group--error {
+    @apply border-red-700;
+  }
+  .sui-meter-group--error .sui-meter-group-item {
+    @apply bg-red-600;
+  }
+  .sui-meter-group--info {
+    @apply border-blue-700;
+  }
+  .sui-meter-group--info .sui-meter-group-item {
+    @apply bg-blue-600;
+  }
+  /* Org Chart dark mode */
+  .sui-org-chart-node {
+    @apply border-gray-700 bg-gray-800 hover:border-primary-600;
+  }
+  .sui-org-chart-node.sui-org-chart-node-selected {
+    @apply border-primary-400 bg-primary-900;
+  }
+  .sui-org-chart-title {
+    @apply text-gray-100;
+  }
+  .sui-org-chart-data {
+    @apply text-gray-400;
+  }
+  .sui-org-chart-data-value {
+    @apply text-gray-500;
+  }
+  .sui-org-chart-child {
+    @apply border-gray-700 bg-gray-800 hover:border-primary-600;
+  }
+  .sui-org-chart-child-title {
+    @apply text-gray-100;
+  }
+  .sui-org-chart-child-data {
+    @apply text-gray-400;
+  }
+  .sui-org-chart-child-data-value {
+    @apply text-gray-500;
+  }
+  .sui-org-chart-connector {
+    @apply bg-gray-600;
+  }
+  .sui-org-chart-connector-line {
+    @apply bg-gray-600;
+  }
+  .sui-org-chart--primary .sui-org-chart-node {
+    @apply border-primary-600 hover:border-primary-500;
+  }
+  .sui-org-chart--primary .sui-org-chart-node.sui-org-chart-node-selected {
+    @apply border-primary-400 bg-primary-800;
+  }
+  .sui-org-chart--success .sui-org-chart-node {
+    @apply border-green-600 hover:border-green-500;
+  }
+  .sui-org-chart--success .sui-org-chart-node.sui-org-chart-node-selected {
+    @apply border-green-400 bg-green-800;
+  }
+  .sui-org-chart--warning .sui-org-chart-node {
+    @apply border-yellow-600 hover:border-yellow-500;
+  }
+  .sui-org-chart--warning .sui-org-chart-node.sui-org-chart-node-selected {
+    @apply border-yellow-400 bg-yellow-800;
+  }
+  .sui-org-chart--error .sui-org-chart-node {
+    @apply border-red-600 hover:border-red-500;
+  }
+  .sui-org-chart--error .sui-org-chart-node.sui-org-chart-node-selected {
+    @apply border-red-400 bg-red-800;
+  }
+  /* Scroll Panel dark mode */
+  .sui-scroll-panel {
+    @apply border-gray-700 bg-gray-800;
+  }
+  .sui-scroll-panel::-webkit-scrollbar-track {
+    @apply bg-gray-700;
+  }
+  .sui-scroll-panel::-webkit-scrollbar-thumb {
+    @apply bg-gray-500 hover:bg-gray-400;
+  }
+  .sui-scroll-panel::-webkit-scrollbar-corner {
+    @apply bg-gray-700;
+  }
+  .sui-scroll-panel--primary {
+    @apply border-primary-600;
+  }
+  .sui-scroll-panel--success {
+    @apply border-green-600;
+  }
+  .sui-scroll-panel--warning {
+    @apply border-yellow-600;
+  }
+  .sui-scroll-panel--error {
+    @apply border-red-600;
+  }
+  /* Animate On Scroll dark mode */
+  .sui-animate-on-scroll-visible {
+    @apply opacity-100;
+  }
+  .sui-animate-on-scroll-hidden {
+    @apply opacity-0;
+  }
+  .sui-animate-on-scroll {
+    /* Dark mode animation variants */
+  }
+  .sui-animate-on-scroll-fadeInUp.sui-animate-visible, .sui-animate-on-scroll-fadeInDown.sui-animate-visible, .sui-animate-on-scroll-fadeInLeft.sui-animate-visible, .sui-animate-on-scroll-fadeInRight.sui-animate-visible, .sui-animate-on-scroll-fadeIn.sui-animate-visible {
+    @apply opacity-100;
+  }
+  .sui-animate-on-scroll-fadeInUp.sui-animate-hidden, .sui-animate-on-scroll-fadeInDown.sui-animate-hidden, .sui-animate-on-scroll-fadeInLeft.sui-animate-hidden, .sui-animate-on-scroll-fadeInRight.sui-animate-hidden, .sui-animate-on-scroll-fadeIn.sui-animate-hidden {
+    @apply opacity-0;
+  }
+  .sui-animate-on-scroll-slideInUp.sui-animate-visible, .sui-animate-on-scroll-slideInDown.sui-animate-visible, .sui-animate-on-scroll-slideInLeft.sui-animate-visible, .sui-animate-on-scroll-slideInRight.sui-animate-visible {
+    @apply transform-none;
+  }
+  .sui-animate-on-scroll-zoomIn.sui-animate-visible, .sui-animate-on-scroll-zoomOut.sui-animate-visible, .sui-animate-on-scroll-rotateIn.sui-animate-visible, .sui-animate-on-scroll-bounceIn.sui-animate-visible, .sui-animate-on-scroll-flipInX.sui-animate-visible, .sui-animate-on-scroll-flipInY.sui-animate-visible {
+    @apply opacity-100 transform-none;
+  }
+  .sui-animate-on-scroll-zoomIn.sui-animate-hidden, .sui-animate-on-scroll-zoomOut.sui-animate-hidden, .sui-animate-on-scroll-rotateIn.sui-animate-hidden, .sui-animate-on-scroll-bounceIn.sui-animate-hidden, .sui-animate-on-scroll-flipInX.sui-animate-hidden, .sui-animate-on-scroll-flipInY.sui-animate-hidden {
+    @apply opacity-0;
+  }
+  /* Focus Trap dark mode */
+  .sui-focus-trap-enabled {
+    @apply ring-primary-400;
+  }
+  .sui-focus-trap--primary {
+    @apply ring-primary-400;
+  }
+  .sui-focus-trap--success {
+    @apply ring-green-400;
+  }
+  .sui-focus-trap--warning {
+    @apply ring-yellow-400;
+  }
+  .sui-focus-trap--error {
+    @apply ring-red-400;
+  }
+  /* Ripple Component Styles */
+  .sui-ripple {
+    @apply relative overflow-hidden cursor-pointer;
+    /* Ripple effect */
+  }
+  .sui-ripple-effect {
+    @apply absolute rounded-full pointer-events-none;
+    animation: ripple-animation 0.6s ease-out;
+  }
+  .sui-ripple {
+    /* Disabled state */
+  }
+  .sui-ripple-disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+  .sui-ripple {
+    /* Size variants */
+  }
+  .sui-ripple--small {
+    @apply text-sm;
+  }
+  .sui-ripple--large {
+    @apply text-lg;
+  }
+  .sui-ripple {
+    /* Color variants */
+  }
+  .sui-ripple--primary .sui-ripple-effect {
+    @apply bg-primary-500;
+  }
+  .sui-ripple--secondary .sui-ripple-effect {
+    @apply bg-secondary-500;
+  }
+  .sui-ripple--success .sui-ripple-effect {
+    @apply bg-green-500;
+  }
+  .sui-ripple--warning .sui-ripple-effect {
+    @apply bg-yellow-500;
+  }
+  .sui-ripple--error .sui-ripple-effect {
+    @apply bg-red-500;
+  }
+  .sui-ripple--info .sui-ripple-effect {
+    @apply bg-blue-500;
+  }
+  .sui-ripple {
+    /* Duration variants */
+  }
+  .sui-ripple--fast .sui-ripple-effect {
+    animation-duration: 0.3s;
+  }
+  .sui-ripple--slow .sui-ripple-effect {
+    animation-duration: 1s;
+  }
+  /* Scroll Top Component Styles */
+  .sui-scroll-top {
+    @apply fixed bottom-6 right-6 z-50 w-12 h-12 bg-primary-600 text-white rounded-full shadow-lg hover:bg-primary-700 transition-all duration-300 cursor-pointer;
+    /* Visibility states */
+  }
+  .sui-scroll-top-visible {
+    @apply opacity-100 transform translate-y-0;
+  }
+  .sui-scroll-top-hidden {
+    @apply opacity-0 transform translate-y-4 pointer-events-none;
+  }
+  .sui-scroll-top {
+    /* Icon */
+  }
+  .sui-scroll-top-icon {
+    @apply flex items-center justify-center text-xl font-bold;
+  }
+  .sui-scroll-top {
+    /* Size variants */
+  }
+  .sui-scroll-top--small {
+    @apply w-10 h-10;
+  }
+  .sui-scroll-top--small .sui-scroll-top-icon {
+    @apply text-lg;
+  }
+  .sui-scroll-top--large {
+    @apply w-16 h-16;
+  }
+  .sui-scroll-top--large .sui-scroll-top-icon {
+    @apply text-2xl;
+  }
+  .sui-scroll-top {
+    /* Color variants */
+  }
+  .sui-scroll-top--primary {
+    @apply bg-primary-600 hover:bg-primary-700;
+  }
+  .sui-scroll-top--secondary {
+    @apply bg-secondary-600 hover:bg-secondary-700;
+  }
+  .sui-scroll-top--success {
+    @apply bg-green-600 hover:bg-green-700;
+  }
+  .sui-scroll-top--warning {
+    @apply bg-yellow-600 hover:bg-yellow-700;
+  }
+  .sui-scroll-top--error {
+    @apply bg-red-600 hover:bg-red-700;
+  }
+  .sui-scroll-top--info {
+    @apply bg-blue-600 hover:bg-blue-700;
+  }
+  .sui-scroll-top {
+    /* Position variants */
+  }
+  .sui-scroll-top--bottom-left {
+    @apply bottom-6 left-6 right-auto;
+  }
+  .sui-scroll-top--bottom-center {
+    @apply bottom-6 left-1/2 right-auto transform -translate-x-1/2;
+  }
+  .sui-scroll-top {
+    /* Shape variants */
+  }
+  .sui-scroll-top--square {
+    @apply rounded-lg;
+  }
+  .sui-scroll-top--rounded {
+    @apply rounded-full;
+  }
+  .sui-scroll-top {
+    /* Animation variants */
+  }
+  .sui-scroll-top--bounce {
+    animation: bounce 2s infinite;
+  }
+  .sui-scroll-top--pulse {
+    animation: pulse 2s infinite;
+  }
+  .sui-scroll-top {
+    /* Hover effects */
+  }
+  .sui-scroll-top:hover {
+    @apply scale-110 shadow-xl;
+  }
+  .sui-scroll-top:active {
+    @apply scale-95;
+  }
+  .sui-scroll-top {
+    /* Focus styles */
+  }
+  .sui-scroll-top:focus {
+    @apply outline-none ring-2 ring-primary-300 ring-opacity-50;
+  }
+  /* Speed Dial dark mode */
+  .sui-speed-dial-button {
+    @apply bg-primary-600 hover:bg-primary-700;
+  }
+  .sui-speed-dial-item {
+    @apply bg-gray-800 hover:bg-gray-700;
+  }
+  .sui-speed-dial--primary .sui-speed-dial-button {
+    @apply bg-primary-600 hover:bg-primary-700;
+  }
+  .sui-speed-dial--primary .sui-speed-dial-item {
+    @apply bg-primary-800 hover:bg-primary-700;
+  }
+  .sui-speed-dial--success .sui-speed-dial-button {
+    @apply bg-green-600 hover:bg-green-700;
+  }
+  .sui-speed-dial--success .sui-speed-dial-item {
+    @apply bg-green-800 hover:bg-green-700;
+  }
+  .sui-speed-dial--warning .sui-speed-dial-button {
+    @apply bg-yellow-600 hover:bg-yellow-700;
+  }
+  .sui-speed-dial--warning .sui-speed-dial-item {
+    @apply bg-yellow-800 hover:bg-yellow-700;
+  }
+  .sui-speed-dial--error .sui-speed-dial-button {
+    @apply bg-red-600 hover:bg-red-700;
+  }
+  .sui-speed-dial--error .sui-speed-dial-item {
+    @apply bg-red-800 hover:bg-red-700;
+  }
+  /* Split Button dark mode */
+  .sui-split-button-menu {
+    @apply bg-gray-800 border-gray-700;
+  }
+  .sui-split-button-item {
+    @apply text-gray-300 hover:bg-gray-700 focus:bg-gray-700;
+  }
+  .sui-split-button-separator {
+    @apply border-gray-600;
+  }
+  .sui-split-button-primary .sui-split-button-main {
+    @apply bg-primary-600 hover:bg-primary-700;
+  }
+  .sui-split-button-primary .sui-split-button-dropdown {
+    @apply bg-primary-600 hover:bg-primary-700;
+  }
+  .sui-split-button-secondary .sui-split-button-main {
+    @apply bg-gray-600 hover:bg-gray-700;
+  }
+  .sui-split-button-secondary .sui-split-button-dropdown {
+    @apply bg-gray-600 hover:bg-gray-700;
+  }
+  .sui-split-button-success .sui-split-button-main {
+    @apply bg-green-600 hover:bg-green-700;
+  }
+  .sui-split-button-success .sui-split-button-dropdown {
+    @apply bg-green-600 hover:bg-green-700;
+  }
+  .sui-split-button-info .sui-split-button-main {
+    @apply bg-blue-600 hover:bg-blue-700;
+  }
+  .sui-split-button-info .sui-split-button-dropdown {
+    @apply bg-blue-600 hover:bg-blue-700;
+  }
+  .sui-split-button-warning .sui-split-button-main {
+    @apply bg-yellow-600 hover:bg-yellow-700;
+  }
+  .sui-split-button-warning .sui-split-button-dropdown {
+    @apply bg-yellow-600 hover:bg-yellow-700;
+  }
+  .sui-split-button-help .sui-split-button-main {
+    @apply bg-purple-600 hover:bg-purple-700;
+  }
+  .sui-split-button-help .sui-split-button-dropdown {
+    @apply bg-purple-600 hover:bg-purple-700;
+  }
+  .sui-split-button-danger .sui-split-button-main {
+    @apply bg-red-600 hover:bg-red-700;
+  }
+  .sui-split-button-danger .sui-split-button-dropdown {
+    @apply bg-red-600 hover:bg-red-700;
+  }
+  /* Inplace dark mode */
+  .sui-inplace-display {
+    @apply border-gray-600 hover:border-gray-500 hover:bg-gray-800;
+  }
+  .sui-inplace-content {
+    @apply border-gray-700 bg-gray-800;
+  }
+  .sui-inplace-close {
+    @apply text-gray-500 hover:text-gray-300 hover:bg-gray-700;
+  }
+  .sui-inplace-active .sui-inplace-display {
+    @apply border-primary-500 bg-primary-900;
+  }
+  .sui-inplace--primary .sui-inplace-display {
+    @apply border-primary-600 hover:border-primary-500 hover:bg-primary-900;
+  }
+  .sui-inplace--primary.sui-inplace-active .sui-inplace-display {
+    @apply border-primary-400 bg-primary-800;
+  }
+  .sui-inplace--success .sui-inplace-display {
+    @apply border-green-600 hover:border-green-500 hover:bg-green-900;
+  }
+  .sui-inplace--success.sui-inplace-active .sui-inplace-display {
+    @apply border-green-400 bg-green-800;
+  }
+  .sui-inplace--warning .sui-inplace-display {
+    @apply border-yellow-600 hover:border-yellow-500 hover:bg-yellow-900;
+  }
+  .sui-inplace--warning.sui-inplace-active .sui-inplace-display {
+    @apply border-yellow-400 bg-yellow-800;
+  }
+  .sui-inplace--error .sui-inplace-display {
+    @apply border-red-600 hover:border-red-500 hover:bg-red-900;
+  }
+  .sui-inplace--error.sui-inplace-active .sui-inplace-display {
+    @apply border-red-400 bg-red-800;
+  }
+}
+/* Ripple and Scroll Top Animations */
+@keyframes ripple-animation {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+/* Ripple dark mode */
+.sui-ripple--primary .sui-ripple-effect {
+  @apply bg-primary-400;
+}
+.sui-ripple--secondary .sui-ripple-effect {
+  @apply bg-secondary-400;
+}
+.sui-ripple--success .sui-ripple-effect {
+  @apply bg-green-400;
+}
+.sui-ripple--warning .sui-ripple-effect {
+  @apply bg-yellow-400;
+}
+.sui-ripple--error .sui-ripple-effect {
+  @apply bg-red-400;
+}
+.sui-ripple--info .sui-ripple-effect {
+  @apply bg-blue-400;
+}
+
+/* Scroll Top dark mode */
+.sui-scroll-top--primary {
+  @apply bg-primary-500 hover:bg-primary-400;
+}
+.sui-scroll-top--secondary {
+  @apply bg-secondary-500 hover:bg-secondary-400;
+}
+.sui-scroll-top--success {
+  @apply bg-green-500 hover:bg-green-400;
+}
+.sui-scroll-top--warning {
+  @apply bg-yellow-500 hover:bg-yellow-400;
+}
+.sui-scroll-top--error {
+  @apply bg-red-500 hover:bg-red-400;
+}
+.sui-scroll-top--info {
+  @apply bg-blue-500 hover:bg-blue-400;
+}
+.sui-scroll-top:focus {
+  @apply ring-primary-400 ring-opacity-50;
+}
+
+/* Style Class Component Styles */
+.sui-style-class {
+  @apply inline-block;
+  /* Common utility classes */
+}
+.sui-style-class--hidden {
+  @apply hidden;
+}
+.sui-style-class--visible {
+  @apply block;
+}
+.sui-style-class--invisible {
+  @apply invisible;
+}
+.sui-style-class--opacity-0 {
+  @apply opacity-0;
+}
+.sui-style-class--opacity-50 {
+  @apply opacity-50;
+}
+.sui-style-class--opacity-100 {
+  @apply opacity-100;
+}
+.sui-style-class {
+  /* Transform utilities */
+}
+.sui-style-class--rotate-90 {
+  @apply rotate-90;
+}
+.sui-style-class--rotate-180 {
+  @apply rotate-180;
+}
+.sui-style-class--rotate-270 {
+  @apply rotate-270;
+}
+.sui-style-class--scale-50 {
+  @apply scale-50;
+}
+.sui-style-class--scale-75 {
+  @apply scale-75;
+}
+.sui-style-class--scale-100 {
+  @apply scale-100;
+}
+.sui-style-class--scale-125 {
+  @apply scale-125;
+}
+.sui-style-class--scale-150 {
+  @apply scale-150;
+}
+.sui-style-class {
+  /* Position utilities */
+}
+.sui-style-class--fixed {
+  @apply fixed;
+}
+.sui-style-class--absolute {
+  @apply absolute;
+}
+.sui-style-class--relative {
+  @apply relative;
+}
+.sui-style-class--static {
+  @apply static;
+}
+.sui-style-class--sticky {
+  @apply sticky;
+}
+.sui-style-class {
+  /* Flexbox utilities */
+}
+.sui-style-class--flex {
+  @apply flex;
+}
+.sui-style-class--inline-flex {
+  @apply inline-flex;
+}
+.sui-style-class--flex-col {
+  @apply flex-col;
+}
+.sui-style-class--flex-row {
+  @apply flex-row;
+}
+.sui-style-class--items-center {
+  @apply items-center;
+}
+.sui-style-class--justify-center {
+  @apply justify-center;
+}
+.sui-style-class {
+  /* Animation utilities */
+}
+.sui-style-class--animate-bounce {
+  animation: bounce 1s infinite;
+}
+.sui-style-class--animate-pulse {
+  animation: pulse 2s infinite;
+}
+.sui-style-class--animate-spin {
+  animation: spin 1s linear infinite;
+}
+.sui-style-class--transition {
+  @apply transition-all duration-300 ease-in-out;
+}
+.sui-style-class {
+  /* Color utilities */
+}
+.sui-style-class--text-primary {
+  @apply text-primary-600;
+}
+.sui-style-class--text-secondary {
+  @apply text-secondary-600;
+}
+.sui-style-class--text-success {
+  @apply text-green-600;
+}
+.sui-style-class--text-warning {
+  @apply text-yellow-600;
+}
+.sui-style-class--text-error {
+  @apply text-red-600;
+}
+.sui-style-class--bg-primary {
+  @apply bg-primary-600;
+}
+.sui-style-class--bg-secondary {
+  @apply bg-secondary-600;
+}
+.sui-style-class--bg-success {
+  @apply bg-green-600;
+}
+.sui-style-class--bg-warning {
+  @apply bg-yellow-600;
+}
+.sui-style-class--bg-error {
+  @apply bg-red-600;
+}
+.sui-style-class {
+  /* Size utilities */
+}
+.sui-style-class--w-full {
+  @apply w-full;
+}
+.sui-style-class--h-full {
+  @apply h-full;
+}
+.sui-style-class--w-auto {
+  @apply w-auto;
+}
+.sui-style-class--h-auto {
+  @apply h-auto;
+}
+
+/* Terminal Component Styles */
+.sui-terminal {
+  @apply bg-gray-900 text-green-400 font-mono rounded-lg border border-gray-700 overflow-hidden;
+  /* Terminal header */
+}
+.sui-terminal-header {
+  @apply bg-gray-800 px-4 py-2 border-b border-gray-700 flex items-center;
+}
+.sui-terminal-title {
+  @apply text-white font-semibold text-sm;
+}
+.sui-terminal {
+  /* Terminal content */
+}
+.sui-terminal-content {
+  @apply p-4 h-64 overflow-y-auto;
+  background-color: #1a1a1a;
+}
+.sui-terminal {
+  /* Terminal command */
+}
+.sui-terminal-command {
+  @apply mb-2;
+}
+.sui-terminal-command-line {
+  @apply flex items-start;
+}
+.sui-terminal-prompt {
+  @apply text-green-500 mr-2 flex-shrink-0;
+}
+.sui-terminal-command-text {
+  @apply text-green-400 break-all;
+}
+.sui-terminal-output {
+  @apply text-gray-300 mt-1 ml-4 break-all;
+}
+.sui-terminal {
+  /* Terminal input */
+}
+.sui-terminal-input-line {
+  @apply flex items-center px-4 py-2 bg-gray-800 border-t border-gray-700;
+}
+.sui-terminal-input {
+  @apply bg-transparent text-green-400 border-none outline-none flex-1 font-mono;
+}
+.sui-terminal {
+  /* Size variants */
+}
+.sui-terminal--small {
+  @apply text-xs;
+}
+.sui-terminal--small .sui-terminal-content {
+  @apply h-32;
+}
+.sui-terminal--large {
+  @apply text-lg;
+}
+.sui-terminal--large .sui-terminal-content {
+  @apply h-96;
+}
+.sui-terminal {
+  /* Color variants */
+}
+.sui-terminal--white {
+  @apply bg-white text-black;
+}
+.sui-terminal--white .sui-terminal-header {
+  @apply bg-gray-100 border-gray-300;
+}
+.sui-terminal--white .sui-terminal-title {
+  @apply text-black;
+}
+.sui-terminal--white .sui-terminal-content {
+  @apply bg-white;
+}
+.sui-terminal--white .sui-terminal-prompt {
+  @apply text-blue-600;
+}
+.sui-terminal--white .sui-terminal-command-text {
+  @apply text-black;
+}
+.sui-terminal--white .sui-terminal-output {
+  @apply text-gray-600;
+}
+.sui-terminal--white .sui-terminal-input-line {
+  @apply bg-gray-100 border-gray-300;
+}
+.sui-terminal--white .sui-terminal-input {
+  @apply text-black;
+}
+.sui-terminal--blue {
+  @apply bg-blue-900 text-blue-400;
+}
+.sui-terminal--blue .sui-terminal-header {
+  @apply bg-blue-800 border-blue-700;
+}
+.sui-terminal--blue .sui-terminal-prompt {
+  @apply text-blue-300;
+}
+.sui-terminal--blue .sui-terminal-command-text {
+  @apply text-blue-400;
+}
+.sui-terminal--blue .sui-terminal-input-line {
+  @apply bg-blue-800 border-blue-700;
+}
+.sui-terminal--blue .sui-terminal-input {
+  @apply text-blue-400;
+}
+.sui-terminal--purple {
+  @apply bg-purple-900 text-purple-400;
+}
+.sui-terminal--purple .sui-terminal-header {
+  @apply bg-purple-800 border-purple-700;
+}
+.sui-terminal--purple .sui-terminal-prompt {
+  @apply text-purple-300;
+}
+.sui-terminal--purple .sui-terminal-command-text {
+  @apply text-purple-400;
+}
+.sui-terminal--purple .sui-terminal-input-line {
+  @apply bg-purple-800 border-purple-700;
+}
+.sui-terminal--purple .sui-terminal-input {
+  @apply text-purple-400;
+}
+.sui-terminal {
+  /* Theme variants */
+}
+.sui-terminal--modern {
+  @apply rounded-xl shadow-lg;
+}
+.sui-terminal--modern .sui-terminal-header {
+  @apply bg-gradient-to-r from-gray-800 to-gray-700;
+}
+.sui-terminal--minimal {
+  @apply border-0 rounded-none;
+}
+.sui-terminal--minimal .sui-terminal-header {
+  @apply border-b-0;
+}
+.sui-terminal--minimal .sui-terminal-input-line {
+  @apply border-t-0;
+}
+.sui-terminal {
+  /* Responsive */
+}
+@media (max-width: 768px) {
+  .sui-terminal {
+    @apply text-sm;
+  }
+  .sui-terminal .sui-terminal-content {
+    @apply h-48;
+  }
+}
+
+/* Style Class dark mode */
+.sui-style-class--text-primary {
+  @apply text-primary-400;
+}
+.sui-style-class--text-secondary {
+  @apply text-secondary-400;
+}
+.sui-style-class--text-success {
+  @apply text-green-400;
+}
+.sui-style-class--text-warning {
+  @apply text-yellow-400;
+}
+.sui-style-class--text-error {
+  @apply text-red-400;
+}
+.sui-style-class--bg-primary {
+  @apply bg-primary-500;
+}
+.sui-style-class--bg-secondary {
+  @apply bg-secondary-500;
+}
+.sui-style-class--bg-success {
+  @apply bg-green-500;
+}
+.sui-style-class--bg-warning {
+  @apply bg-yellow-500;
+}
+.sui-style-class--bg-error {
+  @apply bg-red-500;
+}
+
+/* Terminal dark mode */
+.sui-terminal--white .sui-terminal-content {
+  background-color: #f8f9fa;
+}
+.sui-terminal--blue .sui-terminal-content {
+  background-color: #1e3a8a;
+}
+.sui-terminal--purple .sui-terminal-content {
+  background-color: #581c87;
+}

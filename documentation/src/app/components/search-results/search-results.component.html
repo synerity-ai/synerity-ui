@@ -1,0 +1,123 @@
+<div class="search-results">
+  <!-- Results Header -->
+  <div class="results-header" *ngIf="hasResults()">
+    <div class="results-info">
+      <h2 class="results-title">
+        Search Results
+        <span class="results-count">({{ resultCount() }} found)</span>
+      </h2>
+      <p class="results-query" *ngIf="searchQuery()">
+        for "{{ searchQuery() }}"
+      </p>
+    </div>
+    
+    <div class="results-controls">
+      <!-- Sort Options -->
+      <div class="sort-controls">
+        <label class="sort-label">Sort by:</label>
+        <select 
+          class="sort-select"
+          [value]="sortBy()"
+          (change)="setSortBy($event)">
+          <option value="relevance">Relevance</option>
+          <option value="name">Name</option>
+          <option value="category">Category</option>
+        </select>
+      </div>
+      
+      <!-- View Mode Toggle -->
+      <div class="view-controls">
+        <button 
+          class="view-btn"
+          [class.active]="viewMode() === 'grid'"
+          (click)="setViewMode('grid')"
+          title="Grid View">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+        </button>
+        <button 
+          class="view-btn"
+          [class.active]="viewMode() === 'list'"
+          (click)="setViewMode('list')"
+          title="List View">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/>
+            <line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="isSearching()">
+    <div class="loading-spinner"></div>
+    <p>Searching components...</p>
+  </div>
+
+  <!-- No Results State -->
+  <div class="no-results" *ngIf="!isSearching() && !hasResults() && searchQuery()">
+    <div class="no-results-content">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <h3>No components found</h3>
+      <p>Try adjusting your search terms or filters</p>
+    </div>
+  </div>
+
+  <!-- Results Grid/List -->
+  <div class="results-container" [class.grid-view]="viewMode() === 'grid'" [class.list-view]="viewMode() === 'list'">
+    <div 
+      class="result-item"
+      *ngFor="let result of sortedResults(); trackBy: trackByComponent"
+      [routerLink]="['/components', result.component.id]">
+      
+      <!-- Component Card -->
+      <div class="component-card">
+        <div class="component-header">
+          <h3 class="component-name">{{ result.component.name }}</h3>
+          <div class="component-meta">
+            <span class="component-category">{{ result.component.category }}</span>
+            <span class="relevance-score" [class]="getScoreColor(result.score)">
+              {{ result.score }}%
+            </span>
+          </div>
+        </div>
+        
+        <p class="component-description">{{ result.component.description }}</p>
+        
+        <div class="component-tags" *ngIf="result.component.tags.length > 0">
+          <span 
+            class="tag"
+            *ngFor="let tag of result.component.tags.slice(0, 3)">
+            {{ tag }}
+          </span>
+          <span class="more-tags" *ngIf="result.component.tags.length > 3">
+            +{{ result.component.tags.length - 3 }} more
+          </span>
+        </div>
+        
+        <div class="component-footer">
+          <div class="matched-fields">
+            <span class="matched-label">Matched in:</span>
+            <span class="matched-fields-text">{{ getMatchedFieldsText(result.matchedFields) }}</span>
+          </div>
+          
+          <div class="component-actions">
+            <span class="view-component">View Component →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

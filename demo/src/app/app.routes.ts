@@ -44,8 +44,6 @@ import { SuPickListDemo } from './components/foundation/su-pick-list-demo/su-pic
 import { SuTreeTableDemo } from './components/foundation/su-tree-table-demo/su-tree-table-demo';
 import { SuVirtualScrollerDemo } from './components/foundation/su-virtual-scroller-demo/su-virtual-scroller-demo';
 import { SuUploadDemo } from './components/foundation/su-upload-demo/su-upload-demo';
-import { SuMeterGroupDemo } from './components/foundation/su-meter-group-demo/su-meter-group-demo';
-import { SuOrgChartDemo } from './components/foundation/su-org-chart-demo/su-org-chart-demo';
 import { SuCarouselDemo } from './components/foundation/su-carousel-demo/su-carousel-demo';
 import { SuGalleriaDemo } from './components/foundation/su-galleria-demo/su-galleria-demo';
 import { SuDividerDemo } from './components/foundation/su-divider-demo/su-divider-demo';
@@ -67,6 +65,36 @@ import { SuPanelMenuDemo } from './components/foundation/su-panel-menu-demo/su-p
 import { SuTieredMenuDemo } from './components/foundation/su-tiered-menu-demo/su-tiered-menu-demo';
 import { SuImageDemo } from './components/foundation/su-image-demo/su-image-demo';
 import { SuImageCompareDemo } from './components/foundation/su-image-compare-demo/su-image-compare-demo';
+import { SuDialogDemo } from './components/foundation/su-dialog-demo/su-dialog-demo';
+import { SuConfirmDialogDemo } from './components/foundation/su-confirm-dialog-demo/su-confirm-dialog-demo';
+import { SuToastDemo } from './components/foundation/su-toast-demo/su-toast-demo';
+import { SuProgressBarDemo } from './components/foundation/su-progress-bar-demo/su-progress-bar-demo';
+import { SuConfirmPopupDemo } from './components/foundation/su-confirm-popup-demo/su-confirm-popup-demo';
+import { SuMessageDemo } from './components/foundation/su-message-demo/su-message-demo';
+import { SuFileUploadAdvancedDemo } from './components/foundation/su-file-upload-advanced-demo/su-file-upload-advanced-demo';
+import { SuProgressSpinnerDemo } from './components/foundation/su-progress-spinner-demo/su-progress-spinner-demo';
+import { SuSkeletonDemo } from './components/foundation/su-skeleton-demo/su-skeleton-demo';
+import { SuOverlayPanelDemo } from './components/foundation/su-overlay-panel-demo/su-overlay-panel-demo';
+import { SuPopoverDemo } from './components/foundation/su-popover-demo/su-popover-demo';
+import { SuBlockUiDemo } from './components/foundation/su-block-ui-demo/su-block-ui-demo';
+import { SuDrawerDemo } from './components/foundation/su-drawer-demo/su-drawer-demo';
+import { SuCaptchaDemo } from './components/foundation/su-captcha-demo/su-captcha-demo';
+import { SuDynamicDialogDemo } from './components/foundation/su-dynamic-dialog-demo/su-dynamic-dialog-demo';
+import { SuTooltipDemo } from './components/foundation/su-tooltip-demo/su-tooltip-demo';
+import { SuMeterGroupDemo } from './components/foundation/su-meter-group-demo/su-meter-group-demo';
+import { SuInplaceDemo } from './components/foundation/su-inplace-demo/su-inplace-demo';
+import { SuOrgChartDemo } from './components/foundation/su-org-chart-demo/su-org-chart-demo';
+import { SuScrollPanelDemo } from './components/foundation/su-scroll-panel-demo/su-scroll-panel-demo';
+import { SuSpeedDialDemo } from './components/foundation/su-speed-dial-demo/su-speed-dial-demo';
+import { SuSplitButtonDemo } from './components/foundation/su-split-button-demo/su-split-button-demo';
+import { SuAnimateOnScrollDemo } from './components/foundation/su-animate-on-scroll-demo/su-animate-on-scroll-demo';
+import { SuFocusTrapDemo } from './components/foundation/su-focus-trap-demo/su-focus-trap-demo';
+import { SuRippleDemo } from './components/foundation/su-ripple-demo/su-ripple-demo';
+import { SuScrollTopDemo } from './components/foundation/su-scroll-top-demo/su-scroll-top-demo';
+import { SuStyleClassDemo } from './components/foundation/su-style-class-demo/su-style-class-demo';
+import { SuTerminalDemo } from './components/foundation/su-terminal-demo/su-terminal-demo';
+import { SuRadioButtonDemo } from './components/foundation/su-radio-button-demo/su-radio-button-demo';
+import { SuTagDemo } from './components/foundation/su-tag-demo/su-tag-demo';
 
 export const routes: Routes = [
   {
@@ -353,5 +381,125 @@ export const routes: Routes = [
   {
     path: 'components/image-compare',
     component: SuImageCompareDemo
+  },
+  {
+    path: 'components/dialog',
+    component: SuDialogDemo
+  },
+  {
+    path: 'components/confirm-dialog',
+    component: SuConfirmDialogDemo
+  },
+  {
+    path: 'components/toast',
+    component: SuToastDemo
+  },
+  {
+    path: 'components/progress-bar',
+    component: SuProgressBarDemo
+  },
+  {
+    path: 'components/confirm-popup',
+    component: SuConfirmPopupDemo
+  },
+  {
+    path: 'components/message',
+    component: SuMessageDemo
+  },
+  {
+    path: 'components/file-upload-advanced',
+    component: SuFileUploadAdvancedDemo
+  },
+  {
+    path: 'components/progress-spinner',
+    component: SuProgressSpinnerDemo
+  },
+  {
+    path: 'components/skeleton',
+    component: SuSkeletonDemo
+  },
+  {
+    path: 'components/overlay-panel',
+    component: SuOverlayPanelDemo
+  },
+  {
+    path: 'components/popover',
+    component: SuPopoverDemo
+  },
+  {
+    path: 'components/block-ui',
+    component: SuBlockUiDemo
+  },
+  {
+    path: 'components/drawer',
+    component: SuDrawerDemo
+  },
+  {
+    path: 'components/captcha',
+    component: SuCaptchaDemo
+  },
+  {
+    path: 'components/dynamic-dialog',
+    component: SuDynamicDialogDemo
+  },
+  {
+    path: 'components/tooltip',
+    component: SuTooltipDemo
+  },
+  {
+    path: 'components/meter-group',
+    component: SuMeterGroupDemo
+  },
+  {
+    path: 'components/inplace',
+    component: SuInplaceDemo
+  },
+  {
+    path: 'components/org-chart',
+    component: SuOrgChartDemo
+  },
+  {
+    path: 'components/scroll-panel',
+    component: SuScrollPanelDemo
+  },
+  {
+    path: 'components/speed-dial',
+    component: SuSpeedDialDemo
+  },
+  {
+    path: 'components/split-button',
+    component: SuSplitButtonDemo
+  },
+  {
+    path: 'components/animate-on-scroll',
+    component: SuAnimateOnScrollDemo
+  },
+  {
+    path: 'components/focus-trap',
+    component: SuFocusTrapDemo
+  },
+  {
+    path: 'components/ripple',
+    component: SuRippleDemo
+  },
+  {
+    path: 'components/scroll-top',
+    component: SuScrollTopDemo
+  },
+  {
+    path: 'components/style-class',
+    component: SuStyleClassDemo
+  },
+  {
+    path: 'components/terminal',
+    component: SuTerminalDemo
+  },
+  {
+    path: 'components/radio-button',
+    component: SuRadioButtonDemo
+  },
+  {
+    path: 'components/tag',
+    component: SuTagDemo
   }
 ];

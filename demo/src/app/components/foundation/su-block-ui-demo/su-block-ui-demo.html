@@ -1,0 +1,291 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Block UI Component Demo</h2>
+    <p>UI blocking overlay with loading indicators and customizable messages.</p>
+  </div>
+
+  <!-- Basic Block UI -->
+  <div class="demo-section">
+    <h3>Basic Block UI</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Basic Block</h4>
+        <p>Standard block UI with spinner and message.</p>
+        <sui-block-ui
+          [blocked]="blocked"
+          message="Loading..."
+          [showSpinner]="true"
+          [styleClass]="getBlockUiClass()">
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <h4 class="font-medium text-gray-900 mb-2">Content Area</h4>
+            <p class="text-sm text-gray-600 mb-4">This content will be blocked when the overlay is active.</p>
+            <button class="btn btn-primary" (click)="onBlock()">Block UI</button>
+            <button class="btn btn-secondary ml-2" (click)="onUnblock()">Unblock UI</button>
+          </div>
+        </sui-block-ui>
+      </div>
+
+      <div class="component-card">
+        <h4>No Spinner</h4>
+        <p>Block UI with message only, no spinner.</p>
+        <sui-block-ui
+          [blocked]="blocked"
+          message="Processing..."
+          [showSpinner]="false"
+          [styleClass]="getBlockUiClass()">
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <h4 class="font-medium text-gray-900 mb-2">Content Area</h4>
+            <p class="text-sm text-gray-600 mb-4">This content will be blocked when the overlay is active.</p>
+            <button class="btn btn-primary" (click)="onBlock()">Block UI</button>
+            <button class="btn btn-secondary ml-2" (click)="onUnblock()">Unblock UI</button>
+          </div>
+        </sui-block-ui>
+      </div>
+
+      <div class="component-card">
+        <h4>No Message</h4>
+        <p>Block UI with spinner only, no message.</p>
+        <sui-block-ui
+          [blocked]="blocked"
+          message=""
+          [showSpinner]="true"
+          [styleClass]="getBlockUiClass()">
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <h4 class="font-medium text-gray-900 mb-2">Content Area</h4>
+            <p class="text-sm text-gray-600 mb-4">This content will be blocked when the overlay is active.</p>
+            <button class="btn btn-primary" (click)="onBlock()">Block UI</button>
+            <button class="btn btn-secondary ml-2" (click)="onUnblock()">Unblock UI</button>
+          </div>
+        </sui-block-ui>
+      </div>
+
+      <div class="component-card">
+        <h4>Custom Message</h4>
+        <p>Block UI with custom message and spinner.</p>
+        <sui-block-ui
+          [blocked]="blocked"
+          message="Please wait while we process your request..."
+          [showSpinner]="true"
+          [styleClass]="getBlockUiClass()">
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <h4 class="font-medium text-gray-900 mb-2">Content Area</h4>
+            <p class="text-sm text-gray-600 mb-4">This content will be blocked when the overlay is active.</p>
+            <button class="btn btn-primary" (click)="onBlock()">Block UI</button>
+            <button class="btn btn-secondary ml-2" (click)="onUnblock()">Unblock UI</button>
+          </div>
+        </sui-block-ui>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Configuration -->
+  <div class="demo-section">
+    <h3>Interactive Configuration</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Block UI Configuration:</label>
+        <div class="radio-options">
+          <label *ngFor="let config of blockConfigs">
+            <input
+              type="radio"
+              name="config"
+              [value]="config.id"
+              [(ngModel)]="selectedConfig">
+            {{ config.id | titlecase }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Block UI Size:</label>
+        <div class="radio-options">
+          <label *ngFor="let size of sizes">
+            <input
+              type="radio"
+              name="size"
+              [value]="size.value"
+              [(ngModel)]="selectedSize">
+            {{ size.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Block UI Color:</label>
+        <div class="radio-options">
+          <label *ngFor="let color of colors">
+            <input
+              type="radio"
+              name="color"
+              [value]="color.value"
+              [(ngModel)]="selectedColor">
+            {{ color.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="customMessage">Custom Message:</label>
+        <input
+          type="text"
+          id="customMessage"
+          class="form-control"
+          [(ngModel)]="customMessage"
+          placeholder="Loading...">
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input
+            type="checkbox"
+            [(ngModel)]="showSpinner">
+          Show Spinner
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-sm text-gray-600">{{ getConfigDescription() }}</p>
+      </div>
+
+      <div class="mt-4">
+        <sui-block-ui
+          [blocked]="blocked"
+          [message]="customMessage"
+          [showSpinner]="showSpinner"
+          [styleClass]="getBlockUiClass()">
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <h4 class="font-medium text-gray-900 mb-2">Interactive Content</h4>
+            <p class="text-sm text-gray-600 mb-4">This content will be blocked when the overlay is active.</p>
+            <button class="btn btn-primary" (click)="onBlock()">Block UI</button>
+            <button class="btn btn-secondary ml-2" (click)="onUnblock()">Unblock UI</button>
+          </div>
+        </sui-block-ui>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h3>Real-world Examples</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Form Submission</h4>
+        <p>Block UI during form submission.</p>
+        <sui-block-ui
+          [blocked]="blocked"
+          message="Submitting form..."
+          [showSpinner]="true"
+          [styleClass]="getBlockUiClass()">
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <h4 class="font-medium text-gray-900 mb-4">Contact Form</h4>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                <input type="text" class="form-control" placeholder="Enter your name">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input type="email" class="form-control" placeholder="Enter your email">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <textarea class="form-control" rows="3" placeholder="Enter your message"></textarea>
+              </div>
+              <button class="btn btn-primary" (click)="simulateLoading()">Submit Form</button>
+            </div>
+          </div>
+        </sui-block-ui>
+      </div>
+
+      <div class="component-card">
+        <h4>Data Loading</h4>
+        <p>Block UI during data loading.</p>
+        <sui-block-ui
+          [blocked]="blocked"
+          message="Loading data..."
+          [showSpinner]="true"
+          [styleClass]="getBlockUiClass()">
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <h4 class="font-medium text-gray-900 mb-4">Data Table</h4>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center p-2 bg-white rounded border">
+                <span class="text-sm">Item 1</span>
+                <span class="text-xs text-gray-500">$10.00</span>
+              </div>
+              <div class="flex justify-between items-center p-2 bg-white rounded border">
+                <span class="text-sm">Item 2</span>
+                <span class="text-xs text-gray-500">$15.00</span>
+              </div>
+              <div class="flex justify-between items-center p-2 bg-white rounded border">
+                <span class="text-sm">Item 3</span>
+                <span class="text-xs text-gray-500">$20.00</span>
+              </div>
+            </div>
+            <button class="btn btn-primary mt-4" (click)="simulateLoading()">Refresh Data</button>
+          </div>
+        </sui-block-ui>
+      </div>
+
+      <div class="component-card">
+        <h4>File Upload</h4>
+        <p>Block UI during file upload.</p>
+        <sui-block-ui
+          [blocked]="blocked"
+          message="Uploading file..."
+          [showSpinner]="true"
+          [styleClass]="getBlockUiClass()">
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <h4 class="font-medium text-gray-900 mb-4">File Upload</h4>
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+              <p class="text-sm text-gray-600 mb-2">Drag and drop files here</p>
+              <button class="btn btn-secondary">Choose Files</button>
+            </div>
+            <button class="btn btn-primary mt-4" (click)="simulateLoading()">Upload Files</button>
+          </div>
+        </sui-block-ui>
+      </div>
+
+      <div class="component-card">
+        <h4>API Call</h4>
+        <p>Block UI during API call.</p>
+        <sui-block-ui
+          [blocked]="blocked"
+          message="Calling API..."
+          [showSpinner]="true"
+          [styleClass]="getBlockUiClass()">
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <h4 class="font-medium text-gray-900 mb-4">API Integration</h4>
+            <div class="space-y-2">
+              <div class="p-2 bg-white rounded border">
+                <span class="text-sm font-medium">GET /api/users</span>
+                <span class="text-xs text-green-600 ml-2">200 OK</span>
+              </div>
+              <div class="p-2 bg-white rounded border">
+                <span class="text-sm font-medium">POST /api/data</span>
+                <span class="text-xs text-green-600 ml-2">201 Created</span>
+              </div>
+            </div>
+            <button class="btn btn-primary mt-4" (click)="simulateLoading()">Make API Call</button>
+          </div>
+        </sui-block-ui>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Tracking -->
+  <div class="demo-section">
+    <h3>Event Tracking</h3>
+    <div class="demo-content">
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <h4 class="font-medium text-blue-900 mb-2">Block UI Events</h4>
+        <div class="text-blue-700 text-sm">
+          <div>Block Count: {{ blockCount }}</div>
+          <div>Unblock Count: {{ unblockCount }}</div>
+        </div>
+        <button class="btn btn-secondary mt-2" (click)="resetCounters()">
+          Reset Counters
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

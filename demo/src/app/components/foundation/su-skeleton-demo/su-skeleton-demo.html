@@ -1,0 +1,422 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Skeleton Component Demo</h2>
+    <p>Loading placeholders with shimmer animations for better user experience.</p>
+  </div>
+
+  <!-- Basic Skeletons -->
+  <div class="demo-section">
+    <h3>Basic Skeletons</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Text Skeleton</h4>
+        <p>Basic text placeholder with animation.</p>
+        <sui-skeleton
+          width="100%"
+          height="1rem"
+          borderRadius="4px"
+          [animation]="true">
+        </sui-skeleton>
+      </div>
+
+      <div class="component-card">
+        <h4>Circle Skeleton</h4>
+        <p>Circular placeholder for avatars.</p>
+        <sui-skeleton
+          width="3rem"
+          height="3rem"
+          borderRadius="50%"
+          [animation]="true">
+        </sui-skeleton>
+      </div>
+
+      <div class="component-card">
+        <h4>Square Skeleton</h4>
+        <p>Square placeholder for images.</p>
+        <sui-skeleton
+          width="4rem"
+          height="4rem"
+          borderRadius="0"
+          [animation]="true">
+        </sui-skeleton>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shape Variants -->
+  <div class="demo-section">
+    <h3>Shape Variants</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default</h4>
+        <p>Standard rectangular skeleton.</p>
+        <sui-skeleton
+          width="6rem"
+          height="1rem"
+          borderRadius="4px"
+          [animation]="true">
+        </sui-skeleton>
+      </div>
+
+      <div class="component-card">
+        <h4>Rounded</h4>
+        <p>Rounded corners skeleton.</p>
+        <sui-skeleton
+          width="6rem"
+          height="1rem"
+          borderRadius="8px"
+          [animation]="true">
+        </sui-skeleton>
+      </div>
+
+      <div class="component-card">
+        <h4>Circle</h4>
+        <p>Circular skeleton for avatars.</p>
+        <sui-skeleton
+          width="3rem"
+          height="3rem"
+          borderRadius="50%"
+          [animation]="true">
+        </sui-skeleton>
+      </div>
+
+      <div class="component-card">
+        <h4>Square</h4>
+        <p>Square skeleton for images.</p>
+        <sui-skeleton
+          width="4rem"
+          height="4rem"
+          borderRadius="0"
+          [animation]="true">
+        </sui-skeleton>
+      </div>
+    </div>
+  </div>
+
+  <!-- Size Variants -->
+  <div class="demo-section">
+    <h3>Size Variants</h3>
+    <div class="demo-content">
+      <div class="space-y-4">
+        <div>
+          <label class="text-sm font-medium">Small</label>
+          <sui-skeleton
+            width="2rem"
+            height="0.5rem"
+            borderRadius="4px"
+            [animation]="true">
+          </sui-skeleton>
+        </div>
+        <div>
+          <label class="text-sm font-medium">Medium</label>
+          <sui-skeleton
+            width="4rem"
+            height="1rem"
+            borderRadius="4px"
+            [animation]="true">
+          </sui-skeleton>
+        </div>
+        <div>
+          <label class="text-sm font-medium">Large</label>
+          <sui-skeleton
+            width="6rem"
+            height="1.5rem"
+            borderRadius="4px"
+            [animation]="true">
+          </sui-skeleton>
+        </div>
+        <div>
+          <label class="text-sm font-medium">Extra Large</label>
+          <sui-skeleton
+            width="8rem"
+            height="2rem"
+            borderRadius="4px"
+            [animation]="true">
+          </sui-skeleton>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Color Variants -->
+  <div class="demo-section">
+    <h3>Color Variants</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default</h4>
+        <p>Standard gray skeleton.</p>
+        <sui-skeleton
+          width="6rem"
+          height="1rem"
+          borderRadius="4px"
+          [animation]="true">
+        </sui-skeleton>
+      </div>
+
+      <div class="component-card">
+        <h4>Primary</h4>
+        <p>Primary color skeleton.</p>
+        <sui-skeleton
+          width="6rem"
+          height="1rem"
+          borderRadius="4px"
+          [animation]="true"
+          styleClass="sui-skeleton--primary">
+        </sui-skeleton>
+      </div>
+
+      <div class="component-card">
+        <h4>Success</h4>
+        <p>Success color skeleton.</p>
+        <sui-skeleton
+          width="6rem"
+          height="1rem"
+          borderRadius="4px"
+          [animation]="true"
+          styleClass="sui-skeleton--success">
+        </sui-skeleton>
+      </div>
+
+      <div class="component-card">
+        <h4>Warning</h4>
+        <p>Warning color skeleton.</p>
+        <sui-skeleton
+          width="6rem"
+          height="1rem"
+          borderRadius="4px"
+          [animation]="true"
+          styleClass="sui-skeleton--warning">
+        </sui-skeleton>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Configuration -->
+  <div class="demo-section">
+    <h3>Interactive Configuration</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Skeleton Shape:</label>
+        <div class="radio-options">
+          <label *ngFor="let shape of shapes">
+            <input
+              type="radio"
+              name="shape"
+              [value]="shape.value"
+              [(ngModel)]="selectedShape">
+            {{ shape.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Skeleton Size:</label>
+        <div class="radio-options">
+          <label *ngFor="let size of sizes">
+            <input
+              type="radio"
+              name="size"
+              [value]="size.value"
+              [(ngModel)]="selectedSize">
+            {{ size.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Skeleton Color:</label>
+        <div class="radio-options">
+          <label *ngFor="let color of colors">
+            <input
+              type="radio"
+              name="color"
+              [value]="color.value"
+              [(ngModel)]="selectedColor">
+            {{ color.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input
+            type="checkbox"
+            [(ngModel)]="animation">
+          Animation
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <sui-skeleton
+          [width]="getShapeDimensions().width"
+          [height]="getShapeDimensions().height"
+          [borderRadius]="getShapeDimensions().borderRadius"
+          [animation]="animation"
+          [styleClass]="getSkeletonClass()">
+        </sui-skeleton>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h3>Real-world Examples</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Card Loading</h4>
+        <p>Card skeleton with multiple elements.</p>
+        <div class="border rounded-lg p-4 space-y-3">
+          <div class="flex items-center space-x-3">
+            <sui-skeleton
+              width="3rem"
+              height="3rem"
+              borderRadius="50%"
+              [animation]="true">
+            </sui-skeleton>
+            <div class="flex-1 space-y-2">
+              <sui-skeleton
+                width="60%"
+                height="1rem"
+                borderRadius="4px"
+                [animation]="true">
+              </sui-skeleton>
+              <sui-skeleton
+                width="40%"
+                height="0.8rem"
+                borderRadius="4px"
+                [animation]="true">
+              </sui-skeleton>
+            </div>
+          </div>
+          <sui-skeleton
+            width="100%"
+            height="1rem"
+            borderRadius="4px"
+            [animation]="true">
+          </sui-skeleton>
+          <sui-skeleton
+            width="80%"
+            height="1rem"
+            borderRadius="4px"
+            [animation]="true">
+          </sui-skeleton>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>List Loading</h4>
+        <p>List skeleton with multiple items.</p>
+        <div class="space-y-3">
+          <div *ngFor="let item of [1,2,3]" class="flex items-center space-x-3">
+            <sui-skeleton
+              width="2rem"
+              height="2rem"
+              borderRadius="50%"
+              [animation]="true">
+            </sui-skeleton>
+            <div class="flex-1">
+              <sui-skeleton
+                width="70%"
+                height="1rem"
+                borderRadius="4px"
+                [animation]="true">
+              </sui-skeleton>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Content Loading</h4>
+        <p>Simulate content loading with skeleton.</p>
+        <div class="space-y-3">
+          <div *ngIf="isLoading || !showContent; else content">
+            <sui-skeleton
+              width="100%"
+              height="1rem"
+              borderRadius="4px"
+              [animation]="true">
+            </sui-skeleton>
+            <sui-skeleton
+              width="80%"
+              height="1rem"
+              borderRadius="4px"
+              [animation]="true">
+            </sui-skeleton>
+            <sui-skeleton
+              width="60%"
+              height="1rem"
+              borderRadius="4px"
+              [animation]="true">
+            </sui-skeleton>
+          </div>
+          <ng-template #content>
+            <div class="text-gray-700">
+              <h4 class="font-medium">Loaded Content</h4>
+              <p class="text-sm">This is the actual content that was loaded.</p>
+            </div>
+          </ng-template>
+        </div>
+        <div class="mt-4">
+          <button class="btn btn-primary" (click)="simulateLoading()" [disabled]="isLoading">
+            {{ isLoading ? 'Loading...' : 'Simulate Loading' }}
+          </button>
+          <button class="btn btn-secondary ml-2" (click)="toggleContent()">
+            {{ showContent ? 'Hide' : 'Show' }} Content
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multiple Skeletons -->
+  <div class="demo-section">
+    <h3>Multiple Skeletons</h3>
+    <div class="demo-content">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-4">
+          <sui-skeleton
+            width="3rem"
+            height="3rem"
+            borderRadius="50%"
+            [animation]="true">
+          </sui-skeleton>
+          <div class="flex-1 space-y-2">
+            <sui-skeleton
+              width="100%"
+              height="1rem"
+              borderRadius="4px"
+              [animation]="true">
+            </sui-skeleton>
+            <sui-skeleton
+              width="60%"
+              height="0.8rem"
+              borderRadius="4px"
+              [animation]="true">
+            </sui-skeleton>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <sui-skeleton
+            width="100%"
+            height="1rem"
+            borderRadius="4px"
+            [animation]="true">
+          </sui-skeleton>
+          <sui-skeleton
+            width="90%"
+            height="1rem"
+            borderRadius="4px"
+            [animation]="true">
+          </sui-skeleton>
+          <sui-skeleton
+            width="75%"
+            height="1rem"
+            borderRadius="4px"
+            [animation]="true">
+          </sui-skeleton>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

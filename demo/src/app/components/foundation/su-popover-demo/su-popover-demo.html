@@ -1,0 +1,337 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Popover Component Demo</h2>
+    <p>Contextual popovers with various positions, sizes, and configurations.</p>
+  </div>
+
+  <!-- Basic Popovers -->
+  <div class="demo-section">
+    <h3>Basic Popovers</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Bottom Popover</h4>
+        <p>Popover positioned below the trigger.</p>
+        <sui-popover
+          [visible]="false"
+          position="bottom"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-primary" (click)="onPopoverShow()">Show Bottom Popover</button>
+          <div slot="content">
+            <h4 class="font-medium text-gray-900 mb-2">Bottom Popover</h4>
+            <p class="text-sm text-gray-600">This popover appears below the trigger element.</p>
+          </div>
+        </sui-popover>
+      </div>
+
+      <div class="component-card">
+        <h4>Top Popover</h4>
+        <p>Popover positioned above the trigger.</p>
+        <sui-popover
+          [visible]="false"
+          position="top"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-primary" (click)="onPopoverShow()">Show Top Popover</button>
+          <div slot="content">
+            <h4 class="font-medium text-gray-900 mb-2">Top Popover</h4>
+            <p class="text-sm text-gray-600">This popover appears above the trigger element.</p>
+          </div>
+        </sui-popover>
+      </div>
+
+      <div class="component-card">
+        <h4>Left Popover</h4>
+        <p>Popover positioned to the left of the trigger.</p>
+        <sui-popover
+          [visible]="false"
+          position="left"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-primary" (click)="onPopoverShow()">Show Left Popover</button>
+          <div slot="content">
+            <h4 class="font-medium text-gray-900 mb-2">Left Popover</h4>
+            <p class="text-sm text-gray-600">This popover appears to the left of the trigger element.</p>
+          </div>
+        </sui-popover>
+      </div>
+
+      <div class="component-card">
+        <h4>Right Popover</h4>
+        <p>Popover positioned to the right of the trigger.</p>
+        <sui-popover
+          [visible]="false"
+          position="right"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-primary" (click)="onPopoverShow()">Show Right Popover</button>
+          <div slot="content">
+            <h4 class="font-medium text-gray-900 mb-2">Right Popover</h4>
+            <p class="text-sm text-gray-600">This popover appears to the right of the trigger element.</p>
+          </div>
+        </sui-popover>
+      </div>
+    </div>
+  </div>
+
+  <!-- Position Variants -->
+  <div class="demo-section">
+    <h3>Position Variants</h3>
+    <div class="demo-content">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <sui-popover
+          [visible]="false"
+          position="top"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-secondary w-full" (click)="onPopoverShow()">Top</button>
+          <div slot="content">
+            <p class="text-sm text-gray-600">Top positioned popover</p>
+          </div>
+        </sui-popover>
+
+        <sui-popover
+          [visible]="false"
+          position="bottom"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-secondary w-full" (click)="onPopoverShow()">Bottom</button>
+          <div slot="content">
+            <p class="text-sm text-gray-600">Bottom positioned popover</p>
+          </div>
+        </sui-popover>
+
+        <sui-popover
+          [visible]="false"
+          position="left"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-secondary w-full" (click)="onPopoverShow()">Left</button>
+          <div slot="content">
+            <p class="text-sm text-gray-600">Left positioned popover</p>
+          </div>
+        </sui-popover>
+
+        <sui-popover
+          [visible]="false"
+          position="right"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-secondary w-full" (click)="onPopoverShow()">Right</button>
+          <div slot="content">
+            <p class="text-sm text-gray-600">Right positioned popover</p>
+          </div>
+        </sui-popover>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Configuration -->
+  <div class="demo-section">
+    <h3>Interactive Configuration</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Popover Position:</label>
+        <div class="radio-options">
+          <label *ngFor="let position of positions">
+            <input
+              type="radio"
+              name="position"
+              [value]="position.value"
+              [(ngModel)]="selectedPosition">
+            {{ position.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Popover Size:</label>
+        <div class="radio-options">
+          <label *ngFor="let size of sizes">
+            <input
+              type="radio"
+              name="size"
+              [value]="size.value"
+              [(ngModel)]="selectedSize">
+            {{ size.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Popover Color:</label>
+        <div class="radio-options">
+          <label *ngFor="let color of colors">
+            <input
+              type="radio"
+              name="color"
+              [value]="color.value"
+              [(ngModel)]="selectedColor">
+            {{ color.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input
+            type="checkbox"
+            [(ngModel)]="showCloseIcon">
+          Show Close Icon
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input
+            type="checkbox"
+            [(ngModel)]="dismissible">
+          Dismissible
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-sm text-gray-600">{{ getConfigDescription() }}</p>
+      </div>
+
+      <div class="mt-4">
+        <sui-popover
+          [visible]="false"
+          [position]="selectedPosition"
+          [dismissible]="dismissible"
+          [showCloseIcon]="showCloseIcon"
+          [styleClass]="getPopoverClass()"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-primary" (click)="onPopoverShow()">
+            Show {{ selectedPosition | titlecase }} Popover
+          </button>
+          <div slot="content">
+            <h4 class="font-medium text-gray-900 mb-2">{{ selectedPosition | titlecase }} Popover</h4>
+            <p class="text-sm text-gray-600 mb-2">This is a {{ selectedPosition }} positioned popover.</p>
+            <p class="text-sm text-gray-600">Size: {{ selectedSize }} • Color: {{ selectedColor || 'Default' }}</p>
+          </div>
+        </sui-popover>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h3>Real-world Examples</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Tooltip Popover</h4>
+        <p>Popover with helpful information.</p>
+        <sui-popover
+          [visible]="false"
+          position="top"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-info" (click)="onPopoverShow()">ℹ️ Info</button>
+          <div slot="content">
+            <h4 class="font-medium text-gray-900 mb-2">Information</h4>
+            <p class="text-sm text-gray-600">This button provides additional information about the feature.</p>
+          </div>
+        </sui-popover>
+      </div>
+
+      <div class="component-card">
+        <h4>Action Menu</h4>
+        <p>Popover with action buttons.</p>
+        <sui-popover
+          [visible]="false"
+          position="bottom"
+          [dismissible]="true"
+          [showCloseIcon]="true"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-secondary" (click)="onPopoverShow()">⚙️ Actions</button>
+          <div slot="content">
+            <h4 class="font-medium text-gray-900 mb-3">Actions</h4>
+            <div class="space-y-2">
+              <button class="btn btn-sm btn-primary w-full">Edit</button>
+              <button class="btn btn-sm btn-secondary w-full">Copy</button>
+              <button class="btn btn-sm btn-danger w-full">Delete</button>
+            </div>
+          </div>
+        </sui-popover>
+      </div>
+
+      <div class="component-card">
+        <h4>Form Help</h4>
+        <p>Popover with form field help.</p>
+        <sui-popover
+          [visible]="false"
+          position="right"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <div class="flex items-center space-x-2">
+            <input type="text" class="form-control" placeholder="Enter your name">
+            <button class="btn btn-sm btn-info" (click)="onPopoverShow()">?</button>
+          </div>
+          <div slot="content">
+            <h4 class="font-medium text-gray-900 mb-2">Name Field</h4>
+            <p class="text-sm text-gray-600">Enter your full name as it appears on your ID.</p>
+          </div>
+        </sui-popover>
+      </div>
+
+      <div class="component-card">
+        <h4>Status Indicator</h4>
+        <p>Popover with status information.</p>
+        <sui-popover
+          [visible]="false"
+          position="bottom"
+          [dismissible]="true"
+          [showCloseIcon]="false"
+          (onShow)="onPopoverShow()"
+          (onHide)="onPopoverHide()">
+          <button class="btn btn-success" (click)="onPopoverShow()">✅ Online</button>
+          <div slot="content">
+            <h4 class="font-medium text-gray-900 mb-2">System Status</h4>
+            <p class="text-sm text-gray-600">All systems are operational and running smoothly.</p>
+            <div class="mt-2 text-xs text-gray-500">Last updated: 2 minutes ago</div>
+          </div>
+        </sui-popover>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Tracking -->
+  <div class="demo-section">
+    <h3>Event Tracking</h3>
+    <div class="demo-content">
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <h4 class="font-medium text-blue-900 mb-2">Popover Events</h4>
+        <div class="text-blue-700 text-sm">
+          <div>Show Count: {{ showCount }}</div>
+          <div>Hide Count: {{ hideCount }}</div>
+        </div>
+        <button class="btn btn-secondary mt-2" (click)="resetCounters()">
+          Reset Counters
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="min-h-screen bg-gray-50">
+  <app-header></app-header>
+  
+  <div class="flex min-h-screen">
+    <app-sidebar [class.open]="isSidebarOpen()"></app-sidebar>
+    
+    <main class="flex-1 min-h-screen bg-white overflow-x-auto lg:ml-64">
+      <div class="max-w-full p-6 lg:p-8">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Mobile overlay -->
+  <div 
+    class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" 
+    [class.hidden]="!isSidebarOpen()"
+    (click)="closeSidebar()">
+  </div>
+</div>

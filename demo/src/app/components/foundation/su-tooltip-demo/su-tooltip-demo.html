@@ -1,0 +1,364 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Tooltip Component Demo</h2>
+    <p>Contextual information tooltips with various positions, sizes, and colors.</p>
+  </div>
+
+  <!-- Basic Tooltips -->
+  <div class="demo-section">
+    <h3>Basic Tooltips</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Top Tooltip</h4>
+        <p>Tooltip positioned above the element.</p>
+        <sui-tooltip
+          tooltip="This is a top tooltip"
+          position="top"
+          [showDelay]="0"
+          [hideDelay]="0"
+          [styleClass]="getTooltipClass()"
+          (onShow)="onTooltipShow()"
+          (onHide)="onTooltipHide()">
+          <button class="btn btn-primary">Hover me</button>
+        </sui-tooltip>
+      </div>
+
+      <div class="component-card">
+        <h4>Bottom Tooltip</h4>
+        <p>Tooltip positioned below the element.</p>
+        <sui-tooltip
+          tooltip="This is a bottom tooltip"
+          position="bottom"
+          [showDelay]="0"
+          [hideDelay]="0"
+          [styleClass]="getTooltipClass()"
+          (onShow)="onTooltipShow()"
+          (onHide)="onTooltipHide()">
+          <button class="btn btn-secondary">Hover me</button>
+        </sui-tooltip>
+      </div>
+
+      <div class="component-card">
+        <h4>Left Tooltip</h4>
+        <p>Tooltip positioned to the left of the element.</p>
+        <sui-tooltip
+          tooltip="This is a left tooltip"
+          position="left"
+          [showDelay]="0"
+          [hideDelay]="0"
+          [styleClass]="getTooltipClass()"
+          (onShow)="onTooltipShow()"
+          (onHide)="onTooltipHide()">
+          <button class="btn btn-success">Hover me</button>
+        </sui-tooltip>
+      </div>
+
+      <div class="component-card">
+        <h4>Right Tooltip</h4>
+        <p>Tooltip positioned to the right of the element.</p>
+        <sui-tooltip
+          tooltip="This is a right tooltip"
+          position="right"
+          [showDelay]="0"
+          [hideDelay]="0"
+          [styleClass]="getTooltipClass()"
+          (onShow)="onTooltipShow()"
+          (onHide)="onTooltipHide()">
+          <button class="btn btn-warning">Hover me</button>
+        </sui-tooltip>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Configuration -->
+  <div class="demo-section">
+    <h3>Interactive Configuration</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Tooltip Position:</label>
+        <div class="radio-options">
+          <label *ngFor="let position of positions">
+            <input
+              type="radio"
+              name="position"
+              [value]="position.value"
+              [(ngModel)]="selectedPosition">
+            {{ position.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Tooltip Size:</label>
+        <div class="radio-options">
+          <label *ngFor="let size of sizes">
+            <input
+              type="radio"
+              name="size"
+              [value]="size.value"
+              [(ngModel)]="selectedSize">
+            {{ size.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Tooltip Color:</label>
+        <div class="radio-options">
+          <label *ngFor="let color of colors">
+            <input
+              type="radio"
+              name="color"
+              [value]="color.value"
+              [(ngModel)]="selectedColor">
+            {{ color.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="tooltipText">Tooltip Text:</label>
+        <input
+          type="text"
+          id="tooltipText"
+          class="form-control"
+          [(ngModel)]="tooltipText"
+          placeholder="This is a tooltip">
+      </div>
+
+      <div class="form-group">
+        <label for="showDelay">Show Delay (ms):</label>
+        <input
+          type="number"
+          id="showDelay"
+          class="form-control"
+          [(ngModel)]="showDelay"
+          min="0"
+          max="2000"
+          step="100">
+      </div>
+
+      <div class="form-group">
+        <label for="hideDelay">Hide Delay (ms):</label>
+        <input
+          type="number"
+          id="hideDelay"
+          class="form-control"
+          [(ngModel)]="hideDelay"
+          min="0"
+          max="2000"
+          step="100">
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input
+            type="checkbox"
+            [(ngModel)]="disabled">
+          Disabled
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-sm text-gray-600">{{ getConfigDescription() }}</p>
+      </div>
+
+      <div class="mt-4">
+        <sui-tooltip
+          [tooltip]="tooltipText"
+          [position]="selectedPosition"
+          [showDelay]="showDelay"
+          [hideDelay]="hideDelay"
+          [disabled]="disabled"
+          [styleClass]="getTooltipClass()"
+          (onShow)="onTooltipShow()"
+          (onHide)="onTooltipHide()">
+          <button class="btn btn-primary">
+            Interactive Tooltip ({{ selectedPosition | titlecase }})
+          </button>
+        </sui-tooltip>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h3>Real-world Examples</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Form Field Help</h4>
+        <p>Tooltips for form field assistance.</p>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                Password
+                <sui-tooltip
+                  tooltip="Password must be at least 8 characters long and contain at least one number and one special character."
+                  position="right"
+                  [showDelay]="300"
+                  [hideDelay]="100"
+                  [styleClass]="getTooltipClass()"
+                  (onShow)="onTooltipShow()"
+                  (onHide)="onTooltipHide()">
+                  <span class="text-blue-500 cursor-help">ℹ️</span>
+                </sui-tooltip>
+              </label>
+              <input type="password" class="form-control" placeholder="Enter password">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                Email
+                <sui-tooltip
+                  tooltip="We'll use this email to send you important updates about your account."
+                  position="right"
+                  [showDelay]="300"
+                  [hideDelay]="100"
+                  [styleClass]="getTooltipClass()"
+                  (onShow)="onTooltipShow()"
+                  (onHide)="onTooltipHide()">
+                  <span class="text-blue-500 cursor-help">ℹ️</span>
+                </sui-tooltip>
+              </label>
+              <input type="email" class="form-control" placeholder="Enter email">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Button Actions</h4>
+        <p>Tooltips for button actions and shortcuts.</p>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <div class="flex space-x-2">
+            <sui-tooltip
+              tooltip="Save your changes (Ctrl+S)"
+              position="top"
+              [showDelay]="200"
+              [hideDelay]="100"
+              [styleClass]="getTooltipClass()"
+              (onShow)="onTooltipShow()"
+              (onHide)="onTooltipHide()">
+              <button class="btn btn-primary">💾 Save</button>
+            </sui-tooltip>
+            <sui-tooltip
+              tooltip="Delete this item (Del)"
+              position="top"
+              [showDelay]="200"
+              [hideDelay]="100"
+              [styleClass]="getTooltipClass()"
+              (onShow)="onTooltipShow()"
+              (onHide)="onTooltipHide()">
+              <button class="btn btn-danger">🗑️ Delete</button>
+            </sui-tooltip>
+            <sui-tooltip
+              tooltip="Share this content (Ctrl+Shift+S)"
+              position="top"
+              [showDelay]="200"
+              [hideDelay]="100"
+              [styleClass]="getTooltipClass()"
+              (onShow)="onTooltipShow()"
+              (onHide)="onTooltipHide()">
+              <button class="btn btn-success">📤 Share</button>
+            </sui-tooltip>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Navigation Help</h4>
+        <p>Tooltips for navigation elements.</p>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <div class="flex space-x-4">
+            <sui-tooltip
+              tooltip="Go to dashboard"
+              position="bottom"
+              [showDelay]="300"
+              [hideDelay]="100"
+              [styleClass]="getTooltipClass()"
+              (onShow)="onTooltipShow()"
+              (onHide)="onTooltipHide()">
+              <button class="btn btn-secondary">🏠</button>
+            </sui-tooltip>
+            <sui-tooltip
+              tooltip="View your profile"
+              position="bottom"
+              [showDelay]="300"
+              [hideDelay]="100"
+              [styleClass]="getTooltipClass()"
+              (onShow)="onTooltipShow()"
+              (onHide)="onTooltipHide()">
+              <button class="btn btn-secondary">👤</button>
+            </sui-tooltip>
+            <sui-tooltip
+              tooltip="Open settings"
+              position="bottom"
+              [showDelay]="300"
+              [hideDelay]="100"
+              [styleClass]="getTooltipClass()"
+              (onShow)="onTooltipShow()"
+              (onHide)="onTooltipHide()">
+              <button class="btn btn-secondary">⚙️</button>
+            </sui-tooltip>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Status Indicators</h4>
+        <p>Tooltips for status and information.</p>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <div class="flex space-x-4">
+            <sui-tooltip
+              tooltip="Online - Last seen 2 minutes ago"
+              position="top"
+              [showDelay]="200"
+              [hideDelay]="100"
+              [styleClass]="getTooltipClass()"
+              (onShow)="onTooltipShow()"
+              (onHide)="onTooltipHide()">
+              <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+            </sui-tooltip>
+            <sui-tooltip
+              tooltip="Away - Last seen 1 hour ago"
+              position="top"
+              [showDelay]="200"
+              [hideDelay]="100"
+              [styleClass]="getTooltipClass()"
+              (onShow)="onTooltipShow()"
+              (onHide)="onTooltipHide()">
+              <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+            </sui-tooltip>
+            <sui-tooltip
+              tooltip="Offline - Last seen yesterday"
+              position="top"
+              [showDelay]="200"
+              [hideDelay]="100"
+              [styleClass]="getTooltipClass()"
+              (onShow)="onTooltipShow()"
+              (onHide)="onTooltipHide()">
+              <span class="w-3 h-3 bg-gray-400 rounded-full"></span>
+            </sui-tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Tracking -->
+  <div class="demo-section">
+    <h3>Event Tracking</h3>
+    <div class="demo-content">
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <h4 class="font-medium text-blue-900 mb-2">Tooltip Events</h4>
+        <div class="text-blue-700 text-sm">
+          <div>Show Count: {{ showCount }}</div>
+          <div>Hide Count: {{ hideCount }}</div>
+        </div>
+        <button class="btn btn-secondary mt-2" (click)="resetCounters()">
+          Reset Counters
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

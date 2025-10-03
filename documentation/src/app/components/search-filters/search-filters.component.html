@@ -1,0 +1,63 @@
+<div class="search-filters">
+  <div class="filters-header">
+    <button 
+      class="filters-toggle"
+      (click)="toggleExpanded()"
+      [class.active]="isExpanded()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46 22,3"/>
+      </svg>
+      Filters
+      <span class="filter-count" *ngIf="hasActiveFilters">({{ getActiveFilterCount() }})</span>
+    </button>
+    
+    <button 
+      class="clear-filters"
+      *ngIf="hasActiveFilters"
+      (click)="clearFilters()">
+      Clear All
+    </button>
+  </div>
+
+  <div class="filters-content" *ngIf="isExpanded()">
+    <!-- Category Filter -->
+    <div class="filter-group">
+      <label class="filter-label">Category</label>
+      <select 
+        class="filter-select"
+        [value]="selectedCategory()"
+        (change)="onCategoryChange($event)">
+        <option value="">All Categories</option>
+        <option *ngFor="let category of categories()" [value]="category.name">
+          {{ category.icon }} {{ category.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Tags Filter -->
+    <div class="filter-group">
+      <label class="filter-label">Tags</label>
+      <div class="tags-container">
+        <button 
+          *ngFor="let tag of allTags()"
+          class="tag-button"
+          [class.selected]="selectedTags().includes(tag)"
+          (click)="onTagToggle(tag)">
+          {{ tag }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Examples Filter -->
+    <div class="filter-group">
+      <label class="filter-checkbox">
+        <input 
+          type="checkbox"
+          [checked]="hasExamplesOnly()"
+          (change)="onExamplesOnlyChange($event.target.checked)">
+        <span class="checkmark"></span>
+        Has Examples Only
+      </label>
+    </div>
+  </div>
+</div>

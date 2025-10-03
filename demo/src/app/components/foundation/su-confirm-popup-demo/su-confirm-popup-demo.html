@@ -1,0 +1,220 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Confirm Popup Component Demo</h2>
+    <p>Interactive confirmation popups with various configurations and positions.</p>
+  </div>
+
+  <!-- Basic Confirm Popups -->
+  <div class="demo-section">
+    <h3>Basic Confirm Popups</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Delete Confirmation</h4>
+        <p>Confirmation popup for delete actions.</p>
+        <sui-confirm-popup
+          message="Are you sure you want to delete this item?"
+          acceptLabel="Delete"
+          rejectLabel="Cancel"
+          acceptIcon="🗑️"
+          rejectIcon="✗"
+          position="top"
+          (onAccept)="onAccept()"
+          (onReject)="onReject()"
+          (onHide)="onHide()">
+          <button class="btn btn-danger">Delete Item</button>
+        </sui-confirm-popup>
+      </div>
+
+      <div class="component-card">
+        <h4>Save Confirmation</h4>
+        <p>Confirmation popup for save actions.</p>
+        <sui-confirm-popup
+          message="Do you want to save your changes?"
+          acceptLabel="Save"
+          rejectLabel="Cancel"
+          acceptIcon="💾"
+          rejectIcon="✗"
+          position="bottom"
+          (onAccept)="onAccept()"
+          (onReject)="onReject()"
+          (onHide)="onHide()">
+          <button class="btn btn-primary">Save Changes</button>
+        </sui-confirm-popup>
+      </div>
+
+      <div class="component-card">
+        <h4>Warning Confirmation</h4>
+        <p>Confirmation popup with warning message.</p>
+        <sui-confirm-popup
+          message="This action cannot be undone. Are you sure?"
+          acceptLabel="Yes, Proceed"
+          rejectLabel="Cancel"
+          acceptIcon="⚠️"
+          rejectIcon="✗"
+          position="left"
+          (onAccept)="onAccept()"
+          (onReject)="onReject()"
+          (onHide)="onHide()">
+          <button class="btn btn-warning">Dangerous Action</button>
+        </sui-confirm-popup>
+      </div>
+    </div>
+  </div>
+
+  <!-- Position Variants -->
+  <div class="demo-section">
+    <h3>Position Variants</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Popup Position:</label>
+        <div class="radio-options">
+          <label *ngFor="let position of positions">
+            <input
+              type="radio"
+              name="position"
+              [value]="position.value"
+              [(ngModel)]="selectedPosition">
+            {{ position.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <sui-confirm-popup
+          [message]="getCurrentConfig().message"
+          [acceptLabel]="getCurrentConfig().acceptLabel"
+          [rejectLabel]="getCurrentConfig().rejectLabel"
+          [acceptIcon]="getCurrentConfig().acceptIcon"
+          [rejectIcon]="getCurrentConfig().rejectIcon"
+          [position]="selectedPosition"
+          (onAccept)="onAccept()"
+          (onReject)="onReject()"
+          (onHide)="onHide()">
+          <button class="btn btn-secondary">
+            Show Popup at {{ selectedPosition }}
+          </button>
+        </sui-confirm-popup>
+      </div>
+    </div>
+  </div>
+
+  <!-- Configuration Options -->
+  <div class="demo-section">
+    <h3>Configuration Options</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Popup Configuration:</label>
+        <div class="radio-options">
+          <label *ngFor="let config of popupConfigs">
+            <input
+              type="radio"
+              name="config"
+              [value]="config.id"
+              [(ngModel)]="selectedConfig">
+            {{ config.id | titlecase }}
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <sui-confirm-popup
+          [message]="getCurrentConfig().message"
+          [acceptLabel]="getCurrentConfig().acceptLabel"
+          [rejectLabel]="getCurrentConfig().rejectLabel"
+          [acceptIcon]="getCurrentConfig().acceptIcon"
+          [rejectIcon]="getCurrentConfig().rejectIcon"
+          position="top"
+          (onAccept)="onAccept()"
+          (onReject)="onReject()"
+          (onHide)="onHide()">
+          <button class="btn btn-primary">
+            Show {{ selectedConfig | titlecase }} Popup
+          </button>
+        </sui-confirm-popup>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Configuration -->
+  <div class="demo-section">
+    <h3>Custom Configuration</h3>
+    <div class="demo-content">
+      <div class="form-group">
+        <label for="customMessage">Message:</label>
+        <input
+          type="text"
+          id="customMessage"
+          class="form-control"
+          [(ngModel)]="customMessage"
+          placeholder="Enter confirmation message">
+      </div>
+
+      <div class="form-group">
+        <label for="customAcceptLabel">Accept Label:</label>
+        <input
+          type="text"
+          id="customAcceptLabel"
+          class="form-control"
+          [(ngModel)]="customAcceptLabel"
+          placeholder="Accept button label">
+      </div>
+
+      <div class="form-group">
+        <label for="customRejectLabel">Reject Label:</label>
+        <input
+          type="text"
+          id="customRejectLabel"
+          class="form-control"
+          [(ngModel)]="customRejectLabel"
+          placeholder="Reject button label">
+      </div>
+
+      <div class="form-group">
+        <label for="customAcceptIcon">Accept Icon:</label>
+        <input
+          type="text"
+          id="customAcceptIcon"
+          class="form-control"
+          [(ngModel)]="customAcceptIcon"
+          placeholder="Accept button icon">
+      </div>
+
+      <div class="form-group">
+        <label for="customRejectIcon">Reject Icon:</label>
+        <input
+          type="text"
+          id="customRejectIcon"
+          class="form-control"
+          [(ngModel)]="customRejectIcon"
+          placeholder="Reject button icon">
+      </div>
+
+      <div class="mt-4">
+        <sui-confirm-popup
+          [message]="customMessage"
+          [acceptLabel]="customAcceptLabel"
+          [rejectLabel]="customRejectLabel"
+          [acceptIcon]="customAcceptIcon"
+          [rejectIcon]="customRejectIcon"
+          position="top"
+          (onAccept)="onAccept()"
+          (onReject)="onReject()"
+          (onHide)="onHide()">
+          <button class="btn btn-primary">Show Custom Popup</button>
+        </sui-confirm-popup>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Display -->
+  <div class="demo-section" *ngIf="lastAction">
+    <h3>Results</h3>
+    <div class="alert alert-info">
+      <strong>Last Action:</strong> {{ lastAction }}<br>
+      <strong>Total Actions:</strong> {{ actionCount }}
+    </div>
+    <button class="btn btn-secondary" (click)="resetCounters()">
+      Reset Counters
+    </button>
+  </div>
+</div>

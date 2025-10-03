@@ -1,0 +1,84 @@
+<div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+  <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+    <h3 class="text-xl font-semibold text-gray-900">{{ componentName }} Examples</h3>
+    <button 
+      class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+      (click)="toggleCode()"
+      [class.bg-primary-50]="showCode()"
+      [class.text-primary-700]="showCode()"
+      [class.border-primary-300]="showCode()">
+      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+      </svg>
+      {{ showCode() ? 'Hide Code' : 'Show Code' }}
+    </button>
+  </div>
+
+  <div class="p-6">
+    <!-- Example Tabs -->
+    <div class="flex flex-wrap gap-2 mb-6" *ngIf="examples.length > 1">
+      <button 
+        *ngFor="let example of examples; let i = index"
+        class="px-3 py-2 text-sm font-medium rounded-md transition-colors"
+        [class.bg-primary-100]="activeExample() === i"
+        [class.text-primary-700]="activeExample() === i"
+        [class.bg-gray-100]="activeExample() !== i"
+        [class.text-gray-700]="activeExample() !== i"
+        [class.hover:bg-gray-200]="activeExample() !== i"
+        (click)="setActiveExample(i)">
+        {{ example.name }}
+      </button>
+    </div>
+
+    <!-- Live Preview -->
+    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-6">
+      <div class="flex flex-wrap gap-4 items-center justify-center">
+        <!-- Render actual Synerity UI Button components -->
+        @if (componentName === 'Button') {
+          @switch (getCurrentExample().name) {
+            @case ('Primary Button') {
+              <sui-button variant="primary">Click me</sui-button>
+            }
+            @case ('Secondary Button') {
+              <sui-button variant="secondary">Click me</sui-button>
+            }
+            @case ('Outline Button') {
+              <sui-button variant="outline">Click me</sui-button>
+            }
+            @case ('Disabled Button') {
+              <sui-button [disabled]="true">Disabled</sui-button>
+            }
+            @default {
+              <sui-button variant="primary">Click me</sui-button>
+            }
+          }
+        } @else {
+          <!-- Fallback for other components -->
+          <div class="text-center text-gray-500 py-8">
+            <p>Component preview not available for {{ componentName }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Code Display -->
+    <div class="bg-gray-900 rounded-lg overflow-hidden" *ngIf="showCode()">
+      <div class="bg-gray-800 px-4 py-3 flex justify-between items-center">
+        <span class="text-sm font-medium text-gray-300">HTML</span>
+        <button 
+          class="inline-flex items-center px-3 py-1 text-sm text-gray-300 hover:text-white transition-colors"
+          (click)="copyToClipboard(getCurrentExample().code)"
+          title="Copy to clipboard">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          Copy
+        </button>
+      </div>
+      <div class="p-4 overflow-x-auto">
+        <pre class="text-sm text-gray-300"><code>{{ getCurrentExample().code }}</code></pre>
+      </div>
+    </div>
+  </div>
+</div>

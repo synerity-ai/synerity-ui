@@ -1,0 +1,158 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Toast Component Demo</h2>
+    <p>Interactive toast notifications with various configurations and positions.</p>
+  </div>
+
+  <!-- Basic Toast Types -->
+  <div class="demo-section">
+    <h3>Basic Toast Types</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Success Toast</h4>
+        <p>Shows a success message with green styling.</p>
+        <button class="btn btn-success" (click)="showSuccess()">
+          Show Success Toast
+        </button>
+      </div>
+
+      <div class="component-card">
+        <h4>Info Toast</h4>
+        <p>Shows an informational message with blue styling.</p>
+        <button class="btn btn-info" (click)="showInfo()">
+          Show Info Toast
+        </button>
+      </div>
+
+      <div class="component-card">
+        <h4>Warning Toast</h4>
+        <p>Shows a warning message with yellow styling.</p>
+        <button class="btn btn-warning" (click)="showWarning()">
+          Show Warning Toast
+        </button>
+      </div>
+
+      <div class="component-card">
+        <h4>Error Toast</h4>
+        <p>Shows an error message with red styling.</p>
+        <button class="btn btn-danger" (click)="showError()">
+          Show Error Toast
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Positions -->
+  <div class="demo-section">
+    <h3>Toast Positions</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Toast Position:</label>
+        <div class="radio-options">
+          <label *ngFor="let position of positions">
+            <input
+              type="radio"
+              name="position"
+              [value]="position.value"
+              [(ngModel)]="selectedPosition">
+            {{ position.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <button class="btn btn-primary" (click)="showInfo()">
+          Show Toast at {{ selectedPosition }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Messages -->
+  <div class="demo-section">
+    <h3>Custom Messages</h3>
+    <div class="demo-content">
+      <div class="form-group">
+        <label for="summary">Summary:</label>
+        <input
+          type="text"
+          id="summary"
+          class="form-control"
+          [(ngModel)]="customMessage.summary"
+          placeholder="Enter toast summary">
+      </div>
+
+      <div class="form-group">
+        <label for="detail">Detail:</label>
+        <textarea
+          id="detail"
+          class="form-control"
+          [(ngModel)]="customMessage.detail"
+          placeholder="Enter toast detail"
+          rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="life">Auto-close Duration (ms):</label>
+        <input
+          type="number"
+          id="life"
+          class="form-control"
+          [(ngModel)]="customMessage.life"
+          placeholder="3000">
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input
+            type="checkbox"
+            [(ngModel)]="customMessage.closable">
+          Closable
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <button class="btn btn-primary" (click)="showCustomMessage()">
+          Show Custom Toast
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advanced Features -->
+  <div class="demo-section">
+    <h3>Advanced Features</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Multiple Toasts</h4>
+        <p>Shows multiple toasts in sequence.</p>
+        <button class="btn btn-secondary" (click)="showMultiple()">
+          Show Multiple Toasts
+        </button>
+      </div>
+
+      <div class="component-card">
+        <h4>Persistent Toast</h4>
+        <p>Shows a toast that doesn't auto-close.</p>
+        <button class="btn btn-secondary" (click)="showPersistent()">
+          Show Persistent Toast
+        </button>
+      </div>
+
+      <div class="component-card">
+        <h4>Clear All</h4>
+        <p>Clears all currently visible toasts.</p>
+        <button class="btn btn-secondary" (click)="clearAll()">
+          Clear All Toasts
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Component -->
+  <sui-toast
+    #toastRef
+    [position]="selectedPosition"
+    (onClose)="onToastClose($event)">
+  </sui-toast>
+</div>

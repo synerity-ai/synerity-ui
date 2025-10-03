@@ -1,0 +1,327 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Style Class Component Demo</h2>
+    <p>Utility component for dynamically adding, removing, and toggling CSS classes on target elements. Provides programmatic control over styling.</p>
+  </div>
+
+  <!-- Basic Style Class Operations -->
+  <div class="demo-section">
+    <h3>Basic Style Class Operations</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Enter Class</h4>
+        <p>Add a class when entering.</p>
+        <sui-style-class 
+          selector=".demo-element" 
+          enterClass="sui-style-class--bg-primary"
+          (click)="onClassOperation('enter')">
+          <button class="btn btn-primary">Add Primary Background</button>
+        </sui-style-class>
+      </div>
+
+      <div class="component-card">
+        <h4>Leave Class</h4>
+        <p>Add a class when leaving.</p>
+        <sui-style-class 
+          selector=".demo-element" 
+          leaveClass="sui-style-class--bg-secondary"
+          (click)="onClassOperation('leave')">
+          <button class="btn btn-secondary">Add Secondary Background</button>
+        </sui-style-class>
+      </div>
+
+      <div class="component-card">
+        <h4>Toggle Class</h4>
+        <p>Toggle a class on/off.</p>
+        <sui-style-class 
+          selector=".demo-element" 
+          toggleClass="sui-style-class--bg-success"
+          (click)="onClassOperation('toggle')">
+          <button class="btn btn-success">Toggle Success Background</button>
+        </sui-style-class>
+      </div>
+    </div>
+
+    <!-- Demo elements to show class changes -->
+    <div class="mt-8 space-y-4">
+      <div class="demo-element p-4 border rounded-lg bg-gray-50" id="demo-element-1">
+        <h5 class="font-semibold">Demo Element 1</h5>
+        <p class="text-gray-600">This element will be affected by style class operations.</p>
+      </div>
+      <div class="demo-element p-4 border rounded-lg bg-gray-50" id="demo-element-2">
+        <h5 class="font-semibold">Demo Element 2</h5>
+        <p class="text-gray-600">This element will also be affected by style class operations.</p>
+      </div>
+      <div class="demo-element p-4 border rounded-lg bg-gray-50" id="demo-element-3">
+        <h5 class="font-semibold">Demo Element 3</h5>
+        <p class="text-gray-600">This element will also be affected by style class operations.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Configuration -->
+  <div class="demo-section">
+    <h3>Interactive Configuration</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Target Selector:</label>
+        <div class="radio-options">
+          <label *ngFor="let selector of selectors">
+            <input
+              type="radio"
+              name="selector"
+              [value]="selector.value"
+              [(ngModel)]="selectedSelector">
+            {{ selector.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Enter Class:</label>
+        <div class="radio-options grid grid-cols-2 gap-2">
+          <label *ngFor="let enterClass of enterClasses">
+            <input
+              type="radio"
+              name="enterClass"
+              [value]="enterClass.value"
+              [(ngModel)]="selectedEnterClass">
+            {{ enterClass.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Leave Class:</label>
+        <div class="radio-options grid grid-cols-2 gap-2">
+          <label *ngFor="let leaveClass of leaveClasses">
+            <input
+              type="radio"
+              name="leaveClass"
+              [value]="leaveClass.value"
+              [(ngModel)]="selectedLeaveClass">
+            {{ leaveClass.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Toggle Class:</label>
+        <div class="radio-options grid grid-cols-2 gap-2">
+          <label *ngFor="let toggleClass of toggleClasses">
+            <input
+              type="radio"
+              name="toggleClass"
+              [value]="toggleClass.value"
+              [(ngModel)]="selectedToggleClass">
+            {{ toggleClass.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-sm text-gray-600">{{ getConfigDescription() }}</p>
+      </div>
+
+      <div class="mt-8 flex space-x-4">
+        <sui-style-class 
+          [selector]="selectedSelector" 
+          [enterClass]="selectedEnterClass"
+          (click)="onClassOperation('enter')">
+          <button class="btn btn-primary">Enter</button>
+        </sui-style-class>
+
+        <sui-style-class 
+          [selector]="selectedSelector" 
+          [leaveClass]="selectedLeaveClass"
+          (click)="onClassOperation('leave')">
+          <button class="btn btn-secondary">Leave</button>
+        </sui-style-class>
+
+        <sui-style-class 
+          [selector]="selectedSelector" 
+          [toggleClass]="selectedToggleClass"
+          (click)="onClassOperation('toggle')">
+          <button class="btn btn-success">Toggle</button>
+        </sui-style-class>
+      </div>
+    </div>
+  </div>
+
+  <!-- Utility Class Showcase -->
+  <div class="demo-section">
+    <h3>Utility Class Showcase</h3>
+    <div class="space-y-8">
+      <div *ngFor="let example of getUtilityExamples()" class="space-y-4">
+        <h4 class="text-lg font-semibold">{{ example.category }}</h4>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div *ngFor="let className of example.classes" class="space-y-2">
+            <sui-style-class 
+              selector="body" 
+              [toggleClass]="className"
+              (click)="onClassOperation('toggle')">
+              <div class="p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                <div class="text-sm font-medium text-gray-700 mb-1">{{ className }}</div>
+                <div class="text-xs text-gray-500">Click to toggle</div>
+              </div>
+            </sui-style-class>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h3>Real-world Examples</h3>
+    <div class="space-y-8">
+      <!-- Theme Toggle -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Theme Toggle</h4>
+        <div class="bg-gray-50 p-6 rounded-lg">
+          <p class="text-gray-600 mb-4">Toggle between light and dark themes by applying different classes to the body element.</p>
+          <div class="flex space-x-4">
+            <sui-style-class 
+              selector="body" 
+              enterClass="dark-theme"
+              (click)="onClassOperation('dark-theme')">
+              <button class="btn btn-dark">Dark Theme</button>
+            </sui-style-class>
+
+            <sui-style-class 
+              selector="body" 
+              enterClass="light-theme"
+              (click)="onClassOperation('light-theme')">
+              <button class="btn btn-light">Light Theme</button>
+            </sui-style-class>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animation Controls -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Animation Controls</h4>
+        <div class="bg-blue-50 p-6 rounded-lg">
+          <p class="text-blue-700 mb-4">Control animations on elements by toggling animation classes.</p>
+          <div class="flex space-x-4">
+            <sui-style-class 
+              selector=".animated-element" 
+              toggleClass="sui-style-class--animate-bounce"
+              (click)="onClassOperation('bounce')">
+              <button class="btn btn-primary">Toggle Bounce</button>
+            </sui-style-class>
+
+            <sui-style-class 
+              selector=".animated-element" 
+              toggleClass="sui-style-class--animate-pulse"
+              (click)="onClassOperation('pulse')">
+              <button class="btn btn-secondary">Toggle Pulse</button>
+            </sui-style-class>
+
+            <sui-style-class 
+              selector=".animated-element" 
+              toggleClass="sui-style-class--animate-spin"
+              (click)="onClassOperation('spin')">
+              <button class="btn btn-success">Toggle Spin</button>
+            </sui-style-class>
+          </div>
+          <div class="animated-element mt-4 p-4 bg-white rounded-lg shadow">
+            <p class="text-center">This element will animate based on the selected animation class.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout Controls -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Layout Controls</h4>
+        <div class="bg-green-50 p-6 rounded-lg">
+          <p class="text-green-700 mb-4">Control layout properties by toggling flexbox and positioning classes.</p>
+          <div class="flex flex-wrap gap-4">
+            <sui-style-class 
+              selector=".layout-element" 
+              toggleClass="sui-style-class--flex"
+              (click)="onClassOperation('flex')">
+              <button class="btn btn-primary">Toggle Flex</button>
+            </sui-style-class>
+
+            <sui-style-class 
+              selector=".layout-element" 
+              toggleClass="sui-style-class--items-center"
+              (click)="onClassOperation('items-center')">
+              <button class="btn btn-secondary">Toggle Items Center</button>
+            </sui-style-class>
+
+            <sui-style-class 
+              selector=".layout-element" 
+              toggleClass="sui-style-class--justify-center"
+              (click)="onClassOperation('justify-center')">
+              <button class="btn btn-success">Toggle Justify Center</button>
+            </sui-style-class>
+
+            <sui-style-class 
+              selector=".layout-element" 
+              toggleClass="sui-style-class--flex-col"
+              (click)="onClassOperation('flex-col')">
+              <button class="btn btn-warning">Toggle Column</button>
+            </sui-style-class>
+          </div>
+          <div class="layout-element mt-4 p-4 bg-white rounded-lg shadow border-2 border-dashed border-gray-300">
+            <div class="p-2 bg-blue-100 rounded">Item 1</div>
+            <div class="p-2 bg-green-100 rounded">Item 2</div>
+            <div class="p-2 bg-yellow-100 rounded">Item 3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visibility Controls -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Visibility Controls</h4>
+        <div class="bg-purple-50 p-6 rounded-lg">
+          <p class="text-purple-700 mb-4">Control element visibility by toggling visibility classes.</p>
+          <div class="flex space-x-4">
+            <sui-style-class 
+              selector=".visibility-element" 
+              toggleClass="sui-style-class--hidden"
+              (click)="onClassOperation('hidden')">
+              <button class="btn btn-primary">Toggle Hidden</button>
+            </sui-style-class>
+
+            <sui-style-class 
+              selector=".visibility-element" 
+              toggleClass="sui-style-class--invisible"
+              (click)="onClassOperation('invisible')">
+              <button class="btn btn-secondary">Toggle Invisible</button>
+            </sui-style-class>
+
+            <sui-style-class 
+              selector=".visibility-element" 
+              toggleClass="sui-style-class--opacity-0"
+              (click)="onClassOperation('opacity-0')">
+              <button class="btn btn-success">Toggle Opacity 0</button>
+            </sui-style-class>
+          </div>
+          <div class="visibility-element mt-4 p-4 bg-white rounded-lg shadow">
+            <p class="text-center">This element's visibility can be controlled by the buttons above.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Tracking -->
+  <div class="demo-section">
+    <h3>Event Tracking</h3>
+    <div class="demo-content">
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <h4 class="font-medium text-blue-900 mb-2">Style Class Events</h4>
+        <div class="text-blue-700 text-sm mb-4">
+          <div>Total Operations: {{ classOperationCount }}</div>
+          <div>Last Operation: {{ lastOperation || 'None' }}</div>
+        </div>
+        <button class="btn btn-secondary" (click)="resetCounters()">
+          Reset Counters
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

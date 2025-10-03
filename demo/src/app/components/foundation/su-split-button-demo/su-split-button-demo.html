@@ -1,0 +1,243 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Split Button Component Demo</h2>
+    <p>Button with dropdown menu for additional actions. Perfect for primary actions with secondary options.</p>
+  </div>
+
+  <!-- Basic Split Button -->
+  <div class="demo-section">
+    <h3>Basic Split Button</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Primary Style</h4>
+        <p>Default primary split button.</p>
+        <div class="flex justify-center p-4">
+          <sui-split-button
+            label="Save"
+            icon="💾"
+            buttonStyle="primary"
+            [items]="getFileItems()"
+            (onClick)="onMainClick()"
+            (itemClick)="onSplitButtonItemClick($event)">
+          </sui-split-button>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Success Style</h4>
+        <p>Success themed split button.</p>
+        <div class="flex justify-center p-4">
+          <sui-split-button
+            label="Create"
+            icon="➕"
+            buttonStyle="success"
+            [items]="getEditItems()"
+            (onClick)="onMainClick()"
+            (itemClick)="onSplitButtonItemClick($event)">
+          </sui-split-button>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Warning Style</h4>
+        <p>Warning themed split button.</p>
+        <div class="flex justify-center p-4">
+          <sui-split-button
+            label="Edit"
+            icon="✏️"
+            buttonStyle="warning"
+            [items]="getViewItems()"
+            (onClick)="onMainClick()"
+            (itemClick)="onSplitButtonItemClick($event)">
+          </sui-split-button>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Danger Style</h4>
+        <p>Danger themed split button.</p>
+        <div class="flex justify-center p-4">
+          <sui-split-button
+            label="Delete"
+            icon="🗑️"
+            buttonStyle="danger"
+            [items]="getDeleteItems()"
+            (onClick)="onMainClick()"
+            (itemClick)="onSplitButtonItemClick($event)">
+          </sui-split-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Configuration -->
+  <div class="demo-section">
+    <h3>Interactive Configuration</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Button Style:</label>
+        <div class="radio-options">
+          <label *ngFor="let style of styles">
+            <input
+              type="radio"
+              name="style"
+              [value]="style.value"
+              [(ngModel)]="selectedStyle">
+            {{ style.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Size:</label>
+        <div class="radio-options">
+          <label *ngFor="let size of sizes">
+            <input
+              type="radio"
+              name="size"
+              [value]="size.value"
+              [(ngModel)]="selectedSize">
+            {{ size.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input
+            type="checkbox"
+            [(ngModel)]="disabled">
+          Disabled
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Button Label:
+          <input
+            type="text"
+            [(ngModel)]="label"
+            class="form-control">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Button Icon:
+          <input
+            type="text"
+            [(ngModel)]="icon"
+            class="form-control">
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-sm text-gray-600">{{ getConfigDescription() }}</p>
+      </div>
+
+      <div class="mt-4 flex justify-center p-4">
+        <sui-split-button
+          [label]="label"
+          [icon]="icon"
+          [buttonStyle]="selectedStyle"
+          [disabled]="disabled"
+          [items]="splitButtonItems"
+          (onClick)="onMainClick()"
+          (itemClick)="onSplitButtonItemClick($event)">
+        </sui-split-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h3>Real-world Examples</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>File Operations</h4>
+        <p>Common file management actions.</p>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <div class="flex justify-center p-4">
+            <sui-split-button
+              label="Save"
+              icon="💾"
+              buttonStyle="primary"
+              [items]="getFileItems()"
+              (onClick)="onMainClick()"
+              (itemClick)="onSplitButtonItemClick($event)">
+            </sui-split-button>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Edit Operations</h4>
+        <p>Text editing and formatting actions.</p>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <div class="flex justify-center p-4">
+            <sui-split-button
+              label="Edit"
+              icon="✏️"
+              buttonStyle="info"
+              [items]="getEditItems()"
+              (onClick)="onMainClick()"
+              (itemClick)="onSplitButtonItemClick($event)">
+            </sui-split-button>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>View Controls</h4>
+        <p>Display and zoom control actions.</p>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <div class="flex justify-center p-4">
+            <sui-split-button
+              label="View"
+              icon="👁️"
+              buttonStyle="help"
+              [items]="getViewItems()"
+              (onClick)="onMainClick()"
+              (itemClick)="onSplitButtonItemClick($event)">
+            </sui-split-button>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>User Actions</h4>
+        <p>User account and profile actions.</p>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <div class="flex justify-center p-4">
+            <sui-split-button
+              label="Profile"
+              icon="👤"
+              buttonStyle="secondary"
+              [items]="getUserProfileItems()"
+              (onClick)="onMainClick()"
+              (itemClick)="onSplitButtonItemClick($event)">
+            </sui-split-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Tracking -->
+  <div class="demo-section">
+    <h3>Event Tracking</h3>
+    <div class="demo-content">
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <h4 class="font-medium text-blue-900 mb-2">Split Button Events</h4>
+        <div class="text-blue-700 text-sm mb-4">
+          <div>Main Button Clicks: {{ mainClickCount }}</div>
+          <div>Item Clicks: {{ itemClickCount }}</div>
+          <div>Last Clicked: {{ lastClickedItem || 'None' }}</div>
+        </div>
+        <button class="btn btn-secondary" (click)="resetCounters()">
+          Reset Counters
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

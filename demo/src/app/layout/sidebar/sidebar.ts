@@ -42,6 +42,7 @@ export class Sidebar {
         { label: 'Select Button', route: '/components/select-button' },
         { label: 'Slider', route: '/components/slider' },
         { label: 'Tabs', route: '/components/tabs' },
+        { label: 'Tag', route: '/components/tag' },
         { label: 'Toggle Switch', route: '/components/toggle-switch' }
       ]
     },
@@ -141,11 +142,21 @@ export class Sidebar {
       icon: '💬', 
       isExpanded: false,
       children: [
-        { label: 'Confirm Dialog', route: '/components/confirm-dialog' },
-        { label: 'Confirm Popup', route: '/components/confirm-popup' },
         { label: 'Dialog', route: '/components/dialog' },
-        { label: 'Message', route: '/components/message' },
-        { label: 'Toast', route: '/components/toast' }
+        { label: 'Confirm Dialog', route: '/components/confirm-dialog' },
+        { label: 'Toast', route: '/components/toast' },
+        { label: 'Confirm Popup', route: '/components/confirm-popup' },
+        { label: 'Message', route: '/components/message' }
+      ]
+    },
+    { 
+      label: 'Progress Components', 
+      icon: '📊', 
+      isExpanded: false,
+      children: [
+        { label: 'Progress Bar', route: '/components/progress-bar' },
+        { label: 'Progress Spinner', route: '/components/progress-spinner' },
+        { label: 'Skeleton', route: '/components/skeleton' }
       ]
     },
     { 
@@ -160,16 +171,6 @@ export class Sidebar {
         { label: 'Overlay Panel', route: '/components/overlay-panel' },
         { label: 'Popover', route: '/components/popover' },
         { label: 'Tooltip', route: '/components/tooltip' }
-      ]
-    },
-    { 
-      label: 'Progress Components', 
-      icon: '⏳', 
-      isExpanded: false,
-      children: [
-        { label: 'Progress Bar', route: '/components/progress-bar' },
-        { label: 'Progress Spinner', route: '/components/progress-spinner' },
-        { label: 'Skeleton', route: '/components/skeleton' }
       ]
     },
     { 

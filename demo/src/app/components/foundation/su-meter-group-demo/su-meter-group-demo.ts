@@ -51,7 +51,75 @@ export class SuMeterGroupDemo {
     { label: 'Apr', value: 45, color: '#ef4444' }
   ];
 
+  // Size options
+  sizes = [
+    { value: 'small', label: 'Small' },
+    { value: 'normal', label: 'Normal' },
+    { value: 'large', label: 'Large' },
+    { value: 'xlarge', label: 'Extra Large' }
+  ];
+
+  // Color options
+  colors = [
+    { value: '', label: 'Default' },
+    { value: 'primary', label: 'Primary' },
+    { value: 'success', label: 'Success' },
+    { value: 'warning', label: 'Warning' },
+    { value: 'error', label: 'Error' },
+    { value: 'info', label: 'Info' }
+  ];
+
   selectedOrientation: 'horizontal' | 'vertical' = 'horizontal';
+  selectedSize = 'normal';
+  selectedColor = '';
   showValues = true;
   showLabels = true;
+  min = 0;
+  max = 100;
+
+  // Get meter group class
+  getMeterGroupClass(): string {
+    let classes = 'sui-meter-group';
+    
+    if (this.selectedSize !== 'normal') {
+      classes += ` sui-meter-group--${this.selectedSize}`;
+    }
+    
+    if (this.selectedColor) {
+      classes += ` sui-meter-group--${this.selectedColor}`;
+    }
+    
+    return classes;
+  }
+
+  // Get meter group style
+  getMeterGroupStyle(): any {
+    return {};
+  }
+
+  // Get configuration description
+  getConfigDescription(): string {
+    let description = `Orientation: ${this.selectedOrientation}`;
+    description += ` • Size: ${this.selectedSize}`;
+    description += ` • Color: ${this.selectedColor || 'Default'}`;
+    return description;
+  }
+
+  // Update data values
+  updateSalesData(): void {
+    this.salesData = this.salesData.map(item => ({
+      ...item,
+      value: Math.floor(Math.random() * 50) + 10
+    }));
+  }
+
+  // Reset data
+  resetData(): void {
+    this.salesData = [
+      { label: 'Q1', value: 25, color: '#3b82f6', icon: '📈' },
+      { label: 'Q2', value: 35, color: '#10b981', icon: '📊' },
+      { label: 'Q3', value: 20, color: '#f59e0b', icon: '📉' },
+      { label: 'Q4', value: 20, color: '#ef4444', icon: '⚠️' }
+    ];
+  }
 }

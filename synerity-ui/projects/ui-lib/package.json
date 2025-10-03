@@ -1,6 +1,6 @@
 {
   "name": "@synerity/ui",
-  "version": "1.1.38",
+  "version": "1.1.55",
   "description": "A comprehensive Angular UI component library with 70+ components including forms, data display, navigation, and utility components. All components feature enhanced SCSS styling with nested selectors and modern architecture.",
   "keywords": [
     "angular",

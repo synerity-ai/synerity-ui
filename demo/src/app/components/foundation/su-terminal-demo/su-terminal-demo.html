@@ -1,0 +1,291 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Terminal Component Demo</h2>
+    <p>Command-line interface component for interactive terminal sessions. Supports command execution, history navigation, and customizable themes.</p>
+  </div>
+
+  <!-- Basic Terminal -->
+  <div class="demo-section">
+    <h3>Basic Terminal</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default Terminal</h4>
+        <p>Standard terminal with basic functionality.</p>
+        <sui-terminal 
+          welcomeMessage="Welcome to Synerity Terminal" 
+          prompt="$"
+          (onCommand)="onCommandExecuted($event)">
+        </sui-terminal>
+      </div>
+
+      <div class="component-card">
+        <h4>Admin Terminal</h4>
+        <p>Terminal with admin-style prompt and welcome message.</p>
+        <sui-terminal 
+          welcomeMessage="Admin Console - Authorized Access Only" 
+          prompt="ADMIN@synerity:~#"
+          (onCommand)="onCommandExecuted($event)">
+        </sui-terminal>
+      </div>
+    </div>
+  </div>
+
+  <!-- Style Variants -->
+  <div class="demo-section">
+    <h3>Style Variants</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Light Theme</h4>
+        <p>Light-themed terminal for bright environments.</p>
+        <sui-terminal 
+          welcomeMessage="Light Terminal" 
+          prompt=">"
+          styleClass="sui-terminal--white"
+          (onCommand)="onCommandExecuted($event)">
+        </sui-terminal>
+      </div>
+
+      <div class="component-card">
+        <h4>Blue Theme</h4>
+        <p>Blue-themed terminal with modern styling.</p>
+        <sui-terminal 
+          welcomeMessage="Blue Terminal" 
+          prompt="$"
+          styleClass="sui-terminal--blue"
+          (onCommand)="onCommandExecuted($event)">
+        </sui-terminal>
+      </div>
+
+      <div class="component-card">
+        <h4>Purple Theme</h4>
+        <p>Purple-themed terminal with vibrant colors.</p>
+        <sui-terminal 
+          welcomeMessage="Purple Terminal" 
+          prompt=">"
+          styleClass="sui-terminal--purple"
+          (onCommand)="onCommandExecuted($event)">
+        </sui-terminal>
+      </div>
+
+      <div class="component-card">
+        <h4>Modern Theme</h4>
+        <p>Modern terminal with enhanced styling.</p>
+        <sui-terminal 
+          welcomeMessage="Modern Terminal" 
+          prompt="$"
+          styleClass="sui-terminal--modern"
+          (onCommand)="onCommandExecuted($event)">
+        </sui-terminal>
+      </div>
+    </div>
+  </div>
+
+  <!-- Size Variants -->
+  <div class="demo-section">
+    <h3>Size Variants</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Small Terminal</h4>
+        <p>Compact terminal for limited space.</p>
+        <sui-terminal 
+          welcomeMessage="Small Terminal" 
+          prompt="$"
+          styleClass="sui-terminal--small"
+          (onCommand)="onCommandExecuted($event)">
+        </sui-terminal>
+      </div>
+
+      <div class="component-card">
+        <h4>Large Terminal</h4>
+        <p>Large terminal for detailed interactions.</p>
+        <sui-terminal 
+          welcomeMessage="Large Terminal" 
+          prompt="$"
+          styleClass="sui-terminal--large"
+          (onCommand)="onCommandExecuted($event)">
+        </sui-terminal>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Configuration -->
+  <div class="demo-section">
+    <h3>Interactive Configuration</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Welcome Message:</label>
+        <div class="radio-options">
+          <label *ngFor="let message of welcomeMessages">
+            <input
+              type="radio"
+              name="welcomeMessage"
+              [value]="message.value"
+              [(ngModel)]="selectedWelcomeMessage">
+            {{ message.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Prompt:</label>
+        <div class="radio-options">
+          <label *ngFor="let prompt of prompts">
+            <input
+              type="radio"
+              name="prompt"
+              [value]="prompt.value"
+              [(ngModel)]="selectedPrompt">
+            {{ prompt.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Style:</label>
+        <div class="radio-options">
+          <label *ngFor="let style of styles">
+            <input
+              type="radio"
+              name="style"
+              [value]="style.value"
+              [(ngModel)]="selectedStyle">
+            {{ style.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Size:</label>
+        <div class="radio-options">
+          <label *ngFor="let size of sizes">
+            <input
+              type="radio"
+              name="size"
+              [value]="size.value"
+              [(ngModel)]="selectedSize">
+            {{ size.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Theme:</label>
+        <div class="radio-options">
+          <label *ngFor="let theme of themes">
+            <input
+              type="radio"
+              name="theme"
+              [value]="theme.value"
+              [(ngModel)]="selectedTheme">
+            {{ theme.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-sm text-gray-600">{{ getConfigDescription() }}</p>
+      </div>
+
+      <div class="mt-8">
+        <sui-terminal
+          [welcomeMessage]="selectedWelcomeMessage"
+          [prompt]="selectedPrompt"
+          [styleClass]="getTerminalClass()"
+          (onCommand)="onCommandExecuted($event)">
+        </sui-terminal>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h3>Real-world Examples</h3>
+    <div class="space-y-8">
+      <!-- Development Console -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Development Console</h4>
+        <div class="bg-gray-50 p-6 rounded-lg">
+          <p class="text-gray-600 mb-4">Interactive development console for debugging and testing.</p>
+          <sui-terminal 
+            welcomeMessage="Development Console" 
+            prompt="DEV@localhost:~$"
+            styleClass="sui-terminal--blue sui-terminal--modern"
+            (onCommand)="onCommandExecuted($event)">
+          </sui-terminal>
+          <div class="mt-4 text-sm text-gray-600">
+            <p><strong>Available commands:</strong> help, clear, date, echo</p>
+            <p><strong>Navigation:</strong> Use arrow keys to browse command history</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Server Monitor -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Server Monitor</h4>
+        <div class="bg-blue-50 p-6 rounded-lg">
+          <p class="text-blue-700 mb-4">Server monitoring interface with admin privileges.</p>
+          <sui-terminal 
+            welcomeMessage="Server Monitor - Production Environment" 
+            prompt="MONITOR@server:~#"
+            styleClass="sui-terminal--purple"
+            (onCommand)="onCommandExecuted($event)">
+          </sui-terminal>
+          <div class="mt-4 text-sm text-blue-600">
+            <p><strong>Warning:</strong> This is a production environment. Use caution.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code Review Terminal -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Code Review Terminal</h4>
+        <div class="bg-green-50 p-6 rounded-lg">
+          <p class="text-green-700 mb-4">Terminal interface for code review and collaboration.</p>
+          <sui-terminal 
+            welcomeMessage="Code Review Terminal" 
+            prompt="REVIEW@git:~$"
+            styleClass="sui-terminal--white sui-terminal--large"
+            (onCommand)="onCommandExecuted($event)">
+          </sui-terminal>
+          <div class="mt-4 text-sm text-green-600">
+            <p><strong>Tip:</strong> Use 'help' to see available commands for code review operations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Terminal -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Mobile Terminal</h4>
+        <div class="bg-purple-50 p-6 rounded-lg">
+          <p class="text-purple-700 mb-4">Optimized terminal for mobile devices and touch interfaces.</p>
+          <sui-terminal 
+            welcomeMessage="Mobile Terminal" 
+            prompt="$"
+            styleClass="sui-terminal--small sui-terminal--minimal"
+            (onCommand)="onCommandExecuted($event)">
+          </sui-terminal>
+          <div class="mt-4 text-sm text-purple-600">
+            <p><strong>Mobile optimized:</strong> Touch-friendly interface with minimal styling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Tracking -->
+  <div class="demo-section">
+    <h3>Event Tracking</h3>
+    <div class="demo-content">
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <h4 class="font-medium text-blue-900 mb-2">Terminal Events</h4>
+        <div class="text-blue-700 text-sm mb-4">
+          <div>Total Commands: {{ commandCount }}</div>
+          <div>Last Command: {{ lastCommand || 'None' }}</div>
+        </div>
+        <button class="btn btn-secondary" (click)="resetCounters()">
+          Reset Counters
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

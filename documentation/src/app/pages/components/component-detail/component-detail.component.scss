@@ -1,0 +1,238 @@
+.component-detail-page {
+  padding: 2rem 0;
+}
+
+.page-header {
+  margin-bottom: 3rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.page-header p {
+  font-size: 1.125rem;
+  color: var(--color-neutral);
+  line-height: 1.6;
+}
+
+.component-content {
+  display: grid;
+  gap: 3rem;
+}
+
+.documentation-section {
+  background-color: var(--color-base);
+  border: 1px solid var(--color-neutral);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.documentation-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.documentation-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-neutral);
+  margin: 2rem 0 1rem 0;
+}
+
+.documentation-section p {
+  color: var(--color-neutral);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.props-table {
+  border: 1px solid var(--color-neutral);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.props-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--color-base);
+  border-bottom: 1px solid var(--color-neutral);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.prop-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-neutral);
+}
+
+.prop-row:last-child {
+  border-bottom: none;
+}
+
+.prop-name {
+  font-weight: 500;
+  color: var(--color-neutral);
+}
+
+.prop-name code {
+  background-color: var(--color-base);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+}
+
+.required {
+  color: var(--color-error);
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
+.prop-type {
+  color: var(--color-neutral);
+}
+
+.prop-type code {
+  background-color: var(--color-base);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-accent);
+}
+
+.prop-default {
+  color: var(--color-neutral);
+}
+
+.prop-default code {
+  background-color: var(--color-base);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+}
+
+.prop-description {
+  color: var(--color-neutral);
+  line-height: 1.5;
+}
+
+.examples-list {
+  display: grid;
+  gap: 2rem;
+}
+
+.example-item {
+  border: 1px solid var(--color-neutral);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  background-color: var(--color-base);
+}
+
+.example-item h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.example-item p {
+  color: var(--color-neutral);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+// Mobile styles
+@media (max-width: 768px) {
+  .props-header,
+  .prop-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .props-header {
+    display: none;
+  }
+
+  .prop-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .prop-name::before {
+    content: 'Name: ';
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .prop-type::before {
+    content: 'Type: ';
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .prop-default::before {
+    content: 'Default: ';
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .prop-description::before {
+    content: 'Description: ';
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+}
+
+.not-found {
+  text-align: center;
+  padding: 4rem 2rem;
+  
+  h1 {
+    font-size: 2.5rem;
+    color: var(--color-error);
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: var(--color-neutral);
+    margin-bottom: 2rem;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--color-primary);
+    opacity: 0.9;
+  }
+}

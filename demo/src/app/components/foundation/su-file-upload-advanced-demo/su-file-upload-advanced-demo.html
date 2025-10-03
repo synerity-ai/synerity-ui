@@ -1,0 +1,227 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>File Upload Advanced Component Demo</h2>
+    <p>Advanced file upload with drag & drop, progress tracking, and comprehensive file management.</p>
+  </div>
+
+  <!-- Basic File Upload Advanced -->
+  <div class="demo-section">
+    <h3>Basic File Upload Advanced</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Default Configuration</h4>
+        <p>Basic file upload with multiple files, drag & drop enabled.</p>
+        <sui-file-upload-advanced
+          [multiple]="true"
+          [dragDropEnabled]="true"
+          [showProgress]="true"
+          [showPreview]="true"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)">
+        </sui-file-upload-advanced>
+      </div>
+
+      <div class="component-card">
+        <h4>Image Upload Only</h4>
+        <p>Upload images only with size and file count limits.</p>
+        <sui-file-upload-advanced
+          [multiple]="true"
+          accept="image/*"
+          [maxFileSize]="5 * 1024 * 1024"
+          [maxFiles]="5"
+          [dragDropEnabled]="true"
+          [showProgress]="true"
+          [showPreview]="true"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)">
+        </sui-file-upload-advanced>
+      </div>
+
+      <div class="component-card">
+        <h4>Document Upload</h4>
+        <p>Upload documents with specific file types and size limits.</p>
+        <sui-file-upload-advanced
+          [multiple]="true"
+          accept=".pdf,.doc,.docx,.txt"
+          [maxFileSize]="10 * 1024 * 1024"
+          [maxFiles]="3"
+          [dragDropEnabled]="true"
+          [showProgress]="true"
+          [showPreview]="true"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)">
+        </sui-file-upload-advanced>
+      </div>
+
+      <div class="component-card">
+        <h4>Single File Upload</h4>
+        <p>Upload a single file with drag & drop support.</p>
+        <sui-file-upload-advanced
+          [multiple]="false"
+          [maxFiles]="1"
+          [dragDropEnabled]="true"
+          [showProgress]="true"
+          [showPreview]="true"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)">
+        </sui-file-upload-advanced>
+      </div>
+    </div>
+  </div>
+
+  <!-- Configuration Options -->
+  <div class="demo-section">
+    <h3>Configuration Options</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Upload Configuration:</label>
+        <div class="radio-options">
+          <label *ngFor="let config of uploadConfigs">
+            <input
+              type="radio"
+              name="config"
+              [value]="config.id"
+              [(ngModel)]="selectedConfig">
+            {{ config.id | titlecase }}
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-sm text-gray-600">{{ getConfigDescription() }}</p>
+      </div>
+
+      <div class="mt-4">
+        <sui-file-upload-advanced
+          [multiple]="getCurrentConfig().multiple"
+          [accept]="getCurrentConfig().accept"
+          [maxFileSize]="getCurrentConfig().maxFileSize"
+          [maxFiles]="getCurrentConfig().maxFiles"
+          [dragDropEnabled]="getCurrentConfig().dragDropEnabled"
+          [autoUpload]="getCurrentConfig().autoUpload"
+          [showProgress]="getCurrentConfig().showProgress"
+          [showPreview]="getCurrentConfig().showPreview"
+          [uploadUrl]="uploadUrl"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)">
+        </sui-file-upload-advanced>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Tracking -->
+  <div class="demo-section">
+    <h3>Event Tracking</h3>
+    <div class="demo-content">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-medium text-blue-900 mb-2">Selected Files ({{ selectedFiles.length }})</h4>
+          <div *ngIf="selectedFiles.length === 0" class="text-blue-600 text-sm">No files selected yet</div>
+          <div *ngFor="let file of selectedFiles" class="text-blue-700 text-sm">
+            • {{ file.name }} ({{ formatFileSize(file.size) }})
+          </div>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg">
+          <h4 class="font-medium text-green-900 mb-2">Uploaded Files ({{ uploadedFiles.length }})</h4>
+          <div *ngIf="uploadedFiles.length === 0" class="text-green-600 text-sm">No files uploaded yet</div>
+          <div *ngFor="let file of uploadedFiles" class="text-green-700 text-sm">
+            • {{ file.name }} ({{ formatFileSize(file.size) }})
+          </div>
+        </div>
+
+        <div class="bg-yellow-50 p-4 rounded-lg">
+          <h4 class="font-medium text-yellow-900 mb-2">Removed Files ({{ removedFiles.length }})</h4>
+          <div *ngIf="removedFiles.length === 0" class="text-yellow-600 text-sm">No files removed yet</div>
+          <div *ngFor="let file of removedFiles" class="text-yellow-700 text-sm">
+            • {{ file.name }} ({{ formatFileSize(file.size) }})
+          </div>
+        </div>
+
+        <div class="bg-red-50 p-4 rounded-lg">
+          <h4 class="font-medium text-red-900 mb-2">Error Files ({{ errorFiles.length }})</h4>
+          <div *ngIf="errorFiles.length === 0" class="text-red-600 text-sm">No file errors yet</div>
+          <div *ngFor="let error of errorFiles" class="text-red-700 text-sm">
+            • {{ error.file.name }}: {{ error.error }}
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <button class="btn btn-secondary" (click)="resetTracking()">
+          Reset Tracking
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h3>Real-world Examples</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Profile Picture Upload</h4>
+        <p>Single image upload for user profiles.</p>
+        <sui-file-upload-advanced
+          [multiple]="false"
+          accept="image/*"
+          [maxFileSize]="2 * 1024 * 1024"
+          [maxFiles]="1"
+          [dragDropEnabled]="true"
+          [showProgress]="true"
+          [showPreview]="true"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)">
+        </sui-file-upload-advanced>
+      </div>
+
+      <div class="component-card">
+        <h4>Document Repository</h4>
+        <p>Multiple document upload for file management.</p>
+        <sui-file-upload-advanced
+          [multiple]="true"
+          accept=".pdf,.doc,.docx,.txt,.xlsx,.pptx"
+          [maxFileSize]="5 * 1024 * 1024"
+          [maxFiles]="10"
+          [dragDropEnabled]="true"
+          [showProgress]="true"
+          [showPreview]="true"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)">
+        </sui-file-upload-advanced>
+      </div>
+
+      <div class="component-card">
+        <h4>Media Gallery</h4>
+        <p>Multiple media files for gallery management.</p>
+        <sui-file-upload-advanced
+          [multiple]="true"
+          accept="image/*,video/*"
+          [maxFileSize]="50 * 1024 * 1024"
+          [maxFiles]="20"
+          [dragDropEnabled]="true"
+          [showProgress]="true"
+          [showPreview]="true"
+          (onSelect)="onFileSelect($event)"
+          (onUpload)="onFileUpload($event)"
+          (onRemove)="onFileRemove($event)"
+          (onError)="onFileError($event)">
+        </sui-file-upload-advanced>
+      </div>
+    </div>
+  </div>
+</div>

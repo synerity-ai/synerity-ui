@@ -1,0 +1,211 @@
+<div class="demo-container">
+  <div class="demo-section">
+    <h2>Progress Spinner Component Demo</h2>
+    <p>Animated loading spinners with various sizes, colors, and configurations.</p>
+  </div>
+
+  <!-- Basic Progress Spinners -->
+  <div class="demo-section">
+    <h3>Basic Progress Spinners</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Small Spinner</h4>
+        <p>Compact spinner for inline loading states.</p>
+        <sui-progress-spinner
+          size="small"
+          strokeWidth="1"
+          animationDuration="1.5s">
+        </sui-progress-spinner>
+      </div>
+
+      <div class="component-card">
+        <h4>Normal Spinner</h4>
+        <p>Standard size spinner for general use.</p>
+        <sui-progress-spinner
+          size="normal"
+          strokeWidth="2"
+          animationDuration="2s">
+        </sui-progress-spinner>
+      </div>
+
+      <div class="component-card">
+        <h4>Large Spinner</h4>
+        <p>Large spinner for prominent loading states.</p>
+        <sui-progress-spinner
+          size="large"
+          strokeWidth="3"
+          animationDuration="2.5s">
+        </sui-progress-spinner>
+      </div>
+    </div>
+  </div>
+
+  <!-- Color Variants -->
+  <div class="demo-section">
+    <h3>Color Variants</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Primary</h4>
+        <p>Primary color spinner.</p>
+        <sui-progress-spinner
+          size="normal"
+          styleClass="sui-progress-spinner--primary">
+        </sui-progress-spinner>
+      </div>
+
+      <div class="component-card">
+        <h4>Success</h4>
+        <p>Success color spinner.</p>
+        <sui-progress-spinner
+          size="normal"
+          styleClass="sui-progress-spinner--success">
+        </sui-progress-spinner>
+      </div>
+
+      <div class="component-card">
+        <h4>Warning</h4>
+        <p>Warning color spinner.</p>
+        <sui-progress-spinner
+          size="normal"
+          styleClass="sui-progress-spinner--warning">
+        </sui-progress-spinner>
+      </div>
+
+      <div class="component-card">
+        <h4>Error</h4>
+        <p>Error color spinner.</p>
+        <sui-progress-spinner
+          size="normal"
+          styleClass="sui-progress-spinner--error">
+        </sui-progress-spinner>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Configuration -->
+  <div class="demo-section">
+    <h3>Interactive Configuration</h3>
+    <div class="demo-content">
+      <div class="radio-group">
+        <label>Spinner Size:</label>
+        <div class="radio-options">
+          <label *ngFor="let size of sizes">
+            <input
+              type="radio"
+              name="size"
+              [value]="size.value"
+              [(ngModel)]="selectedSize">
+            {{ size.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-group">
+        <label>Spinner Color:</label>
+        <div class="radio-options">
+          <label *ngFor="let color of colors">
+            <input
+              type="radio"
+              name="color"
+              [value]="color.value"
+              [(ngModel)]="selectedColor">
+            {{ color.label }}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="strokeWidth">Stroke Width:</label>
+        <input
+          type="number"
+          id="strokeWidth"
+          class="form-control"
+          [(ngModel)]="strokeWidth"
+          min="1"
+          max="10">
+      </div>
+
+      <div class="form-group">
+        <label for="animationDuration">Animation Duration:</label>
+        <input
+          type="text"
+          id="animationDuration"
+          class="form-control"
+          [(ngModel)]="animationDuration"
+          placeholder="2s">
+      </div>
+
+      <div class="mt-4">
+        <sui-progress-spinner
+          [size]="selectedSize"
+          [strokeWidth]="strokeWidth"
+          [animationDuration]="animationDuration"
+          [styleClass]="getSpinnerClass()">
+        </sui-progress-spinner>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h3>Real-world Examples</h3>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Button Loading State</h4>
+        <p>Spinner inside a button during loading.</p>
+        <button class="btn btn-primary" [disabled]="isLoading">
+          <sui-progress-spinner
+            *ngIf="isLoading"
+            size="small"
+            styleClass="sui-progress-spinner--primary mr-2">
+          </sui-progress-spinner>
+          {{ loadingText }}
+        </button>
+        <div class="mt-2">
+          <button class="btn btn-secondary" (click)="startLoading()" [disabled]="isLoading">
+            Start Loading
+          </button>
+          <button class="btn btn-secondary ml-2" (click)="stopLoading()" [disabled]="!isLoading">
+            Stop Loading
+          </button>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Page Loading Overlay</h4>
+        <p>Full page loading with spinner.</p>
+        <div class="relative h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+          <sui-progress-spinner
+            size="large"
+            styleClass="sui-progress-spinner--primary">
+          </sui-progress-spinner>
+          <div class="ml-4 text-gray-600">Loading content...</div>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <h4>Inline Loading</h4>
+        <p>Spinner with text for inline loading states.</p>
+        <div class="flex items-center space-x-2">
+          <sui-progress-spinner
+            size="small"
+            styleClass="sui-progress-spinner--secondary">
+          </sui-progress-spinner>
+          <span class="text-sm text-gray-600">Processing...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multiple Spinners -->
+  <div class="demo-section">
+    <h3>Multiple Spinners</h3>
+    <div class="demo-content">
+      <div class="flex items-center space-x-4">
+        <sui-progress-spinner size="small" styleClass="sui-progress-spinner--primary"></sui-progress-spinner>
+        <sui-progress-spinner size="normal" styleClass="sui-progress-spinner--success"></sui-progress-spinner>
+        <sui-progress-spinner size="large" styleClass="sui-progress-spinner--warning"></sui-progress-spinner>
+      </div>
+    </div>
+  </div>
+</div>
