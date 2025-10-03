@@ -3,6 +3,9 @@
 /* Note: Tailwind CSS should be imported by the consuming application */
 /* This allows the app to control the theme and prevents conflicts */
 
+/* Import theme system */
+@import './theme/variables.scss';
+
 /* Synerity UI Component Styles */
 
 /* Button Component Styles */
@@ -51,59 +54,75 @@
   line-height: 1.5rem;
 }
 
-/* Button Variants */
+/* Button Variants - Using new theme system */
 button.sui-button.sui-button-primary,
 .sui-button.sui-button-primary {
-  @apply bg-primary-600 text-white border-primary-600;
+  background-color: var(--sui-primary-600);
+  color: white;
+  border-color: var(--sui-primary-600);
 }
 
 button.sui-button.sui-button-primary:hover:not(:disabled),
 .sui-button.sui-button-primary:hover:not(:disabled) {
-  @apply bg-primary-700 border-primary-700;
+  background-color: var(--sui-primary-700);
+  border-color: var(--sui-primary-700);
 }
 
 .sui-button-primary:focus {
-  @apply ring-2 ring-primary-500 ring-offset-2;
+  box-shadow: 0 0 0 2px var(--sui-primary-500);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 button.sui-button.sui-button-secondary,
 .sui-button.sui-button-secondary {
-  @apply bg-gray-600 text-white border-gray-600;
+  background-color: var(--sui-secondary-600);
+  color: white;
+  border-color: var(--sui-secondary-600);
 }
 
 button.sui-button.sui-button-secondary:hover:not(:disabled),
 .sui-button.sui-button-secondary:hover:not(:disabled) {
-  @apply bg-gray-700 border-gray-700;
+  background-color: var(--sui-secondary-700);
+  border-color: var(--sui-secondary-700);
 }
 
 button.sui-button.sui-button-outline,
 .sui-button.sui-button-outline {
-  @apply bg-transparent text-gray-700 border-gray-300;
+  background-color: transparent;
+  color: var(--sui-gray-700);
+  border-color: var(--sui-gray-300);
 }
 
 button.sui-button.sui-button-outline:hover:not(:disabled),
 .sui-button.sui-button-outline:hover:not(:disabled) {
-  @apply bg-gray-50 border-gray-400;
+  background-color: var(--sui-gray-50);
+  border-color: var(--sui-gray-400);
 }
 
 button.sui-button.sui-button-ghost,
 .sui-button.sui-button-ghost {
-  @apply bg-transparent text-gray-700 border-transparent;
+  background-color: transparent;
+  color: var(--sui-gray-700);
+  border-color: transparent;
 }
 
 button.sui-button.sui-button-ghost:hover:not(:disabled),
 .sui-button.sui-button-ghost:hover:not(:disabled) {
-  @apply bg-gray-100;
+  background-color: var(--sui-gray-100);
 }
 
 button.sui-button.sui-button-danger,
 .sui-button.sui-button-danger {
-  @apply bg-red-600 text-white border-red-600;
+  background-color: var(--sui-red-600);
+  color: white;
+  border-color: var(--sui-red-600);
 }
 
 button.sui-button.sui-button-danger:hover:not(:disabled),
 .sui-button.sui-button-danger:hover:not(:disabled) {
-  @apply bg-red-700 border-red-700;
+  background-color: var(--sui-red-700);
+  border-color: var(--sui-red-700);
 }
 
 /* Full Width */
@@ -12133,7 +12152,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Context Menu Component Styles */
 .sui-context-menu {
-  @apply absolute bg-white border border-gray-200 rounded-md shadow-lg z-50 min-w-48;
+  border-color: var(--sui-color-gray-200); @apply absolute bg-white border rounded-md shadow-lg z-50 min-w-48;
 
   &-list {
     @apply list-none m-0 p-1;
@@ -12143,15 +12162,15 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     @apply relative;
 
     &-content {
-      @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-sm;
+      color: var(--sui-color-gray-700); @apply flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-100 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-sm;
     }
 
     &:hover &-content {
-      @apply bg-gray-100 text-gray-900;
+      background-color: var(--sui-color-gray-100); color: var(--sui-color-gray-900);
     }
 
     &-disabled &-content {
-      @apply text-gray-400 cursor-not-allowed hover:bg-transparent hover:text-gray-400;
+      color: var(--sui-color-gray-400); @apply cursor-not-allowed hover:bg-transparent hover:text-gray-400;
     }
 
     &-icon {
@@ -12163,23 +12182,23 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-arrow {
-      @apply text-xs text-gray-400;
+      color: var(--sui-color-gray-400); @apply text-xs;
     }
   }
 
   &-separator {
-    @apply h-px bg-gray-200 my-1 mx-2;
+    background-color: var(--sui-color-gray-200); @apply h-px my-1 mx-2;
   }
 
   &-submenu {
-    @apply absolute left-full top-0 bg-white border border-gray-200 rounded-md shadow-lg z-50 min-w-40 ml-1;
+    border-color: var(--sui-color-gray-200); @apply absolute left-full top-0 bg-white border rounded-md shadow-lg z-50 min-w-40 ml-1;
 
     &-items {
       @apply py-1;
     }
 
     &-item {
-      @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-sm;
+      color: var(--sui-color-gray-700); @apply flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-100 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-sm;
 
       &-icon {
         @apply text-sm w-4 text-center;
@@ -12190,7 +12209,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
       }
 
       &:hover {
-        @apply bg-gray-100 text-gray-900;
+        background-color: var(--sui-color-gray-100); color: var(--sui-color-gray-900);
       }
     }
   }
@@ -12199,32 +12218,32 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Dark mode support for Context Menu */
 @media (prefers-color-scheme: dark) {
   .sui-context-menu {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     &-item-content {
-      @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+      color: var(--sui-color-gray-300); @apply hover:bg-gray-700 hover:text-white;
 
       &:hover {
-        @apply bg-gray-700 text-white;
+        background-color: var(--sui-color-gray-700); @apply text-white;
       }
     }
 
     &-item-disabled &-item-content {
-      @apply text-gray-600 hover:bg-transparent hover:text-gray-600;
+      color: var(--sui-color-gray-600); @apply hover:bg-transparent hover:text-gray-600;
     }
 
     &-separator {
-      @apply bg-gray-700;
+      background-color: var(--sui-color-gray-700);
     }
 
     &-submenu {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
       &-item {
-        @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+        color: var(--sui-color-gray-300); @apply hover:bg-gray-700 hover:text-white;
 
         &:hover {
-          @apply bg-gray-700 text-white;
+          background-color: var(--sui-color-gray-700); @apply text-white;
         }
       }
     }
@@ -12233,7 +12252,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Dock Component Styles */
 .sui-dock {
-  @apply fixed z-40 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg p-2;
+  border-color: var(--sui-color-gray-200); @apply fixed z-40 bg-white/90 backdrop-blur-sm border rounded-lg shadow-lg p-2;
 
   // Position variants
   &-bottom {
@@ -12267,17 +12286,17 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   // Items
   &-item {
-    @apply flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 cursor-pointer relative;
+    background-color: var(--sui-color-gray-100); @apply flex items-center justify-center w-12 h-12 rounded-lg hover:bg-gray-200 transition-all duration-200 cursor-pointer relative;
 
     &:hover {
-      @apply bg-gray-200 scale-105;
+      background-color: var(--sui-color-gray-200); @apply scale-105;
     }
 
     &-disabled {
       @apply opacity-50 cursor-not-allowed pointer-events-none;
 
       &:hover {
-        @apply bg-gray-100 scale-100;
+        background-color: var(--sui-color-gray-100); @apply scale-100;
       }
     }
 
@@ -12286,7 +12305,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-label {
-      @apply ml-2 text-sm font-medium text-gray-700 whitespace-nowrap;
+      color: var(--sui-color-gray-700); @apply ml-2 text-sm font-medium whitespace-nowrap;
 
       &.horizontal-only {
         @apply ml-0;
@@ -12295,7 +12314,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
     // Tooltip
     &-tooltip {
-      @apply absolute bg-gray-900 text-white text-xs px-2 py-1 opacity-0 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50;
+      background-color: var(--sui-color-gray-900); @apply absolute text-white text-xs px-2 py-1 opacity-0 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50;
       border-radius: 0.25rem;
 
       &-bottom {
@@ -12331,17 +12350,17 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-dark {
-    @apply bg-gray-800/90 border-gray-700;
+    border-color: var(--sui-color-gray-700); @apply bg-gray-800/90;
 
     .sui-dock-item {
-      @apply bg-gray-700 hover:bg-gray-600 text-gray-200;
+      background-color: var(--sui-color-gray-700); color: var(--sui-color-gray-200); @apply hover:bg-gray-600;
 
       &-label {
-        @apply text-gray-200;
+        color: var(--sui-color-gray-200);
       }
 
       &-tooltip {
-        @apply bg-gray-900;
+        background-color: var(--sui-color-gray-900);
       }
     }
   }
@@ -12350,17 +12369,17 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Dark mode support for Dock */
 @media (prefers-color-scheme: dark) {
   .sui-dock {
-    @apply bg-gray-800/90 border-gray-700;
+    border-color: var(--sui-color-gray-700); @apply bg-gray-800/90;
 
     &-item {
-      @apply bg-gray-700 hover:bg-gray-600 text-gray-200;
+      background-color: var(--sui-color-gray-700); color: var(--sui-color-gray-200); @apply hover:bg-gray-600;
 
       &-label {
-        @apply text-gray-200;
+        color: var(--sui-color-gray-200);
       }
 
       &-tooltip {
-        @apply bg-gray-900;
+        background-color: var(--sui-color-gray-900);
       }
     }
   }
@@ -12369,7 +12388,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Menubar Component Styles */
 .sui-menubar {
-  @apply flex items-center bg-white border-b border-gray-200 shadow-sm;
+  border-color: var(--sui-color-gray-200); @apply flex items-center bg-white border-b shadow-sm;
 
   // Container
   &-container {
@@ -12385,10 +12404,10 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-content {
-      @apply flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 cursor-pointer transition-colors duration-200;
+      color: var(--sui-color-gray-700); @apply flex items-center gap-2 px-4 py-3 text-sm font-medium hover:text-gray-900 hover:bg-gray-50 cursor-pointer transition-colors duration-200;
 
       &:hover {
-        @apply text-gray-900 bg-gray-50;
+        color: var(--sui-color-gray-900); background-color: var(--sui-color-gray-50);
       }
     }
 
@@ -12409,26 +12428,26 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-separator {
-      @apply border-t border-gray-200 my-1;
+      border-color: var(--sui-color-gray-200); @apply border-t my-1;
     }
   }
 
   // Submenu
   &-submenu {
-    @apply absolute top-full left-0 bg-white border border-gray-200 rounded-md shadow-lg z-50 min-w-48 py-1;
+    border-color: var(--sui-color-gray-200); @apply absolute top-full left-0 bg-white border rounded-md shadow-lg z-50 min-w-48 py-1;
 
     &-item {
-      @apply flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200;
+      color: var(--sui-color-gray-700); @apply flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200;
 
       &:hover {
-        @apply bg-gray-50 text-gray-900;
+        background-color: var(--sui-color-gray-50); color: var(--sui-color-gray-900);
       }
 
       &-disabled {
         @apply opacity-50 cursor-not-allowed pointer-events-none;
 
         &:hover {
-          @apply bg-transparent text-gray-700;
+          color: var(--sui-color-gray-700); @apply bg-transparent;
         }
       }
 
@@ -12444,30 +12463,30 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   // Variants
   &-primary {
-    @apply bg-blue-600 border-blue-700;
+    background-color: var(--sui-color-blue-600); border-color: var(--sui-color-blue-700);
 
     .sui-menubar-item-content {
       @apply text-white hover:text-white hover:bg-blue-700;
     }
 
     .sui-menubar-submenu-item {
-      @apply text-gray-700 hover:bg-gray-50 hover:text-gray-900;
+      color: var(--sui-color-gray-700); @apply hover:bg-gray-50 hover:text-gray-900;
     }
   }
 
   &-dark {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     .sui-menubar-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
+      color: var(--sui-color-gray-200); @apply hover:text-white hover:bg-gray-700;
     }
 
     .sui-menubar-submenu {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
     }
 
     .sui-menubar-submenu-item {
-      @apply text-gray-200 hover:bg-gray-700 hover:text-white;
+      color: var(--sui-color-gray-200); @apply hover:bg-gray-700 hover:text-white;
     }
   }
 
@@ -12495,29 +12514,29 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Dark mode support for Menubar */
 @media (prefers-color-scheme: dark) {
   .sui-menubar {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     &-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
+      color: var(--sui-color-gray-200); @apply hover:text-white hover:bg-gray-700;
     }
 
     &-submenu {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
     }
 
     &-submenu-item {
-      @apply text-gray-200 hover:bg-gray-700 hover:text-white;
+      color: var(--sui-color-gray-200); @apply hover:bg-gray-700 hover:text-white;
     }
 
     &-item-separator {
-      @apply border-gray-700;
+      border-color: var(--sui-color-gray-700);
     }
   }
 }
 
 /* Mega Menu Component Styles */
 .sui-mega-menu {
-  @apply flex items-center bg-white border-b border-gray-200 shadow-sm;
+  border-color: var(--sui-color-gray-200); @apply flex items-center bg-white border-b shadow-sm;
 
   // Container
   &-container {
@@ -12533,10 +12552,10 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-content {
-      @apply flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 cursor-pointer transition-colors duration-200;
+      color: var(--sui-color-gray-700); @apply flex items-center gap-2 px-4 py-3 text-sm font-medium hover:text-gray-900 hover:bg-gray-50 cursor-pointer transition-colors duration-200;
 
       &:hover {
-        @apply text-gray-900 bg-gray-50;
+        color: var(--sui-color-gray-900); background-color: var(--sui-color-gray-50);
       }
     }
 
@@ -12557,30 +12576,30 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-separator {
-      @apply border-t border-gray-200 my-1;
+      border-color: var(--sui-color-gray-200); @apply border-t my-1;
     }
   }
 
   // Mega submenu
   &-submenu {
-    @apply absolute top-full left-0 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-96 p-6;
+    border-color: var(--sui-color-gray-200); @apply absolute top-full left-0 bg-white border rounded-lg shadow-lg z-50 min-w-96 p-6;
 
     // Regular items
     &-items {
       @apply grid grid-cols-1 gap-2;
 
       &-item {
-        @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
+        color: var(--sui-color-gray-700); @apply flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
 
         &:hover {
-          @apply bg-gray-50 text-gray-900;
+          background-color: var(--sui-color-gray-50); color: var(--sui-color-gray-900);
         }
 
         &-disabled {
           @apply opacity-50 cursor-not-allowed pointer-events-none;
 
           &:hover {
-            @apply bg-transparent text-gray-700;
+            color: var(--sui-color-gray-700); @apply bg-transparent;
           }
         }
 
@@ -12602,17 +12621,17 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
         @apply space-y-2;
 
         &-item {
-          @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
+          color: var(--sui-color-gray-700); @apply flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
 
           &:hover {
-            @apply bg-gray-50 text-gray-900;
+            background-color: var(--sui-color-gray-50); color: var(--sui-color-gray-900);
           }
 
           &-disabled {
             @apply opacity-50 cursor-not-allowed pointer-events-none;
 
             &:hover {
-              @apply bg-transparent text-gray-700;
+              color: var(--sui-color-gray-700); @apply bg-transparent;
             }
           }
 
@@ -12651,31 +12670,31 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   // Variants
   &-primary {
-    @apply bg-blue-600 border-blue-700;
+    background-color: var(--sui-color-blue-600); border-color: var(--sui-color-blue-700);
 
     .sui-mega-menu-item-content {
       @apply text-white hover:text-white hover:bg-blue-700;
     }
 
     .sui-mega-menu-submenu {
-      @apply bg-white border-gray-200;
+      border-color: var(--sui-color-gray-200); @apply bg-white;
     }
   }
 
   &-dark {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     .sui-mega-menu-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
+      color: var(--sui-color-gray-200); @apply hover:text-white hover:bg-gray-700;
     }
 
     .sui-mega-menu-submenu {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
     }
 
     .sui-mega-menu-submenu-items-item,
     .sui-mega-menu-submenu-columns-column-item {
-      @apply text-gray-200 hover:bg-gray-700 hover:text-white;
+      color: var(--sui-color-gray-200); @apply hover:bg-gray-700 hover:text-white;
     }
   }
 
@@ -12713,23 +12732,23 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Dark mode support for Mega Menu */
 @media (prefers-color-scheme: dark) {
   .sui-mega-menu {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     &-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
+      color: var(--sui-color-gray-200); @apply hover:text-white hover:bg-gray-700;
     }
 
     &-submenu {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
     }
 
     &-submenu-items-item,
     &-submenu-columns-column-item {
-      @apply text-gray-200 hover:bg-gray-700 hover:text-white;
+      color: var(--sui-color-gray-200); @apply hover:bg-gray-700 hover:text-white;
     }
 
     &-item-separator {
-      @apply border-gray-700;
+      border-color: var(--sui-color-gray-700);
     }
   }
 }
@@ -12737,7 +12756,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Panel Menu Component Styles */
 .sui-panel-menu {
-  @apply bg-white border border-gray-200 rounded-lg shadow-sm p-2 w-64;
+  border-color: var(--sui-color-gray-200); @apply bg-white border rounded-lg shadow-sm p-2 w-64;
 
   // Container
   &-container {
@@ -12753,14 +12772,14 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-content {
-      @apply flex items-center justify-between px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
+      color: var(--sui-color-gray-700); @apply flex items-center justify-between px-3 py-2 text-sm hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
 
       &:hover {
-        @apply bg-gray-50 text-gray-900;
+        background-color: var(--sui-color-gray-50); color: var(--sui-color-gray-900);
       }
 
       &-expanded {
-        @apply bg-gray-50;
+        background-color: var(--sui-color-gray-50);
       }
     }
 
@@ -12785,26 +12804,26 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-separator {
-      @apply border-t border-gray-200 my-1;
+      border-color: var(--sui-color-gray-200); @apply border-t my-1;
     }
   }
 
   // Submenu
   &-submenu {
-    @apply ml-4 mt-1 space-y-1 border-l border-gray-200 pl-4;
+    border-color: var(--sui-color-gray-200); @apply ml-4 mt-1 space-y-1 border-l pl-4;
 
     &-item {
-      @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
+      color: var(--sui-color-gray-600); @apply flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
 
       &:hover {
-        @apply bg-gray-50 text-gray-900;
+        background-color: var(--sui-color-gray-50); color: var(--sui-color-gray-900);
       }
 
       &-disabled {
         @apply opacity-50 cursor-not-allowed pointer-events-none;
 
         &:hover {
-          @apply bg-transparent text-gray-600;
+          color: var(--sui-color-gray-600); @apply bg-transparent;
         }
       }
 
@@ -12823,7 +12842,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     @apply border-blue-200 bg-blue-50;
 
     .sui-panel-menu-item-content {
-      @apply text-blue-700 hover:text-blue-900 hover:bg-blue-100;
+      color: var(--sui-color-blue-700); @apply hover:text-blue-900 hover:bg-blue-100;
     }
 
     .sui-panel-menu-item-content-expanded {
@@ -12831,7 +12850,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     .sui-panel-menu-submenu-item {
-      @apply text-blue-600 hover:bg-blue-100 hover:text-blue-900;
+      color: var(--sui-color-blue-600); @apply hover:bg-blue-100 hover:text-blue-900;
     }
 
     .sui-panel-menu-submenu {
@@ -12840,26 +12859,26 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-dark {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     .sui-panel-menu-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
+      color: var(--sui-color-gray-200); @apply hover:text-white hover:bg-gray-700;
     }
 
     .sui-panel-menu-item-content-expanded {
-      @apply bg-gray-700;
+      background-color: var(--sui-color-gray-700);
     }
 
     .sui-panel-menu-submenu-item {
-      @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+      color: var(--sui-color-gray-300); @apply hover:bg-gray-700 hover:text-white;
     }
 
     .sui-panel-menu-submenu {
-      @apply border-gray-600;
+      border-color: var(--sui-color-gray-600);
     }
 
     .sui-panel-menu-item-separator {
-      @apply border-gray-600;
+      border-color: var(--sui-color-gray-600);
     }
   }
 
@@ -12912,33 +12931,33 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Dark mode support for Panel Menu */
 @media (prefers-color-scheme: dark) {
   .sui-panel-menu {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     &-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
+      color: var(--sui-color-gray-200); @apply hover:text-white hover:bg-gray-700;
     }
 
     &-item-content-expanded {
-      @apply bg-gray-700;
+      background-color: var(--sui-color-gray-700);
     }
 
     &-submenu-item {
-      @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+      color: var(--sui-color-gray-300); @apply hover:bg-gray-700 hover:text-white;
     }
 
     &-submenu {
-      @apply border-gray-600;
+      border-color: var(--sui-color-gray-600);
     }
 
     &-item-separator {
-      @apply border-gray-600;
+      border-color: var(--sui-color-gray-600);
     }
   }
 }
 
 /* Tiered Menu Component Styles */
 .sui-tiered-menu {
-  @apply flex items-center bg-white border-b border-gray-200 shadow-sm;
+  border-color: var(--sui-color-gray-200); @apply flex items-center bg-white border-b shadow-sm;
 
   // Container
   &-container {
@@ -12954,10 +12973,10 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-content {
-      @apply flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 cursor-pointer transition-colors duration-200;
+      color: var(--sui-color-gray-700); @apply flex items-center gap-2 px-4 py-3 text-sm font-medium hover:text-gray-900 hover:bg-gray-50 cursor-pointer transition-colors duration-200;
 
       &:hover {
-        @apply text-gray-900 bg-gray-50;
+        color: var(--sui-color-gray-900); background-color: var(--sui-color-gray-50);
       }
     }
 
@@ -12978,26 +12997,26 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-separator {
-      @apply border-t border-gray-200 my-1;
+      border-color: var(--sui-color-gray-200); @apply border-t my-1;
     }
   }
 
   // Submenu
   &-submenu {
-    @apply absolute top-full left-0 bg-white border border-gray-200 rounded-md shadow-lg z-50 min-w-48 py-1;
+    border-color: var(--sui-color-gray-200); @apply absolute top-full left-0 bg-white border rounded-md shadow-lg z-50 min-w-48 py-1;
 
     &-item {
-      @apply flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200;
+      color: var(--sui-color-gray-700); @apply flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200;
 
       &:hover {
-        @apply bg-gray-50 text-gray-900;
+        background-color: var(--sui-color-gray-50); color: var(--sui-color-gray-900);
       }
 
       &-disabled {
         @apply opacity-50 cursor-not-allowed pointer-events-none;
 
         &:hover {
-          @apply bg-transparent text-gray-700;
+          color: var(--sui-color-gray-700); @apply bg-transparent;
         }
       }
 
@@ -13013,7 +13032,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   // Popup mode
   &-popup {
-    @apply absolute bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-48 py-1;
+    border-color: var(--sui-color-gray-200); @apply absolute bg-white border rounded-lg shadow-lg z-50 min-w-48 py-1;
 
     .sui-tiered-menu-container {
       @apply flex-col items-stretch;
@@ -13031,30 +13050,30 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   // Variants
   &-primary {
-    @apply bg-blue-600 border-blue-700;
+    background-color: var(--sui-color-blue-600); border-color: var(--sui-color-blue-700);
 
     .sui-tiered-menu-item-content {
       @apply text-white hover:text-white hover:bg-blue-700;
     }
 
     .sui-tiered-menu-submenu-item {
-      @apply text-gray-700 hover:bg-gray-50 hover:text-gray-900;
+      color: var(--sui-color-gray-700); @apply hover:bg-gray-50 hover:text-gray-900;
     }
   }
 
   &-dark {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     .sui-tiered-menu-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
+      color: var(--sui-color-gray-200); @apply hover:text-white hover:bg-gray-700;
     }
 
     .sui-tiered-menu-submenu {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
     }
 
     .sui-tiered-menu-submenu-item {
-      @apply text-gray-200 hover:bg-gray-700 hover:text-white;
+      color: var(--sui-color-gray-200); @apply hover:bg-gray-700 hover:text-white;
     }
   }
 
@@ -13099,22 +13118,22 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Dark mode support for Tiered Menu */
 @media (prefers-color-scheme: dark) {
   .sui-tiered-menu {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     &-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
+      color: var(--sui-color-gray-200); @apply hover:text-white hover:bg-gray-700;
     }
 
     &-submenu {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
     }
 
     &-submenu-item {
-      @apply text-gray-200 hover:bg-gray-700 hover:text-white;
+      color: var(--sui-color-gray-200); @apply hover:bg-gray-700 hover:text-white;
     }
 
     &-item-separator {
-      @apply border-gray-700;
+      border-color: var(--sui-color-gray-700);
     }
   }
 }
@@ -13161,7 +13180,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     @apply border-2 border-red-200 bg-red-50;
 
     &-placeholder {
-      @apply flex flex-col items-center justify-center p-4 bg-gray-100 border border-gray-200 rounded-lg text-gray-500 min-h-32 transition-colors duration-200;
+      background-color: var(--sui-color-gray-100); border-color: var(--sui-color-gray-200); color: var(--sui-color-gray-500); @apply flex flex-col items-center justify-center p-4 border rounded-lg min-h-32 transition-colors duration-200;
 
       &:hover {
         @apply bg-red-100;
@@ -13179,7 +13198,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Placeholder state */
   &-placeholder {
-    @apply flex flex-col items-center justify-center p-4 bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg text-gray-400 min-h-32;
+    background-color: var(--sui-color-gray-50); border-color: var(--sui-color-gray-300); color: var(--sui-color-gray-400); @apply flex flex-col items-center justify-center p-4 border-2 border-dashed rounded-lg min-h-32;
 
     &-icon {
       @apply text-3xl mb-2;
@@ -13240,7 +13259,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &.border img {
-    @apply border-solid border-gray-200;
+    border-color: var(--sui-color-gray-200); @apply border-solid;
     border-width: 1px;
   }
 
@@ -13280,7 +13299,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Loading skeleton */
   &.loading img {
-    @apply animate-pulse bg-gray-200;
+    background-color: var(--sui-color-gray-200); @apply animate-pulse;
   }
 }
 
@@ -13312,12 +13331,12 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
       @apply border-red-800 bg-red-900/20;
 
       &-placeholder {
-        @apply bg-gray-800 border-gray-700 text-gray-400;
+        background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700); color: var(--sui-color-gray-400);
       }
     }
 
     &-placeholder {
-      @apply bg-gray-800 border-gray-700 text-gray-500;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700); color: var(--sui-color-gray-500);
     }
 
     &-preview {
@@ -13411,7 +13430,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Slider handle */
   &-handle {
-    @apply absolute bg-white rounded-full shadow-lg border-2 border-gray-300;
+    border-color: var(--sui-color-gray-300); @apply absolute bg-white rounded-full shadow-lg border-2;
     z-index: 11;
     transition: all 0.1s ease;
 
@@ -13468,12 +13487,12 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Loading state */
   &-loading {
-    @apply animate-pulse bg-gray-200;
+    background-color: var(--sui-color-gray-200); @apply animate-pulse;
   }
 
   /* Error state */
   &-error {
-    @apply flex items-center justify-center bg-red-50 border-2 border-red-200 rounded-lg text-red-600 p-8;
+    color: var(--sui-color-red-600); @apply flex items-center justify-center bg-red-50 border-2 border-red-200 rounded-lg p-8;
 
     &-icon {
       @apply text-2xl mr-2;
@@ -13541,11 +13560,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 @media (prefers-color-scheme: dark) {
   .sui-image-compare {
     &-slider {
-      @apply bg-gray-800;
+      background-color: var(--sui-color-gray-800);
     }
 
     &-handle {
-      @apply bg-gray-800 border-gray-600;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-600);
 
       &::before {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d1d5db'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
@@ -13604,7 +13623,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
   
   &-content {
-    @apply relative bg-white rounded-lg shadow-xl border border-gray-200 w-full max-w-lg mx-auto transform transition-all;
+    border-color: var(--sui-color-gray-200); @apply relative bg-white rounded-lg shadow-xl border w-full max-w-lg mx-auto transform transition-all;
     
     &--maximized {
       @apply max-w-none h-screen rounded-none;
@@ -13616,7 +13635,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
   
   &-header {
-    @apply flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-lg;
+    border-color: var(--sui-color-gray-200); background-color: var(--sui-color-gray-50); @apply flex items-center justify-between px-6 py-4 border-b rounded-t-lg;
     
     &--maximized {
       @apply rounded-t-none;
@@ -13624,7 +13643,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
   
   &-title {
-    @apply text-lg font-semibold text-gray-900;
+    color: var(--sui-color-gray-900); @apply text-lg font-semibold;
   }
   
   &-controls {
@@ -13632,7 +13651,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
   
   &-button {
-    @apply p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 transition-colors duration-200;
+    color: var(--sui-color-gray-400); @apply p-2 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 transition-colors duration-200;
     border-radius: 0.25rem;
   }
   
@@ -13644,7 +13663,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     @apply absolute bottom-0 right-0 w-4 h-4 cursor-se-resize opacity-0 hover:opacity-100 transition-opacity duration-200;
     
     &::after {
-      @apply w-full h-full bg-gray-300 hover:bg-gray-400;
+      background-color: var(--sui-color-gray-300); @apply w-full h-full hover:bg-gray-400;
       content: '';
     }
   }
@@ -13667,11 +13686,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
   
   &-header {
-    @apply px-6 py-4 border-b border-gray-200;
+    border-color: var(--sui-color-gray-200); @apply px-6 py-4 border-b;
   }
   
   &-title {
-    @apply text-lg font-medium text-gray-900;
+    color: var(--sui-color-gray-900); @apply text-lg font-medium;
   }
   
   &-body {
@@ -13679,22 +13698,22 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
   
   &-message {
-    @apply text-sm text-gray-600;
+    color: var(--sui-color-gray-600); @apply text-sm;
   }
   
   &-footer {
-    @apply px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end space-x-3;
+    background-color: var(--sui-color-gray-50); @apply px-6 py-4 rounded-b-lg flex justify-end space-x-3;
   }
   
   &-button {
     @apply px-4 py-2 text-sm font-medium transition-colors;
     
     &--cancel {
-      @apply text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+      color: var(--sui-color-gray-700); border-color: var(--sui-color-gray-300); @apply bg-white border rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
     }
     
     &--accept {
-      @apply text-white bg-primary-600 border border-transparent rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+      background-color: var(--sui-color-primary-600); @apply text-white border border-transparent rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
     }
   }
   
@@ -13799,7 +13818,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   @apply w-full;
 
   &-track {
-    @apply w-full bg-gray-200 rounded-full overflow-hidden;
+    background-color: var(--sui-color-gray-200); @apply w-full rounded-full overflow-hidden;
     height: 8px;
   }
 
@@ -13816,7 +13835,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-value {
-    @apply text-sm font-medium text-gray-700 mt-1;
+    color: var(--sui-color-gray-700); @apply text-sm font-medium mt-1;
   }
 
   /* Size variants */
@@ -13878,18 +13897,18 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Captcha Component Styles */
 .sui-captcha {
-  @apply bg-white border border-gray-200 rounded-lg shadow-sm p-4;
+  border-color: var(--sui-color-gray-200); @apply bg-white border rounded-lg shadow-sm p-4;
 
   &-header {
     @apply flex items-center justify-between mb-4;
   }
 
   &-title {
-    @apply text-lg font-semibold text-gray-900;
+    color: var(--sui-color-gray-900); @apply text-lg font-semibold;
   }
 
   &-refresh {
-    @apply p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500;
+    color: var(--sui-color-gray-400); @apply p-2 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500;
   }
 
   &-challenge {
@@ -13897,7 +13916,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-question {
-    @apply text-sm font-medium text-gray-700 mb-3;
+    color: var(--sui-color-gray-700); @apply text-sm font-medium mb-3;
   }
 
   &-input-container {
@@ -13905,7 +13924,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-input {
-    @apply flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
+    border-color: var(--sui-color-gray-300); @apply flex-1 px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
 
     &-error {
       @apply border-red-300 focus:ring-red-500 focus:border-red-500;
@@ -13917,23 +13936,23 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-verify {
-    @apply px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+    background-color: var(--sui-color-primary-600); @apply px-4 py-2 text-white text-sm font-medium rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   &-error-message {
-    @apply text-sm text-red-600 mt-2;
+    color: var(--sui-color-red-600); @apply text-sm mt-2;
   }
 
   &-success {
-    @apply text-sm text-green-600 mt-2 font-medium;
+    color: var(--sui-color-green-600); @apply text-sm mt-2 font-medium;
   }
 
   &-info {
-    @apply mt-4 pt-3 border-t border-gray-200;
+    border-color: var(--sui-color-gray-200); @apply mt-4 pt-3 border-t;
   }
 
   &-help {
-    @apply text-xs text-gray-500;
+    color: var(--sui-color-gray-500); @apply text-xs;
   }
 
   /* State variants */
@@ -13988,14 +14007,14 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Color variants */
   &--primary {
-    @apply border-primary-200 bg-primary-50;
+    border-color: var(--sui-color-primary-200); background-color: var(--sui-color-primary-50);
 
     .sui-captcha-title {
-      @apply text-primary-900;
+      color: var(--sui-color-primary-900);
     }
 
     .sui-captcha-question {
-      @apply text-primary-700;
+      color: var(--sui-color-primary-700);
     }
   }
 
@@ -14007,7 +14026,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     .sui-captcha-question {
-      @apply text-green-700;
+      color: var(--sui-color-green-700);
     }
   }
 
@@ -14019,7 +14038,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     .sui-captcha-question {
-      @apply text-yellow-700;
+      color: var(--sui-color-yellow-700);
     }
   }
 
@@ -14031,7 +14050,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     .sui-captcha-question {
-      @apply text-red-700;
+      color: var(--sui-color-red-700);
     }
   }
 }
@@ -14053,10 +14072,10 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-node {
-    @apply bg-white border border-gray-200 rounded-lg shadow-sm p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-primary-300;
+    border-color: var(--sui-color-gray-200); @apply bg-white border rounded-lg shadow-sm p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-primary-300;
 
     &-selected {
-      @apply border-primary-500 bg-primary-50 shadow-md;
+      border-color: var(--sui-color-primary-500); background-color: var(--sui-color-primary-50); @apply shadow-md;
     }
 
     &-content {
@@ -14065,15 +14084,15 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-avatar {
-    @apply w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center text-white font-semibold text-lg;
+    background-color: var(--sui-color-primary-500); @apply w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-lg;
   }
 
   &-title {
-    @apply text-lg font-semibold text-gray-900;
+    color: var(--sui-color-gray-900); @apply text-lg font-semibold;
   }
 
   &-data {
-    @apply text-sm text-gray-600 space-y-1;
+    color: var(--sui-color-gray-600); @apply text-sm space-y-1;
   }
 
   &-data-item {
@@ -14085,7 +14104,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-data-value {
-    @apply text-gray-500;
+    color: var(--sui-color-gray-500);
   }
 
   &-children {
@@ -14093,11 +14112,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-connector {
-    @apply w-px h-4 bg-gray-300 mb-4;
+    background-color: var(--sui-color-gray-300); @apply w-px h-4 mb-4;
   }
 
   &-connector-line {
-    @apply w-full h-px bg-gray-300;
+    background-color: var(--sui-color-gray-300); @apply w-full h-px;
   }
 
   &-children-container {
@@ -14109,7 +14128,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-child {
-    @apply bg-white border border-gray-200 rounded-lg shadow-sm p-3 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-primary-300;
+    border-color: var(--sui-color-gray-200); @apply bg-white border rounded-lg shadow-sm p-3 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-primary-300;
 
     &-content {
       @apply flex flex-col items-center text-center space-y-1;
@@ -14117,15 +14136,15 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-child-avatar {
-    @apply w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center text-white font-medium text-sm;
+    background-color: var(--sui-color-gray-500); @apply w-8 h-8 rounded-full flex items-center justify-center text-white font-medium text-sm;
   }
 
   &-child-title {
-    @apply text-sm font-medium text-gray-900;
+    color: var(--sui-color-gray-900); @apply text-sm font-medium;
   }
 
   &-child-data {
-    @apply text-xs text-gray-600 space-y-1;
+    color: var(--sui-color-gray-600); @apply text-xs space-y-1;
   }
 
   &-child-data-item {
@@ -14137,7 +14156,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-child-data-value {
-    @apply text-gray-500;
+    color: var(--sui-color-gray-500);
   }
 
   /* Orientation variants */
@@ -14221,15 +14240,15 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   /* Color variants */
   &--primary {
     .sui-org-chart-node {
-      @apply border-primary-200 hover:border-primary-400;
+      border-color: var(--sui-color-primary-200); @apply hover:border-primary-400;
 
       &.sui-org-chart-node-selected {
-        @apply border-primary-500 bg-primary-50;
+        border-color: var(--sui-color-primary-500); background-color: var(--sui-color-primary-50);
       }
     }
 
     .sui-org-chart-avatar {
-      @apply bg-primary-500;
+      background-color: var(--sui-color-primary-500);
     }
   }
 
@@ -14281,7 +14300,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   @apply relative inline-block;
 
   &-button {
-    @apply flex items-center justify-center w-12 h-12 text-white bg-primary-600 rounded-full shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 ease-in-out transform hover:scale-105;
+    background-color: var(--sui-color-primary-600); @apply flex items-center justify-center w-12 h-12 text-white rounded-full shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 ease-in-out transform hover:scale-105;
 
     &-disabled {
       @apply opacity-50 cursor-not-allowed hover:scale-100;
@@ -14289,7 +14308,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-item {
-    @apply flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 ease-in-out transform hover:scale-105;
+    background-color: var(--sui-color-gray-800); @apply flex items-center gap-2 px-3 py-2 text-sm font-medium text-white rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 ease-in-out transform hover:scale-105;
 
     &-disabled {
       @apply opacity-50 cursor-not-allowed hover:scale-100;
@@ -14345,17 +14364,17 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   /* Color variants */
   &--primary {
     .sui-speed-dial-button {
-      @apply bg-primary-600 hover:bg-primary-700;
+      background-color: var(--sui-color-primary-600); @apply hover:bg-primary-700;
     }
 
     .sui-speed-dial-item {
-      @apply bg-primary-800 hover:bg-primary-700;
+      background-color: var(--sui-color-primary-800); @apply hover:bg-primary-700;
     }
   }
 
   &--success {
     .sui-speed-dial-button {
-      @apply bg-green-600 hover:bg-green-700;
+      background-color: var(--sui-color-green-600); @apply hover:bg-green-700;
     }
 
     .sui-speed-dial-item {
@@ -14365,7 +14384,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   &--warning {
     .sui-speed-dial-button {
-      @apply bg-yellow-600 hover:bg-yellow-700;
+      background-color: var(--sui-color-yellow-600); @apply hover:bg-yellow-700;
     }
 
     .sui-speed-dial-item {
@@ -14375,7 +14394,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   &--error {
     .sui-speed-dial-button {
-      @apply bg-red-600 hover:bg-red-700;
+      background-color: var(--sui-color-red-600); @apply hover:bg-red-700;
     }
 
     .sui-speed-dial-item {
@@ -14598,7 +14617,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Focus trap indicators */
   &-enabled {
-    @apply ring-2 ring-primary-500 ring-opacity-50;
+    box-shadow: 0 0 0 1px var(--sui-color-primary-500); @apply ring-2 ring-opacity-50;
   }
 
   &-disabled {
@@ -14626,7 +14645,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Style variants */
   &--primary {
-    @apply ring-primary-500;
+    box-shadow: 0 0 0 1px var(--sui-color-primary-500);
   }
 
   &--success {
@@ -14655,11 +14674,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-menu {
-    @apply absolute z-50 w-56 mt-1 bg-white border border-gray-200 rounded-md shadow-lg focus:outline-none;
+    border-color: var(--sui-color-gray-200); @apply absolute z-50 w-56 mt-1 bg-white border rounded-md shadow-lg focus:outline-none;
   }
 
   &-item {
-    @apply flex items-center gap-2 px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition-colors duration-150 ease-in-out;
+    color: var(--sui-color-gray-700); @apply flex items-center gap-2 px-4 py-2 text-sm cursor-pointer hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition-colors duration-150 ease-in-out;
 
     &-disabled {
       @apply opacity-50 cursor-not-allowed hover:bg-transparent;
@@ -14667,7 +14686,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-separator {
-    @apply border-t border-gray-200 mt-1 pt-2;
+    border-color: var(--sui-color-gray-200); @apply border-t mt-1 pt-2;
   }
 
   &-disabled {
@@ -14677,51 +14696,51 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   /* Style variants */
   &-primary {
     .sui-split-button-main {
-      @apply bg-primary-600 text-white border-primary-600 hover:bg-primary-700 focus:ring-primary-500;
+      background-color: var(--sui-color-primary-600); border-color: var(--sui-color-primary-600); @apply text-white hover:bg-primary-700 focus:ring-primary-500;
     }
 
     .sui-split-button-dropdown {
-      @apply bg-primary-600 text-white border-primary-600 hover:bg-primary-700 focus:ring-primary-500;
+      background-color: var(--sui-color-primary-600); border-color: var(--sui-color-primary-600); @apply text-white hover:bg-primary-700 focus:ring-primary-500;
     }
   }
 
   &-secondary {
     .sui-split-button-main {
-      @apply bg-gray-600 text-white border-gray-600 hover:bg-gray-700 focus:ring-gray-500;
+      background-color: var(--sui-color-gray-600); border-color: var(--sui-color-gray-600); @apply text-white hover:bg-gray-700 focus:ring-gray-500;
     }
 
     .sui-split-button-dropdown {
-      @apply bg-gray-600 text-white border-gray-600 hover:bg-gray-700 focus:ring-gray-500;
+      background-color: var(--sui-color-gray-600); border-color: var(--sui-color-gray-600); @apply text-white hover:bg-gray-700 focus:ring-gray-500;
     }
   }
 
   &-success {
     .sui-split-button-main {
-      @apply bg-green-600 text-white border-green-600 hover:bg-green-700 focus:ring-green-500;
+      background-color: var(--sui-color-green-600); border-color: var(--sui-color-green-600); @apply text-white hover:bg-green-700 focus:ring-green-500;
     }
 
     .sui-split-button-dropdown {
-      @apply bg-green-600 text-white border-green-600 hover:bg-green-700 focus:ring-green-500;
+      background-color: var(--sui-color-green-600); border-color: var(--sui-color-green-600); @apply text-white hover:bg-green-700 focus:ring-green-500;
     }
   }
 
   &-info {
     .sui-split-button-main {
-      @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700 focus:ring-blue-500;
+      background-color: var(--sui-color-blue-600); border-color: var(--sui-color-blue-600); @apply text-white hover:bg-blue-700 focus:ring-blue-500;
     }
 
     .sui-split-button-dropdown {
-      @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700 focus:ring-blue-500;
+      background-color: var(--sui-color-blue-600); border-color: var(--sui-color-blue-600); @apply text-white hover:bg-blue-700 focus:ring-blue-500;
     }
   }
 
   &-warning {
     .sui-split-button-main {
-      @apply bg-yellow-600 text-white border-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500;
+      background-color: var(--sui-color-yellow-600); border-color: var(--sui-color-yellow-600); @apply text-white hover:bg-yellow-700 focus:ring-yellow-500;
     }
 
     .sui-split-button-dropdown {
-      @apply bg-yellow-600 text-white border-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500;
+      background-color: var(--sui-color-yellow-600); border-color: var(--sui-color-yellow-600); @apply text-white hover:bg-yellow-700 focus:ring-yellow-500;
     }
   }
 
@@ -14737,11 +14756,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   &-danger {
     .sui-split-button-main {
-      @apply bg-red-600 text-white border-red-600 hover:bg-red-700 focus:ring-red-500;
+      background-color: var(--sui-color-red-600); border-color: var(--sui-color-red-600); @apply text-white hover:bg-red-700 focus:ring-red-500;
     }
 
     .sui-split-button-dropdown {
-      @apply bg-red-600 text-white border-red-600 hover:bg-red-700 focus:ring-red-500;
+      background-color: var(--sui-color-red-600); border-color: var(--sui-color-red-600); @apply text-white hover:bg-red-700 focus:ring-red-500;
     }
   }
 
@@ -14790,7 +14809,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Scroll Panel Component Styles */
 .sui-scroll-panel {
-  @apply w-full border border-gray-200 rounded-lg shadow-sm bg-white overflow-auto;
+  border-color: var(--sui-color-gray-200); @apply w-full border rounded-lg shadow-sm bg-white overflow-auto;
 
   &-content {
     @apply p-4;
@@ -14815,7 +14834,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Color variants */
   &--primary {
-    @apply border-primary-200;
+    border-color: var(--sui-color-primary-200);
   }
 
   &--success {
@@ -14836,15 +14855,15 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &::-webkit-scrollbar-track {
-    @apply bg-gray-100 rounded;
+    background-color: var(--sui-color-gray-100); @apply rounded;
   }
 
   &::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 rounded hover:bg-gray-400;
+    background-color: var(--sui-color-gray-300); @apply rounded hover:bg-gray-400;
   }
 
   &::-webkit-scrollbar-corner {
-    @apply bg-gray-100;
+    background-color: var(--sui-color-gray-100);
   }
 }
 
@@ -14853,7 +14872,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   @apply relative inline-block;
 
   &-display {
-    @apply cursor-pointer p-2 border border-dashed border-gray-300 rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-200;
+    border-color: var(--sui-color-gray-300); @apply cursor-pointer p-2 border border-dashed rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-200;
 
     &:hover {
       @apply shadow-sm;
@@ -14861,16 +14880,16 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-content {
-    @apply p-4 border border-gray-200 rounded-lg bg-white shadow-sm;
+    border-color: var(--sui-color-gray-200); @apply p-4 border rounded-lg bg-white shadow-sm;
   }
 
   &-close {
-    @apply absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500;
+    color: var(--sui-color-gray-400); @apply absolute top-2 right-2 w-6 h-6 flex items-center justify-center hover:text-gray-600 hover:bg-gray-100 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500;
   }
 
   &-active {
     .sui-inplace-display {
-      @apply border-primary-300 bg-primary-50;
+      border-color: var(--sui-color-primary-300); background-color: var(--sui-color-primary-50);
     }
   }
 
@@ -14906,11 +14925,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   /* Color variants */
   &--primary {
     .sui-inplace-display {
-      @apply border-primary-300 hover:border-primary-400 hover:bg-primary-50;
+      border-color: var(--sui-color-primary-300); @apply hover:border-primary-400 hover:bg-primary-50;
     }
 
     &.sui-inplace-active .sui-inplace-display {
-      @apply border-primary-500 bg-primary-100;
+      border-color: var(--sui-color-primary-500); background-color: var(--sui-color-primary-100);
     }
   }
 
@@ -14966,7 +14985,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Meter Group Component Styles */
 .sui-meter-group {
-  @apply flex rounded-lg overflow-hidden border border-gray-200;
+  border-color: var(--sui-color-gray-200); @apply flex rounded-lg overflow-hidden border;
 
   &-horizontal {
     @apply flex-row;
@@ -15035,10 +15054,10 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Color variants */
   &--primary {
-    @apply border-primary-200;
+    border-color: var(--sui-color-primary-200);
 
     .sui-meter-group-item {
-      @apply bg-primary-500;
+      background-color: var(--sui-color-primary-500);
     }
   }
 
@@ -15096,7 +15115,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Tooltip Component Styles */
 .sui-tooltip {
-  @apply absolute z-50 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg max-w-xs;
+  background-color: var(--sui-color-gray-900); @apply absolute z-50 px-3 py-2 text-sm text-white rounded-lg shadow-lg max-w-xs;
   animation: tooltipFadeIn 0.2s ease-out;
 
   &-top {
@@ -15130,31 +15149,31 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Color variants */
   &--primary {
-    @apply bg-primary-600 text-white;
+    background-color: var(--sui-color-primary-600); @apply text-white;
   }
 
   &--success {
-    @apply bg-green-600 text-white;
+    background-color: var(--sui-color-green-600); @apply text-white;
   }
 
   &--warning {
-    @apply bg-yellow-600 text-white;
+    background-color: var(--sui-color-yellow-600); @apply text-white;
   }
 
   &--error {
-    @apply bg-red-600 text-white;
+    background-color: var(--sui-color-red-600); @apply text-white;
   }
 
   &--info {
-    @apply bg-blue-600 text-white;
+    background-color: var(--sui-color-blue-600); @apply text-white;
   }
 
   &--light {
-    @apply bg-white text-gray-900 border border-gray-200;
+    color: var(--sui-color-gray-900); border-color: var(--sui-color-gray-200); @apply bg-white border;
   }
 
   &--dark {
-    @apply bg-gray-800 text-white;
+    background-color: var(--sui-color-gray-800); @apply text-white;
   }
 
   /* Arrow styles */
@@ -15197,15 +15216,15 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   @apply fixed inset-0 z-50 overflow-y-auto;
 
   &-header {
-    @apply flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-lg;
+    border-color: var(--sui-color-gray-200); background-color: var(--sui-color-gray-50); @apply flex items-center justify-between px-6 py-4 border-b rounded-t-lg;
   }
 
   &-title {
-    @apply text-lg font-semibold text-gray-900;
+    color: var(--sui-color-gray-900); @apply text-lg font-semibold;
   }
 
   &-close {
-    @apply p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded transition-colors duration-200;
+    color: var(--sui-color-gray-400); @apply p-2 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded transition-colors duration-200;
   }
 
   &-content {
@@ -15254,14 +15273,14 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Color variants */
   &--primary {
-    @apply border-primary-200;
+    border-color: var(--sui-color-primary-200);
 
     .sui-dynamic-dialog-header {
-      @apply bg-primary-50 border-primary-200;
+      background-color: var(--sui-color-primary-50); border-color: var(--sui-color-primary-200);
     }
 
     .sui-dynamic-dialog-title {
-      @apply text-primary-900;
+      color: var(--sui-color-primary-900);
     }
   }
 
@@ -15312,16 +15331,16 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-content {
-    @apply flex flex-col items-center space-y-4 p-6 bg-white rounded-lg shadow-lg border border-gray-200;
+    border-color: var(--sui-color-gray-200); @apply flex flex-col items-center space-y-4 p-6 bg-white rounded-lg shadow-lg border;
     animation: blockUiSlideIn 0.3s ease-out;
   }
 
   &-spinner {
-    @apply w-8 h-8 border-4 border-gray-200 border-t-primary-600 rounded-full animate-spin;
+    border-color: var(--sui-color-gray-200); @apply w-8 h-8 border-4 border-t-primary-600 rounded-full animate-spin;
   }
 
   &-message {
-    @apply text-sm font-medium text-gray-700 text-center;
+    color: var(--sui-color-gray-700); @apply text-sm font-medium text-center;
   }
 
   /* Size variants */
@@ -15357,19 +15376,19 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   /* Color variants */
   &--primary {
     .sui-block-ui-overlay {
-      @apply bg-primary-50 bg-opacity-75;
+      background-color: var(--sui-color-primary-50); @apply bg-opacity-75;
     }
 
     .sui-block-ui-content {
-      @apply bg-primary-50 border-primary-200;
+      background-color: var(--sui-color-primary-50); border-color: var(--sui-color-primary-200);
     }
 
     .sui-block-ui-spinner {
-      @apply border-primary-200 border-t-primary-600;
+      border-color: var(--sui-color-primary-200); @apply border-t-primary-600;
     }
 
     .sui-block-ui-message {
-      @apply text-primary-700;
+      color: var(--sui-color-primary-700);
     }
   }
 
@@ -15387,7 +15406,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     .sui-block-ui-message {
-      @apply text-green-700;
+      color: var(--sui-color-green-700);
     }
   }
 
@@ -15405,7 +15424,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     .sui-block-ui-message {
-      @apply text-yellow-700;
+      color: var(--sui-color-yellow-700);
     }
   }
 
@@ -15423,7 +15442,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     .sui-block-ui-message {
-      @apply text-red-700;
+      color: var(--sui-color-red-700);
     }
   }
 }
@@ -15507,10 +15526,10 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Color variants */
   &--primary {
-    @apply bg-primary-50 border-primary-200;
+    background-color: var(--sui-color-primary-50); border-color: var(--sui-color-primary-200);
 
     .sui-drawer-header {
-      @apply bg-primary-100 border-primary-200;
+      background-color: var(--sui-color-primary-100); border-color: var(--sui-color-primary-200);
     }
   }
 
@@ -15551,7 +15570,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-close {
-    @apply absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500;
+    color: var(--sui-color-gray-400); @apply absolute top-4 right-4 w-8 h-8 flex items-center justify-center hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500;
   }
 
   &-visible {
@@ -15601,7 +15620,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Popover Component Styles */
 .sui-popover {
-  @apply absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-4 min-w-64 max-w-sm;
+  border-color: var(--sui-color-gray-200); @apply absolute z-50 bg-white border rounded-lg shadow-lg p-4 min-w-64 max-w-sm;
   animation: popoverFadeIn 0.2s ease-out;
 
   &-top {
@@ -15651,7 +15670,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Color variants */
   &--primary {
-    @apply bg-primary-50 border-primary-200;
+    background-color: var(--sui-color-primary-50); border-color: var(--sui-color-primary-200);
   }
 
   &--success {
@@ -15701,33 +15720,33 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Color variants */
   &--primary {
-    @apply text-primary-600;
+    color: var(--sui-color-primary-600);
   }
 
   &--secondary {
-    @apply text-gray-600;
+    color: var(--sui-color-gray-600);
   }
 
   &--success {
-    @apply text-green-600;
+    color: var(--sui-color-green-600);
   }
 
   &--warning {
-    @apply text-yellow-600;
+    color: var(--sui-color-yellow-600);
   }
 
   &--error {
-    @apply text-red-600;
+    color: var(--sui-color-red-600);
   }
 
   &--info {
-    @apply text-blue-600;
+    color: var(--sui-color-blue-600);
   }
 }
 
 /* Skeleton Component Styles */
 .sui-skeleton {
-  @apply bg-gray-200 rounded;
+  background-color: var(--sui-color-gray-200); @apply rounded;
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
 
@@ -15802,15 +15821,15 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   @apply w-full;
 
   &-dropzone {
-    @apply border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer transition-all duration-200;
+    border-color: var(--sui-color-gray-300); @apply border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all duration-200;
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 
     &:hover {
-      @apply border-primary-400 bg-primary-50;
+      border-color: var(--sui-color-primary-400); background-color: var(--sui-color-primary-50);
     }
 
     &-active {
-      @apply border-primary-500 bg-primary-100 scale-105;
+      border-color: var(--sui-color-primary-500); background-color: var(--sui-color-primary-100); @apply scale-105;
       animation: fileUploadPulse 0.5s ease-in-out infinite alternate;
     }
 
@@ -15824,7 +15843,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-icon {
-    @apply text-4xl text-gray-400;
+    color: var(--sui-color-gray-400); @apply text-4xl;
   }
 
   &-text {
@@ -15832,11 +15851,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-title {
-    @apply text-lg font-medium text-gray-700;
+    color: var(--sui-color-gray-700); @apply text-lg font-medium;
   }
 
   &-subtitle {
-    @apply text-sm text-gray-500;
+    color: var(--sui-color-gray-500); @apply text-sm;
   }
 
   &-list {
@@ -15844,11 +15863,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-header {
-    @apply flex justify-between items-center p-4 bg-gray-50 rounded-lg;
+    background-color: var(--sui-color-gray-50); @apply flex justify-between items-center p-4 rounded-lg;
   }
 
   &-count {
-    @apply text-sm font-medium text-gray-700;
+    color: var(--sui-color-gray-700); @apply text-sm font-medium;
   }
 
   &-actions {
@@ -15856,11 +15875,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-upload-btn {
-    @apply px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed;
+    background-color: var(--sui-color-primary-600); @apply px-4 py-2 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   &-clear-btn {
-    @apply px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed;
+    background-color: var(--sui-color-gray-200); color: var(--sui-color-gray-700); @apply px-4 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   &-items {
@@ -15868,7 +15887,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-item {
-    @apply flex items-center p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-all duration-200;
+    border-color: var(--sui-color-gray-200); @apply flex items-center p-4 bg-white border rounded-lg hover:shadow-md transition-all duration-200;
 
     &-success {
       @apply border-green-200 bg-green-50;
@@ -15892,7 +15911,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-item-name {
-    @apply text-sm font-medium text-gray-900 truncate;
+    color: var(--sui-color-gray-900); @apply text-sm font-medium truncate;
   }
 
   &-item-status {
@@ -15904,11 +15923,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-item-size {
-    @apply text-xs text-gray-500;
+    color: var(--sui-color-gray-500); @apply text-xs;
   }
 
   &-item-error-text {
-    @apply text-xs text-red-600;
+    color: var(--sui-color-red-600); @apply text-xs;
   }
 
   &-progress {
@@ -15916,19 +15935,19 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-progress-bar {
-    @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
+    background-color: var(--sui-color-gray-200); @apply w-full rounded-full h-2 overflow-hidden;
   }
 
   &-progress-fill {
-    @apply h-full bg-primary-600 transition-all duration-300 ease-out;
+    background-color: var(--sui-color-primary-600); @apply h-full transition-all duration-300 ease-out;
   }
 
   &-progress-text {
-    @apply text-xs text-gray-500 mt-1;
+    color: var(--sui-color-gray-500); @apply text-xs mt-1;
   }
 
   &-item-remove {
-    @apply ml-4 p-1 text-gray-400 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 rounded;
+    color: var(--sui-color-gray-400); @apply ml-4 p-1 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 rounded;
   }
 }
 
@@ -15937,7 +15956,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   @apply relative inline-block;
 
   &-popup {
-    @apply absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-4 min-w-64;
+    border-color: var(--sui-color-gray-200); @apply absolute z-50 bg-white border rounded-lg shadow-lg p-4 min-w-64;
     animation: confirmPopupFadeIn 0.2s ease-out;
   }
 
@@ -15946,7 +15965,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-title {
-    @apply text-sm font-medium text-gray-900;
+    color: var(--sui-color-gray-900); @apply text-sm font-medium;
   }
 
   &-actions {
@@ -15957,16 +15976,16 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     @apply px-3 py-2 text-sm font-medium transition-colors;
 
     &--reject {
-      @apply text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+      color: var(--sui-color-gray-700); border-color: var(--sui-color-gray-300); @apply bg-white border rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
     }
 
     &--accept {
-      @apply text-white bg-primary-600 border border-transparent rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+      background-color: var(--sui-color-primary-600); @apply text-white border border-transparent rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
     }
   }
 
   &-arrow {
-    @apply absolute w-2 h-2 bg-white border border-gray-200 transform rotate-45;
+    border-color: var(--sui-color-gray-200); @apply absolute w-2 h-2 bg-white border transform rotate-45;
 
     &--top {
       @apply -bottom-1 left-1/2 transform -translate-x-1/2 border-t-0 border-l-0;
@@ -16590,179 +16609,179 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 @media (prefers-color-scheme: dark) {
   .sui-dialog-content,
   .sui-confirm-dialog-content {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
   }
 
   .sui-dialog-header,
   .sui-confirm-dialog-header {
-    @apply bg-gray-900 border-gray-700;
+    background-color: var(--sui-color-gray-900); border-color: var(--sui-color-gray-700);
   }
 
   .sui-dialog-title,
   .sui-confirm-dialog-title {
-    @apply text-gray-100;
+    color: var(--sui-color-gray-100);
   }
 
   .sui-confirm-dialog-message {
-    @apply text-gray-300;
+    color: var(--sui-color-gray-300);
   }
 
   .sui-confirm-dialog-footer {
-    @apply bg-gray-900;
+    background-color: var(--sui-color-gray-900);
   }
 
   .sui-confirm-dialog-button--cancel {
-    @apply text-gray-300 bg-gray-800 border-gray-600 hover:bg-gray-700;
+    color: var(--sui-color-gray-300); background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-600); @apply hover:bg-gray-700;
   }
 
   /* Toast dark mode */
   .sui-toast-message {
     &--success {
-      @apply bg-green-900 border-green-700 text-green-100;
+      border-color: var(--sui-color-green-700); @apply bg-green-900 text-green-100;
     }
 
     &--info {
-      @apply bg-blue-900 border-blue-700 text-blue-100;
+      border-color: var(--sui-color-blue-700); @apply bg-blue-900 text-blue-100;
     }
 
     &--warn {
-      @apply bg-yellow-900 border-yellow-700 text-yellow-100;
+      border-color: var(--sui-color-yellow-700); @apply bg-yellow-900 text-yellow-100;
     }
 
     &--error {
-      @apply bg-red-900 border-red-700 text-red-100;
+      border-color: var(--sui-color-red-700); @apply bg-red-900 text-red-100;
     }
   }
 
   /* Progress bar dark mode */
   .sui-progress-bar-track {
-    @apply bg-gray-700;
+    background-color: var(--sui-color-gray-700);
   }
 
   .sui-progress-bar-value {
-    @apply text-gray-300;
+    color: var(--sui-color-gray-300);
   }
 
   /* Confirm popup dark mode */
   .sui-confirm-popup-popup {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
   }
 
   .sui-confirm-popup-title {
-    @apply text-gray-100;
+    color: var(--sui-color-gray-100);
   }
 
   .sui-confirm-popup-button--reject {
-    @apply text-gray-300 bg-gray-800 border-gray-600 hover:bg-gray-700;
+    color: var(--sui-color-gray-300); background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-600); @apply hover:bg-gray-700;
   }
 
   .sui-confirm-popup-arrow {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
   }
 
   /* Message dark mode */
   .sui-message {
     &--success {
-      @apply bg-green-900 border-green-700 text-green-100;
+      border-color: var(--sui-color-green-700); @apply bg-green-900 text-green-100;
     }
 
     &--info {
-      @apply bg-blue-900 border-blue-700 text-blue-100;
+      border-color: var(--sui-color-blue-700); @apply bg-blue-900 text-blue-100;
     }
 
     &--warn {
-      @apply bg-yellow-900 border-yellow-700 text-yellow-100;
+      border-color: var(--sui-color-yellow-700); @apply bg-yellow-900 text-yellow-100;
     }
 
     &--error {
-      @apply bg-red-900 border-red-700 text-red-100;
+      border-color: var(--sui-color-red-700); @apply bg-red-900 text-red-100;
     }
   }
 
   /* File Upload Advanced dark mode */
   .sui-file-upload-advanced {
     &-dropzone {
-      @apply border-gray-600;
+      border-color: var(--sui-color-gray-600);
       background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
 
       &:hover {
-        @apply border-primary-400 bg-primary-900;
+        border-color: var(--sui-color-primary-400); background-color: var(--sui-color-primary-950);
       }
 
       &-active {
-        @apply border-primary-500 bg-primary-800;
+        border-color: var(--sui-color-primary-500); background-color: var(--sui-color-primary-800);
       }
     }
 
     &-title {
-      @apply text-gray-200;
+      color: var(--sui-color-gray-200);
     }
 
     &-subtitle {
-      @apply text-gray-400;
+      color: var(--sui-color-gray-400);
     }
 
     &-header {
-      @apply bg-gray-800;
+      background-color: var(--sui-color-gray-800);
     }
 
     &-count {
-      @apply text-gray-300;
+      color: var(--sui-color-gray-300);
     }
 
     &-item {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
       &-success {
-        @apply border-green-700 bg-green-900;
+        border-color: var(--sui-color-green-700); @apply bg-green-900;
       }
 
       &-error {
-        @apply border-red-700 bg-red-900;
+        border-color: var(--sui-color-red-700); @apply bg-red-900;
       }
     }
 
     &-item-name {
-      @apply text-gray-200;
+      color: var(--sui-color-gray-200);
     }
 
     &-item-size {
-      @apply text-gray-400;
+      color: var(--sui-color-gray-400);
     }
 
     &-progress-bar {
-      @apply bg-gray-700;
+      background-color: var(--sui-color-gray-700);
     }
   }
 
   /* Upload dark mode */
   .sui-upload {
-    @apply border-gray-600;
+    border-color: var(--sui-color-gray-600);
 
     &:hover {
-      @apply border-primary-400 bg-primary-900;
+      border-color: var(--sui-color-primary-400); background-color: var(--sui-color-primary-950);
     }
 
     &-content {
       .sui-upload-title {
-        @apply text-gray-200;
+        color: var(--sui-color-gray-200);
       }
 
       .sui-upload-accept,
       .sui-upload-size {
-        @apply text-gray-400;
+        color: var(--sui-color-gray-400);
       }
     }
 
     &-file {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
       .sui-upload-file-name {
-        @apply text-gray-200;
+        color: var(--sui-color-gray-200);
       }
 
       .sui-upload-file-size {
-        @apply text-gray-400;
+        color: var(--sui-color-gray-400);
       }
     }
   }
@@ -16770,11 +16789,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   /* Progress Spinner dark mode */
   .sui-progress-spinner {
     &--primary {
-      @apply text-primary-400;
+      color: var(--sui-color-primary-400);
     }
 
     &--secondary {
-      @apply text-gray-400;
+      color: var(--sui-color-gray-400);
     }
 
     &--success {
@@ -16796,7 +16815,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Skeleton dark mode */
   .sui-skeleton {
-    @apply bg-gray-700;
+    background-color: var(--sui-color-gray-700);
     background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
     background-size: 200% 100%;
 
@@ -16836,64 +16855,64 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     background: rgba(0, 0, 0, 0.7);
 
     &-content {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
     }
 
     &-close {
-      @apply text-gray-400 hover:text-gray-200 hover:bg-gray-700;
+      color: var(--sui-color-gray-400); @apply hover:text-gray-200 hover:bg-gray-700;
     }
   }
 
   /* Popover dark mode */
   .sui-popover {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     &--primary {
-      @apply bg-primary-900 border-primary-700;
+      background-color: var(--sui-color-primary-950); border-color: var(--sui-color-primary-700);
     }
 
     &--success {
-      @apply bg-green-900 border-green-700;
+      border-color: var(--sui-color-green-700); @apply bg-green-900;
     }
 
     &--warning {
-      @apply bg-yellow-900 border-yellow-700;
+      border-color: var(--sui-color-yellow-700); @apply bg-yellow-900;
     }
 
     &--error {
-      @apply bg-red-900 border-red-700;
+      border-color: var(--sui-color-red-700); @apply bg-red-900;
     }
 
     &--info {
-      @apply bg-blue-900 border-blue-700;
+      border-color: var(--sui-color-blue-700); @apply bg-blue-900;
     }
   }
 
   /* Block UI dark mode */
   .sui-block-ui {
     &-overlay {
-      @apply bg-gray-900 bg-opacity-75;
+      background-color: var(--sui-color-gray-900); @apply bg-opacity-75;
     }
 
     &-content {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
     }
 
     &-message {
-      @apply text-gray-200;
+      color: var(--sui-color-gray-200);
     }
 
     &--primary {
       .sui-block-ui-overlay {
-        @apply bg-primary-900 bg-opacity-75;
+        background-color: var(--sui-color-primary-950); @apply bg-opacity-75;
       }
 
       .sui-block-ui-content {
-        @apply bg-primary-900 border-primary-700;
+        background-color: var(--sui-color-primary-950); border-color: var(--sui-color-primary-700);
       }
 
       .sui-block-ui-message {
-        @apply text-primary-200;
+        color: var(--sui-color-primary-200);
       }
     }
 
@@ -16903,7 +16922,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
       }
 
       .sui-block-ui-content {
-        @apply bg-green-900 border-green-700;
+        border-color: var(--sui-color-green-700); @apply bg-green-900;
       }
 
       .sui-block-ui-message {
@@ -16917,7 +16936,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
       }
 
       .sui-block-ui-content {
-        @apply bg-yellow-900 border-yellow-700;
+        border-color: var(--sui-color-yellow-700); @apply bg-yellow-900;
       }
 
       .sui-block-ui-message {
@@ -16931,7 +16950,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
       }
 
       .sui-block-ui-content {
-        @apply bg-red-900 border-red-700;
+        border-color: var(--sui-color-red-700); @apply bg-red-900;
       }
 
       .sui-block-ui-message {
@@ -16942,55 +16961,55 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Drawer dark mode */
   .sui-drawer {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     &--primary {
-      @apply bg-primary-900 border-primary-700;
+      background-color: var(--sui-color-primary-950); border-color: var(--sui-color-primary-700);
 
       .sui-drawer-header {
-        @apply bg-primary-800 border-primary-700;
+        background-color: var(--sui-color-primary-800); border-color: var(--sui-color-primary-700);
       }
     }
 
     &--success {
-      @apply bg-green-900 border-green-700;
+      border-color: var(--sui-color-green-700); @apply bg-green-900;
 
       .sui-drawer-header {
-        @apply bg-green-800 border-green-700;
+        border-color: var(--sui-color-green-700); @apply bg-green-800;
       }
     }
 
     &--warning {
-      @apply bg-yellow-900 border-yellow-700;
+      border-color: var(--sui-color-yellow-700); @apply bg-yellow-900;
 
       .sui-drawer-header {
-        @apply bg-yellow-800 border-yellow-700;
+        border-color: var(--sui-color-yellow-700); @apply bg-yellow-800;
       }
     }
 
     &--error {
-      @apply bg-red-900 border-red-700;
+      border-color: var(--sui-color-red-700); @apply bg-red-900;
 
       .sui-drawer-header {
-        @apply bg-red-800 border-red-700;
+        border-color: var(--sui-color-red-700); @apply bg-red-800;
       }
     }
   }
 
   /* Captcha dark mode */
   .sui-captcha {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     &-title {
-      @apply text-gray-100;
+      color: var(--sui-color-gray-100);
     }
 
     &-question {
-      @apply text-gray-300;
+      color: var(--sui-color-gray-300);
     }
 
     &-input {
-      @apply bg-gray-700 border-gray-600 text-gray-100;
+      background-color: var(--sui-color-gray-700); border-color: var(--sui-color-gray-600); color: var(--sui-color-gray-100);
 
       &-error {
         @apply border-red-400;
@@ -17002,7 +17021,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-verify {
-      @apply bg-primary-600 hover:bg-primary-700;
+      background-color: var(--sui-color-primary-600); @apply hover:bg-primary-700;
     }
 
     &-error-message {
@@ -17014,31 +17033,31 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &-help {
-      @apply text-gray-400;
+      color: var(--sui-color-gray-400);
     }
 
     &-verified {
-      @apply border-green-700 bg-green-900;
+      border-color: var(--sui-color-green-700); @apply bg-green-900;
     }
 
     &-error {
-      @apply border-red-700 bg-red-900;
+      border-color: var(--sui-color-red-700); @apply bg-red-900;
     }
 
     &--primary {
-      @apply border-primary-700 bg-primary-900;
+      border-color: var(--sui-color-primary-700); background-color: var(--sui-color-primary-950);
 
       .sui-captcha-title {
-        @apply text-primary-100;
+        color: var(--sui-color-primary-100);
       }
 
       .sui-captcha-question {
-        @apply text-primary-300;
+        color: var(--sui-color-primary-300);
       }
     }
 
     &--success {
-      @apply border-green-700 bg-green-900;
+      border-color: var(--sui-color-green-700); @apply bg-green-900;
 
       .sui-captcha-title {
         @apply text-green-100;
@@ -17050,7 +17069,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &--warning {
-      @apply border-yellow-700 bg-yellow-900;
+      border-color: var(--sui-color-yellow-700); @apply bg-yellow-900;
 
       .sui-captcha-title {
         @apply text-yellow-100;
@@ -17062,7 +17081,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &--error {
-      @apply border-red-700 bg-red-900;
+      border-color: var(--sui-color-red-700); @apply bg-red-900;
 
       .sui-captcha-title {
         @apply text-red-100;
@@ -17076,37 +17095,37 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Dynamic Dialog dark mode */
   .sui-dynamic-dialog {
-    @apply bg-gray-800 border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
 
     &-header {
-      @apply bg-gray-700 border-gray-600;
+      background-color: var(--sui-color-gray-700); border-color: var(--sui-color-gray-600);
     }
 
     &-title {
-      @apply text-gray-100;
+      color: var(--sui-color-gray-100);
     }
 
     &-close {
-      @apply text-gray-400 hover:text-gray-200 hover:bg-gray-600;
+      color: var(--sui-color-gray-400); @apply hover:text-gray-200 hover:bg-gray-600;
     }
 
     &--primary {
-      @apply border-primary-700;
+      border-color: var(--sui-color-primary-700);
 
       .sui-dynamic-dialog-header {
-        @apply bg-primary-900 border-primary-700;
+        background-color: var(--sui-color-primary-950); border-color: var(--sui-color-primary-700);
       }
 
       .sui-dynamic-dialog-title {
-        @apply text-primary-100;
+        color: var(--sui-color-primary-100);
       }
     }
 
     &--success {
-      @apply border-green-700;
+      border-color: var(--sui-color-green-700);
 
       .sui-dynamic-dialog-header {
-        @apply bg-green-900 border-green-700;
+        border-color: var(--sui-color-green-700); @apply bg-green-900;
       }
 
       .sui-dynamic-dialog-title {
@@ -17115,10 +17134,10 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &--warning {
-      @apply border-yellow-700;
+      border-color: var(--sui-color-yellow-700);
 
       .sui-dynamic-dialog-header {
-        @apply bg-yellow-900 border-yellow-700;
+        border-color: var(--sui-color-yellow-700); @apply bg-yellow-900;
       }
 
       .sui-dynamic-dialog-title {
@@ -17127,10 +17146,10 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     &--error {
-      @apply border-red-700;
+      border-color: var(--sui-color-red-700);
 
       .sui-dynamic-dialog-header {
-        @apply bg-red-900 border-red-700;
+        border-color: var(--sui-color-red-700); @apply bg-red-900;
       }
 
       .sui-dynamic-dialog-title {
@@ -17141,78 +17160,78 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Tooltip dark mode */
   .sui-tooltip {
-    @apply bg-gray-800 text-gray-100;
+    background-color: var(--sui-color-gray-800); color: var(--sui-color-gray-100);
 
     &--primary {
-      @apply bg-primary-700 text-white;
+      background-color: var(--sui-color-primary-700); @apply text-white;
     }
 
     &--success {
-      @apply bg-green-700 text-white;
+      background-color: var(--sui-color-green-700); @apply text-white;
     }
 
     &--warning {
-      @apply bg-yellow-700 text-white;
+      background-color: var(--sui-color-yellow-700); @apply text-white;
     }
 
     &--error {
-      @apply bg-red-700 text-white;
+      background-color: var(--sui-color-red-700); @apply text-white;
     }
 
     &--info {
-      @apply bg-blue-700 text-white;
+      background-color: var(--sui-color-blue-700); @apply text-white;
     }
 
     &--light {
-      @apply bg-gray-100 text-gray-900 border-gray-300;
+      background-color: var(--sui-color-gray-100); color: var(--sui-color-gray-900); border-color: var(--sui-color-gray-300);
     }
 
     &--dark {
-      @apply bg-gray-900 text-white;
+      background-color: var(--sui-color-gray-900); @apply text-white;
     }
   }
 
   /* Meter Group dark mode */
   .sui-meter-group {
-    @apply border-gray-700;
+    border-color: var(--sui-color-gray-700);
 
     &--primary {
-      @apply border-primary-700;
+      border-color: var(--sui-color-primary-700);
 
       .sui-meter-group-item {
-        @apply bg-primary-600;
+        background-color: var(--sui-color-primary-600);
       }
     }
 
     &--success {
-      @apply border-green-700;
+      border-color: var(--sui-color-green-700);
 
       .sui-meter-group-item {
-        @apply bg-green-600;
+        background-color: var(--sui-color-green-600);
       }
     }
 
     &--warning {
-      @apply border-yellow-700;
+      border-color: var(--sui-color-yellow-700);
 
       .sui-meter-group-item {
-        @apply bg-yellow-600;
+        background-color: var(--sui-color-yellow-600);
       }
     }
 
     &--error {
-      @apply border-red-700;
+      border-color: var(--sui-color-red-700);
 
       .sui-meter-group-item {
-        @apply bg-red-600;
+        background-color: var(--sui-color-red-600);
       }
     }
 
     &--info {
-      @apply border-blue-700;
+      border-color: var(--sui-color-blue-700);
 
       .sui-meter-group-item {
-        @apply bg-blue-600;
+        background-color: var(--sui-color-blue-600);
       }
     }
   }
@@ -17220,62 +17239,62 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   /* Org Chart dark mode */
   .sui-org-chart {
     &-node {
-      @apply border-gray-700 bg-gray-800 hover:border-primary-600;
+      border-color: var(--sui-color-gray-700); background-color: var(--sui-color-gray-800); @apply hover:border-primary-600;
 
       &.sui-org-chart-node-selected {
-        @apply border-primary-400 bg-primary-900;
+        border-color: var(--sui-color-primary-400); background-color: var(--sui-color-primary-950);
       }
     }
 
     &-title {
-      @apply text-gray-100;
+      color: var(--sui-color-gray-100);
     }
 
     &-data {
-      @apply text-gray-400;
+      color: var(--sui-color-gray-400);
     }
 
     &-data-value {
-      @apply text-gray-500;
+      color: var(--sui-color-gray-500);
     }
 
     &-child {
-      @apply border-gray-700 bg-gray-800 hover:border-primary-600;
+      border-color: var(--sui-color-gray-700); background-color: var(--sui-color-gray-800); @apply hover:border-primary-600;
     }
 
     &-child-title {
-      @apply text-gray-100;
+      color: var(--sui-color-gray-100);
     }
 
     &-child-data {
-      @apply text-gray-400;
+      color: var(--sui-color-gray-400);
     }
 
     &-child-data-value {
-      @apply text-gray-500;
+      color: var(--sui-color-gray-500);
     }
 
     &-connector {
-      @apply bg-gray-600;
+      background-color: var(--sui-color-gray-600);
     }
 
     &-connector-line {
-      @apply bg-gray-600;
+      background-color: var(--sui-color-gray-600);
     }
 
     &--primary {
       .sui-org-chart-node {
-        @apply border-primary-600 hover:border-primary-500;
+        border-color: var(--sui-color-primary-600); @apply hover:border-primary-500;
 
         &.sui-org-chart-node-selected {
-          @apply border-primary-400 bg-primary-800;
+          border-color: var(--sui-color-primary-400); background-color: var(--sui-color-primary-800);
         }
       }
     }
 
     &--success {
       .sui-org-chart-node {
-        @apply border-green-600 hover:border-green-500;
+        border-color: var(--sui-color-green-600); @apply hover:border-green-500;
 
         &.sui-org-chart-node-selected {
           @apply border-green-400 bg-green-800;
@@ -17285,7 +17304,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
     &--warning {
       .sui-org-chart-node {
-        @apply border-yellow-600 hover:border-yellow-500;
+        border-color: var(--sui-color-yellow-600); @apply hover:border-yellow-500;
 
         &.sui-org-chart-node-selected {
           @apply border-yellow-400 bg-yellow-800;
@@ -17295,7 +17314,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
     &--error {
       .sui-org-chart-node {
-        @apply border-red-600 hover:border-red-500;
+        border-color: var(--sui-color-red-600); @apply hover:border-red-500;
 
         &.sui-org-chart-node-selected {
           @apply border-red-400 bg-red-800;
@@ -17306,34 +17325,34 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Scroll Panel dark mode */
   .sui-scroll-panel {
-    @apply border-gray-700 bg-gray-800;
+    border-color: var(--sui-color-gray-700); background-color: var(--sui-color-gray-800);
 
     &::-webkit-scrollbar-track {
-      @apply bg-gray-700;
+      background-color: var(--sui-color-gray-700);
     }
 
     &::-webkit-scrollbar-thumb {
-      @apply bg-gray-500 hover:bg-gray-400;
+      background-color: var(--sui-color-gray-500); @apply hover:bg-gray-400;
     }
 
     &::-webkit-scrollbar-corner {
-      @apply bg-gray-700;
+      background-color: var(--sui-color-gray-700);
     }
 
     &--primary {
-      @apply border-primary-600;
+      border-color: var(--sui-color-primary-600);
     }
 
     &--success {
-      @apply border-green-600;
+      border-color: var(--sui-color-green-600);
     }
 
     &--warning {
-      @apply border-yellow-600;
+      border-color: var(--sui-color-yellow-600);
     }
 
     &--error {
-      @apply border-red-600;
+      border-color: var(--sui-color-red-600);
     }
   }
 
@@ -17390,11 +17409,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Focus Trap dark mode */
 .sui-focus-trap {
   &-enabled {
-    @apply ring-primary-400;
+    box-shadow: 0 0 0 1px var(--sui-color-primary-400);
   }
 
   &--primary {
-    @apply ring-primary-400;
+    box-shadow: 0 0 0 1px var(--sui-color-primary-400);
   }
 
   &--success {
@@ -17437,13 +17456,13 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   /* Color variants */
   &--primary {
     .sui-ripple-effect {
-      @apply bg-primary-500;
+      background-color: var(--sui-color-primary-500);
     }
   }
 
   &--secondary {
     .sui-ripple-effect {
-      @apply bg-secondary-500;
+      background-color: var(--sui-color-secondary-500);
     }
   }
 
@@ -17487,7 +17506,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Scroll Top Component Styles */
 .sui-scroll-top {
-  @apply fixed bottom-6 right-6 z-50 w-12 h-12 bg-primary-600 text-white rounded-full shadow-lg hover:bg-primary-700 transition-all duration-300 cursor-pointer;
+  background-color: var(--sui-color-primary-600); @apply fixed bottom-6 right-6 z-50 w-12 h-12 text-white rounded-full shadow-lg hover:bg-primary-700 transition-all duration-300 cursor-pointer;
 
   /* Visibility states */
   &-visible {
@@ -17522,27 +17541,27 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Color variants */
   &--primary {
-    @apply bg-primary-600 hover:bg-primary-700;
+    background-color: var(--sui-color-primary-600); @apply hover:bg-primary-700;
   }
 
   &--secondary {
-    @apply bg-secondary-600 hover:bg-secondary-700;
+    background-color: var(--sui-color-secondary-600); @apply hover:bg-secondary-700;
   }
 
   &--success {
-    @apply bg-green-600 hover:bg-green-700;
+    background-color: var(--sui-color-green-600); @apply hover:bg-green-700;
   }
 
   &--warning {
-    @apply bg-yellow-600 hover:bg-yellow-700;
+    background-color: var(--sui-color-yellow-600); @apply hover:bg-yellow-700;
   }
 
   &--error {
-    @apply bg-red-600 hover:bg-red-700;
+    background-color: var(--sui-color-red-600); @apply hover:bg-red-700;
   }
 
   &--info {
-    @apply bg-blue-600 hover:bg-blue-700;
+    background-color: var(--sui-color-blue-600); @apply hover:bg-blue-700;
   }
 
   /* Position variants */
@@ -17583,33 +17602,33 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Focus styles */
   &:focus {
-    @apply outline-none ring-2 ring-primary-300 ring-opacity-50;
+    box-shadow: 0 0 0 1px var(--sui-color-primary-300); @apply outline-none ring-2 ring-opacity-50;
   }
 }
 
   /* Speed Dial dark mode */
   .sui-speed-dial {
     &-button {
-      @apply bg-primary-600 hover:bg-primary-700;
+      background-color: var(--sui-color-primary-600); @apply hover:bg-primary-700;
     }
 
     &-item {
-      @apply bg-gray-800 hover:bg-gray-700;
+      background-color: var(--sui-color-gray-800); @apply hover:bg-gray-700;
     }
 
     &--primary {
       .sui-speed-dial-button {
-        @apply bg-primary-600 hover:bg-primary-700;
+        background-color: var(--sui-color-primary-600); @apply hover:bg-primary-700;
       }
 
       .sui-speed-dial-item {
-        @apply bg-primary-800 hover:bg-primary-700;
+        background-color: var(--sui-color-primary-800); @apply hover:bg-primary-700;
       }
     }
 
     &--success {
       .sui-speed-dial-button {
-        @apply bg-green-600 hover:bg-green-700;
+        background-color: var(--sui-color-green-600); @apply hover:bg-green-700;
       }
 
       .sui-speed-dial-item {
@@ -17619,7 +17638,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
     &--warning {
       .sui-speed-dial-button {
-        @apply bg-yellow-600 hover:bg-yellow-700;
+        background-color: var(--sui-color-yellow-600); @apply hover:bg-yellow-700;
       }
 
       .sui-speed-dial-item {
@@ -17629,7 +17648,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
     &--error {
       .sui-speed-dial-button {
-        @apply bg-red-600 hover:bg-red-700;
+        background-color: var(--sui-color-red-600); @apply hover:bg-red-700;
       }
 
       .sui-speed-dial-item {
@@ -17641,64 +17660,64 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   /* Split Button dark mode */
   .sui-split-button {
     &-menu {
-      @apply bg-gray-800 border-gray-700;
+      background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700);
     }
 
     &-item {
-      @apply text-gray-300 hover:bg-gray-700 focus:bg-gray-700;
+      color: var(--sui-color-gray-300); @apply hover:bg-gray-700 focus:bg-gray-700;
     }
 
     &-separator {
-      @apply border-gray-600;
+      border-color: var(--sui-color-gray-600);
     }
 
     &-primary {
       .sui-split-button-main {
-        @apply bg-primary-600 hover:bg-primary-700;
+        background-color: var(--sui-color-primary-600); @apply hover:bg-primary-700;
       }
 
       .sui-split-button-dropdown {
-        @apply bg-primary-600 hover:bg-primary-700;
+        background-color: var(--sui-color-primary-600); @apply hover:bg-primary-700;
       }
     }
 
     &-secondary {
       .sui-split-button-main {
-        @apply bg-gray-600 hover:bg-gray-700;
+        background-color: var(--sui-color-gray-600); @apply hover:bg-gray-700;
       }
 
       .sui-split-button-dropdown {
-        @apply bg-gray-600 hover:bg-gray-700;
+        background-color: var(--sui-color-gray-600); @apply hover:bg-gray-700;
       }
     }
 
     &-success {
       .sui-split-button-main {
-        @apply bg-green-600 hover:bg-green-700;
+        background-color: var(--sui-color-green-600); @apply hover:bg-green-700;
       }
 
       .sui-split-button-dropdown {
-        @apply bg-green-600 hover:bg-green-700;
+        background-color: var(--sui-color-green-600); @apply hover:bg-green-700;
       }
     }
 
     &-info {
       .sui-split-button-main {
-        @apply bg-blue-600 hover:bg-blue-700;
+        background-color: var(--sui-color-blue-600); @apply hover:bg-blue-700;
       }
 
       .sui-split-button-dropdown {
-        @apply bg-blue-600 hover:bg-blue-700;
+        background-color: var(--sui-color-blue-600); @apply hover:bg-blue-700;
       }
     }
 
     &-warning {
       .sui-split-button-main {
-        @apply bg-yellow-600 hover:bg-yellow-700;
+        background-color: var(--sui-color-yellow-600); @apply hover:bg-yellow-700;
       }
 
       .sui-split-button-dropdown {
-        @apply bg-yellow-600 hover:bg-yellow-700;
+        background-color: var(--sui-color-yellow-600); @apply hover:bg-yellow-700;
       }
     }
 
@@ -17714,11 +17733,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
     &-danger {
       .sui-split-button-main {
-        @apply bg-red-600 hover:bg-red-700;
+        background-color: var(--sui-color-red-600); @apply hover:bg-red-700;
       }
 
       .sui-split-button-dropdown {
-        @apply bg-red-600 hover:bg-red-700;
+        background-color: var(--sui-color-red-600); @apply hover:bg-red-700;
       }
     }
   }
@@ -17726,34 +17745,34 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   /* Inplace dark mode */
   .sui-inplace {
     &-display {
-      @apply border-gray-600 hover:border-gray-500 hover:bg-gray-800;
+      border-color: var(--sui-color-gray-600); @apply hover:border-gray-500 hover:bg-gray-800;
     }
 
     &-content {
-      @apply border-gray-700 bg-gray-800;
+      border-color: var(--sui-color-gray-700); background-color: var(--sui-color-gray-800);
     }
 
     &-close {
-      @apply text-gray-500 hover:text-gray-300 hover:bg-gray-700;
+      color: var(--sui-color-gray-500); @apply hover:text-gray-300 hover:bg-gray-700;
     }
 
     &-active .sui-inplace-display {
-      @apply border-primary-500 bg-primary-900;
+      border-color: var(--sui-color-primary-500); background-color: var(--sui-color-primary-950);
     }
 
     &--primary {
       .sui-inplace-display {
-        @apply border-primary-600 hover:border-primary-500 hover:bg-primary-900;
+        border-color: var(--sui-color-primary-600); @apply hover:border-primary-500 hover:bg-primary-900;
       }
 
       &.sui-inplace-active .sui-inplace-display {
-        @apply border-primary-400 bg-primary-800;
+        border-color: var(--sui-color-primary-400); background-color: var(--sui-color-primary-800);
       }
     }
 
     &--success {
       .sui-inplace-display {
-        @apply border-green-600 hover:border-green-500 hover:bg-green-900;
+        border-color: var(--sui-color-green-600); @apply hover:border-green-500 hover:bg-green-900;
       }
 
       &.sui-inplace-active .sui-inplace-display {
@@ -17763,7 +17782,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
     &--warning {
       .sui-inplace-display {
-        @apply border-yellow-600 hover:border-yellow-500 hover:bg-yellow-900;
+        border-color: var(--sui-color-yellow-600); @apply hover:border-yellow-500 hover:bg-yellow-900;
       }
 
       &.sui-inplace-active .sui-inplace-display {
@@ -17773,7 +17792,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
     &--error {
       .sui-inplace-display {
-        @apply border-red-600 hover:border-red-500 hover:bg-red-900;
+        border-color: var(--sui-color-red-600); @apply hover:border-red-500 hover:bg-red-900;
       }
 
       &.sui-inplace-active .sui-inplace-display {
@@ -17811,13 +17830,13 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 .sui-ripple {
   &--primary {
     .sui-ripple-effect {
-      @apply bg-primary-400;
+      background-color: var(--sui-color-primary-400);
     }
   }
 
   &--secondary {
     .sui-ripple-effect {
-      @apply bg-secondary-400;
+      background-color: var(--sui-color-secondary-400);
     }
   }
 
@@ -17849,11 +17868,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Scroll Top dark mode */
 .sui-scroll-top {
   &--primary {
-    @apply bg-primary-500 hover:bg-primary-400;
+    background-color: var(--sui-color-primary-500); @apply hover:bg-primary-400;
   }
 
   &--secondary {
-    @apply bg-secondary-500 hover:bg-secondary-400;
+    background-color: var(--sui-color-secondary-500); @apply hover:bg-secondary-400;
   }
 
   &--success {
@@ -17873,7 +17892,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &:focus {
-    @apply ring-primary-400 ring-opacity-50;
+    box-shadow: 0 0 0 1px var(--sui-color-primary-400); @apply ring-opacity-50;
   }
 }
 
@@ -18004,7 +18023,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
   /* Color utilities */
   &--text-primary {
-    @apply text-primary-600;
+    color: var(--sui-color-primary-600);
   }
 
   &--text-secondary {
@@ -18012,35 +18031,35 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &--text-success {
-    @apply text-green-600;
+    color: var(--sui-color-green-600);
   }
 
   &--text-warning {
-    @apply text-yellow-600;
+    color: var(--sui-color-yellow-600);
   }
 
   &--text-error {
-    @apply text-red-600;
+    color: var(--sui-color-red-600);
   }
 
   &--bg-primary {
-    @apply bg-primary-600;
+    background-color: var(--sui-color-primary-600);
   }
 
   &--bg-secondary {
-    @apply bg-secondary-600;
+    background-color: var(--sui-color-secondary-600);
   }
 
   &--bg-success {
-    @apply bg-green-600;
+    background-color: var(--sui-color-green-600);
   }
 
   &--bg-warning {
-    @apply bg-yellow-600;
+    background-color: var(--sui-color-yellow-600);
   }
 
   &--bg-error {
-    @apply bg-red-600;
+    background-color: var(--sui-color-red-600);
   }
 
   /* Size utilities */
@@ -18063,11 +18082,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Terminal Component Styles */
 .sui-terminal {
-  @apply bg-gray-900 text-green-400 font-mono rounded-lg border border-gray-700 overflow-hidden;
+  background-color: var(--sui-color-gray-900); border-color: var(--sui-color-gray-700); @apply text-green-400 font-mono rounded-lg border overflow-hidden;
 
   /* Terminal header */
   &-header {
-    @apply bg-gray-800 px-4 py-2 border-b border-gray-700 flex items-center;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700); @apply px-4 py-2 border-b flex items-center;
   }
 
   &-title {
@@ -18098,12 +18117,12 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-output {
-    @apply text-gray-300 mt-1 ml-4 break-all;
+    color: var(--sui-color-gray-300); @apply mt-1 ml-4 break-all;
   }
 
   /* Terminal input */
   &-input-line {
-    @apply flex items-center px-4 py-2 bg-gray-800 border-t border-gray-700;
+    background-color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-700); @apply flex items-center px-4 py-2 border-t;
   }
 
   &-input {
@@ -18132,7 +18151,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     @apply bg-white text-black;
 
     .sui-terminal-header {
-      @apply bg-gray-100 border-gray-300;
+      background-color: var(--sui-color-gray-100); border-color: var(--sui-color-gray-300);
     }
 
     .sui-terminal-title {
@@ -18144,7 +18163,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     .sui-terminal-prompt {
-      @apply text-blue-600;
+      color: var(--sui-color-blue-600);
     }
 
     .sui-terminal-command-text {
@@ -18152,11 +18171,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     .sui-terminal-output {
-      @apply text-gray-600;
+      color: var(--sui-color-gray-600);
     }
 
     .sui-terminal-input-line {
-      @apply bg-gray-100 border-gray-300;
+      background-color: var(--sui-color-gray-100); border-color: var(--sui-color-gray-300);
     }
 
     .sui-terminal-input {
@@ -18168,7 +18187,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     @apply bg-blue-900 text-blue-400;
 
     .sui-terminal-header {
-      @apply bg-blue-800 border-blue-700;
+      border-color: var(--sui-color-blue-700); @apply bg-blue-800;
     }
 
     .sui-terminal-prompt {
@@ -18180,7 +18199,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
     }
 
     .sui-terminal-input-line {
-      @apply bg-blue-800 border-blue-700;
+      border-color: var(--sui-color-blue-700); @apply bg-blue-800;
     }
 
     .sui-terminal-input {
@@ -18246,7 +18265,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Style Class dark mode */
 .sui-style-class {
   &--text-primary {
-    @apply text-primary-400;
+    color: var(--sui-color-primary-400);
   }
 
   &--text-secondary {
@@ -18266,11 +18285,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &--bg-primary {
-    @apply bg-primary-500;
+    background-color: var(--sui-color-primary-500);
   }
 
   &--bg-secondary {
-    @apply bg-secondary-500;
+    background-color: var(--sui-color-secondary-500);
   }
 
   &--bg-success {
@@ -18329,7 +18348,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   }
 
   &-contrast {
-    @apply bg-gray-100 text-gray-800 border border-gray-200;
+    background-color: var(--sui-color-gray-100); color: var(--sui-color-gray-800); border-color: var(--sui-color-gray-200); @apply border;
   }
 
   /* With icon */

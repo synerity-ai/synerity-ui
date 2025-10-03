@@ -1,7 +1,7 @@
 {
   "name": "@synerity/ui",
-  "version": "1.1.66",
-  "description": "A comprehensive Angular UI component library with 70+ components including forms, data display, navigation, and utility components. All components feature enhanced SCSS styling with nested selectors and modern architecture.",
+  "version": "2.0.2",
+  "description": "A comprehensive Angular UI component library with 70+ components including forms, data display, navigation, and utility components. Features clean SCSS mixin + CSS variable theme system for easy customization.",
   "keywords": [
     "angular",
     "ui",
@@ -15,7 +15,12 @@
     "navigation",
     "modals",
     "buttons",
-    "inputs"
+    "inputs",
+    "css-variables",
+    "theme-inheritance",
+    "customization",
+    "scss-mixins",
+    "clean-architecture"
   ],
   "author": "Synerity AI",
   "license": "MIT",

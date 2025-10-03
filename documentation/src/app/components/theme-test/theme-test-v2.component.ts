@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Button } from '@synerity/ui';
 
 @Component({
-  selector: 'app-theme-test',
+  selector: 'app-theme-test-v2',
   standalone: true,
   imports: [CommonModule, Button],
-  templateUrl: './theme-test.component.html',
-  styleUrl: './theme-test.component.scss'
+  templateUrl: './theme-test-v2.component.html',
+  styleUrl: './theme-test-v2.component.scss'
 })
-export class ThemeTestComponent {
+export class ThemeTestV2Component {
   currentTheme: string = '';
 
   get document() {
@@ -17,8 +17,8 @@ export class ThemeTestComponent {
   }
 
   setTheme(themeClass: string) {
-    // Remove existing theme classes from body
-    document.body.classList.remove('theme-corporate', 'theme-seasonal', 'theme-winter');
+    // Remove all theme classes
+    document.body.classList.remove('theme-corporate', 'theme-seasonal', 'theme-winter', 'theme-dark');
     
     // Add new theme class if provided
     if (themeClass) {
@@ -33,8 +33,8 @@ export class ThemeTestComponent {
     
     // Check computed CSS variables
     const computedStyle = getComputedStyle(document.body);
-    console.log('Primary 600:', computedStyle.getPropertyValue('--sui-color-primary-600'));
-    console.log('Secondary 600:', computedStyle.getPropertyValue('--sui-color-secondary-600'));
+    console.log('Primary 600:', computedStyle.getPropertyValue('--sui-primary-600'));
+    console.log('Secondary 600:', computedStyle.getPropertyValue('--sui-secondary-600'));
   }
 
   getComputedColor(variable: string): string {

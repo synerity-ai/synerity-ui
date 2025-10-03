@@ -1,7 +1,83 @@
 <div class="components-page">
+
   <div class="page-header">
-    <h1>Components</h1>
-    <p>Browse and explore all available Synerity UI components</p>
+    <h1>Synerity UI Components</h1>
+    <p class="page-description">A comprehensive collection of 93+ Angular UI components built with modern design principles and theme inheritance system</p>
+    
+    <!-- Component Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">{{ getTotalComponents() }}</div>
+        <div class="stat-label">Components</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{{ categories().length }}</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Theme Variants</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">v2.0.1</div>
+        <div class="stat-label">Library Version</div>
+      </div>
+    </div>
+
+           <p class="theme-info">Use the theme switcher in the navbar to see components with different color schemes</p>
+  </div>
+
+  <!-- Component Showcase -->
+  <div class="component-showcase" *ngIf="!showResults() && !hasResults()">
+    <div class="showcase-header">
+      <h2>Featured Components</h2>
+      <p>Experience the power of our theme inheritance system with live component examples</p>
+    </div>
+    
+    <div class="showcase-grid">
+      <div class="showcase-card">
+        <h3>Buttons</h3>
+        <div class="showcase-demo">
+          <sui-button variant="primary" size="sm">Primary</sui-button>
+          <sui-button variant="secondary" size="sm">Secondary</sui-button>
+          <sui-button variant="outline" size="sm">Outline</sui-button>
+          <sui-button variant="ghost" size="sm">Ghost</sui-button>
+          <sui-button variant="danger" size="sm">Danger</sui-button>
+        </div>
+        <p class="showcase-description">Interactive buttons with multiple variants and sizes</p>
+      </div>
+
+      <div class="showcase-card">
+        <h3>Cards</h3>
+        <div class="showcase-demo">
+          <sui-card header="Card Title">
+            <p>Card content with theme-aware styling</p>
+          </sui-card>
+        </div>
+        <p class="showcase-description">Container components for structured content</p>
+      </div>
+
+      <div class="showcase-card">
+        <h3>Theme System</h3>
+        <div class="showcase-demo">
+          <div class="color-palette">
+            <div class="color-item">
+              <div class="color-swatch sui-primary-600"></div>
+              <span>Primary</span>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch sui-secondary-600"></div>
+              <span>Secondary</span>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch sui-gray-600"></div>
+              <span>Gray</span>
+            </div>
+          </div>
+        </div>
+        <p class="showcase-description">CSS custom properties for easy theme customization</p>
+      </div>
+    </div>
   </div>
 
   <!-- Search Filters -->
@@ -13,8 +89,13 @@
   <!-- Component Grid (when no search) -->
   <div class="component-grid" *ngIf="!showResults() && !hasResults()">
     <div class="grid-header">
-      <h2>Browse by Category</h2>
-      <p>Select a category to explore components</p>
+      <h2>Explore All Components</h2>
+      <p>Browse components by category or use the search functionality above</p>
+      <div class="total-components-info">
+        <span class="total-count">{{ getTotalComponents() }} components</span>
+        <span class="separator">•</span>
+        <span class="categories-count">{{ categories().length }} categories</span>
+      </div>
     </div>
     
     <div class="category-grid">
@@ -22,11 +103,11 @@
         class="category-card"
         *ngFor="let category of categories()"
         [routerLink]="['/components']"
-        [queryParams]="{ category: category.name }">
-        <div class="category-icon">{{ category.icon }}</div>
-        <h3 class="category-name">{{ category.name }}</h3>
+        [queryParams]="{ category: category }">
+        <div class="category-icon">{{ getCategoryIcon(category) }}</div>
+        <h3 class="category-name">{{ category }}</h3>
         <p class="category-count">
-          {{ getComponentsByCategory(category.name).length }} components
+          {{ getComponentsByCategory(category).length }} components
         </p>
       </div>
     </div>

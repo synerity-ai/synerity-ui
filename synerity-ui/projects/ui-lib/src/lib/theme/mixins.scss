@@ -1,0 +1,98 @@
+/* Synerity UI Theme Mixins */
+
+/* Primary Color Theme Tokens - Updated to Blue */
+@mixin sui-theme-primary-colors() {
+  --sui-primary-50: #eff6ff;
+  --sui-primary-100: #dbeafe;
+  --sui-primary-200: #bfdbfe;
+  --sui-primary-300: #93c5fd;
+  --sui-primary-400: #60a5fa;
+  --sui-primary-500: #3b82f6;
+  --sui-primary-600: #2563eb;
+  --sui-primary-700: #1d4ed8;
+  --sui-primary-800: #1e40af;
+  --sui-primary-900: #1e3a8a;
+  --sui-primary-950: #172554;
+}
+
+/* Secondary Color Theme Tokens - Updated to Gray */
+@mixin sui-theme-secondary-colors() {
+  --sui-secondary-50: #f9fafb;
+  --sui-secondary-100: #f3f4f6;
+  --sui-secondary-200: #e5e7eb;
+  --sui-secondary-300: #d1d5db;
+  --sui-secondary-400: #9ca3af;
+  --sui-secondary-500: #6b7280;
+  --sui-secondary-600: #4b5563;
+  --sui-secondary-700: #374151;
+  --sui-secondary-800: #1f2937;
+  --sui-secondary-900: #111827;
+  --sui-secondary-950: #030712;
+}
+
+/* Gray Color Theme Tokens - Updated for better contrast */
+@mixin sui-theme-gray-colors() {
+  --sui-gray-50: #f9fafb;
+  --sui-gray-100: #f3f4f6;
+  --sui-gray-200: #e5e7eb;
+  --sui-gray-300: #d1d5db;
+  --sui-gray-400: #9ca3af;
+  --sui-gray-500: #6b7280;
+  --sui-gray-600: #4b5563;
+  --sui-gray-700: #374151;
+  --sui-gray-800: #1f2937;
+  --sui-gray-900: #111827;
+  --sui-gray-950: #030712;
+}
+
+/* Semantic Color Theme Tokens - Updated for better enterprise look */
+@mixin sui-theme-semantic-colors() {
+  --sui-red-600: #dc2626;
+  --sui-red-700: #b91c1c;
+  --sui-green-600: #059669;
+  --sui-green-700: #047857;
+  --sui-yellow-600: #d97706;
+  --sui-yellow-700: #b45309;
+  --sui-blue-600: #0284c7;
+  --sui-blue-700: #0369a1;
+}
+
+/* Complete Theme Mixin */
+@mixin sui-theme() {
+  @include sui-theme-primary-colors();
+  @include sui-theme-secondary-colors();
+  @include sui-theme-gray-colors();
+  @include sui-theme-semantic-colors();
+}
+
+/* Component-specific theme mixins */
+@mixin sui-button-theme() {
+  @include sui-theme-primary-colors();
+  @include sui-theme-secondary-colors();
+  @include sui-theme-gray-colors();
+  @include sui-theme-semantic-colors();
+}
+
+@mixin sui-input-theme() {
+  @include sui-theme-gray-colors();
+  @include sui-theme-primary-colors();
+}
+
+/* Theme variant mixins for easy customization */
+@mixin sui-theme-variant-primary($primary-600, $primary-700: null) {
+  --sui-primary-600: #{$primary-600};
+  @if $primary-700 {
+    --sui-primary-700: #{$primary-700};
+  } @else {
+    --sui-primary-700: #{darken($primary-600, 10%)};
+  }
+}
+
+@mixin sui-theme-variant-secondary($secondary-600, $secondary-700: null) {
+  --sui-secondary-600: #{$secondary-600};
+  @if $secondary-700 {
+    --sui-secondary-700: #{$secondary-700};
+  } @else {
+    --sui-secondary-700: #{darken($secondary-600, 10%)};
+  }
+}

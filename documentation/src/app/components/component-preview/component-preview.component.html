@@ -2,11 +2,11 @@
   <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
     <h3 class="text-xl font-semibold text-gray-900">{{ componentName }} Examples</h3>
     <button 
-      class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+      class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
       (click)="toggleCode()"
-      [class.bg-primary-50]="showCode()"
-      [class.text-primary-700]="showCode()"
-      [class.border-primary-300]="showCode()">
+      [class.bg-blue-50]="showCode()"
+      [class.text-blue-700]="showCode()"
+      [class.border-blue-300]="showCode()">
       <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
       </svg>
@@ -20,8 +20,8 @@
       <button 
         *ngFor="let example of examples; let i = index"
         class="px-3 py-2 text-sm font-medium rounded-md transition-colors"
-        [class.bg-primary-100]="activeExample() === i"
-        [class.text-primary-700]="activeExample() === i"
+        [class.bg-blue-100]="activeExample() === i"
+        [class.text-blue-700]="activeExample() === i"
         [class.bg-gray-100]="activeExample() !== i"
         [class.text-gray-700]="activeExample() !== i"
         [class.hover:bg-gray-200]="activeExample() !== i"

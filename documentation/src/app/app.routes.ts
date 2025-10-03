@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'theme-test',
-    loadComponent: () => import('./components/theme-test/theme-test.component').then(m => m.ThemeTestComponent)
+    loadComponent: () => import('./components/theme-test/theme-test-v2.component').then(m => m.ThemeTestV2Component)
   },
   {
     path: '',

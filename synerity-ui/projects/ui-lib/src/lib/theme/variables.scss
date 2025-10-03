@@ -1,0 +1,43 @@
+/* Synerity UI Theme Variables */
+/* This file generates CSS custom properties from theme mixins */
+
+/* Import theme mixins */
+@import './mixins.scss';
+
+/* Generate CSS variables for runtime theme switching */
+:root {
+  @include sui-theme();
+}
+
+/* Theme variant classes that apps can use */
+.theme-corporate {
+  @include sui-theme-variant-primary(#1d4ed8, #1e3a8a);
+  @include sui-theme-variant-secondary(#047857, #065f46);
+}
+
+.theme-seasonal {
+  @include sui-theme-variant-primary(#047857, #065f46);
+  @include sui-theme-variant-secondary(#b91c1c, #991b1b);
+}
+
+.theme-winter {
+  @include sui-theme-variant-primary(#0284c7, #0369a1);
+  @include sui-theme-variant-secondary(#475569, #334155);
+}
+
+.theme-dark {
+  @include sui-theme-variant-primary(#8b5cf6, #7c3aed);
+  @include sui-theme-variant-secondary(#64748b, #475569);
+  
+  /* Dark theme specific overrides */
+  --sui-gray-50: #18181b;
+  --sui-gray-100: #27272a;
+  --sui-gray-200: #3f3f46;
+  --sui-gray-300: #52525b;
+  --sui-gray-400: #71717a;
+  --sui-gray-500: #a1a1aa;
+  --sui-gray-600: #d4d4d8;
+  --sui-gray-700: #e4e4e7;
+  --sui-gray-800: #f4f4f5;
+  --sui-gray-900: #fafafa;
+}

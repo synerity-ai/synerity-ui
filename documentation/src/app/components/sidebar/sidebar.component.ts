@@ -50,13 +50,22 @@ export class SidebarComponent {
 
   getCategoryIcon(category: string): string {
     const icons: { [key: string]: string } = {
-      'Actions': '⚡',
-      'Data Display': '📊',
+      'Foundation': '🧱',
+      'Form': '📝',
+      'Data': '📊',
+      'Layout': '📐',
       'Navigation': '🧭',
-      'Feedback': '💬',
-      'Data Input': '📝',
-      'Layout': '📐'
+      'Media': '🎨',
+      'File': '📁',
+      'Messages': '💬',
+      'Overlay': '🪟',
+      'Progress': '⏳',
+      'Utility': '🔧'
     };
     return icons[category] || '📦';
+  }
+
+  getTotalComponents(): number {
+    return this.components().length;
   }
 }

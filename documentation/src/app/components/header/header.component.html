@@ -1,113 +1,162 @@
-<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-  <div class="max-w-full px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
-      <!-- Logo and Brand -->
-      <div class="flex-shrink-0">
-        <a routerLink="/" class="flex items-center space-x-3 text-primary-600 hover:text-primary-700 transition-colors">
-          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="8" fill="currentColor"/>
-            <path d="M8 12h16v8H8z" fill="white"/>
-            <circle cx="16" cy="16" r="3" fill="currentColor"/>
-          </svg>
-          <span class="text-xl font-bold">Synerity UI</span>
-        </a>
-      </div>
+<header class="header">
+  <div class="header-container">
+    <!-- Logo and Brand -->
+    <div class="header-brand">
+      <a routerLink="/" class="brand-link">
+        <svg class="brand-logo w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="currentColor"/>
+          <path d="M8 12h16v8H8z" fill="white"/>
+          <circle cx="16" cy="16" r="3" fill="currentColor"/>
+        </svg>
+        <span class="brand-text">Synerity UI</span>
+      </a>
+    </div>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex space-x-8">
-        <a routerLink="/" routerLinkActive="active" 
-           class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-           [class.text-primary-600]="true">
-          Home
-        </a>
-        <a routerLink="/components" routerLinkActive="active" 
-           class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-          Components
-        </a>
-        <a routerLink="/getting-started" routerLinkActive="active" 
-           class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-          Getting Started
-        </a>
-        <a routerLink="/installation" routerLinkActive="active" 
-           class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-          Installation
-        </a>
-      </nav>
+    <!-- Desktop Navigation -->
+    <nav class="header-nav desktop-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a routerLink="/" routerLinkActive="active" class="nav-link">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/components" routerLinkActive="active" class="nav-link">
+            Components
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/getting-started" routerLinkActive="active" class="nav-link">
+            Getting Started
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/installation" routerLinkActive="active" class="nav-link">
+            Installation
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-      <!-- Search and Actions -->
-      <div class="flex items-center space-x-4">
-        <!-- Search -->
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <!-- Search -->
+      <div class="search-container">
         <div class="relative">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
           </div>
           <input 
             type="text" 
-            class="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+            class="search-input w-64 pl-10 pr-4 py-2"
             placeholder="Search components..."
             (input)="onSearchInput($event)"
             [value]="searchQuery()"
             autocomplete="off">
           
           @if (searchQuery() && hasResults()) {
-            <div class="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-64 overflow-y-auto">
-              @for (result of searchResults(); track result.component.id) {
-                <a [routerLink]="['/components', result.component.id]" 
-                   (click)="clearSearch()"
-                   class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600 transition-colors border-b border-gray-100 last:border-b-0">
-                  <div class="font-medium">{{ result.component.name }}</div>
-                  <div class="text-xs text-gray-500">{{ result.component.description }}</div>
-                  <div class="text-xs text-primary-600 mt-1">{{ result.component.category }}</div>
-                </a>
-              }
+            <div class="search-dropdown open">
+              <div class="search-results">
+                @for (result of searchResults(); track result.component.id) {
+                  <div class="search-result">
+                    <a [routerLink]="['/components', result.component.id]" 
+                       (click)="clearSearch()"
+                       class="result-link">
+                      <div class="result-name">{{ result.component.name }}</div>
+                      <div class="result-description">{{ result.component.description }}</div>
+                      <div class="result-category">{{ result.component.category }}</div>
+                    </a>
+                  </div>
+                }
+              </div>
             </div>
           } @else if (searchQuery() && !hasResults()) {
-            <div class="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4">
-              <div class="text-sm text-gray-500">No components found for "{{ searchQuery() }}"</div>
+            <div class="search-dropdown open">
+              <div class="search-empty">
+                <div class="empty-message">No components found for "{{ searchQuery() }}"</div>
+              </div>
             </div>
           }
         </div>
+      </div>
 
-
-        <!-- Mobile Menu Toggle -->
+      <!-- Theme Switcher -->
+      <div class="relative">
         <button 
-          class="md:hidden p-2 rounded-md text-gray-600 hover:text-primary-600 hover:bg-gray-100 transition-colors"
-          (click)="toggleMenu()"
-          [class.active]="isMenuOpen()"
-          aria-label="Toggle mobile menu">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          class="theme-switcher-btn"
+          (click)="toggleThemeDropdown()"
+          aria-label="Theme switcher">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
+          </svg>
+          <span>{{ getCurrentThemeName() }}</span>
+          <svg class="w-4 h-4 transition-transform" [class.rotate-180]="isThemeDropdownOpen()" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
-      </div>
-    </div>
 
-    <!-- Mobile Navigation -->
-    <div class="md:hidden" [class.hidden]="!isMenuOpen()">
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
-        <a routerLink="/" 
-           (click)="toggleMenu()"
-           class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors">
-          Home
-        </a>
-        <a routerLink="/components" 
-           (click)="toggleMenu()"
-           class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors">
-          Components
-        </a>
-        <a routerLink="/getting-started" 
-           (click)="toggleMenu()"
-           class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors">
-          Getting Started
-        </a>
-        <a routerLink="/installation" 
-           (click)="toggleMenu()"
-           class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors">
-          Installation
-        </a>
+        @if (isThemeDropdownOpen()) {
+          <div class="theme-dropdown">
+            <div class="theme-dropdown-content">
+              @for (theme of availableThemes; track theme.id) {
+                <button 
+                  class="theme-option"
+                  [class.theme-option-active]="currentTheme() === theme.id"
+                  (click)="setTheme(theme.id)">
+                  <div>
+                    <div class="theme-name">{{ theme.name }}</div>
+                    <div class="theme-description">{{ theme.description }}</div>
+                  </div>
+                  @if (currentTheme() === theme.id) {
+                    <svg class="theme-check" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                  }
+                </button>
+              }
+            </div>
+          </div>
+        }
       </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button 
+        class="mobile-menu-toggle"
+        (click)="toggleMenu()"
+        [class.active]="isMenuOpen()"
+        aria-label="Toggle mobile menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="header-nav mobile-nav" [class.nav-open]="isMenuOpen()">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a routerLink="/" routerLinkActive="active" class="nav-link" (click)="toggleMenu()">
+          Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/components" routerLinkActive="active" class="nav-link" (click)="toggleMenu()">
+          Components
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/getting-started" routerLinkActive="active" class="nav-link" (click)="toggleMenu()">
+          Getting Started
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/installation" routerLinkActive="active" class="nav-link" (click)="toggleMenu()">
+          Installation
+        </a>
+      </li>
+    </ul>
+  </nav>
 </header>

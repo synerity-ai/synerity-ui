@@ -5,11 +5,12 @@ import { SearchService } from '../../services/search.service';
 import { ComponentDataService } from '../../services/component-data.service';
 import { SearchFiltersComponent } from '../../components/search-filters/search-filters.component';
 import { SearchResultsComponent } from '../../components/search-results/search-results.component';
+import { Button, Card } from '@synerity/ui';
 
 @Component({
   selector: 'app-components',
   standalone: true,
-  imports: [CommonModule, RouterModule, SearchFiltersComponent, SearchResultsComponent],
+  imports: [CommonModule, RouterModule, SearchFiltersComponent, SearchResultsComponent, Button, Card],
   templateUrl: './components.component.html',
   styleUrl: './components.component.scss'
 })
@@ -47,6 +48,30 @@ export class ComponentsComponent {
   }
 
   getComponentsByCategory(categoryName: string) {
-    return this.components().filter((component: any) => component.category === categoryName);
+    const result = this.componentDataService.getComponentsByCategory(categoryName);
+    console.log(`Category: ${categoryName}, Components found: ${result.length}`);
+    return result;
   }
+
+  getTotalComponents(): number {
+    return this.components().length;
+  }
+
+  getCategoryIcon(category: string): string {
+    const icons: { [key: string]: string } = {
+      'Foundation': '🧱',
+      'Form': '📝',
+      'Data': '📊',
+      'Layout': '📐',
+      'Navigation': '🧭',
+      'Media': '🎨',
+      'File': '📁',
+      'Messages': '💬',
+      'Overlay': '🪟',
+      'Progress': '⏳',
+      'Utility': '🔧'
+    };
+    return icons[category] || '📦';
+  }
+
 }

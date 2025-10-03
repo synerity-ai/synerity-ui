@@ -1,0 +1,153 @@
+<div class="p-6 space-y-8">
+  <div>
+    <h2 class="text-3xl font-bold text-gray-900 mb-2">Clean Theme Inheritance System</h2>
+    <p class="text-gray-600">Using SCSS mixins + CSS variables for clean, maintainable theme inheritance.</p>
+  </div>
+
+  <!-- Theme Switcher -->
+  <div class="bg-white p-4 rounded-lg border border-gray-200">
+    <h3 class="text-lg font-semibold text-gray-800 mb-4">Theme Switcher</h3>
+    <div class="flex gap-2 flex-wrap">
+      <button 
+        (click)="setTheme('')" 
+        [class.bg-blue-200]="currentTheme === ''"
+        [class.bg-gray-100]="currentTheme !== ''"
+        class="px-4 py-2 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
+        Default
+      </button>
+      <button 
+        (click)="setTheme('theme-corporate')" 
+        [class.bg-blue-200]="currentTheme === 'theme-corporate'"
+        [class.bg-blue-100]="currentTheme !== 'theme-corporate'"
+        class="px-4 py-2 text-blue-700 rounded-md hover:bg-blue-200 transition-colors">
+        Corporate
+      </button>
+      <button 
+        (click)="setTheme('theme-seasonal')" 
+        [class.bg-green-200]="currentTheme === 'theme-seasonal'"
+        [class.bg-green-100]="currentTheme !== 'theme-seasonal'"
+        class="px-4 py-2 text-green-700 rounded-md hover:bg-green-200 transition-colors">
+        Seasonal
+      </button>
+      <button 
+        (click)="setTheme('theme-winter')" 
+        [class.bg-cyan-200]="currentTheme === 'theme-winter'"
+        [class.bg-cyan-100]="currentTheme !== 'theme-winter'"
+        class="px-4 py-2 text-cyan-700 rounded-md hover:bg-cyan-200 transition-colors">
+        Winter
+      </button>
+      <button 
+        (click)="setTheme('theme-dark')" 
+        [class.bg-gray-200]="currentTheme === 'theme-dark'"
+        [class.bg-gray-100]="currentTheme !== 'theme-dark'"
+        class="px-4 py-2 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
+        Dark
+      </button>
+    </div>
+    <p class="text-sm text-gray-500 mt-2">
+      Current theme: <strong>{{currentTheme || 'Default'}}</strong> - Click themes to see components inherit different color schemes.
+    </p>
+    
+    <!-- Debug Info -->
+    <div class="mt-4 p-3 bg-gray-100 rounded text-xs">
+      <strong>Debug Info:</strong><br>
+      Body classes: <code>{{document.body.className}}</code><br>
+      Primary 600: <span class="inline-block w-4 h-4 color-primary-600 rounded"></span> <code>{{getComputedColor('--sui-primary-600')}}</code><br>
+      Secondary 600: <span class="inline-block w-4 h-4 color-secondary-600 rounded"></span> <code>{{getComputedColor('--sui-secondary-600')}}</code>
+    </div>
+  </div>
+
+  <!-- Library Components Demo -->
+  <div class="space-y-6">
+    <h3 class="text-xl font-semibold text-gray-800">Synerity UI Components</h3>
+    
+    <div class="bg-white border border-gray-200 rounded-lg p-6">
+      <h4 class="text-lg font-medium mb-4">Button Variants</h4>
+      <div class="flex flex-wrap gap-4">
+        <sui-button variant="primary" size="md">Primary Button</sui-button>
+        <sui-button variant="secondary" size="md">Secondary Button</sui-button>
+        <sui-button variant="outline" size="md">Outline Button</sui-button>
+        <sui-button variant="ghost" size="md">Ghost Button</sui-button>
+        <sui-button variant="danger" size="md">Danger Button</sui-button>
+      </div>
+    </div>
+
+    <!-- Custom CSS Variables Demo -->
+    <div class="bg-white border border-gray-200 rounded-lg p-6">
+      <h4 class="text-lg font-medium mb-4">CSS Variables Demo</h4>
+      <div class="space-y-4">
+        <div class="flex gap-4">
+          <button class="test-button">Primary (CSS Variable)</button>
+          <button class="test-button test-button-secondary">Secondary (CSS Variable)</button>
+        </div>
+        
+        <div class="grid grid-cols-6 gap-2">
+          <div class="text-center">
+            <div class="color-swatch color-primary-500"></div>
+            <span class="text-xs text-gray-600 mt-1 block">Primary 500</span>
+          </div>
+          <div class="text-center">
+            <div class="color-swatch color-primary-600"></div>
+            <span class="text-xs text-gray-600 mt-1 block">Primary 600</span>
+          </div>
+          <div class="text-center">
+            <div class="color-swatch color-primary-700"></div>
+            <span class="text-xs text-gray-600 mt-1 block">Primary 700</span>
+          </div>
+          <div class="text-center">
+            <div class="color-swatch color-secondary-500"></div>
+            <span class="text-xs text-gray-600 mt-1 block">Secondary 500</span>
+          </div>
+          <div class="text-center">
+            <div class="color-swatch color-secondary-600"></div>
+            <span class="text-xs text-gray-600 mt-1 block">Secondary 600</span>
+          </div>
+          <div class="text-center">
+            <div class="color-swatch color-secondary-700"></div>
+            <span class="text-xs text-gray-600 mt-1 block">Secondary 700</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Implementation Details -->
+    <div class="bg-white border border-gray-200 rounded-lg p-6">
+      <h4 class="text-lg font-medium mb-4">How It Works</h4>
+      <div class="space-y-4">
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h5 class="font-medium text-gray-800 mb-2">SCSS Mixin System</h5>
+          <p class="text-sm text-gray-600 mb-3">
+            Components use theme mixins that generate CSS variables:
+          </p>
+          <pre class="text-xs bg-gray-900 text-green-400 p-3 rounded overflow-x-auto"><code>.sui-button-primary &#123;
+  @include sui-button-theme();
+  background-color: var(--sui-primary-600);
+&#125;</code></pre>
+        </div>
+
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h5 class="font-medium text-blue-800 mb-2">Runtime Theme Switching</h5>
+          <p class="text-sm text-blue-600 mb-3">
+            Apps can switch themes by applying CSS classes:
+          </p>
+          <pre class="text-xs bg-gray-900 text-green-400 p-3 rounded overflow-x-auto"><code>.theme-corporate &#123;
+  --sui-primary-600: #1d4ed8;
+  --sui-secondary-600: #047857;
+&#125;</code></pre>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg">
+          <h5 class="font-medium text-green-800 mb-2">Benefits</h5>
+          <ul class="text-sm text-green-700 space-y-1">
+            <li>✅ No CSS specificity conflicts</li>
+            <li>✅ Clean separation of concerns</li>
+            <li>✅ Easy compile-time customization</li>
+            <li>✅ Flexible runtime theme switching</li>
+            <li>✅ Type-safe theme tokens</li>
+            <li>✅ Maintainable and scalable</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
