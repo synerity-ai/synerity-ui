@@ -1028,67 +1028,67 @@ export class AutoCompleteComponent {
         {
           name: 'Basic',
           code: '<sui-menu \n  [model]="basicMenuItems"\n  variant="outlined"\n  (onItemClick)="onBasicItemClick($event)">\n</sui-menu>',
-          tsCode: `export class MenuComponent {
-  basicMenuItems = [
-    { label: 'Home', lucideIcon: 'home' },
-    { label: 'About', lucideIcon: 'info' },
-    { label: 'Contact', lucideIcon: 'mail' }
-  ];
+             tsCode: `export class MenuComponent {
+   basicMenuItems = [
+     { label: 'Home', icon: 'home' },
+     { label: 'About', icon: 'info' },
+     { label: 'Contact', icon: 'mail' }
+   ];
 
-  onBasicItemClick(item: any): void {
-    console.log('Menu item clicked:', item);
-  }
-}`,
+   onBasicItemClick(item: any): void {
+     console.log('Menu item clicked:', item);
+   }
+ }`,
           description: 'Basic navigation menu with simple items'
         },
         {
           name: 'With Icons',
           code: '<sui-menu \n  [model]="iconMenuItems"\n  variant="filled"\n  [glow]="true"\n  (onItemClick)="onIconItemClick($event)">\n</sui-menu>',
-          tsCode: `export class MenuComponent {
-  iconMenuItems = [
-    { label: 'Dashboard', lucideIcon: 'layout-dashboard', highlight: true },
-    { label: 'Analytics', lucideIcon: 'bar-chart-3', badge: '12' },
-    { label: 'Reports', lucideIcon: 'file-text', tooltip: 'Generate reports' },
-    { separator: true },
-    { label: 'Settings', lucideIcon: 'settings' },
-    { label: 'Profile', lucideIcon: 'user', badge: 'New' }
-  ];
+             tsCode: `export class MenuComponent {
+   iconMenuItems = [
+     { label: 'Dashboard', icon: 'layout-dashboard', highlight: true },
+     { label: 'Analytics', icon: 'bar-chart-3', badge: '12' },
+     { label: 'Reports', icon: 'file-text', tooltip: 'Generate reports' },
+     { separator: true },
+     { label: 'Settings', icon: 'settings' },
+     { label: 'Profile', icon: 'user', badge: 'New' }
+   ];
 
-  onIconItemClick(item: any): void {
-    console.log('Icon menu item clicked:', item);
-  }
-}`,
+   onIconItemClick(item: any): void {
+     console.log('Icon menu item clicked:', item);
+   }
+ }`,
           description: 'Menu with icons and separators'
         },
         {
           name: 'With Submenus',
           code: '<sui-menu \n  [model]="submenuItems"\n  (onItemClick)="onSubmenuItemClick($event)">\n</sui-menu>',
-          tsCode: `export class MenuComponent {
-  submenuItems = [
-    {
-      label: 'File',
-      lucideIcon: 'file',
-      items: [
-        { label: 'New', lucideIcon: 'plus' },
-        { label: 'Open', lucideIcon: 'folder-open' },
-        { label: 'Save', lucideIcon: 'save' }
-      ]
-    },
-    {
-      label: 'Edit',
-      lucideIcon: 'edit',
-      items: [
-        { label: 'Cut', lucideIcon: 'scissors' },
-        { label: 'Copy', lucideIcon: 'copy' },
-        { label: 'Paste', lucideIcon: 'clipboard' }
-      ]
-    }
-  ];
+             tsCode: `export class MenuComponent {
+   submenuItems = [
+     {
+       label: 'File',
+       icon: 'file',
+       items: [
+         { label: 'New', icon: 'plus' },
+         { label: 'Open', icon: 'folder-open' },
+         { label: 'Save', icon: 'save' }
+       ]
+     },
+     {
+       label: 'Edit',
+       icon: 'edit',
+       items: [
+         { label: 'Cut', icon: 'scissors' },
+         { label: 'Copy', icon: 'copy' },
+         { label: 'Paste', icon: 'clipboard' }
+       ]
+     }
+   ];
 
-  onSubmenuItemClick(item: any): void {
-    console.log('Submenu item clicked:', item);
-  }
-}`,
+   onSubmenuItemClick(item: any): void {
+     console.log('Submenu item clicked:', item);
+   }
+ }`,
           description: 'Menu with nested submenu items'
         },
         {
