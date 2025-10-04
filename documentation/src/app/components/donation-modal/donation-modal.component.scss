@@ -1,0 +1,124 @@
+// Donation Modal Styles
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-width: 28rem;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  text-align: center;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #9ca3af;
+  transition: color 0.2s;
+  
+  &:hover {
+    color: #6b7280;
+  }
+}
+
+.donation-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+}
+
+.upi-section {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.upi-id {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-family: monospace;
+  font-size: 0.875rem;
+  word-break: break-all;
+  color: white;
+}
+
+.upi-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.upi-button {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .modal-content {
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+  
+  .donation-option {
+    padding: 0.875rem;
+  }
+  
+  .upi-buttons {
+    flex-direction: column;
+  }
+  
+  .upi-button {
+    width: 100%;
+  }
+}

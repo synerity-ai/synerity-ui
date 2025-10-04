@@ -385,42 +385,245 @@ export class ComponentDataService {
       usage: 'Use inputs for text data entry in forms. The input component supports various types, validation states, and interactive features like password toggles and clear buttons.',
       tags: ['form', 'input', 'validation']
     },
-    // Form Components
-    {
-      id: 'auto-complete',
-      name: 'Auto Complete',
-      category: 'Form',
-      description: 'Input component with autocomplete functionality',
-      examples: [
-        {
-          name: 'Basic Auto Complete',
-          code: '<sui-auto-complete [suggestions]="suggestions"></sui-auto-complete>',
-          description: 'Basic autocomplete input'
-        }
-      ],
-      props: [
-        {
-          name: 'suggestions',
-          type: 'string[]',
-          default: '[]',
-          description: 'Array of suggestion strings',
-          required: true
-        }
-      ],
-      usage: 'Use autocomplete for inputs with predefined suggestions.',
-      tags: ['form', 'input', 'autocomplete']
-    },
     // Data Components
     {
       id: 'table',
       name: 'Table',
       category: 'Data',
-      description: 'Data table component for displaying tabular data',
+      description: 'Data table component for displaying tabular data with sorting, filtering, and selection capabilities',
       examples: [
         {
           name: 'Basic Table',
-          code: '<sui-table [value]="data"></sui-table>',
-          description: 'Basic data table'
+          code: '<sui-table \n  [value]="sampleData" \n  [columns]="columns"\n  [showFilters]="false">\n</sui-table>',
+          tsCode: `interface TableColumn {
+  field: string;
+  header: string;
+  sortable?: boolean;
+  filterable?: boolean;
+}
+
+interface TableData {
+  id: number;
+  name: string;
+  email: string;
+  age: number;
+  department: string;
+  status: string;
+}
+
+export class TableComponent {
+  sampleData: TableData[] = [
+    { id: 1, name: 'John Doe', email: 'john@example.com', age: 30, department: 'Engineering', status: 'Active' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 28, department: 'Marketing', status: 'Active' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', age: 35, department: 'Sales', status: 'Inactive' }
+  ];
+
+  columns: TableColumn[] = [
+    { field: 'id', header: 'ID', sortable: true },
+    { field: 'name', header: 'Name', sortable: true, filterable: true },
+    { field: 'email', header: 'Email', sortable: true, filterable: true },
+    { field: 'age', header: 'Age', sortable: true },
+    { field: 'department', header: 'Department', sortable: true, filterable: true },
+    { field: 'status', header: 'Status', sortable: true, filterable: true }
+  ];
+}`,
+          description: 'Basic data table with sample data'
+        },
+        {
+          name: 'Sortable Table',
+          code: '<sui-table \n  [value]="sampleData" \n  [columns]="columns"\n  [showFilters]="false"\n  (onSort)="onSort($event)">\n</sui-table>',
+          tsCode: `export class TableComponent {
+  sampleData = [
+    { id: 1, name: 'John Doe', email: 'john@example.com', age: 30, department: 'Engineering', status: 'Active' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 28, department: 'Marketing', status: 'Active' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', age: 35, department: 'Sales', status: 'Inactive' }
+  ];
+  
+  columns = [
+    { field: 'id', header: 'ID', sortable: true },
+    { field: 'name', header: 'Name', sortable: true, filterable: true },
+    { field: 'email', header: 'Email', sortable: true, filterable: true },
+    { field: 'age', header: 'Age', sortable: true },
+    { field: 'department', header: 'Department', sortable: true, filterable: true },
+    { field: 'status', header: 'Status', sortable: true, filterable: true }
+  ];
+
+  onSort(event: any): void {
+    console.log('Sort event:', event);
+    // Handle sorting logic
+  }
+}`,
+          description: 'Table with sortable columns'
+        },
+        {
+          name: 'Filterable Table',
+          code: '<sui-table \n  [value]="sampleData" \n  [columns]="columns"\n  [showFilters]="true"\n  (onFilter)="onFilter($event)">\n</sui-table>',
+          tsCode: `export class TableComponent {
+  sampleData = [
+    { id: 1, name: 'John Doe', email: 'john@example.com', age: 30, department: 'Engineering', status: 'Active' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 28, department: 'Marketing', status: 'Active' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', age: 35, department: 'Sales', status: 'Inactive' }
+  ];
+  
+  columns = [
+    { field: 'id', header: 'ID', sortable: true },
+    { field: 'name', header: 'Name', sortable: true, filterable: true },
+    { field: 'email', header: 'Email', sortable: true, filterable: true },
+    { field: 'age', header: 'Age', sortable: true },
+    { field: 'department', header: 'Department', sortable: true, filterable: true },
+    { field: 'status', header: 'Status', sortable: true, filterable: true }
+  ];
+
+  onFilter(event: any): void {
+    console.log('Filter event:', event);
+    // Handle filtering logic
+  }
+}`,
+          description: 'Table with column filtering capabilities'
+        },
+        {
+          name: 'Selectable Table (Single)',
+          code: '<sui-table \n  [value]="sampleData" \n  [columns]="columns"\n  [showFilters]="false"\n  selectionMode="single"\n  (onRowSelect)="onRowSelect($event)"\n  (onSelectionChange)="onSelectionChange($event)">\n</sui-table>',
+          tsCode: `export class TableComponent {
+  sampleData = [
+    { id: 1, name: 'John Doe', email: 'john@example.com', age: 30, department: 'Engineering', status: 'Active' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 28, department: 'Marketing', status: 'Active' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', age: 35, department: 'Sales', status: 'Inactive' }
+  ];
+  selectedRow: any = null;
+  
+  columns = [
+    { field: 'id', header: 'ID', sortable: true },
+    { field: 'name', header: 'Name', sortable: true, filterable: true },
+    { field: 'email', header: 'Email', sortable: true, filterable: true },
+    { field: 'age', header: 'Age', sortable: true },
+    { field: 'department', header: 'Department', sortable: true, filterable: true },
+    { field: 'status', header: 'Status', sortable: true, filterable: true }
+  ];
+
+  onRowSelect(event: any): void {
+    this.selectedRow = event.data;
+    console.log('Selected row:', event.data);
+  }
+
+  onSelectionChange(event: any): void {
+    console.log('Selection changed:', event);
+  }
+}`,
+          description: 'Table with single row selection'
+        },
+        {
+          name: 'Selectable Table (Multiple)',
+          code: '<sui-table \n  [value]="sampleData" \n  [columns]="columns"\n  [showFilters]="false"\n  selectionMode="multiple"\n  (onRowSelect)="onRowSelect($event)"\n  (onRowUnselect)="onRowUnselect($event)"\n  (onSelectionChange)="onSelectionChange($event)">\n</sui-table>',
+          tsCode: `export class TableComponent {
+  sampleData = [
+    { id: 1, name: 'John Doe', email: 'john@example.com', age: 30, department: 'Engineering', status: 'Active' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 28, department: 'Marketing', status: 'Active' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', age: 35, department: 'Sales', status: 'Inactive' }
+  ];
+  selectedRows: any[] = [];
+  
+  columns = [
+    { field: 'id', header: 'ID', sortable: true },
+    { field: 'name', header: 'Name', sortable: true, filterable: true },
+    { field: 'email', header: 'Email', sortable: true, filterable: true },
+    { field: 'age', header: 'Age', sortable: true },
+    { field: 'department', header: 'Department', sortable: true, filterable: true },
+    { field: 'status', header: 'Status', sortable: true, filterable: true }
+  ];
+
+  onRowSelect(event: any): void {
+    this.selectedRows.push(event.data);
+    console.log('Row selected:', event.data);
+  }
+
+  onRowUnselect(event: any): void {
+    this.selectedRows = this.selectedRows.filter(row => row.id !== event.data.id);
+    console.log('Row unselected:', event.data);
+  }
+
+  onSelectionChange(event: any): void {
+    this.selectedRows = event;
+    console.log('Selection changed:', event);
+  }
+}`,
+          description: 'Table with multiple row selection using checkboxes'
+        },
+        {
+          name: 'Table with Pagination',
+          code: '<sui-table \n  [value]="largeDataset" \n  [columns]="columns"\n  [showFilters]="false"\n  [paginator]="true"\n  [rows]="10"\n  [totalRecords]="largeDataset.length">\n</sui-table>',
+          tsCode: `export class TableComponent {
+  largeDataset = Array.from({ length: 50 }, (_, i) => ({
+    id: i + 1,
+    name: \`User \${i + 1}\`,
+    email: \`user\${i + 1}@example.com\`,
+    age: 25 + (i % 30),
+    department: ['Engineering', 'Marketing', 'Sales', 'HR'][i % 4],
+    status: i % 3 === 0 ? 'Inactive' : 'Active',
+    salary: 50000 + (i * 1000)
+  }));
+  
+  columns = [
+    { field: 'id', header: 'ID', sortable: true },
+    { field: 'name', header: 'Name', sortable: true, filterable: true },
+    { field: 'email', header: 'Email', sortable: true, filterable: true },
+    { field: 'age', header: 'Age', sortable: true },
+    { field: 'department', header: 'Department', sortable: true, filterable: true },
+    { field: 'status', header: 'Status', sortable: true, filterable: true }
+  ];
+
+  // Pagination is handled automatically by the table component
+}`,
+          description: 'Table with pagination for large datasets'
+        },
+        {
+          name: 'Empty State Table',
+          code: '<sui-table \n  [value]="[]" \n  [columns]="columns"\n  [showFilters]="false"\n  emptyMessage="No employees found">\n</sui-table>',
+          tsCode: `export class TableComponent {
+  emptyData: any[] = []; // Empty array to show empty state
+  
+  columns = [
+    { field: 'id', header: 'ID', sortable: true },
+    { field: 'name', header: 'Name', sortable: true, filterable: true },
+    { field: 'email', header: 'Email', sortable: true, filterable: true },
+    { field: 'age', header: 'Age', sortable: true },
+    { field: 'department', header: 'Department', sortable: true, filterable: true },
+    { field: 'status', header: 'Status', sortable: true, filterable: true }
+  ];
+}`,
+          description: 'Table showing empty state when no data is available'
+        },
+        {
+          name: 'Product Table',
+          code: '<sui-table \n  [value]="productData" \n  [columns]="productColumns"\n  [showFilters]="false"\n  [paginator]="true"\n  [rows]="5">\n</sui-table>',
+          tsCode: `interface Product {
+  id: number;
+  product: string;
+  category: string;
+  price: number;
+  stock: number;
+  rating: number;
+}
+
+export class TableComponent {
+  productData: Product[] = [
+    { id: 1, product: 'Laptop', category: 'Electronics', price: 999.99, stock: 50, rating: 4.5 },
+    { id: 2, product: 'Mouse', category: 'Electronics', price: 29.99, stock: 200, rating: 4.2 },
+    { id: 3, product: 'Keyboard', category: 'Electronics', price: 79.99, stock: 150, rating: 4.3 },
+    { id: 4, product: 'Monitor', category: 'Electronics', price: 299.99, stock: 75, rating: 4.4 },
+    { id: 5, product: 'Headphones', category: 'Audio', price: 149.99, stock: 100, rating: 4.6 }
+  ];
+
+  productColumns = [
+    { field: 'id', header: 'ID', sortable: true },
+    { field: 'product', header: 'Product Name', sortable: true, filterable: true },
+    { field: 'category', header: 'Category', sortable: true, filterable: true },
+    { field: 'price', header: 'Price', sortable: true },
+    { field: 'stock', header: 'Stock', sortable: true },
+    { field: 'rating', header: 'Rating', sortable: true }
+  ];
+}`,
+          description: 'Table with product data and pagination'
         }
       ],
       props: [
@@ -428,37 +631,392 @@ export class ComponentDataService {
           name: 'value',
           type: 'any[]',
           default: '[]',
-          description: 'Array of data objects',
+          description: 'Array of data objects to display',
+          required: true
+        },
+        {
+          name: 'columns',
+          type: 'Array<{field: string, header: string, sortable?: boolean, filterable?: boolean}>',
+          default: '[]',
+          description: 'Column definitions with field mappings and options',
+          required: true
+        },
+        {
+          name: 'paginator',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether to show pagination controls',
+          required: false
+        },
+        {
+          name: 'rows',
+          type: 'number',
+          default: '10',
+          description: 'Number of rows to display per page',
+          required: false
+        },
+        {
+          name: 'first',
+          type: 'number',
+          default: '0',
+          description: 'Index of the first row to display',
+          required: false
+        },
+        {
+          name: 'totalRecords',
+          type: 'number',
+          default: '0',
+          description: 'Total number of records for pagination',
+          required: false
+        },
+        {
+          name: 'sortField',
+          type: 'string',
+          default: '""',
+          description: 'Field name for current sort',
+          required: false
+        },
+        {
+          name: 'sortOrder',
+          type: '\'asc\' | \'desc\'',
+          default: '\'asc\'',
+          description: 'Sort order direction',
+          required: false
+        },
+        {
+          name: 'filterDelay',
+          type: 'number',
+          default: '300',
+          description: 'Delay in milliseconds before filtering is applied',
+          required: false
+        },
+        {
+          name: 'showFilters',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether to show filter inputs for filterable columns',
+          required: false
+        },
+        {
+          name: 'emptyMessage',
+          type: 'string',
+          default: '\'No records found\'',
+          description: 'Message to display when no data is available',
+          required: false
+        },
+        {
+          name: 'selectionMode',
+          type: '\'single\' | \'multiple\' | null',
+          default: 'null',
+          description: 'Row selection mode',
+          required: false
+        }
+      ],
+      usage: 'Use tables to display structured data in rows and columns. Tables support sorting, filtering, pagination, and row selection for interactive data management.',
+      tags: ['data', 'table', 'grid', 'sorting', 'filtering', 'pagination']
+    },
+    {
+      id: 'auto-complete',
+      name: 'Auto Complete',
+      category: 'Form',
+      description: 'Auto complete input component with dropdown suggestions and keyboard navigation',
+      examples: [
+        {
+          name: 'Basic',
+          code: '<sui-auto-complete\n  [(ngModel)]="value"\n  [options]="[\'Apple\', \'Banana\', \'Cherry\']"\n  placeholder="Select a fruit...">\n</sui-auto-complete>',
+          tsCode: `export class AutoCompleteComponent {
+  basicValue = '';
+  
+  // String array options
+  basicOptions = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape', 'Honeydew'];
+  
+  onBasicChange(value: any): void {
+    console.log('Basic value changed:', value);
+  }
+}`,
+          description: 'Basic auto complete with string array options'
+        },
+        {
+          name: 'Object Options',
+          code: '<sui-auto-complete\n  [(ngModel)]="value"\n  [options]="[{label: \'USA\', value: \'us\'}, {label: \'UK\', value: \'uk\'}]"\n  placeholder="Select a country...">\n</sui-auto-complete>',
+          tsCode: `interface CountryOption {
+  label: string;
+  value: string;
+}
+
+export class AutoCompleteComponent {
+  objectValue: any = null;
+  
+  // Object array options with label/value pairs
+  objectOptions: CountryOption[] = [
+    { label: 'United States', value: 'US' },
+    { label: 'United Kingdom', value: 'UK' },
+    { label: 'Canada', value: 'CA' },
+    { label: 'Australia', value: 'AU' },
+    { label: 'Germany', value: 'DE' },
+    { label: 'France', value: 'FR' },
+    { label: 'Japan', value: 'JP' },
+    { label: 'China', value: 'CN' }
+  ];
+  
+  onObjectChange(value: any): void {
+    console.log('Object value changed:', value);
+  }
+}`,
+          description: 'Auto complete with object options containing label and value'
+        },
+        {
+          name: 'Disabled',
+          code: '<sui-auto-complete\n  [(ngModel)]="value"\n  [options]="[\'Option 1\', \'Option 2\']"\n  [disabled]="true"\n  placeholder="This is disabled">\n</sui-auto-complete>',
+          tsCode: `export class AutoCompleteComponent {
+  disabledValue = 'Disabled Value';
+  
+  // Disabled auto complete options
+  disabledOptions = ['Option 1', 'Option 2', 'Option 3'];
+}`,
+          description: 'Auto complete in disabled state'
+        },
+        {
+          name: 'With Placeholder',
+          code: '<sui-auto-complete\n  [(ngModel)]="value"\n  [options]="[\'New York\', \'Los Angeles\', \'Chicago\']"\n  placeholder="Search for your city...">\n</sui-auto-complete>',
+          tsCode: `export class AutoCompleteComponent {
+  placeholderValue = '';
+  
+  // City options with placeholder
+  placeholderOptions = [
+    'Search for a city...', 'New York', 'Los Angeles', 'Chicago', 
+    'Houston', 'Phoenix', 'Philadelphia'
+  ];
+}`,
+          description: 'Auto complete with custom placeholder text'
+        },
+        {
+          name: 'Minimum Length',
+          code: '<sui-auto-complete\n  [(ngModel)]="value"\n  [options]="[\'Alpha\', \'Beta\', \'Gamma\']"\n  [minLength]="2"\n  placeholder="Type at least 2 characters...">\n</sui-auto-complete>',
+          tsCode: `export class AutoCompleteComponent {
+  minLengthValue = '';
+  
+  // Options for minimum length example
+  minLengthOptions = [
+    'Type at least 2 characters', 'Alpha', 'Beta', 'Gamma', 
+    'Delta', 'Epsilon', 'Zeta', 'Eta'
+  ];
+}`,
+          description: 'Auto complete that requires minimum characters to show suggestions'
+        },
+        {
+          name: 'With Clear Button',
+          code: '<sui-auto-complete\n  [(ngModel)]="value"\n  [options]="[\'Option A\', \'Option B\', \'Option C\']"\n  placeholder="Type to search...">\n</sui-auto-complete>',
+          tsCode: `export class AutoCompleteComponent {
+  clearValue = '';
+  
+  // Options for clear button example
+  clearOptions = ['Clear me', 'Option A', 'Option B', 'Option C'];
+  
+  onClearChange(value: any): void {
+    console.log('Clear value changed:', value);
+  }
+  
+  // Clear button appears automatically when value is not empty
+}`,
+          description: 'Auto complete with clear button functionality'
+        }
+      ],
+      props: [
+        {
+          name: 'disabled',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the auto complete is disabled',
+          required: false
+        },
+        {
+          name: 'name',
+          type: 'string',
+          default: '""',
+          description: 'Name attribute for the input',
+          required: false
+        },
+        {
+          name: 'inputId',
+          type: 'string',
+          default: '""',
+          description: 'ID attribute for the input',
+          required: false
+        },
+        {
+          name: 'placeholder',
+          type: 'string',
+          default: '""',
+          description: 'Placeholder text for the input',
+          required: false
+        },
+        {
+          name: 'minLength',
+          type: 'number',
+          default: '1',
+          description: 'Minimum number of characters required to show suggestions',
+          required: false
+        },
+        {
+          name: 'options',
+          type: 'Array<string | {label: string, value: unknown}>',
+          default: '[]',
+          description: 'Array of options for the auto complete',
           required: true
         }
       ],
-      usage: 'Use tables to display structured data in rows and columns.',
-      tags: ['data', 'table', 'grid']
+      usage: 'Use auto complete for input fields where users need to select from a predefined list of options. Supports both string arrays and object arrays with label/value pairs.',
+      tags: ['form', 'input', 'dropdown', 'autocomplete', 'search', 'selection']
     },
     // Layout Components
     {
       id: 'panel',
       name: 'Panel',
       category: 'Layout',
-      description: 'Panel component for grouping content',
+      description: 'Panel component for grouping content with collapsible functionality',
       examples: [
         {
-          name: 'Basic Panel',
-          code: '<sui-panel header="Panel Title">Panel content</sui-panel>',
-          description: 'Basic panel with header'
+          name: 'Basic',
+          code: '<sui-panel \n  header="Basic Panel"\n  [collapsed]="basicCollapsed"\n  (onToggle)="onBasicToggle($event)">\n  <p>This is a basic panel with some content.</p>\n</sui-panel>',
+          tsCode: `export class PanelComponent {
+  basicCollapsed = false;
+
+  onBasicToggle(event: any): void {
+    console.log('Basic panel toggle:', event);
+  }
+}`,
+          description: 'Basic panel with header and content'
+        },
+        {
+          name: 'Toggleable',
+          code: '<sui-panel \n  header="Toggleable Panel"\n  [toggleable]="true"\n  [collapsed]="toggleableCollapsed"\n  (onToggle)="onToggleableToggle($event)">\n  <p>This panel can be collapsed and expanded.</p>\n</sui-panel>',
+          tsCode: `export class PanelComponent {
+  toggleableCollapsed = false;
+
+  onToggleableToggle(event: any): void {
+    console.log('Toggleable panel toggle:', event);
+  }
+}`,
+          description: 'Panel with toggle functionality'
+        },
+        {
+          name: 'Without Header',
+          code: '<sui-panel \n  [showHeader]="false">\n  <p>This panel doesn\'t have a header.</p>\n</sui-panel>',
+          tsCode: `export class PanelComponent {
+  // No header panel - just content
+}`,
+          description: 'Panel without header for simple containers'
+        },
+        {
+          name: 'Custom Styled',
+          code: '<sui-panel \n  header="Custom Styled Panel"\n  [toggleable]="true"\n  [collapsed]="customCollapsed"\n  styleClass="sui-panel-filled"\n  (onToggle)="onCustomToggle($event)">\n  <p>This panel uses custom styling.</p>\n</sui-panel>',
+          tsCode: `export class PanelComponent {
+  customCollapsed = false;
+
+  onCustomToggle(event: any): void {
+    console.log('Custom panel toggle:', event);
+  }
+}`,
+          description: 'Panel with custom styling and CSS classes'
+        },
+        {
+          name: 'Rich Content',
+          code: '<sui-panel \n  header="Panel with Rich Content"\n  [toggleable]="true"\n  [collapsed]="contentCollapsed"\n  (onToggle)="onContentToggle($event)">\n  <div class="space-y-4">\n    <h4>Panel Content</h4>\n    <p>Rich content with multiple elements.</p>\n    <sui-button variant="primary" size="sm">Action Button</sui-button>\n  </div>\n</sui-panel>',
+          tsCode: `export class PanelComponent {
+  contentCollapsed = false;
+
+  onContentToggle(event: any): void {
+    console.log('Content panel toggle:', event);
+  }
+}`,
+          description: 'Panel containing rich content with multiple elements'
+        },
+        {
+          name: 'Small Size',
+          code: '<sui-panel \n  header="Small Panel"\n  [toggleable]="true"\n  [collapsed]="smallCollapsed"\n  styleClass="sui-panel-sm"\n  (onToggle)="onSmallToggle($event)">\n  <p>This is a small panel.</p>\n</sui-panel>',
+          tsCode: `export class PanelComponent {
+  smallCollapsed = false;
+
+  onSmallToggle(event: any): void {
+    console.log('Small panel toggle:', event);
+  }
+}`,
+          description: 'Small panel with reduced padding and font sizes'
+        },
+        {
+          name: 'With Header and Footer',
+          code: '<sui-panel \n  header="Panel with Footer"\n  footer="Footer text with actions"\n  [toggleable]="true"\n  [collapsed]="headerFooterCollapsed"\n  [showFooter]="true"\n  (onToggle)="onHeaderFooterToggle($event)">\n  <div>\n    <h4>Panel Content</h4>\n    <p>This panel demonstrates both header and footer functionality.</p>\n  </div>\n</sui-panel>',
+          tsCode: `export class PanelComponent {
+  headerFooterCollapsed = false;
+
+  onHeaderFooterToggle(event: any): void {
+    console.log('Header footer panel toggle:', event);
+  }
+}`,
+          description: 'Panel with both header and footer sections with matching styling'
         }
       ],
       props: [
         {
           name: 'header',
           type: 'string',
-          default: 'null',
+          default: '""',
           description: 'Panel header text',
+          required: false
+        },
+        {
+          name: 'footer',
+          type: 'string',
+          default: '""',
+          description: 'Panel footer text',
+          required: false
+        },
+        {
+          name: 'toggleable',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the panel can be collapsed/expanded',
+          required: false
+        },
+        {
+          name: 'collapsed',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the panel is collapsed',
+          required: false
+        },
+        {
+          name: 'showHeader',
+          type: 'boolean',
+          default: 'true',
+          description: 'Whether to show the panel header',
+          required: false
+        },
+        {
+          name: 'showFooter',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether to show the panel footer',
+          required: false
+        },
+        {
+          name: 'styleClass',
+          type: 'string',
+          default: '""',
+          description: 'Additional CSS classes for styling',
+          required: false
+        },
+        {
+          name: 'style',
+          type: 'object',
+          default: '{}',
+          description: 'Inline styles for the panel',
           required: false
         }
       ],
-      usage: 'Use panels to group related content and actions.',
-      tags: ['layout', 'container']
+      usage: 'Use panels to group related content and actions. Panels can be collapsible, styled with custom CSS, and contain any type of content including forms, text, images, or other components.',
+      tags: ['layout', 'container', 'collapsible', 'accordion', 'content']
     },
     // Navigation Components
     {

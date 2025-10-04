@@ -1,0 +1,111 @@
+<!-- Modal Overlay -->
+<div *ngIf="isOpen" class="fixed inset-0 z-50 overflow-y-auto">
+  <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <!-- Background overlay -->
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" (click)="closeModal()"></div>
+
+    <!-- Modal panel -->
+    <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+      <!-- Close button -->
+      <button 
+        (click)="closeModal()"
+        class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Header -->
+      <div class="text-center mb-6">
+        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-amber-100 mb-4">
+          <svg class="h-6 w-6 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">Buy me a coffee ☕</h3>
+        <p class="text-sm text-gray-600">
+          If you find Synerity UI helpful, consider supporting its development!
+        </p>
+      </div>
+
+      <!-- Donation options -->
+      <div class="space-y-3">
+
+        <!-- GitHub Sponsors -->
+        <button 
+          (click)="openGitHubSponsors()"
+          class="w-full flex items-center justify-between p-4 bg-gray-900 hover:bg-gray-800 text-white rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
+          <div class="flex items-center space-x-3">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <div class="text-left">
+              <div class="font-medium">GitHub Sponsors</div>
+              <div class="text-xs opacity-90">Monthly sponsorship</div>
+            </div>
+          </div>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+        </button>
+
+        <!-- PayPal -->
+        <button 
+          (click)="openPayPal()"
+          class="w-full flex items-center justify-between p-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
+          <div class="flex items-center space-x-3">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.105-.633c-.5-2.81-2.34-4.723-5.083-4.723H8.362c-.524 0-.968.382-1.05.9L5.192 18.95h4.684l.987-6.254a.641.641 0 0 1 .633-.74h2.19c2.57 0 4.578-.543 5.69-1.81 1.01-1.15 1.304-2.42 1.012-4.287z"/>
+            </svg>
+            <div class="text-left">
+              <div class="font-medium">PayPal</div>
+              <div class="text-xs opacity-90">One-time donation</div>
+            </div>
+          </div>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+        </button>
+
+        <!-- UPI (for Indian users) -->
+        <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center space-x-3">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              <div class="text-white">
+                <div class="font-medium">UPI Payment</div>
+                <div class="text-xs opacity-90">For Indian users</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white bg-opacity-20 rounded-lg p-3 mb-3">
+            <div class="text-white text-sm font-mono break-all">{{ config.upiId }}</div>
+          </div>
+          
+          <div class="flex space-x-2">
+            <button 
+              (click)="openUPI()"
+              class="flex-1 bg-white bg-opacity-20 hover:bg-opacity-30 text-white py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200">
+              Open UPI App
+            </button>
+            <button 
+              (click)="copyUPIId()"
+              class="flex-1 bg-white bg-opacity-20 hover:bg-opacity-30 text-white py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200">
+              Copy UPI ID
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer message -->
+      <div class="mt-6 text-center">
+        <p class="text-xs text-gray-500">
+          Thank you for supporting open source development! 🙏
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

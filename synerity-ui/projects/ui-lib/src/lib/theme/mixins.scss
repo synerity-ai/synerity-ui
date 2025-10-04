@@ -45,6 +45,12 @@
   --sui-gray-950: #030712;
 }
 
+/* Base Color Theme Tokens */
+@mixin sui-theme-base-colors() {
+  --sui-white: #ffffff;
+  --sui-black: #000000;
+}
+
 /* Semantic Color Theme Tokens - Updated for better enterprise look */
 @mixin sui-theme-semantic-colors() {
   --sui-red-600: #dc2626;
@@ -59,6 +65,7 @@
 
 /* Complete Theme Mixin */
 @mixin sui-theme() {
+  @include sui-theme-base-colors();
   @include sui-theme-primary-colors();
   @include sui-theme-secondary-colors();
   @include sui-theme-gray-colors();

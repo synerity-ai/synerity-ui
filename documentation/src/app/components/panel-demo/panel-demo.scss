@@ -1,0 +1,15 @@
+.panel-demo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 200px;
+
+  .demo-content {
+    width: 100%;
+    max-width: 600px;
+
+    sui-panel {
+      width: 100%;
+    }
+  }
+}

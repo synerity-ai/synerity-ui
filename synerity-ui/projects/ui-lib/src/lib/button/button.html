@@ -2,7 +2,7 @@
   [type]="type"
   [disabled]="disabled || loading"
   [class]="buttonClasses"
-  (click)="onButtonClick($event)"
+  (click)="onButtonClick($event); $event.stopPropagation()"
   [attr.aria-disabled]="disabled || loading"
   [attr.aria-busy]="loading"
   role="button"

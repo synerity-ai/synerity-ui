@@ -1,58 +1,29 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SearchService } from '../../services/search.service';
 import { ThemeService } from '../../services/theme.service';
+import { DonationModalComponent } from '../donation-modal/donation-modal.component';
+import { Button } from '@synerity/ui';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, DonationModalComponent, Button],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  protected readonly isMenuOpen = signal(false);
-  protected readonly isSearchOpen = signal(false);
   protected readonly isThemeDropdownOpen = signal(false);
+  protected readonly isDonationModalOpen = signal(false);
   
-  readonly searchQuery: any;
-  readonly searchResults: any;
-  readonly hasResults: any;
   readonly currentTheme: any;
   readonly availableThemes: any;
 
   constructor(
-    private searchService: SearchService,
     private themeService: ThemeService
   ) {
-    this.searchQuery = this.searchService.searchQuery;
-    this.searchResults = this.searchService.searchResults;
-    this.hasResults = this.searchService.hasResults;
     this.currentTheme = this.themeService.getCurrentTheme();
     this.availableThemes = this.themeService.getAvailableThemes();
-  }
-
-  toggleMenu(): void {
-    this.isMenuOpen.update(open => !open);
-  }
-
-  toggleSearch(): void {
-    this.isSearchOpen.update(open => !open);
-  }
-
-  onSearchInput(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.searchService.search(target.value);
-  }
-
-  clearSearch(): void {
-    this.searchService.clearSearch();
-  }
-
-  closeSearch(): void {
-    this.isSearchOpen.set(false);
-    this.clearSearch();
   }
 
   toggleThemeDropdown(): void {
@@ -70,5 +41,13 @@ export class HeaderComponent {
 
   getCurrentThemeName(): string {
     return this.themeService.getCurrentThemeName();
+  }
+
+  buyMeCoffee(): void {
+    this.isDonationModalOpen.set(true);
+  }
+
+  closeDonationModal(): void {
+    this.isDonationModalOpen.set(false);
   }
 }

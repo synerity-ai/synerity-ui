@@ -1,54 +1,230 @@
 <div class="installation-page">
-  <div class="page-header">
-    <h1>Installation</h1>
-    <p>Detailed installation instructions for Synerity UI</p>
-  </div>
-
-  <div class="content">
-    <div class="installation-method">
-      <h2>NPM Installation</h2>
-      <p>Install Synerity UI using npm:</p>
-      <div class="code-block">
-        <pre><code>npm install @synerity/ui</code></pre>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background">
+      <div class="hero-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
       </div>
     </div>
-
-    <div class="installation-method">
-      <h2>Yarn Installation</h2>
-      <p>Install Synerity UI using yarn:</p>
-      <div class="code-block">
-        <pre><code>yarn add @synerity/ui</code></pre>
+    
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"/>
+        </svg>
+        Installation Guide
       </div>
-    </div>
-
-    <div class="installation-method">
-      <h2>PNPM Installation</h2>
-      <p>Install Synerity UI using pnpm:</p>
-      <div class="code-block">
-        <pre><code>pnpm add @synerity/ui</code></pre>
-      </div>
-    </div>
-
-    <div class="configuration">
-      <h2>Configuration</h2>
-      <p>After installation, you need to configure your Angular application to use Synerity UI.</p>
       
-      <h3>1. Import Styles</h3>
-      <p>Add the CSS to your angular.json or import in your styles.scss:</p>
-      <div class="code-block">
-        <pre><code>@import '@synerity/ui/styles';</code></pre>
+      <h1 class="hero-title">
+        Install
+        <span class="gradient-text">@synerity/ui</span>
+      </h1>
+      
+      <p class="hero-description">
+        Choose your preferred package manager and follow the installation instructions. 
+        Get Synerity UI up and running in your Angular project in minutes.
+      </p>
+      
+      <div class="hero-actions">
+        <a routerLink="/getting-started" class="btn btn-secondary">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          Quick Start
+        </a>
+        <a routerLink="/components" class="btn btn-primary">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+          </svg>
+          View Components
+        </a>
       </div>
+    </div>
+  </section>
 
-      <h3>2. Configure Angular</h3>
-      <p>Update your angular.json to include the styles:</p>
-      <div class="code-block">
-        <pre><code>{{ '{' }}
+  <!-- Installation Methods Section -->
+  <section class="installation-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Package Managers</h2>
+        <p class="section-description">
+          Choose your preferred package manager and install Synerity UI
+        </p>
+      </div>
+      
+      <div class="installation-grid">
+        <div class="method-card">
+          <div class="method-header">
+            <div class="method-icon">
+              <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0H1.763zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 5.323H5.13zm4.5 4.5h3.456v3.456H9.63V9.823zm-4.5 4.5h3.456v3.456H5.13v-3.456z"/>
+              </svg>
+            </div>
+            <h3 class="method-title">NPM</h3>
+            <p class="method-description">Most popular package manager for Node.js</p>
+          </div>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Terminal</span>
+              <button class="copy-btn" (click)="copyCode('npm install @synerity/ui')">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+              </button>
+            </div>
+            <pre><code>npm install @synerity/ui</code></pre>
+          </div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-header">
+            <div class="method-icon">
+              <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-6h2v2h-2v-2zm0-8h2v6h-2V8z"/>
+              </svg>
+            </div>
+            <h3 class="method-title">Yarn</h3>
+            <p class="method-description">Fast, reliable, and secure package manager</p>
+          </div>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Terminal</span>
+              <button class="copy-btn" (click)="copyCode('yarn add @synerity/ui')">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+              </button>
+            </div>
+            <pre><code>yarn add @synerity/ui</code></pre>
+          </div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-header">
+            <div class="method-icon">
+              <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <h3 class="method-title">PNPM</h3>
+            <p class="method-description">Fast, disk space efficient package manager</p>
+          </div>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Terminal</span>
+              <button class="copy-btn" (click)="copyCode('pnpm add @synerity/ui')">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+              </button>
+            </div>
+            <pre><code>pnpm add @synerity/ui</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configuration Section -->
+  <section class="configuration-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Configuration</h2>
+        <p class="section-description">
+          Configure your Angular application to use Synerity UI
+        </p>
+      </div>
+      
+      <div class="config-steps">
+        <div class="config-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">Import Styles</h3>
+            <p class="step-description">Add the CSS to your angular.json or import in your styles.scss</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-label">styles.scss</span>
+                <button class="copy-btn" (click)="copyCode('@import \'@synerity/ui/styles\';')">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                </button>
+              </div>
+              <pre><code>@import '@synerity/ui/styles';</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="config-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">Configure Angular</h3>
+            <p class="step-description">Update your angular.json to include the styles</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-label">angular.json</span>
+                <button class="copy-btn" (click)="copyCode(getAngularJsonConfig())">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                </button>
+              </div>
+              <pre><code>{{ '{' }}
   "styles": [
     "node_modules/@synerity/ui/styles.css",
     "src/styles.scss"
   ]
 {{ '}' }}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="config-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">Import Components</h3>
+            <p class="step-description">Import the components you need in your Angular modules</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-label">component.ts</span>
+                <button class="copy-btn" (click)="copyCode('import { Button, Card } from \'@synerity/ui\';')">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                </button>
+              </div>
+              <pre><code>import {{ '{' }} Button, Card {{ '}' }} from '@synerity/ui';</code></pre>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Next Steps Section -->
+  <section class="next-steps-section">
+    <div class="container">
+      <div class="next-steps-content">
+        <h2 class="next-steps-title">Ready to Start Building?</h2>
+        <p class="next-steps-description">
+          Now that you have Synerity UI installed, explore our components and start building amazing Angular applications.
+        </p>
+        <div class="next-steps-actions">
+          <a routerLink="/getting-started" class="btn btn-primary btn-lg">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Get Started
+          </a>
+          <a routerLink="/components" class="btn btn-secondary btn-lg">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            Browse Components
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -45,9 +45,11 @@ export class Button implements ControlValueAccessor {
   onButtonClick(event: MouseEvent): void {
     if (this.disabled || this.loading) {
       event.preventDefault();
+      event.stopPropagation();
       return;
     }
     
+    // Emit the click event for external bindings
     this.click.emit(event);
     
     // Toggle value for button group usage
@@ -55,6 +57,7 @@ export class Button implements ControlValueAccessor {
       this.value = !this.value;
     }
   }
+
 
   writeValue(value: boolean): void {
     this._value = value;

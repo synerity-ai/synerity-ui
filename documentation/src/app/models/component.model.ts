@@ -12,6 +12,7 @@ export interface ComponentModel {
 export interface ComponentExample {
   name: string;
   code: string;
+  tsCode?: string;
   description: string;
 }
 

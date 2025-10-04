@@ -3,19 +3,17 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SearchService } from '../../services/search.service';
 import { ComponentDataService } from '../../services/component-data.service';
-import { SearchFiltersComponent } from '../../components/search-filters/search-filters.component';
 import { SearchResultsComponent } from '../../components/search-results/search-results.component';
 import { Button, Card } from '@synerity/ui';
 
 @Component({
   selector: 'app-components',
   standalone: true,
-  imports: [CommonModule, RouterModule, SearchFiltersComponent, SearchResultsComponent, Button, Card],
+  imports: [CommonModule, RouterModule, SearchResultsComponent, Button, Card],
   templateUrl: './components.component.html',
   styleUrl: './components.component.scss'
 })
 export class ComponentsComponent {
-  protected readonly showFilters = signal(true);
   protected readonly showResults = signal(false);
 
   readonly components: any;
@@ -35,17 +33,11 @@ export class ComponentsComponent {
     this.isSearching = this.searchService.isSearching;
   }
 
-  toggleFilters(): void {
-    this.showFilters.update(show => !show);
-  }
 
   onSearchPerformed(): void {
     this.showResults.set(true);
   }
 
-  onFiltersCleared(): void {
-    this.showResults.set(false);
-  }
 
   getComponentsByCategory(categoryName: string) {
     const result = this.componentDataService.getComponentsByCategory(categoryName);

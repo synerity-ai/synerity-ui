@@ -1,0 +1,15 @@
+.auto-complete-demo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+
+  .demo-content {
+    width: 100%;
+    max-width: 400px;
+
+    sui-auto-complete {
+      width: 100%;
+    }
+  }
+}

@@ -31,10 +31,19 @@
           @case ('Card') {
             <app-card-demo [currentExample]="getCurrentExample()"></app-card-demo>
           }
-          @case ('Input') {
-            <app-input-demo [currentExample]="getCurrentExample()"></app-input-demo>
-          }
-          @default {
+                 @case ('Input') {
+                   <app-input-demo [currentExample]="getCurrentExample()"></app-input-demo>
+                 }
+                 @case ('Table') {
+                   <app-table-demo [currentExample]="getCurrentExample()"></app-table-demo>
+                 }
+                 @case ('Auto Complete') {
+                   <app-auto-complete-demo [currentExample]="getCurrentExample()"></app-auto-complete-demo>
+                 }
+                 @case ('Panel') {
+                   <app-panel-demo [currentExample]="getCurrentExample()"></app-panel-demo>
+                 }
+                 @default {
             <!-- Fallback for other components -->
             <div class="text-center text-gray-500 py-12">
               <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -56,7 +65,7 @@
     <sui-button 
       [variant]="showCode() ? 'primary' : 'outline'"
       size="md"
-      (click)="toggleCode()"
+      (click)="toggleCode($event)"
       class="inline-flex items-center">
       <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
@@ -66,12 +75,7 @@
   </div>
 
   <!-- Code Display -->
-  <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-xl border border-gray-700 transition-all duration-300" 
-       [class.opacity-100]="showCode()" 
-       [class.max-h-screen]="showCode()" 
-       [class.opacity-0]="!showCode()" 
-       [class.max-h-0]="!showCode()"
-       *ngIf="showCode()">
+  <div *ngIf="showCode()" class="bg-gray-900 rounded-2xl overflow-hidden shadow-xl border border-gray-700 transition-all duration-300">
     <div class="bg-gray-800 px-6 py-4 flex justify-between items-center border-b border-gray-700">
       <div class="flex items-center gap-3">
         <div class="flex gap-2">
@@ -79,23 +83,59 @@
           <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
           <div class="w-3 h-3 bg-green-500 rounded-full"></div>
         </div>
-        <span class="text-sm font-medium text-gray-300">HTML</span>
+        
+        <!-- Code Tab Navigation -->
+        <div class="flex items-center gap-2">
+          <button
+            (click)="setActiveCodeTab('html')"
+            [class.bg-gray-700]="activeCodeTab() === 'html'"
+            [class.text-white]="activeCodeTab() === 'html'"
+            [class.text-gray-300]="activeCodeTab() !== 'html'"
+            class="px-3 py-1 rounded text-sm font-medium transition-colors hover:text-white">
+            HTML
+          </button>
+          
+          @if (hasTypeScriptCode()) {
+            <button
+              (click)="setActiveCodeTab('ts')"
+              [class.bg-gray-700]="activeCodeTab() === 'ts'"
+              [class.text-white]="activeCodeTab() === 'ts'"
+              [class.text-gray-300]="activeCodeTab() !== 'ts'"
+              class="px-3 py-1 rounded text-sm font-medium transition-colors hover:text-white">
+              TypeScript
+            </button>
+          }
+        </div>
       </div>
+      
       <sui-button 
         variant="ghost"
         size="sm"
-        (click)="copyToClipboard(getCurrentExample().code)"
+        (click)="copyToClipboard()"
         title="Copy to clipboard"
-        class="inline-flex items-center text-gray-300 hover:text-white">
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-        </svg>
-        Copy Code
+        class="inline-flex items-center text-gray-300 hover:text-white transition-colors"
+        [class.text-green-400]="copySuccess()">
+        @if (copySuccess()) {
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          Copied!
+        } @else {
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          Copy Code
+        }
       </sui-button>
     </div>
+    
     <div class="p-6 overflow-x-auto">
-      <pre class="text-sm text-gray-300 leading-relaxed"><code class="language-html">{{ getCurrentExample().code }}</code></pre>
+      @if (activeCodeTab() === 'html') {
+        <pre class="text-sm text-gray-300 leading-relaxed"><code class="language-html">{{ getCurrentExample().code }}</code></pre>
+      } @else if (activeCodeTab() === 'ts') {
+        <pre class="text-sm text-gray-300 leading-relaxed"><code class="language-typescript">{{ getCurrentExample().tsCode }}</code></pre>
+      }
     </div>
   </div>
 </div>

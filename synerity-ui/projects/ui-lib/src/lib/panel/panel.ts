@@ -10,11 +10,13 @@ import { NgIf } from '@angular/common';
 })
 export class Panel {
   @Input() header = '';
+  @Input() footer = '';
   @Input() toggleable = false;
   @Input() collapsed = false;
   @Input() style: any = {};
   @Input() styleClass = '';
   @Input() showHeader = true;
+  @Input() showFooter = false;
   @Output() onToggle = new EventEmitter<any>();
 
   toggle(): void {

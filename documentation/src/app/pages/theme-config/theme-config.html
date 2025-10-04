@@ -1,0 +1,399 @@
+<div class="theme-config-page">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background">
+      <div class="hero-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+    </div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
+        </svg>
+        Theme Configuration
+      </div>
+      
+      <h1 class="hero-title">
+        Configure
+        <span class="gradient-text">Theme Variables</span>
+      </h1>
+      
+      <p class="hero-description">
+        Learn how to customize Synerity UI themes using CSS custom properties and TailwindCSS. 
+        Create your own brand colors and design system that integrates seamlessly with our components.
+      </p>
+      
+      <div class="hero-actions">
+        <a routerLink="/getting-started" class="btn btn-secondary">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          Get Started
+        </a>
+        <a routerLink="/components" class="btn btn-primary">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+          </svg>
+          View Components
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Setup Section -->
+  <section class="quick-setup-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Quick Setup</h2>
+        <p class="section-description">
+          Get your theme configuration up and running in minutes
+        </p>
+      </div>
+      
+      <div class="setup-steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"/>
+              </svg>
+            </div>
+            <h3 class="step-title">Install TailwindCSS</h3>
+            <p class="step-description">Set up TailwindCSS in your Angular project</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-label">Terminal</span>
+                <button class="copy-btn" (click)="copyCode('npm install -D tailwindcss postcss autoprefixer')">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                </button>
+              </div>
+              <pre><code>npm install -D tailwindcss postcss autoprefixer</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+              </svg>
+            </div>
+            <h3 class="step-title">Configure TailwindCSS</h3>
+            <p class="step-description">Create tailwind.config.js with Synerity UI theme variables</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-label">tailwind.config.js</span>
+                <button class="copy-btn" (click)="copyCode(tailwindConfigCode)">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                </button>
+              </div>
+              <pre><code>{{ tailwindConfigCode }}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
+              </svg>
+            </div>
+            <h3 class="step-title">Import Styles</h3>
+            <p class="step-description">Add Synerity UI styles to your global stylesheet</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-label">styles.scss</span>
+                <button class="copy-btn" (click)="copyCode('@import \'@synerity/ui/styles\';')">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                </button>
+              </div>
+              <pre><code>@import '@synerity/ui/styles';</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+              </svg>
+            </div>
+            <h3 class="step-title">Customize Theme</h3>
+            <p class="step-description">Override CSS variables to match your brand colors</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-label">styles.scss</span>
+                <button class="copy-btn" (click)="copyCode(customThemeCode)">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                </button>
+              </div>
+              <pre><code>{{ customThemeCode }}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Theme Variables Section -->
+  <section class="theme-variables-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Theme Variables Reference</h2>
+        <p class="section-description">
+          Complete reference of all available CSS custom properties for theme customization
+        </p>
+      </div>
+      
+      <div class="variables-grid">
+        <div class="variable-group">
+          <h3 class="group-title">Primary Colors</h3>
+          <div class="color-showcase">
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-primary-50);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-primary-50</span>
+                <span class="color-value">#eff6ff</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-primary-100);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-primary-100</span>
+                <span class="color-value">#dbeafe</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-primary-500);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-primary-500</span>
+                <span class="color-value">#3b82f6</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-primary-600);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-primary-600</span>
+                <span class="color-value">#2563eb</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-primary-900);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-primary-900</span>
+                <span class="color-value">#1e3a8a</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="variable-group">
+          <h3 class="group-title">Secondary Colors</h3>
+          <div class="color-showcase">
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-secondary-50);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-secondary-50</span>
+                <span class="color-value">#f9fafb</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-secondary-100);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-secondary-100</span>
+                <span class="color-value">#f3f4f6</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-secondary-500);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-secondary-500</span>
+                <span class="color-value">#6b7280</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-secondary-600);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-secondary-600</span>
+                <span class="color-value">#4b5563</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-secondary-900);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-secondary-900</span>
+                <span class="color-value">#111827</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="variable-group">
+          <h3 class="group-title">Gray Scale</h3>
+          <div class="color-showcase">
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-gray-50);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-gray-50</span>
+                <span class="color-value">#f9fafb</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-gray-200);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-gray-200</span>
+                <span class="color-value">#e5e7eb</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-gray-500);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-gray-500</span>
+                <span class="color-value">#6b7280</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-gray-700);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-gray-700</span>
+                <span class="color-value">#374151</span>
+              </div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background-color: var(--sui-gray-900);"></div>
+              <div class="color-info">
+                <span class="color-name">--sui-gray-900</span>
+                <span class="color-value">#111827</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Examples Section -->
+  <section class="examples-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Theme Examples</h2>
+        <p class="section-description">
+          See how different themes transform the look and feel of Synerity UI components
+        </p>
+      </div>
+      
+      <div class="examples-grid">
+        <div class="example-card">
+          <h3 class="example-title">Corporate Theme</h3>
+          <p class="example-description">Professional blue and green color scheme</p>
+          <div class="example-demo">
+            <div class="theme-preview corporate-theme">
+              <sui-button variant="primary" size="sm">Primary Button</sui-button>
+              <sui-button variant="secondary" size="sm">Secondary Button</sui-button>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">CSS Variables</span>
+              <button class="copy-btn" (click)="copyCode(corporateThemeCode)">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+              </button>
+            </div>
+            <pre><code>{{ corporateThemeCode }}</code></pre>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <h3 class="example-title">Seasonal Theme</h3>
+          <p class="example-description">Green and red color scheme for seasonal applications</p>
+          <div class="example-demo">
+            <div class="theme-preview seasonal-theme">
+              <sui-button variant="primary" size="sm">Primary Button</sui-button>
+              <sui-button variant="secondary" size="sm">Secondary Button</sui-button>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">CSS Variables</span>
+              <button class="copy-btn" (click)="copyCode(seasonalThemeCode)">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+              </button>
+            </div>
+            <pre><code>{{ seasonalThemeCode }}</code></pre>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <h3 class="example-title">Dark Theme</h3>
+          <p class="example-description">Inverted colors for dark mode applications</p>
+          <div class="example-demo">
+            <div class="theme-preview dark-theme">
+              <sui-button variant="primary" size="sm">Primary Button</sui-button>
+              <sui-button variant="secondary" size="sm">Secondary Button</sui-button>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">CSS Variables</span>
+              <button class="copy-btn" (click)="copyCode(darkThemeCode)">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+              </button>
+            </div>
+            <pre><code>{{ darkThemeCode }}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to Customize Your Theme?</h2>
+        <p class="cta-description">
+          Start building with Synerity UI and create a design system that perfectly matches your brand.
+        </p>
+        <div class="cta-actions">
+          <a routerLink="/getting-started" class="btn btn-primary btn-lg">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Get Started
+          </a>
+          <a routerLink="/components" class="btn btn-secondary btn-lg">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            Explore Components
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

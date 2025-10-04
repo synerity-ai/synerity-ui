@@ -1,0 +1,106 @@
+@switch (currentExample.name) {
+  @case ('Basic Table') {
+    <div class="w-full overflow-x-auto">
+      <sui-table 
+        [value]="sampleData" 
+        [columns]="columns"
+        [showFilters]="false">
+      </sui-table>
+    </div>
+  }
+  
+  @case ('Sortable Table') {
+    <div class="w-full overflow-x-auto">
+      <sui-table 
+        [value]="sampleData" 
+        [columns]="columns"
+        [showFilters]="false"
+        (onSort)="onSort($event)">
+      </sui-table>
+    </div>
+  }
+  
+  @case ('Filterable Table') {
+    <div class="w-full overflow-x-auto">
+      <sui-table 
+        [value]="sampleData" 
+        [columns]="columns"
+        [showFilters]="true"
+        (onFilter)="onFilter($event)">
+      </sui-table>
+    </div>
+  }
+  
+  @case ('Selectable Table (Single)') {
+    <div class="w-full overflow-x-auto">
+      <sui-table 
+        [value]="sampleData" 
+        [columns]="columns"
+        [showFilters]="false"
+        selectionMode="single"
+        (onRowSelect)="onRowSelect($event)"
+        (onSelectionChange)="onSelectionChange($event)">
+      </sui-table>
+    </div>
+  }
+  
+  @case ('Selectable Table (Multiple)') {
+    <div class="w-full overflow-x-auto">
+      <sui-table 
+        [value]="sampleData" 
+        [columns]="columns"
+        [showFilters]="false"
+        selectionMode="multiple"
+        (onRowSelect)="onRowSelect($event)"
+        (onRowUnselect)="onRowUnselect($event)"
+        (onSelectionChange)="onSelectionChange($event)">
+      </sui-table>
+    </div>
+  }
+  
+  @case ('Table with Pagination') {
+    <div class="w-full overflow-x-auto">
+      <sui-table 
+        [value]="largeDataset" 
+        [columns]="columns"
+        [showFilters]="false"
+        [paginator]="true"
+        [rows]="10"
+        [totalRecords]="largeDataset.length">
+      </sui-table>
+    </div>
+  }
+  
+  @case ('Empty State Table') {
+    <div class="w-full overflow-x-auto">
+      <sui-table 
+        [value]="[]" 
+        [columns]="columns"
+        [showFilters]="false"
+        emptyMessage="No employees found">
+      </sui-table>
+    </div>
+  }
+  
+  @case ('Product Table') {
+    <div class="w-full overflow-x-auto">
+      <sui-table 
+        [value]="productData" 
+        [columns]="productColumns"
+        [showFilters]="false"
+        [paginator]="true"
+        [rows]="5">
+      </sui-table>
+    </div>
+  }
+  
+  @default {
+    <div class="w-full overflow-x-auto">
+      <sui-table 
+        [value]="sampleData" 
+        [columns]="columns"
+        [showFilters]="false">
+      </sui-table>
+    </div>
+  }
+}

@@ -1,0 +1,74 @@
+<div class="auto-complete-demo">
+  @switch (currentExample?.name) {
+    @case ('Basic') {
+      <div class="demo-content">
+        <sui-auto-complete
+          [(ngModel)]="basicValue"
+          [options]="basicOptions"
+          placeholder="Select a fruit..."
+          (change)="onBasicChange($event)">
+        </sui-auto-complete>
+      </div>
+    }
+    @case ('Object Options') {
+      <div class="demo-content">
+        <sui-auto-complete
+          [(ngModel)]="objectValue"
+          [options]="objectOptions"
+          placeholder="Select a country..."
+          (change)="onObjectChange($event)">
+        </sui-auto-complete>
+      </div>
+    }
+    @case ('Disabled') {
+      <div class="demo-content">
+        <sui-auto-complete
+          [(ngModel)]="disabledValue"
+          [options]="disabledOptions"
+          [disabled]="true"
+          placeholder="This is disabled">
+        </sui-auto-complete>
+      </div>
+    }
+    @case ('With Placeholder') {
+      <div class="demo-content">
+        <sui-auto-complete
+          [(ngModel)]="placeholderValue"
+          [options]="placeholderOptions"
+          placeholder="Search for your city...">
+        </sui-auto-complete>
+      </div>
+    }
+    @case ('Minimum Length') {
+      <div class="demo-content">
+        <sui-auto-complete
+          [(ngModel)]="minLengthValue"
+          [options]="minLengthOptions"
+          [minLength]="2"
+          placeholder="Type at least 2 characters...">
+        </sui-auto-complete>
+      </div>
+    }
+    @case ('With Clear Button') {
+      <div class="demo-content">
+        <sui-auto-complete
+          [(ngModel)]="clearValue"
+          [options]="clearOptions"
+          placeholder="Type to search..."
+          (change)="onClearChange($event)">
+        </sui-auto-complete>
+      </div>
+    }
+    @default {
+      <!-- Fallback to basic example -->
+      <div class="demo-content">
+        <sui-auto-complete
+          [(ngModel)]="basicValue"
+          [options]="basicOptions"
+          placeholder="Select a fruit..."
+          (change)="onBasicChange($event)">
+        </sui-auto-complete>
+      </div>
+    }
+  }
+</div>

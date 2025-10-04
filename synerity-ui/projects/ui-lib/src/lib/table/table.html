@@ -2,8 +2,12 @@
   <!-- Empty State -->
   <div *ngIf="paginatedValue.length === 0" class="sui-table-empty">
     <div class="sui-table-empty-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14,2 14,8 20,8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10,9 9,9 8,9"/>
       </svg>
     </div>
     <h3 class="sui-table-empty-title">No data available</h3>
@@ -11,58 +15,85 @@
   </div>
   
   <!-- Table -->
-  <div *ngIf="paginatedValue.length > 0" class="sui-table-container">
+  <div *ngIf="paginatedValue.length > 0" [class]="containerClasses">
     <div class="sui-table-scroll">
-      <table class="sui-table">
+      <table [class]="tableClasses">
         <thead class="sui-table-thead">
           <tr>
+            <!-- Selection Column Header -->
+            <th *ngIf="selectionMode" class="sui-table-th sui-table-th-selection">
+              <div class="sui-table-th-content">
+                <span class="sui-table-th-label">
+                  <input *ngIf="selectionMode === 'multiple'" 
+                         type="checkbox" 
+                         class="sui-table-select-all"
+                         [checked]="isAllSelected()"
+                         (change)="toggleSelectAll($event)"/>
+                </span>
+              </div>
+            </th>
+            
+            <!-- Data Column Headers -->
             <th *ngFor="let col of columns" 
                 class="sui-table-th"
                 [class.sui-table-th-sortable]="col.sortable"
+                [style]="getColumnStyle(col)"
                 (click)="col.sortable ? onSortColumn(col) : null">
+              
               <div class="sui-table-th-content">
                 <span class="sui-table-th-label">{{ col.header }}</span>
                 <button *ngIf="col.sortable" 
                         class="sui-table-sort-btn"
-                        [class.sui-table-sort-desc]="sortField === col.field && sortOrder === 'desc'"
-                        (click)="onSortColumn(col)">
-                  <svg class="sui-table-sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"></path>
-                  </svg>
+                        type="button"
+                        (click)="onSortColumn(col); $event.stopPropagation()">
+                  <span class="sui-table-sort-icon">{{ getSortIcon(col) }}</span>
                 </button>
               </div>
-              <input 
-                *ngIf="col.filterable" 
-                type="text" 
-                (input)="onFilterColumn(col, $any($event.target).value)"
-                class="sui-table-filter-input"
-                placeholder="Filter {{ col.header }}"
-              />
+              
+              <!-- Filter Input -->
+              <input *ngIf="showFilters && col.filterable" 
+                     type="text" 
+                     class="sui-table-filter-input"
+                     [placeholder]="'Filter ' + col.header"
+                     (input)="onFilterColumn(col, $any($event.target).value)"
+                     (click)="$event.stopPropagation()"/>
             </th>
           </tr>
         </thead>
+        
         <tbody class="sui-table-tbody">
-          <tr 
-            *ngFor="let row of paginatedValue; let i = index" 
-            class="sui-table-row"
-            [class.sui-table-row-selected]="isRowSelected(row)"
-            [class.sui-table-row-selectable]="selectionMode"
-            (click)="onRowClick(row)">
-            <td *ngFor="let col of columns" class="sui-table-td">
+          <tr *ngFor="let row of paginatedValue; trackBy: trackByIndex" 
+              class="sui-table-row"
+              [class.sui-table-row-selected]="isRowSelected(row)"
+              [class.sui-table-row-selectable]="selectionMode"
+              (click)="onRowClick(row)">
+              
+            <!-- Selection Column -->
+            <td *ngIf="selectionMode" class="sui-table-td sui-table-td-selection">
               <div class="sui-table-cell">
-                <span *ngIf="selectionMode === 'multiple'" class="sui-table-checkbox">
-                  <input type="checkbox" 
-                         [checked]="isRowSelected(row)"
-                         (click)="$event.stopPropagation()"
-                         (change)="onRowClick(row)">
-                </span>
-                <span *ngIf="selectionMode === 'single'" class="sui-table-radio">
-                  <input type="radio" 
-                         [checked]="isRowSelected(row)"
-                         (click)="$event.stopPropagation()"
-                         (change)="onRowClick(row)">
-                </span>
-                <span class="sui-table-cell-value">{{ row[col.field] }}</span>
+                <input *ngIf="selectionMode === 'multiple'" 
+                       type="checkbox" 
+                       class="sui-table-checkbox"
+                       [checked]="isRowSelected(row)"
+                       (click)="$event.stopPropagation()"
+                       (change)="onRowClick(row)"/>
+                       
+                <input *ngIf="selectionMode === 'single'" 
+                       type="radio" 
+                       class="sui-table-radio"
+                       [checked]="isRowSelected(row)"
+                       (click)="$event.stopPropagation()"
+                       (change)="onRowClick(row)"/>
+              </div>
+            </td>
+            
+            <!-- Data Columns -->
+            <td *ngFor="let col of columns" 
+                class="sui-table-td"
+                [style]="getColumnStyle(col)">
+              
+              <div class="sui-table-cell">
+                <span class="sui-table-cell-value">{{ getCellValue(row, col) }}</span>
               </div>
             </td>
           </tr>

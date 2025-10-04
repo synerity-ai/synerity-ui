@@ -1,0 +1,116 @@
+<div class="panel-demo">
+  @switch (currentExample?.name) {
+    @case ('Basic') {
+      <div class="demo-content">
+        <sui-panel 
+          header="Basic Panel"
+          [collapsed]="basicCollapsed"
+          (onToggle)="onBasicToggle($event)">
+          <p>This is a basic panel with some content. You can put any content here including forms, text, images, or other components.</p>
+        </sui-panel>
+      </div>
+    }
+    @case ('Toggleable') {
+      <div class="demo-content">
+        <sui-panel 
+          header="Toggleable Panel"
+          [toggleable]="true"
+          [collapsed]="toggleableCollapsed"
+          (onToggle)="onToggleableToggle($event)">
+          <p>This panel can be collapsed and expanded by clicking the header. The toggle button will rotate to indicate the state.</p>
+          <ul class="mt-2">
+            <li>Click the header to toggle</li>
+            <li>Watch the arrow icon rotate</li>
+            <li>Content is hidden when collapsed</li>
+          </ul>
+        </sui-panel>
+      </div>
+    }
+    @case ('Without Header') {
+      <div class="demo-content">
+        <sui-panel 
+          [showHeader]="false">
+          <p>This panel doesn't have a header. It's useful for simple content containers without titles.</p>
+        </sui-panel>
+      </div>
+    }
+    @case ('Custom Styled') {
+      <div class="demo-content">
+        <sui-panel 
+          header="Custom Styled Panel"
+          [toggleable]="true"
+          [collapsed]="customCollapsed"
+          styleClass="sui-panel-filled"
+          (onToggle)="onCustomToggle($event)">
+          <p>This panel uses custom styling with the filled variant. You can apply custom CSS classes and inline styles.</p>
+        </sui-panel>
+      </div>
+    }
+    @case ('Rich Content') {
+      <div class="demo-content">
+        <sui-panel 
+          header="Panel with Rich Content"
+          [toggleable]="true"
+          [collapsed]="contentCollapsed"
+          (onToggle)="onContentToggle($event)">
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold">Panel Content</h4>
+            <p>This panel contains rich content including:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Multiple paragraphs</li>
+              <li>Lists and other elements</li>
+              <li>Forms and inputs</li>
+              <li>Buttons and interactive elements</li>
+            </ul>
+            <div class="flex gap-2">
+              <sui-button variant="primary" size="sm">Action Button</sui-button>
+              <sui-button variant="outline" size="sm">Secondary</sui-button>
+            </div>
+          </div>
+        </sui-panel>
+      </div>
+    }
+    @case ('Small Size') {
+      <div class="demo-content">
+        <sui-panel 
+          header="Small Panel"
+          [toggleable]="true"
+          [collapsed]="smallCollapsed"
+          styleClass="sui-panel-sm"
+          (onToggle)="onSmallToggle($event)">
+          <p>This is a small panel with reduced padding and font sizes.</p>
+        </sui-panel>
+      </div>
+    }
+    @case ('With Header and Footer') {
+      <div class="demo-content">
+        <sui-panel 
+          header="Panel with Footer"
+          footer="Footer text with actions"
+          [toggleable]="true"
+          [collapsed]="headerFooterCollapsed"
+          [showFooter]="true"
+          (onToggle)="onHeaderFooterToggle($event)">
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold">Panel Content</h4>
+            <p>This panel demonstrates both header and footer functionality. The footer is styled just like the header and can contain text or status information.</p>
+            <div class="bg-gray-100 p-3 rounded">
+              <p class="text-sm text-gray-600">The footer will appear at the bottom with matching header styling when the panel is expanded.</p>
+            </div>
+          </div>
+        </sui-panel>
+      </div>
+    }
+    @default {
+      <!-- Fallback to basic example -->
+      <div class="demo-content">
+        <sui-panel 
+          header="Basic Panel"
+          [collapsed]="basicCollapsed"
+          (onToggle)="onBasicToggle($event)">
+          <p>This is a basic panel with some content. You can put any content here including forms, text, images, or other components.</p>
+        </sui-panel>
+      </div>
+    }
+  }
+</div>

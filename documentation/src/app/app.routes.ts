@@ -26,6 +26,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/installation/installation.component').then(m => m.InstallationComponent)
   },
   {
+    path: 'theme-config',
+    loadComponent: () => import('./pages/theme-config/theme-config').then(m => m.ThemeConfigComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }
