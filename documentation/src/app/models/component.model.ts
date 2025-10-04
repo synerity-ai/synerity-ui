@@ -5,6 +5,7 @@ export interface ComponentModel {
   description: string;
   examples: ComponentExample[];
   props: ComponentProp[];
+  events?: ComponentEvent[];
   usage: string;
   tags: string[];
 }
@@ -22,6 +23,12 @@ export interface ComponentProp {
   default: string;
   description: string;
   required: boolean;
+}
+
+export interface ComponentEvent {
+  name: string;
+  type: string;
+  description: string;
 }
 
 export interface ComponentCategory {

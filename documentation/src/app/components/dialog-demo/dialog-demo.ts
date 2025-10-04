@@ -1,11 +1,14 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { ComponentExample } from '../../services/component-data.service';
-import { Dialog } from '@synerity/ui';
+import { ComponentExample } from '../../models/component.model';
+import { Dialog, Button } from '@synerity/ui';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-demo',
   templateUrl: './dialog-demo.html',
-  styleUrl: './dialog-demo.scss'
+  styleUrl: './dialog-demo.scss',
+  imports: [Dialog, Button, FormsModule],
+  standalone: true
 })
 export class DialogDemoComponent {
   @Input() currentExample: ComponentExample | null = null;
