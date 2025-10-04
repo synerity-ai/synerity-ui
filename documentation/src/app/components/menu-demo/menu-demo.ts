@@ -22,12 +22,12 @@ export class MenuDemoComponent {
 
   // Menu with Icons
   iconMenuItems = [
-    { label: 'Dashboard', icon: '📊' },
-    { label: 'Analytics', icon: '📈' },
-    { label: 'Reports', icon: '📋' },
+    { label: 'Dashboard', icon: '📊', highlight: true },
+    { label: 'Analytics', icon: '📈', badge: '12' },
+    { label: 'Reports', icon: '📋', tooltip: 'Generate reports' },
     { separator: true } as any,
     { label: 'Settings', icon: '⚙️' },
-    { label: 'Profile', icon: '👤' }
+    { label: 'Profile', icon: '👤', badge: 'New' }
   ];
 
   // Menu with Submenus

@@ -4,6 +4,7 @@
       <div class="demo-content">
         <sui-menu 
           [model]="basicMenuItems"
+          variant="outlined"
           (onItemClick)="onBasicItemClick($event)">
         </sui-menu>
       </div>
@@ -12,6 +13,8 @@
       <div class="demo-content">
         <sui-menu 
           [model]="iconMenuItems"
+          variant="filled"
+          [glow]="true"
           (onItemClick)="onIconItemClick($event)">
         </sui-menu>
       </div>
@@ -45,6 +48,7 @@
             #popupMenu
             [model]="popupMenuItems"
             [popup]="true"
+            [glow]="true"
             (onItemClick)="onPopupItemClick($event)">
           </sui-menu>
         </div>
@@ -54,7 +58,8 @@
       <div class="demo-content">
         <sui-menu 
           [model]="smallMenuItems"
-          styleClass="sui-menu-sm"
+          size="sm"
+          variant="filled"
           (onItemClick)="onSmallItemClick($event)">
         </sui-menu>
       </div>
@@ -63,7 +68,8 @@
       <div class="demo-content">
         <sui-menu 
           [model]="largeMenuItems"
-          styleClass="sui-menu-lg"
+          size="lg"
+          [glow]="true"
           (onItemClick)="onLargeItemClick($event)">
         </sui-menu>
       </div>

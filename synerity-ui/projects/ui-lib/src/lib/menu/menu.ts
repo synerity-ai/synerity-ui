@@ -16,10 +16,17 @@ export class Menu implements AfterViewInit, OnDestroy {
     disabled?: boolean;
     separator?: boolean;
     items?: any[];
+    badge?: string;
+    tooltip?: string;
+    divider?: boolean;
+    highlight?: boolean;
   }> = [];
   @Input() popup = false;
   @Input() style: any = {};
   @Input() styleClass = '';
+  @Input() variant: 'default' | 'outlined' | 'filled' = 'default';
+  @Input() size: 'sm' | 'md' | 'lg' = 'md';
+  @Input() glow = false;
   @Output() onItemClick = new EventEmitter<any>();
 
   @ViewChild('menuElement') menuElement!: ElementRef;
@@ -105,8 +112,11 @@ export class Menu implements AfterViewInit, OnDestroy {
   }
 
   getMenuClass(): string {
+    const sizeClass = this.size !== 'md' ? `sui-menu-${this.size}` : '';
+    const variantClass = this.variant !== 'default' ? `sui-menu-${this.variant}` : '';
+    const glowClass = this.glow ? 'sui-menu-glow' : '';
     const baseClasses = 'sui-menu';
-    return `${baseClasses} ${this.styleClass}`.trim();
+    return `${baseClasses} ${sizeClass} ${variantClass} ${glowClass} ${this.styleClass}`.trim();
   }
 
   getMenuStyle(): any {

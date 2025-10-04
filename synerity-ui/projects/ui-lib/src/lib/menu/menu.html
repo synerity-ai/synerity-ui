@@ -23,9 +23,17 @@
       <div *ngIf="item.separator" class="sui-menu-separator"></div>
       
       <!-- Menu Item -->
-      <div *ngIf="!item.separator" class="sui-menu-item-content">
+      <div 
+        *ngIf="!item.separator" 
+        class="sui-menu-item-content"
+        [class.sui-menu-item-highlight]="item.highlight"
+        [class.sui-menu-item-badge]="item.badge"
+        [attr.data-badge]="item.badge"
+        [attr.title]="item.tooltip"
+      >
         <span *ngIf="item.icon" class="sui-menu-item-icon">{{ item.icon }}</span>
         <span class="sui-menu-item-label">{{ item.label }}</span>
+        <span *ngIf="item.badge && !hasSubmenu(item)" class="sui-menu-item-badge-content">{{ item.badge }}</span>
         <span *ngIf="hasSubmenu(item)" class="sui-menu-item-arrow">
           <svg class="sui-menu-item-arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
