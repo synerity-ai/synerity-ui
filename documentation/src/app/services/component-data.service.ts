@@ -1030,9 +1030,9 @@ export class AutoCompleteComponent {
           code: '<sui-menu \n  [model]="basicMenuItems"\n  variant="outlined"\n  (onItemClick)="onBasicItemClick($event)">\n</sui-menu>',
           tsCode: `export class MenuComponent {
   basicMenuItems = [
-    { label: 'Home', lucideIcon: 'home' },
-    { label: 'About', lucideIcon: 'info' },
-    { label: 'Contact', lucideIcon: 'mail' }
+    { label: 'Home', icon: 'home' },
+    { label: 'About', icon: 'info' },
+    { label: 'Contact', icon: 'mail' }
   ];
 
   onBasicItemClick(item: any): void {
@@ -1046,12 +1046,12 @@ export class AutoCompleteComponent {
           code: '<sui-menu \n  [model]="iconMenuItems"\n  variant="filled"\n  [glow]="true"\n  (onItemClick)="onIconItemClick($event)">\n</sui-menu>',
           tsCode: `export class MenuComponent {
   iconMenuItems = [
-    { label: 'Dashboard', lucideIcon: 'layout-dashboard', highlight: true },
-    { label: 'Analytics', lucideIcon: 'bar-chart-3', badge: '12' },
-    { label: 'Reports', lucideIcon: 'file-text', tooltip: 'Generate reports' },
+    { label: 'Dashboard', icon: 'layout-dashboard', highlight: true },
+    { label: 'Analytics', icon: 'bar-chart-3', badge: '12' },
+    { label: 'Reports', icon: 'file-text', tooltip: 'Generate reports' },
     { separator: true },
-    { label: 'Settings', lucideIcon: 'settings' },
-    { label: 'Profile', lucideIcon: 'user', badge: 'New' }
+    { label: 'Settings', icon: 'settings' },
+    { label: 'Profile', icon: 'user', badge: 'New' }
   ];
 
   onIconItemClick(item: any): void {
@@ -1067,20 +1067,20 @@ export class AutoCompleteComponent {
   submenuItems = [
     {
       label: 'File',
-      lucideIcon: 'file',
+      icon: 'file',
       items: [
-        { label: 'New', lucideIcon: 'plus' },
-        { label: 'Open', lucideIcon: 'folder-open' },
-        { label: 'Save', lucideIcon: 'save' }
+        { label: 'New', icon: 'plus' },
+        { label: 'Open', icon: 'folder-open' },
+        { label: 'Save', icon: 'save' }
       ]
     },
     {
       label: 'Edit',
-      lucideIcon: 'edit',
+      icon: 'edit',
       items: [
-        { label: 'Cut', lucideIcon: 'scissors' },
-        { label: 'Copy', lucideIcon: 'copy' },
-        { label: 'Paste', lucideIcon: 'clipboard' }
+        { label: 'Cut', icon: 'scissors' },
+        { label: 'Copy', icon: 'copy' },
+        { label: 'Paste', icon: 'clipboard' }
       ]
     }
   ];
@@ -1173,7 +1173,7 @@ export class AutoCompleteComponent {
           name: 'model',
           type: 'MenuItem[]',
           default: '[]',
-          description: 'Array of menu items with label, icon/lucideIcon, command, disabled, separator, items, badge, tooltip, and highlight properties',
+          description: 'Array of menu items with label, icon, command, disabled, separator, items, badge, tooltip, and highlight properties',
           required: true
         },
         {

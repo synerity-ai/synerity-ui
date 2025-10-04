@@ -11,8 +11,7 @@ import { NgFor, NgIf } from '@angular/common';
 export class Menu implements AfterViewInit, OnDestroy {
   @Input() model: Array<{ 
     label?: string; 
-    icon?: string; 
-    lucideIcon?: string;
+    icon?: string;
     command?: () => void;
     disabled?: boolean;
     separator?: boolean;

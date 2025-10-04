@@ -31,8 +31,7 @@
         [attr.data-badge]="item.badge"
         [attr.title]="item.tooltip"
       >
-        <span *ngIf="item.lucideIcon" class="sui-menu-item-icon sui-lucide-icon" [attr.data-icon]="item.lucideIcon"></span>
-        <span *ngIf="item.icon && !item.lucideIcon" class="sui-menu-item-icon">{{ item.icon }}</span>
+        <span *ngIf="item.icon" class="sui-menu-item-icon sui-lucide-icon" [attr.data-icon]="item.icon"></span>
         <span class="sui-menu-item-label">{{ item.label }}</span>
         <span *ngIf="item.badge && !hasSubmenu(item)" class="sui-menu-item-badge-content">{{ item.badge }}</span>
         <span *ngIf="hasSubmenu(item)" class="sui-menu-item-arrow sui-lucide-icon" data-icon="chevron-right"></span>
@@ -54,8 +53,7 @@
             [attr.aria-disabled]="subItem.disabled"
             [attr.tabindex]="subItem.disabled ? -1 : 0"
           >
-            <span *ngIf="subItem.lucideIcon" class="sui-menu-item-icon sui-lucide-icon" [attr.data-icon]="subItem.lucideIcon"></span>
-            <span *ngIf="subItem.icon && !subItem.lucideIcon" class="sui-menu-item-icon">{{ subItem.icon }}</span>
+            <span *ngIf="subItem.icon" class="sui-menu-item-icon sui-lucide-icon" [attr.data-icon]="subItem.icon"></span>
             <span class="sui-menu-item-label">{{ subItem.label }}</span>
           </div>
         </div>
