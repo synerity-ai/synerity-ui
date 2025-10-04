@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'sui-menu',
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, LucideAngularModule],
   templateUrl: './menu.html',
   styleUrl: './menu.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -12,6 +13,7 @@ export class Menu implements AfterViewInit, OnDestroy {
   @Input() model: Array<{ 
     label?: string; 
     icon?: string; 
+    lucideIcon?: string;
     command?: () => void;
     disabled?: boolean;
     separator?: boolean;

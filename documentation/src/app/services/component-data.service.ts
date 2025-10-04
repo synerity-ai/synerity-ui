@@ -1027,12 +1027,12 @@ export class AutoCompleteComponent {
       examples: [
         {
           name: 'Basic',
-          code: '<sui-menu \n  [model]="basicMenuItems"\n  (onItemClick)="onBasicItemClick($event)">\n</sui-menu>',
+          code: '<sui-menu \n  [model]="basicMenuItems"\n  variant="outlined"\n  (onItemClick)="onBasicItemClick($event)">\n</sui-menu>',
           tsCode: `export class MenuComponent {
   basicMenuItems = [
-    { label: 'Home', icon: '🏠' },
-    { label: 'About', icon: 'ℹ️' },
-    { label: 'Contact', icon: '📧' }
+    { label: 'Home', lucideIcon: 'home' },
+    { label: 'About', lucideIcon: 'info' },
+    { label: 'Contact', lucideIcon: 'mail' }
   ];
 
   onBasicItemClick(item: any): void {
@@ -1043,15 +1043,15 @@ export class AutoCompleteComponent {
         },
         {
           name: 'With Icons',
-          code: '<sui-menu \n  [model]="iconMenuItems"\n  (onItemClick)="onIconItemClick($event)">\n</sui-menu>',
+          code: '<sui-menu \n  [model]="iconMenuItems"\n  variant="filled"\n  [glow]="true"\n  (onItemClick)="onIconItemClick($event)">\n</sui-menu>',
           tsCode: `export class MenuComponent {
   iconMenuItems = [
-    { label: 'Dashboard', icon: '📊' },
-    { label: 'Analytics', icon: '📈' },
-    { label: 'Reports', icon: '📋' },
+    { label: 'Dashboard', lucideIcon: 'layout-dashboard', highlight: true },
+    { label: 'Analytics', lucideIcon: 'bar-chart-3', badge: '12' },
+    { label: 'Reports', lucideIcon: 'file-text', tooltip: 'Generate reports' },
     { separator: true },
-    { label: 'Settings', icon: '⚙️' },
-    { label: 'Profile', icon: '👤' }
+    { label: 'Settings', lucideIcon: 'settings' },
+    { label: 'Profile', lucideIcon: 'user', badge: 'New' }
   ];
 
   onIconItemClick(item: any): void {
@@ -1067,20 +1067,20 @@ export class AutoCompleteComponent {
   submenuItems = [
     {
       label: 'File',
-      icon: '📄',
+      lucideIcon: 'file',
       items: [
-        { label: 'New', icon: '➕' },
-        { label: 'Open', icon: '📂' },
-        { label: 'Save', icon: '💾' }
+        { label: 'New', lucideIcon: 'plus' },
+        { label: 'Open', lucideIcon: 'folder-open' },
+        { label: 'Save', lucideIcon: 'save' }
       ]
     },
     {
       label: 'Edit',
-      icon: '✏️',
+      lucideIcon: 'edit',
       items: [
-        { label: 'Cut', icon: '✂️' },
-        { label: 'Copy', icon: '📋' },
-        { label: 'Paste', icon: '📌' }
+        { label: 'Cut', lucideIcon: 'scissors' },
+        { label: 'Copy', lucideIcon: 'copy' },
+        { label: 'Paste', lucideIcon: 'clipboard' }
       ]
     }
   ];
@@ -1173,7 +1173,7 @@ export class AutoCompleteComponent {
           name: 'model',
           type: 'MenuItem[]',
           default: '[]',
-          description: 'Array of menu items with label, icon, command, disabled, separator, and items properties',
+          description: 'Array of menu items with label, icon/lucideIcon, command, disabled, separator, items, badge, tooltip, and highlight properties',
           required: true
         },
         {
@@ -1184,10 +1184,31 @@ export class AutoCompleteComponent {
           required: false
         },
         {
+          name: 'variant',
+          type: 'string',
+          default: '"default"',
+          description: 'Menu variant: "default", "outlined", or "filled"',
+          required: false
+        },
+        {
+          name: 'size',
+          type: 'string',
+          default: '"md"',
+          description: 'Menu size: "sm", "md", or "lg"',
+          required: false
+        },
+        {
+          name: 'glow',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether to add glow effect to the menu',
+          required: false
+        },
+        {
           name: 'styleClass',
           type: 'string',
           default: '""',
-          description: 'Additional CSS classes for styling (e.g., sui-menu-sm, sui-menu-lg)',
+          description: 'Additional CSS classes for styling',
           required: false
         },
         {
@@ -1198,7 +1219,7 @@ export class AutoCompleteComponent {
           required: false
         }
       ],
-      usage: 'Use menus for navigation, context menus, and application structure. Menus support icons, separators, disabled items, submenus, and popup functionality with theme-aware styling.',
+      usage: 'Use menus for navigation, context menus, and application structure. Menus support Lucide icons, separators, disabled items, submenus, badges, tooltips, highlights, and popup functionality with theme-aware styling and modern animations.',
       tags: ['navigation', 'menu', 'dropdown', 'context-menu', 'popup']
     },
     // Media Components

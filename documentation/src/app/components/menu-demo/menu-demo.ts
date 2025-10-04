@@ -15,81 +15,81 @@ export class MenuDemoComponent {
 
   // Basic Menu
   basicMenuItems = [
-    { label: 'Home', icon: '🏠' },
-    { label: 'About', icon: 'ℹ️' },
-    { label: 'Contact', icon: '📧' }
+    { label: 'Home', lucideIcon: 'home' },
+    { label: 'About', lucideIcon: 'info' },
+    { label: 'Contact', lucideIcon: 'mail' }
   ];
 
   // Menu with Icons
   iconMenuItems = [
-    { label: 'Dashboard', icon: '📊', highlight: true },
-    { label: 'Analytics', icon: '📈', badge: '12' },
-    { label: 'Reports', icon: '📋', tooltip: 'Generate reports' },
+    { label: 'Dashboard', lucideIcon: 'layout-dashboard', highlight: true },
+    { label: 'Analytics', lucideIcon: 'bar-chart-3', badge: '12' },
+    { label: 'Reports', lucideIcon: 'file-text', tooltip: 'Generate reports' },
     { separator: true } as any,
-    { label: 'Settings', icon: '⚙️' },
-    { label: 'Profile', icon: '👤', badge: 'New' }
+    { label: 'Settings', lucideIcon: 'settings' },
+    { label: 'Profile', lucideIcon: 'user', badge: 'New' }
   ];
 
   // Menu with Submenus
   submenuItems = [
     {
       label: 'File',
-      icon: '📄',
+      lucideIcon: 'file',
       items: [
-        { label: 'New', icon: '➕' },
-        { label: 'Open', icon: '📂' },
-        { label: 'Save', icon: '💾' }
+        { label: 'New', lucideIcon: 'plus' },
+        { label: 'Open', lucideIcon: 'folder-open' },
+        { label: 'Save', lucideIcon: 'save' }
       ]
     },
     {
       label: 'Edit',
-      icon: '✏️',
+      lucideIcon: 'edit',
       items: [
-        { label: 'Cut', icon: '✂️' },
-        { label: 'Copy', icon: '📋' },
-        { label: 'Paste', icon: '📌' }
+        { label: 'Cut', lucideIcon: 'scissors' },
+        { label: 'Copy', lucideIcon: 'copy' },
+        { label: 'Paste', lucideIcon: 'clipboard' }
       ]
     },
     {
       label: 'View',
-      icon: '👁️',
+      lucideIcon: 'eye',
       items: [
-        { label: 'Zoom In', icon: '🔍+' },
-        { label: 'Zoom Out', icon: '🔍-' },
-        { label: 'Reset Zoom', icon: '🎯' }
+        { label: 'Zoom In', lucideIcon: 'zoom-in' },
+        { label: 'Zoom Out', lucideIcon: 'zoom-out' },
+        { label: 'Reset Zoom', lucideIcon: 'maximize' }
       ]
     }
   ];
 
   // Disabled Menu
   disabledMenuItems = [
-    { label: 'Available', icon: '✅' },
-    { label: 'Disabled Item', icon: '❌', disabled: true },
-    { label: 'Another Available', icon: '✅' },
+    { label: 'Available', lucideIcon: 'check' },
+    { label: 'Disabled Item', lucideIcon: 'x', disabled: true },
+    { label: 'Another Available', lucideIcon: 'check' },
     { separator: true } as any,
-    { label: 'Coming Soon', icon: '⏳', disabled: true }
+    { label: 'Coming Soon', lucideIcon: 'clock', disabled: true }
   ];
 
   // Popup Menu
   popupMenuItems = [
-    { label: 'Edit', icon: '✏️' },
-    { label: 'Duplicate', icon: '📋' },
-    { label: 'Delete', icon: '🗑️' },
+    { label: 'Edit', lucideIcon: 'edit' },
+    { label: 'Duplicate', lucideIcon: 'copy' },
+    { label: 'Delete', lucideIcon: 'trash-2' },
     { separator: true } as any,
-    { label: 'Share', icon: '📤' }
+    { label: 'Share', lucideIcon: 'share-2' }
   ];
 
   // Size variants
   smallMenuItems = [
-    { label: 'Item 1', icon: '1️⃣' },
-    { label: 'Item 2', icon: '2️⃣' },
-    { label: 'Item 3', icon: '3️⃣' }
+    { label: 'Item 1', lucideIcon: 'circle' },
+    { label: 'Item 2', lucideIcon: 'circle' },
+    { label: 'Item 3', lucideIcon: 'circle' }
   ];
 
   largeMenuItems = [
-    { label: 'Large Item One', icon: '🔴' },
-    { label: 'Large Item Two', icon: '🟢' },
-    { label: 'Large Item Three', icon: '🔵' }
+    { label: 'Large Item One', lucideIcon: 'square' },
+    { label: 'Large Item Two', lucideIcon: 'square' },
+    { label: 'Large Item Three', lucideIcon: 'square' }
   ];
 
   // Menu references for popup
