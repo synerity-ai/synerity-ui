@@ -658,6 +658,9 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Panel Component Styles - Imported from component-specific file */
 @import './panel/panel.scss';
 
+/* Menu Component Styles - Imported from component-specific file */
+@import './menu/menu.scss';
+
 /* Ensure Synerity UI components inherit proper styling */
 .sui-button {
   font-family: inherit;

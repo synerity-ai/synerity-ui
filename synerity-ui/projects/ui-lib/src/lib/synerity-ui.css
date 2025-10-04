@@ -1072,6 +1072,194 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   border-bottom-color: var(--sui-gray-500, #6b7280);
 }
 
+/* Menu Component Styles - Imported from component-specific file */
+.sui-menu {
+  background-color: var(--sui-gray-50, #ffffff);
+  border: 1px solid var(--sui-gray-200, #e5e7eb);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 0.25rem 0;
+  min-width: 12rem;
+  z-index: 50;
+  position: relative;
+}
+.sui-menu .sui-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.sui-menu .sui-menu-item {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.sui-menu .sui-menu-item.sui-menu-item-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.sui-menu .sui-menu-separator {
+  border-top: 1px solid var(--sui-gray-200, #e5e7eb);
+  margin: 0.25rem 0;
+}
+.sui-menu .sui-menu-item-content {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--sui-gray-700, #374151);
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+  border-radius: 0.25rem;
+  margin: 0 0.25rem;
+}
+.sui-menu .sui-menu-item-content:hover {
+  background-color: var(--sui-gray-100, #f3f4f6);
+  color: var(--sui-gray-900, #111827);
+}
+.sui-menu .sui-menu-item-content.sui-menu-item-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.sui-menu .sui-menu-item-icon {
+  margin-right: 0.75rem;
+  color: var(--sui-gray-400, #9ca3af);
+  font-size: 1rem;
+}
+.sui-menu .sui-menu-item-label {
+  flex: 1;
+  font-weight: 400;
+}
+.sui-menu .sui-menu-item-arrow {
+  margin-left: 0.5rem;
+  color: var(--sui-gray-400, #9ca3af);
+}
+.sui-menu .sui-menu-item-arrow .sui-menu-item-arrow-icon {
+  width: 1rem;
+  height: 1rem;
+}
+.sui-menu .sui-menu-submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 0.25rem;
+  background-color: var(--sui-gray-50, #ffffff);
+  border: 1px solid var(--sui-gray-200, #e5e7eb);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 0.25rem 0;
+  min-width: 12rem;
+  z-index: 60;
+}
+.sui-menu .sui-menu-submenu .sui-menu-list {
+  gap: 0.25rem;
+}
+.sui-menu .sui-menu-submenu .sui-menu-submenu-item {
+  margin: 0 0.25rem;
+}
+
+/* Menu Sizes */
+.sui-menu-sm {
+  min-width: 10rem;
+  padding: 0.125rem 0;
+}
+.sui-menu-sm .sui-menu-item-content {
+  padding: 0.375rem 0.5rem;
+  font-size: 0.75rem;
+}
+.sui-menu-sm .sui-menu-item-icon {
+  margin-right: 0.5rem;
+  font-size: 0.875rem;
+}
+.sui-menu-sm .sui-menu-submenu {
+  min-width: 10rem;
+}
+
+.sui-menu-lg {
+  min-width: 16rem;
+  padding: 0.5rem 0;
+}
+.sui-menu-lg .sui-menu-item-content {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+.sui-menu-lg .sui-menu-item-icon {
+  margin-right: 1rem;
+  font-size: 1.125rem;
+}
+.sui-menu-lg .sui-menu-submenu {
+  min-width: 16rem;
+}
+
+/* Menu Variants */
+.sui-menu-outlined {
+  background-color: transparent;
+  border-width: 2px;
+  border-color: var(--sui-gray-300, #d1d5db);
+}
+.sui-menu-outlined .sui-menu-submenu {
+  background-color: transparent;
+  border-color: var(--sui-gray-300, #d1d5db);
+}
+
+.sui-menu-filled {
+  background-color: var(--sui-gray-100, #f3f4f6);
+  border-color: var(--sui-gray-200, #e5e7eb);
+}
+.sui-menu-filled .sui-menu-submenu {
+  background-color: var(--sui-gray-100, #f3f4f6);
+  border-color: var(--sui-gray-200, #e5e7eb);
+}
+
+/* Dark theme support */
+:host-context(.dark) .sui-menu {
+  background-color: var(--sui-gray-800, #1f2937);
+  border-color: var(--sui-gray-700, #374151);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+:host-context(.dark) .sui-menu .sui-menu-separator {
+  border-top-color: var(--sui-gray-700, #374151);
+}
+:host-context(.dark) .sui-menu .sui-menu-item-content {
+  color: var(--sui-gray-300, #d1d5db);
+}
+:host-context(.dark) .sui-menu .sui-menu-item-content:hover {
+  background-color: var(--sui-gray-700, #374151);
+  color: var(--sui-gray-100, #f3f4f6);
+}
+:host-context(.dark) .sui-menu .sui-menu-item-icon {
+  color: var(--sui-gray-500, #6b7280);
+}
+:host-context(.dark) .sui-menu .sui-menu-item-arrow {
+  color: var(--sui-gray-500, #6b7280);
+}
+:host-context(.dark) .sui-menu .sui-menu-submenu {
+  background-color: var(--sui-gray-800, #1f2937);
+  border-color: var(--sui-gray-700, #374151);
+}
+
+:host-context(.dark) .sui-menu-outlined {
+  background-color: transparent;
+  border-color: var(--sui-gray-600, #4b5563);
+}
+:host-context(.dark) .sui-menu-outlined .sui-menu-submenu {
+  background-color: transparent;
+  border-color: var(--sui-gray-600, #4b5563);
+}
+
+:host-context(.dark) .sui-menu-filled {
+  background-color: var(--sui-gray-700, #374151);
+  border-color: var(--sui-gray-600, #4b5563);
+}
+:host-context(.dark) .sui-menu-filled .sui-menu-submenu {
+  background-color: var(--sui-gray-700, #374151);
+  border-color: var(--sui-gray-600, #4b5563);
+}
+
 /* Ensure Synerity UI components inherit proper styling */
 .sui-button {
   font-family: inherit;

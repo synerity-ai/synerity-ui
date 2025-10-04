@@ -10,7 +10,7 @@ import { NgFor, NgIf } from '@angular/common';
 })
 export class Menu implements AfterViewInit, OnDestroy {
   @Input() model: Array<{ 
-    label: string; 
+    label?: string; 
     icon?: string; 
     command?: () => void;
     disabled?: boolean;
@@ -105,7 +105,7 @@ export class Menu implements AfterViewInit, OnDestroy {
   }
 
   getMenuClass(): string {
-    const baseClasses = 'bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-48 z-50';
+    const baseClasses = 'sui-menu';
     return `${baseClasses} ${this.styleClass}`.trim();
   }
 

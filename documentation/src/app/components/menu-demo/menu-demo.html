@@ -1,0 +1,81 @@
+<div class="menu-demo">
+  @switch (currentExample?.name) {
+    @case ('Basic') {
+      <div class="demo-content">
+        <sui-menu 
+          [model]="basicMenuItems"
+          (onItemClick)="onBasicItemClick($event)">
+        </sui-menu>
+      </div>
+    }
+    @case ('With Icons') {
+      <div class="demo-content">
+        <sui-menu 
+          [model]="iconMenuItems"
+          (onItemClick)="onIconItemClick($event)">
+        </sui-menu>
+      </div>
+    }
+    @case ('With Submenus') {
+      <div class="demo-content">
+        <sui-menu 
+          [model]="submenuItems"
+          (onItemClick)="onSubmenuItemClick($event)">
+        </sui-menu>
+      </div>
+    }
+    @case ('Disabled Items') {
+      <div class="demo-content">
+        <sui-menu 
+          [model]="disabledMenuItems"
+          (onItemClick)="onDisabledItemClick($event)">
+        </sui-menu>
+      </div>
+    }
+    @case ('Popup Menu') {
+      <div class="demo-content">
+        <div class="flex gap-4 items-center">
+          <sui-button 
+            variant="primary" 
+            size="md"
+            (click)="showPopupMenu($event)">
+            Right Click Me
+          </sui-button>
+          <sui-menu 
+            #popupMenu
+            [model]="popupMenuItems"
+            [popup]="true"
+            (onItemClick)="onPopupItemClick($event)">
+          </sui-menu>
+        </div>
+      </div>
+    }
+    @case ('Small Size') {
+      <div class="demo-content">
+        <sui-menu 
+          [model]="smallMenuItems"
+          styleClass="sui-menu-sm"
+          (onItemClick)="onSmallItemClick($event)">
+        </sui-menu>
+      </div>
+    }
+    @case ('Large Size') {
+      <div class="demo-content">
+        <sui-menu 
+          [model]="largeMenuItems"
+          styleClass="sui-menu-lg"
+          (onItemClick)="onLargeItemClick($event)">
+        </sui-menu>
+      </div>
+    }
+    @default {
+      <!-- Fallback to basic example -->
+      <div class="demo-content">
+        <sui-menu 
+          [model]="basicMenuItems"
+          (onItemClick)="onBasicItemClick($event)">
+        </sui-menu>
+      </div>
+    }
+  }
+</div>

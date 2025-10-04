@@ -8,11 +8,12 @@ import { InputDemo } from '../input-demo/input-demo';
 import { TableDemoComponent } from '../table-demo/table-demo';
 import { AutoCompleteDemoComponent } from '../auto-complete-demo/auto-complete-demo';
 import { PanelDemoComponent } from '../panel-demo/panel-demo';
+import { MenuDemoComponent } from '../menu-demo/menu-demo';
 
 @Component({
   selector: 'app-component-preview',
   standalone: true,
-  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent],
+  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent],
   templateUrl: './component-preview.component.html',
   styleUrl: './component-preview.component.scss'
 })

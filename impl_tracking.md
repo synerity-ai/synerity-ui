@@ -44,7 +44,7 @@ Dialog → Checkbox → Radio Button → Select → Tabs → Textarea → Toolti
 | Auto Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
 | Table | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
 | Panel | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Menu | ✅ Complete | ⚠️ Basic | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
+| Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
 | Carousel | ✅ Complete | ⚠️ Basic | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Toast | ✅ Complete | ⚠️ Basic | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Dialog | ✅ Complete | ⚠️ Basic | ⚠️ Needs Theme | ⚠️ Needs Theme | High |

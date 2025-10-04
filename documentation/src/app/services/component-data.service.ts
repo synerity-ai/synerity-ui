@@ -1023,12 +1023,149 @@ export class AutoCompleteComponent {
       id: 'menu',
       name: 'Menu',
       category: 'Navigation',
-      description: 'Navigation menu component',
+      description: 'Navigation menu component with support for icons, submenus, and popup functionality',
       examples: [
         {
-          name: 'Basic Menu',
-          code: '<sui-menu [model]="menuItems"></sui-menu>',
-          description: 'Basic navigation menu'
+          name: 'Basic',
+          code: '<sui-menu \n  [model]="basicMenuItems"\n  (onItemClick)="onBasicItemClick($event)">\n</sui-menu>',
+          tsCode: `export class MenuComponent {
+  basicMenuItems = [
+    { label: 'Home', icon: '🏠' },
+    { label: 'About', icon: 'ℹ️' },
+    { label: 'Contact', icon: '📧' }
+  ];
+
+  onBasicItemClick(item: any): void {
+    console.log('Menu item clicked:', item);
+  }
+}`,
+          description: 'Basic navigation menu with simple items'
+        },
+        {
+          name: 'With Icons',
+          code: '<sui-menu \n  [model]="iconMenuItems"\n  (onItemClick)="onIconItemClick($event)">\n</sui-menu>',
+          tsCode: `export class MenuComponent {
+  iconMenuItems = [
+    { label: 'Dashboard', icon: '📊' },
+    { label: 'Analytics', icon: '📈' },
+    { label: 'Reports', icon: '📋' },
+    { separator: true },
+    { label: 'Settings', icon: '⚙️' },
+    { label: 'Profile', icon: '👤' }
+  ];
+
+  onIconItemClick(item: any): void {
+    console.log('Icon menu item clicked:', item);
+  }
+}`,
+          description: 'Menu with icons and separators'
+        },
+        {
+          name: 'With Submenus',
+          code: '<sui-menu \n  [model]="submenuItems"\n  (onItemClick)="onSubmenuItemClick($event)">\n</sui-menu>',
+          tsCode: `export class MenuComponent {
+  submenuItems = [
+    {
+      label: 'File',
+      icon: '📄',
+      items: [
+        { label: 'New', icon: '➕' },
+        { label: 'Open', icon: '📂' },
+        { label: 'Save', icon: '💾' }
+      ]
+    },
+    {
+      label: 'Edit',
+      icon: '✏️',
+      items: [
+        { label: 'Cut', icon: '✂️' },
+        { label: 'Copy', icon: '📋' },
+        { label: 'Paste', icon: '📌' }
+      ]
+    }
+  ];
+
+  onSubmenuItemClick(item: any): void {
+    console.log('Submenu item clicked:', item);
+  }
+}`,
+          description: 'Menu with nested submenu items'
+        },
+        {
+          name: 'Disabled Items',
+          code: '<sui-menu \n  [model]="disabledMenuItems"\n  (onItemClick)="onDisabledItemClick($event)">\n</sui-menu>',
+          tsCode: `export class MenuComponent {
+  disabledMenuItems = [
+    { label: 'Available', icon: '✅' },
+    { label: 'Disabled Item', icon: '❌', disabled: true },
+    { label: 'Another Available', icon: '✅' },
+    { separator: true },
+    { label: 'Coming Soon', icon: '⏳', disabled: true }
+  ];
+
+  onDisabledItemClick(item: any): void {
+    console.log('Disabled menu item clicked:', item);
+  }
+}`,
+          description: 'Menu with disabled items and separators'
+        },
+        {
+          name: 'Popup Menu',
+          code: '<sui-button \n  variant="primary" \n  (click)="showPopupMenu($event)">\n  Right Click Me\n</sui-button>\n<sui-menu \n  #popupMenu\n  [model]="popupMenuItems"\n  [popup]="true"\n  (onItemClick)="onPopupItemClick($event)">\n</sui-menu>',
+          tsCode: `export class MenuComponent {
+  popupMenuItems = [
+    { label: 'Edit', icon: '✏️' },
+    { label: 'Duplicate', icon: '📋' },
+    { label: 'Delete', icon: '🗑️' },
+    { separator: true },
+    { label: 'Share', icon: '📤' }
+  ];
+
+  popupMenu: any;
+
+  showPopupMenu(event: Event): void {
+    if (this.popupMenu) {
+      this.popupMenu.show(event);
+    }
+  }
+
+  onPopupItemClick(item: any): void {
+    console.log('Popup menu item clicked:', item);
+  }
+}`,
+          description: 'Popup menu triggered by button click'
+        },
+        {
+          name: 'Small Size',
+          code: '<sui-menu \n  [model]="smallMenuItems"\n  styleClass="sui-menu-sm"\n  (onItemClick)="onSmallItemClick($event)">\n</sui-menu>',
+          tsCode: `export class MenuComponent {
+  smallMenuItems = [
+    { label: 'Item 1', icon: '1️⃣' },
+    { label: 'Item 2', icon: '2️⃣' },
+    { label: 'Item 3', icon: '3️⃣' }
+  ];
+
+  onSmallItemClick(item: any): void {
+    console.log('Small menu item clicked:', item);
+  }
+}`,
+          description: 'Small menu with reduced padding and font sizes'
+        },
+        {
+          name: 'Large Size',
+          code: '<sui-menu \n  [model]="largeMenuItems"\n  styleClass="sui-menu-lg"\n  (onItemClick)="onLargeItemClick($event)">\n</sui-menu>',
+          tsCode: `export class MenuComponent {
+  largeMenuItems = [
+    { label: 'Large Item One', icon: '🔴' },
+    { label: 'Large Item Two', icon: '🟢' },
+    { label: 'Large Item Three', icon: '🔵' }
+  ];
+
+  onLargeItemClick(item: any): void {
+    console.log('Large menu item clicked:', item);
+  }
+}`,
+          description: 'Large menu with increased padding and font sizes'
         }
       ],
       props: [
@@ -1036,12 +1173,33 @@ export class AutoCompleteComponent {
           name: 'model',
           type: 'MenuItem[]',
           default: '[]',
-          description: 'Array of menu items',
+          description: 'Array of menu items with label, icon, command, disabled, separator, and items properties',
           required: true
+        },
+        {
+          name: 'popup',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the menu should be used as a popup menu',
+          required: false
+        },
+        {
+          name: 'styleClass',
+          type: 'string',
+          default: '""',
+          description: 'Additional CSS classes for styling (e.g., sui-menu-sm, sui-menu-lg)',
+          required: false
+        },
+        {
+          name: 'style',
+          type: 'object',
+          default: '{}',
+          description: 'Inline styles for the menu',
+          required: false
         }
       ],
-      usage: 'Use menus for navigation and application structure.',
-      tags: ['navigation', 'menu']
+      usage: 'Use menus for navigation, context menus, and application structure. Menus support icons, separators, disabled items, submenus, and popup functionality with theme-aware styling.',
+      tags: ['navigation', 'menu', 'dropdown', 'context-menu', 'popup']
     },
     // Media Components
     {

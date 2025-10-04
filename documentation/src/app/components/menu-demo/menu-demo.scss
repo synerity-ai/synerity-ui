@@ -1,0 +1,25 @@
+.menu-demo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 200px;
+
+  .demo-content {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    sui-menu {
+      margin: 0 auto;
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+}
