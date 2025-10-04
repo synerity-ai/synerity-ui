@@ -1,10 +1,11 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ComponentDataService } from '../../../services/component-data.service';
 import { ComponentPreviewComponent } from '../../../components/component-preview/component-preview.component';
 import { CodeDisplayComponent } from '../../../components/code-display/code-display.component';
 import { ComponentModel } from '../../../models/component.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-component-detail',
@@ -13,18 +14,30 @@ import { ComponentModel } from '../../../models/component.model';
   templateUrl: './component-detail.component.html',
   styleUrl: './component-detail.component.scss'
 })
-export class ComponentDetailComponent {
+export class ComponentDetailComponent implements OnInit, OnDestroy {
   protected readonly component = signal<ComponentModel | null>(null);
+  private routeSubscription?: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private componentDataService: ComponentDataService
-  ) {
-    this.loadComponent();
+  ) {}
+
+  ngOnInit(): void {
+    // Subscribe to route parameter changes
+    this.routeSubscription = this.route.paramMap.subscribe(params => {
+      const componentName = params.get('name') || '';
+      this.loadComponent(componentName);
+    });
   }
 
-  private loadComponent(): void {
-    const componentName = this.route.snapshot.paramMap.get('name') || '';
+  ngOnDestroy(): void {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+  }
+
+  private loadComponent(componentName: string): void {
     const component = this.componentDataService.getComponent(componentName);
     this.component.set(component || null);
   }

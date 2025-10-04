@@ -1,0 +1,52 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Input') {
+    <sui-input-text placeholder="Enter your name" label="Name"></sui-input-text>
+  }
+  @case ('Input Variants') {
+    <div class="space-y-4 w-full max-w-md">
+      <sui-input-text variant="default" placeholder="Default input" label="Default"></sui-input-text>
+      <sui-input-text variant="filled" placeholder="Filled input" label="Filled"></sui-input-text>
+      <sui-input-text variant="outlined" placeholder="Outlined input" label="Outlined"></sui-input-text>
+    </div>
+  }
+  @case ('Input Sizes') {
+    <div class="space-y-4 w-full max-w-md">
+      <sui-input-text size="sm" placeholder="Small input" label="Small"></sui-input-text>
+      <sui-input-text size="md" placeholder="Medium input" label="Medium"></sui-input-text>
+      <sui-input-text size="lg" placeholder="Large input" label="Large"></sui-input-text>
+    </div>
+  }
+  @case ('Input Types') {
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+      <sui-input-text type="text" placeholder="Enter text" label="Text"></sui-input-text>
+      <sui-input-text type="email" placeholder="Enter email" label="Email"></sui-input-text>
+      <sui-input-text type="password" placeholder="Enter password" label="Password" [showPasswordToggle]="true"></sui-input-text>
+      <sui-input-text type="tel" placeholder="Enter phone" label="Phone"></sui-input-text>
+    </div>
+  }
+  @case ('Input States') {
+    <div class="space-y-4 w-full max-w-md">
+      <sui-input-text placeholder="Normal input" label="Normal"></sui-input-text>
+      <sui-input-text placeholder="Disabled input" label="Disabled" [disabled]="true"></sui-input-text>
+      <sui-input-text placeholder="Readonly input" label="Readonly" [readonly]="true" value="Read-only value"></sui-input-text>
+      <sui-input-text placeholder="Required input" label="Required" [required]="true"></sui-input-text>
+    </div>
+  }
+  @case ('Validation States') {
+    <div class="space-y-4 w-full max-w-md">
+      <sui-input-text placeholder="Valid input" label="Valid" validationState="valid" value="Valid value"></sui-input-text>
+      <sui-input-text placeholder="Invalid input" label="Invalid" validationState="invalid" errorMessage="This field is required"></sui-input-text>
+      <sui-input-text placeholder="Input with helper" label="With Helper" helperText="This is helpful information"></sui-input-text>
+    </div>
+  }
+  @case ('Input with Prefix/Suffix') {
+    <div class="space-y-4 w-full max-w-md">
+      <sui-input-text placeholder="Enter amount" label="Price" prefix="$"></sui-input-text>
+      <sui-input-text placeholder="Enter domain" label="Website" suffix=".com"></sui-input-text>
+      <sui-input-text placeholder="Search..." label="Search" prefix="🔍" [clearable]="true"></sui-input-text>
+    </div>
+  }
+  @default {
+    <sui-input-text placeholder="Default input" label="Default"></sui-input-text>
+  }
+}

@@ -539,10 +539,11 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 .sui-card {
   position: relative;
   display: block;
-  background-color: #ffffff;
+  background-color: var(--sui-gray-50, #ffffff);
+  border: 1px solid var(--sui-gray-200, #e5e7eb);
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 
 /* Card Sizes */
@@ -560,24 +561,24 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 
 /* Card Variants */
 .sui-card-default {
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  background-color: var(--sui-gray-50, #ffffff);
+  border: 1px solid var(--sui-gray-200, #e5e7eb);
 }
 
 .sui-card-outlined {
-  background-color: #ffffff;
-  border: 2px solid #d1d5db;
+  background-color: transparent;
+  border: 2px solid var(--sui-primary-200, #bfdbfe);
 }
 
 .sui-card-elevated {
-  background-color: #ffffff;
+  background-color: var(--sui-gray-50, #ffffff);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid #f3f4f6;
+  border: 1px solid var(--sui-gray-200, #e5e7eb);
 }
 
 .sui-card-filled {
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background-color: var(--sui-primary-50, #eff6ff);
+  border: 1px solid var(--sui-primary-200, #bfdbfe);
 }
 
 /* Card States */
@@ -587,7 +588,8 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 }
 
 .sui-card-clickable:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-color: var(--sui-primary-300, #93c5fd);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
 .sui-card-hoverable {
@@ -595,8 +597,8 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 }
 
 .sui-card-hoverable:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transform: scale(1.02);
+  border-color: var(--sui-primary-300, #93c5fd);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
 .sui-card-disabled {
@@ -627,7 +629,7 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
   animation: spin 1s linear infinite;
   width: 1.5rem;
   height: 1.5rem;
-  color: #3b82f6;
+  color: var(--sui-primary-600, #2563eb);
 }
 
 @keyframes spin {

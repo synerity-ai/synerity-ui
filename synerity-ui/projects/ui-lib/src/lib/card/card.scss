@@ -2,8 +2,73 @@
 .sui-card {
   position: relative;
   display: block;
+  background-color: var(--sui-gray-50, #ffffff);
+  border: 1px solid var(--sui-gray-200, #e5e7eb);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 
+/* Card variants */
+.sui-card-default {
+  background-color: var(--sui-gray-50, #ffffff);
+  border: 1px solid var(--sui-gray-200, #e5e7eb);
+}
+
+.sui-card-outlined {
+  background-color: transparent;
+  border: 2px solid var(--sui-primary-200, #bfdbfe);
+}
+
+.sui-card-elevated {
+  background-color: var(--sui-gray-50, #ffffff);
+  border: 1px solid var(--sui-gray-200, #e5e7eb);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.sui-card-filled {
+  background-color: var(--sui-primary-50, #eff6ff);
+  border: 1px solid var(--sui-primary-200, #bfdbfe);
+}
+
+/* Card sizes */
+.sui-card-sm {
+  padding: 0.75rem;
+}
+
+.sui-card-md {
+  padding: 1rem;
+}
+
+.sui-card-lg {
+  padding: 1.5rem;
+}
+
+/* Interactive states */
+.sui-card-clickable {
+  cursor: pointer;
+}
+
+.sui-card-clickable:hover {
+  border-color: var(--sui-primary-300, #93c5fd);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.sui-card-hoverable:hover {
+  border-color: var(--sui-primary-300, #93c5fd);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.sui-card-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sui-card-borderless {
+  border: none;
+}
+
+/* Loading overlay */
 .sui-card-loading-overlay {
   position: absolute;
   top: 0;
@@ -22,7 +87,12 @@
   animation: spin 1s linear infinite;
   width: 1.5rem;
   height: 1.5rem;
-  color: #3b82f6;
+  color: var(--sui-primary-600, #2563eb);
+}
+
+/* Dark theme support */
+.theme-dark .sui-card-loading-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 @keyframes spin {

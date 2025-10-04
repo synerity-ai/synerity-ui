@@ -1,0 +1,17 @@
+@switch (getCurrentExample().name) {
+  @case ('Primary Button') {
+    <sui-button variant="primary">Click me</sui-button>
+  }
+  @case ('Secondary Button') {
+    <sui-button variant="secondary">Click me</sui-button>
+  }
+  @case ('Outline Button') {
+    <sui-button variant="outline">Click me</sui-button>
+  }
+  @case ('Disabled Button') {
+    <sui-button [disabled]="true">Disabled</sui-button>
+  }
+  @default {
+    <sui-button variant="primary">Click me</sui-button>
+  }
+}

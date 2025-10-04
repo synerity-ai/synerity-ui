@@ -1,12 +1,45 @@
 # Implementation Tracking
 
+## 🚨 MANDATORY STANDARDIZATION PLAN - MUST FOLLOW FOR EVERY COMPONENT
+
+**⚠️ CRITICAL: This plan MUST be followed for EVERY component without exception!**
+
+### Required Steps (In Order):
+
+1. **📚 Library Component (synerity-ui/projects/ui-lib)**
+   - Make sure component SCSS/CSS is using CSS variables
+   - Update `/synerity-ui/projects/ui-lib/src/lib/synerity-ui.scss` to include component styles
+   - Update `/synerity-ui/projects/ui-lib/src/lib/synerity-ui.css` (compiled)
+
+2. **📦 Library Publishing**
+   - Publish next version of library to NPM
+   - Increment version number properly
+
+3. **📚 Documentation Integration**
+   - Use that new version in "documentation" project
+   - Update `package.json` and install new version
+
+4. **🎯 Demo Creation**
+   - Create comprehensive demo for that component
+   - Add examples, variants, states, etc.
+
+**✅ COMPLETED COMPONENTS (Following Plan):**
+- Button: CSS variables ✅ → Library published ✅ → Documentation updated ✅ → Demo created ✅
+- Card: CSS variables ✅ → Library published ✅ → Documentation updated ✅ → Demo created ✅  
+- Input: CSS variables ✅ → Library published ✅ → Documentation updated ✅ → Demo created ✅
+
+**📋 NEXT COMPONENTS TO FOLLOW THIS EXACT PLAN:**
+Table → Dialog → Checkbox → Radio Button → Select → Tabs → Textarea → Tooltip
+
+---
+
 ## Component Demo Status
 
 | Component | Library Status | Demo Status | SCSS Status | CSS Status | Priority |
 |-----------|----------------|-------------|-------------|------------|----------|
 | Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Card | ✅ Complete | ⚠️ Basic | ⚠️ Needs Theme | ⚠️ Needs Theme | High |
-| Input | ✅ Complete | ⚠️ Basic | ⚠️ Needs Theme | ⚠️ Needs Theme | High |
+| Card | ✅ Complete | ✅ Complete | ⚠️ Needs Theme | ⚠️ Needs Theme | High |
+| Input | ✅ Complete | ✅ Complete | ⚠️ Needs Theme | ⚠️ Needs Theme | High |
 | Auto Complete | ✅ Complete | ⚠️ Basic | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Table | ✅ Complete | ⚠️ Basic | ⚠️ Needs Theme | ⚠️ Needs Theme | High |
 | Panel | ✅ Complete | ⚠️ Basic | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
@@ -127,3 +160,12 @@ Before creating demos, we need to:
 1. **High Priority**: Implement theme inheritance for core components (Button, Input, Card, etc.)
 2. **Medium Priority**: Apply theme inheritance to form and layout components
 3. **Low Priority**: Apply theme inheritance to utility and specialized components
+
+we need to follow this standardization plan:
+
+in library: /Users/bhushangadekar/work/study/synerity/synerity-ui/projects/ui-lib
+- make sure component scss/css is using css variables.
+- update /Users/bhushangadekar/work/study/synerity/synerity-ui/projects/ui-lib/src/lib/synerity-ui.scss and /Users/bhushangadekar/work/study/synerity/synerity-ui/projects/ui-lib/src/lib/synerity-ui.css to refer components scss/css
+- publish next version of library
+- use that version in "documentation"
+- create demo for that component

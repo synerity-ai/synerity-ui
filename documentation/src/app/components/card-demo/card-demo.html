@@ -1,0 +1,61 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Card') {
+    <sui-card header="Card Title" subheader="Card subtitle">
+      <p>This is the card content. It can contain any HTML elements.</p>
+    </sui-card>
+  }
+  @case ('Card Variants') {
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl">
+      <sui-card variant="default" header="Default">Default card</sui-card>
+      <sui-card variant="outlined" header="Outlined">Outlined card</sui-card>
+      <sui-card variant="elevated" header="Elevated">Elevated card</sui-card>
+    </div>
+  }
+  @case ('Card Sizes') {
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl">
+      <sui-card size="sm" header="Small Card">Small card content</sui-card>
+      <sui-card size="md" header="Medium Card">Medium card content</sui-card>
+      <sui-card size="lg" header="Large Card">Large card content</sui-card>
+    </div>
+  }
+  @case ('Clickable Card') {
+    <sui-card 
+      header="Clickable Card" 
+      subheader="Click anywhere on the card"
+      [clickable]="true"
+      [hoverable]="true"
+      (click)="onCardClick($event)">
+      <p>This card is clickable and has hover effects.</p>
+    </sui-card>
+  }
+  @case ('Card with Footer') {
+    <sui-card 
+      header="Card with Footer" 
+      [showFooter]="true">
+      <p>Card content goes here.</p>
+      <div slot="footer">
+        <sui-button variant="primary">Action</sui-button>
+      </div>
+    </sui-card>
+  }
+  @case ('Loading Card') {
+    <sui-card 
+      header="Loading Card" 
+      [loading]="true">
+      <p>This card is in a loading state.</p>
+    </sui-card>
+  }
+  @case ('Disabled Card') {
+    <sui-card 
+      header="Disabled Card" 
+      [disabled]="true"
+      [clickable]="true">
+      <p>This card is disabled and cannot be interacted with.</p>
+    </sui-card>
+  }
+  @default {
+    <sui-card header="Default Card">
+      <p>Default card content</p>
+    </sui-card>
+  }
+}

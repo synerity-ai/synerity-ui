@@ -103,32 +103,162 @@ export class ComponentDataService {
       examples: [
         {
           name: 'Basic Card',
-          code: '<sui-card>Card content</sui-card>',
-          description: 'Basic card component'
+          code: '<sui-card header="Card Title" subheader="Card subtitle">\n  <p>This is the card content. It can contain any HTML elements.</p>\n</sui-card>',
+          description: 'Basic card with header and content'
+        },
+        {
+          name: 'Card Variants',
+          code: '<div class="grid grid-cols-1 md:grid-cols-3 gap-4">\n  <sui-card variant="default" header="Default">Default card</sui-card>\n  <sui-card variant="outlined" header="Outlined">Outlined card</sui-card>\n  <sui-card variant="elevated" header="Elevated">Elevated card</sui-card>\n</div>',
+          description: 'Different card variants'
+        },
+        {
+          name: 'Card Sizes',
+          code: '<div class="grid grid-cols-1 md:grid-cols-3 gap-4">\n  <sui-card size="sm" header="Small Card">Small card content</sui-card>\n  <sui-card size="md" header="Medium Card">Medium card content</sui-card>\n  <sui-card size="lg" header="Large Card">Large card content</sui-card>\n</div>',
+          description: 'Different card sizes displayed side by side'
+        },
+        {
+          name: 'Clickable Card',
+          code: '<sui-card \n  header="Clickable Card" \n  subheader="Click anywhere on the card"\n  [clickable]="true"\n  [hoverable]="true"\n  (click)="onCardClick($event)">\n  <p>This card is clickable and has hover effects.</p>\n</sui-card>',
+          description: 'Interactive card with click and hover effects'
+        },
+        {
+          name: 'Card with Footer',
+          code: '<sui-card \n  header="Card with Footer" \n  [showFooter]="true">\n  <p>Card content goes here.</p>\n  <div slot="footer">\n    <sui-button variant="primary">Action</sui-button>\n  </div>\n</sui-card>',
+          description: 'Card with footer section'
+        },
+        {
+          name: 'Loading Card',
+          code: '<sui-card \n  header="Loading Card" \n  [loading]="true">\n  <p>This card is in a loading state.</p>\n</sui-card>',
+          description: 'Card with loading state'
+        },
+        {
+          name: 'Disabled Card',
+          code: '<sui-card \n  header="Disabled Card" \n  [disabled]="true"\n  [clickable]="true">\n  <p>This card is disabled and cannot be interacted with.</p>\n</sui-card>',
+          description: 'Disabled card state'
         }
       ],
       props: [
         {
-          name: 'title',
+          name: 'variant',
+          type: 'string',
+          default: 'default',
+          description: 'Card variant (default, outlined, elevated, filled)',
+          required: false
+        },
+        {
+          name: 'size',
+          type: 'string',
+          default: 'md',
+          description: 'Card size (sm, md, lg)',
+          required: false
+        },
+        {
+          name: 'header',
           type: 'string',
           default: 'null',
-          description: 'Card title',
+          description: 'Card header text',
+          required: false
+        },
+        {
+          name: 'subheader',
+          type: 'string',
+          default: 'null',
+          description: 'Card subheader text',
+          required: false
+        },
+        {
+          name: 'clickable',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the card is clickable',
+          required: false
+        },
+        {
+          name: 'hoverable',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the card has hover effects',
+          required: false
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the card is disabled',
+          required: false
+        },
+        {
+          name: 'loading',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the card is in loading state',
+          required: false
+        },
+        {
+          name: 'showHeader',
+          type: 'boolean',
+          default: 'true',
+          description: 'Whether to show the header',
+          required: false
+        },
+        {
+          name: 'showFooter',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether to show the footer',
+          required: false
+        },
+        {
+          name: 'borderless',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether to remove card borders',
           required: false
         }
       ],
-      usage: 'Use cards to display related content in a structured format.',
-      tags: ['container', 'layout']
+      usage: 'Use cards to display related content in a structured format. Cards are versatile containers that can hold various types of content and support different interaction states.',
+      tags: ['container', 'layout', 'content']
     },
     {
       id: 'input',
       name: 'Input',
       category: 'Foundation',
-      description: 'Text input component for user data entry',
+      description: 'Text input component for user data entry with comprehensive features',
       examples: [
         {
           name: 'Basic Input',
-          code: '<sui-input placeholder="Enter text"></sui-input>',
-          description: 'Basic text input'
+          code: '<sui-input-text placeholder="Enter your name" label="Name"></sui-input-text>',
+          description: 'Basic text input with label'
+        },
+        {
+          name: 'Input Variants',
+          code: '<div class="space-y-4 w-full max-w-md">\n  <sui-input-text variant="default" placeholder="Default input" label="Default"></sui-input-text>\n  <sui-input-text variant="filled" placeholder="Filled input" label="Filled"></sui-input-text>\n  <sui-input-text variant="outlined" placeholder="Outlined input" label="Outlined"></sui-input-text>\n</div>',
+          description: 'Different input variants'
+        },
+        {
+          name: 'Input Sizes',
+          code: '<div class="space-y-4 w-full max-w-md">\n  <sui-input-text size="sm" placeholder="Small input" label="Small"></sui-input-text>\n  <sui-input-text size="md" placeholder="Medium input" label="Medium"></sui-input-text>\n  <sui-input-text size="lg" placeholder="Large input" label="Large"></sui-input-text>\n</div>',
+          description: 'Different input sizes'
+        },
+        {
+          name: 'Input Types',
+          code: '<div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">\n  <sui-input-text type="text" placeholder="Enter text" label="Text"></sui-input-text>\n  <sui-input-text type="email" placeholder="Enter email" label="Email"></sui-input-text>\n  <sui-input-text type="password" placeholder="Enter password" label="Password" [showPasswordToggle]="true"></sui-input-text>\n  <sui-input-text type="tel" placeholder="Enter phone" label="Phone"></sui-input-text>\n</div>',
+          description: 'Different input types including password with toggle'
+        },
+        {
+          name: 'Input States',
+          code: '<div class="space-y-4 w-full max-w-md">\n  <sui-input-text placeholder="Normal input" label="Normal"></sui-input-text>\n  <sui-input-text placeholder="Disabled input" label="Disabled" [disabled]="true"></sui-input-text>\n  <sui-input-text placeholder="Readonly input" label="Readonly" [readonly]="true" value="Read-only value"></sui-input-text>\n  <sui-input-text placeholder="Required input" label="Required" [required]="true"></sui-input-text>\n</div>',
+          description: 'Different input states'
+        },
+        {
+          name: 'Validation States',
+          code: '<div class="space-y-4 w-full max-w-md">\n  <sui-input-text placeholder="Valid input" label="Valid" validationState="valid" value="Valid value"></sui-input-text>\n  <sui-input-text placeholder="Invalid input" label="Invalid" validationState="invalid" errorMessage="This field is required"></sui-input-text>\n  <sui-input-text placeholder="Input with helper" label="With Helper" helperText="This is helpful information"></sui-input-text>\n</div>',
+          description: 'Input validation and helper states'
+        },
+        {
+          name: 'Input with Prefix/Suffix',
+          code: '<div class="space-y-4 w-full max-w-md">\n  <sui-input-text placeholder="Enter amount" label="Price" prefix="$"></sui-input-text>\n  <sui-input-text placeholder="Enter domain" label="Website" suffix=".com"></sui-input-text>\n  <sui-input-text placeholder="Search..." label="Search" prefix="🔍" [clearable]="true"></sui-input-text>\n</div>',
+          description: 'Input with prefixes, suffixes, and clear button'
         }
       ],
       props: [
@@ -138,10 +268,122 @@ export class ComponentDataService {
           default: 'null',
           description: 'Input placeholder text',
           required: false
+        },
+        {
+          name: 'label',
+          type: 'string',
+          default: 'null',
+          description: 'Input label text',
+          required: false
+        },
+        {
+          name: 'variant',
+          type: 'string',
+          default: 'default',
+          description: 'Input variant (default, filled, outlined)',
+          required: false
+        },
+        {
+          name: 'size',
+          type: 'string',
+          default: 'md',
+          description: 'Input size (sm, md, lg)',
+          required: false
+        },
+        {
+          name: 'type',
+          type: 'string',
+          default: 'text',
+          description: 'Input type (text, email, password, tel, url)',
+          required: false
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the input is disabled',
+          required: false
+        },
+        {
+          name: 'readonly',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the input is readonly',
+          required: false
+        },
+        {
+          name: 'required',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the input is required',
+          required: false
+        },
+        {
+          name: 'validationState',
+          type: 'string',
+          default: 'none',
+          description: 'Validation state (none, valid, invalid)',
+          required: false
+        },
+        {
+          name: 'errorMessage',
+          type: 'string',
+          default: 'null',
+          description: 'Error message to display',
+          required: false
+        },
+        {
+          name: 'helperText',
+          type: 'string',
+          default: 'null',
+          description: 'Helper text to display',
+          required: false
+        },
+        {
+          name: 'prefix',
+          type: 'string',
+          default: 'null',
+          description: 'Prefix text or icon',
+          required: false
+        },
+        {
+          name: 'suffix',
+          type: 'string',
+          default: 'null',
+          description: 'Suffix text or icon',
+          required: false
+        },
+        {
+          name: 'clearable',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether to show clear button',
+          required: false
+        },
+        {
+          name: 'showPasswordToggle',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether to show password visibility toggle',
+          required: false
+        },
+        {
+          name: 'maxlength',
+          type: 'number',
+          default: 'null',
+          description: 'Maximum character length',
+          required: false
+        },
+        {
+          name: 'autocomplete',
+          type: 'string',
+          default: 'null',
+          description: 'Autocomplete attribute',
+          required: false
         }
       ],
-      usage: 'Use inputs for text data entry in forms.',
-      tags: ['form', 'input']
+      usage: 'Use inputs for text data entry in forms. The input component supports various types, validation states, and interactive features like password toggles and clear buttons.',
+      tags: ['form', 'input', 'validation']
     },
     // Form Components
     {

@@ -1,24 +1,17 @@
 <div class="space-y-8">
   <!-- Example Navigation Tabs -->
   <div class="flex flex-wrap gap-3" *ngIf="examples.length > 1">
-    <button 
+    <sui-button 
       *ngFor="let example of examples; let i = index"
-      class="inline-flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 border"
-      [class.bg-blue-600]="activeExample() === i"
-      [class.text-white]="activeExample() === i"
-      [class.border-blue-600]="activeExample() === i"
-      [class.shadow-lg]="activeExample() === i"
-      [class.bg-white]="activeExample() !== i"
-      [class.text-gray-700]="activeExample() !== i"
-      [class.border-gray-200]="activeExample() !== i"
-      [class.hover:bg-gray-50]="activeExample() !== i"
-      [class.hover:border-gray-300]="activeExample() !== i"
-      (click)="setActiveExample(i)">
+      [variant]="activeExample() === i ? 'primary' : 'outline'"
+      size="sm"
+      (click)="setActiveExample(i)"
+      class="inline-flex items-center">
       <span class="w-2 h-2 rounded-full mr-2"
             [class.bg-white]="activeExample() === i"
             [class.bg-gray-400]="activeExample() !== i"></span>
       {{ example.name }}
-    </button>
+    </sui-button>
   </div>
 
   <!-- Live Preview Area -->
@@ -30,36 +23,29 @@
     
     <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
       <div class="flex flex-wrap gap-6 items-center justify-center min-h-[120px]">
-        <!-- Render actual Synerity UI Button components -->
-        @if (componentName === 'Button') {
-          @switch (getCurrentExample().name) {
-            @case ('Primary Button') {
-              <sui-button variant="primary">Click me</sui-button>
-            }
-            @case ('Secondary Button') {
-              <sui-button variant="secondary">Click me</sui-button>
-            }
-            @case ('Outline Button') {
-              <sui-button variant="outline">Click me</sui-button>
-            }
-            @case ('Disabled Button') {
-              <sui-button [disabled]="true">Disabled</sui-button>
-            }
-            @default {
-              <sui-button variant="primary">Click me</sui-button>
-            }
+        <!-- Render actual Synerity UI components -->
+        @switch (componentName) {
+          @case ('Button') {
+            <app-button-demo [currentExample]="getCurrentExample()"></app-button-demo>
           }
-        } @else {
-          <!-- Fallback for other components -->
-          <div class="text-center text-gray-500 py-12">
-            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.709M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
+          @case ('Card') {
+            <app-card-demo [currentExample]="getCurrentExample()"></app-card-demo>
+          }
+          @case ('Input') {
+            <app-input-demo [currentExample]="getCurrentExample()"></app-input-demo>
+          }
+          @default {
+            <!-- Fallback for other components -->
+            <div class="text-center text-gray-500 py-12">
+              <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.709M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <p class="text-lg font-medium">Component preview not available</p>
+              <p class="text-sm text-gray-400 mt-1">{{ componentName }} component will be shown here</p>
             </div>
-            <p class="text-lg font-medium">Component preview not available</p>
-            <p class="text-sm text-gray-400 mt-1">{{ componentName }} component will be shown here</p>
-          </div>
+          }
         }
       </div>
     </div>
@@ -67,23 +53,16 @@
 
   <!-- Code Display Toggle -->
   <div class="flex justify-center">
-    <button 
-      class="inline-flex items-center px-6 py-3 text-sm font-medium rounded-xl transition-all duration-200 border-2"
-      [class.bg-blue-600]="showCode()"
-      [class.text-white]="showCode()"
-      [class.border-blue-600]="showCode()"
-      [class.shadow-lg]="showCode()"
-      [class.bg-white]="!showCode()"
-      [class.text-gray-700]="!showCode()"
-      [class.border-gray-300]="!showCode()"
-      [class.hover:bg-gray-50]="!showCode()"
-      [class.hover:border-gray-400]="!showCode()"
-      (click)="toggleCode()">
+    <sui-button 
+      [variant]="showCode() ? 'primary' : 'outline'"
+      size="md"
+      (click)="toggleCode()"
+      class="inline-flex items-center">
       <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
       </svg>
       {{ showCode() ? 'Hide Source Code' : 'Show Source Code' }}
-    </button>
+    </sui-button>
   </div>
 
   <!-- Code Display -->
@@ -102,16 +81,18 @@
         </div>
         <span class="text-sm font-medium text-gray-300">HTML</span>
       </div>
-      <button 
-        class="inline-flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors bg-gray-700 hover:bg-gray-600 rounded-lg"
+      <sui-button 
+        variant="ghost"
+        size="sm"
         (click)="copyToClipboard(getCurrentExample().code)"
-        title="Copy to clipboard">
+        title="Copy to clipboard"
+        class="inline-flex items-center text-gray-300 hover:text-white">
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
         </svg>
         Copy Code
-      </button>
+      </sui-button>
     </div>
     <div class="p-6 overflow-x-auto">
       <pre class="text-sm text-gray-300 leading-relaxed"><code class="language-html">{{ getCurrentExample().code }}</code></pre>
