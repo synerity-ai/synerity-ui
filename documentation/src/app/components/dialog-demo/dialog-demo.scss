@@ -1,0 +1,119 @@
+.dialog-demo {
+  .demo-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .demo-description {
+    p {
+      color: var(--sui-text-secondary-color, #6b7280);
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+  }
+
+  .demo-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  // Form styles for Form Dialog
+  .form-group {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--sui-text-primary-color, #111827);
+      font-size: 0.875rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--sui-border-color, #d1d5db);
+      border-radius: var(--sui-border-radius, 0.375rem);
+      font-size: 0.875rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background-color: var(--sui-surface-color, #ffffff);
+      color: var(--sui-text-primary-color, #111827);
+
+      &:focus {
+        outline: none;
+        border-color: var(--sui-primary-500, #3b82f6);
+        box-shadow: 0 0 0 3px var(--sui-primary-100, #dbeafe);
+      }
+
+      &::placeholder {
+        color: var(--sui-text-secondary-color, #9ca3af);
+      }
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 6rem;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--sui-border-color, #e5e7eb);
+  }
+
+  // Dark theme support
+  :host-context(.dark) & {
+    .form-group {
+      label {
+        color: var(--sui-text-dark-primary-color, #f9fafb);
+      }
+
+      .form-control {
+        background-color: var(--sui-surface-dark-color, #1f2937);
+        border-color: var(--sui-border-dark-color, #374151);
+        color: var(--sui-text-dark-primary-color, #f9fafb);
+
+        &:focus {
+          border-color: var(--sui-primary-500, #3b82f6);
+          box-shadow: 0 0 0 3px var(--sui-primary-900, #1e3a8a);
+        }
+
+        &::placeholder {
+          color: var(--sui-text-dark-secondary-color, #9ca3af);
+        }
+      }
+    }
+
+    .form-actions {
+      border-top-color: var(--sui-border-dark-color, #374151);
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 640px) {
+    .demo-buttons {
+      flex-direction: column;
+      align-items: stretch;
+
+      sui-button {
+        width: 100%;
+      }
+    }
+
+    .form-actions {
+      flex-direction: column;
+
+      sui-button {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -46,6 +46,9 @@
                  @case ('Menu') {
                    <app-menu-demo [currentExample]="getCurrentExample()"></app-menu-demo>
                  }
+                 @case ('Dialog') {
+                   <app-dialog-demo [currentExample]="getCurrentExample()"></app-dialog-demo>
+                 }
                  @default {
             <!-- Fallback for other components -->
             <div class="text-center text-gray-500 py-12">

@@ -1,0 +1,404 @@
+<div class="dialog-demo">
+  @switch (currentExample?.name) {
+    @case ('Basic') {
+      <div class="demo-content">
+        <div class="demo-description">
+          <p>Basic dialog with header and content. Click the button to open the dialog.</p>
+        </div>
+        <sui-button 
+          variant="primary" 
+          size="md"
+          (click)="showBasicDialog()">
+          Open Basic Dialog
+        </sui-button>
+
+        <sui-dialog
+          #basicDialog
+          [visible]="basicDialogVisible"
+          header="Basic Dialog"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This is a basic dialog with a header and content area. You can close it by clicking the X button or clicking outside the dialog.</p>
+          <p>Dialogs are useful for displaying information, forms, or confirming actions.</p>
+        </sui-dialog>
+      </div>
+    }
+
+    @case ('Modal') {
+      <div class="demo-content">
+        <div class="demo-description">
+          <p>Modal dialog that blocks interaction with the background content.</p>
+        </div>
+        <sui-button 
+          variant="secondary" 
+          size="md"
+          (click)="showModalDialog()">
+          Open Modal Dialog
+        </sui-button>
+
+        <sui-dialog
+          #modalDialog
+          [visible]="modalDialogVisible"
+          [modal]="true"
+          header="Modal Dialog"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This is a modal dialog that blocks interaction with the background content.</p>
+          <p>You cannot interact with the page behind this dialog until you close it.</p>
+        </sui-dialog>
+      </div>
+    }
+
+    @case ('Sizes') {
+      <div class="demo-content">
+        <div class="demo-description">
+          <p>Different dialog sizes: small, default, large, extra large, and full screen.</p>
+        </div>
+        <div class="demo-buttons">
+          <sui-button 
+            variant="outlined" 
+            size="sm"
+            (click)="showSmallDialog()">
+            Small
+          </sui-button>
+          <sui-button 
+            variant="outlined" 
+            size="md"
+            (click)="showLargeDialog()">
+            Large
+          </sui-button>
+          <sui-button 
+            variant="outlined" 
+            size="lg"
+            (click)="showExtraLargeDialog()">
+            Extra Large
+          </sui-button>
+          <sui-button 
+            variant="outlined" 
+            size="md"
+            (click)="showFullDialog()">
+            Full Screen
+          </sui-button>
+        </div>
+
+        <!-- Small Dialog -->
+        <sui-dialog
+          #smallDialog
+          [visible]="smallDialogVisible"
+          header="Small Dialog"
+          size="sm"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This is a small dialog with compact sizing.</p>
+        </sui-dialog>
+
+        <!-- Large Dialog -->
+        <sui-dialog
+          #largeDialog
+          [visible]="largeDialogVisible"
+          header="Large Dialog"
+          size="lg"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This is a large dialog with more space for content.</p>
+          <p>Perfect for displaying detailed information or forms with multiple fields.</p>
+        </sui-dialog>
+
+        <!-- Extra Large Dialog -->
+        <sui-dialog
+          #extraLargeDialog
+          [visible]="extraLargeDialogVisible"
+          header="Extra Large Dialog"
+          size="xl"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This is an extra large dialog with maximum width for extensive content.</p>
+          <p>Ideal for data tables, complex forms, or detailed information displays.</p>
+        </sui-dialog>
+
+        <!-- Full Screen Dialog -->
+        <sui-dialog
+          #fullDialog
+          [visible]="fullDialogVisible"
+          header="Full Screen Dialog"
+          size="full"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This dialog takes up the full screen space.</p>
+          <p>Perfect for immersive experiences or when you need maximum space for content.</p>
+        </sui-dialog>
+      </div>
+    }
+
+    @case ('Positions') {
+      <div class="demo-content">
+        <div class="demo-description">
+          <p>Dialog positioning options: center, top, bottom, left, right, and corner positions.</p>
+        </div>
+        <div class="demo-buttons">
+          <sui-button 
+            variant="outlined" 
+            size="sm"
+            (click)="showTopDialog()">
+            Top
+          </sui-button>
+          <sui-button 
+            variant="outlined" 
+            size="sm"
+            (click)="showBottomDialog()">
+            Bottom
+          </sui-button>
+          <sui-button 
+            variant="outlined" 
+            size="sm"
+            (click)="showLeftDialog()">
+            Left
+          </sui-button>
+          <sui-button 
+            variant="outlined" 
+            size="sm"
+            (click)="showRightDialog()">
+            Right
+          </sui-button>
+        </div>
+
+        <!-- Top Dialog -->
+        <sui-dialog
+          #topDialog
+          [visible]="topDialogVisible"
+          header="Top Position"
+          position="top"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This dialog is positioned at the top of the screen.</p>
+        </sui-dialog>
+
+        <!-- Bottom Dialog -->
+        <sui-dialog
+          #bottomDialog
+          [visible]="bottomDialogVisible"
+          header="Bottom Position"
+          position="bottom"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This dialog is positioned at the bottom of the screen.</p>
+        </sui-dialog>
+
+        <!-- Left Dialog -->
+        <sui-dialog
+          #leftDialog
+          [visible]="leftDialogVisible"
+          header="Left Position"
+          position="left"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This dialog is positioned on the left side of the screen.</p>
+        </sui-dialog>
+
+        <!-- Right Dialog -->
+        <sui-dialog
+          #rightDialog
+          [visible]="rightDialogVisible"
+          header="Right Position"
+          position="right"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This dialog is positioned on the right side of the screen.</p>
+        </sui-dialog>
+      </div>
+    }
+
+    @case ('Advanced Features') {
+      <div class="demo-content">
+        <div class="demo-description">
+          <p>Advanced dialog features: maximizable, resizable, and non-closable dialogs.</p>
+        </div>
+        <div class="demo-buttons">
+          <sui-button 
+            variant="outlined" 
+            size="md"
+            (click)="showMaximizableDialog()">
+            Maximizable
+          </sui-button>
+          <sui-button 
+            variant="outlined" 
+            size="md"
+            (click)="showResizableDialog()">
+            Resizable
+          </sui-button>
+          <sui-button 
+            variant="outlined" 
+            size="md"
+            (click)="showNonClosableDialog()">
+            Non-Closable
+          </sui-button>
+        </div>
+
+        <!-- Maximizable Dialog -->
+        <sui-dialog
+          #maximizableDialog
+          [visible]="maximizableDialogVisible"
+          header="Maximizable Dialog"
+          [maximizable]="true"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()"
+          (onMaximize)="onDialogMaximize()"
+          (onUnmaximize)="onDialogUnmaximize()">
+          <p>This dialog can be maximized to full screen by clicking the maximize button in the header.</p>
+          <p>Click the restore button to return it to its original size.</p>
+        </sui-dialog>
+
+        <!-- Resizable Dialog -->
+        <sui-dialog
+          #resizableDialog
+          [visible]="resizableDialogVisible"
+          header="Resizable Dialog"
+          [resizable]="true"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This dialog can be resized by dragging the resize handle in the bottom-right corner.</p>
+          <p>Hover over the corner to see the resize handle appear.</p>
+        </sui-dialog>
+
+        <!-- Non-Closable Dialog -->
+        <sui-dialog
+          #nonClosableDialog
+          [visible]="nonClosableDialogVisible"
+          header="Non-Closable Dialog"
+          [closable]="false"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>This dialog cannot be closed by clicking the X button or clicking outside.</p>
+          <p>You must use a custom close method or button within the dialog content.</p>
+          <div class="mt-4">
+            <sui-button 
+              variant="primary" 
+              size="sm"
+              (click)="nonClosableDialogVisible = false">
+              Close Dialog
+            </sui-button>
+          </div>
+        </sui-dialog>
+      </div>
+    }
+
+    @case ('Form Dialog') {
+      <div class="demo-content">
+        <div class="demo-description">
+          <p>Dialog containing a form for user input.</p>
+        </div>
+        <sui-button 
+          variant="primary" 
+          size="md"
+          (click)="showFormDialog()">
+          Open Form Dialog
+        </sui-button>
+
+        <sui-dialog
+          #formDialog
+          [visible]="formDialogVisible"
+          header="Contact Form"
+          size="lg"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <form (ngSubmit)="submitForm()">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                [(ngModel)]="formData.name" 
+                name="name"
+                class="form-control"
+                required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                [(ngModel)]="formData.email" 
+                name="email"
+                class="form-control"
+                required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea 
+                id="message" 
+                [(ngModel)]="formData.message" 
+                name="message"
+                class="form-control"
+                rows="4"
+                required></textarea>
+            </div>
+            
+            <div class="form-actions">
+              <sui-button 
+                type="button"
+                variant="outlined" 
+                size="md"
+                (click)="hideFormDialog()">
+                Cancel
+              </sui-button>
+              <sui-button 
+                type="submit"
+                variant="primary" 
+                size="md">
+                Submit
+              </sui-button>
+            </div>
+          </form>
+        </sui-dialog>
+      </div>
+    }
+
+    @case ('Confirmation Dialog') {
+      <div class="demo-content">
+        <div class="demo-description">
+          <p>Confirmation dialog for important actions.</p>
+        </div>
+        <div class="demo-buttons">
+          <sui-button 
+            variant="danger" 
+            size="md"
+            (click)="showConfirmDialog('Are you sure you want to delete this item?')">
+            Delete Item
+          </sui-button>
+          <sui-button 
+            variant="warning" 
+            size="md"
+            (click)="showConfirmDialog('Are you sure you want to reset all settings?')">
+            Reset Settings
+          </sui-button>
+        </div>
+
+        <sui-dialog
+          #confirmDialog
+          [visible]="confirmDialogVisible"
+          header="Confirm Action"
+          size="sm"
+          (onShow)="onDialogShow()"
+          (onHide)="onDialogHide()">
+          <p>{{ confirmMessage }}</p>
+          <div class="mt-4">
+            <sui-button 
+              variant="outlined" 
+              size="md"
+              (click)="hideConfirmDialog()">
+              Cancel
+            </sui-button>
+            <sui-button 
+              variant="danger" 
+              size="md"
+              (click)="confirmAction()">
+              Confirm
+            </sui-button>
+          </div>
+        </sui-dialog>
+      </div>
+    }
+  }
+</div>

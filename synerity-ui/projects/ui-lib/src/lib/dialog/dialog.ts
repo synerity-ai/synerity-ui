@@ -23,6 +23,7 @@ export class Dialog implements AfterViewInit {
   @Input() minHeight = 150;
   @Input() maximizable = false;
   @Input() maximized = false;
+  @Input() size: 'sm' | 'md' | 'lg' | 'xl' | 'full' = 'md';
   @Input() position: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' = 'center';
   @Output() onShow = new EventEmitter<void>();
   @Output() onHide = new EventEmitter<void>();
@@ -149,7 +150,14 @@ export class Dialog implements AfterViewInit {
   }
 
   getDialogClass(): string {
-    return `sui-dialog sui-dialog-${this.position} ${this.styleClass}`.trim();
+    const classes = [
+      'sui-dialog',
+      `sui-dialog-${this.position}`,
+      `sui-dialog-${this.size}`,
+      this.styleClass
+    ].filter(Boolean);
+    
+    return classes.join(' ');
   }
 
   getDialogStyle(): any {
