@@ -82,7 +82,7 @@ The standardization plan has been successfully completed for all high-priority c
 | Knob | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Low |
 | Radio Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
 | Rating | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
-| Select | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | High |
+| Select | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
 | Select Button | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Slider | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Tabs | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |

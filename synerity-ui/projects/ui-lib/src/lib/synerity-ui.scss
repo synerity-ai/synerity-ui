@@ -863,6 +863,9 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Radio Button Component Styles - Imported from component-specific file */
 @import './radio-button/radio-button.scss';
 
+/* Select Component Styles - Imported from component-specific file */
+@import './select/select.scss';
+
 /* Ensure Synerity UI components inherit proper styling */
 .sui-button {
   font-family: inherit;

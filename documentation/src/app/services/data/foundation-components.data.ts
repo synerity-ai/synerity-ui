@@ -618,7 +618,7 @@ export const foundationComponents: ComponentModel[] = [
             description: 'Interactive todo list with progress tracking',
             code: `<div class="todo-container">
   <div class="todo-header">
-    <h4>Tasks ({{ getCompletedTodosCount() }}/{{ getTotalTodosCount() }})</h4>
+    <h4>Tasks (\${getCompletedTodosCount()}/\${getTotalTodosCount()})</h4>
     <div class="progress-bar">
       <div class="progress-fill" [style.width.%]="getTodoProgress()"></div>
     </div>
@@ -1107,15 +1107,370 @@ export class CheckboxComponent {
         tags: ['form', 'rating']
       },
   {
-        id: 'select',
-        name: 'Select',
-        category: 'Foundation',
-        description: 'Dropdown selection component',
-        examples: [],
-        props: [],
-        usage: 'Use selects for single selection from options.',
-        tags: ['form', 'input']
+    id: 'select',
+    name: 'Select',
+    category: 'Foundation',
+    description: 'Advanced dropdown selection component with search, multi-select, and loading states',
+    examples: [
+      {
+        name: 'Basic Select',
+        description: 'Simple select component with basic functionality and placeholder',
+        code: `<sui-select
+  placeholder="Choose an option"
+  [options]="basicOptions"
+  [(ngModel)]="basicSelectedValue"
+  [clearable]="true">
+</sui-select>`,
+        tsCode: `export class SelectComponent {
+  basicSelectedValue: string | null = null;
+  basicOptions = [
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+    { label: 'Option 3', value: 'option3' },
+    { label: 'Disabled Option', value: 'disabled', disabled: true }
+  ];
+}`
       },
+      {
+        name: 'Size Variations',
+        description: 'Select components available in different sizes',
+        code: `<sui-select
+  placeholder="Small Select"
+  [options]="options"
+  [(ngModel)]="selectedValue"
+  class="sm">
+</sui-select>
+
+<sui-select
+  placeholder="Normal Select"
+  [options]="options"
+  [(ngModel)]="selectedValue">
+</sui-select>
+
+<sui-select
+  placeholder="Large Select"
+  [options]="options"
+  [(ngModel)]="selectedValue"
+  class="lg">
+</sui-select>`
+      },
+      {
+        name: 'Form Integration',
+        description: 'Select components integrated within a form with validation and dependent fields',
+        code: `<form class="space-y-6" (ngSubmit)="submitForm()">
+  <div class="form-group">
+    <label class="form-label">Country</label>
+    <sui-select
+      placeholder="Select your country"
+      [options]="countries"
+      [(ngModel)]="formData.country"
+      name="country"
+      inputId="country"
+      (change)="onCountryChange()"
+      [loading]="isLoadingCountries"
+      required>
+    </sui-select>
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label">City</label>
+    <sui-select
+      placeholder="Select your city"
+      [options]="getCitiesForCountry()"
+      [(ngModel)]="formData.city"
+      name="city"
+      inputId="city"
+      [disabled]="!formData.country"
+      [loading]="isLoadingCities"
+      required>
+    </sui-select>
+  </div>
+</form>`,
+        tsCode: `export class SelectComponent {
+  formData = {
+    country: '',
+    city: ''
+  };
+  
+  countries = [
+    { label: 'United States', value: 'us' },
+    { label: 'Canada', value: 'ca' },
+    { label: 'United Kingdom', value: 'uk' }
+  ];
+  
+  cities: { [key: string]: any[] } = {
+    us: [
+      { label: 'New York', value: 'ny' },
+      { label: 'Los Angeles', value: 'la' }
+    ],
+    ca: [
+      { label: 'Toronto', value: 'toronto' },
+      { label: 'Vancouver', value: 'vancouver' }
+    ]
+  };
+  
+  getCitiesForCountry() {
+    if (!this.formData.country) return [];
+    return this.cities[this.formData.country] || [];
+  }
+  
+  onCountryChange() {
+    this.formData.city = '';
+  }
+}`
+      },
+      {
+        name: 'Multi-Select with Search',
+        description: 'Multi-select component with search functionality and select all options',
+        code: `<sui-select
+  placeholder="Select your skills"
+  [options]="skills"
+  [(ngModel)]="selectedSkills"
+  [multiple]="true"
+  [searchable]="true"
+  [selectAll]="true"
+  name="skills"
+  inputId="skills"
+  searchPlaceholder="Search skills..."
+  [maxDisplayItems]="2">
+</sui-select>`,
+        tsCode: `export class SelectComponent {
+  selectedSkills: string[] = [];
+  skills = [
+    { label: 'JavaScript', value: 'js', category: 'Frontend' },
+    { label: 'TypeScript', value: 'ts', category: 'Frontend' },
+    { label: 'Angular', value: 'angular', category: 'Frontend' },
+    { label: 'Node.js', value: 'node', category: 'Backend' }
+  ];
+}`
+      },
+      {
+        name: 'Product Selection',
+        description: 'Multi-select component for product selection with pricing information',
+        code: `<sui-select
+  placeholder="Select products"
+  [options]="products"
+  [(ngModel)]="selectedProducts"
+  [multiple]="true"
+  [searchable]="true"
+  [selectAll]="true"
+  name="products"
+  inputId="products"
+  searchPlaceholder="Search products..."
+  [maxDisplayItems]="3">
+</sui-select>
+
+<div class="selected-products-display" *ngIf="selectedProducts.length > 0">
+  <div class="products-summary">
+    <h5>Selected Products (\${selectedProducts.length}):</h5>
+    <div class="total-price">Total: $\${getTotalPrice()}</div>
+  </div>
+</div>`,
+        tsCode: `export class SelectComponent {
+  selectedProducts: string[] = [];
+  products = [
+    { label: 'MacBook Pro', value: 'macbook', category: 'Electronics', price: 2499 },
+    { label: 'iPhone 15', value: 'iphone', category: 'Electronics', price: 799 },
+    { label: 'iPad Air', value: 'ipad', category: 'Electronics', price: 599 }
+  ];
+  
+  getTotalPrice(): number {
+    return this.getSelectedProducts().reduce((total, product) => total + product.price, 0);
+  }
+  
+  getSelectedProducts() {
+    return this.products.filter(product => this.selectedProducts.includes(product.value));
+  }
+}`
+      },
+      {
+        name: 'Loading States',
+        description: 'Select components with loading states for async data',
+        code: `<sui-select
+  placeholder="Loading countries..."
+  [options]="countries"
+  [(ngModel)]="selectedCountry"
+  [loading]="isLoadingCountries"
+  name="countries-loading"
+  inputId="countries-loading">
+</sui-select>
+
+<sui-button (click)="loadCountries()" size="sm" variant="outline">
+  \${isLoadingCountries ? 'Loading...' : 'Load Countries'}
+</sui-button>`,
+        tsCode: `export class SelectComponent {
+  selectedCountry: string | null = null;
+  isLoadingCountries = false;
+  countries = [];
+  
+  loadCountries() {
+    this.isLoadingCountries = true;
+    // Simulate API call
+    setTimeout(() => {
+      this.isLoadingCountries = false;
+    }, 2000);
+  }
+}`
+      },
+      {
+        name: 'Custom Styling',
+        description: 'Select components with custom styling and effects',
+        code: `<sui-select
+  placeholder="Enhanced Select"
+  [options]="customOptions"
+  [(ngModel)]="customSelectedValue"
+  [clearable]="true"
+  class="enhanced">
+</sui-select>
+
+<sui-select
+  placeholder="Searchable Select"
+  [options]="languages"
+  [(ngModel)]="selectedLanguage"
+  [searchable]="true"
+  searchPlaceholder="Search languages..."
+  class="searchable">
+</sui-select>
+
+<sui-select
+  placeholder="Multi-Select with Custom Display"
+  [options]="skills"
+  [(ngModel)]="selectedSkills"
+  [multiple]="true"
+  [searchable]="true"
+  [selectAll]="true"
+  [maxDisplayItems]="1"
+  [showSelectedCount]="true"
+  class="multi-select">
+</sui-select>`,
+        tsCode: `export class SelectComponent {
+  customSelectedValue: string | null = null;
+  selectedLanguage: string | null = null;
+  selectedSkills: string[] = [];
+  
+  customOptions = [
+    { label: 'Enhanced Option', value: 'enhanced' },
+    { label: 'Animated Option', value: 'animated' },
+    { label: 'Glow Effect', value: 'glow' }
+  ];
+  
+  languages = [
+    { label: 'English', value: 'en' },
+    { label: 'Spanish', value: 'es' },
+    { label: 'French', value: 'fr' }
+  ];
+  
+  skills = [
+    { label: 'JavaScript', value: 'js' },
+    { label: 'TypeScript', value: 'ts' },
+    { label: 'Angular', value: 'angular' }
+  ];
+}`
+      }
+    ],
+    props: [
+      {
+        name: 'disabled',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the select is disabled',
+        required: false
+      },
+      {
+        name: 'name',
+        type: 'string',
+        default: '""',
+        description: 'Name attribute for the select element',
+        required: false
+      },
+      {
+        name: 'inputId',
+        type: 'string',
+        default: '""',
+        description: 'ID attribute for the select element',
+        required: false
+      },
+      {
+        name: 'placeholder',
+        type: 'string | null',
+        default: 'null',
+        description: 'Placeholder text when no option is selected',
+        required: false
+      },
+      {
+        name: 'options',
+        type: 'Array<{label: string; value: unknown; disabled?: boolean}>',
+        default: '[]',
+        description: 'Array of options to display in the dropdown',
+        required: true
+      },
+      {
+        name: 'searchable',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the select has search functionality',
+        required: false
+      },
+      {
+        name: 'clearable',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the select has a clear button',
+        required: false
+      },
+      {
+        name: 'multiple',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether multiple options can be selected',
+        required: false
+      },
+      {
+        name: 'selectAll',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether to show select all/clear all buttons (multi-select only)',
+        required: false
+      },
+      {
+        name: 'maxDisplayItems',
+        type: 'number',
+        default: '3',
+        description: 'Maximum number of items to display before showing count (multi-select only)',
+        required: false
+      },
+      {
+        name: 'showSelectedCount',
+        type: 'boolean',
+        default: 'true',
+        description: 'Whether to show selected count in display text (multi-select only)',
+        required: false
+      },
+      {
+        name: 'searchPlaceholder',
+        type: 'string',
+        default: '"Search..."',
+        description: 'Placeholder text for the search input',
+        required: false
+      },
+      {
+        name: 'noResultsText',
+        type: 'string',
+        default: '"No results found"',
+        description: 'Text to display when no search results are found',
+        required: false
+      },
+      {
+        name: 'loading',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the select is in loading state',
+        required: false
+      }
+    ],
+    usage: 'Use select components for single or multiple selection from options in forms, settings panels, data filtering, and complex user interfaces.',
+    tags: ['form', 'input', 'selection', 'interactive', 'search', 'multi-select']
+  },
   {
         id: 'select-button',
         name: 'Select Button',
