@@ -1,5 +1,5 @@
-<label [class]="'sui-radio-label ' + (cssClass || '')" [attr.for]="inputId">
-  <div class="sui-radio-container">
+<label class="sui-radio-label" [attr.for]="inputId">
+  <div class="sui-radio-container" [class]="cssClass || ''">
     <input
       type="radio"
       class="sui-radio-input"
@@ -11,6 +11,6 @@
       (blur)="onInputBlur()"
     />
   </div>
-  <span *ngIf="label">{{ label }}</span>
+  <span *ngIf="label" class="sui-radio-text">{{ label }}</span>
   <ng-content />
 </label>

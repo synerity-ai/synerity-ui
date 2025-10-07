@@ -534,15 +534,246 @@ export const foundationComponents: ComponentModel[] = [
         usage: 'Use breadcrumbs to show navigation hierarchy.',
         tags: ['navigation', 'hierarchy']
       },
-  {
+      {
         id: 'checkbox',
         name: 'Checkbox',
         category: 'Foundation',
-        description: 'Checkbox input component',
-        examples: [],
-        props: [],
-        usage: 'Use checkboxes for multiple selection in forms.',
-        tags: ['form', 'input']
+        description: 'Checkbox input component with multiple variants and states',
+        examples: [
+          {
+            name: 'Basic Checkbox',
+            description: 'Simple checkbox with basic functionality',
+            code: `<sui-checkbox 
+  [(ngModel)]="basicChecked" 
+  label="Basic Checkbox">
+</sui-checkbox>`,
+            tsCode: `export class CheckboxComponent {
+  basicChecked = false;
+}`
+          },
+          {
+            name: 'Size Variations',
+            description: 'Checkboxes available in different sizes',
+            code: `<sui-checkbox 
+  [cssClass]="'checkbox-sm'"
+  label="Small Checkbox">
+</sui-checkbox>
+
+<sui-checkbox 
+  [cssClass]="'checkbox-lg'"
+  label="Large Checkbox">
+</sui-checkbox>`,
+            tsCode: `export class CheckboxComponent {
+  // Size variants: sm, normal, lg, xl
+  // Use cssClass="checkbox-{size}" to apply sizes
+}`
+          },
+          {
+            name: 'Color Variants',
+            description: 'Checkboxes available in different color themes',
+            code: `<sui-checkbox 
+  [cssClass]="'checkbox-primary'"
+  label="Primary Checkbox">
+</sui-checkbox>
+
+<sui-checkbox 
+  [cssClass]="'checkbox-success'"
+  label="Success Checkbox">
+</sui-checkbox>`,
+            tsCode: `export class CheckboxComponent {
+  // Color variants: primary, secondary, success, warning, danger
+  // Use cssClass="checkbox-{color}" to apply colors
+}`
+          },
+          {
+            name: 'Form Integration',
+            description: 'Checkboxes integrated within a form with validation',
+            code: `<form (ngSubmit)="submitForm()">
+  <sui-checkbox 
+    [(ngModel)]="formData.acceptTerms" 
+    label="I accept the terms and conditions"
+    name="acceptTerms"
+    required>
+  </sui-checkbox>
+  
+  <sui-checkbox 
+    [(ngModel)]="formData.subscribeNewsletter" 
+    label="Subscribe to newsletter"
+    name="subscribeNewsletter">
+  </sui-checkbox>
+</form>`,
+            tsCode: `export class CheckboxComponent {
+  formData = {
+    acceptTerms: false,
+    subscribeNewsletter: true
+  };
+  
+  submitForm(): void {
+    console.log('Form submitted:', this.formData);
+  }
+}`
+          },
+          {
+            name: 'Todo List Example',
+            description: 'Interactive todo list with progress tracking',
+            code: `<div class="todo-container">
+  <div class="todo-header">
+    <h4>Tasks ({{ getCompletedTodosCount() }}/{{ getTotalTodosCount() }})</h4>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="getTodoProgress()"></div>
+    </div>
+  </div>
+  
+  <div class="todo-list">
+    <div *ngFor="let todo of todos" class="todo-item">
+      <sui-checkbox 
+        [(ngModel)]="todo.completed"
+        [label]="todo.name">
+      </sui-checkbox>
+    </div>
+  </div>
+</div>`,
+            tsCode: `interface Task {
+  id: string;
+  name: string;
+  completed: boolean;
+}
+
+export class CheckboxComponent {
+  todos: Task[] = [
+    { id: '1', name: 'Complete project documentation', completed: false },
+    { id: '2', name: 'Review code changes', completed: true },
+    { id: '3', name: 'Update dependencies', completed: false }
+  ];
+  
+  getCompletedTodosCount(): number {
+    return this.todos.filter(todo => todo.completed).length;
+  }
+  
+  getTotalTodosCount(): number {
+    return this.todos.length;
+  }
+  
+  getTodoProgress(): number {
+    return (this.getCompletedTodosCount() / this.getTotalTodosCount()) * 100;
+  }
+}`
+          },
+          {
+            name: 'Settings Panel',
+            description: 'Checkboxes organized in a settings panel layout',
+            code: `<div class="settings-panel">
+  <div class="settings-section">
+    <h4>Notifications</h4>
+    <div class="settings-options">
+      <sui-checkbox 
+        [(ngModel)]="settings.notifications.email" 
+        label="Email notifications">
+      </sui-checkbox>
+      <sui-checkbox 
+        [(ngModel)]="settings.notifications.push" 
+        label="Push notifications">
+      </sui-checkbox>
+    </div>
+  </div>
+</div>`,
+            tsCode: `export class CheckboxComponent {
+  settings = {
+    notifications: {
+      email: true,
+      push: false,
+      sms: true
+    },
+    privacy: {
+      profileVisible: true,
+      dataSharing: false,
+      analytics: true
+    }
+  };
+}`
+          },
+          {
+            name: 'Custom Styling',
+            description: 'Checkboxes with custom styling and effects',
+            code: `<sui-checkbox 
+  [cssClass]="'checkbox-enhanced'"
+  label="Enhanced Checkbox">
+</sui-checkbox>
+
+<sui-checkbox 
+  [cssClass]="'checkbox-animated'"
+  label="Animated Checkbox">
+</sui-checkbox>
+
+<sui-checkbox 
+  [cssClass]="'checkbox-glow'"
+  label="Glow Effect">
+</sui-checkbox>`,
+            tsCode: `export class CheckboxComponent {
+  // Custom styling options:
+  // - checkbox-enhanced: Enhanced appearance
+  // - checkbox-animated: Hover animations
+  // - checkbox-glow: Focus glow effect
+  // - checkbox-rounded: Rounded corners
+  // - checkbox-borderless: No border
+  // - checkbox-shadow: Drop shadow
+  // - checkbox-gradient: Gradient background
+}`
+          }
+        ],
+        props: [
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the checkbox is disabled',
+            required: false
+          },
+          {
+            name: 'name',
+            type: 'string',
+            default: '""',
+            description: 'Name attribute for the checkbox input',
+            required: false
+          },
+          {
+            name: 'value',
+            type: 'unknown',
+            default: 'true',
+            description: 'Value of the checkbox when checked',
+            required: false
+          },
+          {
+            name: 'inputId',
+            type: 'string',
+            default: '""',
+            description: 'ID attribute for the checkbox input',
+            required: false
+          },
+          {
+            name: 'cssClass',
+            type: 'string',
+            default: '""',
+            description: 'Additional CSS classes to apply to the checkbox',
+            required: false
+          },
+          {
+            name: 'label',
+            type: 'string',
+            default: '""',
+            description: 'Label text for the checkbox',
+            required: false
+          },
+          {
+            name: 'indeterminate',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the checkbox is in indeterminate state',
+            required: false
+          }
+        ],
+        usage: 'Use checkboxes for multiple selection in forms, settings panels, and interactive lists.',
+        tags: ['form', 'input', 'selection', 'interactive']
       },
   {
         id: 'color-picker',
@@ -584,15 +815,286 @@ export const foundationComponents: ComponentModel[] = [
         usage: 'Use knobs for circular value input.',
         tags: ['form', 'input']
       },
-  {
+      {
         id: 'radio-button',
         name: 'Radio Button',
         category: 'Foundation',
-        description: 'Radio button input component',
-        examples: [],
-        props: [],
-        usage: 'Use radio buttons for single selection in forms.',
-        tags: ['form', 'input']
+        description: 'Radio button input component with multiple variants and states',
+        examples: [
+          {
+            name: 'Basic Radio Button',
+            description: 'Simple radio buttons with basic functionality',
+            code: `<sui-radio-button 
+  name="basic-group"
+  value="option1"
+  inputId="option1"
+  label="Option 1"
+  [(ngModel)]="selectedValue">
+</sui-radio-button>`,
+            tsCode: `export class RadioButtonComponent {
+  selectedValue = 'option1';
+}`
+          },
+          {
+            name: 'Size Variations',
+            description: 'Radio buttons available in different sizes',
+            code: `<sui-radio-button 
+  name="size-group"
+  value="small"
+  inputId="size-small"
+  label="Small Radio Button"
+  cssClass="radio-sm"
+  [(ngModel)]="sizeValue">
+</sui-radio-button>
+
+<sui-radio-button 
+  name="size-group"
+  value="large"
+  inputId="size-large"
+  label="Large Radio Button"
+  cssClass="radio-lg"
+  [(ngModel)]="sizeValue">
+</sui-radio-button>`,
+            tsCode: `export class RadioButtonComponent {
+  sizeValue = 'small';
+  // Size variants: sm, normal, lg, xl
+  // Use cssClass="radio-{size}" to apply sizes
+}`
+          },
+          {
+            name: 'Color Variants',
+            description: 'Radio buttons available in different color themes',
+            code: `<sui-radio-button 
+  name="color-group"
+  value="primary"
+  inputId="color-primary"
+  label="Primary Radio Button"
+  cssClass="radio-primary"
+  [(ngModel)]="colorValue">
+</sui-radio-button>
+
+<sui-radio-button 
+  name="color-group"
+  value="success"
+  inputId="color-success"
+  label="Success Radio Button"
+  cssClass="radio-success"
+  [(ngModel)]="colorValue">
+</sui-radio-button>`,
+            tsCode: `export class RadioButtonComponent {
+  colorValue = 'primary';
+  // Color variants: primary, secondary, success, warning, danger
+  // Use cssClass="radio-{color}" to apply colors
+}`
+          },
+          {
+            name: 'Form Integration',
+            description: 'Radio buttons integrated within a form with validation',
+            code: `<form (ngSubmit)="submitForm()">
+  <div class="form-group">
+    <h4>Preferred Contact Method</h4>
+    <sui-radio-button 
+      name="contact"
+      value="email"
+      inputId="contact-email"
+      label="Email"
+      [(ngModel)]="formData.preferredContact"
+      required>
+    </sui-radio-button>
+    <sui-radio-button 
+      name="contact"
+      value="phone"
+      inputId="contact-phone"
+      label="Phone"
+      [(ngModel)]="formData.preferredContact"
+      required>
+    </sui-radio-button>
+  </div>
+</form>`,
+            tsCode: `export class RadioButtonComponent {
+  formData = {
+    preferredContact: 'email'
+  };
+  
+  submitForm(): void {
+    console.log('Form submitted:', this.formData);
+  }
+}`
+          },
+          {
+            name: 'Survey Example',
+            description: 'Interactive survey with progress tracking using radio buttons',
+            code: `<div class="survey-container">
+  <div class="survey-header">
+    <h4>User Experience Survey</h4>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="getSurveyProgress()"></div>
+    </div>
+  </div>
+  
+  <form class="survey-form">
+    <div class="survey-question">
+      <h5>What is your age range?</h5>
+      <sui-radio-button 
+        name="age-range"
+        value="18-25"
+        inputId="age-18-25"
+        label="18-25 years"
+        [(ngModel)]="surveyData.ageRange">
+      </sui-radio-button>
+    </div>
+  </form>
+</div>`,
+            tsCode: `export class RadioButtonComponent {
+  surveyData = {
+    ageRange: '',
+    experience: '',
+    satisfaction: ''
+  };
+  
+  getSurveyProgress(): number {
+    const fields = ['ageRange', 'experience', 'satisfaction'];
+    const completed = fields.filter(field => this.surveyData[field] !== '').length;
+    return (completed / fields.length) * 100;
+  }
+}`
+          },
+          {
+            name: 'Settings Panel',
+            description: 'Radio buttons organized in a settings panel layout',
+            code: `<div class="settings-panel">
+  <div class="settings-section">
+    <h4>Language</h4>
+    <sui-radio-button 
+      name="language"
+      value="en"
+      inputId="lang-en"
+      label="English"
+      [(ngModel)]="settings.language">
+    </sui-radio-button>
+    <sui-radio-button 
+      name="language"
+      value="es"
+      inputId="lang-es"
+      label="Español"
+      [(ngModel)]="settings.language">
+    </sui-radio-button>
+  </div>
+</div>`,
+            tsCode: `export class RadioButtonComponent {
+  settings = {
+    language: 'en',
+    currency: 'usd',
+    timezone: 'utc'
+  };
+}`
+          },
+          {
+            name: 'Payment Method Selection',
+            description: 'Radio buttons for selecting payment methods with descriptions',
+            code: `<div class="payment-container">
+  <div class="payment-methods">
+    <div class="payment-option">
+      <sui-radio-button 
+        name="payment-method"
+        value="card"
+        inputId="payment-card"
+        label="Credit/Debit Card"
+        [(ngModel)]="selectedPaymentMethod">
+      </sui-radio-button>
+      <div class="payment-description">
+        <span>Visa, Mastercard, American Express</span>
+      </div>
+    </div>
+  </div>
+</div>`,
+            tsCode: `export class RadioButtonComponent {
+  selectedPaymentMethod = 'card';
+  
+  paymentMethods = [
+    { value: 'card', label: 'Credit/Debit Card', description: 'Visa, Mastercard, American Express' },
+    { value: 'paypal', label: 'PayPal', description: 'Pay with your PayPal account' },
+    { value: 'bank', label: 'Bank Transfer', description: 'Direct bank transfer' }
+  ];
+}`
+          },
+          {
+            name: 'Custom Styling',
+            description: 'Radio buttons with custom styling and effects',
+            code: `<sui-radio-button 
+  name="custom-style"
+  value="enhanced"
+  inputId="style-enhanced"
+  label="Enhanced Radio Button"
+  cssClass="radio-enhanced"
+  [(ngModel)]="customValue">
+</sui-radio-button>
+
+<sui-radio-button 
+  name="custom-style"
+  value="animated"
+  inputId="style-animated"
+  label="Animated Radio Button"
+  cssClass="radio-animated"
+  [(ngModel)]="customValue">
+</sui-radio-button>`,
+            tsCode: `export class RadioButtonComponent {
+  customValue = 'enhanced';
+  // Custom styling options:
+  // - radio-enhanced: Enhanced appearance
+  // - radio-animated: Hover animations
+  // - radio-glow: Focus glow effect
+  // - radio-shadow: Drop shadow
+  // - radio-gradient: Gradient background
+}`
+          }
+        ],
+        props: [
+          {
+            name: 'name',
+            type: 'string',
+            default: '""',
+            description: 'Name attribute for the radio button group',
+            required: true
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the radio button is disabled',
+            required: false
+          },
+          {
+            name: 'value',
+            type: 'unknown',
+            default: 'null',
+            description: 'Value of the radio button when selected',
+            required: true
+          },
+          {
+            name: 'inputId',
+            type: 'string',
+            default: '""',
+            description: 'ID attribute for the radio button input',
+            required: false
+          },
+          {
+            name: 'label',
+            type: 'string',
+            default: '""',
+            description: 'Label text for the radio button',
+            required: false
+          },
+          {
+            name: 'cssClass',
+            type: 'string',
+            default: '""',
+            description: 'Additional CSS classes to apply to the radio button',
+            required: false
+          }
+        ],
+        usage: 'Use radio buttons for single selection in forms, settings panels, surveys, and payment method selection.',
+        tags: ['form', 'input', 'selection', 'interactive']
       },
   {
         id: 'rating',

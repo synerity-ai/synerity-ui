@@ -75,12 +75,12 @@ The standardization plan has been successfully completed for all high-priority c
 | Avatar | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Badge | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Breadcrumb | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Low |
-| Checkbox | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | High |
+| Checkbox | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
 | Color Picker | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Low |
 | Date Picker | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Editor | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Low |
 | Knob | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Low |
-| Radio Button | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | High |
+| Radio Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
 | Rating | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Select | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | High |
 | Select Button | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |

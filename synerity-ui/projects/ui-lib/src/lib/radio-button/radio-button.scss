@@ -220,6 +220,13 @@
   font-weight: var(--sui-radio-label-font-weight, 500); /* font-medium */
 }
 
+.sui-radio-text {
+  color: var(--sui-radio-text-color, #374151); /* text-gray-700 */
+  font-size: var(--sui-radio-text-font-size, 0.875rem); /* text-sm */
+  font-weight: var(--sui-radio-text-font-weight, 500); /* font-medium */
+  line-height: var(--sui-radio-text-line-height, 1.25); /* leading-tight */
+}
+
 .sui-radio-label:hover {
   color: var(--sui-radio-label-hover-color, #1f2937); /* text-gray-900 */
 }
@@ -254,6 +261,10 @@
 
   .sui-radio-label:hover {
     color: var(--sui-radio-dark-label-hover-color, #ffffff); /* text-white */
+  }
+
+  .sui-radio-text {
+    color: var(--sui-radio-dark-text-color, #f9fafb); /* text-gray-100 */
   }
 }
 
