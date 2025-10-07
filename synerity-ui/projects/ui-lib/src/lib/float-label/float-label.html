@@ -2,10 +2,20 @@
   <label 
     class="sui-float-label-text"
     [attr.for]="getForAttribute()"
+    [attr.aria-label]="getAriaLabel()"
+    [attr.aria-describedby]="getAriaDescribedBy()"
   >
     {{ getLabelText() }}
     <span *ngIf="isRequired()" class="sui-float-label-required-mark">*</span>
   </label>
   
   <ng-content></ng-content>
+  
+  <!-- Helper Text -->
+  <div *ngIf="getHelperText() && !disabled" 
+       [id]="getComponentId() + '-helper'" 
+       class="sui-float-label-helper"
+       [class]="'sui-float-label-helper-' + state">
+    {{ getHelperText() }}
+  </div>
 </div>

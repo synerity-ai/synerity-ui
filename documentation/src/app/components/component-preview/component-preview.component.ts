@@ -29,11 +29,12 @@ import { TabsDemoComponent } from '../tabs-demo/tabs-demo';
 import { TextareaDemoComponent } from '../textarea-demo/textarea-demo';
 import { TooltipDemoComponent } from '../tooltip-demo/tooltip-demo';
 import { AccordionDemoComponent } from '../accordion-demo/accordion-demo';
+import { SelectButtonDemoComponent } from '../select-button-demo/select-button-demo';
 
 @Component({
   selector: 'app-component-preview',
   standalone: true,
-  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, AvatarDemoComponent, BadgeDemoComponent, DatePickerDemoComponent, RatingDemoComponent, SliderDemoComponent, ToggleSwitchDemoComponent, ChipDemoComponent, InputNumberDemoComponent, PasswordDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent, AccordionDemoComponent],
+  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, SelectButtonDemoComponent, AvatarDemoComponent, BadgeDemoComponent, DatePickerDemoComponent, RatingDemoComponent, SliderDemoComponent, ToggleSwitchDemoComponent, ChipDemoComponent, InputNumberDemoComponent, PasswordDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent, AccordionDemoComponent],
   templateUrl: './component-preview.component.html',
   styleUrl: './component-preview.component.scss'
 })

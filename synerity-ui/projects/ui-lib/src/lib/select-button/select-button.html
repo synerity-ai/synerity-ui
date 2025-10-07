@@ -1,12 +1,56 @@
-<div class="inline-flex border rounded overflow-hidden">
-	<button
-		*ngFor="let opt of options"
-		type="button"
-		[disabled]="disabled || opt.disabled"
-		[class.bg-gray-200]="opt.value === value"
-		(click)="onOptionClick(opt)"
-		class="px-3 py-1"
-	>
-		{{ opt.label }}
-	</button>
+<div [class]="getGroupClasses()">
+  <!-- Label -->
+  <label *ngIf="label" class="sui-select-button-label" [for]="getComponentId()">{{ label }}</label>
+  
+  <!-- Select Button Group -->
+  <div
+    role="group"
+    tabindex="0"
+    [id]="getComponentId()"
+    [attr.aria-label]="getAriaLabel()"
+    [attr.aria-describedby]="getAriaDescribedBy()"
+    (keydown)="onKeyDown($event)"
+    (focus)="onFocusEvent()"
+    (blur)="onBlurEvent()"
+    class="sui-select-button-group-container"
+  >
+    <button
+      *ngFor="let option of options; let i = index"
+      type="button"
+      role="radio"
+      [disabled]="disabled || option.disabled || loading"
+      [attr.aria-pressed]="isSelected(option)"
+      [attr.aria-disabled]="disabled || option.disabled || loading"
+      [attr.aria-label]="option.label"
+      (click)="select(option, i)"
+      [class]="getButtonClasses(option, i)"
+    >
+      <!-- Icon -->
+      <span *ngIf="option.icon" class="sui-select-button-icon">{{ option.icon }}</span>
+      
+      <!-- Content -->
+      <div class="sui-select-button-content">
+        <div *ngIf="option.description; else simpleLabel" class="sui-select-button-with-description">
+          <div class="sui-select-button-label">{{ option.label }}</div>
+          <div class="sui-select-button-description">{{ option.description }}</div>
+        </div>
+        <ng-template #simpleLabel>
+          <span class="sui-select-button-label">{{ option.label }}</span>
+        </ng-template>
+      </div>
+      
+      <!-- Badge -->
+      <span *ngIf="option.badge" class="sui-select-button-badge">{{ option.badge }}</span>
+    </button>
+  </div>
+  
+  <!-- Helper Text -->
+  <div *ngIf="helperText && !hasError" [id]="getComponentId() + '-helper'" class="sui-select-button-helper">
+    {{ helperText }}
+  </div>
+  
+  <!-- Error Text -->
+  <div *ngIf="errorText || hasError" [id]="getComponentId() + '-error'" class="sui-select-button-helper sui-select-button-error-text">
+    {{ errorText || 'Invalid selection' }}
+  </div>
 </div>

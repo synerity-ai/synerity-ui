@@ -1,0 +1,431 @@
+<div class="demo-section">
+  <div class="demo-group">
+    <div class="demo-label">Basic Select Button Examples</div>
+    <div class="demo-description">Simple select button components with basic functionality.</div>
+    <div class="demo-grid">
+      @for (selectButton of basicSelectButtons; track selectButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ selectButton.label }}</div>
+          <div class="demo-description">{{ selectButton.description }}</div>
+          <div class="demo-component">
+            <sui-select-button
+              [options]="selectButton.options"
+              [disabled]="selectButton.disabled"
+              [loading]="selectButton.loading"
+              [multiple]="selectButton.multiple"
+              [size]="selectButton.size"
+              [theme]="selectButton.theme"
+              [color]="selectButton.color"
+              [style]="selectButton.style"
+              [shape]="selectButton.shape"
+              [label]="selectButton.label"
+              [helperText]="selectButton.helperText"
+              [errorText]="selectButton.errorText"
+              [compact]="selectButton.compact"
+              [spacious]="selectButton.spacious"
+              [animated]="selectButton.animated"
+              [bounce]="selectButton.bounce"
+              [glow]="selectButton.glow"
+              [ngModel]="selectButton.multiple ? selectButton.values : selectButton.value"
+              (ngModelChange)="onSelectButtonModelChange($event, selectButton)"
+              (change)="onSelectButtonChange($event, selectButton)"
+              (onSelect)="onSelectButtonSelect($event, selectButton)"
+              (onFocus)="onSelectButtonFocus($event, selectButton)"
+              (onBlur)="onSelectButtonBlur(selectButton)">
+            </sui-select-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getSelectButtonStatusColor(selectButton)">{{ getSelectButtonStatus(selectButton) }}</span><br>
+            Selected: {{ getSelectedText(selectButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Size Variations</div>
+    <div class="demo-description">Select button components in different sizes.</div>
+    <div class="demo-grid">
+      @for (selectButton of sizeVariants; track selectButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ selectButton.label }}</div>
+          <div class="demo-description">{{ selectButton.description }}</div>
+          <div class="demo-component">
+            <sui-select-button
+              [options]="selectButton.options"
+              [disabled]="selectButton.disabled"
+              [loading]="selectButton.loading"
+              [multiple]="selectButton.multiple"
+              [size]="selectButton.size"
+              [theme]="selectButton.theme"
+              [color]="selectButton.color"
+              [style]="selectButton.style"
+              [shape]="selectButton.shape"
+              [label]="selectButton.label"
+              [helperText]="selectButton.helperText"
+              [errorText]="selectButton.errorText"
+              [compact]="selectButton.compact"
+              [spacious]="selectButton.spacious"
+              [animated]="selectButton.animated"
+              [bounce]="selectButton.bounce"
+              [glow]="selectButton.glow"
+              [ngModel]="selectButton.multiple ? selectButton.values : selectButton.value"
+              (ngModelChange)="onSelectButtonModelChange($event, selectButton)"
+              (change)="onSelectButtonChange($event, selectButton)"
+              (onSelect)="onSelectButtonSelect($event, selectButton)"
+              (onFocus)="onSelectButtonFocus($event, selectButton)"
+              (onBlur)="onSelectButtonBlur(selectButton)">
+            </sui-select-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getSelectButtonStatusColor(selectButton)">{{ getSelectButtonStatus(selectButton) }}</span><br>
+            Selected: {{ getSelectedText(selectButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Color Themes</div>
+    <div class="demo-description">Select button components with different color themes.</div>
+    <div class="demo-grid">
+      @for (selectButton of colorThemes; track selectButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ selectButton.label }}</div>
+          <div class="demo-description">{{ selectButton.description }}</div>
+          <div class="demo-component">
+            <sui-select-button
+              [options]="selectButton.options"
+              [disabled]="selectButton.disabled"
+              [loading]="selectButton.loading"
+              [multiple]="selectButton.multiple"
+              [size]="selectButton.size"
+              [theme]="selectButton.theme"
+              [color]="selectButton.color"
+              [style]="selectButton.style"
+              [shape]="selectButton.shape"
+              [label]="selectButton.label"
+              [helperText]="selectButton.helperText"
+              [errorText]="selectButton.errorText"
+              [compact]="selectButton.compact"
+              [spacious]="selectButton.spacious"
+              [animated]="selectButton.animated"
+              [bounce]="selectButton.bounce"
+              [glow]="selectButton.glow"
+              [ngModel]="selectButton.multiple ? selectButton.values : selectButton.value"
+              (ngModelChange)="onSelectButtonModelChange($event, selectButton)"
+              (change)="onSelectButtonChange($event, selectButton)"
+              (onSelect)="onSelectButtonSelect($event, selectButton)"
+              (onFocus)="onSelectButtonFocus($event, selectButton)"
+              (onBlur)="onSelectButtonBlur(selectButton)">
+            </sui-select-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getSelectButtonStatusColor(selectButton)">{{ getSelectButtonStatus(selectButton) }}</span><br>
+            Selected: {{ getSelectedText(selectButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Style Variations</div>
+    <div class="demo-description">Select button components with different styles.</div>
+    <div class="demo-grid">
+      @for (selectButton of styleVariants; track selectButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ selectButton.label }}</div>
+          <div class="demo-description">{{ selectButton.description }}</div>
+          <div class="demo-component">
+            <sui-select-button
+              [options]="selectButton.options"
+              [disabled]="selectButton.disabled"
+              [loading]="selectButton.loading"
+              [multiple]="selectButton.multiple"
+              [size]="selectButton.size"
+              [theme]="selectButton.theme"
+              [color]="selectButton.color"
+              [style]="selectButton.style"
+              [shape]="selectButton.shape"
+              [label]="selectButton.label"
+              [helperText]="selectButton.helperText"
+              [errorText]="selectButton.errorText"
+              [compact]="selectButton.compact"
+              [spacious]="selectButton.spacious"
+              [animated]="selectButton.animated"
+              [bounce]="selectButton.bounce"
+              [glow]="selectButton.glow"
+              [ngModel]="selectButton.multiple ? selectButton.values : selectButton.value"
+              (ngModelChange)="onSelectButtonModelChange($event, selectButton)"
+              (change)="onSelectButtonChange($event, selectButton)"
+              (onSelect)="onSelectButtonSelect($event, selectButton)"
+              (onFocus)="onSelectButtonFocus($event, selectButton)"
+              (onBlur)="onSelectButtonBlur(selectButton)">
+            </sui-select-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getSelectButtonStatusColor(selectButton)">{{ getSelectButtonStatus(selectButton) }}</span><br>
+            Selected: {{ getSelectedText(selectButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Shape Variations</div>
+    <div class="demo-description">Select button components with different shapes.</div>
+    <div class="demo-grid">
+      @for (selectButton of shapeVariants; track selectButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ selectButton.label }}</div>
+          <div class="demo-description">{{ selectButton.description }}</div>
+          <div class="demo-component">
+            <sui-select-button
+              [options]="selectButton.options"
+              [disabled]="selectButton.disabled"
+              [loading]="selectButton.loading"
+              [multiple]="selectButton.multiple"
+              [size]="selectButton.size"
+              [theme]="selectButton.theme"
+              [color]="selectButton.color"
+              [style]="selectButton.style"
+              [shape]="selectButton.shape"
+              [label]="selectButton.label"
+              [helperText]="selectButton.helperText"
+              [errorText]="selectButton.errorText"
+              [compact]="selectButton.compact"
+              [spacious]="selectButton.spacious"
+              [animated]="selectButton.animated"
+              [bounce]="selectButton.bounce"
+              [glow]="selectButton.glow"
+              [ngModel]="selectButton.multiple ? selectButton.values : selectButton.value"
+              (ngModelChange)="onSelectButtonModelChange($event, selectButton)"
+              (change)="onSelectButtonChange($event, selectButton)"
+              (onSelect)="onSelectButtonSelect($event, selectButton)"
+              (onFocus)="onSelectButtonFocus($event, selectButton)"
+              (onBlur)="onSelectButtonBlur(selectButton)">
+            </sui-select-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getSelectButtonStatusColor(selectButton)">{{ getSelectButtonStatus(selectButton) }}</span><br>
+            Selected: {{ getSelectedText(selectButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">State Examples</div>
+    <div class="demo-description">Select button components in different states.</div>
+    <div class="demo-grid">
+      @for (selectButton of stateExamples; track selectButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ selectButton.label }}</div>
+          <div class="demo-description">{{ selectButton.description }}</div>
+          <div class="demo-component">
+            <sui-select-button
+              [options]="selectButton.options"
+              [disabled]="selectButton.disabled"
+              [loading]="selectButton.loading"
+              [multiple]="selectButton.multiple"
+              [size]="selectButton.size"
+              [theme]="selectButton.theme"
+              [color]="selectButton.color"
+              [style]="selectButton.style"
+              [shape]="selectButton.shape"
+              [label]="selectButton.label"
+              [helperText]="selectButton.helperText"
+              [errorText]="selectButton.errorText"
+              [compact]="selectButton.compact"
+              [spacious]="selectButton.spacious"
+              [animated]="selectButton.animated"
+              [bounce]="selectButton.bounce"
+              [glow]="selectButton.glow"
+              [ngModel]="selectButton.multiple ? selectButton.values : selectButton.value"
+              (ngModelChange)="onSelectButtonModelChange($event, selectButton)"
+              (change)="onSelectButtonChange($event, selectButton)"
+              (onSelect)="onSelectButtonSelect($event, selectButton)"
+              (onFocus)="onSelectButtonFocus($event, selectButton)"
+              (onBlur)="onSelectButtonBlur(selectButton)">
+            </sui-select-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getSelectButtonStatusColor(selectButton)">{{ getSelectButtonStatus(selectButton) }}</span><br>
+            Selected: {{ getSelectedText(selectButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Layout Options</div>
+    <div class="demo-description">Select button components with different layout options.</div>
+    <div class="demo-grid">
+      @for (selectButton of layoutOptions; track selectButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ selectButton.label }}</div>
+          <div class="demo-description">{{ selectButton.description }}</div>
+          <div class="demo-component">
+            <sui-select-button
+              [options]="selectButton.options"
+              [disabled]="selectButton.disabled"
+              [loading]="selectButton.loading"
+              [multiple]="selectButton.multiple"
+              [size]="selectButton.size"
+              [theme]="selectButton.theme"
+              [color]="selectButton.color"
+              [style]="selectButton.style"
+              [shape]="selectButton.shape"
+              [label]="selectButton.label"
+              [helperText]="selectButton.helperText"
+              [errorText]="selectButton.errorText"
+              [compact]="selectButton.compact"
+              [spacious]="selectButton.spacious"
+              [animated]="selectButton.animated"
+              [bounce]="selectButton.bounce"
+              [glow]="selectButton.glow"
+              [ngModel]="selectButton.multiple ? selectButton.values : selectButton.value"
+              (ngModelChange)="onSelectButtonModelChange($event, selectButton)"
+              (change)="onSelectButtonChange($event, selectButton)"
+              (onSelect)="onSelectButtonSelect($event, selectButton)"
+              (onFocus)="onSelectButtonFocus($event, selectButton)"
+              (onBlur)="onSelectButtonBlur(selectButton)">
+            </sui-select-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getSelectButtonStatusColor(selectButton)">{{ getSelectButtonStatus(selectButton) }}</span><br>
+            Selected: {{ getSelectedText(selectButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Animation Effects</div>
+    <div class="demo-description">Select button components with different animation effects.</div>
+    <div class="demo-grid">
+      @for (selectButton of animationEffects; track selectButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ selectButton.label }}</div>
+          <div class="demo-description">{{ selectButton.description }}</div>
+          <div class="demo-component">
+            <sui-select-button
+              [options]="selectButton.options"
+              [disabled]="selectButton.disabled"
+              [loading]="selectButton.loading"
+              [multiple]="selectButton.multiple"
+              [size]="selectButton.size"
+              [theme]="selectButton.theme"
+              [color]="selectButton.color"
+              [style]="selectButton.style"
+              [shape]="selectButton.shape"
+              [label]="selectButton.label"
+              [helperText]="selectButton.helperText"
+              [errorText]="selectButton.errorText"
+              [compact]="selectButton.compact"
+              [spacious]="selectButton.spacious"
+              [animated]="selectButton.animated"
+              [bounce]="selectButton.bounce"
+              [glow]="selectButton.glow"
+              [ngModel]="selectButton.multiple ? selectButton.values : selectButton.value"
+              (ngModelChange)="onSelectButtonModelChange($event, selectButton)"
+              (change)="onSelectButtonChange($event, selectButton)"
+              (onSelect)="onSelectButtonSelect($event, selectButton)"
+              (onFocus)="onSelectButtonFocus($event, selectButton)"
+              (onBlur)="onSelectButtonBlur(selectButton)">
+            </sui-select-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getSelectButtonStatusColor(selectButton)">{{ getSelectButtonStatus(selectButton) }}</span><br>
+            Selected: {{ getSelectedText(selectButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Real-World Examples</div>
+    <div class="demo-description">Practical examples of select button usage in real applications.</div>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="demo-label">{{ textEditor.label }}</div>
+        <div class="demo-description">{{ textEditor.description }}</div>
+        <div class="demo-component">
+          <sui-select-button
+            [options]="textEditor.options"
+            [disabled]="textEditor.disabled"
+            [loading]="textEditor.loading"
+            [multiple]="textEditor.multiple"
+            [size]="textEditor.size"
+            [theme]="textEditor.theme"
+            [color]="textEditor.color"
+            [style]="textEditor.style"
+            [shape]="textEditor.shape"
+            [label]="textEditor.label"
+            [helperText]="textEditor.helperText"
+            [errorText]="textEditor.errorText"
+            [compact]="textEditor.compact"
+            [spacious]="textEditor.spacious"
+            [animated]="textEditor.animated"
+            [bounce]="textEditor.bounce"
+            [glow]="textEditor.glow"
+            [ngModel]="textEditor.multiple ? textEditor.values : textEditor.value"
+            (ngModelChange)="onSelectButtonModelChange($event, textEditor)"
+            (change)="onSelectButtonChange($event, textEditor)"
+            (onSelect)="onSelectButtonSelect($event, textEditor)"
+            (onFocus)="onSelectButtonFocus($event, textEditor)"
+            (onBlur)="onSelectButtonBlur(textEditor)">
+          </sui-select-button>
+        </div>
+        <div class="demo-result">
+          Status: <span [class]="getSelectButtonStatusColor(textEditor)">{{ getSelectButtonStatus(textEditor) }}</span><br>
+          Selected: {{ getSelectedText(textEditor) }}
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-label">{{ viewSelector.label }}</div>
+        <div class="demo-description">{{ viewSelector.description }}</div>
+        <div class="demo-component">
+          <sui-select-button
+            [options]="viewSelector.options"
+            [disabled]="viewSelector.disabled"
+            [loading]="viewSelector.loading"
+            [multiple]="viewSelector.multiple"
+            [size]="viewSelector.size"
+            [theme]="viewSelector.theme"
+            [color]="viewSelector.color"
+            [style]="viewSelector.style"
+            [shape]="viewSelector.shape"
+            [label]="viewSelector.label"
+            [helperText]="viewSelector.helperText"
+            [errorText]="viewSelector.errorText"
+            [compact]="viewSelector.compact"
+            [spacious]="viewSelector.spacious"
+            [animated]="viewSelector.animated"
+            [bounce]="viewSelector.bounce"
+            [glow]="viewSelector.glow"
+            [ngModel]="viewSelector.multiple ? viewSelector.values : viewSelector.value"
+            (ngModelChange)="onSelectButtonModelChange($event, viewSelector)"
+            (change)="onSelectButtonChange($event, viewSelector)"
+            (onSelect)="onSelectButtonSelect($event, viewSelector)"
+            (onFocus)="onSelectButtonFocus($event, viewSelector)"
+            (onBlur)="onSelectButtonBlur(viewSelector)">
+          </sui-select-button>
+        </div>
+        <div class="demo-result">
+          Status: <span [class]="getSelectButtonStatusColor(viewSelector)">{{ getSelectButtonStatus(viewSelector) }}</span><br>
+          Selected: {{ getSelectedText(viewSelector) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

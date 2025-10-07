@@ -1,0 +1,267 @@
+<div class="demo-section">
+  <div class="demo-group">
+    <div class="demo-label">Basic Float Label Examples</div>
+    <div class="demo-description">Simple float label components with basic functionality.</div>
+    <div class="demo-grid">
+      @for (floatLabel of basicFloatLabels; track floatLabel.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ floatLabel.label }}</div>
+          <div class="demo-description">{{ floatLabel.description }}</div>
+          <div class="demo-component">
+            <sui-float-label
+              [label]="floatLabel.label"
+              [for]="floatLabel.for"
+              [required]="floatLabel.required"
+              [disabled]="floatLabel.disabled"
+              [size]="floatLabel.size"
+              [state]="floatLabel.state"
+              [animated]="floatLabel.animated"
+              [bounce]="floatLabel.bounce"
+              [rtl]="floatLabel.rtl"
+              [helperText]="floatLabel.helperText"
+              [errorText]="floatLabel.errorText"
+              [successText]="floatLabel.successText"
+              [warningText]="floatLabel.warningText">
+              <input
+                type="text"
+                [id]="floatLabel.for"
+                [placeholder]="floatLabel.placeholder"
+                [disabled]="floatLabel.disabled"
+                [value]="floatLabel.value"
+                (input)="onFloatLabelChange($event.target.value, floatLabel)"
+                (focus)="onFloatLabelFocus(floatLabel)"
+                (blur)="onFloatLabelBlur(floatLabel)"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </sui-float-label>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getFloatLabelStatusColor(floatLabel)">{{ getFloatLabelStatus(floatLabel) }}</span><br>
+            Value: {{ getCurrentValue(floatLabel) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Size Variations</div>
+    <div class="demo-description">Float label components in different sizes.</div>
+    <div class="demo-grid">
+      @for (floatLabel of sizeVariants; track floatLabel.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ floatLabel.label }}</div>
+          <div class="demo-description">{{ floatLabel.description }}</div>
+          <div class="demo-component">
+            <sui-float-label
+              [label]="floatLabel.label"
+              [for]="floatLabel.for"
+              [required]="floatLabel.required"
+              [disabled]="floatLabel.disabled"
+              [size]="floatLabel.size"
+              [state]="floatLabel.state"
+              [animated]="floatLabel.animated"
+              [bounce]="floatLabel.bounce"
+              [rtl]="floatLabel.rtl"
+              [helperText]="floatLabel.helperText"
+              [errorText]="floatLabel.errorText"
+              [successText]="floatLabel.successText"
+              [warningText]="floatLabel.warningText">
+              <input
+                type="text"
+                [id]="floatLabel.for"
+                [placeholder]="floatLabel.placeholder"
+                [disabled]="floatLabel.disabled"
+                [value]="floatLabel.value"
+                (input)="onFloatLabelChange($event.target.value, floatLabel)"
+                (focus)="onFloatLabelFocus(floatLabel)"
+                (blur)="onFloatLabelBlur(floatLabel)"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </sui-float-label>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getFloatLabelStatusColor(floatLabel)">{{ getFloatLabelStatus(floatLabel) }}</span><br>
+            Value: {{ getCurrentValue(floatLabel) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">State Variations</div>
+    <div class="demo-description">Float label components with different states.</div>
+    <div class="demo-grid">
+      @for (floatLabel of stateVariants; track floatLabel.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ floatLabel.label }}</div>
+          <div class="demo-description">{{ floatLabel.description }}</div>
+          <div class="demo-component">
+            <sui-float-label
+              [label]="floatLabel.label"
+              [for]="floatLabel.for"
+              [required]="floatLabel.required"
+              [disabled]="floatLabel.disabled"
+              [size]="floatLabel.size"
+              [state]="floatLabel.state"
+              [animated]="floatLabel.animated"
+              [bounce]="floatLabel.bounce"
+              [rtl]="floatLabel.rtl"
+              [helperText]="floatLabel.helperText"
+              [errorText]="floatLabel.errorText"
+              [successText]="floatLabel.successText"
+              [warningText]="floatLabel.warningText">
+              <input
+                type="text"
+                [id]="floatLabel.for"
+                [placeholder]="floatLabel.placeholder"
+                [disabled]="floatLabel.disabled"
+                [value]="floatLabel.value"
+                (input)="onFloatLabelChange($event.target.value, floatLabel)"
+                (focus)="onFloatLabelFocus(floatLabel)"
+                (blur)="onFloatLabelBlur(floatLabel)"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </sui-float-label>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getFloatLabelStatusColor(floatLabel)">{{ getFloatLabelStatus(floatLabel) }}</span><br>
+            Value: {{ getCurrentValue(floatLabel) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Animation Variations</div>
+    <div class="demo-description">Float label components with different animation effects.</div>
+    <div class="demo-grid">
+      @for (floatLabel of animationVariants; track floatLabel.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ floatLabel.label }}</div>
+          <div class="demo-description">{{ floatLabel.description }}</div>
+          <div class="demo-component">
+            <sui-float-label
+              [label]="floatLabel.label"
+              [for]="floatLabel.for"
+              [required]="floatLabel.required"
+              [disabled]="floatLabel.disabled"
+              [size]="floatLabel.size"
+              [state]="floatLabel.state"
+              [animated]="floatLabel.animated"
+              [bounce]="floatLabel.bounce"
+              [rtl]="floatLabel.rtl"
+              [helperText]="floatLabel.helperText"
+              [errorText]="floatLabel.errorText"
+              [successText]="floatLabel.successText"
+              [warningText]="floatLabel.warningText">
+              <input
+                type="text"
+                [id]="floatLabel.for"
+                [placeholder]="floatLabel.placeholder"
+                [disabled]="floatLabel.disabled"
+                [value]="floatLabel.value"
+                (input)="onFloatLabelChange($event.target.value, floatLabel)"
+                (focus)="onFloatLabelFocus(floatLabel)"
+                (blur)="onFloatLabelBlur(floatLabel)"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </sui-float-label>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getFloatLabelStatusColor(floatLabel)">{{ getFloatLabelStatus(floatLabel) }}</span><br>
+            Value: {{ getCurrentValue(floatLabel) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">RTL Support</div>
+    <div class="demo-description">Float label components with RTL (Right-to-Left) support.</div>
+    <div class="demo-grid">
+      @for (floatLabel of rtlVariants; track floatLabel.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ floatLabel.label }}</div>
+          <div class="demo-description">{{ floatLabel.description }}</div>
+          <div class="demo-component">
+            <sui-float-label
+              [label]="floatLabel.label"
+              [for]="floatLabel.for"
+              [required]="floatLabel.required"
+              [disabled]="floatLabel.disabled"
+              [size]="floatLabel.size"
+              [state]="floatLabel.state"
+              [animated]="floatLabel.animated"
+              [bounce]="floatLabel.bounce"
+              [rtl]="floatLabel.rtl"
+              [helperText]="floatLabel.helperText"
+              [errorText]="floatLabel.errorText"
+              [successText]="floatLabel.successText"
+              [warningText]="floatLabel.warningText">
+              <input
+                type="text"
+                [id]="floatLabel.for"
+                [placeholder]="floatLabel.placeholder"
+                [disabled]="floatLabel.disabled"
+                [value]="floatLabel.value"
+                (input)="onFloatLabelChange($event.target.value, floatLabel)"
+                (focus)="onFloatLabelFocus(floatLabel)"
+                (blur)="onFloatLabelBlur(floatLabel)"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </sui-float-label>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getFloatLabelStatusColor(floatLabel)">{{ getFloatLabelStatus(floatLabel) }}</span><br>
+            Value: {{ getCurrentValue(floatLabel) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Real-World Example: Contact Form</div>
+    <div class="demo-description">Complete contact form using float labels with validation and animations.</div>
+    <div class="demo-component">
+      <div class="max-w-md mx-auto space-y-4">
+        @for (floatLabel of contactForm; track floatLabel.label) {
+          <sui-float-label
+            [label]="floatLabel.label"
+            [for]="floatLabel.for"
+            [required]="floatLabel.required"
+            [disabled]="floatLabel.disabled"
+            [size]="floatLabel.size"
+            [state]="floatLabel.state"
+            [animated]="floatLabel.animated"
+            [bounce]="floatLabel.bounce"
+            [rtl]="floatLabel.rtl"
+            [helperText]="floatLabel.helperText"
+            [errorText]="floatLabel.errorText"
+            [successText]="floatLabel.successText"
+            [warningText]="floatLabel.warningText">
+            <input
+              type="text"
+              [id]="floatLabel.for"
+              [placeholder]="floatLabel.placeholder"
+              [disabled]="floatLabel.disabled"
+              [value]="floatLabel.value"
+              (input)="onFloatLabelChange($event.target.value, floatLabel)"
+              (focus)="onFloatLabelFocus(floatLabel)"
+              (blur)="onFloatLabelBlur(floatLabel)"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </sui-float-label>
+        }
+        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+          Submit Contact Form
+        </button>
+      </div>
+    </div>
+    <div class="demo-result">
+      <div class="text-sm text-gray-600">
+        <strong>Form Status:</strong> Interactive form with animated float labels<br>
+        <strong>Features:</strong> Required field validation, helper text, smooth animations<br>
+        <strong>Accessibility:</strong> Proper labeling, ARIA attributes, keyboard navigation
+      </div>
+    </div>
+  </div>
+</div>

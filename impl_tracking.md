@@ -85,14 +85,14 @@ The standardization plan has been successfully completed for all high-priority c
 | Radio Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
 | Rating | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
 | Select | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Select Button | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
+| Select Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
 | Slider | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
 | Tabs | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
 | Toggle Switch | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
 | Auto Focus | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Low |
 | Cascade Select | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Low |
 | Chip | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Float Label | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
+| Float Label | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
 | Icon Field | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | IFT Label | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Low |
 | IFTA Label | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Low |
