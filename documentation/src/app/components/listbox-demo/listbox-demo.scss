@@ -1,0 +1,331 @@
+.demo-section {
+  margin-bottom: 2rem;
+}
+
+.demo-group {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.demo-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.demo-description {
+  font-size: 0.875rem;
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.demo-item {
+  padding: 1rem;
+  border: 1px dashed #cbd5e0;
+  border-radius: 0.375rem;
+  background-color: #f7fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.demo-component {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.demo-result {
+  font-size: 0.875rem;
+  color: #2d3748;
+  margin-top: 0.5rem;
+  text-align: center;
+
+  p {
+    margin: 0.25rem 0;
+  }
+
+  strong {
+    font-weight: 600;
+    color: #1a202c;
+  }
+}
+
+// Status color classes
+.text-green-600 {
+  color: #059669;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.text-yellow-600 {
+  color: #d97706;
+}
+
+// Real-world example styling
+.country-form,
+.skill-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0;
+  }
+  
+  .form-description {
+    font-size: 1rem;
+    color: #4a5568;
+    text-align: center;
+  }
+}
+
+// Listbox specific styling
+.listbox-demo {
+  .listbox-container {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+    
+    .listbox-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a202c;
+      margin-bottom: 0.5rem;
+    }
+    
+    .listbox-description {
+      font-size: 0.875rem;
+      color: #4a5568;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .listbox-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    
+    .feature-item {
+      padding: 0.75rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.375rem;
+      background-color: #f8fafc;
+      text-align: center;
+      
+      .feature-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .feature-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #1a202c;
+        margin-bottom: 0.25rem;
+      }
+      
+      .feature-description {
+        font-size: 0.75rem;
+        color: #6b7280;
+      }
+    }
+  }
+}
+
+// Multi-select specific styling
+.multi-select-demo {
+  .selected-items {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    background-color: #f8fafc;
+    
+    .selected-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #1a202c;
+      margin-bottom: 0.5rem;
+    }
+    
+    .selected-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      
+      .selected-item {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        background-color: #dbeafe;
+        color: #1e40af;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        
+        .remove-button {
+          margin-left: 0.25rem;
+          cursor: pointer;
+          color: #6b7280;
+          
+          &:hover {
+            color: #ef4444;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Grouped options styling
+.grouped-demo {
+  .group-header {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    padding: 0.5rem 0.75rem;
+    background-color: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .group-items {
+    .group-item {
+      padding-left: 1.5rem;
+      border-left: 2px solid #e5e7eb;
+      margin-left: 0.75rem;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .demo-item {
+    padding: 0.75rem;
+  }
+  
+  .demo-component {
+    max-width: 100%;
+  }
+  
+  .listbox-demo {
+    .listbox-features {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Dark theme support
+@media (prefers-color-scheme: dark) {
+  .demo-group {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+  
+  .demo-item {
+    background-color: #111827;
+    border-color: #4b5563;
+  }
+  
+  .demo-label {
+    color: #f9fafb;
+  }
+  
+  .demo-description {
+    color: #d1d5db;
+  }
+  
+  .demo-result {
+    color: #e5e7eb;
+    
+    strong {
+      color: #f9fafb;
+    }
+  }
+  
+  .listbox-demo {
+    .listbox-container {
+      background-color: #1f2937;
+      border-color: #374151;
+      
+      .listbox-label {
+        color: #f9fafb;
+      }
+      
+      .listbox-description {
+        color: #d1d5db;
+      }
+    }
+    
+    .listbox-features {
+      .feature-item {
+        background-color: #111827;
+        border-color: #4b5563;
+        
+        .feature-label {
+          color: #f9fafb;
+        }
+        
+        .feature-description {
+          color: #d1d5db;
+        }
+      }
+    }
+  }
+  
+  .multi-select-demo {
+    .selected-items {
+      background-color: #111827;
+      border-color: #4b5563;
+      
+      .selected-label {
+        color: #f9fafb;
+      }
+      
+      .selected-item {
+        background-color: #1e3a8a;
+        color: #60a5fa;
+      }
+    }
+  }
+  
+  .grouped-demo {
+    .group-header {
+      background-color: #374151;
+      color: #f3f4f6;
+      border-color: #4b5563;
+    }
+  }
+}

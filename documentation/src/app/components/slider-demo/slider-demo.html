@@ -1,0 +1,359 @@
+<div class="demo-section">
+  <div class="demo-group">
+    <div class="demo-label">Basic Sliders</div>
+    <div class="demo-description">Simple slider components with basic functionality.</div>
+    <div class="demo-grid">
+      @for (slider of basicSliders; track slider.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ slider.label }}</div>
+          <div class="demo-description">{{ slider.description }}</div>
+          <div class="demo-component">
+            <sui-slider
+              [(ngModel)]="slider.value"
+              [min]="slider.min"
+              [max]="slider.max"
+              [step]="slider.step"
+              [size]="slider.size"
+              [theme]="slider.theme"
+              [color]="slider.color"
+              [disabled]="slider.disabled"
+              [readonly]="slider.readonly"
+              [showValue]="slider.showValue"
+              [showRange]="slider.showRange"
+              [label]="slider.label"
+              [vertical]="slider.vertical"
+              [compact]="slider.compact"
+              [spacious]="slider.spacious"
+              [animated]="slider.animated"
+              [glow]="slider.glow"
+              (change)="onSliderChange($event, slider)">
+            </sui-slider>
+          </div>
+          <div class="demo-result">
+            Current Value: {{ getSliderText(slider.value, slider.min, slider.max, slider.step) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Size Variations</div>
+    <div class="demo-description">Slider components in different sizes.</div>
+    <div class="demo-grid">
+      @for (slider of sizeVariants; track slider.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ slider.label }}</div>
+          <div class="demo-description">{{ slider.description }}</div>
+          <div class="demo-component">
+            <sui-slider
+              [(ngModel)]="slider.value"
+              [min]="slider.min"
+              [max]="slider.max"
+              [step]="slider.step"
+              [size]="slider.size"
+              [theme]="slider.theme"
+              [color]="slider.color"
+              [disabled]="slider.disabled"
+              [readonly]="slider.readonly"
+              [showValue]="slider.showValue"
+              [showRange]="slider.showRange"
+              [label]="slider.label"
+              [vertical]="slider.vertical"
+              [compact]="slider.compact"
+              [spacious]="slider.spacious"
+              [animated]="slider.animated"
+              [glow]="slider.glow"
+              (change)="onSliderChange($event, slider)">
+            </sui-slider>
+          </div>
+          <div class="demo-result">
+            Current Value: {{ getSliderText(slider.value, slider.min, slider.max, slider.step) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Color Themes</div>
+    <div class="demo-description">Slider components with different color themes.</div>
+    <div class="demo-grid">
+      @for (slider of colorThemes; track slider.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ slider.label }}</div>
+          <div class="demo-description">{{ slider.description }}</div>
+          <div class="demo-component">
+            <sui-slider
+              [(ngModel)]="slider.value"
+              [min]="slider.min"
+              [max]="slider.max"
+              [step]="slider.step"
+              [size]="slider.size"
+              [theme]="slider.theme"
+              [color]="slider.color"
+              [disabled]="slider.disabled"
+              [readonly]="slider.readonly"
+              [showValue]="slider.showValue"
+              [showRange]="slider.showRange"
+              [label]="slider.label"
+              [vertical]="slider.vertical"
+              [compact]="slider.compact"
+              [spacious]="slider.spacious"
+              [animated]="slider.animated"
+              [glow]="slider.glow"
+              (change)="onSliderChange($event, slider)">
+            </sui-slider>
+          </div>
+          <div class="demo-result">
+            Current Value: {{ getSliderText(slider.value, slider.min, slider.max, slider.step) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Layout Options</div>
+    <div class="demo-description">Slider components with different layout options.</div>
+    <div class="demo-grid">
+      @for (slider of layoutOptions; track slider.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ slider.label }}</div>
+          <div class="demo-description">{{ slider.description }}</div>
+          <div class="demo-component">
+            <sui-slider
+              [(ngModel)]="slider.value"
+              [min]="slider.min"
+              [max]="slider.max"
+              [step]="slider.step"
+              [size]="slider.size"
+              [theme]="slider.theme"
+              [color]="slider.color"
+              [disabled]="slider.disabled"
+              [readonly]="slider.readonly"
+              [showValue]="slider.showValue"
+              [showRange]="slider.showRange"
+              [label]="slider.label"
+              [vertical]="slider.vertical"
+              [compact]="slider.compact"
+              [spacious]="slider.spacious"
+              [animated]="slider.animated"
+              [glow]="slider.glow"
+              (change)="onSliderChange($event, slider)">
+            </sui-slider>
+          </div>
+          <div class="demo-result">
+            Current Value: {{ getSliderText(slider.value, slider.min, slider.max, slider.step) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">State Examples</div>
+    <div class="demo-description">Slider components in different states.</div>
+    <div class="demo-grid">
+      @for (slider of stateExamples; track slider.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ slider.label }}</div>
+          <div class="demo-description">{{ slider.description }}</div>
+          <div class="demo-component">
+            <sui-slider
+              [(ngModel)]="slider.value"
+              [min]="slider.min"
+              [max]="slider.max"
+              [step]="slider.step"
+              [size]="slider.size"
+              [theme]="slider.theme"
+              [color]="slider.color"
+              [disabled]="slider.disabled"
+              [readonly]="slider.readonly"
+              [showValue]="slider.showValue"
+              [showRange]="slider.showRange"
+              [label]="slider.label"
+              [vertical]="slider.vertical"
+              [compact]="slider.compact"
+              [spacious]="slider.spacious"
+              [animated]="slider.animated"
+              [glow]="slider.glow"
+              (change)="onSliderChange($event, slider)">
+            </sui-slider>
+          </div>
+          <div class="demo-result">
+            Current Value: {{ getSliderText(slider.value, slider.min, slider.max, slider.step) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Animation Effects</div>
+    <div class="demo-description">Slider components with various animation effects.</div>
+    <div class="demo-grid">
+      @for (slider of animationEffects; track slider.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ slider.label }}</div>
+          <div class="demo-description">{{ slider.description }}</div>
+          <div class="demo-component">
+            <sui-slider
+              [(ngModel)]="slider.value"
+              [min]="slider.min"
+              [max]="slider.max"
+              [step]="slider.step"
+              [size]="slider.size"
+              [theme]="slider.theme"
+              [color]="slider.color"
+              [disabled]="slider.disabled"
+              [readonly]="slider.readonly"
+              [showValue]="slider.showValue"
+              [showRange]="slider.showRange"
+              [label]="slider.label"
+              [vertical]="slider.vertical"
+              [compact]="slider.compact"
+              [spacious]="slider.spacious"
+              [animated]="slider.animated"
+              [glow]="slider.glow"
+              (change)="onSliderChange($event, slider)">
+            </sui-slider>
+          </div>
+          <div class="demo-result">
+            Current Value: {{ getSliderText(slider.value, slider.min, slider.max, slider.step) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Real-world Examples</div>
+    <div class="demo-description">Practical applications of the slider component.</div>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="demo-label">{{ volumeSlider.label }}</div>
+        <div class="demo-description">{{ volumeSlider.description }}</div>
+        <div class="demo-component">
+          <sui-slider
+            [(ngModel)]="volumeSlider.value"
+            [min]="volumeSlider.min"
+            [max]="volumeSlider.max"
+            [step]="volumeSlider.step"
+            [size]="volumeSlider.size"
+            [theme]="volumeSlider.theme"
+            [color]="volumeSlider.color"
+            [disabled]="volumeSlider.disabled"
+            [readonly]="volumeSlider.readonly"
+            [showValue]="volumeSlider.showValue"
+            [showRange]="volumeSlider.showRange"
+            [label]="volumeSlider.label"
+            [vertical]="volumeSlider.vertical"
+            [compact]="volumeSlider.compact"
+            [spacious]="volumeSlider.spacious"
+            [animated]="volumeSlider.animated"
+            [glow]="volumeSlider.glow"
+            (change)="onSliderChange($event, volumeSlider)">
+          </sui-slider>
+        </div>
+        <div class="demo-result">
+          <p><strong>Volume:</strong> {{ getSliderText(volumeSlider.value, volumeSlider.min, volumeSlider.max, volumeSlider.step) }}%</p>
+          <p><strong>Level:</strong> <span [class]="getSliderStatusColor(volumeSlider.value, volumeSlider.min, volumeSlider.max)">{{ getSliderStatus(volumeSlider.value, volumeSlider.min, volumeSlider.max) }}</span></p>
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-label">{{ brightnessSlider.label }}</div>
+        <div class="demo-description">{{ brightnessSlider.description }}</div>
+        <div class="demo-component">
+          <sui-slider
+            [(ngModel)]="brightnessSlider.value"
+            [min]="brightnessSlider.min"
+            [max]="brightnessSlider.max"
+            [step]="brightnessSlider.step"
+            [size]="brightnessSlider.size"
+            [theme]="brightnessSlider.theme"
+            [color]="brightnessSlider.color"
+            [disabled]="brightnessSlider.disabled"
+            [readonly]="brightnessSlider.readonly"
+            [showValue]="brightnessSlider.showValue"
+            [showRange]="brightnessSlider.showRange"
+            [label]="brightnessSlider.label"
+            [vertical]="brightnessSlider.vertical"
+            [compact]="brightnessSlider.compact"
+            [spacious]="brightnessSlider.spacious"
+            [animated]="brightnessSlider.animated"
+            [glow]="brightnessSlider.glow"
+            (change)="onSliderChange($event, brightnessSlider)">
+          </sui-slider>
+        </div>
+        <div class="demo-result">
+          <p><strong>Brightness:</strong> {{ getSliderText(brightnessSlider.value, brightnessSlider.min, brightnessSlider.max, brightnessSlider.step) }}%</p>
+          <p><strong>Level:</strong> <span [class]="getSliderStatusColor(brightnessSlider.value, brightnessSlider.min, brightnessSlider.max)">{{ getSliderStatus(brightnessSlider.value, brightnessSlider.min, brightnessSlider.max) }}</span></p>
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-label">{{ temperatureSlider.label }}</div>
+        <div class="demo-description">{{ temperatureSlider.description }}</div>
+        <div class="demo-component">
+          <sui-slider
+            [(ngModel)]="temperatureSlider.value"
+            [min]="temperatureSlider.min"
+            [max]="temperatureSlider.max"
+            [step]="temperatureSlider.step"
+            [size]="temperatureSlider.size"
+            [theme]="temperatureSlider.theme"
+            [color]="temperatureSlider.color"
+            [disabled]="temperatureSlider.disabled"
+            [readonly]="temperatureSlider.readonly"
+            [showValue]="temperatureSlider.showValue"
+            [showRange]="temperatureSlider.showRange"
+            [label]="temperatureSlider.label"
+            [vertical]="temperatureSlider.vertical"
+            [compact]="temperatureSlider.compact"
+            [spacious]="temperatureSlider.spacious"
+            [animated]="temperatureSlider.animated"
+            [glow]="temperatureSlider.glow"
+            (change)="onSliderChange($event, temperatureSlider)">
+          </sui-slider>
+        </div>
+        <div class="demo-result">
+          <p><strong>Temperature:</strong> {{ getSliderText(temperatureSlider.value, temperatureSlider.min, temperatureSlider.max, temperatureSlider.step) }}°C</p>
+          <p><strong>Comfort:</strong> <span [class]="getSliderStatusColor(temperatureSlider.value, temperatureSlider.min, temperatureSlider.max)">{{ getSliderStatus(temperatureSlider.value, temperatureSlider.min, temperatureSlider.max) }}</span></p>
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-label">{{ priceRangeSlider.label }}</div>
+        <div class="demo-description">{{ priceRangeSlider.description }}</div>
+        <div class="demo-component">
+          <sui-slider
+            [(ngModel)]="priceRangeSlider.value"
+            [min]="priceRangeSlider.min"
+            [max]="priceRangeSlider.max"
+            [step]="priceRangeSlider.step"
+            [size]="priceRangeSlider.size"
+            [theme]="priceRangeSlider.theme"
+            [color]="priceRangeSlider.color"
+            [disabled]="priceRangeSlider.disabled"
+            [readonly]="priceRangeSlider.readonly"
+            [showValue]="priceRangeSlider.showValue"
+            [showRange]="priceRangeSlider.showRange"
+            [label]="priceRangeSlider.label"
+            [vertical]="priceRangeSlider.vertical"
+            [compact]="priceRangeSlider.compact"
+            [spacious]="priceRangeSlider.spacious"
+            [animated]="priceRangeSlider.animated"
+            [glow]="priceRangeSlider.glow"
+            (change)="onSliderChange($event, priceRangeSlider)">
+          </sui-slider>
+        </div>
+        <div class="demo-result">
+          <p><strong>Price:</strong> ${{ getSliderText(priceRangeSlider.value, priceRangeSlider.min, priceRangeSlider.max, priceRangeSlider.step) }}</p>
+          <p><strong>Range:</strong> <span [class]="getSliderStatusColor(priceRangeSlider.value, priceRangeSlider.min, priceRangeSlider.max)">{{ getSliderStatus(priceRangeSlider.value, priceRangeSlider.min, priceRangeSlider.max) }}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

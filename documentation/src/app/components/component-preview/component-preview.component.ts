@@ -16,6 +16,15 @@ import { ProgressBarDemoComponent } from '../progress-bar-demo/progress-bar-demo
 import { CheckboxDemoComponent } from '../checkbox-demo/checkbox-demo';
 import { RadioButtonDemoComponent } from '../radio-button-demo/radio-button-demo';
 import { SelectDemoComponent } from '../select-demo/select-demo';
+import { AvatarDemoComponent } from '../avatar-demo/avatar-demo';
+import { BadgeDemoComponent } from '../badge-demo/badge-demo';
+import { DatePickerDemoComponent } from '../date-picker-demo/date-picker-demo';
+import { RatingDemoComponent } from '../rating-demo/rating-demo';
+import { SliderDemoComponent } from '../slider-demo/slider-demo';
+import { ToggleSwitchDemoComponent } from '../toggle-switch-demo/toggle-switch-demo';
+import { ChipDemoComponent } from '../chip-demo/chip-demo';
+import { InputNumberDemoComponent } from '../input-number-demo/input-number-demo';
+import { PasswordDemoComponent } from '../password-demo/password-demo';
 import { TabsDemoComponent } from '../tabs-demo/tabs-demo';
 import { TextareaDemoComponent } from '../textarea-demo/textarea-demo';
 import { TooltipDemoComponent } from '../tooltip-demo/tooltip-demo';
@@ -24,7 +33,7 @@ import { AccordionDemoComponent } from '../accordion-demo/accordion-demo';
 @Component({
   selector: 'app-component-preview',
   standalone: true,
-  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent, AccordionDemoComponent],
+  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, AvatarDemoComponent, BadgeDemoComponent, DatePickerDemoComponent, RatingDemoComponent, SliderDemoComponent, ToggleSwitchDemoComponent, ChipDemoComponent, InputNumberDemoComponent, PasswordDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent, AccordionDemoComponent],
   templateUrl: './component-preview.component.html',
   styleUrl: './component-preview.component.scss'
 })

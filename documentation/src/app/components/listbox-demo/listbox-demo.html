@@ -1,0 +1,481 @@
+<div class="demo-section">
+  <div class="demo-group">
+    <div class="demo-label">Basic Listbox Examples</div>
+    <div class="demo-description">Simple listbox components with basic functionality.</div>
+    <div class="demo-grid">
+      @for (listbox of basicListboxes; track listbox.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ listbox.label }}</div>
+          <div class="demo-description">{{ listbox.description }}</div>
+          <div class="demo-component">
+            <sui-listbox
+              [options]="listbox.options"
+              [groups]="listbox.groups"
+              [disabled]="listbox.disabled"
+              [loading]="listbox.loading"
+              [multiSelect]="listbox.multiSelect"
+              [showGroups]="listbox.showGroups"
+              [size]="listbox.size"
+              [theme]="listbox.theme"
+              [color]="listbox.color"
+              [label]="listbox.label"
+              [helperText]="listbox.helperText"
+              [errorText]="listbox.errorText"
+              [placeholder]="listbox.placeholder"
+              [emptyText]="listbox.emptyText"
+              [emptyDescription]="listbox.emptyDescription"
+              [emptyIcon]="listbox.emptyIcon"
+              [compact]="listbox.compact"
+              [spacious]="listbox.spacious"
+              [animated]="listbox.animated"
+              [bounce]="listbox.bounce"
+              [glow]="listbox.glow"
+              [maxHeight]="listbox.maxHeight"
+              [ngModel]="listbox.multiSelect ? listbox.values : listbox.value"
+          (ngModelChange)="onListboxModelChange($event, listbox)"
+              (change)="onListboxChange($event, listbox)"
+              (onSelect)="onListboxSelect($event, listbox)"
+              (onFocus)="onListboxFocus($event, listbox)"
+              (onBlur)="onListboxBlur(listbox)">
+            </sui-listbox>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getListboxStatusColor(listbox)">{{ getListboxStatus(listbox) }}</span><br>
+            Selected: {{ getSelectedText(listbox) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Size Variations</div>
+    <div class="demo-description">Listbox components in different sizes.</div>
+    <div class="demo-grid">
+      @for (listbox of sizeVariants; track listbox.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ listbox.label }}</div>
+          <div class="demo-description">{{ listbox.description }}</div>
+          <div class="demo-component">
+            <sui-listbox
+              [options]="listbox.options"
+              [groups]="listbox.groups"
+              [disabled]="listbox.disabled"
+              [loading]="listbox.loading"
+              [multiSelect]="listbox.multiSelect"
+              [showGroups]="listbox.showGroups"
+              [size]="listbox.size"
+              [theme]="listbox.theme"
+              [color]="listbox.color"
+              [label]="listbox.label"
+              [helperText]="listbox.helperText"
+              [errorText]="listbox.errorText"
+              [placeholder]="listbox.placeholder"
+              [emptyText]="listbox.emptyText"
+              [emptyDescription]="listbox.emptyDescription"
+              [emptyIcon]="listbox.emptyIcon"
+              [compact]="listbox.compact"
+              [spacious]="listbox.spacious"
+              [animated]="listbox.animated"
+              [bounce]="listbox.bounce"
+              [glow]="listbox.glow"
+              [maxHeight]="listbox.maxHeight"
+              [ngModel]="listbox.multiSelect ? listbox.values : listbox.value"
+          (ngModelChange)="onListboxModelChange($event, listbox)"
+              (change)="onListboxChange($event, listbox)"
+              (onSelect)="onListboxSelect($event, listbox)"
+              (onFocus)="onListboxFocus($event, listbox)"
+              (onBlur)="onListboxBlur(listbox)">
+            </sui-listbox>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getListboxStatusColor(listbox)">{{ getListboxStatus(listbox) }}</span><br>
+            Selected: {{ getSelectedText(listbox) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Color Themes</div>
+    <div class="demo-description">Listbox components with different color themes.</div>
+    <div class="demo-grid">
+      @for (listbox of colorThemes; track listbox.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ listbox.label }}</div>
+          <div class="demo-description">{{ listbox.description }}</div>
+          <div class="demo-component">
+            <sui-listbox
+              [options]="listbox.options"
+              [groups]="listbox.groups"
+              [disabled]="listbox.disabled"
+              [loading]="listbox.loading"
+              [multiSelect]="listbox.multiSelect"
+              [showGroups]="listbox.showGroups"
+              [size]="listbox.size"
+              [theme]="listbox.theme"
+              [color]="listbox.color"
+              [label]="listbox.label"
+              [helperText]="listbox.helperText"
+              [errorText]="listbox.errorText"
+              [placeholder]="listbox.placeholder"
+              [emptyText]="listbox.emptyText"
+              [emptyDescription]="listbox.emptyDescription"
+              [emptyIcon]="listbox.emptyIcon"
+              [compact]="listbox.compact"
+              [spacious]="listbox.spacious"
+              [animated]="listbox.animated"
+              [bounce]="listbox.bounce"
+              [glow]="listbox.glow"
+              [maxHeight]="listbox.maxHeight"
+              [ngModel]="listbox.multiSelect ? listbox.values : listbox.value"
+          (ngModelChange)="onListboxModelChange($event, listbox)"
+              (change)="onListboxChange($event, listbox)"
+              (onSelect)="onListboxSelect($event, listbox)"
+              (onFocus)="onListboxFocus($event, listbox)"
+              (onBlur)="onListboxBlur(listbox)">
+            </sui-listbox>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getListboxStatusColor(listbox)">{{ getListboxStatus(listbox) }}</span><br>
+            Selected: {{ getSelectedText(listbox) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">State Examples</div>
+    <div class="demo-description">Listbox components in different states.</div>
+    <div class="demo-grid">
+      @for (listbox of stateExamples; track listbox.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ listbox.label }}</div>
+          <div class="demo-description">{{ listbox.description }}</div>
+          <div class="demo-component">
+            <sui-listbox
+              [options]="listbox.options"
+              [groups]="listbox.groups"
+              [disabled]="listbox.disabled"
+              [loading]="listbox.loading"
+              [multiSelect]="listbox.multiSelect"
+              [showGroups]="listbox.showGroups"
+              [size]="listbox.size"
+              [theme]="listbox.theme"
+              [color]="listbox.color"
+              [label]="listbox.label"
+              [helperText]="listbox.helperText"
+              [errorText]="listbox.errorText"
+              [placeholder]="listbox.placeholder"
+              [emptyText]="listbox.emptyText"
+              [emptyDescription]="listbox.emptyDescription"
+              [emptyIcon]="listbox.emptyIcon"
+              [compact]="listbox.compact"
+              [spacious]="listbox.spacious"
+              [animated]="listbox.animated"
+              [bounce]="listbox.bounce"
+              [glow]="listbox.glow"
+              [maxHeight]="listbox.maxHeight"
+              [ngModel]="listbox.multiSelect ? listbox.values : listbox.value"
+          (ngModelChange)="onListboxModelChange($event, listbox)"
+              (change)="onListboxChange($event, listbox)"
+              (onSelect)="onListboxSelect($event, listbox)"
+              (onFocus)="onListboxFocus($event, listbox)"
+              (onBlur)="onListboxBlur(listbox)">
+            </sui-listbox>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getListboxStatusColor(listbox)">{{ getListboxStatus(listbox) }}</span><br>
+            Selected: {{ getSelectedText(listbox) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Layout Options</div>
+    <div class="demo-description">Listbox components with different layout options.</div>
+    <div class="demo-grid">
+      @for (listbox of layoutOptions; track listbox.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ listbox.label }}</div>
+          <div class="demo-description">{{ listbox.description }}</div>
+          <div class="demo-component">
+            <sui-listbox
+              [options]="listbox.options"
+              [groups]="listbox.groups"
+              [disabled]="listbox.disabled"
+              [loading]="listbox.loading"
+              [multiSelect]="listbox.multiSelect"
+              [showGroups]="listbox.showGroups"
+              [size]="listbox.size"
+              [theme]="listbox.theme"
+              [color]="listbox.color"
+              [label]="listbox.label"
+              [helperText]="listbox.helperText"
+              [errorText]="listbox.errorText"
+              [placeholder]="listbox.placeholder"
+              [emptyText]="listbox.emptyText"
+              [emptyDescription]="listbox.emptyDescription"
+              [emptyIcon]="listbox.emptyIcon"
+              [compact]="listbox.compact"
+              [spacious]="listbox.spacious"
+              [animated]="listbox.animated"
+              [bounce]="listbox.bounce"
+              [glow]="listbox.glow"
+              [maxHeight]="listbox.maxHeight"
+              [ngModel]="listbox.multiSelect ? listbox.values : listbox.value"
+          (ngModelChange)="onListboxModelChange($event, listbox)"
+              (change)="onListboxChange($event, listbox)"
+              (onSelect)="onListboxSelect($event, listbox)"
+              (onFocus)="onListboxFocus($event, listbox)"
+              (onBlur)="onListboxBlur(listbox)">
+            </sui-listbox>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getListboxStatusColor(listbox)">{{ getListboxStatus(listbox) }}</span><br>
+            Selected: {{ getSelectedText(listbox) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Animation Effects</div>
+    <div class="demo-description">Listbox components with various animation effects.</div>
+    <div class="demo-grid">
+      @for (listbox of animationEffects; track listbox.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ listbox.label }}</div>
+          <div class="demo-description">{{ listbox.description }}</div>
+          <div class="demo-component">
+            <sui-listbox
+              [options]="listbox.options"
+              [groups]="listbox.groups"
+              [disabled]="listbox.disabled"
+              [loading]="listbox.loading"
+              [multiSelect]="listbox.multiSelect"
+              [showGroups]="listbox.showGroups"
+              [size]="listbox.size"
+              [theme]="listbox.theme"
+              [color]="listbox.color"
+              [label]="listbox.label"
+              [helperText]="listbox.helperText"
+              [errorText]="listbox.errorText"
+              [placeholder]="listbox.placeholder"
+              [emptyText]="listbox.emptyText"
+              [emptyDescription]="listbox.emptyDescription"
+              [emptyIcon]="listbox.emptyIcon"
+              [compact]="listbox.compact"
+              [spacious]="listbox.spacious"
+              [animated]="listbox.animated"
+              [bounce]="listbox.bounce"
+              [glow]="listbox.glow"
+              [maxHeight]="listbox.maxHeight"
+              [ngModel]="listbox.multiSelect ? listbox.values : listbox.value"
+          (ngModelChange)="onListboxModelChange($event, listbox)"
+              (change)="onListboxChange($event, listbox)"
+              (onSelect)="onListboxSelect($event, listbox)"
+              (onFocus)="onListboxFocus($event, listbox)"
+              (onBlur)="onListboxBlur(listbox)">
+            </sui-listbox>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getListboxStatusColor(listbox)">{{ getListboxStatus(listbox) }}</span><br>
+            Selected: {{ getSelectedText(listbox) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Multi-Select Examples</div>
+    <div class="demo-description">Listbox components with multi-select functionality.</div>
+    <div class="demo-grid">
+      @for (listbox of multiSelectExamples; track listbox.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ listbox.label }}</div>
+          <div class="demo-description">{{ listbox.description }}</div>
+          <div class="demo-component">
+            <sui-listbox
+              [options]="listbox.options"
+              [groups]="listbox.groups"
+              [disabled]="listbox.disabled"
+              [loading]="listbox.loading"
+              [multiSelect]="listbox.multiSelect"
+              [showGroups]="listbox.showGroups"
+              [size]="listbox.size"
+              [theme]="listbox.theme"
+              [color]="listbox.color"
+              [label]="listbox.label"
+              [helperText]="listbox.helperText"
+              [errorText]="listbox.errorText"
+              [placeholder]="listbox.placeholder"
+              [emptyText]="listbox.emptyText"
+              [emptyDescription]="listbox.emptyDescription"
+              [emptyIcon]="listbox.emptyIcon"
+              [compact]="listbox.compact"
+              [spacious]="listbox.spacious"
+              [animated]="listbox.animated"
+              [bounce]="listbox.bounce"
+              [glow]="listbox.glow"
+              [maxHeight]="listbox.maxHeight"
+              [ngModel]="listbox.multiSelect ? listbox.values : listbox.value"
+          (ngModelChange)="onListboxModelChange($event, listbox)"
+              (change)="onListboxChange($event, listbox)"
+              (onSelect)="onListboxSelect($event, listbox)"
+              (onFocus)="onListboxFocus($event, listbox)"
+              (onBlur)="onListboxBlur(listbox)">
+            </sui-listbox>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getListboxStatusColor(listbox)">{{ getListboxStatus(listbox) }}</span><br>
+            Selected: {{ getSelectedText(listbox) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Grouped Options</div>
+    <div class="demo-description">Listbox components with grouped options.</div>
+    <div class="demo-grid">
+      @for (listbox of groupedExamples; track listbox.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ listbox.label }}</div>
+          <div class="demo-description">{{ listbox.description }}</div>
+          <div class="demo-component">
+            <sui-listbox
+              [options]="listbox.options"
+              [groups]="listbox.groups"
+              [disabled]="listbox.disabled"
+              [loading]="listbox.loading"
+              [multiSelect]="listbox.multiSelect"
+              [showGroups]="listbox.showGroups"
+              [size]="listbox.size"
+              [theme]="listbox.theme"
+              [color]="listbox.color"
+              [label]="listbox.label"
+              [helperText]="listbox.helperText"
+              [errorText]="listbox.errorText"
+              [placeholder]="listbox.placeholder"
+              [emptyText]="listbox.emptyText"
+              [emptyDescription]="listbox.emptyDescription"
+              [emptyIcon]="listbox.emptyIcon"
+              [compact]="listbox.compact"
+              [spacious]="listbox.spacious"
+              [animated]="listbox.animated"
+              [bounce]="listbox.bounce"
+              [glow]="listbox.glow"
+              [maxHeight]="listbox.maxHeight"
+              [ngModel]="listbox.multiSelect ? listbox.values : listbox.value"
+          (ngModelChange)="onListboxModelChange($event, listbox)"
+              (change)="onListboxChange($event, listbox)"
+              (onSelect)="onListboxSelect($event, listbox)"
+              (onFocus)="onListboxFocus($event, listbox)"
+              (onBlur)="onListboxBlur(listbox)">
+            </sui-listbox>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getListboxStatusColor(listbox)">{{ getListboxStatus(listbox) }}</span><br>
+            Selected: {{ getSelectedText(listbox) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Real-world Examples</div>
+    <div class="demo-description">Practical applications of the listbox component.</div>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="demo-label">{{ countrySelector.label }}</div>
+        <div class="demo-description">{{ countrySelector.description }}</div>
+        <div class="demo-component">
+          <sui-listbox
+            [options]="countrySelector.options"
+            [groups]="countrySelector.groups"
+            [disabled]="countrySelector.disabled"
+            [loading]="countrySelector.loading"
+            [multiSelect]="countrySelector.multiSelect"
+            [showGroups]="countrySelector.showGroups"
+            [size]="countrySelector.size"
+            [theme]="countrySelector.theme"
+            [color]="countrySelector.color"
+            [label]="countrySelector.label"
+            [helperText]="countrySelector.helperText"
+            [errorText]="countrySelector.errorText"
+            [placeholder]="countrySelector.placeholder"
+            [emptyText]="countrySelector.emptyText"
+            [emptyDescription]="countrySelector.emptyDescription"
+            [emptyIcon]="countrySelector.emptyIcon"
+            [compact]="countrySelector.compact"
+            [spacious]="countrySelector.spacious"
+            [animated]="countrySelector.animated"
+            [bounce]="countrySelector.bounce"
+            [glow]="countrySelector.glow"
+            [maxHeight]="countrySelector.maxHeight"
+            [ngModel]="countrySelector.multiSelect ? countrySelector.values : countrySelector.value"
+            (ngModelChange)="onListboxModelChange($event, countrySelector)"
+            (change)="onListboxChange($event, countrySelector)"
+            (onSelect)="onListboxSelect($event, countrySelector)"
+            (onFocus)="onListboxFocus($event, countrySelector)"
+            (onBlur)="onListboxBlur(countrySelector)">
+          </sui-listbox>
+        </div>
+        <div class="demo-result">
+          <p><strong>Country Selection:</strong> User registration form with country selection</p>
+          <p><strong>Usage:</strong> User registration, shipping addresses, localization</p>
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-label">{{ skillSelector.label }}</div>
+        <div class="demo-description">{{ skillSelector.description }}</div>
+        <div class="demo-component">
+          <sui-listbox
+            [options]="skillSelector.options"
+            [groups]="skillSelector.groups"
+            [disabled]="skillSelector.disabled"
+            [loading]="skillSelector.loading"
+            [multiSelect]="skillSelector.multiSelect"
+            [showGroups]="skillSelector.showGroups"
+            [size]="skillSelector.size"
+            [theme]="skillSelector.theme"
+            [color]="skillSelector.color"
+            [label]="skillSelector.label"
+            [helperText]="skillSelector.helperText"
+            [errorText]="skillSelector.errorText"
+            [placeholder]="skillSelector.placeholder"
+            [emptyText]="skillSelector.emptyText"
+            [emptyDescription]="skillSelector.emptyDescription"
+            [emptyIcon]="skillSelector.emptyIcon"
+            [compact]="skillSelector.compact"
+            [spacious]="skillSelector.spacious"
+            [animated]="skillSelector.animated"
+            [bounce]="skillSelector.bounce"
+            [glow]="skillSelector.glow"
+            [maxHeight]="skillSelector.maxHeight"
+            [ngModel]="skillSelector.multiSelect ? skillSelector.values : skillSelector.value"
+            (ngModelChange)="onListboxModelChange($event, skillSelector)"
+            (change)="onListboxChange($event, skillSelector)"
+            (onSelect)="onListboxSelect($event, skillSelector)"
+            (onFocus)="onListboxFocus($event, skillSelector)"
+            (onBlur)="onListboxBlur(skillSelector)">
+          </sui-listbox>
+        </div>
+        <div class="demo-result">
+          <p><strong>Skill Selection:</strong> Multi-select skill selector for developer profiles</p>
+          <p><strong>Usage:</strong> Developer profiles, job applications, team building</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

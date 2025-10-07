@@ -505,25 +505,487 @@ export const foundationComponents: ComponentModel[] = [
         tags: ['collapsible', 'content']
       },
   {
-        id: 'avatar',
-        name: 'Avatar',
-        category: 'Foundation',
-        description: 'User profile image component',
-        examples: [],
-        props: [],
-        usage: 'Use avatars to display user profile images.',
-        tags: ['profile', 'image']
+    id: 'avatar',
+    name: 'Avatar',
+    category: 'Foundation',
+    description: 'User profile image component with support for images, initials, icons, and status indicators',
+    examples: [
+      {
+        name: 'Basic Avatar',
+        description: 'Simple avatar components with images, initials, and icons',
+        code: `<sui-avatar
+  image="https://example.com/user.jpg"
+  label="John Doe"
+  size="normal"
+  shape="circle">
+</sui-avatar>
+
+<sui-avatar
+  label="Jane Smith"
+  size="normal"
+  shape="circle">
+</sui-avatar>
+
+<sui-avatar
+  icon="👤"
+  size="normal"
+  shape="circle">
+</sui-avatar>`,
+        tsCode: `export class AvatarComponent {
+  users = [
+    { name: 'John Doe', image: 'https://example.com/user.jpg' },
+    { name: 'Jane Smith' },
+    { icon: '👤', label: 'User' }
+  ];
+}`
       },
+      {
+        name: 'Size Variations',
+        description: 'Avatar components available in different sizes',
+        code: `<sui-avatar
+  image="https://example.com/user.jpg"
+  label="John Doe"
+  size="small"
+  shape="circle">
+</sui-avatar>
+
+<sui-avatar
+  image="https://example.com/user.jpg"
+  label="John Doe"
+  size="normal"
+  shape="circle">
+</sui-avatar>
+
+<sui-avatar
+  image="https://example.com/user.jpg"
+  label="John Doe"
+  size="large"
+  shape="circle">
+</sui-avatar>
+
+<sui-avatar
+  image="https://example.com/user.jpg"
+  label="John Doe"
+  size="xlarge"
+  shape="circle">
+</sui-avatar>`
+      },
+      {
+        name: 'Shape Variations',
+        description: 'Avatar components available in different shapes',
+        code: `<sui-avatar
+  image="https://example.com/user.jpg"
+  label="John Doe"
+  size="large"
+  shape="circle">
+</sui-avatar>
+
+<sui-avatar
+  image="https://example.com/user.jpg"
+  label="John Doe"
+  size="large"
+  shape="square">
+</sui-avatar>`
+      },
+      {
+        name: 'Status Indicators',
+        description: 'Avatars with status indicators showing user availability',
+        code: `<div class="avatar-with-status">
+  <sui-avatar
+    image="https://example.com/user.jpg"
+    label="John Doe"
+    size="normal"
+    shape="circle">
+  </sui-avatar>
+  <div class="status-indicator online"></div>
+</div>
+
+<div class="avatar-with-status">
+  <sui-avatar
+    label="Jane Smith"
+    size="normal"
+    shape="circle">
+  </sui-avatar>
+  <div class="status-indicator busy"></div>
+</div>`,
+        tsCode: `export class AvatarComponent {
+  users = [
+    { name: 'John Doe', image: 'https://example.com/user.jpg', status: 'online' },
+    { name: 'Jane Smith', status: 'busy' },
+    { name: 'Bob Wilson', status: 'away' },
+    { name: 'Alice Brown', status: 'offline' }
+  ];
+  
+  getStatusColor(status: string): string {
+    switch (status) {
+      case 'online': return '#10b981';
+      case 'busy': return '#ef4444';
+      case 'away': return '#f59e0b';
+      case 'offline': return '#6b7280';
+      default: return '#6b7280';
+    }
+  }
+}`
+      },
+      {
+        name: 'Avatar Groups',
+        description: 'Grouped avatars for team displays and user lists',
+        code: `<div class="sui-avatar-group">
+  <sui-avatar
+    *ngFor="let member of teamMembers"
+    [image]="member.image"
+    [label]="member.name"
+    size="normal"
+    shape="circle">
+  </sui-avatar>
+</div>
+
+<div class="team-info">
+  <span class="team-count">+{{ teamMembers.length }} team members</span>
+</div>`,
+        tsCode: `export class AvatarComponent {
+  teamMembers = [
+    { name: 'Emma Thompson', image: 'https://example.com/emma.jpg' },
+    { name: 'James Rodriguez', image: 'https://example.com/james.jpg' },
+    { name: 'Lisa Chen' },
+    { name: 'Michael Brown', image: 'https://example.com/michael.jpg' }
+  ];
+}`
+      },
+      {
+        name: 'Custom Styling',
+        description: 'Avatars with custom colors and styling',
+        code: `<sui-avatar
+  label="Alex Green"
+  size="large"
+  shape="circle"
+  [style]="{'background-color': '#10b981'}">
+</sui-avatar>
+
+<sui-avatar
+  label="Blue Sky"
+  size="large"
+  shape="circle"
+  [style]="{'background-color': '#3b82f6'}">
+</sui-avatar>
+
+<sui-avatar
+  image="https://example.com/user.jpg"
+  label="John Doe"
+  size="xlarge"
+  shape="circle"
+  styleClass="custom-border">
+</sui-avatar>`,
+        tsCode: `export class AvatarComponent {
+  customAvatars = [
+    { name: 'Alex Green', color: '#10b981' },
+    { name: 'Blue Sky', color: '#3b82f6' },
+    { name: 'Red Rose', color: '#ef4444' }
+  ];
+}`
+      }
+    ],
+    props: [
+      {
+        name: 'image',
+        type: 'string',
+        default: '""',
+        description: 'URL of the user profile image',
+        required: false
+      },
+      {
+        name: 'label',
+        type: 'string',
+        default: '""',
+        description: 'User name for generating initials when no image is provided',
+        required: false
+      },
+      {
+        name: 'icon',
+        type: 'string',
+        default: '""',
+        description: 'Icon to display when no image or label is provided',
+        required: false
+      },
+      {
+        name: 'size',
+        type: '"small" | "normal" | "large" | "xlarge"',
+        default: '"normal"',
+        description: 'Size of the avatar component',
+        required: false
+      },
+      {
+        name: 'shape',
+        type: '"square" | "circle"',
+        default: '"circle"',
+        description: 'Shape of the avatar component',
+        required: false
+      },
+      {
+        name: 'style',
+        type: 'any',
+        default: '{}',
+        description: 'Inline styles to apply to the avatar',
+        required: false
+      },
+      {
+        name: 'styleClass',
+        type: 'string',
+        default: '""',
+        description: 'CSS class to apply to the avatar',
+        required: false
+      }
+    ],
+    usage: 'Use avatar components to display user profile images, initials, or icons in user interfaces, team displays, user lists, and profile sections.',
+    tags: ['profile', 'image', 'user', 'team', 'status', 'display']
+  },
   {
-        id: 'badge',
-        name: 'Badge',
-        category: 'Foundation',
-        description: 'Small status indicator',
-        examples: [],
-        props: [],
-        usage: 'Use badges to show status or count information.',
-        tags: ['status', 'indicator']
+    id: 'badge',
+    name: 'Badge',
+    category: 'Foundation',
+    description: 'Small status indicator component for displaying counts, status, and notifications',
+    examples: [
+      {
+        name: 'Basic Badge',
+        description: 'Simple badge components with different severity levels and text content',
+        code: `<sui-badge
+  value="New"
+  severity="info"
+  size="normal">
+</sui-badge>
+
+<sui-badge
+  value="Success"
+  severity="success"
+  size="normal">
+</sui-badge>
+
+<sui-badge
+  value="Warning"
+  severity="warning"
+  size="normal">
+</sui-badge>
+
+<sui-badge
+  value="Error"
+  severity="danger"
+  size="normal">
+</sui-badge>`,
+        tsCode: `export class BadgeComponent {
+  basicBadges = [
+    { value: 'New', severity: 'info' },
+    { value: 'Success', severity: 'success' },
+    { value: 'Warning', severity: 'warning' },
+    { value: 'Error', severity: 'danger' }
+  ];
+}`
       },
+      {
+        name: 'Size Variations',
+        description: 'Badge components available in different sizes',
+        code: `<sui-badge
+  value="Small"
+  severity="info"
+  size="small">
+</sui-badge>
+
+<sui-badge
+  value="Normal"
+  severity="info"
+  size="normal">
+</sui-badge>
+
+<sui-badge
+  value="Large"
+  severity="info"
+  size="large">
+</sui-badge>`
+      },
+      {
+        name: 'Dot Indicators',
+        description: 'Badge components without text content, used as status indicators',
+        code: `<sui-badge
+  severity="info"
+  size="normal"
+  styleClass="sui-badge-dot">
+</sui-badge>
+
+<sui-badge
+  severity="success"
+  size="normal"
+  styleClass="sui-badge-dot">
+</sui-badge>
+
+<sui-badge
+  severity="warning"
+  size="normal"
+  styleClass="sui-badge-dot">
+</sui-badge>
+
+<sui-badge
+  severity="danger"
+  size="normal"
+  styleClass="sui-badge-dot">
+</sui-badge>`
+      },
+      {
+        name: 'Notifications',
+        description: 'Badge components used in notification systems to show message counts and types',
+        code: `<div class="notification-item">
+  <div class="notification-header">
+    <h5>New Message</h5>
+    <sui-badge
+      value="3"
+      severity="info"
+      size="small">
+    </sui-badge>
+  </div>
+  <p>You have received a new message from John Doe</p>
+</div>
+
+<div class="notification-item">
+  <div class="notification-header">
+    <h5>Task Completed</h5>
+    <sui-badge
+      value="1"
+      severity="success"
+      size="small">
+    </sui-badge>
+  </div>
+  <p>Your project has been successfully completed</p>
+</div>`,
+        tsCode: `export class BadgeComponent {
+  notifications = [
+    {
+      title: 'New Message',
+      message: 'You have received a new message from John Doe',
+      type: 'info',
+      count: 3
+    },
+    {
+      title: 'Task Completed',
+      message: 'Your project has been successfully completed',
+      type: 'success',
+      count: 1
+    }
+  ];
+}`
+      },
+      {
+        name: 'Status Indicators',
+        description: 'Badge components used to show user status and activity counts',
+        code: `<div class="status-item">
+  <div class="status-info">
+    <div class="status-dot online"></div>
+    <span class="status-name">John Doe</span>
+    <span class="status-label">Online</span>
+  </div>
+  <sui-badge
+    value="2"
+    severity="info"
+    size="small">
+  </sui-badge>
+</div>
+
+<div class="status-item">
+  <div class="status-info">
+    <div class="status-dot busy"></div>
+    <span class="status-name">Jane Smith</span>
+    <span class="status-label">Busy</span>
+  </div>
+  <sui-badge
+    value="5"
+    severity="info"
+    size="small">
+  </sui-badge>
+</div>`
+      },
+      {
+        name: 'Task Management',
+        description: 'Badge components used in task management systems to show priority and status',
+        code: `<div class="task-item">
+  <div class="task-header">
+    <h5>Design new homepage</h5>
+    <div class="task-badges">
+      <sui-badge
+        value="High"
+        severity="info"
+        size="small"
+        [style]="{'background-color': '#f59e0b', 'color': 'white'}">
+      </sui-badge>
+      <sui-badge
+        value="in-progress"
+        severity="info"
+        size="small"
+        [style]="{'background-color': '#3b82f6', 'color': 'white'}">
+      </sui-badge>
+    </div>
+  </div>
+  <div class="task-meta">
+    <span>Assigned to: Alice</span>
+  </div>
+</div>`,
+        tsCode: `export class BadgeComponent {
+  tasks = [
+    {
+      title: 'Design new homepage',
+      priority: 'high',
+      status: 'in-progress',
+      assignee: 'Alice'
+    }
+  ];
+  
+  getPriorityColor(priority: string): string {
+    switch (priority) {
+      case 'high': return '#f59e0b';
+      case 'medium': return '#3b82f6';
+      case 'low': return '#6b7280';
+      default: return '#6b7280';
+    }
+  }
+}`
+      }
+    ],
+    props: [
+      {
+        name: 'value',
+        type: 'string | number',
+        default: '""',
+        description: 'Text or number content to display in the badge',
+        required: false
+      },
+      {
+        name: 'severity',
+        type: '"info" | "success" | "warning" | "danger" | "contrast"',
+        default: '"info"',
+        description: 'Severity level of the badge determining its color scheme',
+        required: false
+      },
+      {
+        name: 'size',
+        type: '"small" | "normal" | "large"',
+        default: '"normal"',
+        description: 'Size of the badge component',
+        required: false
+      },
+      {
+        name: 'style',
+        type: 'any',
+        default: '{}',
+        description: 'Inline styles to apply to the badge',
+        required: false
+      },
+      {
+        name: 'styleClass',
+        type: 'string',
+        default: '""',
+        description: 'CSS class to apply to the badge (use "sui-badge-dot" for dot indicators)',
+        required: false
+      }
+    ],
+    usage: 'Use badge components to display status indicators, notification counts, priority levels, and other small pieces of information in user interfaces, navigation bars, lists, and data tables.',
+    tags: ['status', 'indicator', 'notification', 'count', 'priority', 'alert']
+  },
   {
         id: 'breadcrumb',
         name: 'Breadcrumb',
@@ -786,15 +1248,445 @@ export class CheckboxComponent {
         tags: ['form', 'color']
       },
   {
-        id: 'date-picker',
-        name: 'Date Picker',
-        category: 'Foundation',
-        description: 'Date selection component',
-        examples: [],
-        props: [],
-        usage: 'Use date pickers for date selection in forms.',
-        tags: ['form', 'date']
+    id: 'date-picker',
+    name: 'Date Picker',
+    category: 'Foundation',
+    description: 'Comprehensive date selection component with calendar, time picker, and range selection capabilities',
+    examples: [
+      {
+        name: 'Basic Date Picker',
+        description: 'Simple date picker components for date selection with different sizes and states',
+        code: `<sui-date-picker
+  [value]="selectedDate"
+  placeholder="Select date"
+  size="normal"
+  variant="dropdown"
+  (onChange)="onDateChange($event)">
+</sui-date-picker>
+
+<sui-date-picker
+  [value]="new Date()"
+  placeholder="With default value"
+  size="normal"
+  variant="dropdown">
+</sui-date-picker>
+
+<sui-date-picker
+  [value]="null"
+  placeholder="Compact size"
+  size="compact"
+  variant="dropdown">
+</sui-date-picker>`,
+        tsCode: `export class DatePickerComponent {
+  selectedDate: Date | null = null;
+  
+  onDateChange(date: Date | null): void {
+    this.selectedDate = date;
+    console.log('Date changed:', date);
+  }
+}`
       },
+      {
+        name: 'Variant Types',
+        description: 'Different display variants for date picker components including dropdown, inline, and range selection',
+        code: `<sui-date-picker
+  [value]="selectedDate"
+  placeholder="Dropdown picker"
+  size="normal"
+  variant="dropdown">
+</sui-date-picker>
+
+<sui-date-picker
+  [value]="selectedDate"
+  placeholder="Inline picker"
+  size="normal"
+  variant="inline">
+</sui-date-picker>
+
+<sui-date-picker
+  [value]="dateRange"
+  placeholder="Date range"
+  size="normal"
+  variant="range">
+</sui-date-picker>`,
+        tsCode: `export class DatePickerComponent {
+  selectedDate: Date | null = null;
+  dateRange: { start: Date | null; end: Date | null } | null = null;
+}`
+      },
+      {
+        name: 'Time Picker',
+        description: 'Date picker components with time selection in 12-hour and 24-hour formats',
+        code: `<sui-date-picker
+  [value]="dateTime"
+  placeholder="Date and time"
+  size="normal"
+  variant="dropdown"
+  [showTime]="true"
+  timeFormat="24">
+</sui-date-picker>
+
+<sui-date-picker
+  [value]="dateTime"
+  placeholder="Date and time"
+  size="normal"
+  variant="dropdown"
+  [showTime]="true"
+  timeFormat="12">
+</sui-date-picker>`,
+        tsCode: `export class DatePickerComponent {
+  dateTime: Date | null = null;
+}`
+      },
+      {
+        name: 'Constrained Dates',
+        description: 'Date picker components with date constraints and limitations for business rules',
+        code: `<sui-date-picker
+  [value]="futureDate"
+  placeholder="Future dates only"
+  size="normal"
+  variant="dropdown"
+  [minDate]="new Date()">
+</sui-date-picker>
+
+<sui-date-picker
+  [value]="pastDate"
+  placeholder="Past dates only"
+  size="normal"
+  variant="dropdown"
+  [maxDate]="new Date()">
+</sui-date-picker>
+
+<sui-date-picker
+  [value]="monthDate"
+  placeholder="This month only"
+  size="normal"
+  variant="dropdown"
+  [minDate]="getMonthStart()"
+  [maxDate]="getMonthEnd()">
+</sui-date-picker>`,
+        tsCode: `export class DatePickerComponent {
+  futureDate: Date | null = null;
+  pastDate: Date | null = null;
+  monthDate: Date | null = null;
+  
+  getMonthStart(): Date {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  }
+  
+  getMonthEnd(): Date {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  }
+}`
+      },
+      {
+        name: 'Form Integration',
+        description: 'Date picker components integrated into forms for data collection and validation',
+        code: `<form class="event-form">
+  <div class="form-field">
+    <label>Event Start Date</label>
+    <sui-date-picker
+      [value]="formData.startDate"
+      placeholder="Select start date"
+      size="normal"
+      variant="dropdown"
+      required="true"
+      (onChange)="formData.startDate = $event">
+    </sui-date-picker>
+  </div>
+  
+  <div class="form-field">
+    <label>Event End Date</label>
+    <sui-date-picker
+      [value]="formData.endDate"
+      placeholder="Select end date"
+      size="normal"
+      variant="dropdown"
+      [minDate]="formData.startDate"
+      (onChange)="formData.endDate = $event">
+    </sui-date-picker>
+  </div>
+  
+  <div class="form-field">
+    <label>Reminder Date</label>
+    <sui-date-picker
+      [value]="formData.reminderDate"
+      placeholder="Set reminder"
+      size="normal"
+      variant="dropdown"
+      [maxDate]="formData.startDate"
+      (onChange)="formData.reminderDate = $event">
+    </sui-date-picker>
+  </div>
+</form>`,
+        tsCode: `export class DatePickerComponent {
+  formData = {
+    startDate: null as Date | null,
+    endDate: null as Date | null,
+    reminderDate: null as Date | null
+  };
+}`
+      },
+      {
+        name: 'Booking System',
+        description: 'Date picker components used in booking and reservation systems for check-in/check-out dates',
+        code: `<div class="booking-form">
+  <h4>Hotel Booking</h4>
+  <div class="booking-row">
+    <div class="booking-field">
+      <label>Check-in Date</label>
+      <sui-date-picker
+        [value]="bookingData.checkIn"
+        placeholder="Select check-in date"
+        size="normal"
+        variant="dropdown"
+        [minDate]="new Date()"
+        (onChange)="bookingData.checkIn = $event">
+      </sui-date-picker>
+    </div>
+    
+    <div class="booking-field">
+      <label>Check-out Date</label>
+      <sui-date-picker
+        [value]="bookingData.checkOut"
+        placeholder="Select check-out date"
+        size="normal"
+        variant="dropdown"
+        [minDate]="bookingData.checkIn || new Date()"
+        (onChange)="bookingData.checkOut = $event">
+      </sui-date-picker>
+    </div>
+  </div>
+  
+  <div class="booking-details">
+    <div class="booking-info">
+      <span>Guests: {{ bookingData.guestCount }}</span>
+      <span>Room: {{ bookingData.roomType }}</span>
+    </div>
+    <div class="booking-result">
+      <p *ngIf="bookingData.checkIn && bookingData.checkOut">
+        Duration: {{ getDuration(bookingData.checkIn, bookingData.checkOut) }} nights
+      </p>
+    </div>
+  </div>
+</div>`,
+        tsCode: `export class DatePickerComponent {
+  bookingData = {
+    checkIn: null as Date | null,
+    checkOut: null as Date | null,
+    guestCount: 2,
+    roomType: 'Standard'
+  };
+  
+  getDuration(startDate: Date, endDate: Date): number {
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    return Math.ceil(timeDiff / (1000 * 3600 * 24));
+  }
+}`
+      },
+      {
+        name: 'Task Management',
+        description: 'Date picker components used in task and project management systems for due dates and timelines',
+        code: `<div class="task-form">
+  <h4>Project Task</h4>
+  <div class="task-field">
+    <label>Task Start Date</label>
+    <sui-date-picker
+      [value]="taskData.startDate"
+      placeholder="Select start date"
+      size="normal"
+      variant="dropdown"
+      (onChange)="taskData.startDate = $event">
+    </sui-date-picker>
+  </div>
+  
+  <div class="task-field">
+    <label>Due Date</label>
+    <sui-date-picker
+      [value]="taskData.dueDate"
+      placeholder="Select due date"
+      size="normal"
+      variant="dropdown"
+      [minDate]="taskData.startDate || new Date()"
+      required="true"
+      (onChange)="taskData.dueDate = $event">
+    </sui-date-picker>
+  </div>
+  
+  <div class="task-meta">
+    <div class="task-info">
+      <span>Priority: {{ taskData.priority }}</span>
+      <span>Status: {{ taskData.status }}</span>
+    </div>
+    <div class="task-timeline">
+      <p *ngIf="taskData.startDate && taskData.dueDate">
+        Duration: {{ getDuration(taskData.startDate, taskData.dueDate) }} days
+      </p>
+    </div>
+  </div>
+</div>`,
+        tsCode: `export class DatePickerComponent {
+  taskData = {
+    dueDate: null as Date | null,
+    startDate: null as Date | null,
+    priority: 'Medium',
+    status: 'Pending'
+  };
+  
+  getDuration(startDate: Date, endDate: Date): number {
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    return Math.ceil(timeDiff / (1000 * 3600 * 24));
+  }
+}`
+      }
+    ],
+    props: [
+      {
+        name: 'value',
+        type: 'Date | null | { start: Date | null; end: Date | null } | null',
+        default: 'null',
+        description: 'Selected date value or date range for range variant',
+        required: false
+      },
+      {
+        name: 'placeholder',
+        type: 'string',
+        default: '"Select date"',
+        description: 'Placeholder text displayed when no date is selected',
+        required: false
+      },
+      {
+        name: 'size',
+        type: '"normal" | "compact"',
+        default: '"normal"',
+        description: 'Size of the date picker component',
+        required: false
+      },
+      {
+        name: 'variant',
+        type: '"dropdown" | "inline" | "range"',
+        default: '"dropdown"',
+        description: 'Display variant of the date picker',
+        required: false
+      },
+      {
+        name: 'disabled',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the date picker is disabled',
+        required: false
+      },
+      {
+        name: 'readonly',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the date picker is readonly',
+        required: false
+      },
+      {
+        name: 'required',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the date picker is required',
+        required: false
+      },
+      {
+        name: 'showTime',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether to show time selection',
+        required: false
+      },
+      {
+        name: 'timeFormat',
+        type: '"12" | "24"',
+        default: '"24"',
+        description: 'Time format for time picker',
+        required: false
+      },
+      {
+        name: 'minDate',
+        type: 'Date | null',
+        default: 'null',
+        description: 'Minimum selectable date',
+        required: false
+      },
+      {
+        name: 'maxDate',
+        type: 'Date | null',
+        default: 'null',
+        description: 'Maximum selectable date',
+        required: false
+      },
+      {
+        name: 'disabledDates',
+        type: 'Date[]',
+        default: '[]',
+        description: 'Array of disabled dates',
+        required: false
+      },
+      {
+        name: 'disabledDays',
+        type: 'number[]',
+        default: '[]',
+        description: 'Array of disabled days of week (0=Sunday, 1=Monday, etc.)',
+        required: false
+      },
+      {
+        name: 'firstDayOfWeek',
+        type: 'number',
+        default: '0',
+        description: 'First day of the week (0=Sunday, 1=Monday, etc.)',
+        required: false
+      },
+      {
+        name: 'showWeekNumbers',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether to show week numbers',
+        required: false
+      },
+      {
+        name: 'showTodayButton',
+        type: 'boolean',
+        default: 'true',
+        description: 'Whether to show today button',
+        required: false
+      },
+      {
+        name: 'showClearButton',
+        type: 'boolean',
+        default: 'true',
+        description: 'Whether to show clear button',
+        required: false
+      },
+      {
+        name: 'dateFormat',
+        type: 'string',
+        default: '"MM/dd/yyyy"',
+        description: 'Date format string',
+        required: false
+      },
+      {
+        name: 'style',
+        type: 'any',
+        default: '{}',
+        description: 'Inline styles to apply to the date picker',
+        required: false
+      },
+      {
+        name: 'styleClass',
+        type: 'string',
+        default: '""',
+        description: 'CSS class to apply to the date picker',
+        required: false
+      }
+    ],
+    usage: 'Use date picker components for date selection in forms, booking systems, task management, event planning, and any application requiring date input with calendar navigation, time selection, and date range capabilities.',
+    tags: ['form', 'date', 'calendar', 'time', 'range', 'booking', 'task', 'event', 'schedule']
+  },
   {
         id: 'editor',
         name: 'Editor',

@@ -1,0 +1,405 @@
+// Enterprise Toggle Switch Component Styles
+.sui-toggle-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--sui-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+  font-size: var(--sui-toggle-switch-font-size, 0.875rem);
+  line-height: 1.5;
+  color: var(--sui-toggle-switch-text-color, #374151);
+  outline: none;
+
+  // Size Variants
+  &-small {
+    --sui-toggle-switch-width: 2rem; // 32px
+    --sui-toggle-switch-height: 1.25rem; // 20px
+    --sui-toggle-switch-thumb-size: 1rem; // 16px
+    --sui-toggle-switch-padding: 0.125rem; // 2px
+    --sui-toggle-switch-font-size: 0.75rem; // 12px
+  }
+
+  &-medium {
+    --sui-toggle-switch-width: 3rem; // 48px
+    --sui-toggle-switch-height: 1.75rem; // 28px
+    --sui-toggle-switch-thumb-size: 1.5rem; // 24px
+    --sui-toggle-switch-padding: 0.125rem; // 2px
+    --sui-toggle-switch-font-size: 0.875rem; // 14px
+  }
+
+  &-large {
+    --sui-toggle-switch-width: 4rem; // 64px
+    --sui-toggle-switch-height: 2.25rem; // 36px
+    --sui-toggle-switch-thumb-size: 2rem; // 32px
+    --sui-toggle-switch-padding: 0.125rem; // 2px
+    --sui-toggle-switch-font-size: 1rem; // 16px
+  }
+
+  // Theme Variants
+  &-light {
+    --sui-toggle-switch-bg: #ffffff;
+    --sui-toggle-switch-bg-off: #e5e7eb;
+    --sui-toggle-switch-bg-on: #10b981;
+    --sui-toggle-switch-thumb-bg: #ffffff;
+    --sui-toggle-switch-thumb-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --sui-toggle-switch-text-color: #374151;
+    --sui-toggle-switch-text-color-off: #6b7280;
+    --sui-toggle-switch-text-color-on: #059669;
+    --sui-toggle-switch-border: #d1d5db;
+    --sui-toggle-switch-border-off: #d1d5db;
+    --sui-toggle-switch-border-on: #10b981;
+    --sui-toggle-switch-disabled: #9ca3af;
+    --sui-toggle-switch-disabled-bg: #f3f4f6;
+    --sui-toggle-switch-focus-ring: rgba(16, 185, 129, 0.2);
+  }
+
+  &-dark {
+    --sui-toggle-switch-bg: #1f2937;
+    --sui-toggle-switch-bg-off: #4b5563;
+    --sui-toggle-switch-bg-on: #10b981;
+    --sui-toggle-switch-thumb-bg: #ffffff;
+    --sui-toggle-switch-thumb-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --sui-toggle-switch-text-color: #f9fafb;
+    --sui-toggle-switch-text-color-off: #d1d5db;
+    --sui-toggle-switch-text-color-on: #34d399;
+    --sui-toggle-switch-border: #6b7280;
+    --sui-toggle-switch-border-off: #6b7280;
+    --sui-toggle-switch-border-on: #10b981;
+    --sui-toggle-switch-disabled: #6b7280;
+    --sui-toggle-switch-disabled-bg: #374151;
+    --sui-toggle-switch-focus-ring: rgba(16, 185, 129, 0.3);
+  }
+
+  // Color Variants
+  &-primary {
+    --sui-toggle-switch-bg-on: #3b82f6;
+    --sui-toggle-switch-border-on: #3b82f6;
+    --sui-toggle-switch-text-color-on: #2563eb;
+    --sui-toggle-switch-focus-ring: rgba(59, 130, 246, 0.2);
+  }
+
+  &-success {
+    --sui-toggle-switch-bg-on: #10b981;
+    --sui-toggle-switch-border-on: #10b981;
+    --sui-toggle-switch-text-color-on: #059669;
+    --sui-toggle-switch-focus-ring: rgba(16, 185, 129, 0.2);
+  }
+
+  &-warning {
+    --sui-toggle-switch-bg-on: #f59e0b;
+    --sui-toggle-switch-border-on: #f59e0b;
+    --sui-toggle-switch-text-color-on: #d97706;
+    --sui-toggle-switch-focus-ring: rgba(245, 158, 11, 0.2);
+  }
+
+  &-danger {
+    --sui-toggle-switch-bg-on: #ef4444;
+    --sui-toggle-switch-border-on: #ef4444;
+    --sui-toggle-switch-text-color-on: #dc2626;
+    --sui-toggle-switch-focus-ring: rgba(239, 68, 68, 0.2);
+  }
+
+  &-purple {
+    --sui-toggle-switch-bg-on: #8b5cf6;
+    --sui-toggle-switch-border-on: #8b5cf6;
+    --sui-toggle-switch-text-color-on: #7c3aed;
+    --sui-toggle-switch-focus-ring: rgba(139, 92, 246, 0.2);
+  }
+
+  &-pink {
+    --sui-toggle-switch-bg-on: #ec4899;
+    --sui-toggle-switch-border-on: #ec4899;
+    --sui-toggle-switch-text-color-on: #db2777;
+    --sui-toggle-switch-focus-ring: rgba(236, 72, 153, 0.2);
+  }
+
+  // Toggle Switch Button
+  &-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: var(--sui-toggle-switch-width);
+    height: var(--sui-toggle-switch-height);
+    background: var(--sui-toggle-switch-bg-off);
+    border: 1px solid var(--sui-toggle-switch-border-off);
+    border-radius: 9999px;
+    padding: var(--sui-toggle-switch-padding);
+    cursor: pointer;
+    transition: all var(--sui-toggle-switch-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    user-select: none;
+
+    &:hover:not(:disabled) {
+      transform: scale(1.02);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--sui-toggle-switch-focus-ring);
+      outline-offset: 2px;
+    }
+
+    // Checked State
+    &.sui-toggle-switch-checked {
+      background: var(--sui-toggle-switch-bg-on);
+      border-color: var(--sui-toggle-switch-border-on);
+    }
+
+    // Disabled State
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      background: var(--sui-toggle-switch-disabled-bg);
+      border-color: var(--sui-toggle-switch-disabled);
+
+      &:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+  // Toggle Switch Thumb
+  &-thumb {
+    position: absolute;
+    top: 50%;
+    left: var(--sui-toggle-switch-padding);
+    width: var(--sui-toggle-switch-thumb-size);
+    height: var(--sui-toggle-switch-thumb-size);
+    background: var(--sui-toggle-switch-thumb-bg);
+    border-radius: 50%;
+    box-shadow: var(--sui-toggle-switch-thumb-shadow);
+    transform: translateY(-50%);
+    transition: transform var(--sui-toggle-switch-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+
+    .sui-toggle-switch-checked & {
+      transform: translateY(-50%) translateX(calc(var(--sui-toggle-switch-width) - var(--sui-toggle-switch-thumb-size) - 2 * var(--sui-toggle-switch-padding)));
+    }
+  }
+
+  // Labels and Text
+  &-label {
+    display: block;
+    font-size: var(--sui-toggle-switch-font-size);
+    font-weight: 500;
+    color: var(--sui-toggle-switch-text-color);
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+  }
+
+  &-text {
+    font-size: var(--sui-toggle-switch-font-size);
+    font-weight: 500;
+    margin-left: 0.75rem;
+    transition: color var(--sui-toggle-switch-transition-duration, 0.2s) ease-in-out;
+
+    &.sui-toggle-switch-text-off {
+      color: var(--sui-toggle-switch-text-color-off);
+    }
+
+    &.sui-toggle-switch-text-on {
+      color: var(--sui-toggle-switch-text-color-on);
+    }
+  }
+
+  // Container for label and switch
+  &-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &-with-label {
+    .sui-toggle-switch-button {
+      order: 2;
+    }
+
+    .sui-toggle-switch-text {
+      order: 1;
+      margin-left: 0;
+      margin-right: 0.75rem;
+    }
+  }
+
+  // State Styles
+  &-disabled {
+    .sui-toggle-switch-label {
+      color: var(--sui-toggle-switch-disabled);
+      cursor: not-allowed;
+    }
+
+    .sui-toggle-switch-text {
+      color: var(--sui-toggle-switch-disabled);
+    }
+  }
+
+  // Animation Effects
+  &-animated {
+    .sui-toggle-switch-button {
+      transition: all var(--sui-toggle-switch-transition-duration, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sui-toggle-switch-thumb {
+      transition: transform var(--sui-toggle-switch-transition-duration, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  &-bounce {
+    .sui-toggle-switch-thumb {
+      animation: sui-toggle-switch-bounce 0.3s ease-in-out;
+    }
+  }
+
+  &-glow {
+    .sui-toggle-switch-checked {
+      box-shadow: 0 0 0 4px var(--sui-toggle-switch-focus-ring);
+    }
+  }
+
+  // Compact Variant
+  &-compact {
+    .sui-toggle-switch-container {
+      gap: 0.5rem;
+    }
+
+    .sui-toggle-switch-text {
+      margin-left: 0.5rem;
+    }
+
+    &.sui-toggle-switch-with-label {
+      .sui-toggle-switch-text {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  // Spacious Variant
+  &-spacious {
+    .sui-toggle-switch-container {
+      gap: 1rem;
+    }
+
+    .sui-toggle-switch-text {
+      margin-left: 1rem;
+    }
+
+    &.sui-toggle-switch-with-label {
+      .sui-toggle-switch-text {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  // Icon Support
+  &-with-icon {
+    .sui-toggle-switch-thumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(var(--sui-toggle-switch-thumb-size) * 0.5);
+      color: var(--sui-toggle-switch-text-color-off);
+
+      .sui-toggle-switch-checked & {
+        color: var(--sui-toggle-switch-text-color-on);
+      }
+    }
+  }
+
+  // Loading State
+  &-loading {
+    .sui-toggle-switch-thumb {
+      animation: sui-toggle-switch-pulse 1.5s ease-in-out infinite;
+    }
+  }
+}
+
+// Animations
+@keyframes sui-toggle-switch-bounce {
+  0%, 100% { transform: translateY(-50%) scale(1); }
+  50% { transform: translateY(-50%) scale(1.1); }
+}
+
+@keyframes sui-toggle-switch-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+// Responsive Design
+@media (max-width: 480px) {
+  .sui-toggle-switch {
+    &-large {
+      --sui-toggle-switch-width: 3.5rem; // 56px
+      --sui-toggle-switch-height: 2rem; // 32px
+      --sui-toggle-switch-thumb-size: 1.75rem; // 28px
+    }
+  }
+}
+
+// High Contrast Mode Support
+@media (prefers-contrast: high) {
+  .sui-toggle-switch {
+    --sui-toggle-switch-bg-off: #000000;
+    --sui-toggle-switch-bg-on: #000000;
+    --sui-toggle-switch-thumb-bg: #ffffff;
+    --sui-toggle-switch-border-off: #000000;
+    --sui-toggle-switch-border-on: #000000;
+    --sui-toggle-switch-text-color: #000000;
+    --sui-toggle-switch-text-color-off: #000000;
+    --sui-toggle-switch-text-color-on: #000000;
+  }
+
+  .sui-toggle-switch-dark {
+    --sui-toggle-switch-bg-off: #ffffff;
+    --sui-toggle-switch-bg-on: #ffffff;
+    --sui-toggle-switch-thumb-bg: #000000;
+    --sui-toggle-switch-border-off: #ffffff;
+    --sui-toggle-switch-border-on: #ffffff;
+    --sui-toggle-switch-text-color: #ffffff;
+    --sui-toggle-switch-text-color-off: #ffffff;
+    --sui-toggle-switch-text-color-on: #ffffff;
+  }
+}
+
+// Reduced Motion Support
+@media (prefers-reduced-motion: reduce) {
+  .sui-toggle-switch-button,
+  .sui-toggle-switch-thumb {
+    transition: none;
+  }
+
+  .sui-toggle-switch-animated {
+    .sui-toggle-switch-button,
+    .sui-toggle-switch-thumb {
+      transition: none;
+    }
+  }
+
+  .sui-toggle-switch-bounce .sui-toggle-switch-thumb {
+    animation: none;
+  }
+
+  .sui-toggle-switch-loading .sui-toggle-switch-thumb {
+    animation: none;
+  }
+}
+
+// Print Styles
+@media print {
+  .sui-toggle-switch-button {
+    box-shadow: none !important;
+  }
+
+  .sui-toggle-switch-thumb {
+    box-shadow: none !important;
+  }
+}
+
+// Focus Visible Support
+.sui-toggle-switch-button:focus-visible {
+  outline: 2px solid var(--sui-toggle-switch-focus-ring);
+  outline-offset: 2px;
+}

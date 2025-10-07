@@ -1,39 +1,125 @@
-<div class="sui-tree-select" [class.sui-tree-select-disabled]="disabled">
-	<button
-		type="button"
-		[disabled]="disabled"
-		(click)="toggle()"
-		(blur)="onBlur()"
-		class="sui-tree-select-trigger"
-		[class.sui-tree-select-open]="open"
-	>
-		<span class="sui-tree-select-value">{{ displayValue() }}</span>
-		<span class="sui-tree-select-arrow">▼</span>
-	</button>
-	<div *ngIf="open" class="sui-tree-select-dropdown">
-		<div *ngFor="let item of options" class="sui-tree-select-node">
-			<button
-				type="button"
-				[disabled]="item.children?.length"
-				(click)="select(item)"
-				class="sui-tree-select-option"
-				[class.sui-tree-select-parent]="item.children?.length"
-				[class.sui-tree-select-leaf]="!item.children?.length"
-			>
-				<span *ngIf="item.children?.length" class="sui-tree-select-expand">▶</span>
-				{{ item.label }}
-			</button>
-			<div *ngIf="item.children?.length" class="sui-tree-select-children">
-				<div *ngFor="let child of item.children" class="sui-tree-select-child-node">
-					<button
-						type="button"
-						(click)="select(child)"
-						class="sui-tree-select-option sui-tree-select-leaf"
-					>
-						{{ child.label }}
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<div [class]="getComponentClass()">
+  <!-- Label -->
+  <label *ngIf="label" class="sui-tree-select-label" [for]="getComponentId()">{{ label }}</label>
+  
+  <!-- Tree Select Container -->
+  <div class="sui-tree-select-container">
+    <button
+      type="button"
+      [id]="getComponentId()"
+      [disabled]="disabled || loading"
+      [attr.aria-label]="getAriaLabel()"
+      [attr.aria-describedby]="getAriaDescribedBy()"
+      [attr.aria-expanded]="open"
+      [attr.aria-haspopup]="true"
+      (click)="toggle()"
+      (blur)="onBlurEvent()"
+      (keydown)="onKeyDown($event)"
+      class="sui-tree-select-trigger"
+      [class.sui-tree-select-open]="open"
+    >
+      <span class="sui-tree-select-value">{{ displayValue() }}</span>
+      <div class="sui-tree-select-actions">
+        <button
+          *ngIf="clearable && (value || values.length > 0)"
+          type="button"
+          (click)="clear(); $event.stopPropagation()"
+          class="sui-tree-select-clear"
+          aria-label="Clear selection"
+        >
+          ✕
+        </button>
+        <span class="sui-tree-select-arrow">▼</span>
+      </div>
+    </button>
+    
+    <div *ngIf="open" class="sui-tree-select-dropdown" [style]="getDropdownStyle()">
+      <!-- Search Input -->
+      <div *ngIf="searchable" class="sui-tree-select-search">
+        <input
+          type="text"
+          placeholder="Search..."
+          (input)="onSearch($event)"
+          class="sui-tree-select-search-input"
+        />
+      </div>
+      
+      <!-- Tree Options -->
+      <div class="sui-tree-select-options">
+        <ng-container *ngFor="let item of getFilteredOptions(); let i = index">
+          <div class="sui-tree-select-node">
+            <button
+              type="button"
+              [disabled]="item.disabled"
+              (click)="select(item)"
+              class="sui-tree-select-option"
+              [class.sui-tree-select-parent]="item.children?.length"
+              [class.sui-tree-select-leaf]="!item.children?.length"
+              [class.sui-tree-select-selected]="isSelected(item)"
+              [class.sui-tree-select-active]="activeIndex === i"
+              [attr.aria-selected]="isSelected(item)"
+            >
+              <!-- Expand/Collapse Icon -->
+              <span 
+                *ngIf="item.children?.length" 
+                class="sui-tree-select-expand"
+                [class.sui-tree-select-expanded]="item.expanded">
+                {{ item.expanded ? '▼' : '▶' }}
+              </span>
+              
+              <!-- Node Icon -->
+              <span *ngIf="item.icon" class="sui-tree-select-icon">{{ item.icon }}</span>
+              
+              <!-- Node Content -->
+              <div class="sui-tree-select-content">
+                <div class="sui-tree-select-label">{{ item.label }}</div>
+                <div *ngIf="item.description" class="sui-tree-select-description">{{ item.description }}</div>
+              </div>
+            </button>
+            
+            <!-- Children -->
+            <div *ngIf="item.children?.length && item.expanded" class="sui-tree-select-children">
+              <div *ngFor="let child of item.children; let j = index" class="sui-tree-select-child-node">
+                <button
+                  type="button"
+                  [disabled]="child.disabled"
+                  (click)="select(child)"
+                  class="sui-tree-select-option sui-tree-select-leaf"
+                  [class.sui-tree-select-selected]="isSelected(child)"
+                  [class.sui-tree-select-active]="activeIndex === (i + j + 1)"
+                  [attr.aria-selected]="isSelected(child)"
+                >
+                  <!-- Child Icon -->
+                  <span *ngIf="child.icon" class="sui-tree-select-icon">{{ child.icon }}</span>
+                  
+                  <!-- Child Content -->
+                  <div class="sui-tree-select-content">
+                    <div class="sui-tree-select-label">{{ child.label }}</div>
+                    <div *ngIf="child.description" class="sui-tree-select-description">{{ child.description }}</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        
+        <!-- Empty State -->
+        <div *ngIf="getFilteredOptions().length === 0" class="sui-tree-select-empty">
+          <div class="sui-tree-select-empty-icon">📁</div>
+          <div class="sui-tree-select-empty-text">No options available</div>
+          <div *ngIf="searchTerm" class="sui-tree-select-empty-description">Try adjusting your search</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Helper Text -->
+  <div *ngIf="helperText && !hasError" [id]="getComponentId() + '-helper'" class="sui-tree-select-helper">
+    {{ helperText }}
+  </div>
+  
+  <!-- Error Text -->
+  <div *ngIf="errorText || hasError" [id]="getComponentId() + '-error'" class="sui-tree-select-helper sui-tree-select-error-text">
+    {{ errorText || 'Invalid selection' }}
+  </div>
 </div>

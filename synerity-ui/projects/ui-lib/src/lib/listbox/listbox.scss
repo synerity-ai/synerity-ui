@@ -1,0 +1,604 @@
+// Enterprise Listbox Component Styles
+.sui-listbox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--sui-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+  font-size: var(--sui-listbox-font-size, 1rem);
+  color: var(--sui-listbox-text-color, #374151);
+  width: 100%;
+  min-width: 200px;
+  max-width: 100%;
+  outline: none;
+  border-radius: var(--sui-listbox-border-radius, 0.375rem);
+  border: var(--sui-listbox-border-width, 1px) solid var(--sui-listbox-border-color, #d1d5db);
+  background-color: var(--sui-listbox-bg, #ffffff);
+  box-shadow: var(--sui-listbox-shadow, 0 1px 2px rgba(0, 0, 0, 0.05));
+  overflow: hidden;
+  transition: all var(--sui-listbox-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Size Variants
+  &-small {
+    --sui-listbox-font-size: 0.875rem; // 14px
+    --sui-listbox-item-height: 2rem; // 32px
+    --sui-listbox-item-padding-x: 0.5rem; // 8px
+    --sui-listbox-item-padding-y: 0.25rem; // 4px
+    --sui-listbox-border-radius: 0.25rem; // 4px
+    --sui-listbox-gap: 0.125rem; // 2px
+    --sui-listbox-icon-size: 0.875rem; // 14px
+    --sui-listbox-max-height: 8rem; // 128px
+  }
+
+  &-medium {
+    --sui-listbox-font-size: 1rem; // 16px
+    --sui-listbox-item-height: 2.5rem; // 40px
+    --sui-listbox-item-padding-x: 0.75rem; // 12px
+    --sui-listbox-item-padding-y: 0.5rem; // 8px
+    --sui-listbox-border-radius: 0.375rem; // 6px
+    --sui-listbox-gap: 0.25rem; // 4px
+    --sui-listbox-icon-size: 1rem; // 16px
+    --sui-listbox-max-height: 10rem; // 160px
+  }
+
+  &-large {
+    --sui-listbox-font-size: 1.125rem; // 18px
+    --sui-listbox-item-height: 3rem; // 48px
+    --sui-listbox-item-padding-x: 1rem; // 16px
+    --sui-listbox-item-padding-y: 0.75rem; // 12px
+    --sui-listbox-border-radius: 0.5rem; // 8px
+    --sui-listbox-gap: 0.375rem; // 6px
+    --sui-listbox-icon-size: 1.125rem; // 18px
+    --sui-listbox-max-height: 12rem; // 192px
+  }
+
+  // Theme Variants
+  &-light {
+    --sui-listbox-bg: #ffffff;
+    --sui-listbox-bg-hover: #f9fafb;
+    --sui-listbox-bg-active: #f3f4f6;
+    --sui-listbox-bg-selected: #dbeafe;
+    --sui-listbox-bg-disabled: #f3f4f6;
+    --sui-listbox-text-color: #374151;
+    --sui-listbox-text-color-hover: #1f2937;
+    --sui-listbox-text-color-active: #111827;
+    --sui-listbox-text-color-selected: #1e40af;
+    --sui-listbox-text-color-disabled: #9ca3af;
+    --sui-listbox-border: #d1d5db;
+    --sui-listbox-border-hover: #9ca3af;
+    --sui-listbox-border-focus: #3b82f6;
+    --sui-listbox-border-error: #ef4444;
+    --sui-listbox-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --sui-listbox-shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    --sui-listbox-shadow-error: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    --sui-listbox-divider: #e5e7eb;
+    --sui-listbox-scrollbar-track: #f1f5f9;
+    --sui-listbox-scrollbar-thumb: #cbd5e1;
+    --sui-listbox-scrollbar-thumb-hover: #94a3b8;
+  }
+
+  &-dark {
+    --sui-listbox-bg: #1f2937;
+    --sui-listbox-bg-hover: #374151;
+    --sui-listbox-bg-active: #4b5563;
+    --sui-listbox-bg-selected: #1e3a8a;
+    --sui-listbox-bg-disabled: #111827;
+    --sui-listbox-text-color: #f9fafb;
+    --sui-listbox-text-color-hover: #ffffff;
+    --sui-listbox-text-color-active: #ffffff;
+    --sui-listbox-text-color-selected: #60a5fa;
+    --sui-listbox-text-color-disabled: #6b7280;
+    --sui-listbox-border: #4b5563;
+    --sui-listbox-border-hover: #6b7280;
+    --sui-listbox-border-focus: #60a5fa;
+    --sui-listbox-border-error: #f87171;
+    --sui-listbox-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --sui-listbox-shadow-focus: 0 0 0 3px rgba(96, 165, 250, 0.1);
+    --sui-listbox-shadow-error: 0 0 0 3px rgba(248, 113, 113, 0.1);
+    --sui-listbox-divider: #374151;
+    --sui-listbox-scrollbar-track: #1e293b;
+    --sui-listbox-scrollbar-thumb: #475569;
+    --sui-listbox-scrollbar-thumb-hover: #64748b;
+  }
+
+  // Color Variants
+  &-primary {
+    --sui-listbox-border-focus: #3b82f6;
+    --sui-listbox-shadow-focus: rgba(59, 130, 246, 0.1);
+    --sui-listbox-bg-selected: #dbeafe;
+    --sui-listbox-text-color-selected: #1e40af;
+  }
+
+  &-success {
+    --sui-listbox-border-focus: #10b981;
+    --sui-listbox-shadow-focus: rgba(16, 185, 129, 0.1);
+    --sui-listbox-bg-selected: #d1fae5;
+    --sui-listbox-text-color-selected: #065f46;
+  }
+
+  &-warning {
+    --sui-listbox-border-focus: #f59e0b;
+    --sui-listbox-shadow-focus: rgba(245, 158, 11, 0.1);
+    --sui-listbox-bg-selected: #fef3c7;
+    --sui-listbox-text-color-selected: #92400e;
+  }
+
+  &-danger {
+    --sui-listbox-border-focus: #ef4444;
+    --sui-listbox-shadow-focus: rgba(239, 68, 68, 0.1);
+    --sui-listbox-bg-selected: #fee2e2;
+    --sui-listbox-text-color-selected: #991b1b;
+  }
+
+  &-purple {
+    --sui-listbox-border-focus: #8b5cf6;
+    --sui-listbox-shadow-focus: rgba(139, 92, 246, 0.1);
+    --sui-listbox-bg-selected: #e9d5ff;
+    --sui-listbox-text-color-selected: #6b21a8;
+  }
+
+  &-pink {
+    --sui-listbox-border-focus: #ec4899;
+    --sui-listbox-shadow-focus: rgba(236, 72, 153, 0.1);
+    --sui-listbox-bg-selected: #fce7f3;
+    --sui-listbox-text-color-selected: #be185d;
+  }
+
+  // Container Styles
+  &-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: var(--sui-listbox-max-height);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--sui-listbox-scrollbar-thumb) var(--sui-listbox-scrollbar-track);
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--sui-listbox-scrollbar-track);
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--sui-listbox-scrollbar-thumb);
+      border-radius: 3px;
+      transition: background-color var(--sui-listbox-transition-duration, 0.2s) ease;
+
+      &:hover {
+        background: var(--sui-listbox-scrollbar-thumb-hover);
+      }
+    }
+  }
+
+  // Listbox Items
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: var(--sui-listbox-item-height);
+    padding: var(--sui-listbox-item-padding-y) var(--sui-listbox-item-padding-x);
+    font-size: var(--sui-listbox-font-size);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--sui-listbox-text-color);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--sui-listbox-divider);
+    cursor: pointer;
+    transition: all var(--sui-listbox-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover:not(.sui-listbox-item-disabled) {
+      background-color: var(--sui-listbox-bg-hover);
+      color: var(--sui-listbox-text-color-hover);
+    }
+
+    &:active:not(.sui-listbox-item-disabled) {
+      background-color: var(--sui-listbox-bg-active);
+      color: var(--sui-listbox-text-color-active);
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--sui-focus-ring-color, #3b82f6);
+      outline-offset: -2px;
+    }
+
+    // Selected State
+    &-selected {
+      background-color: var(--sui-listbox-bg-selected);
+      color: var(--sui-listbox-text-color-selected);
+      font-weight: 500;
+
+      &:hover {
+        background-color: var(--sui-listbox-bg-selected);
+        color: var(--sui-listbox-text-color-selected);
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background-color: var(--sui-listbox-text-color-selected);
+      }
+    }
+
+    // Active State (keyboard navigation)
+    &-active {
+      background-color: var(--sui-listbox-bg-hover);
+      color: var(--sui-listbox-text-color-hover);
+      box-shadow: inset 0 0 0 2px var(--sui-listbox-border-focus);
+    }
+
+    // Disabled State
+    &-disabled {
+      background-color: var(--sui-listbox-bg-disabled);
+      color: var(--sui-listbox-text-color-disabled);
+      cursor: not-allowed;
+      opacity: 0.6;
+
+      &:hover,
+      &:active {
+        background-color: var(--sui-listbox-bg-disabled);
+        color: var(--sui-listbox-text-color-disabled);
+        transform: none;
+      }
+    }
+
+    // Icon Support
+    &-with-icon {
+      padding-left: calc(var(--sui-listbox-item-padding-x) + 1.5rem);
+
+      .sui-listbox-item-icon {
+        position: absolute;
+        left: var(--sui-listbox-item-padding-x);
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--sui-listbox-text-color);
+        font-size: var(--sui-listbox-icon-size);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      &.sui-listbox-item-selected .sui-listbox-item-icon {
+        color: var(--sui-listbox-text-color-selected);
+      }
+
+      &.sui-listbox-item-disabled .sui-listbox-item-icon {
+        color: var(--sui-listbox-text-color-disabled);
+      }
+    }
+
+    // Badge Support
+    &-with-badge {
+      justify-content: space-between;
+
+      .sui-listbox-item-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.25rem;
+        height: 1.25rem;
+        padding: 0 0.375rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        line-height: 1;
+        color: #ffffff;
+        background-color: #6b7280;
+        border-radius: 0.75rem;
+        margin-left: 0.5rem;
+      }
+    }
+
+    // Description Support
+    &-with-description {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: var(--sui-listbox-item-padding-y) var(--sui-listbox-item-padding-x);
+
+      .sui-listbox-item-label {
+        font-weight: 500;
+        margin-bottom: 0.125rem;
+      }
+
+      .sui-listbox-item-description {
+        font-size: calc(var(--sui-listbox-font-size) * 0.875);
+        color: var(--sui-listbox-text-color);
+        opacity: 0.7;
+        line-height: 1.4;
+      }
+
+      &.sui-listbox-item-selected {
+        .sui-listbox-item-description {
+          color: var(--sui-listbox-text-color-selected);
+          opacity: 0.8;
+        }
+      }
+
+      &.sui-listbox-item-disabled {
+        .sui-listbox-item-description {
+          color: var(--sui-listbox-text-color-disabled);
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  // Disabled State
+  &-disabled {
+    background-color: var(--sui-listbox-bg-disabled);
+    border-color: var(--sui-listbox-border);
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .sui-listbox-item {
+      cursor: not-allowed;
+      color: var(--sui-listbox-text-color-disabled);
+
+      &:hover,
+      &:active {
+        background-color: transparent;
+        color: var(--sui-listbox-text-color-disabled);
+        transform: none;
+      }
+    }
+  }
+
+  // Error State
+  &-error {
+    border-color: var(--sui-listbox-border-error);
+    box-shadow: var(--sui-listbox-shadow-error);
+  }
+
+  // Loading State
+  &-loading {
+    position: relative;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 2px solid var(--sui-listbox-border);
+      border-top: 2px solid var(--sui-listbox-border-focus);
+      border-radius: 50%;
+      animation: sui-listbox-spin 1s linear infinite;
+      z-index: 10;
+    }
+  }
+
+  // Label Support
+  &-label {
+    display: block;
+    font-size: var(--sui-listbox-font-size);
+    font-weight: 500;
+    color: var(--sui-listbox-text-color);
+    margin-bottom: 0.5rem;
+  }
+
+  // Helper Text
+  &-helper {
+    font-size: calc(var(--sui-listbox-font-size) * 0.875);
+    color: var(--sui-listbox-text-color);
+    opacity: 0.7;
+    margin-top: 0.25rem;
+  }
+
+  &-error-text {
+    color: var(--sui-listbox-border-error);
+    opacity: 1;
+  }
+
+  // Empty State
+  &-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    color: var(--sui-listbox-text-color);
+    opacity: 0.6;
+    text-align: center;
+
+    .sui-listbox-empty-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.5;
+    }
+
+    .sui-listbox-empty-text {
+      font-size: calc(var(--sui-listbox-font-size) * 0.875);
+      font-weight: 500;
+    }
+
+    .sui-listbox-empty-description {
+      font-size: calc(var(--sui-listbox-font-size) * 0.75);
+      margin-top: 0.25rem;
+      opacity: 0.7;
+    }
+  }
+
+  // Compact Variant
+  &-compact {
+    --sui-listbox-item-padding-x: 0.5rem;
+    --sui-listbox-item-padding-y: 0.25rem;
+    --sui-listbox-gap: 0.125rem;
+    --sui-listbox-item-height: 2rem;
+  }
+
+  // Spacious Variant
+  &-spacious {
+    --sui-listbox-item-padding-x: 1rem;
+    --sui-listbox-item-padding-y: 0.75rem;
+    --sui-listbox-gap: 0.5rem;
+    --sui-listbox-item-height: 3rem;
+  }
+
+  // Animation Effects
+  &-animated {
+    .sui-listbox-item {
+      transition: all var(--sui-listbox-transition-duration, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  &-bounce {
+    .sui-listbox-item {
+      &:hover:not(.sui-listbox-item-disabled) {
+        animation: sui-listbox-bounce 0.3s ease-in-out;
+      }
+    }
+  }
+
+  &-glow {
+    &:focus-within {
+      box-shadow: var(--sui-listbox-shadow-focus), 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+  }
+
+  // Multi-select Support
+  &-multi {
+    .sui-listbox-item-selected {
+      &::after {
+        content: '✓';
+        position: absolute;
+        right: var(--sui-listbox-item-padding-x);
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--sui-listbox-text-color-selected);
+        font-weight: bold;
+        font-size: calc(var(--sui-listbox-font-size) * 0.875);
+      }
+    }
+  }
+
+  // Group Support
+  &-group {
+    .sui-listbox-group-header {
+      display: flex;
+      align-items: center;
+      padding: var(--sui-listbox-item-padding-y) var(--sui-listbox-item-padding-x);
+      font-size: calc(var(--sui-listbox-font-size) * 0.875);
+      font-weight: 600;
+      color: var(--sui-listbox-text-color);
+      background-color: var(--sui-listbox-bg-hover);
+      border-bottom: 1px solid var(--sui-listbox-divider);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .sui-listbox-group-items {
+      .sui-listbox-item {
+        padding-left: calc(var(--sui-listbox-item-padding-x) + 1rem);
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes sui-listbox-spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes sui-listbox-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+// Responsive Design
+@media (max-width: 480px) {
+  .sui-listbox {
+    &-large {
+      --sui-listbox-font-size: 1rem;
+      --sui-listbox-item-height: 2.5rem;
+      --sui-listbox-item-padding-x: 0.75rem;
+      --sui-listbox-item-padding-y: 0.5rem;
+      --sui-listbox-max-height: 10rem;
+    }
+  }
+}
+
+// High Contrast Mode Support
+@media (prefers-contrast: high) {
+  .sui-listbox {
+    --sui-listbox-border: #000000;
+    --sui-listbox-border-focus: #000000;
+    --sui-listbox-text-color: #000000;
+    --sui-listbox-text-color-selected: #000000;
+  }
+
+  .sui-listbox-dark {
+    --sui-listbox-border: #ffffff;
+    --sui-listbox-border-focus: #ffffff;
+    --sui-listbox-text-color: #ffffff;
+    --sui-listbox-text-color-selected: #ffffff;
+  }
+}
+
+// Reduced Motion Support
+@media (prefers-reduced-motion: reduce) {
+  .sui-listbox,
+  .sui-listbox-item {
+    transition: none;
+  }
+
+  .sui-listbox-animated {
+    .sui-listbox-item {
+      transition: none;
+    }
+  }
+
+  .sui-listbox-bounce .sui-listbox-item:hover:not(.sui-listbox-item-disabled) {
+    animation: none;
+  }
+
+  .sui-listbox-loading::after {
+    animation: none;
+  }
+}
+
+// Print Styles
+@media print {
+  .sui-listbox {
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .sui-listbox-item {
+    border-bottom: 1px solid #000000 !important;
+    color: #000000 !important;
+  }
+}
+
+// Focus Visible Support
+.sui-listbox:focus-within {
+  outline: 2px solid var(--sui-focus-ring-color, #3b82f6);
+  outline-offset: 2px;
+}

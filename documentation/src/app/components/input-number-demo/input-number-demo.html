@@ -1,0 +1,425 @@
+<div class="demo-section">
+  <div class="demo-group">
+    <div class="demo-label">Basic Input Numbers</div>
+    <div class="demo-description">Simple number input components with basic functionality.</div>
+    <div class="demo-grid">
+      @for (input of basicInputNumbers; track input.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ input.label }}</div>
+          <div class="demo-description">{{ input.description }}</div>
+          <div class="demo-component">
+            <sui-input-number
+              [(ngModel)]="input.value"
+              [min]="input.min"
+              [max]="input.max"
+              [step]="input.step"
+              [placeholder]="input.placeholder"
+              [disabled]="input.disabled"
+              [readonly]="input.readonly"
+              [loading]="input.loading"
+              [showButtons]="input.showButtons"
+              [size]="input.size"
+              [theme]="input.theme"
+              [color]="input.color"
+              [label]="input.label"
+              [helperText]="input.helperText"
+              [errorText]="input.errorText"
+              [icon]="input.icon"
+              [compact]="input.compact"
+              [spacious]="input.spacious"
+              [animated]="input.animated"
+              [bounce]="input.bounce"
+              [glow]="input.glow"
+              (change)="onValueChange($event, input)"
+              (onIncrement)="onIncrement($event, input)"
+              (onDecrement)="onDecrement($event, input)">
+            </sui-input-number>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getInputStatusColor(input)">{{ getInputStatus(input) }}</span><br>
+            Value: {{ input.value }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Size Variations</div>
+    <div class="demo-description">Number input components in different sizes.</div>
+    <div class="demo-grid">
+      @for (input of sizeVariants; track input.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ input.label }}</div>
+          <div class="demo-description">{{ input.description }}</div>
+          <div class="demo-component">
+            <sui-input-number
+              [(ngModel)]="input.value"
+              [min]="input.min"
+              [max]="input.max"
+              [step]="input.step"
+              [placeholder]="input.placeholder"
+              [disabled]="input.disabled"
+              [readonly]="input.readonly"
+              [loading]="input.loading"
+              [showButtons]="input.showButtons"
+              [size]="input.size"
+              [theme]="input.theme"
+              [color]="input.color"
+              [label]="input.label"
+              [helperText]="input.helperText"
+              [errorText]="input.errorText"
+              [icon]="input.icon"
+              [compact]="input.compact"
+              [spacious]="input.spacious"
+              [animated]="input.animated"
+              [bounce]="input.bounce"
+              [glow]="input.glow"
+              (change)="onValueChange($event, input)"
+              (onIncrement)="onIncrement($event, input)"
+              (onDecrement)="onDecrement($event, input)">
+            </sui-input-number>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getInputStatusColor(input)">{{ getInputStatus(input) }}</span><br>
+            Value: {{ input.value }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Color Themes</div>
+    <div class="demo-description">Number input components with different color themes.</div>
+    <div class="demo-grid">
+      @for (input of colorThemes; track input.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ input.label }}</div>
+          <div class="demo-description">{{ input.description }}</div>
+          <div class="demo-component">
+            <sui-input-number
+              [(ngModel)]="input.value"
+              [min]="input.min"
+              [max]="input.max"
+              [step]="input.step"
+              [placeholder]="input.placeholder"
+              [disabled]="input.disabled"
+              [readonly]="input.readonly"
+              [loading]="input.loading"
+              [showButtons]="input.showButtons"
+              [size]="input.size"
+              [theme]="input.theme"
+              [color]="input.color"
+              [label]="input.label"
+              [helperText]="input.helperText"
+              [errorText]="input.errorText"
+              [icon]="input.icon"
+              [compact]="input.compact"
+              [spacious]="input.spacious"
+              [animated]="input.animated"
+              [bounce]="input.bounce"
+              [glow]="input.glow"
+              (change)="onValueChange($event, input)"
+              (onIncrement)="onIncrement($event, input)"
+              (onDecrement)="onDecrement($event, input)">
+            </sui-input-number>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getInputStatusColor(input)">{{ getInputStatus(input) }}</span><br>
+            Value: {{ input.value }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">State Examples</div>
+    <div class="demo-description">Number input components in different states.</div>
+    <div class="demo-grid">
+      @for (input of stateExamples; track input.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ input.label }}</div>
+          <div class="demo-description">{{ input.description }}</div>
+          <div class="demo-component">
+            <sui-input-number
+              [(ngModel)]="input.value"
+              [min]="input.min"
+              [max]="input.max"
+              [step]="input.step"
+              [placeholder]="input.placeholder"
+              [disabled]="input.disabled"
+              [readonly]="input.readonly"
+              [loading]="input.loading"
+              [showButtons]="input.showButtons"
+              [size]="input.size"
+              [theme]="input.theme"
+              [color]="input.color"
+              [label]="input.label"
+              [helperText]="input.helperText"
+              [errorText]="input.errorText"
+              [icon]="input.icon"
+              [compact]="input.compact"
+              [spacious]="input.spacious"
+              [animated]="input.animated"
+              [bounce]="input.bounce"
+              [glow]="input.glow"
+              (change)="onValueChange($event, input)"
+              (onIncrement)="onIncrement($event, input)"
+              (onDecrement)="onDecrement($event, input)">
+            </sui-input-number>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getInputStatusColor(input)">{{ getInputStatus(input) }}</span><br>
+            Value: {{ input.value }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Layout Options</div>
+    <div class="demo-description">Number input components with different layout options.</div>
+    <div class="demo-grid">
+      @for (input of layoutOptions; track input.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ input.label }}</div>
+          <div class="demo-description">{{ input.description }}</div>
+          <div class="demo-component">
+            <sui-input-number
+              [(ngModel)]="input.value"
+              [min]="input.min"
+              [max]="input.max"
+              [step]="input.step"
+              [placeholder]="input.placeholder"
+              [disabled]="input.disabled"
+              [readonly]="input.readonly"
+              [loading]="input.loading"
+              [showButtons]="input.showButtons"
+              [size]="input.size"
+              [theme]="input.theme"
+              [color]="input.color"
+              [label]="input.label"
+              [helperText]="input.helperText"
+              [errorText]="input.errorText"
+              [icon]="input.icon"
+              [compact]="input.compact"
+              [spacious]="input.spacious"
+              [animated]="input.animated"
+              [bounce]="input.bounce"
+              [glow]="input.glow"
+              (change)="onValueChange($event, input)"
+              (onIncrement)="onIncrement($event, input)"
+              (onDecrement)="onDecrement($event, input)">
+            </sui-input-number>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getInputStatusColor(input)">{{ getInputStatus(input) }}</span><br>
+            Value: {{ input.value }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Animation Effects</div>
+    <div class="demo-description">Number input components with various animation effects.</div>
+    <div class="demo-grid">
+      @for (input of animationEffects; track input.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ input.label }}</div>
+          <div class="demo-description">{{ input.description }}</div>
+          <div class="demo-component">
+            <sui-input-number
+              [(ngModel)]="input.value"
+              [min]="input.min"
+              [max]="input.max"
+              [step]="input.step"
+              [placeholder]="input.placeholder"
+              [disabled]="input.disabled"
+              [readonly]="input.readonly"
+              [loading]="input.loading"
+              [showButtons]="input.showButtons"
+              [size]="input.size"
+              [theme]="input.theme"
+              [color]="input.color"
+              [label]="input.label"
+              [helperText]="input.helperText"
+              [errorText]="input.errorText"
+              [icon]="input.icon"
+              [compact]="input.compact"
+              [spacious]="input.spacious"
+              [animated]="input.animated"
+              [bounce]="input.bounce"
+              [glow]="input.glow"
+              (change)="onValueChange($event, input)"
+              (onIncrement)="onIncrement($event, input)"
+              (onDecrement)="onDecrement($event, input)">
+            </sui-input-number>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getInputStatusColor(input)">{{ getInputStatus(input) }}</span><br>
+            Value: {{ input.value }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Real-world Examples</div>
+    <div class="demo-description">Practical applications of the number input component.</div>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="demo-label">{{ quantityInput.label }}</div>
+        <div class="demo-description">{{ quantityInput.description }}</div>
+        <div class="demo-component">
+          <sui-input-number
+            [(ngModel)]="quantityInput.value"
+            [min]="quantityInput.min"
+            [max]="quantityInput.max"
+            [step]="quantityInput.step"
+            [placeholder]="quantityInput.placeholder"
+            [disabled]="quantityInput.disabled"
+            [readonly]="quantityInput.readonly"
+            [loading]="quantityInput.loading"
+            [showButtons]="quantityInput.showButtons"
+            [size]="quantityInput.size"
+            [theme]="quantityInput.theme"
+            [color]="quantityInput.color"
+            [label]="quantityInput.label"
+            [helperText]="quantityInput.helperText"
+            [errorText]="quantityInput.errorText"
+            [icon]="quantityInput.icon"
+            [compact]="quantityInput.compact"
+            [spacious]="quantityInput.spacious"
+            [animated]="quantityInput.animated"
+            [bounce]="quantityInput.bounce"
+            [glow]="quantityInput.glow"
+            (change)="onValueChange($event, quantityInput)"
+            (onIncrement)="onIncrement($event, quantityInput)"
+            (onDecrement)="onDecrement($event, quantityInput)">
+          </sui-input-number>
+        </div>
+        <div class="demo-result">
+          <p><strong>Quantity:</strong> {{ quantityInput.value }}</p>
+          <p><strong>Usage:</strong> E-commerce product quantity selection</p>
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-label">{{ priceInput.label }}</div>
+        <div class="demo-description">{{ priceInput.description }}</div>
+        <div class="demo-component">
+          <sui-input-number
+            [(ngModel)]="priceInput.value"
+            [min]="priceInput.min"
+            [max]="priceInput.max"
+            [step]="priceInput.step"
+            [placeholder]="priceInput.placeholder"
+            [disabled]="priceInput.disabled"
+            [readonly]="priceInput.readonly"
+            [loading]="priceInput.loading"
+            [showButtons]="priceInput.showButtons"
+            [size]="priceInput.size"
+            [theme]="priceInput.theme"
+            [color]="priceInput.color"
+            [label]="priceInput.label"
+            [helperText]="priceInput.helperText"
+            [errorText]="priceInput.errorText"
+            [icon]="priceInput.icon"
+            [compact]="priceInput.compact"
+            [spacious]="priceInput.spacious"
+            [animated]="priceInput.animated"
+            [bounce]="priceInput.bounce"
+            [glow]="priceInput.glow"
+            (change)="onValueChange($event, priceInput)"
+            (onIncrement)="onIncrement($event, priceInput)"
+            (onDecrement)="onDecrement($event, priceInput)">
+          </sui-input-number>
+        </div>
+        <div class="demo-result">
+          <p><strong>Price:</strong> ${{ priceInput.value?.toFixed(2) }}</p>
+          <p><strong>Usage:</strong> Price input with decimal precision</p>
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-label">{{ ageInput.label }}</div>
+        <div class="demo-description">{{ ageInput.description }}</div>
+        <div class="demo-component">
+          <sui-input-number
+            [(ngModel)]="ageInput.value"
+            [min]="ageInput.min"
+            [max]="ageInput.max"
+            [step]="ageInput.step"
+            [placeholder]="ageInput.placeholder"
+            [disabled]="ageInput.disabled"
+            [readonly]="ageInput.readonly"
+            [loading]="ageInput.loading"
+            [showButtons]="ageInput.showButtons"
+            [size]="ageInput.size"
+            [theme]="ageInput.theme"
+            [color]="ageInput.color"
+            [label]="ageInput.label"
+            [helperText]="ageInput.helperText"
+            [errorText]="ageInput.errorText"
+            [icon]="ageInput.icon"
+            [compact]="ageInput.compact"
+            [spacious]="ageInput.spacious"
+            [animated]="ageInput.animated"
+            [bounce]="ageInput.bounce"
+            [glow]="ageInput.glow"
+            (change)="onValueChange($event, ageInput)"
+            (onIncrement)="onIncrement($event, ageInput)"
+            (onDecrement)="onDecrement($event, ageInput)">
+          </sui-input-number>
+        </div>
+        <div class="demo-result">
+          <p><strong>Age:</strong> {{ ageInput.value }} years</p>
+          <p><strong>Usage:</strong> Age validation with min/max constraints</p>
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-label">{{ ratingInput.label }}</div>
+        <div class="demo-description">{{ ratingInput.description }}</div>
+        <div class="demo-component">
+          <sui-input-number
+            [(ngModel)]="ratingInput.value"
+            [min]="ratingInput.min"
+            [max]="ratingInput.max"
+            [step]="ratingInput.step"
+            [placeholder]="ratingInput.placeholder"
+            [disabled]="ratingInput.disabled"
+            [readonly]="ratingInput.readonly"
+            [loading]="ratingInput.loading"
+            [showButtons]="ratingInput.showButtons"
+            [size]="ratingInput.size"
+            [theme]="ratingInput.theme"
+            [color]="ratingInput.color"
+            [label]="ratingInput.label"
+            [helperText]="ratingInput.helperText"
+            [errorText]="ratingInput.errorText"
+            [icon]="ratingInput.icon"
+            [compact]="ratingInput.compact"
+            [spacious]="ratingInput.spacious"
+            [animated]="ratingInput.animated"
+            [bounce]="ratingInput.bounce"
+            [glow]="ratingInput.glow"
+            (change)="onValueChange($event, ratingInput)"
+            (onIncrement)="onIncrement($event, ratingInput)"
+            (onDecrement)="onDecrement($event, ratingInput)">
+          </sui-input-number>
+        </div>
+        <div class="demo-result">
+          <p><strong>Rating:</strong> {{ ratingInput.value }}/5 stars</p>
+          <p><strong>Usage:</strong> Rating input with star icon and animations</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

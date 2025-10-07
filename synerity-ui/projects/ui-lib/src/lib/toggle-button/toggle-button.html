@@ -1,14 +1,56 @@
 <div [class]="getGroupClasses()">
-  <button
-    *ngFor="let option of options"
-    type="button"
-    [disabled]="disabled"
-    (click)="select(option)"
-    [class.sui-toggle-button]="true"
-    [class.sui-toggle-button-selected]="isSelected(option)"
-    [class.sui-toggle-button-disabled]="disabled"
+  <!-- Label -->
+  <label *ngIf="label" class="sui-toggle-button-label" [for]="getComponentId()">{{ label }}</label>
+  
+  <!-- Toggle Button Group -->
+  <div
+    role="group"
+    tabindex="0"
+    [id]="getComponentId()"
+    [attr.aria-label]="getAriaLabel()"
+    [attr.aria-describedby]="getAriaDescribedBy()"
+    (keydown)="onKeyDown($event)"
+    (focus)="onFocusEvent()"
+    (blur)="onBlurEvent()"
+    class="sui-toggle-button-group-container"
   >
-    <span *ngIf="option.icon" class="sui-toggle-button-icon">{{ option.icon }}</span>
-    <span class="sui-toggle-button-label">{{ option.label }}</span>
-  </button>
+    <button
+      *ngFor="let option of options; let i = index"
+      type="button"
+      role="radio"
+      [disabled]="disabled || option.disabled || loading"
+      [attr.aria-pressed]="isSelected(option)"
+      [attr.aria-disabled]="disabled || option.disabled || loading"
+      [attr.aria-label]="option.label"
+      (click)="select(option, i)"
+      [class]="getButtonClasses(option, i)"
+    >
+      <!-- Icon -->
+      <span *ngIf="option.icon" class="sui-toggle-button-icon">{{ option.icon }}</span>
+      
+      <!-- Content -->
+      <div class="sui-toggle-button-content">
+        <div *ngIf="option.description; else simpleLabel" class="sui-toggle-button-with-description">
+          <div class="sui-toggle-button-label">{{ option.label }}</div>
+          <div class="sui-toggle-button-description">{{ option.description }}</div>
+        </div>
+        <ng-template #simpleLabel>
+          <span class="sui-toggle-button-label">{{ option.label }}</span>
+        </ng-template>
+      </div>
+      
+      <!-- Badge -->
+      <span *ngIf="option.badge" class="sui-toggle-button-badge">{{ option.badge }}</span>
+    </button>
+  </div>
+  
+  <!-- Helper Text -->
+  <div *ngIf="helperText && !hasError" [id]="getComponentId() + '-helper'" class="sui-toggle-button-helper">
+    {{ helperText }}
+  </div>
+  
+  <!-- Error Text -->
+  <div *ngIf="errorText || hasError" [id]="getComponentId() + '-error'" class="sui-toggle-button-helper sui-toggle-button-error-text">
+    {{ errorText || 'Invalid selection' }}
+  </div>
 </div>

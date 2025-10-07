@@ -1,0 +1,431 @@
+<div class="demo-section">
+  <div class="demo-group">
+    <div class="demo-label">Basic Toggle Button Examples</div>
+    <div class="demo-description">Simple toggle button components with basic functionality.</div>
+    <div class="demo-grid">
+      @for (toggleButton of basicToggleButtons; track toggleButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ toggleButton.label }}</div>
+          <div class="demo-description">{{ toggleButton.description }}</div>
+          <div class="demo-component">
+            <sui-toggle-button
+              [options]="toggleButton.options"
+              [disabled]="toggleButton.disabled"
+              [loading]="toggleButton.loading"
+              [multiple]="toggleButton.multiple"
+              [size]="toggleButton.size"
+              [theme]="toggleButton.theme"
+              [color]="toggleButton.color"
+              [style]="toggleButton.style"
+              [shape]="toggleButton.shape"
+              [label]="toggleButton.label"
+              [helperText]="toggleButton.helperText"
+              [errorText]="toggleButton.errorText"
+              [compact]="toggleButton.compact"
+              [spacious]="toggleButton.spacious"
+              [animated]="toggleButton.animated"
+              [bounce]="toggleButton.bounce"
+              [glow]="toggleButton.glow"
+              [ngModel]="toggleButton.multiple ? toggleButton.values : toggleButton.value"
+              (ngModelChange)="onToggleButtonModelChange($event, toggleButton)"
+              (change)="onToggleButtonChange($event, toggleButton)"
+              (onSelect)="onToggleButtonSelect($event, toggleButton)"
+              (onFocus)="onToggleButtonFocus($event, toggleButton)"
+              (onBlur)="onToggleButtonBlur(toggleButton)">
+            </sui-toggle-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getToggleButtonStatusColor(toggleButton)">{{ getToggleButtonStatus(toggleButton) }}</span><br>
+            Selected: {{ getSelectedText(toggleButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Size Variations</div>
+    <div class="demo-description">Toggle button components in different sizes.</div>
+    <div class="demo-grid">
+      @for (toggleButton of sizeVariants; track toggleButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ toggleButton.label }}</div>
+          <div class="demo-description">{{ toggleButton.description }}</div>
+          <div class="demo-component">
+            <sui-toggle-button
+              [options]="toggleButton.options"
+              [disabled]="toggleButton.disabled"
+              [loading]="toggleButton.loading"
+              [multiple]="toggleButton.multiple"
+              [size]="toggleButton.size"
+              [theme]="toggleButton.theme"
+              [color]="toggleButton.color"
+              [style]="toggleButton.style"
+              [shape]="toggleButton.shape"
+              [label]="toggleButton.label"
+              [helperText]="toggleButton.helperText"
+              [errorText]="toggleButton.errorText"
+              [compact]="toggleButton.compact"
+              [spacious]="toggleButton.spacious"
+              [animated]="toggleButton.animated"
+              [bounce]="toggleButton.bounce"
+              [glow]="toggleButton.glow"
+              [ngModel]="toggleButton.multiple ? toggleButton.values : toggleButton.value"
+              (ngModelChange)="onToggleButtonModelChange($event, toggleButton)"
+              (change)="onToggleButtonChange($event, toggleButton)"
+              (onSelect)="onToggleButtonSelect($event, toggleButton)"
+              (onFocus)="onToggleButtonFocus($event, toggleButton)"
+              (onBlur)="onToggleButtonBlur(toggleButton)">
+            </sui-toggle-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getToggleButtonStatusColor(toggleButton)">{{ getToggleButtonStatus(toggleButton) }}</span><br>
+            Selected: {{ getSelectedText(toggleButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Color Themes</div>
+    <div class="demo-description">Toggle button components with different color themes.</div>
+    <div class="demo-grid">
+      @for (toggleButton of colorThemes; track toggleButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ toggleButton.label }}</div>
+          <div class="demo-description">{{ toggleButton.description }}</div>
+          <div class="demo-component">
+            <sui-toggle-button
+              [options]="toggleButton.options"
+              [disabled]="toggleButton.disabled"
+              [loading]="toggleButton.loading"
+              [multiple]="toggleButton.multiple"
+              [size]="toggleButton.size"
+              [theme]="toggleButton.theme"
+              [color]="toggleButton.color"
+              [style]="toggleButton.style"
+              [shape]="toggleButton.shape"
+              [label]="toggleButton.label"
+              [helperText]="toggleButton.helperText"
+              [errorText]="toggleButton.errorText"
+              [compact]="toggleButton.compact"
+              [spacious]="toggleButton.spacious"
+              [animated]="toggleButton.animated"
+              [bounce]="toggleButton.bounce"
+              [glow]="toggleButton.glow"
+              [ngModel]="toggleButton.multiple ? toggleButton.values : toggleButton.value"
+              (ngModelChange)="onToggleButtonModelChange($event, toggleButton)"
+              (change)="onToggleButtonChange($event, toggleButton)"
+              (onSelect)="onToggleButtonSelect($event, toggleButton)"
+              (onFocus)="onToggleButtonFocus($event, toggleButton)"
+              (onBlur)="onToggleButtonBlur(toggleButton)">
+            </sui-toggle-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getToggleButtonStatusColor(toggleButton)">{{ getToggleButtonStatus(toggleButton) }}</span><br>
+            Selected: {{ getSelectedText(toggleButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Style Variations</div>
+    <div class="demo-description">Toggle button components with different styles.</div>
+    <div class="demo-grid">
+      @for (toggleButton of styleVariants; track toggleButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ toggleButton.label }}</div>
+          <div class="demo-description">{{ toggleButton.description }}</div>
+          <div class="demo-component">
+            <sui-toggle-button
+              [options]="toggleButton.options"
+              [disabled]="toggleButton.disabled"
+              [loading]="toggleButton.loading"
+              [multiple]="toggleButton.multiple"
+              [size]="toggleButton.size"
+              [theme]="toggleButton.theme"
+              [color]="toggleButton.color"
+              [style]="toggleButton.style"
+              [shape]="toggleButton.shape"
+              [label]="toggleButton.label"
+              [helperText]="toggleButton.helperText"
+              [errorText]="toggleButton.errorText"
+              [compact]="toggleButton.compact"
+              [spacious]="toggleButton.spacious"
+              [animated]="toggleButton.animated"
+              [bounce]="toggleButton.bounce"
+              [glow]="toggleButton.glow"
+              [ngModel]="toggleButton.multiple ? toggleButton.values : toggleButton.value"
+              (ngModelChange)="onToggleButtonModelChange($event, toggleButton)"
+              (change)="onToggleButtonChange($event, toggleButton)"
+              (onSelect)="onToggleButtonSelect($event, toggleButton)"
+              (onFocus)="onToggleButtonFocus($event, toggleButton)"
+              (onBlur)="onToggleButtonBlur(toggleButton)">
+            </sui-toggle-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getToggleButtonStatusColor(toggleButton)">{{ getToggleButtonStatus(toggleButton) }}</span><br>
+            Selected: {{ getSelectedText(toggleButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Shape Variations</div>
+    <div class="demo-description">Toggle button components with different shapes.</div>
+    <div class="demo-grid">
+      @for (toggleButton of shapeVariants; track toggleButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ toggleButton.label }}</div>
+          <div class="demo-description">{{ toggleButton.description }}</div>
+          <div class="demo-component">
+            <sui-toggle-button
+              [options]="toggleButton.options"
+              [disabled]="toggleButton.disabled"
+              [loading]="toggleButton.loading"
+              [multiple]="toggleButton.multiple"
+              [size]="toggleButton.size"
+              [theme]="toggleButton.theme"
+              [color]="toggleButton.color"
+              [style]="toggleButton.style"
+              [shape]="toggleButton.shape"
+              [label]="toggleButton.label"
+              [helperText]="toggleButton.helperText"
+              [errorText]="toggleButton.errorText"
+              [compact]="toggleButton.compact"
+              [spacious]="toggleButton.spacious"
+              [animated]="toggleButton.animated"
+              [bounce]="toggleButton.bounce"
+              [glow]="toggleButton.glow"
+              [ngModel]="toggleButton.multiple ? toggleButton.values : toggleButton.value"
+              (ngModelChange)="onToggleButtonModelChange($event, toggleButton)"
+              (change)="onToggleButtonChange($event, toggleButton)"
+              (onSelect)="onToggleButtonSelect($event, toggleButton)"
+              (onFocus)="onToggleButtonFocus($event, toggleButton)"
+              (onBlur)="onToggleButtonBlur(toggleButton)">
+            </sui-toggle-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getToggleButtonStatusColor(toggleButton)">{{ getToggleButtonStatus(toggleButton) }}</span><br>
+            Selected: {{ getSelectedText(toggleButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">State Examples</div>
+    <div class="demo-description">Toggle button components in different states.</div>
+    <div class="demo-grid">
+      @for (toggleButton of stateExamples; track toggleButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ toggleButton.label }}</div>
+          <div class="demo-description">{{ toggleButton.description }}</div>
+          <div class="demo-component">
+            <sui-toggle-button
+              [options]="toggleButton.options"
+              [disabled]="toggleButton.disabled"
+              [loading]="toggleButton.loading"
+              [multiple]="toggleButton.multiple"
+              [size]="toggleButton.size"
+              [theme]="toggleButton.theme"
+              [color]="toggleButton.color"
+              [style]="toggleButton.style"
+              [shape]="toggleButton.shape"
+              [label]="toggleButton.label"
+              [helperText]="toggleButton.helperText"
+              [errorText]="toggleButton.errorText"
+              [compact]="toggleButton.compact"
+              [spacious]="toggleButton.spacious"
+              [animated]="toggleButton.animated"
+              [bounce]="toggleButton.bounce"
+              [glow]="toggleButton.glow"
+              [ngModel]="toggleButton.multiple ? toggleButton.values : toggleButton.value"
+              (ngModelChange)="onToggleButtonModelChange($event, toggleButton)"
+              (change)="onToggleButtonChange($event, toggleButton)"
+              (onSelect)="onToggleButtonSelect($event, toggleButton)"
+              (onFocus)="onToggleButtonFocus($event, toggleButton)"
+              (onBlur)="onToggleButtonBlur(toggleButton)">
+            </sui-toggle-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getToggleButtonStatusColor(toggleButton)">{{ getToggleButtonStatus(toggleButton) }}</span><br>
+            Selected: {{ getSelectedText(toggleButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Layout Options</div>
+    <div class="demo-description">Toggle button components with different layout options.</div>
+    <div class="demo-grid">
+      @for (toggleButton of layoutOptions; track toggleButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ toggleButton.label }}</div>
+          <div class="demo-description">{{ toggleButton.description }}</div>
+          <div class="demo-component">
+            <sui-toggle-button
+              [options]="toggleButton.options"
+              [disabled]="toggleButton.disabled"
+              [loading]="toggleButton.loading"
+              [multiple]="toggleButton.multiple"
+              [size]="toggleButton.size"
+              [theme]="toggleButton.theme"
+              [color]="toggleButton.color"
+              [style]="toggleButton.style"
+              [shape]="toggleButton.shape"
+              [label]="toggleButton.label"
+              [helperText]="toggleButton.helperText"
+              [errorText]="toggleButton.errorText"
+              [compact]="toggleButton.compact"
+              [spacious]="toggleButton.spacious"
+              [animated]="toggleButton.animated"
+              [bounce]="toggleButton.bounce"
+              [glow]="toggleButton.glow"
+              [ngModel]="toggleButton.multiple ? toggleButton.values : toggleButton.value"
+              (ngModelChange)="onToggleButtonModelChange($event, toggleButton)"
+              (change)="onToggleButtonChange($event, toggleButton)"
+              (onSelect)="onToggleButtonSelect($event, toggleButton)"
+              (onFocus)="onToggleButtonFocus($event, toggleButton)"
+              (onBlur)="onToggleButtonBlur(toggleButton)">
+            </sui-toggle-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getToggleButtonStatusColor(toggleButton)">{{ getToggleButtonStatus(toggleButton) }}</span><br>
+            Selected: {{ getSelectedText(toggleButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Animation Effects</div>
+    <div class="demo-description">Toggle button components with various animation effects.</div>
+    <div class="demo-grid">
+      @for (toggleButton of animationEffects; track toggleButton.label) {
+        <div class="demo-item">
+          <div class="demo-label">{{ toggleButton.label }}</div>
+          <div class="demo-description">{{ toggleButton.description }}</div>
+          <div class="demo-component">
+            <sui-toggle-button
+              [options]="toggleButton.options"
+              [disabled]="toggleButton.disabled"
+              [loading]="toggleButton.loading"
+              [multiple]="toggleButton.multiple"
+              [size]="toggleButton.size"
+              [theme]="toggleButton.theme"
+              [color]="toggleButton.color"
+              [style]="toggleButton.style"
+              [shape]="toggleButton.shape"
+              [label]="toggleButton.label"
+              [helperText]="toggleButton.helperText"
+              [errorText]="toggleButton.errorText"
+              [compact]="toggleButton.compact"
+              [spacious]="toggleButton.spacious"
+              [animated]="toggleButton.animated"
+              [bounce]="toggleButton.bounce"
+              [glow]="toggleButton.glow"
+              [ngModel]="toggleButton.multiple ? toggleButton.values : toggleButton.value"
+              (ngModelChange)="onToggleButtonModelChange($event, toggleButton)"
+              (change)="onToggleButtonChange($event, toggleButton)"
+              (onSelect)="onToggleButtonSelect($event, toggleButton)"
+              (onFocus)="onToggleButtonFocus($event, toggleButton)"
+              (onBlur)="onToggleButtonBlur(toggleButton)">
+            </sui-toggle-button>
+          </div>
+          <div class="demo-result">
+            Status: <span [class]="getToggleButtonStatusColor(toggleButton)">{{ getToggleButtonStatus(toggleButton) }}</span><br>
+            Selected: {{ getSelectedText(toggleButton) }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="demo-group">
+    <div class="demo-label">Real-world Examples</div>
+    <div class="demo-description">Practical applications of the toggle button component.</div>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="demo-label">{{ textEditor.label }}</div>
+        <div class="demo-description">{{ textEditor.description }}</div>
+        <div class="demo-component">
+          <sui-toggle-button
+            [options]="textEditor.options"
+            [disabled]="textEditor.disabled"
+            [loading]="textEditor.loading"
+            [multiple]="textEditor.multiple"
+            [size]="textEditor.size"
+            [theme]="textEditor.theme"
+            [color]="textEditor.color"
+            [style]="textEditor.style"
+            [shape]="textEditor.shape"
+            [label]="textEditor.label"
+            [helperText]="textEditor.helperText"
+            [errorText]="textEditor.errorText"
+            [compact]="textEditor.compact"
+            [spacious]="textEditor.spacious"
+            [animated]="textEditor.animated"
+            [bounce]="textEditor.bounce"
+            [glow]="textEditor.glow"
+            [ngModel]="textEditor.multiple ? textEditor.values : textEditor.value"
+            (ngModelChange)="onToggleButtonModelChange($event, textEditor)"
+            (change)="onToggleButtonChange($event, textEditor)"
+            (onSelect)="onToggleButtonSelect($event, textEditor)"
+            (onFocus)="onToggleButtonFocus($event, textEditor)"
+            (onBlur)="onToggleButtonBlur(textEditor)">
+          </sui-toggle-button>
+        </div>
+        <div class="demo-result">
+          <p><strong>Text Editor:</strong> Formatting toolbar for rich text editing</p>
+          <p><strong>Usage:</strong> Text editors, content management systems, document editors</p>
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-label">{{ viewSelector.label }}</div>
+        <div class="demo-description">{{ viewSelector.description }}</div>
+        <div class="demo-component">
+          <sui-toggle-button
+            [options]="viewSelector.options"
+            [disabled]="viewSelector.disabled"
+            [loading]="viewSelector.loading"
+            [multiple]="viewSelector.multiple"
+            [size]="viewSelector.size"
+            [theme]="viewSelector.theme"
+            [color]="viewSelector.color"
+            [style]="viewSelector.style"
+            [shape]="viewSelector.shape"
+            [label]="viewSelector.label"
+            [helperText]="viewSelector.helperText"
+            [errorText]="viewSelector.errorText"
+            [compact]="viewSelector.compact"
+            [spacious]="viewSelector.spacious"
+            [animated]="viewSelector.animated"
+            [bounce]="viewSelector.bounce"
+            [glow]="viewSelector.glow"
+            [ngModel]="viewSelector.multiple ? viewSelector.values : viewSelector.value"
+            (ngModelChange)="onToggleButtonModelChange($event, viewSelector)"
+            (change)="onToggleButtonChange($event, viewSelector)"
+            (onSelect)="onToggleButtonSelect($event, viewSelector)"
+            (onFocus)="onToggleButtonFocus($event, viewSelector)"
+            (onBlur)="onToggleButtonBlur(viewSelector)">
+          </sui-toggle-button>
+        </div>
+        <div class="demo-result">
+          <p><strong>View Selector:</strong> Display mode selector for content views</p>
+          <p><strong>Usage:</strong> File managers, product catalogs, data tables, gallery views</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

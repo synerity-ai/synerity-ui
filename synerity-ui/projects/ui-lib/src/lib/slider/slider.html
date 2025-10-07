@@ -1,13 +1,38 @@
-<input
-	[type]="'range'"
-	[class.opacity-50]="disabled"
-	[id]="inputId"
-	[name]="name"
-	[disabled]="disabled"
-	[min]="min"
-	[max]="max"
-	[step]="step"
-	[value]="value"
-	(input)="onInput($event)"
-	(blur)="onBlur()"
-/>
+<div [class]="getComponentClass()">
+  <!-- Label -->
+  <label *ngIf="label" class="sui-slider-label" [for]="inputId">{{ label }}</label>
+  
+  <!-- Slider Container -->
+  <div class="sui-slider-container" [class.sui-slider-with-value]="showValue">
+    <!-- Value Display -->
+    <span *ngIf="showValue" class="sui-slider-value">{{ getValueText() }}</span>
+    
+    <!-- Slider Input -->
+    <input
+      [type]="'range'"
+      [class]="getInputClass()"
+      [id]="inputId"
+      [name]="name"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [min]="min"
+      [max]="max"
+      [step]="step"
+      [value]="value"
+      [attr.aria-label]="ariaLabel"
+      [attr.aria-describedby]="ariaDescribedBy"
+      [attr.aria-valuemin]="min"
+      [attr.aria-valuemax]="max"
+      [attr.aria-valuenow]="value"
+      (input)="onInput($event)"
+      (blur)="onBlur()"
+      (keydown)="onKeyDown($event)"
+    />
+  </div>
+  
+  <!-- Range Display -->
+  <div *ngIf="showRange" class="sui-slider-range">
+    <span>{{ min }}</span>
+    <span>{{ max }}</span>
+  </div>
+</div>

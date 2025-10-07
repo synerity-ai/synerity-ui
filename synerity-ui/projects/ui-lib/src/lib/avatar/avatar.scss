@@ -1,116 +1,149 @@
-/* Avatar Component Styles */
+/* Avatar Component Styles with Theme Variables */
 .sui-avatar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  color: #ffffff;
-  background-color: #6b7280;
-  border: 2px solid #ffffff;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  position: relative;
-  overflow: hidden;
+  display: var(--sui-avatar-display, inline-flex);
+  align-items: var(--sui-avatar-align-items, center);
+  justify-content: var(--sui-avatar-justify-content, center);
+  font-weight: var(--sui-avatar-font-weight, 500);
+  color: var(--sui-avatar-color, #ffffff);
+  background-color: var(--sui-avatar-bg-color, #6b7280);
+  border: var(--sui-avatar-border, 2px solid #ffffff);
+  box-shadow: var(--sui-avatar-shadow, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06));
+  position: var(--sui-avatar-position, relative);
+  overflow: var(--sui-avatar-overflow, hidden);
+  transition: var(--sui-avatar-transition, all 0.2s ease);
 
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: inherit;
+    width: var(--sui-avatar-image-width, 100%);
+    height: var(--sui-avatar-image-height, 100%);
+    object-fit: var(--sui-avatar-image-object-fit, cover);
+    border-radius: var(--sui-avatar-image-border-radius, inherit);
   }
 
   .sui-avatar-icon {
-    width: 50%;
-    height: 50%;
-    color: inherit;
+    width: var(--sui-avatar-icon-width, 50%);
+    height: var(--sui-avatar-icon-height, 50%);
+    color: var(--sui-avatar-icon-color, inherit);
+    font-size: var(--sui-avatar-icon-font-size, inherit);
   }
 
   .sui-avatar-label {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.025em;
+    font-weight: var(--sui-avatar-label-font-weight, 600);
+    text-transform: var(--sui-avatar-label-text-transform, uppercase);
+    letter-spacing: var(--sui-avatar-label-letter-spacing, 0.025em);
+    color: var(--sui-avatar-label-color, inherit);
   }
 }
 
-/* Avatar Sizes */
+/* Avatar Sizes with Theme Variables */
 .sui-avatar-small {
-  width: 2rem;
-  height: 2rem;
-  font-size: 0.75rem;
-  line-height: 1rem;
+  width: var(--sui-avatar-small-width, 2rem);
+  height: var(--sui-avatar-small-height, 2rem);
+  font-size: var(--sui-avatar-small-font-size, 0.75rem);
+  line-height: var(--sui-avatar-small-line-height, 1rem);
 }
 
 .sui-avatar-normal {
-  width: 2.5rem;
-  height: 2.5rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  width: var(--sui-avatar-normal-width, 2.5rem);
+  height: var(--sui-avatar-normal-height, 2.5rem);
+  font-size: var(--sui-avatar-normal-font-size, 0.875rem);
+  line-height: var(--sui-avatar-normal-line-height, 1.25rem);
 }
 
 .sui-avatar-large {
-  width: 3rem;
-  height: 3rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  width: var(--sui-avatar-large-width, 3rem);
+  height: var(--sui-avatar-large-height, 3rem);
+  font-size: var(--sui-avatar-large-font-size, 1rem);
+  line-height: var(--sui-avatar-large-line-height, 1.5rem);
 }
 
 .sui-avatar-xlarge {
-  width: 4rem;
-  height: 4rem;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  width: var(--sui-avatar-xlarge-width, 4rem);
+  height: var(--sui-avatar-xlarge-height, 4rem);
+  font-size: var(--sui-avatar-xlarge-font-size, 1.25rem);
+  line-height: var(--sui-avatar-xlarge-line-height, 1.75rem);
 }
 
-/* Avatar Shapes */
+/* Avatar Shapes with Theme Variables */
 .sui-avatar-circle {
-  border-radius: 50%;
+  border-radius: var(--sui-avatar-circle-border-radius, 50%);
 }
 
 .sui-avatar-square {
-  border-radius: 0.375rem;
+  border-radius: var(--sui-avatar-square-border-radius, 0.375rem);
 }
 
-/* Avatar Status Indicator */
+/* Avatar Status Indicator with Theme Variables */
 .sui-avatar-status {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
+  position: var(--sui-avatar-status-position, absolute);
+  bottom: var(--sui-avatar-status-bottom, 0);
+  right: var(--sui-avatar-status-right, 0);
+  width: var(--sui-avatar-status-width, 0.75rem);
+  height: var(--sui-avatar-status-height, 0.75rem);
+  border-radius: var(--sui-avatar-status-border-radius, 50%);
+  border: var(--sui-avatar-status-border, 2px solid #ffffff);
 
   &-online {
-    background-color: #10b981;
+    background-color: var(--sui-avatar-status-online-bg, #10b981);
   }
 
   &-offline {
-    background-color: #6b7280;
+    background-color: var(--sui-avatar-status-offline-bg, #6b7280);
   }
 
   &-busy {
-    background-color: #ef4444;
+    background-color: var(--sui-avatar-status-busy-bg, #ef4444);
   }
 
   &-away {
-    background-color: #f59e0b;
+    background-color: var(--sui-avatar-status-away-bg, #f59e0b);
   }
 }
 
-/* Avatar Group */
+/* Avatar Group with Theme Variables */
 .sui-avatar-group {
-  display: flex;
-  align-items: center;
+  display: var(--sui-avatar-group-display, flex);
+  align-items: var(--sui-avatar-group-align-items, center);
 
   .sui-avatar {
-    margin-left: -0.5rem;
-    border: 2px solid #ffffff;
+    margin-left: var(--sui-avatar-group-margin-left, -0.5rem);
+    border: var(--sui-avatar-group-border, 2px solid #ffffff);
+    transition: var(--sui-avatar-group-transition, all 0.2s ease);
 
     &:first-child {
-      margin-left: 0;
+      margin-left: var(--sui-avatar-group-first-margin-left, 0);
     }
 
     &:hover {
-      z-index: 1;
+      z-index: var(--sui-avatar-group-hover-z-index, 1);
+      transform: var(--sui-avatar-group-hover-transform, scale(1.05));
     }
   }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .sui-avatar {
+    --sui-avatar-bg-color: #4b5563;
+    --sui-avatar-color: #f9fafb;
+    --sui-avatar-border: 2px solid #374151;
+    --sui-avatar-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .sui-avatar-status {
+    --sui-avatar-status-border: 2px solid #374151;
+  }
+
+  .sui-avatar-group .sui-avatar {
+    --sui-avatar-group-border: 2px solid #374151;
+  }
+}
+
+/* Light Mode Variables */
+:root {
+  --sui-avatar-bg-color: #6b7280;
+  --sui-avatar-color: #ffffff;
+  --sui-avatar-border: 2px solid #ffffff;
+  --sui-avatar-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --sui-avatar-status-border: 2px solid #ffffff;
+  --sui-avatar-group-border: 2px solid #ffffff;
 }

@@ -1,23 +1,27 @@
 <div
-	role="slider"
-	tabindex="0"
-	(blur)="onBlur()"
-	(keydown)="onKeyDown($event)"
-	aria-valuemin="0"
-	[attr.aria-valuemax]="max"
-	[attr.aria-valuenow]="value"
-	class="inline-flex items-center gap-1"
+  [class]="getComponentClass()"
+  role="slider"
+  tabindex="0"
+  (blur)="onBlur()"
+  (keydown)="onKeyDown($event)"
+  aria-valuemin="0"
+  [attr.aria-valuemax]="max"
+  [attr.aria-valuenow]="value"
+  [attr.aria-label]="ariaLabel"
+  [attr.aria-describedby]="ariaDescribedBy"
 >
-	<button
-		*ngFor="let s of stars"
-		type="button"
-		[disabled]="disabled || readonly"
-		(mouseenter)="onMouseEnter(s)"
-		(mouseleave)="onMouseLeave()"
-		(click)="setValue(s)"
-		[class.text-yellow-400]="isFilled(s)"
-		class="text-gray-400"
-	>
-		★
-	</button>
+  <div class="sui-rating-container">
+    <button
+      *ngFor="let s of stars"
+      type="button"
+      [disabled]="disabled || readonly"
+      (mouseenter)="onMouseEnter(s)"
+      (mouseleave)="onMouseLeave()"
+      (click)="setValue(s)"
+      [class]="getStarClass(s)"
+      [attr.aria-label]="getStarAriaLabel(s)"
+    >
+    </button>
+  </div>
+  <span *ngIf="showValue" class="sui-rating-value">{{ value }}/{{ max }}</span>
 </div>

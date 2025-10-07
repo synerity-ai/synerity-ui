@@ -1,0 +1,511 @@
+// Enterprise Input Number Component Styles
+.sui-input-number {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--sui-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+  font-size: var(--sui-input-number-font-size, 1rem);
+  color: var(--sui-input-number-text-color, #374151);
+  width: 100%;
+  min-width: 120px;
+  outline: none;
+
+  // Size Variants
+  &-small {
+    --sui-input-number-font-size: 0.875rem; // 14px
+    --sui-input-number-height: 2rem; // 32px
+    --sui-input-number-padding-x: 0.5rem; // 8px
+    --sui-input-number-padding-y: 0.25rem; // 4px
+    --sui-input-number-button-width: 1.75rem; // 28px
+    --sui-input-number-button-height: 1.75rem; // 28px
+    --sui-input-number-border-radius: 0.25rem; // 4px
+    --sui-input-number-gap: 0.125rem; // 2px
+  }
+
+  &-medium {
+    --sui-input-number-font-size: 1rem; // 16px
+    --sui-input-number-height: 2.5rem; // 40px
+    --sui-input-number-padding-x: 0.75rem; // 12px
+    --sui-input-number-padding-y: 0.5rem; // 8px
+    --sui-input-number-button-width: 2rem; // 32px
+    --sui-input-number-button-height: 2rem; // 32px
+    --sui-input-number-border-radius: 0.375rem; // 6px
+    --sui-input-number-gap: 0.25rem; // 4px
+  }
+
+  &-large {
+    --sui-input-number-font-size: 1.125rem; // 18px
+    --sui-input-number-height: 3rem; // 48px
+    --sui-input-number-padding-x: 1rem; // 16px
+    --sui-input-number-padding-y: 0.75rem; // 12px
+    --sui-input-number-button-width: 2.25rem; // 36px
+    --sui-input-number-button-height: 2.25rem; // 36px
+    --sui-input-number-border-radius: 0.5rem; // 8px
+    --sui-input-number-gap: 0.375rem; // 6px
+  }
+
+  // Theme Variants
+  &-light {
+    --sui-input-number-bg: #ffffff;
+    --sui-input-number-bg-hover: #f9fafb;
+    --sui-input-number-bg-focus: #ffffff;
+    --sui-input-number-bg-disabled: #f3f4f6;
+    --sui-input-number-text-color: #374151;
+    --sui-input-number-text-color-placeholder: #9ca3af;
+    --sui-input-number-text-color-disabled: #9ca3af;
+    --sui-input-number-border: #d1d5db;
+    --sui-input-number-border-hover: #9ca3af;
+    --sui-input-number-border-focus: #3b82f6;
+    --sui-input-number-border-error: #ef4444;
+    --sui-input-number-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --sui-input-number-shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    --sui-input-number-shadow-error: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    --sui-input-number-button-bg: #f9fafb;
+    --sui-input-number-button-bg-hover: #e5e7eb;
+    --sui-input-number-button-bg-active: #d1d5db;
+    --sui-input-number-button-bg-disabled: #f3f4f6;
+    --sui-input-number-button-color: #374151;
+    --sui-input-number-button-color-hover: #1f2937;
+    --sui-input-number-button-color-disabled: #9ca3af;
+    --sui-input-number-button-border: #d1d5db;
+    --sui-input-number-button-border-hover: #9ca3af;
+    --sui-input-number-button-border-disabled: #e5e7eb;
+  }
+
+  &-dark {
+    --sui-input-number-bg: #1f2937;
+    --sui-input-number-bg-hover: #374151;
+    --sui-input-number-bg-focus: #1f2937;
+    --sui-input-number-bg-disabled: #111827;
+    --sui-input-number-text-color: #f9fafb;
+    --sui-input-number-text-color-placeholder: #9ca3af;
+    --sui-input-number-text-color-disabled: #6b7280;
+    --sui-input-number-border: #4b5563;
+    --sui-input-number-border-hover: #6b7280;
+    --sui-input-number-border-focus: #60a5fa;
+    --sui-input-number-border-error: #f87171;
+    --sui-input-number-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --sui-input-number-shadow-focus: 0 0 0 3px rgba(96, 165, 250, 0.1);
+    --sui-input-number-shadow-error: 0 0 0 3px rgba(248, 113, 113, 0.1);
+    --sui-input-number-button-bg: #374151;
+    --sui-input-number-button-bg-hover: #4b5563;
+    --sui-input-number-button-bg-active: #6b7280;
+    --sui-input-number-button-bg-disabled: #111827;
+    --sui-input-number-button-color: #f9fafb;
+    --sui-input-number-button-color-hover: #ffffff;
+    --sui-input-number-button-color-disabled: #6b7280;
+    --sui-input-number-button-border: #4b5563;
+    --sui-input-number-button-border-hover: #6b7280;
+    --sui-input-number-button-border-disabled: #374151;
+  }
+
+  // Color Variants
+  &-primary {
+    --sui-input-number-border-focus: #3b82f6;
+    --sui-input-number-shadow-focus: rgba(59, 130, 246, 0.1);
+    --sui-input-number-button-bg: #dbeafe;
+    --sui-input-number-button-bg-hover: #bfdbfe;
+    --sui-input-number-button-bg-active: #93c5fd;
+    --sui-input-number-button-color: #1e40af;
+    --sui-input-number-button-color-hover: #1e3a8a;
+  }
+
+  &-success {
+    --sui-input-number-border-focus: #10b981;
+    --sui-input-number-shadow-focus: rgba(16, 185, 129, 0.1);
+    --sui-input-number-button-bg: #d1fae5;
+    --sui-input-number-button-bg-hover: #a7f3d0;
+    --sui-input-number-button-bg-active: #6ee7b7;
+    --sui-input-number-button-color: #065f46;
+    --sui-input-number-button-color-hover: #064e3b;
+  }
+
+  &-warning {
+    --sui-input-number-border-focus: #f59e0b;
+    --sui-input-number-shadow-focus: rgba(245, 158, 11, 0.1);
+    --sui-input-number-button-bg: #fef3c7;
+    --sui-input-number-button-bg-hover: #fde68a;
+    --sui-input-number-button-bg-active: #fcd34d;
+    --sui-input-number-button-color: #92400e;
+    --sui-input-number-button-color-hover: #78350f;
+  }
+
+  &-danger {
+    --sui-input-number-border-focus: #ef4444;
+    --sui-input-number-shadow-focus: rgba(239, 68, 68, 0.1);
+    --sui-input-number-button-bg: #fee2e2;
+    --sui-input-number-button-bg-hover: #fecaca;
+    --sui-input-number-button-bg-active: #fca5a5;
+    --sui-input-number-button-color: #991b1b;
+    --sui-input-number-button-color-hover: #7f1d1d;
+  }
+
+  &-purple {
+    --sui-input-number-border-focus: #8b5cf6;
+    --sui-input-number-shadow-focus: rgba(139, 92, 246, 0.1);
+    --sui-input-number-button-bg: #e9d5ff;
+    --sui-input-number-button-bg-hover: #ddd6fe;
+    --sui-input-number-button-bg-active: #c4b5fd;
+    --sui-input-number-button-color: #6b21a8;
+    --sui-input-number-button-color-hover: #581c87;
+  }
+
+  &-pink {
+    --sui-input-number-border-focus: #ec4899;
+    --sui-input-number-shadow-focus: rgba(236, 72, 153, 0.1);
+    --sui-input-number-button-bg: #fce7f3;
+    --sui-input-number-button-bg-hover: #fbcfe8;
+    --sui-input-number-button-bg-active: #f9a8d4;
+    --sui-input-number-button-color: #be185d;
+    --sui-input-number-button-color-hover: #9d174d;
+  }
+
+  // Input Number Container
+  &-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: var(--sui-input-number-height);
+    background: var(--sui-input-number-bg);
+    border: 1px solid var(--sui-input-number-border);
+    border-radius: var(--sui-input-number-border-radius);
+    box-shadow: var(--sui-input-number-shadow);
+    transition: all var(--sui-input-number-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+
+    &:hover:not(.sui-input-number-disabled) {
+      background: var(--sui-input-number-bg-hover);
+      border-color: var(--sui-input-number-border-hover);
+    }
+
+    &:focus-within {
+      background: var(--sui-input-number-bg-focus);
+      border-color: var(--sui-input-number-border-focus);
+      box-shadow: var(--sui-input-number-shadow-focus);
+    }
+
+    &.sui-input-number-error {
+      border-color: var(--sui-input-number-border-error);
+      box-shadow: var(--sui-input-number-shadow-error);
+    }
+  }
+
+  // Input Number Input
+  &-input {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    padding: var(--sui-input-number-padding-y) var(--sui-input-number-padding-x);
+    font-size: var(--sui-input-number-font-size);
+    font-family: inherit;
+    color: var(--sui-input-number-text-color);
+    background: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
+    transition: color var(--sui-input-number-transition-duration, 0.2s) ease;
+
+    &::placeholder {
+      color: var(--sui-input-number-text-color-placeholder);
+    }
+
+    &:disabled {
+      color: var(--sui-input-number-text-color-disabled);
+      cursor: not-allowed;
+    }
+
+    // Hide number input spinners
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  // Input Number Buttons
+  &-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--sui-input-number-button-width);
+    height: var(--sui-input-number-button-height);
+    background: var(--sui-input-number-button-bg);
+    color: var(--sui-input-number-button-color);
+    border: 1px solid var(--sui-input-number-button-border);
+    font-size: var(--sui-input-number-font-size);
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: all var(--sui-input-number-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    outline: none;
+
+    &:hover:not(:disabled) {
+      background: var(--sui-input-number-button-bg-hover);
+      color: var(--sui-input-number-button-color-hover);
+      border-color: var(--sui-input-number-button-border-hover);
+      transform: scale(1.05);
+    }
+
+    &:active:not(:disabled) {
+      background: var(--sui-input-number-button-bg-active);
+      transform: scale(0.95);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--sui-focus-ring-color, #3b82f6);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      background: var(--sui-input-number-button-bg-disabled);
+      color: var(--sui-input-number-button-color-disabled);
+      border-color: var(--sui-input-number-button-border-disabled);
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+
+  // Decrement Button
+  &-decrement {
+    border-top-left-radius: var(--sui-input-number-border-radius);
+    border-bottom-left-radius: var(--sui-input-number-border-radius);
+    border-right: none;
+  }
+
+  // Increment Button
+  &-increment {
+    border-top-right-radius: var(--sui-input-number-border-radius);
+    border-bottom-right-radius: var(--sui-input-number-border-radius);
+    border-left: none;
+  }
+
+  // Disabled State
+  &-disabled {
+    .sui-input-number-container {
+      background: var(--sui-input-number-bg-disabled);
+      border-color: var(--sui-input-number-button-border-disabled);
+      cursor: not-allowed;
+
+      &:hover {
+        background: var(--sui-input-number-bg-disabled);
+        border-color: var(--sui-input-number-button-border-disabled);
+      }
+    }
+  }
+
+  // Error State
+  &-error {
+    .sui-input-number-container {
+      border-color: var(--sui-input-number-border-error);
+      box-shadow: var(--sui-input-number-shadow-error);
+    }
+  }
+
+  // Readonly State
+  &-readonly {
+    .sui-input-number-container {
+      background: var(--sui-input-number-bg-disabled);
+      cursor: default;
+
+      &:hover {
+        background: var(--sui-input-number-bg-disabled);
+        border-color: var(--sui-input-number-border);
+      }
+    }
+
+    .sui-input-number-button {
+      display: none;
+    }
+  }
+
+  // Compact Variant
+  &-compact {
+    --sui-input-number-padding-x: 0.5rem;
+    --sui-input-number-padding-y: 0.25rem;
+    --sui-input-number-gap: 0.125rem;
+    --sui-input-number-button-width: 1.75rem;
+    --sui-input-number-button-height: 1.75rem;
+  }
+
+  // Spacious Variant
+  &-spacious {
+    --sui-input-number-padding-x: 1rem;
+    --sui-input-number-padding-y: 0.75rem;
+    --sui-input-number-gap: 0.5rem;
+    --sui-input-number-button-width: 2.5rem;
+    --sui-input-number-button-height: 2.5rem;
+  }
+
+  // Animation Effects
+  &-animated {
+    .sui-input-number-container {
+      transition: all var(--sui-input-number-transition-duration, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sui-input-number-button {
+      transition: all var(--sui-input-number-transition-duration, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  &-bounce {
+    .sui-input-number-button {
+      &:hover:not(:disabled) {
+        animation: sui-input-number-bounce 0.3s ease-in-out;
+      }
+    }
+  }
+
+  &-glow {
+    .sui-input-number-container {
+      &:focus-within {
+        box-shadow: var(--sui-input-number-shadow-focus), 0 0 0 4px rgba(59, 130, 246, 0.1);
+      }
+    }
+  }
+
+  // Label Support
+  &-label {
+    display: block;
+    font-size: var(--sui-input-number-font-size);
+    font-weight: 500;
+    color: var(--sui-input-number-text-color);
+    margin-bottom: 0.5rem;
+  }
+
+  // Helper Text
+  &-helper {
+    font-size: calc(var(--sui-input-number-font-size) * 0.875);
+    color: var(--sui-input-number-text-color-placeholder);
+    margin-top: 0.25rem;
+  }
+
+  &-error-text {
+    color: var(--sui-input-number-border-error);
+  }
+
+  // Icon Support
+  &-with-icon {
+    .sui-input-number-input {
+      padding-left: calc(var(--sui-input-number-padding-x) + 1.5rem);
+    }
+
+    .sui-input-number-icon {
+      position: absolute;
+      left: var(--sui-input-number-padding-x);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--sui-input-number-text-color-placeholder);
+      font-size: var(--sui-input-number-font-size);
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+
+  // Loading State
+  &-loading {
+    .sui-input-number-button {
+      position: relative;
+      color: transparent;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0.75rem;
+        height: 0.75rem;
+        border: 2px solid var(--sui-input-number-button-color);
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: sui-input-number-spin 1s linear infinite;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes sui-input-number-bounce {
+  0%, 100% { transform: scale(1.05); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes sui-input-number-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Responsive Design
+@media (max-width: 480px) {
+  .sui-input-number {
+    &-large {
+      --sui-input-number-font-size: 1rem;
+      --sui-input-number-height: 2.5rem;
+      --sui-input-number-padding-x: 0.75rem;
+      --sui-input-number-padding-y: 0.5rem;
+      --sui-input-number-button-width: 2rem;
+      --sui-input-number-button-height: 2rem;
+    }
+  }
+}
+
+// High Contrast Mode Support
+@media (prefers-contrast: high) {
+  .sui-input-number {
+    --sui-input-number-border: #000000;
+    --sui-input-number-border-focus: #000000;
+    --sui-input-number-text-color: #000000;
+    --sui-input-number-button-color: #000000;
+  }
+
+  .sui-input-number-dark {
+    --sui-input-number-border: #ffffff;
+    --sui-input-number-border-focus: #ffffff;
+    --sui-input-number-text-color: #ffffff;
+    --sui-input-number-button-color: #ffffff;
+  }
+}
+
+// Reduced Motion Support
+@media (prefers-reduced-motion: reduce) {
+  .sui-input-number-container,
+  .sui-input-number-button {
+    transition: none;
+  }
+
+  .sui-input-number-animated {
+    .sui-input-number-container,
+    .sui-input-number-button {
+      transition: none;
+    }
+  }
+
+  .sui-input-number-bounce .sui-input-number-button:hover:not(:disabled) {
+    animation: none;
+  }
+
+  .sui-input-number-loading .sui-input-number-button::after {
+    animation: none;
+  }
+}
+
+// Print Styles
+@media print {
+  .sui-input-number-container {
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
+  }
+
+  .sui-input-number-button {
+    display: none !important;
+  }
+}
+
+// Focus Visible Support
+.sui-input-number-container:focus-within {
+  outline: 2px solid var(--sui-focus-ring-color, #3b82f6);
+  outline-offset: 2px;
+}

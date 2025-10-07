@@ -866,6 +866,42 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Select Component Styles - Imported from component-specific file */
 @import './select/select.scss';
 
+/* Avatar Component Styles - Imported from component-specific file */
+@import './avatar/avatar.scss';
+
+/* Badge Component Styles - Imported from component-specific file */
+@import './badge/badge.scss';
+
+/* Date Picker Component Styles - Imported from component-specific file */
+@import './date-picker/date-picker.scss';
+
+/* Rating Component Styles - Imported from component-specific file */
+@import './rating/rating.scss';
+
+/* Slider Component Styles - Imported from component-specific file */
+@import './slider/slider.scss';
+
+/* Toggle Switch Component Styles - Imported from component-specific file */
+@import './toggle-switch/toggle-switch.scss';
+
+/* Chip Component Styles - Imported from component-specific file */
+@import './chip/chip.scss';
+
+/* Input Number Component Styles - Imported from component-specific file */
+@import './input-number/input-number.scss';
+
+/* Password Component Styles - Imported from component-specific file */
+@import './password/password.scss';
+
+/* Listbox Component Styles - Imported from component-specific file */
+@import './listbox/listbox.scss';
+
+/* Toggle Button Component Styles - Imported from component-specific file */
+@import './toggle-button/toggle-button.scss';
+
+/* Tree Select Component Styles - Imported from component-specific file */
+@import './tree-select/tree-select.scss';
+
 /* Ensure Synerity UI components inherit proper styling */
 .sui-button {
   font-family: inherit;

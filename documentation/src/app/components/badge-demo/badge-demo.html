@@ -1,0 +1,240 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Badge') {
+    <div class="badge-demo">
+      <div class="demo-content">
+        <h3>Basic Badge</h3>
+        <p>Simple badge components with different severity levels and text content.</p>
+        <div class="space-y-6">
+          <div class="demo-section">
+            <h4>Severity Variants</h4>
+            <div class="badge-grid">
+              <div *ngFor="let badge of basicBadges" class="badge-item">
+                <sui-badge
+                  [value]="badge.value"
+                  [severity]="badge.severity"
+                  size="normal">
+                </sui-badge>
+                <span class="badge-label">{{ badge.value }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="demo-section">
+            <h4>Size Variations</h4>
+            <div class="badge-row">
+              <div *ngFor="let variant of sizeVariants" class="badge-item">
+                <sui-badge
+                  value="Badge"
+                  severity="info"
+                  [size]="variant.size">
+                </sui-badge>
+                <span class="badge-label">{{ variant.label }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="demo-section">
+            <h4>Number Badges</h4>
+            <div class="badge-grid">
+              <div *ngFor="let badge of numberBadges" class="badge-item">
+                <sui-badge
+                  [value]="badge.value"
+                  [severity]="badge.severity"
+                  size="normal">
+                </sui-badge>
+                <span class="badge-label">{{ badge.value }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Dot Indicators') {
+    <div class="badge-demo">
+      <div class="demo-content">
+        <h3>Dot Indicators</h3>
+        <p>Badge components without text content, used as status indicators.</p>
+        <div class="space-y-6">
+          <div class="demo-section">
+            <h4>Status Dots</h4>
+            <div class="badge-grid">
+              <div *ngFor="let badge of dotBadges" class="badge-item">
+                <sui-badge
+                  [severity]="badge.severity"
+                  size="normal"
+                  styleClass="sui-badge-dot">
+                </sui-badge>
+                <span class="badge-label">{{ badge.label }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="demo-section">
+            <h4>Size Variations</h4>
+            <div class="badge-row">
+              <div *ngFor="let variant of sizeVariants" class="badge-item">
+                <sui-badge
+                  severity="info"
+                  [size]="variant.size"
+                  styleClass="sui-badge-dot">
+                </sui-badge>
+                <span class="badge-label">{{ variant.label }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Notifications') {
+    <div class="badge-demo">
+      <div class="demo-content">
+        <h3>Notifications</h3>
+        <p>Badge components used in notification systems to show message counts and types.</p>
+        <div class="space-y-6">
+          <div class="demo-section">
+            <h4>Notification List</h4>
+            <div class="notification-list">
+              <div *ngFor="let notification of notifications" class="notification-item">
+                <div class="notification-content">
+                  <div class="notification-header">
+                    <h5 class="notification-title">{{ notification.title }}</h5>
+                    <sui-badge
+                      [value]="notification.count"
+                      [severity]="notification.type"
+                      size="small">
+                    </sui-badge>
+                  </div>
+                  <p class="notification-message">{{ notification.message }}</p>
+                  <span class="notification-time">{{ notification.timestamp }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Status Indicators') {
+    <div class="badge-demo">
+      <div class="demo-content">
+        <h3>Status Indicators</h3>
+        <p>Badge components used to show user status and activity counts.</p>
+        <div class="space-y-6">
+          <div class="demo-section">
+            <h4>User Status</h4>
+            <div class="status-list">
+              <div *ngFor="let item of statusItems" class="status-item">
+                <div class="status-info">
+                  <div class="status-dot" [style.background-color]="getStatusColor(item.status)"></div>
+                  <span class="status-name">{{ item.name }}</span>
+                  <span class="status-label" [style.color]="getStatusColor(item.status)">
+                    {{ getStatusLabel(item.status) }}
+                  </span>
+                </div>
+                <sui-badge
+                  *ngIf="item.count > 0"
+                  [value]="item.count"
+                  severity="info"
+                  size="small">
+                </sui-badge>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Task Management') {
+    <div class="badge-demo">
+      <div class="demo-content">
+        <h3>Task Management</h3>
+        <p>Badge components used in task management systems to show priority and status.</p>
+        <div class="space-y-6">
+          <div class="demo-section">
+            <h4>Task List</h4>
+            <div class="task-list">
+              <div *ngFor="let task of tasks" class="task-item">
+                <div class="task-content">
+                  <div class="task-header">
+                    <h5 class="task-title">{{ task.title }}</h5>
+                    <div class="task-badges">
+                      <sui-badge
+                        [value]="getPriorityLabel(task.priority)"
+                        severity="info"
+                        size="small"
+                        [style]="{'background-color': getPriorityColor(task.priority), 'color': 'white'}">
+                      </sui-badge>
+                      <sui-badge
+                        [value]="task.status"
+                        severity="info"
+                        size="small"
+                        [style]="{'background-color': getTaskStatusColor(task.status), 'color': 'white'}">
+                      </sui-badge>
+                    </div>
+                  </div>
+                  <div class="task-meta">
+                    <span class="task-assignee">Assigned to: {{ task.assignee }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Product Inventory') {
+    <div class="badge-demo">
+      <div class="demo-content">
+        <h3>Product Inventory</h3>
+        <p>Badge components used in product management to show stock status and product state.</p>
+        <div class="space-y-6">
+          <div class="demo-section">
+            <h4>Product List</h4>
+            <div class="product-list">
+              <div *ngFor="let product of products" class="product-item">
+                <div class="product-content">
+                  <div class="product-header">
+                    <h5 class="product-name">{{ product.name }}</h5>
+                    <div class="product-badges">
+                      <sui-badge
+                        [value]="getStockStatus(product.stock).label"
+                        [severity]="getStockStatus(product.stock).severity"
+                        size="small">
+                      </sui-badge>
+                      <sui-badge
+                        [value]="product.status"
+                        severity="info"
+                        size="small"
+                        [style]="{'background-color': getProductStatusColor(product.status), 'color': 'white'}">
+                      </sui-badge>
+                    </div>
+                  </div>
+                  <div class="product-meta">
+                    <span class="product-category">{{ product.category }}</span>
+                    <span class="product-price">${{ product.price }}</span>
+                    <span class="product-stock">Stock: {{ product.stock }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @default {
+    <div class="text-center text-gray-500 py-12">
+      <p class="text-lg font-medium">Component preview not available</p>
+      <p class="text-sm text-gray-400 mt-1">Badge component will be shown here</p>
+    </div>
+  }
+}

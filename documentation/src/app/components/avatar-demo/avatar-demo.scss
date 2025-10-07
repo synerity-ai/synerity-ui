@@ -1,0 +1,367 @@
+/* Avatar Demo Component Styles */
+
+.avatar-demo {
+  width: 100%;
+  
+  .demo-content {
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--sui-text-primary, #1f2937);
+      margin: 0 0 0.5rem 0;
+    }
+    
+    p {
+      color: var(--sui-text-secondary, #6b7280);
+      margin: 0 0 1.5rem 0;
+      line-height: 1.5;
+    }
+  }
+}
+
+/* Demo Sections */
+.demo-section {
+  margin-bottom: 2rem;
+  
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--sui-text-primary, #1f2937);
+    margin: 0 0 1rem 0;
+  }
+}
+
+/* Avatar Grid */
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.avatar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  
+  .avatar-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--sui-text-primary, #1f2937);
+    text-align: center;
+  }
+  
+  .color-code {
+    font-size: 0.75rem;
+    color: var(--sui-text-secondary, #6b7280);
+    font-family: monospace;
+  }
+}
+
+/* Avatar Row */
+.avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Status Indicators */
+.avatar-with-status {
+  position: relative;
+  display: inline-block;
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+  
+  .user-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--sui-text-primary, #1f2937);
+  }
+  
+  .user-role {
+    font-size: 0.75rem;
+    color: var(--sui-text-secondary, #6b7280);
+  }
+  
+  .user-status {
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+}
+
+/* Avatar Groups */
+.avatar-group-demo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  .group-info {
+    .group-count {
+      font-size: 0.875rem;
+      color: var(--sui-text-secondary, #6b7280);
+      font-weight: 500;
+    }
+  }
+}
+
+/* Department Groups */
+.department-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.department-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--sui-bg-secondary, #f9fafb);
+  border: 1px solid var(--sui-border-color, #e5e7eb);
+  border-radius: 0.5rem;
+  
+  .department-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    .department-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    
+    .department-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--sui-text-primary, #1f2937);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+  
+  .member-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    
+    .member-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      
+      .member-name {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--sui-text-primary, #1f2937);
+      }
+      
+      .member-position {
+        font-size: 0.75rem;
+        color: var(--sui-text-secondary, #6b7280);
+      }
+    }
+  }
+}
+
+/* Custom Styling */
+.mixed-styles {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Custom Avatar Classes */
+.custom-border {
+  border: 3px solid #3b82f6 !important;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .avatar-demo {
+    .demo-content {
+      h3 {
+        font-size: 1.125rem;
+      }
+      
+      p {
+        font-size: 0.875rem;
+      }
+    }
+  }
+  
+  .avatar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+  }
+  
+  .avatar-row {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .mixed-styles {
+    gap: 1rem;
+  }
+  
+  .department-groups {
+    gap: 0.75rem;
+  }
+  
+  .department-item {
+    padding: 0.75rem;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .avatar-demo {
+    .demo-content {
+      h3 {
+        color: var(--sui-text-primary-dark, #f9fafb);
+      }
+      
+      p {
+        color: var(--sui-text-secondary-dark, #9ca3af);
+      }
+    }
+  }
+  
+  .demo-section {
+    h4 {
+      color: var(--sui-text-primary-dark, #f9fafb);
+    }
+  }
+  
+  .avatar-item {
+    .avatar-label {
+      color: var(--sui-text-primary-dark, #f9fafb);
+    }
+    
+    .color-code {
+      color: var(--sui-text-secondary-dark, #9ca3af);
+    }
+  }
+  
+  .user-info {
+    .user-name {
+      color: var(--sui-text-primary-dark, #f9fafb);
+    }
+    
+    .user-role {
+      color: var(--sui-text-secondary-dark, #9ca3af);
+    }
+  }
+  
+  .avatar-group-demo {
+    .group-info {
+      .group-count {
+        color: var(--sui-text-secondary-dark, #9ca3af);
+      }
+    }
+  }
+  
+  .department-item {
+    background: var(--sui-bg-secondary-dark, #1f2937);
+    border-color: var(--sui-border-color-dark, #374151);
+    
+    .department-header {
+      .department-name {
+        color: var(--sui-text-primary-dark, #f9fafb);
+      }
+    }
+    
+    .member-info {
+      .member-details {
+        .member-name {
+          color: var(--sui-text-primary-dark, #f9fafb);
+        }
+        
+        .member-position {
+          color: var(--sui-text-secondary-dark, #9ca3af);
+        }
+      }
+    }
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .avatar-demo {
+    .department-item {
+      border-width: 2px;
+    }
+    
+    .status-indicator {
+      border-width: 3px;
+    }
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .avatar-demo {
+    * {
+      transition: none !important;
+    }
+  }
+}
+
+/* Utility Classes */
+.space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-gray-400 {
+  color: #9ca3af;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}

@@ -1,14 +1,35 @@
-<button
-	type="button"
-	[disabled]="disabled"
-	[attr.id]="inputId"
-	(name)="name"
-	[class.opacity-50]="disabled"
-	(click)="toggle()"
-	(blur)="onBlur()"
-	class="inline-flex items-center w-12 h-6 rounded-full border px-1 transition-colors"
-	[class.bg-green-500]="checked"
->
-	<span class="inline-block w-4 h-4 rounded-full bg-white transition-transform" [style.transform]="checked ? 'translateX(1.5rem)' : 'translateX(0)'">
-	</span>
-</button>
+<div [class]="getComponentClass()">
+  <!-- Label -->
+  <label *ngIf="label && labelPosition === 'left'" class="sui-toggle-switch-label" [for]="inputId">{{ label }}</label>
+  
+  <!-- Toggle Switch Container -->
+  <div class="sui-toggle-switch-container">
+    <!-- Text (when labelPosition is left) -->
+    <span *ngIf="showText && labelPosition === 'left'" [class]="getTextClass()">{{ getDisplayText() }}</span>
+    
+    <!-- Toggle Switch Button -->
+    <button
+      type="button"
+      [class]="getButtonClass()"
+      [disabled]="disabled || readonly || loading"
+      [attr.id]="inputId"
+      [attr.name]="name"
+      [attr.aria-label]="getAriaLabel()"
+      [attr.aria-describedby]="ariaDescribedBy"
+      [attr.aria-checked]="checked"
+      role="switch"
+      tabindex="0"
+      (click)="toggle()"
+      (blur)="onBlur()"
+      (keydown)="onKeyDown($event)"
+    >
+      <span class="sui-toggle-switch-thumb"></span>
+    </button>
+    
+    <!-- Text (when labelPosition is right) -->
+    <span *ngIf="showText && labelPosition === 'right'" [class]="getTextClass()">{{ getDisplayText() }}</span>
+  </div>
+  
+  <!-- Label (when labelPosition is right) -->
+  <label *ngIf="label && labelPosition === 'right'" class="sui-toggle-switch-label" [for]="inputId">{{ label }}</label>
+</div>

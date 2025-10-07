@@ -1,4 +1,13 @@
-<div class="sui-chip" [class]="getChipClass()" [style]="getChipStyle()">
+<div 
+  [class]="getChipClass()" 
+  [style]="getChipStyle()"
+  [attr.role]="getChipRole()"
+  [attr.tabindex]="getChipTabIndex()"
+  [attr.aria-label]="getChipAriaLabel()"
+  [attr.aria-describedby]="ariaDescribedBy"
+  (click)="click($event)"
+  (keydown)="onKeyDown($event)"
+>
   <img 
     *ngIf="hasImage()" 
     [src]="image" 
@@ -22,7 +31,8 @@
     type="button" 
     class="sui-chip-remove"
     [disabled]="disabled"
-    (click)="remove()"
+    [attr.aria-label]="'Remove ' + label"
+    (click)="remove($event)"
   >
     ×
   </button>

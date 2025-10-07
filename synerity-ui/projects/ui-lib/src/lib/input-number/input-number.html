@@ -1,18 +1,62 @@
-<div class="sui-input-number" [class.sui-input-number-disabled]="disabled">
-	<button type="button" [disabled]="disabled" (click)="decrement()" class="sui-input-number-button sui-input-number-decrement">-</button>
-	<input
-		[type]="'number'"
-		[id]="inputId"
-		[name]="name"
-		[disabled]="disabled"
-		[min]="min ?? undefined"
-		[max]="max ?? undefined"
-		[step]="step"
-		[placeholder]="placeholder"
-		[value]="value ?? ''"
-		(input)="onInput($event)"
-		(blur)="onBlur()"
-		class="sui-input-number-input"
-	/>
-	<button type="button" [disabled]="disabled" (click)="increment()" class="sui-input-number-button sui-input-number-increment">+</button>
+<div [class]="getComponentClass()">
+  <!-- Label -->
+  <label *ngIf="label" class="sui-input-number-label" [for]="inputId">{{ label }}</label>
+  
+  <!-- Input Number Container -->
+  <div [class]="getContainerClass()">
+    <!-- Icon -->
+    <span *ngIf="icon" class="sui-input-number-icon">{{ icon }}</span>
+    
+    <!-- Decrement Button -->
+    <button 
+      *ngIf="showButtons"
+      type="button" 
+      [disabled]="disabled || readonly || loading"
+      (click)="decrement()" 
+      [class]="getButtonClass() + ' sui-input-number-decrement'"
+      [attr.aria-label]="'Decrease value'">
+      -
+    </button>
+    
+    <!-- Input Field -->
+    <input
+      [type]="'number'"
+      [id]="inputId"
+      [name]="name"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [min]="min ?? undefined"
+      [max]="max ?? undefined"
+      [step]="step"
+      [placeholder]="placeholder"
+      [value]="getDisplayValue()"
+      [attr.aria-label]="getAriaLabel()"
+      [attr.aria-describedby]="getAriaDescribedBy()"
+      (input)="onInput($event)"
+      (blur)="onBlur()"
+      (keydown)="onKeyDown($event)"
+      [class]="getInputClass()"
+    />
+    
+    <!-- Increment Button -->
+    <button 
+      *ngIf="showButtons"
+      type="button" 
+      [disabled]="disabled || readonly || loading"
+      (click)="increment()" 
+      [class]="getButtonClass() + ' sui-input-number-increment'"
+      [attr.aria-label]="'Increase value'">
+      +
+    </button>
+  </div>
+  
+  <!-- Helper Text -->
+  <div *ngIf="helperText && !hasError" [id]="inputId + '-helper'" class="sui-input-number-helper">
+    {{ helperText }}
+  </div>
+  
+  <!-- Error Text -->
+  <div *ngIf="errorText || hasError" [id]="inputId + '-error'" class="sui-input-number-helper sui-input-number-error-text">
+    {{ errorText || 'Invalid value' }}
+  </div>
 </div>

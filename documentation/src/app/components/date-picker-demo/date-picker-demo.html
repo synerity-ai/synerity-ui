@@ -1,0 +1,326 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Date Picker') {
+    <div class="date-picker-demo">
+      <div class="demo-content">
+        <h3>Basic Date Picker</h3>
+        <p>Simple date picker components for date selection.</p>
+        <div class="flex flex-col gap-4">
+          @for (picker of basicDatePickers; track picker.label) {
+            <div class="demo-item">
+              <label class="demo-label">{{ picker.label }}</label>
+              <p class="demo-description">{{ picker.description }}</p>
+              <sui-date-picker
+                [value]="picker.value"
+                [placeholder]="picker.placeholder"
+                [size]="picker.size"
+                [variant]="picker.variant"
+                (onChange)="onDateChange($event, picker)">
+              </sui-date-picker>
+              <div class="demo-result">
+                Selected: {{ formatDate(picker.value) }}
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Size Variations') {
+    <div class="date-picker-demo">
+      <div class="demo-content">
+        <h3>Size Variations</h3>
+        <p>Date picker components available in different sizes.</p>
+        <div class="flex flex-col gap-4">
+          @for (picker of sizeVariants; track picker.label) {
+            <div class="demo-item">
+              <label class="demo-label">{{ picker.label }}</label>
+              <p class="demo-description">{{ picker.description }}</p>
+              <sui-date-picker
+                [value]="picker.value"
+                [placeholder]="picker.placeholder"
+                [size]="picker.size"
+                [variant]="picker.variant"
+                (onChange)="onDateChange($event, picker)">
+              </sui-date-picker>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Variant Types') {
+    <div class="date-picker-demo">
+      <div class="demo-content">
+        <h3>Variant Types</h3>
+        <p>Different display variants for date picker components.</p>
+        <div class="flex flex-col gap-6">
+          @for (picker of variantTypes; track picker.label) {
+            <div class="demo-item">
+              <label class="demo-label">{{ picker.label }}</label>
+              <p class="demo-description">{{ picker.description }}</p>
+              <sui-date-picker
+                [value]="picker.value"
+                [placeholder]="picker.placeholder"
+                [size]="picker.size"
+                [variant]="picker.variant"
+                (onChange)="picker.variant === 'range' ? onRangeChange($event, picker) : onDateChange($event, picker)">
+              </sui-date-picker>
+              <div class="demo-result">
+                @if (picker.variant === 'range') {
+                  Range: {{ formatRange(picker.value) }}
+                } @else {
+                  Selected: {{ formatDate(picker.value) }}
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('State Variations') {
+    <div class="date-picker-demo">
+      <div class="demo-content">
+        <h3>State Variations</h3>
+        <p>Date picker components in different states.</p>
+        <div class="flex flex-col gap-4">
+          @for (picker of stateVariants; track picker.label) {
+            <div class="demo-item">
+              <label class="demo-label">{{ picker.label }}</label>
+              <p class="demo-description">{{ picker.description }}</p>
+              <sui-date-picker
+                [value]="picker.value"
+                [placeholder]="picker.placeholder"
+                [size]="picker.size"
+                [variant]="picker.variant"
+                [disabled]="picker.disabled"
+                [readonly]="picker.readonly"
+                [required]="picker.required"
+                (onChange)="onDateChange($event, picker)">
+              </sui-date-picker>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Time Picker') {
+    <div class="date-picker-demo">
+      <div class="demo-content">
+        <h3>Time Picker</h3>
+        <p>Date picker components with time selection.</p>
+        <div class="flex flex-col gap-4">
+          @for (picker of timeVariants; track picker.label) {
+            <div class="demo-item">
+              <label class="demo-label">{{ picker.label }}</label>
+              <p class="demo-description">{{ picker.description }}</p>
+              <sui-date-picker
+                [value]="picker.value"
+                [placeholder]="picker.placeholder"
+                [size]="picker.size"
+                [variant]="picker.variant"
+                [showTime]="picker.showTime"
+                [timeFormat]="picker.timeFormat"
+                (onChange)="onDateChange($event, picker)">
+              </sui-date-picker>
+              <div class="demo-result">
+                Selected: {{ formatDate(picker.value) }}
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Constrained Dates') {
+    <div class="date-picker-demo">
+      <div class="demo-content">
+        <h3>Constrained Dates</h3>
+        <p>Date picker components with date constraints and limitations.</p>
+        <div class="flex flex-col gap-4">
+          @for (picker of constrainedDatePickers; track picker.label) {
+            <div class="demo-item">
+              <label class="demo-label">{{ picker.label }}</label>
+              <p class="demo-description">{{ picker.description }}</p>
+              <sui-date-picker
+                [value]="picker.value"
+                [placeholder]="picker.placeholder"
+                [size]="picker.size"
+                [variant]="picker.variant"
+                [minDate]="picker.minDate"
+                [maxDate]="picker.maxDate"
+                (onChange)="onDateChange($event, picker)">
+              </sui-date-picker>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Form Integration') {
+    <div class="date-picker-demo">
+      <div class="demo-content">
+        <h3>Form Integration</h3>
+        <p>Date picker components integrated into forms for data collection.</p>
+        <div class="form-example">
+          <h4>Event Registration Form</h4>
+          <div class="form-grid">
+            <div class="form-field">
+              <label>Event Start Date</label>
+              <sui-date-picker
+                [value]="formData.startDate"
+                placeholder="Select start date"
+                size="normal"
+                variant="dropdown"
+                [required]="true"
+                (onChange)="onFormStartDateChange($event)">
+              </sui-date-picker>
+            </div>
+            <div class="form-field">
+              <label>Event End Date</label>
+              <sui-date-picker
+                [value]="formData.endDate"
+                placeholder="Select end date"
+                size="normal"
+                variant="dropdown"
+                [minDate]="formData.startDate"
+                (onChange)="onFormEndDateChange($event)">
+              </sui-date-picker>
+            </div>
+            <div class="form-field">
+              <label>Reminder Date</label>
+              <sui-date-picker
+                [value]="formData.reminderDate"
+                placeholder="Set reminder"
+                size="normal"
+                variant="dropdown"
+                [maxDate]="formData.startDate"
+                (onChange)="onFormReminderDateChange($event)">
+              </sui-date-picker>
+            </div>
+            <div class="form-field">
+              <label>Deadline</label>
+              <sui-date-picker
+                [value]="formData.deadline"
+                placeholder="Select deadline"
+                size="normal"
+                variant="dropdown"
+                [required]="true"
+                (onChange)="onFormDeadlineChange($event)">
+              </sui-date-picker>
+            </div>
+          </div>
+          <div class="form-actions">
+            <sui-button label="Submit Form" severity="primary"></sui-button>
+            <sui-button label="Reset" severity="secondary"></sui-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Booking System') {
+    <div class="date-picker-demo">
+      <div class="demo-content">
+        <h3>Booking System</h3>
+        <p>Date picker components used in booking and reservation systems.</p>
+        <div class="booking-example">
+          <h4>Hotel Booking</h4>
+          <div class="booking-form">
+            <div class="booking-row">
+              <div class="booking-field">
+                <label>Check-in Date</label>
+                <sui-date-picker
+                  [value]="bookingData.checkIn"
+                  placeholder="Select check-in date"
+                  size="normal"
+                  variant="dropdown"
+                  [minDate]="getToday()"
+                  (onChange)="onBookingCheckInChange($event)">
+                </sui-date-picker>
+              </div>
+              <div class="booking-field">
+                <label>Check-out Date</label>
+                <sui-date-picker
+                  [value]="bookingData.checkOut"
+                  placeholder="Select check-out date"
+                  size="normal"
+                  variant="dropdown"
+                  [minDate]="bookingData.checkIn || getToday()"
+                  (onChange)="onBookingCheckOutChange($event)">
+                </sui-date-picker>
+              </div>
+            </div>
+            <div class="booking-details">
+              <div class="booking-info">
+                <span>Guests: {{ bookingData.guestCount }}</span>
+                <span>Room: {{ bookingData.roomType }}</span>
+              </div>
+              <div class="booking-result">
+                @if (bookingData.checkIn && bookingData.checkOut) {
+                  <p>Duration: {{ getDuration(bookingData.checkIn, bookingData.checkOut) }} nights</p>
+                }
+              </div>
+            </div>
+            <div class="booking-actions">
+              <sui-button label="Book Now" severity="primary"></sui-button>
+              <sui-button label="Check Availability" severity="secondary"></sui-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Task Management') {
+    <div class="date-picker-demo">
+      <div class="demo-content">
+        <h3>Task Management</h3>
+        <p>Date picker components used in task and project management systems.</p>
+        <div class="task-example">
+          <h4>Project Task</h4>
+          <div class="task-form">
+            <div class="task-field">
+              <label>Task Start Date</label>
+              <sui-date-picker
+                [value]="taskData.startDate"
+                placeholder="Select start date"
+                size="normal"
+                variant="dropdown"
+                (onChange)="onTaskStartDateChange($event)">
+              </sui-date-picker>
+            </div>
+            <div class="task-field">
+              <label>Due Date</label>
+              <sui-date-picker
+                [value]="taskData.dueDate"
+                placeholder="Select due date"
+                size="normal"
+                variant="dropdown"
+                [minDate]="taskData.startDate || getToday()"
+                [required]="true"
+                (onChange)="onTaskDueDateChange($event)">
+              </sui-date-picker>
+            </div>
+            <div class="task-meta">
+              <div class="task-info">
+                <span>Priority: {{ taskData.priority }}</span>
+                <span>Status: {{ taskData.status }}</span>
+              </div>
+              <div class="task-timeline">
+                @if (taskData.startDate && taskData.dueDate) {
+                  <p>Duration: {{ getDuration(taskData.startDate, taskData.dueDate) }} days</p>
+                }
+              </div>
+            </div>
+            <div class="task-actions">
+              <sui-button label="Save Task" severity="primary"></sui-button>
+              <sui-button label="Assign" severity="secondary"></sui-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @default {
+    <p>Select an example to view the Date Picker component.</p>
+  }
+}

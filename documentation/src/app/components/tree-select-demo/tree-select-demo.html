@@ -1,0 +1,566 @@
+<div class="tree-select-demo">
+  <div class="demo-header">
+    <h2>Tree Select Component Demo</h2>
+    <p>Explore the various features and configurations of the Tree Select component</p>
+  </div>
+
+  <!-- Basic Examples -->
+  <div class="demo-section">
+    <h3>Basic Examples</h3>
+    <div class="demo-grid">
+      @for (treeSelect of basicTreeSelects; track treeSelect.label) {
+        <div class="demo-item">
+          <div class="demo-item-header">
+            <h4>{{ treeSelect.label }}</h4>
+            <span class="status-badge" [class]="getTreeSelectStatusColor(treeSelect)">
+              {{ getTreeSelectStatus(treeSelect) }}
+            </span>
+          </div>
+          <p class="demo-description">{{ treeSelect.description }}</p>
+          
+          <sui-tree-select
+            [options]="treeSelect.options"
+            [disabled]="treeSelect.disabled"
+            [loading]="treeSelect.loading"
+            [multiple]="treeSelect.multiple"
+            [searchable]="treeSelect.searchable"
+            [clearable]="treeSelect.clearable"
+            [size]="treeSelect.size"
+            [theme]="treeSelect.theme"
+            [color]="treeSelect.color"
+            [label]="treeSelect.label"
+            [helperText]="treeSelect.helperText"
+            [errorText]="treeSelect.errorText"
+            [placeholder]="treeSelect.placeholder"
+            [maxHeight]="treeSelect.maxHeight"
+            [compact]="treeSelect.compact"
+            [spacious]="treeSelect.spacious"
+            [animated]="treeSelect.animated"
+            [bounce]="treeSelect.bounce"
+            [glow]="treeSelect.glow"
+            (onSelect)="onTreeSelectSelect($event, treeSelect)"
+            (onExpand)="onTreeSelectExpand($event, treeSelect)"
+            (onCollapse)="onTreeSelectCollapse($event, treeSelect)"
+            (onFocus)="onTreeSelectFocus(treeSelect)"
+            (onBlur)="onTreeSelectBlur(treeSelect)"
+            (ngModelChange)="onTreeSelectChange($event, treeSelect)"
+            [ngModel]="treeSelect.multiple ? treeSelect.values : treeSelect.value"
+            (ngModelChange)="onTreeSelectModelChange($event, treeSelect)">
+          </sui-tree-select>
+          
+          <div class="demo-info">
+            <p><strong>Selected:</strong> {{ getSelectedText(treeSelect) }}</p>
+            <p><strong>Size:</strong> {{ treeSelect.size }}</p>
+            <p><strong>Color:</strong> {{ treeSelect.color }}</p>
+            <p><strong>Multiple:</strong> {{ treeSelect.multiple ? 'Yes' : 'No' }}</p>
+            <p><strong>Searchable:</strong> {{ treeSelect.searchable ? 'Yes' : 'No' }}</p>
+            <p><strong>Clearable:</strong> {{ treeSelect.clearable ? 'Yes' : 'No' }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Size Variations -->
+  <div class="demo-section">
+    <h3>Size Variations</h3>
+    <div class="demo-grid">
+      @for (treeSelect of sizeVariants; track treeSelect.label) {
+        <div class="demo-item">
+          <div class="demo-item-header">
+            <h4>{{ treeSelect.label }}</h4>
+            <span class="status-badge" [class]="getTreeSelectStatusColor(treeSelect)">
+              {{ getTreeSelectStatus(treeSelect) }}
+            </span>
+          </div>
+          <p class="demo-description">{{ treeSelect.description }}</p>
+          
+          <sui-tree-select
+            [options]="treeSelect.options"
+            [disabled]="treeSelect.disabled"
+            [loading]="treeSelect.loading"
+            [multiple]="treeSelect.multiple"
+            [searchable]="treeSelect.searchable"
+            [clearable]="treeSelect.clearable"
+            [size]="treeSelect.size"
+            [theme]="treeSelect.theme"
+            [color]="treeSelect.color"
+            [label]="treeSelect.label"
+            [helperText]="treeSelect.helperText"
+            [errorText]="treeSelect.errorText"
+            [placeholder]="treeSelect.placeholder"
+            [maxHeight]="treeSelect.maxHeight"
+            [compact]="treeSelect.compact"
+            [spacious]="treeSelect.spacious"
+            [animated]="treeSelect.animated"
+            [bounce]="treeSelect.bounce"
+            [glow]="treeSelect.glow"
+            (onSelect)="onTreeSelectSelect($event, treeSelect)"
+            (onExpand)="onTreeSelectExpand($event, treeSelect)"
+            (onCollapse)="onTreeSelectCollapse($event, treeSelect)"
+            (onFocus)="onTreeSelectFocus(treeSelect)"
+            (onBlur)="onTreeSelectBlur(treeSelect)"
+            (ngModelChange)="onTreeSelectChange($event, treeSelect)"
+            [ngModel]="treeSelect.multiple ? treeSelect.values : treeSelect.value"
+            (ngModelChange)="onTreeSelectModelChange($event, treeSelect)">
+          </sui-tree-select>
+          
+          <div class="demo-info">
+            <p><strong>Selected:</strong> {{ getSelectedText(treeSelect) }}</p>
+            <p><strong>Size:</strong> {{ treeSelect.size }}</p>
+            <p><strong>Max Height:</strong> {{ treeSelect.maxHeight }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Color Themes -->
+  <div class="demo-section">
+    <h3>Color Themes</h3>
+    <div class="demo-grid">
+      @for (treeSelect of colorThemes; track treeSelect.label) {
+        <div class="demo-item">
+          <div class="demo-item-header">
+            <h4>{{ treeSelect.label }}</h4>
+            <span class="status-badge" [class]="getTreeSelectStatusColor(treeSelect)">
+              {{ getTreeSelectStatus(treeSelect) }}
+            </span>
+          </div>
+          <p class="demo-description">{{ treeSelect.description }}</p>
+          
+          <sui-tree-select
+            [options]="treeSelect.options"
+            [disabled]="treeSelect.disabled"
+            [loading]="treeSelect.loading"
+            [multiple]="treeSelect.multiple"
+            [searchable]="treeSelect.searchable"
+            [clearable]="treeSelect.clearable"
+            [size]="treeSelect.size"
+            [theme]="treeSelect.theme"
+            [color]="treeSelect.color"
+            [label]="treeSelect.label"
+            [helperText]="treeSelect.helperText"
+            [errorText]="treeSelect.errorText"
+            [placeholder]="treeSelect.placeholder"
+            [maxHeight]="treeSelect.maxHeight"
+            [compact]="treeSelect.compact"
+            [spacious]="treeSelect.spacious"
+            [animated]="treeSelect.animated"
+            [bounce]="treeSelect.bounce"
+            [glow]="treeSelect.glow"
+            (onSelect)="onTreeSelectSelect($event, treeSelect)"
+            (onExpand)="onTreeSelectExpand($event, treeSelect)"
+            (onCollapse)="onTreeSelectCollapse($event, treeSelect)"
+            (onFocus)="onTreeSelectFocus(treeSelect)"
+            (onBlur)="onTreeSelectBlur(treeSelect)"
+            (ngModelChange)="onTreeSelectChange($event, treeSelect)"
+            [ngModel]="treeSelect.multiple ? treeSelect.values : treeSelect.value"
+            (ngModelChange)="onTreeSelectModelChange($event, treeSelect)">
+          </sui-tree-select>
+          
+          <div class="demo-info">
+            <p><strong>Selected:</strong> {{ getSelectedText(treeSelect) }}</p>
+            <p><strong>Color:</strong> {{ treeSelect.color }}</p>
+            <p><strong>Theme:</strong> {{ treeSelect.theme }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- State Examples -->
+  <div class="demo-section">
+    <h3>State Examples</h3>
+    <div class="demo-grid">
+      @for (treeSelect of stateExamples; track treeSelect.label) {
+        <div class="demo-item">
+          <div class="demo-item-header">
+            <h4>{{ treeSelect.label }}</h4>
+            <span class="status-badge" [class]="getTreeSelectStatusColor(treeSelect)">
+              {{ getTreeSelectStatus(treeSelect) }}
+            </span>
+          </div>
+          <p class="demo-description">{{ treeSelect.description }}</p>
+          
+          <sui-tree-select
+            [options]="treeSelect.options"
+            [disabled]="treeSelect.disabled"
+            [loading]="treeSelect.loading"
+            [multiple]="treeSelect.multiple"
+            [searchable]="treeSelect.searchable"
+            [clearable]="treeSelect.clearable"
+            [size]="treeSelect.size"
+            [theme]="treeSelect.theme"
+            [color]="treeSelect.color"
+            [label]="treeSelect.label"
+            [helperText]="treeSelect.helperText"
+            [errorText]="treeSelect.errorText"
+            [placeholder]="treeSelect.placeholder"
+            [maxHeight]="treeSelect.maxHeight"
+            [compact]="treeSelect.compact"
+            [spacious]="treeSelect.spacious"
+            [animated]="treeSelect.animated"
+            [bounce]="treeSelect.bounce"
+            [glow]="treeSelect.glow"
+            (onSelect)="onTreeSelectSelect($event, treeSelect)"
+            (onExpand)="onTreeSelectExpand($event, treeSelect)"
+            (onCollapse)="onTreeSelectCollapse($event, treeSelect)"
+            (onFocus)="onTreeSelectFocus(treeSelect)"
+            (onBlur)="onTreeSelectBlur(treeSelect)"
+            (ngModelChange)="onTreeSelectChange($event, treeSelect)"
+            [ngModel]="treeSelect.multiple ? treeSelect.values : treeSelect.value"
+            (ngModelChange)="onTreeSelectModelChange($event, treeSelect)">
+          </sui-tree-select>
+          
+          <div class="demo-info">
+            <p><strong>Selected:</strong> {{ getSelectedText(treeSelect) }}</p>
+            <p><strong>State:</strong> {{ getTreeSelectStatus(treeSelect) }}</p>
+            <p><strong>Helper Text:</strong> {{ treeSelect.helperText }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Layout Options -->
+  <div class="demo-section">
+    <h3>Layout Options</h3>
+    <div class="demo-grid">
+      @for (treeSelect of layoutOptions; track treeSelect.label) {
+        <div class="demo-item">
+          <div class="demo-item-header">
+            <h4>{{ treeSelect.label }}</h4>
+            <span class="status-badge" [class]="getTreeSelectStatusColor(treeSelect)">
+              {{ getTreeSelectStatus(treeSelect) }}
+            </span>
+          </div>
+          <p class="demo-description">{{ treeSelect.description }}</p>
+          
+          <sui-tree-select
+            [options]="treeSelect.options"
+            [disabled]="treeSelect.disabled"
+            [loading]="treeSelect.loading"
+            [multiple]="treeSelect.multiple"
+            [searchable]="treeSelect.searchable"
+            [clearable]="treeSelect.clearable"
+            [size]="treeSelect.size"
+            [theme]="treeSelect.theme"
+            [color]="treeSelect.color"
+            [label]="treeSelect.label"
+            [helperText]="treeSelect.helperText"
+            [errorText]="treeSelect.errorText"
+            [placeholder]="treeSelect.placeholder"
+            [maxHeight]="treeSelect.maxHeight"
+            [compact]="treeSelect.compact"
+            [spacious]="treeSelect.spacious"
+            [animated]="treeSelect.animated"
+            [bounce]="treeSelect.bounce"
+            [glow]="treeSelect.glow"
+            (onSelect)="onTreeSelectSelect($event, treeSelect)"
+            (onExpand)="onTreeSelectExpand($event, treeSelect)"
+            (onCollapse)="onTreeSelectCollapse($event, treeSelect)"
+            (onFocus)="onTreeSelectFocus(treeSelect)"
+            (onBlur)="onTreeSelectBlur(treeSelect)"
+            (ngModelChange)="onTreeSelectChange($event, treeSelect)"
+            [ngModel]="treeSelect.multiple ? treeSelect.values : treeSelect.value"
+            (ngModelChange)="onTreeSelectModelChange($event, treeSelect)">
+          </sui-tree-select>
+          
+          <div class="demo-info">
+            <p><strong>Selected:</strong> {{ getSelectedText(treeSelect) }}</p>
+            <p><strong>Compact:</strong> {{ treeSelect.compact ? 'Yes' : 'No' }}</p>
+            <p><strong>Spacious:</strong> {{ treeSelect.spacious ? 'Yes' : 'No' }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Animation Effects -->
+  <div class="demo-section">
+    <h3>Animation Effects</h3>
+    <div class="demo-grid">
+      @for (treeSelect of animationEffects; track treeSelect.label) {
+        <div class="demo-item">
+          <div class="demo-item-header">
+            <h4>{{ treeSelect.label }}</h4>
+            <span class="status-badge" [class]="getTreeSelectStatusColor(treeSelect)">
+              {{ getTreeSelectStatus(treeSelect) }}
+            </span>
+          </div>
+          <p class="demo-description">{{ treeSelect.description }}</p>
+          
+          <sui-tree-select
+            [options]="treeSelect.options"
+            [disabled]="treeSelect.disabled"
+            [loading]="treeSelect.loading"
+            [multiple]="treeSelect.multiple"
+            [searchable]="treeSelect.searchable"
+            [clearable]="treeSelect.clearable"
+            [size]="treeSelect.size"
+            [theme]="treeSelect.theme"
+            [color]="treeSelect.color"
+            [label]="treeSelect.label"
+            [helperText]="treeSelect.helperText"
+            [errorText]="treeSelect.errorText"
+            [placeholder]="treeSelect.placeholder"
+            [maxHeight]="treeSelect.maxHeight"
+            [compact]="treeSelect.compact"
+            [spacious]="treeSelect.spacious"
+            [animated]="treeSelect.animated"
+            [bounce]="treeSelect.bounce"
+            [glow]="treeSelect.glow"
+            (onSelect)="onTreeSelectSelect($event, treeSelect)"
+            (onExpand)="onTreeSelectExpand($event, treeSelect)"
+            (onCollapse)="onTreeSelectCollapse($event, treeSelect)"
+            (onFocus)="onTreeSelectFocus(treeSelect)"
+            (onBlur)="onTreeSelectBlur(treeSelect)"
+            (ngModelChange)="onTreeSelectChange($event, treeSelect)"
+            [ngModel]="treeSelect.multiple ? treeSelect.values : treeSelect.value"
+            (ngModelChange)="onTreeSelectModelChange($event, treeSelect)">
+          </sui-tree-select>
+          
+          <div class="demo-info">
+            <p><strong>Selected:</strong> {{ getSelectedText(treeSelect) }}</p>
+            <p><strong>Animated:</strong> {{ treeSelect.animated ? 'Yes' : 'No' }}</p>
+            <p><strong>Bounce:</strong> {{ treeSelect.bounce ? 'Yes' : 'No' }}</p>
+            <p><strong>Glow:</strong> {{ treeSelect.glow ? 'Yes' : 'No' }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Real-world Examples -->
+  <div class="demo-section">
+    <h3>Real-world Examples</h3>
+    <div class="demo-grid">
+      <div class="demo-item full-width">
+        <div class="demo-item-header">
+          <h4>{{ fileExplorer.label }}</h4>
+          <span class="status-badge" [class]="getTreeSelectStatusColor(fileExplorer)">
+            {{ getTreeSelectStatus(fileExplorer) }}
+          </span>
+        </div>
+        <p class="demo-description">{{ fileExplorer.description }}</p>
+        
+        <sui-tree-select
+          [options]="fileExplorer.options"
+          [disabled]="fileExplorer.disabled"
+          [loading]="fileExplorer.loading"
+          [multiple]="fileExplorer.multiple"
+          [searchable]="fileExplorer.searchable"
+          [clearable]="fileExplorer.clearable"
+          [size]="fileExplorer.size"
+          [theme]="fileExplorer.theme"
+          [color]="fileExplorer.color"
+          [label]="fileExplorer.label"
+          [helperText]="fileExplorer.helperText"
+          [errorText]="fileExplorer.errorText"
+          [placeholder]="fileExplorer.placeholder"
+          [maxHeight]="fileExplorer.maxHeight"
+          [compact]="fileExplorer.compact"
+          [spacious]="fileExplorer.spacious"
+          [animated]="fileExplorer.animated"
+          [bounce]="fileExplorer.bounce"
+          [glow]="fileExplorer.glow"
+          (onSelect)="onTreeSelectSelect($event, fileExplorer)"
+          (onExpand)="onTreeSelectExpand($event, fileExplorer)"
+          (onCollapse)="onTreeSelectCollapse($event, fileExplorer)"
+          (onFocus)="onTreeSelectFocus(fileExplorer)"
+          (onBlur)="onTreeSelectBlur(fileExplorer)"
+          (ngModelChange)="onTreeSelectChange($event, fileExplorer)"
+          [ngModel]="fileExplorer.multiple ? fileExplorer.values : fileExplorer.value"
+          (ngModelChange)="onTreeSelectModelChange($event, fileExplorer)">
+        </sui-tree-select>
+        
+        <div class="demo-info">
+          <p><strong>Selected:</strong> {{ getSelectedText(fileExplorer) }}</p>
+          <p><strong>Features:</strong> Searchable, Clearable, Animated</p>
+          <p><strong>Use Case:</strong> File system navigation</p>
+        </div>
+      </div>
+
+      <div class="demo-item full-width">
+        <div class="demo-item-header">
+          <h4>{{ categorySelector.label }}</h4>
+          <span class="status-badge" [class]="getTreeSelectStatusColor(categorySelector)">
+            {{ getTreeSelectStatus(categorySelector) }}
+          </span>
+        </div>
+        <p class="demo-description">{{ categorySelector.description }}</p>
+        
+        <sui-tree-select
+          [options]="categorySelector.options"
+          [disabled]="categorySelector.disabled"
+          [loading]="categorySelector.loading"
+          [multiple]="categorySelector.multiple"
+          [searchable]="categorySelector.searchable"
+          [clearable]="categorySelector.clearable"
+          [size]="categorySelector.size"
+          [theme]="categorySelector.theme"
+          [color]="categorySelector.color"
+          [label]="categorySelector.label"
+          [helperText]="categorySelector.helperText"
+          [errorText]="categorySelector.errorText"
+          [placeholder]="categorySelector.placeholder"
+          [maxHeight]="categorySelector.maxHeight"
+          [compact]="categorySelector.compact"
+          [spacious]="categorySelector.spacious"
+          [animated]="categorySelector.animated"
+          [bounce]="categorySelector.bounce"
+          [glow]="categorySelector.glow"
+          (onSelect)="onTreeSelectSelect($event, categorySelector)"
+          (onExpand)="onTreeSelectExpand($event, categorySelector)"
+          (onCollapse)="onTreeSelectCollapse($event, categorySelector)"
+          (onFocus)="onTreeSelectFocus(categorySelector)"
+          (onBlur)="onTreeSelectBlur(categorySelector)"
+          (ngModelChange)="onTreeSelectChange($event, categorySelector)"
+          [ngModel]="categorySelector.multiple ? categorySelector.values : categorySelector.value"
+          (ngModelChange)="onTreeSelectModelChange($event, categorySelector)">
+        </sui-tree-select>
+        
+        <div class="demo-info">
+          <p><strong>Selected:</strong> {{ getSelectedText(categorySelector) }}</p>
+          <p><strong>Features:</strong> Multi-select, Searchable, Clearable, Spacious, Animated</p>
+          <p><strong>Use Case:</strong> E-commerce category selection</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Playground -->
+  <div class="demo-section">
+    <h3>Interactive Playground</h3>
+    <div class="playground">
+      <div class="playground-controls">
+        <div class="control-group">
+          <label>Size:</label>
+          <select [(ngModel)]="playgroundTreeSelect.size">
+            <option value="sm">Small</option>
+            <option value="md">Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label>Color:</label>
+          <select [(ngModel)]="playgroundTreeSelect.color">
+            <option value="default">Default</option>
+            <option value="primary">Primary</option>
+            <option value="success">Success</option>
+            <option value="warning">Warning</option>
+            <option value="danger">Danger</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label>Theme:</label>
+          <select [(ngModel)]="playgroundTreeSelect.theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="playgroundTreeSelect.multiple"> Multiple
+          </label>
+        </div>
+        
+        <div class="control-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="playgroundTreeSelect.searchable"> Searchable
+          </label>
+        </div>
+        
+        <div class="control-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="playgroundTreeSelect.clearable"> Clearable
+          </label>
+        </div>
+        
+        <div class="control-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="playgroundTreeSelect.animated"> Animated
+          </label>
+        </div>
+        
+        <div class="control-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="playgroundTreeSelect.bounce"> Bounce
+          </label>
+        </div>
+        
+        <div class="control-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="playgroundTreeSelect.glow"> Glow
+          </label>
+        </div>
+        
+        <div class="control-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="playgroundTreeSelect.compact"> Compact
+          </label>
+        </div>
+        
+        <div class="control-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="playgroundTreeSelect.spacious"> Spacious
+          </label>
+        </div>
+      </div>
+      
+      <div class="playground-result">
+        <sui-tree-select
+          [options]="playgroundTreeSelect.options"
+          [disabled]="playgroundTreeSelect.disabled"
+          [loading]="playgroundTreeSelect.loading"
+          [multiple]="playgroundTreeSelect.multiple"
+          [searchable]="playgroundTreeSelect.searchable"
+          [clearable]="playgroundTreeSelect.clearable"
+          [size]="playgroundTreeSelect.size"
+          [theme]="playgroundTreeSelect.theme"
+          [color]="playgroundTreeSelect.color"
+          [label]="playgroundTreeSelect.label"
+          [helperText]="playgroundTreeSelect.helperText"
+          [errorText]="playgroundTreeSelect.errorText"
+          [placeholder]="playgroundTreeSelect.placeholder"
+          [maxHeight]="playgroundTreeSelect.maxHeight"
+          [compact]="playgroundTreeSelect.compact"
+          [spacious]="playgroundTreeSelect.spacious"
+          [animated]="playgroundTreeSelect.animated"
+          [bounce]="playgroundTreeSelect.bounce"
+          [glow]="playgroundTreeSelect.glow"
+          (onSelect)="onTreeSelectSelect($event, playgroundTreeSelect)"
+          (onExpand)="onTreeSelectExpand($event, playgroundTreeSelect)"
+          (onCollapse)="onTreeSelectCollapse($event, playgroundTreeSelect)"
+          (onFocus)="onTreeSelectFocus(playgroundTreeSelect)"
+          (onBlur)="onTreeSelectBlur(playgroundTreeSelect)"
+          (ngModelChange)="onTreeSelectChange($event, playgroundTreeSelect)"
+          [ngModel]="playgroundTreeSelect.multiple ? playgroundTreeSelect.values : playgroundTreeSelect.value"
+          (ngModelChange)="onTreeSelectModelChange($event, playgroundTreeSelect)">
+        </sui-tree-select>
+        
+        <div class="playground-info">
+          <h4>Current Configuration:</h4>
+          <ul>
+            <li><strong>Size:</strong> {{ playgroundTreeSelect.size }}</li>
+            <li><strong>Color:</strong> {{ playgroundTreeSelect.color }}</li>
+            <li><strong>Theme:</strong> {{ playgroundTreeSelect.theme }}</li>
+            <li><strong>Multiple:</strong> {{ playgroundTreeSelect.multiple ? 'Yes' : 'No' }}</li>
+            <li><strong>Searchable:</strong> {{ playgroundTreeSelect.searchable ? 'Yes' : 'No' }}</li>
+            <li><strong>Clearable:</strong> {{ playgroundTreeSelect.clearable ? 'Yes' : 'No' }}</li>
+            <li><strong>Animated:</strong> {{ playgroundTreeSelect.animated ? 'Yes' : 'No' }}</li>
+            <li><strong>Bounce:</strong> {{ playgroundTreeSelect.bounce ? 'Yes' : 'No' }}</li>
+            <li><strong>Glow:</strong> {{ playgroundTreeSelect.glow ? 'Yes' : 'No' }}</li>
+            <li><strong>Compact:</strong> {{ playgroundTreeSelect.compact ? 'Yes' : 'No' }}</li>
+            <li><strong>Spacious:</strong> {{ playgroundTreeSelect.spacious ? 'Yes' : 'No' }}</li>
+          </ul>
+          <p><strong>Selected:</strong> {{ getSelectedText(playgroundTreeSelect) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
