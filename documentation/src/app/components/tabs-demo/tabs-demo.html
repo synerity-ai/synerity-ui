@@ -1,0 +1,129 @@
+<!-- Basic Tabs Example -->
+<div *ngIf="currentExample.name === 'Basic Tabs'" class="tabs-demo-example">
+  <sui-tabs 
+    [tabs]="basicTabs" 
+    [activeIndex]="basicActiveIndex"
+    (onActiveIndexChange)="onBasicTabChange($event)">
+    
+    <div *ngIf="basicActiveIndex === 0" class="p-4">
+      <h4 class="font-semibold mb-2">Home Content</h4>
+      <p>{{ basicTabs[0].content }}</p>
+    </div>
+    
+    <div *ngIf="basicActiveIndex === 1" class="p-4">
+      <h4 class="font-semibold mb-2">About Content</h4>
+      <p>{{ basicTabs[1].content }}</p>
+    </div>
+    
+    <div *ngIf="basicActiveIndex === 2" class="p-4">
+      <h4 class="font-semibold mb-2">Contact Content</h4>
+      <p>{{ basicTabs[2].content }}</p>
+    </div>
+  </sui-tabs>
+</div>
+
+<!-- Tabs with Icons Example -->
+<div *ngIf="currentExample.name === 'Tabs with Icons'" class="tabs-demo-example">
+  <sui-tabs 
+    [tabs]="iconTabs" 
+    [activeIndex]="iconActiveIndex"
+    (onActiveIndexChange)="onIconTabChange($event)">
+    
+    <div *ngIf="iconActiveIndex === 0" class="p-4">
+      <h4 class="font-semibold mb-2">📊 Dashboard</h4>
+      <p>{{ iconTabs[0].content }}</p>
+    </div>
+    
+    <div *ngIf="iconActiveIndex === 1" class="p-4">
+      <h4 class="font-semibold mb-2">📈 Analytics</h4>
+      <p>{{ iconTabs[1].content }}</p>
+    </div>
+    
+    <div *ngIf="iconActiveIndex === 2" class="p-4">
+      <h4 class="font-semibold mb-2">⚙️ Settings</h4>
+      <p>{{ iconTabs[2].content }}</p>
+    </div>
+  </sui-tabs>
+</div>
+
+<!-- Closable Tabs Example -->
+<div *ngIf="currentExample.name === 'Closable Tabs'" class="tabs-demo-example">
+  <sui-tabs 
+    [tabs]="closableTabs" 
+    [activeIndex]="closableActiveIndex"
+    (onActiveIndexChange)="onClosableTabChange($event)"
+    (onTabClose)="onClosableTabClose($event)">
+    
+    <div *ngIf="closableActiveIndex === 0" class="p-4">
+      <h4 class="font-semibold mb-2">Tab 1 Content</h4>
+      <p>{{ closableTabs[0].content }}</p>
+    </div>
+    
+    <div *ngIf="closableActiveIndex === 1" class="p-4">
+      <h4 class="font-semibold mb-2">Tab 2 Content</h4>
+      <p>{{ closableTabs[1].content }}</p>
+    </div>
+    
+    <div *ngIf="closableActiveIndex === 2" class="p-4">
+      <h4 class="font-semibold mb-2">Tab 3 Content</h4>
+      <p>{{ closableTabs[2].content }}</p>
+    </div>
+  </sui-tabs>
+</div>
+
+<!-- Different Orientations Example -->
+<div *ngIf="currentExample.name === 'Different Orientations'" class="tabs-demo-example">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Left Orientation -->
+    <div>
+      <h4 class="font-medium mb-3">Left Orientation</h4>
+      <sui-tabs 
+        [tabs]="leftTabs" 
+        [activeIndex]="leftActiveIndex"
+        orientation="left"
+        (onActiveIndexChange)="onLeftTabChange($event)">
+        
+        <div *ngIf="leftActiveIndex === 0" class="p-4">
+          <h4 class="font-semibold mb-2">Profile Settings</h4>
+          <p>{{ leftTabs[0].content }}</p>
+        </div>
+        
+        <div *ngIf="leftActiveIndex === 1" class="p-4">
+          <h4 class="font-semibold mb-2">Security Settings</h4>
+          <p>{{ leftTabs[1].content }}</p>
+        </div>
+        
+        <div *ngIf="leftActiveIndex === 2" class="p-4">
+          <h4 class="font-semibold mb-2">Notification Settings</h4>
+          <p>{{ leftTabs[2].content }}</p>
+        </div>
+      </sui-tabs>
+    </div>
+
+    <!-- Right Orientation -->
+    <div>
+      <h4 class="font-medium mb-3">Right Orientation</h4>
+      <sui-tabs 
+        [tabs]="rightTabs" 
+        [activeIndex]="rightActiveIndex"
+        orientation="right"
+        (onActiveIndexChange)="onRightTabChange($event)">
+        
+        <div *ngIf="rightActiveIndex === 0" class="p-4">
+          <h4 class="font-semibold mb-2">Projects</h4>
+          <p>{{ rightTabs[0].content }}</p>
+        </div>
+        
+        <div *ngIf="rightActiveIndex === 1" class="p-4">
+          <h4 class="font-semibold mb-2">Tasks</h4>
+          <p>{{ rightTabs[1].content }}</p>
+        </div>
+        
+        <div *ngIf="rightActiveIndex === 2" class="p-4">
+          <h4 class="font-semibold mb-2">Team Management</h4>
+          <p>{{ rightTabs[2].content }}</p>
+        </div>
+      </sui-tabs>
+    </div>
+  </div>
+</div>

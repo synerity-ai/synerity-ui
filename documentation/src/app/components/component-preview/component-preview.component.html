@@ -22,7 +22,12 @@
     </div>
     
     <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-      <div class="flex flex-wrap gap-6 items-center justify-center min-h-[120px]">
+      <div class="w-full min-h-[120px]"
+           [class.flex]="componentName !== 'Carousel' && componentName !== 'Progress Bar'"
+           [class.flex-wrap]="componentName !== 'Carousel' && componentName !== 'Progress Bar'"
+           [class.gap-6]="componentName !== 'Carousel' && componentName !== 'Progress Bar'"
+           [class.items-center]="componentName !== 'Carousel' && componentName !== 'Progress Bar'"
+           [class.justify-center]="componentName !== 'Carousel' && componentName !== 'Progress Bar'">
         <!-- Render actual Synerity UI components -->
         @switch (componentName) {
           @case ('Button') {
@@ -49,6 +54,33 @@
                  @case ('Dialog') {
                    <app-dialog-demo [currentExample]="getCurrentExample()"></app-dialog-demo>
                  }
+                 @case ('Carousel') {
+                   <app-carousel-demo [currentExample]="getCurrentExample()"></app-carousel-demo>
+                 }
+                 @case ('Toast') {
+                   <app-toast-demo [currentExample]="getCurrentExample()"></app-toast-demo>
+                 }
+         @case ('Progress Bar') {
+           <app-progress-bar-demo [currentExample]="getCurrentExample()"></app-progress-bar-demo>
+         }
+         @case ('Checkbox') {
+           <app-checkbox-demo [currentExample]="getCurrentExample()"></app-checkbox-demo>
+         }
+         @case ('Radio Button') {
+           <app-radio-button-demo [currentExample]="getCurrentExample()"></app-radio-button-demo>
+         }
+         @case ('Select') {
+           <app-select-demo [currentExample]="getCurrentExample()"></app-select-demo>
+         }
+         @case ('Tabs') {
+           <app-tabs-demo [currentExample]="getCurrentExample()"></app-tabs-demo>
+         }
+                        @case ('Textarea') {
+                          <app-textarea-demo [currentExample]="getCurrentExample()"></app-textarea-demo>
+                        }
+                        @case ('Tooltip') {
+                          <app-tooltip-demo [currentExample]="getCurrentExample()"></app-tooltip-demo>
+                        }
                  @default {
             <!-- Fallback for other components -->
             <div class="text-center text-gray-500 py-12">

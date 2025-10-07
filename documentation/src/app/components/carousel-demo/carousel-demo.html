@@ -1,0 +1,126 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Carousel') {
+    <div class="carousel-container">
+      <sui-carousel
+        [value]="images"
+        [circular]="true"
+        [showIndicators]="true"
+        [showNavigators]="true"
+        [autoplayInterval]="0"
+        styleClass="basic-carousel">
+        <ng-template let-item pTemplate="item">
+          <div class="carousel-item">
+            <img [src]="item.src" [alt]="item.alt" class="carousel-image" />
+            <div class="carousel-caption">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.caption }}</p>
+            </div>
+          </div>
+        </ng-template>
+      </sui-carousel>
+    </div>
+  }
+  @case ('Autoplay Carousel') {
+    <div class="carousel-container">
+      <sui-carousel
+        [value]="images"
+        [circular]="true"
+        [showIndicators]="true"
+        [showNavigators]="true"
+        [autoplayInterval]="3000"
+        styleClass="autoplay-carousel">
+        <ng-template let-item pTemplate="item">
+          <div class="carousel-item">
+            <img [src]="item.src" [alt]="item.alt" class="carousel-image" />
+            <div class="carousel-caption">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.caption }}</p>
+            </div>
+          </div>
+        </ng-template>
+      </sui-carousel>
+    </div>
+  }
+  @case ('Product Showcase') {
+    <div class="carousel-container">
+      <sui-carousel
+        [value]="products"
+        [circular]="true"
+        [showIndicators]="true"
+        [showNavigators]="true"
+        [autoplayInterval]="0"
+        styleClass="product-carousel">
+        <ng-template let-item pTemplate="item">
+          <div class="product-item">
+            <img [src]="item.src" [alt]="item.alt" class="product-image" />
+            <div class="product-info">
+              <h4>{{ item.title }}</h4>
+              <p class="product-price">{{ item.price }}</p>
+              <p class="product-description">{{ item.caption }}</p>
+              <button class="product-button">Add to Cart</button>
+            </div>
+          </div>
+        </ng-template>
+      </sui-carousel>
+    </div>
+  }
+  @case ('Compact Size') {
+    <div class="carousel-container">
+      <sui-carousel
+        [value]="images.slice(0, 3)"
+        [circular]="true"
+        [showIndicators]="true"
+        [showNavigators]="true"
+        [autoplayInterval]="0"
+        styleClass="compact">
+        <ng-template let-item pTemplate="item">
+          <img [src]="item.src" [alt]="item.alt" class="carousel-image" />
+        </ng-template>
+      </sui-carousel>
+    </div>
+  }
+  @case ('Large Size') {
+    <div class="carousel-container">
+      <sui-carousel
+        [value]="images"
+        [circular]="true"
+        [showIndicators]="true"
+        [showNavigators]="true"
+        [autoplayInterval]="0"
+        styleClass="large">
+        <ng-template let-item pTemplate="item">
+          <img [src]="item.src" [alt]="item.alt" class="carousel-image" />
+        </ng-template>
+      </sui-carousel>
+    </div>
+  }
+  @case ('Square Aspect') {
+    <div class="carousel-container">
+      <sui-carousel
+        [value]="images"
+        [circular]="true"
+        [showIndicators]="true"
+        [showNavigators]="true"
+        [autoplayInterval]="0"
+        styleClass="square">
+        <ng-template let-item pTemplate="item">
+          <img [src]="item.src" [alt]="item.alt" class="carousel-image" />
+        </ng-template>
+      </sui-carousel>
+    </div>
+  }
+  @default {
+    <div class="carousel-container">
+      <sui-carousel
+        [value]="images.slice(0, 3)"
+        [circular]="true"
+        [showIndicators]="true"
+        [autoplayInterval]="0"
+        styleClass="default-carousel">
+        <ng-template let-item pTemplate="item">
+          <img [src]="item.src" [alt]="item.alt" class="carousel-image" />
+        </ng-template>
+      </sui-carousel>
+    </div>
+  }
+}

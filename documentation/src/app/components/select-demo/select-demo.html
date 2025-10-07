@@ -1,0 +1,286 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Select') {
+    <div class="select-demo">
+      <div class="demo-content">
+        <h3>Basic Select</h3>
+        <p>Simple select component with basic functionality and placeholder.</p>
+        <div class="space-y-4">
+          <sui-select
+            placeholder="Choose an option"
+            [options]="basicOptions"
+            [(ngModel)]="basicSelectedValue"
+            [clearable]="true">
+          </sui-select>
+          <div class="mt-4 p-3 bg-gray-100 rounded">
+            <span class="text-sm text-gray-600">Selected: {{ getSelectedOptionLabel(basicOptions, basicSelectedValue || '') }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Size Variations') {
+    <div class="select-demo">
+      <div class="demo-content">
+        <h3>Size Variations</h3>
+        <p>Select components available in different sizes.</p>
+        <div class="space-y-6">
+          <div *ngFor="let variant of sizeVariants" class="flex items-center gap-3">
+            <sui-select
+              [placeholder]="'Choose ' + variant.label"
+              [options]="basicOptions"
+              [(ngModel)]="sizeSelectedValue"
+              class="{{ variant.size }}">
+            </sui-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Form Integration') {
+    <div class="select-demo">
+      <div class="demo-content">
+        <h3>Form Integration</h3>
+        <p>Select components integrated within a form with validation and dependent fields.</p>
+        <form class="space-y-6" (ngSubmit)="submitForm()">
+          <div class="form-group">
+            <label class="form-label">Country</label>
+            <sui-select
+              placeholder="Select your country"
+              [options]="countries"
+              [(ngModel)]="formData.country"
+              name="country"
+              inputId="country"
+              (change)="onCountryChange()"
+              [loading]="isLoadingCountries"
+              required>
+            </sui-select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">City</label>
+            <sui-select
+              placeholder="Select your city"
+              [options]="getCitiesForCountry()"
+              [(ngModel)]="formData.city"
+              name="city"
+              inputId="city"
+              [disabled]="!formData.country"
+              [loading]="isLoadingCities"
+              required>
+            </sui-select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Language</label>
+            <sui-select
+              placeholder="Select your language"
+              [options]="languages"
+              [(ngModel)]="formData.language"
+              name="language"
+              inputId="language"
+              required>
+            </sui-select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Timezone</label>
+            <sui-select
+              placeholder="Select your timezone"
+              [options]="timezones"
+              [(ngModel)]="formData.timezone"
+              name="timezone"
+              inputId="timezone"
+              required>
+            </sui-select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Currency</label>
+            <sui-select
+              placeholder="Select your currency"
+              [options]="currencies"
+              [(ngModel)]="formData.currency"
+              name="currency"
+              inputId="currency"
+              required>
+            </sui-select>
+          </div>
+          
+          <div class="form-actions">
+            <sui-button type="submit" [disabled]="!formData.country || !formData.city || !formData.language">Submit Form</sui-button>
+            <sui-button type="button" variant="outline" (click)="resetForm()">Reset</sui-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+  
+  @case ('Multi-Select with Search') {
+    <div class="select-demo">
+      <div class="demo-content">
+        <h3>Multi-Select with Search</h3>
+        <p>Multi-select component with search functionality and select all options.</p>
+        <div class="space-y-6">
+          <div class="form-group">
+            <label class="form-label">Skills</label>
+            <sui-select
+              placeholder="Select your skills"
+              [options]="skills"
+              [(ngModel)]="selectedSkills"
+              [multiple]="true"
+              [searchable]="true"
+              [selectAll]="true"
+              name="skills"
+              inputId="skills"
+              searchPlaceholder="Search skills..."
+              [maxDisplayItems]="2">
+            </sui-select>
+            <div class="selected-items-display" *ngIf="selectedSkills.length > 0">
+              <h5>Selected Skills ({{ selectedSkills.length }}):</h5>
+              <div class="skills-grid">
+                <div *ngFor="let skill of getSelectedSkills()" class="skill-chip">
+                  <span class="skill-name">{{ skill.label }}</span>
+                  <span class="skill-category">{{ skill.category }}</span>
+                  <span class="skill-level" [style.background-color]="getSkillLevelColor(skill.level)">
+                    {{ skill.level }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Product Selection') {
+    <div class="select-demo">
+      <div class="demo-content">
+        <h3>Product Selection</h3>
+        <p>Multi-select component for product selection with pricing information.</p>
+        <div class="space-y-6">
+          <div class="form-group">
+            <label class="form-label">Products</label>
+            <sui-select
+              placeholder="Select products"
+              [options]="products"
+              [(ngModel)]="selectedProducts"
+              [multiple]="true"
+              [searchable]="true"
+              [selectAll]="true"
+              name="products"
+              inputId="products"
+              searchPlaceholder="Search products..."
+              [maxDisplayItems]="3">
+            </sui-select>
+            
+            <div class="selected-products-display" *ngIf="selectedProducts.length > 0">
+              <div class="products-summary">
+                <h5>Selected Products ({{ selectedProducts.length }}):</h5>
+                <div class="total-price">Total: ${{ getTotalPrice() }}</div>
+              </div>
+              
+              <div class="products-grid">
+                <div *ngFor="let product of getSelectedProducts()" class="product-card">
+                  <div class="product-info">
+                    <span class="product-name">{{ product.label }}</span>
+                    <span class="product-category">{{ product.category }}</span>
+                  </div>
+                  <div class="product-price">${{ product.price }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Loading States') {
+    <div class="select-demo">
+      <div class="demo-content">
+        <h3>Loading States</h3>
+        <p>Select components with loading states for async data.</p>
+        <div class="space-y-6">
+          <div class="form-group">
+            <label class="form-label">Countries (Loading)</label>
+            <sui-select
+              placeholder="Loading countries..."
+              [options]="countries"
+              [(ngModel)]="selectedCountry"
+              [loading]="isLoadingCountries"
+              name="countries-loading"
+              inputId="countries-loading">
+            </sui-select>
+            <sui-button (click)="loadCountries()" size="sm" variant="outline">
+              {{ isLoadingCountries ? 'Loading...' : 'Load Countries' }}
+            </sui-button>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Cities (Loading)</label>
+            <sui-select
+              placeholder="Loading cities..."
+              [options]="getCitiesForCountry()"
+              [(ngModel)]="selectedCity"
+              [loading]="isLoadingCities"
+              name="cities-loading"
+              inputId="cities-loading">
+            </sui-select>
+            <sui-button (click)="loadCities()" size="sm" variant="outline">
+              {{ isLoadingCities ? 'Loading...' : 'Load Cities' }}
+            </sui-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Custom Styling') {
+    <div class="select-demo">
+      <div class="demo-content">
+        <h3>Custom Styling</h3>
+        <p>Select components with custom styling and effects.</p>
+        <div class="space-y-4">
+          <sui-select
+            placeholder="Enhanced Select"
+            [options]="customOptions"
+            [(ngModel)]="customSelectedValue"
+            [clearable]="true"
+            class="enhanced">
+          </sui-select>
+          
+          <sui-select
+            placeholder="Searchable Select"
+            [options]="languages"
+            [(ngModel)]="formData.language"
+            [searchable]="true"
+            searchPlaceholder="Search languages..."
+            class="searchable">
+          </sui-select>
+          
+          <sui-select
+            placeholder="Multi-Select with Custom Display"
+            [options]="skills"
+            [(ngModel)]="selectedSkills"
+            [multiple]="true"
+            [searchable]="true"
+            [selectAll]="true"
+            [maxDisplayItems]="1"
+            [showSelectedCount]="true"
+            class="multi-select">
+          </sui-select>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @default {
+    <div class="text-center text-gray-500 py-12">
+      <p class="text-lg font-medium">Component preview not available</p>
+      <p class="text-sm text-gray-400 mt-1">Select component will be shown here</p>
+    </div>
+  }
+}

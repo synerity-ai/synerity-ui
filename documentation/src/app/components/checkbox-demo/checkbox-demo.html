@@ -1,0 +1,283 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Checkbox') {
+    <div class="checkbox-demo">
+      <div class="demo-content">
+        <h3>Basic Checkbox</h3>
+        <p>A simple checkbox with basic functionality.</p>
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <sui-checkbox 
+              [(ngModel)]="basicChecked" 
+              label="Basic Checkbox">
+            </sui-checkbox>
+            <span class="text-sm text-gray-600">Checked: {{ basicChecked }}</span>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <sui-checkbox 
+              [indeterminate]="basicIndeterminate"
+              [(ngModel)]="basicChecked" 
+              label="Indeterminate Checkbox">
+            </sui-checkbox>
+            <sui-button (click)="toggleIndeterminate()" size="sm" variant="outline">
+              Toggle Indeterminate
+            </sui-button>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <sui-checkbox 
+              [disabled]="true" 
+              [ngModel]="true" 
+              label="Disabled Checkbox">
+            </sui-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Size Variations') {
+    <div class="checkbox-demo">
+      <div class="demo-content">
+        <h3>Size Variations</h3>
+        <p>Checkboxes available in different sizes.</p>
+        <div class="space-y-6">
+          <div *ngFor="let variant of sizeVariants" class="flex items-center gap-3">
+            <sui-checkbox 
+              [cssClass]="'checkbox-' + variant.size"
+              label="{{ variant.label }}">
+            </sui-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Color Variants') {
+    <div class="checkbox-demo">
+      <div class="demo-content">
+        <h3>Color Variants</h3>
+        <p>Checkboxes available in different color themes.</p>
+        <div class="space-y-4">
+          <div *ngFor="let variant of colorVariants" class="flex items-center gap-3">
+            <sui-checkbox 
+              [cssClass]="'checkbox-' + variant.color"
+              label="{{ variant.label }}">
+            </sui-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Form Integration') {
+    <div class="checkbox-demo">
+      <div class="demo-content">
+        <h3>Form Integration</h3>
+        <p>Checkboxes integrated within a form with validation and submission.</p>
+        <form class="space-y-4" (ngSubmit)="submitForm()">
+          <div class="space-y-3">
+            <sui-checkbox 
+              [(ngModel)]="formData.acceptTerms" 
+              label="I accept the terms and conditions"
+              name="acceptTerms"
+              required>
+            </sui-checkbox>
+            
+            <sui-checkbox 
+              [(ngModel)]="formData.subscribeNewsletter" 
+              label="Subscribe to newsletter"
+              name="subscribeNewsletter">
+            </sui-checkbox>
+            
+            <sui-checkbox 
+              [(ngModel)]="formData.shareData" 
+              label="Allow data sharing for analytics"
+              name="shareData">
+            </sui-checkbox>
+          </div>
+          
+          <div class="flex gap-3">
+            <sui-button type="submit" [disabled]="!formData.acceptTerms">
+              Submit Form
+            </sui-button>
+            <sui-button type="button" variant="outline" (click)="resetForm()">
+              Reset
+            </sui-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+  
+  @case ('Todo List Example') {
+    <div class="checkbox-demo">
+      <div class="demo-content">
+        <h3>Todo List Example</h3>
+        <p>Interactive todo list with progress tracking.</p>
+        <div class="todo-container">
+          <div class="todo-header">
+            <h4>Tasks ({{ getCompletedTodosCount() }}/{{ getTotalTodosCount() }})</h4>
+            <div class="progress-bar">
+              <div class="progress-fill" [style.width.%]="getTodoProgress()"></div>
+            </div>
+            <div class="flex gap-2">
+              <sui-button size="sm" variant="outline" (click)="clearAllTodos()">
+                Clear All
+              </sui-button>
+              <sui-button size="sm" variant="outline" (click)="completeAllTodos()">
+                Complete All
+              </sui-button>
+            </div>
+          </div>
+          
+          <div class="todo-list">
+            <div *ngFor="let todo of todos" class="todo-item">
+              <sui-checkbox 
+                [(ngModel)]="todo.completed"
+                (change)="toggleTaskCompletion(todo)"
+                [label]="todo.name"
+                [cssClass]="todo.completed ? 'line-through opacity-60' : ''">
+              </sui-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Checkbox Groups') {
+    <div class="checkbox-demo">
+      <div class="demo-content">
+        <h3>Checkbox Groups</h3>
+        <p>Multiple checkbox groups with select all functionality.</p>
+        <div class="checkbox-groups">
+          <div *ngFor="let group of checkboxGroups" class="checkbox-group">
+            <div class="group-header">
+              <h4>{{ group.name }}</h4>
+              <sui-button size="sm" variant="outline" (click)="selectAll(group)">
+                Select All
+              </sui-button>
+            </div>
+            <div class="group-options">
+              <div *ngFor="let option of group.options" class="checkbox-option">
+                <sui-checkbox 
+                  [(ngModel)]="option.checked"
+                  [label]="option.label"
+                  [inputId]="option.id">
+                </sui-checkbox>
+              </div>
+            </div>
+          </div>
+          
+          <div class="selected-summary">
+            <h5>Selected Items:</h5>
+            <p class="text-sm text-gray-600">{{ getSelectedSkills().join(', ') || 'None selected' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Settings Panel') {
+    <div class="checkbox-demo">
+      <div class="demo-content">
+        <h3>Settings Panel</h3>
+        <p>Checkboxes organized in a settings panel layout.</p>
+        <div class="settings-panel">
+          <div class="settings-section">
+            <h4>Notifications</h4>
+            <div class="settings-options">
+              <sui-checkbox 
+                [(ngModel)]="settings.notifications.email" 
+                label="Email notifications">
+              </sui-checkbox>
+              <sui-checkbox 
+                [(ngModel)]="settings.notifications.push" 
+                label="Push notifications">
+              </sui-checkbox>
+              <sui-checkbox 
+                [(ngModel)]="settings.notifications.sms" 
+                label="SMS notifications">
+              </sui-checkbox>
+            </div>
+          </div>
+          
+          <div class="settings-section">
+            <h4>Privacy</h4>
+            <div class="settings-options">
+              <sui-checkbox 
+                [(ngModel)]="settings.privacy.profileVisible" 
+                label="Make profile visible">
+              </sui-checkbox>
+              <sui-checkbox 
+                [(ngModel)]="settings.privacy.dataSharing" 
+                label="Allow data sharing">
+              </sui-checkbox>
+              <sui-checkbox 
+                [(ngModel)]="settings.privacy.analytics" 
+                label="Enable analytics">
+              </sui-checkbox>
+            </div>
+          </div>
+          
+          <div class="settings-section">
+            <h4>Preferences</h4>
+            <div class="settings-options">
+              <sui-checkbox 
+                [(ngModel)]="settings.preferences.darkMode" 
+                label="Dark mode">
+              </sui-checkbox>
+              <sui-checkbox 
+                [(ngModel)]="settings.preferences.autoSave" 
+                label="Auto-save">
+              </sui-checkbox>
+              <sui-checkbox 
+                [(ngModel)]="settings.preferences.compactView" 
+                label="Compact view">
+              </sui-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Custom Styling') {
+    <div class="checkbox-demo">
+      <div class="demo-content">
+        <h3>Custom Styling</h3>
+        <p>Checkboxes with custom styling and effects.</p>
+        <div class="space-y-4">
+          <div *ngFor="let style of customStyles" class="flex items-center gap-3">
+            <sui-checkbox 
+              [cssClass]="'checkbox-' + style.style"
+              label="{{ style.label }}">
+            </sui-checkbox>
+          </div>
+          
+          <div class="custom-examples">
+            <h4>Additional Examples:</h4>
+            <div class="space-y-2">
+              <sui-checkbox 
+                cssClass="checkbox-shadow"
+                label="Shadow Effect">
+              </sui-checkbox>
+              <sui-checkbox 
+                cssClass="checkbox-gradient"
+                label="Gradient Background">
+              </sui-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @default {
+    <div class="text-center text-gray-500 py-12">
+      <p class="text-lg font-medium">Component preview not available</p>
+      <p class="text-sm text-gray-400 mt-1">Checkbox component will be shown here</p>
+    </div>
+  }
+}

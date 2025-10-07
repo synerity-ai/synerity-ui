@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'sui-checkbox',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './checkbox.html',
   // styleUrl: './checkbox.scss', // Using main CSS instead
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,6 +24,8 @@ export class Checkbox implements ControlValueAccessor {
   @Input() value: unknown = true;
   @Input() inputId = '';
   @Input() cssClass = '';
+  @Input() label = '';
+  @Input() indeterminate = false;
   @Output() change = new EventEmitter<boolean>();
 
   checked = false;

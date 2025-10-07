@@ -1440,51 +1440,1251 @@ export class AutoCompleteComponent {
       id: 'carousel',
       name: 'Carousel',
       category: 'Media',
-      description: 'Carousel component for displaying images or content',
+      description: 'Interactive image carousel with navigation controls, indicators, and autoplay functionality',
       examples: [
         {
           name: 'Basic Carousel',
-          code: '<sui-carousel [value]="images"></sui-carousel>',
-          description: 'Basic image carousel'
+          code: '<sui-carousel [value]="images" [activeIndex]="currentIndex" [circular]="true" [showIndicators]="true" [showNavigators]="true" (onPageChange)="onPageChange($event)"></sui-carousel>',
+          description: 'Basic image carousel with navigation controls'
+        },
+        {
+          name: 'Autoplay Carousel',
+          code: '<sui-carousel [value]="images" [autoplayInterval]="3000" [circular]="true" [showIndicators]="true" [showNavigators]="true"></sui-carousel>',
+          description: 'Carousel with automatic slideshow functionality'
+        },
+        {
+          name: 'Product Showcase',
+          code: '<sui-carousel [value]="productImages" [circular]="true" [showIndicators]="true" [showNavigators]="true" styleClass="product-carousel"></sui-carousel>',
+          description: 'Carousel for displaying product images with captions'
+        },
+        {
+          name: 'Compact Size',
+          code: '<sui-carousel [value]="images" styleClass="compact" [circular]="true" [showIndicators]="true" [showNavigators]="true"></sui-carousel>',
+          description: 'Compact carousel with reduced size'
+        },
+        {
+          name: 'Large Size',
+          code: '<sui-carousel [value]="images" styleClass="large" [circular]="true" [showIndicators]="true" [showNavigators]="true"></sui-carousel>',
+          description: 'Large carousel with increased size'
+        },
+        {
+          name: 'Square Aspect',
+          code: '<sui-carousel [value]="images" styleClass="square" [circular]="true" [showIndicators]="true" [showNavigators]="true"></sui-carousel>',
+          description: 'Carousel with square aspect ratio'
         }
       ],
       props: [
         {
           name: 'value',
-          type: 'any[]',
+          type: 'CarouselItem[]',
           default: '[]',
-          description: 'Array of carousel items',
+          description: 'Array of carousel items with src, alt, title, and caption properties',
           required: true
+        },
+        {
+          name: 'activeIndex',
+          type: 'number',
+          default: '0',
+          description: 'Index of the currently active slide',
+          required: false
+        },
+        {
+          name: 'circular',
+          type: 'boolean',
+          default: 'true',
+          description: 'Whether the carousel should loop infinitely',
+          required: false
+        },
+        {
+          name: 'autoplayInterval',
+          type: 'number',
+          default: '0',
+          description: 'Auto-play interval in milliseconds (0 to disable)',
+          required: false
+        },
+        {
+          name: 'showIndicators',
+          type: 'boolean',
+          default: 'true',
+          description: 'Whether to show dot indicators',
+          required: false
+        },
+        {
+          name: 'showNavigators',
+          type: 'boolean',
+          default: 'true',
+          description: 'Whether to show navigation arrows',
+          required: false
+        },
+        {
+          name: 'style',
+          type: 'object',
+          default: '{}',
+          description: 'Inline styles for the carousel',
+          required: false
+        },
+        {
+          name: 'styleClass',
+          type: 'string',
+          default: '""',
+          description: 'CSS classes for the carousel (supports compact, large, square variants)',
+          required: false
         }
       ],
-      usage: 'Use carousels to display multiple images or content in a slideshow.',
-      tags: ['media', 'carousel', 'slideshow']
+      events: [
+        {
+          name: 'onPageChange',
+          type: 'EventEmitter<number>',
+          description: 'Callback to invoke when the active slide changes'
+        }
+      ],
+      usage: 'Use carousels to display multiple images or content in an interactive slideshow. Perfect for product showcases, image galleries, and promotional content.',
+      tags: ['media', 'carousel', 'slideshow', 'images', 'navigation']
     },
     // Messages Components
     {
       id: 'toast',
       name: 'Toast',
       category: 'Messages',
-      description: 'Toast notification component',
+      description: 'Interactive toast notifications with different severity levels, positioning, and customization options',
       examples: [
         {
           name: 'Success Toast',
-          code: '<sui-toast severity="success" summary="Success" detail="Operation completed"></sui-toast>',
-          description: 'Success notification toast'
+          code: 'this.toastService.add({ severity: "success", summary: "Success!", detail: "Operation completed successfully.", life: 3000, closable: true });',
+          description: 'Success notification for completed actions'
+        },
+        {
+          name: 'Info Toast',
+          code: 'this.toastService.add({ severity: "info", summary: "Information", detail: "Here is some helpful information.", life: 4000, closable: true });',
+          description: 'Informational messages for user guidance'
+        },
+        {
+          name: 'Warning Toast',
+          code: 'this.toastService.add({ severity: "warn", summary: "Warning", detail: "Please review your input.", life: 5000, closable: true });',
+          description: 'Warning messages for potential issues'
+        },
+        {
+          name: 'Error Toast',
+          code: 'this.toastService.add({ severity: "error", summary: "Error", detail: "Something went wrong.", life: 6000, closable: true });',
+          description: 'Error messages for failed operations'
+        },
+        {
+          name: 'Persistent Toast',
+          code: 'this.toastService.add({ severity: "info", summary: "Persistent Message", detail: "This toast will not auto-dismiss.", life: 0, closable: true });',
+          description: 'Toast that requires manual dismissal'
+        },
+        {
+          name: 'Non-Closable Toast',
+          code: 'this.toastService.add({ severity: "info", summary: "System Message", detail: "Important system notification.", life: 3000, closable: false });',
+          description: 'Toast that cannot be manually closed'
         }
       ],
       props: [
         {
-          name: 'severity',
+          name: 'position',
           type: 'string',
-          default: 'info',
-          description: 'Toast severity level',
+          default: 'top-right',
+          description: 'Position of the toast container (top-right, top-left, bottom-right, bottom-left, top-center, bottom-center)',
+          required: false
+        },
+        {
+          name: 'style',
+          type: 'object',
+          default: '{}',
+          description: 'Inline styles for the toast container',
+          required: false
+        },
+        {
+          name: 'styleClass',
+          type: 'string',
+          default: '""',
+          description: 'CSS classes for the toast container',
           required: false
         }
       ],
-      usage: 'Use toasts to display temporary messages to users.',
-      tags: ['notification', 'message', 'toast']
+      events: [
+        {
+          name: 'onClose',
+          type: 'EventEmitter<any>',
+          description: 'Callback to invoke when a toast is closed'
+        }
+      ],
+      usage: 'Use toasts to display temporary, non-blocking messages to users. Perfect for notifications, alerts, and feedback messages that don\'t require immediate user action.',
+      tags: ['notification', 'message', 'toast', 'alert', 'feedback']
     },
+    // Progress Components
+    {
+      id: 'progress-bar',
+      name: 'Progress Bar',
+      category: 'Progress',
+      description: 'Visual indicator showing the completion status of an operation or process with multiple variants and customization options',
+      examples: [
+        {
+          name: 'Basic Progress Bar',
+          code: '<sui-progress-bar [value]="45" [showValue]="true" mode="determinate"></sui-progress-bar>',
+          description: 'Standard progress bar with percentage display'
+        },
+        {
+          name: 'Success Progress Bar',
+          code: '<sui-progress-bar [value]="75" [showValue]="true" [color]="\'#10b981\'" styleClass="success"></sui-progress-bar>',
+          description: 'Progress bar indicating successful completion'
+        },
+        {
+          name: 'Indeterminate Progress Bar',
+          code: '<sui-progress-bar mode="indeterminate" [showValue]="false" styleClass="info"></sui-progress-bar>',
+          description: 'Progress bar for unknown duration operations'
+        },
+        {
+          name: 'Animated Progress Bar',
+          code: '<sui-progress-bar [value]="60" [showValue]="true" styleClass="animated"></sui-progress-bar>',
+          description: 'Progress bar with animated stripes'
+        },
+        {
+          name: 'Size Variations',
+          code: '<div class="space-y-2">\n  <sui-progress-bar [value]="40" size="small" [showValue]="true"></sui-progress-bar>\n  <sui-progress-bar [value]="65" size="normal" [showValue]="true"></sui-progress-bar>\n  <sui-progress-bar [value]="80" size="large" [showValue]="true"></sui-progress-bar>\n</div>',
+          description: 'Progress bars in different sizes'
+        },
+        {
+          name: 'Custom Unit Display',
+          code: '<sui-progress-bar [value]="2.4" [showValue]="true" unit="MB" [color]="\'#3b82f6\'"></sui-progress-bar>',
+          description: 'Progress bar with custom unit (MB, seconds, etc.)'
+        }
+      ],
+      props: [
+        {
+          name: 'value',
+          type: 'number',
+          default: '0',
+          description: 'Progress value as a percentage (0-100)',
+          required: false
+        },
+        {
+          name: 'mode',
+          type: 'string',
+          default: 'determinate',
+          description: 'Progress bar mode - determinate shows specific progress, indeterminate shows ongoing progress',
+          required: false
+        },
+        {
+          name: 'showValue',
+          type: 'boolean',
+          default: 'true',
+          description: 'Whether to display the progress value',
+          required: false
+        },
+        {
+          name: 'unit',
+          type: 'string',
+          default: '%',
+          description: 'Unit to display with the progress value',
+          required: false
+        },
+        {
+          name: 'color',
+          type: 'string',
+          default: '""',
+          description: 'Custom color for the progress bar fill',
+          required: false
+        },
+        {
+          name: 'styleClass',
+          type: 'string',
+          default: '""',
+          description: 'CSS classes for styling variants (success, warning, danger, info, animated)',
+          required: false
+        },
+        {
+          name: 'style',
+          type: 'object',
+          default: '{}',
+          description: 'Inline styles for the progress bar',
+          required: false
+        }
+      ],
+      events: [],
+      usage: 'Use progress bars to show the completion status of operations, file uploads, form submissions, or any process where users need to understand progress. Choose determinate mode for known progress and indeterminate for unknown duration operations.',
+        tags: ['progress', 'indicator', 'completion', 'loading', 'feedback']
+      },
+      // Form Components
+      {
+        id: 'checkbox',
+        name: 'Checkbox',
+        category: 'Form',
+        description: 'Interactive checkbox component with multiple variants, sizes, and styling options for forms and user interfaces',
+        examples: [
+          {
+            name: 'Basic Checkbox',
+            code: '<sui-checkbox [(ngModel)]="checked" label="Basic Checkbox"></sui-checkbox>',
+            description: 'Simple checkbox with basic functionality'
+          },
+          {
+            name: 'Size Variations',
+            code: '<div class="space-y-2">\n  <sui-checkbox styleClass="checkbox-sm" label="Small Checkbox"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-lg" label="Large Checkbox"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-xl" label="Extra Large Checkbox"></sui-checkbox>\n</div>',
+            description: 'Checkboxes in different sizes'
+          },
+          {
+            name: 'Color Variants',
+            code: '<div class="space-y-2">\n  <sui-checkbox styleClass="checkbox-primary" label="Primary Checkbox"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-success" label="Success Checkbox"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-warning" label="Warning Checkbox"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-danger" label="Danger Checkbox"></sui-checkbox>\n</div>',
+            description: 'Checkboxes with different color themes'
+          },
+          {
+            name: 'Form Integration',
+            code: `
+      // In your component
+      formData = {
+        acceptTerms: false,
+        subscribeNewsletter: true,
+        shareData: false
+      };
+
+      submitForm(): void {
+        console.log('Form submitted:', this.formData);
+      }
+
+      // In your template
+      <form (ngSubmit)="submitForm()">
+        <sui-checkbox 
+          [(ngModel)]="formData.acceptTerms" 
+          label="I accept the terms and conditions"
+          name="acceptTerms"
+          required>
+        </sui-checkbox>
+        
+        <sui-checkbox 
+          [(ngModel)]="formData.subscribeNewsletter" 
+          label="Subscribe to newsletter"
+          name="subscribeNewsletter">
+        </sui-checkbox>
+        
+        <sui-button type="submit" [disabled]="!formData.acceptTerms">
+          Submit Form
+        </sui-button>
+      </form>
+            `,
+            tsCode: `
+      // In your component
+      formData = {
+        acceptTerms: false,
+        subscribeNewsletter: true,
+        shareData: false
+      };
+
+      submitForm(): void {
+        console.log('Form submitted:', this.formData);
+      }
+            `,
+            description: 'Checkboxes integrated within a form with validation'
+          },
+          {
+            name: 'Todo List Example',
+            code: `
+      // In your component
+      interface Task {
+        id: string;
+        name: string;
+        completed: boolean;
+      }
+
+      todos: Task[] = [
+        { id: '1', name: 'Complete project documentation', completed: false },
+        { id: '2', name: 'Review code changes', completed: true },
+        { id: '3', name: 'Update dependencies', completed: false }
+      ];
+
+      toggleTaskCompletion(task: Task): void {
+        task.completed = !task.completed;
+      }
+
+      getCompletedTodosCount(): number {
+        return this.todos.filter(todo => todo.completed).length;
+      }
+
+      // In your template
+      <div *ngFor="let todo of todos" class="todo-item">
+        <sui-checkbox 
+          [(ngModel)]="todo.completed"
+          (change)="toggleTaskCompletion(todo)"
+          [label]="todo.name">
+        </sui-checkbox>
+      </div>
+      <div>Completed: {{ getCompletedTodosCount() }}/{{ todos.length }}</div>
+            `,
+            tsCode: `
+      interface Task {
+        id: string;
+        name: string;
+        completed: boolean;
+      }
+
+      todos: Task[] = [
+        { id: '1', name: 'Complete project documentation', completed: false },
+        { id: '2', name: 'Review code changes', completed: true },
+        { id: '3', name: 'Update dependencies', completed: false }
+      ];
+
+      toggleTaskCompletion(task: Task): void {
+        task.completed = !task.completed;
+      }
+
+      getCompletedTodosCount(): number {
+        return this.todos.filter(todo => todo.completed).length;
+      }
+            `,
+            description: 'Interactive todo list with progress tracking'
+          },
+          {
+            name: 'Checkbox Groups',
+            code: `
+      // In your component
+      interface CheckboxOption {
+        id: string;
+        label: string;
+        value: string;
+        checked: boolean;
+      }
+
+      interface CheckboxGroup {
+        name: string;
+        options: CheckboxOption[];
+      }
+
+      checkboxGroups: CheckboxGroup[] = [
+        {
+          name: 'Skills',
+          options: [
+            { id: 'skills-angular', label: 'Angular', value: 'angular', checked: true },
+            { id: 'skills-react', label: 'React', value: 'react', checked: false },
+            { id: 'skills-vue', label: 'Vue.js', value: 'vue', checked: true }
+          ]
+        }
+      ];
+
+      selectAll(group: CheckboxGroup): void {
+        const allChecked = group.options.every(option => option.checked);
+        group.options.forEach(option => option.checked = !allChecked);
+      }
+
+      // In your template
+      <div *ngFor="let group of checkboxGroups" class="checkbox-group">
+        <div class="group-header">
+          <h4>{{ group.name }}</h4>
+          <sui-button size="sm" (click)="selectAll(group)">Select All</sui-button>
+        </div>
+        <div *ngFor="let option of group.options">
+          <sui-checkbox 
+            [(ngModel)]="option.checked"
+            [label]="option.label"
+            [inputId]="option.id">
+          </sui-checkbox>
+        </div>
+      </div>
+            `,
+            tsCode: `
+      interface CheckboxOption {
+        id: string;
+        label: string;
+        value: string;
+        checked: boolean;
+      }
+
+      interface CheckboxGroup {
+        name: string;
+        options: CheckboxOption[];
+      }
+
+      checkboxGroups: CheckboxGroup[] = [
+        {
+          name: 'Skills',
+          options: [
+            { id: 'skills-angular', label: 'Angular', value: 'angular', checked: true },
+            { id: 'skills-react', label: 'React', value: 'react', checked: false },
+            { id: 'skills-vue', label: 'Vue.js', value: 'vue', checked: true }
+          ]
+        }
+      ];
+
+      selectAll(group: CheckboxGroup): void {
+        const allChecked = group.options.every(option => option.checked);
+        group.options.forEach(option => option.checked = !allChecked);
+      }
+            `,
+            description: 'Multiple checkbox groups with select all functionality'
+          },
+          {
+            name: 'Settings Panel',
+            code: `
+      // In your component
+      settings = {
+        notifications: {
+          email: true,
+          push: false,
+          sms: true
+        },
+        privacy: {
+          profileVisible: true,
+          dataSharing: false,
+          analytics: true
+        }
+      };
+
+      // In your template
+      <div class="settings-panel">
+        <div class="settings-section">
+          <h4>Notifications</h4>
+          <sui-checkbox 
+            [(ngModel)]="settings.notifications.email" 
+            label="Email notifications">
+          </sui-checkbox>
+          <sui-checkbox 
+            [(ngModel)]="settings.notifications.push" 
+            label="Push notifications">
+          </sui-checkbox>
+        </div>
+        
+        <div class="settings-section">
+          <h4>Privacy</h4>
+          <sui-checkbox 
+            [(ngModel)]="settings.privacy.profileVisible" 
+            label="Make profile visible">
+          </sui-checkbox>
+          <sui-checkbox 
+            [(ngModel)]="settings.privacy.dataSharing" 
+            label="Allow data sharing">
+          </sui-checkbox>
+        </div>
+      </div>
+            `,
+            tsCode: `
+      settings = {
+        notifications: {
+          email: true,
+          push: false,
+          sms: true
+        },
+        privacy: {
+          profileVisible: true,
+          dataSharing: false,
+          analytics: true
+        }
+      };
+            `,
+            description: 'Checkboxes organized in a settings panel layout'
+          },
+          {
+            name: 'Custom Styling',
+            code: '<div class="space-y-2">\n  <sui-checkbox styleClass="checkbox-enhanced" label="Enhanced Checkbox"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-animated" label="Animated Checkbox"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-glow" label="Glow Effect"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-rounded" label="Rounded Checkbox"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-borderless" label="Borderless Checkbox"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-shadow" label="Shadow Effect"></sui-checkbox>\n  <sui-checkbox styleClass="checkbox-gradient" label="Gradient Background"></sui-checkbox>\n</div>',
+            description: 'Checkboxes with custom styling and effects'
+          }
+        ],
+        props: [
+          {
+            name: 'ngModel',
+            type: 'boolean',
+            default: 'false',
+            description: 'Two-way binding for the checkbox state',
+            required: false
+          },
+          {
+            name: 'label',
+            type: 'string',
+            default: '""',
+            description: 'Label text for the checkbox',
+            required: false
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the checkbox is disabled',
+            required: false
+          },
+          {
+            name: 'indeterminate',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the checkbox is in indeterminate state',
+            required: false
+          },
+          {
+            name: 'name',
+            type: 'string',
+            default: '""',
+            description: 'Name attribute for form submission',
+            required: false
+          },
+          {
+            name: 'inputId',
+            type: 'string',
+            default: '""',
+            description: 'ID attribute for the checkbox input',
+            required: false
+          },
+          {
+            name: 'cssClass',
+            type: 'string',
+            default: '""',
+            description: 'CSS classes for styling variants (checkbox-sm, checkbox-lg, checkbox-primary, etc.)',
+            required: false
+          },
+          {
+            name: 'value',
+            type: 'unknown',
+            default: 'true',
+            description: 'Value to be submitted when checkbox is checked',
+            required: false
+          }
+        ],
+        events: [
+          {
+            name: 'change',
+            type: 'boolean',
+            description: 'Emitted when the checkbox state changes'
+          }
+        ],
+        usage: 'Use checkboxes for binary choices, form inputs, settings panels, and interactive lists. Choose appropriate size and color variants based on your design system.',
+        tags: ['checkbox', 'form', 'input', 'boolean', 'interactive', 'selection']
+      },
+      {
+        id: 'radio-button',
+        name: 'Radio Button',
+        category: 'Form',
+        description: 'Single-choice radio button component with multiple variants, sizes, and styling options for exclusive selections',
+        examples: [
+          {
+            name: 'Basic Radio Button',
+            code: '<sui-radio-button name="group" value="option1" label="Option 1" [(ngModel)]="selectedValue"></sui-radio-button>\n<sui-radio-button name="group" value="option2" label="Option 2" [(ngModel)]="selectedValue"></sui-radio-button>',
+            description: 'Simple radio buttons with basic functionality'
+          },
+          {
+            name: 'Size Variations',
+            code: '<div class="space-y-2">\n  <sui-radio-button cssClass="radio-sm" name="size-group" value="small" label="Small Radio Button"></sui-radio-button>\n  <sui-radio-button cssClass="radio-lg" name="size-group" value="large" label="Large Radio Button"></sui-radio-button>\n  <sui-radio-button cssClass="radio-xl" name="size-group" value="xlarge" label="Extra Large Radio Button"></sui-radio-button>\n</div>',
+            description: 'Radio buttons in different sizes'
+          },
+          {
+            name: 'Color Variants',
+            code: '<div class="space-y-2">\n  <sui-radio-button cssClass="radio-primary" name="color-group" value="primary" label="Primary Radio Button"></sui-radio-button>\n  <sui-radio-button cssClass="radio-success" name="color-group" value="success" label="Success Radio Button"></sui-radio-button>\n  <sui-radio-button cssClass="radio-warning" name="color-group" value="warning" label="Warning Radio Button"></sui-radio-button>\n  <sui-radio-button cssClass="radio-danger" name="color-group" value="danger" label="Danger Radio Button"></sui-radio-button>\n</div>',
+            description: 'Radio buttons with different color themes'
+          },
+          {
+            name: 'Form Integration',
+            code: `
+      // In your component
+      formData = {
+        preferredContact: 'email',
+        notificationFrequency: 'daily',
+        theme: 'light'
+      };
+
+      submitForm(): void {
+        console.log('Form submitted:', this.formData);
+      }
+
+      // In your template
+      <form (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <h4>Preferred Contact Method</h4>
+          <sui-radio-button 
+            name="contact" 
+            value="email" 
+            label="Email" 
+            [(ngModel)]="formData.preferredContact">
+          </sui-radio-button>
+          <sui-radio-button 
+            name="contact" 
+            value="phone" 
+            label="Phone" 
+            [(ngModel)]="formData.preferredContact">
+          </sui-radio-button>
+        </div>
+        
+        <sui-button type="submit">Submit Form</sui-button>
+      </form>
+            `,
+            tsCode: `
+      // In your component
+      formData = {
+        preferredContact: 'email',
+        notificationFrequency: 'daily',
+        theme: 'light'
+      };
+
+      submitForm(): void {
+        console.log('Form submitted:', this.formData);
+      }
+            `,
+            description: 'Radio buttons integrated within a form with validation'
+          },
+          {
+            name: 'Survey Example',
+            code: `
+      // In your component
+      surveyData = {
+        ageRange: '',
+        experience: '',
+        satisfaction: '',
+        recommendation: ''
+      };
+
+      ageRanges = [
+        { id: 'age-18-25', value: '18-25', label: '18-25 years' },
+        { id: 'age-26-35', value: '26-35', label: '26-35 years' },
+        { id: 'age-36-45', value: '36-45', label: '36-45 years' }
+      ];
+
+      getSurveyProgress(): number {
+        const fields = ['ageRange', 'experience', 'satisfaction', 'recommendation'];
+        const completed = fields.filter(field => this.surveyData[field] !== '').length;
+        return (completed / fields.length) * 100;
+      }
+
+      // In your template
+      <form (ngSubmit)="submitSurvey()">
+        <div class="survey-question">
+          <h5>What is your age range?</h5>
+          <sui-radio-button 
+            *ngFor="let option of ageRanges"
+            name="age-range"
+            [value]="option.value"
+            [inputId]="option.id"
+            [label]="option.label"
+            [(ngModel)]="surveyData.ageRange">
+          </sui-radio-button>
+        </div>
+        
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="getSurveyProgress()"></div>
+        </div>
+        
+        <sui-button type="submit">Submit Survey</sui-button>
+      </form>
+            `,
+            tsCode: `
+      // In your component
+      surveyData = {
+        ageRange: '',
+        experience: '',
+        satisfaction: '',
+        recommendation: ''
+      };
+
+      ageRanges = [
+        { id: 'age-18-25', value: '18-25', label: '18-25 years' },
+        { id: 'age-26-35', value: '26-35', label: '26-35 years' },
+        { id: 'age-36-45', value: '36-45', label: '36-45 years' }
+      ];
+
+      getSurveyProgress(): number {
+        const fields = ['ageRange', 'experience', 'satisfaction', 'recommendation'];
+        const completed = fields.filter(field => this.surveyData[field] !== '').length;
+        return (completed / fields.length) * 100;
+      }
+            `,
+            description: 'Interactive survey with progress tracking using radio buttons'
+          },
+          {
+            name: 'Settings Panel',
+            code: `
+      // In your component
+      settings = {
+        language: 'en',
+        currency: 'usd',
+        timezone: 'utc',
+        dateFormat: 'mm/dd/yyyy'
+      };
+
+      languages = [
+        { id: 'lang-en', value: 'en', label: 'English' },
+        { id: 'lang-es', value: 'es', label: 'Español' },
+        { id: 'lang-fr', value: 'fr', label: 'Français' }
+      ];
+
+      // In your template
+      <div class="settings-panel">
+        <div class="settings-section">
+          <h4>Language</h4>
+          <sui-radio-button 
+            *ngFor="let option of languages"
+            name="language"
+            [value]="option.value"
+            [inputId]="option.id"
+            [label]="option.label"
+            [(ngModel)]="settings.language">
+          </sui-radio-button>
+        </div>
+        
+        <div class="settings-summary">
+          <p><strong>Language:</strong> {{ getSelectedLabel(languages, settings.language) }}</p>
+        </div>
+      </div>
+            `,
+            tsCode: `
+      // In your component
+      settings = {
+        language: 'en',
+        currency: 'usd',
+        timezone: 'utc',
+        dateFormat: 'mm/dd/yyyy'
+      };
+
+      languages = [
+        { id: 'lang-en', value: 'en', label: 'English' },
+        { id: 'lang-es', value: 'es', label: 'Español' },
+        { id: 'lang-fr', value: 'fr', label: 'Français' }
+      ];
+
+      getSelectedLabel(options: any[], selectedValue: string): string {
+        const option = options.find(opt => opt.value === selectedValue);
+        return option ? option.label : 'None selected';
+      }
+            `,
+            description: 'Radio buttons organized in a settings panel layout'
+          },
+          {
+            name: 'Payment Method Selection',
+            code: `
+      // In your component
+      paymentMethods = [
+        { id: 'payment-card', value: 'card', label: 'Credit/Debit Card', description: 'Visa, Mastercard, American Express' },
+        { id: 'payment-paypal', value: 'paypal', label: 'PayPal', description: 'Pay with your PayPal account' },
+        { id: 'payment-bank', value: 'bank', label: 'Bank Transfer', description: 'Direct bank transfer' }
+      ];
+
+      selectedPaymentMethod = 'card';
+
+      // In your template
+      <div class="payment-methods">
+        <div *ngFor="let method of paymentMethods" class="payment-option">
+          <sui-radio-button 
+            name="payment-method"
+            [value]="method.value"
+            [inputId]="method.id"
+            [label]="method.label"
+            [(ngModel)]="selectedPaymentMethod">
+          </sui-radio-button>
+          <div class="payment-description">
+            <span>{{ method.description }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="payment-summary">
+        <h5>Selected Payment Method:</h5>
+        <strong>{{ getSelectedLabel(paymentMethods, selectedPaymentMethod) }}</strong>
+      </div>
+            `,
+            tsCode: `
+      // In your component
+      paymentMethods = [
+        { id: 'payment-card', value: 'card', label: 'Credit/Debit Card', description: 'Visa, Mastercard, American Express' },
+        { id: 'payment-paypal', value: 'paypal', label: 'PayPal', description: 'Pay with your PayPal account' },
+        { id: 'payment-bank', value: 'bank', label: 'Bank Transfer', description: 'Direct bank transfer' }
+      ];
+
+      selectedPaymentMethod = 'card';
+
+      getSelectedLabel(options: any[], selectedValue: string): string {
+        const option = options.find(opt => opt.value === selectedValue);
+        return option ? option.label : 'None selected';
+      }
+            `,
+            description: 'Radio buttons for selecting payment methods with descriptions'
+          },
+          {
+            name: 'Custom Styling',
+            code: '<div class="space-y-2">\n  <sui-radio-button cssClass="radio-enhanced" name="style-group" value="enhanced" label="Enhanced Radio Button"></sui-radio-button>\n  <sui-radio-button cssClass="radio-animated" name="style-group" value="animated" label="Animated Radio Button"></sui-radio-button>\n  <sui-radio-button cssClass="radio-glow" name="style-group" value="glow" label="Glow Effect"></sui-radio-button>\n  <sui-radio-button cssClass="radio-shadow" name="style-group" value="shadow" label="Shadow Effect"></sui-radio-button>\n  <sui-radio-button cssClass="radio-gradient" name="style-group" value="gradient" label="Gradient Background"></sui-radio-button>\n</div>',
+            description: 'Radio buttons with custom styling and effects'
+          }
+        ],
+        props: [
+          {
+            name: 'ngModel',
+            type: 'unknown',
+            default: 'null',
+            description: 'Two-way binding for the selected radio button value',
+            required: false
+          },
+          {
+            name: 'name',
+            type: 'string',
+            default: '""',
+            description: 'Name attribute for grouping radio buttons',
+            required: false
+          },
+          {
+            name: 'value',
+            type: 'unknown',
+            default: 'null',
+            description: 'Value to be set when this radio button is selected',
+            required: false
+          },
+          {
+            name: 'label',
+            type: 'string',
+            default: '""',
+            description: 'Label text for the radio button',
+            required: false
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the radio button is disabled',
+            required: false
+          },
+          {
+            name: 'inputId',
+            type: 'string',
+            default: '""',
+            description: 'ID attribute for the radio button input',
+            required: false
+          },
+          {
+            name: 'cssClass',
+            type: 'string',
+            default: '""',
+            description: 'CSS classes for styling variants (radio-sm, radio-lg, radio-primary, etc.)',
+            required: false
+          }
+        ],
+        events: [
+          {
+            name: 'change',
+            type: 'unknown',
+            description: 'Emitted when the radio button selection changes'
+          }
+        ],
+        usage: 'Use radio buttons for single-choice selections in forms, surveys, settings panels, and any scenario requiring exclusive options. Group related radio buttons with the same name attribute.',
+        tags: ['radio', 'form', 'input', 'selection', 'exclusive', 'choice']
+      },
+      {
+        id: 'select',
+        name: 'Select',
+        category: 'Form',
+        description: 'Advanced select component with single/multi-select, search, loading states, and comprehensive customization options',
+        examples: [
+          {
+            name: 'Basic Select',
+            code: '<sui-select\n  placeholder="Choose an option"\n  [options]="options"\n  [(ngModel)]="selectedValue"\n  clearable="true">\n</sui-select>',
+            description: 'Simple select component with basic functionality'
+          },
+          {
+            name: 'Size Variations',
+            code: '<div class="space-y-2">\n  <sui-select placeholder="Small Select" [options]="options" class="sm"></sui-select>\n  <sui-select placeholder="Normal Select" [options]="options" class="normal"></sui-select>\n  <sui-select placeholder="Large Select" [options]="options" class="lg"></sui-select>\n</div>',
+            description: 'Select components in different sizes'
+          },
+          {
+            name: 'Form Integration',
+            code: `
+      // In your component
+      formData = {
+        country: '',
+        city: '',
+        language: '',
+        timezone: '',
+        currency: ''
+      };
+
+      countries = [
+        { label: 'United States', value: 'us' },
+        { label: 'Canada', value: 'ca' },
+        { label: 'United Kingdom', value: 'uk' }
+      ];
+
+      onCountryChange(): void {
+        this.formData.city = ''; // Reset city when country changes
+      }
+
+      // In your template
+      <form (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <label class="form-label">Country</label>
+          <sui-select
+            placeholder="Select your country"
+            [options]="countries"
+            [(ngModel)]="formData.country"
+            (change)="onCountryChange()"
+            required>
+          </sui-select>
+        </div>
+        
+        <sui-button type="submit">Submit Form</sui-button>
+      </form>
+            `,
+            tsCode: `
+      // In your component
+      formData = {
+        country: '',
+        city: '',
+        language: '',
+        timezone: '',
+        currency: ''
+      };
+
+      countries = [
+        { label: 'United States', value: 'us' },
+        { label: 'Canada', value: 'ca' },
+        { label: 'United Kingdom', value: 'uk' }
+      ];
+
+      onCountryChange(): void {
+        this.formData.city = ''; // Reset city when country changes
+      }
+            `,
+            description: 'Select components integrated within a form with dependent fields'
+          },
+          {
+            name: 'Multi-Select with Search',
+            code: `
+      // In your component
+      selectedSkills: string[] = [];
+      
+      skills = [
+        { label: 'JavaScript', value: 'js' },
+        { label: 'TypeScript', value: 'ts' },
+        { label: 'Angular', value: 'angular' },
+        { label: 'React', value: 'react' },
+        { label: 'Node.js', value: 'node' }
+      ];
+
+      // In your template
+      <sui-select
+        placeholder="Select your skills"
+        [options]="skills"
+        [(ngModel)]="selectedSkills"
+        [multiple]="true"
+        [searchable]="true"
+        [selectAll]="true"
+        searchPlaceholder="Search skills..."
+        [maxDisplayItems]="2">
+      </sui-select>
+            `,
+            tsCode: `
+      // In your component
+      selectedSkills: string[] = [];
+      
+      skills = [
+        { label: 'JavaScript', value: 'js' },
+        { label: 'TypeScript', value: 'ts' },
+        { label: 'Angular', value: 'angular' },
+        { label: 'React', value: 'react' },
+        { label: 'Node.js', value: 'node' }
+      ];
+            `,
+            description: 'Multi-select component with search functionality and select all options'
+          },
+          {
+            name: 'Product Selection',
+            code: `
+      // In your component
+      selectedProducts: string[] = [];
+      
+      products = [
+        { label: 'MacBook Pro', value: 'macbook', category: 'Electronics', price: 2499 },
+        { label: 'iPhone 15', value: 'iphone', category: 'Electronics', price: 799 },
+        { label: 'iPad Air', value: 'ipad', category: 'Electronics', price: 599 }
+      ];
+
+      getTotalPrice(): number {
+        return this.getSelectedProducts().reduce((total, product) => total + product.price, 0);
+      }
+
+      // In your template
+      <sui-select
+        placeholder="Select products"
+        [options]="products"
+        [(ngModel)]="selectedProducts"
+        [multiple]="true"
+        [searchable]="true"
+        [selectAll]="true"
+        searchPlaceholder="Search products..."
+        [maxDisplayItems]="3">
+      </sui-select>
+      
+      <div *ngIf="selectedProducts.length > 0">
+        <h5>Selected Products (&#123;&#123; selectedProducts.length &#125;&#125;):</h5>
+        <div>Total: $&#123;&#123; getTotalPrice() &#125;&#125;</div>
+      </div>
+            `,
+            tsCode: `
+      // In your component
+      selectedProducts: string[] = [];
+      
+      products = [
+        { label: 'MacBook Pro', value: 'macbook', category: 'Electronics', price: 2499 },
+        { label: 'iPhone 15', value: 'iphone', category: 'Electronics', price: 799 },
+        { label: 'iPad Air', value: 'ipad', category: 'Electronics', price: 599 }
+      ];
+
+      getTotalPrice(): number {
+        return this.getSelectedProducts().reduce((total, product) => total + product.price, 0);
+      }
+            `,
+            description: 'Multi-select component for product selection with pricing information'
+          },
+          {
+            name: 'Loading States',
+            code: `
+      // In your component
+      isLoadingCountries = false;
+      isLoadingCities = false;
+
+      loadCountries(): void {
+        this.isLoadingCountries = true;
+        // Simulate API call
+        setTimeout(() => {
+          this.isLoadingCountries = false;
+        }, 2000);
+      }
+
+      // In your template
+      <sui-select
+        placeholder="Loading countries..."
+        [options]="countries"
+        [(ngModel)]="selectedCountry"
+        [loading]="isLoadingCountries">
+      </sui-select>
+      
+      <sui-button (click)="loadCountries()">
+        {{ isLoadingCountries ? 'Loading...' : 'Load Countries' }}
+      </sui-button>
+            `,
+            tsCode: `
+      // In your component
+      isLoadingCountries = false;
+
+      loadCountries(): void {
+        this.isLoadingCountries = true;
+        // Simulate API call
+        setTimeout(() => {
+          this.isLoadingCountries = false;
+        }, 2000);
+      }
+            `,
+            description: 'Select components with loading states for async data'
+          },
+          {
+            name: 'Custom Styling',
+            code: '<div class="space-y-2">\n  <sui-select placeholder="Enhanced Select" [options]="options" clearable="true" class="enhanced"></sui-select>\n  <sui-select placeholder="Searchable Select" [options]="options" [searchable]="true" class="searchable"></sui-select>\n  <sui-select placeholder="Multi-Select" [options]="options" [multiple]="true" [searchable]="true" [selectAll]="true" class="multi-select"></sui-select>\n</div>',
+            description: 'Select components with custom styling and effects'
+          }
+        ],
+        props: [
+          {
+            name: 'ngModel',
+            type: 'unknown | unknown[]',
+            default: 'null',
+            description: 'Two-way binding for selected value(s)',
+            required: false
+          },
+          {
+            name: 'options',
+            type: 'Array<{label: string, value: unknown, disabled?: boolean}>',
+            default: '[]',
+            description: 'Array of options to display',
+            required: false
+          },
+          {
+            name: 'placeholder',
+            type: 'string | null',
+            default: 'null',
+            description: 'Placeholder text when no option is selected',
+            required: false
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the select is disabled',
+            required: false
+          },
+          {
+            name: 'multiple',
+            type: 'boolean',
+            default: 'false',
+            description: 'Enable multi-select mode',
+            required: false
+          },
+          {
+            name: 'searchable',
+            type: 'boolean',
+            default: 'false',
+            description: 'Enable search functionality',
+            required: false
+          },
+          {
+            name: 'clearable',
+            type: 'boolean',
+            default: 'false',
+            description: 'Show clear button when value is selected',
+            required: false
+          },
+          {
+            name: 'selectAll',
+            type: 'boolean',
+            default: 'false',
+            description: 'Show select all/clear all buttons in multi-select mode',
+            required: false
+          },
+          {
+            name: 'loading',
+            type: 'boolean',
+            default: 'false',
+            description: 'Show loading state',
+            required: false
+          },
+          {
+            name: 'maxDisplayItems',
+            type: 'number',
+            default: '3',
+            description: 'Maximum number of items to display in multi-select',
+            required: false
+          },
+          {
+            name: 'showSelectedCount',
+            type: 'boolean',
+            default: 'true',
+            description: 'Show selected count in multi-select mode',
+            required: false
+          },
+          {
+            name: 'searchPlaceholder',
+            type: 'string',
+            default: '"Search..."',
+            description: 'Placeholder text for search input',
+            required: false
+          },
+          {
+            name: 'noResultsText',
+            type: 'string',
+            default: '"No results found"',
+            description: 'Text to show when no search results are found',
+            required: false
+          },
+          {
+            name: 'name',
+            type: 'string',
+            default: '""',
+            description: 'Name attribute for form submission',
+            required: false
+          },
+          {
+            name: 'inputId',
+            type: 'string',
+            default: '""',
+            description: 'ID attribute for the select input',
+            required: false
+          }
+        ],
+        events: [
+          {
+            name: 'change',
+            type: 'unknown | unknown[]',
+            description: 'Emitted when the selection changes'
+          }
+        ],
+        usage: 'Use select components for single or multiple choice selections in forms, data filtering, and any scenario requiring dropdown selection. Choose appropriate features based on your use case.',
+        tags: ['select', 'form', 'input', 'dropdown', 'multi-select', 'searchable', 'selection']
+      },
     // Overlay Components
     {
       id: 'dialog',
@@ -1680,11 +2880,96 @@ export class AutoCompleteComponent {
       id: 'tabs',
       name: 'Tabs',
       category: 'Foundation',
-      description: 'Tabbed content component',
-      examples: [],
-      props: [],
-      usage: 'Use tabs to organize content in panels.',
-      tags: ['navigation', 'content']
+      description: 'Tabbed content component for organizing content into multiple panels',
+      examples: [
+        {
+          name: 'Basic Tabs',
+          code: `<sui-tabs [tabs]="tabs" [activeIndex]="activeIndex" (onActiveIndexChange)="onTabChange($event)">
+  <div *ngIf="activeIndex === 0">Tab 1 content</div>
+  <div *ngIf="activeIndex === 1">Tab 2 content</div>
+</sui-tabs>`,
+          description: 'Basic tabs with simple content'
+        },
+        {
+          name: 'Tabs with Icons',
+          code: `<sui-tabs [tabs]="iconTabs" [activeIndex]="activeIndex">
+  <!-- Tab content -->
+</sui-tabs>`,
+          description: 'Tabs enhanced with icons'
+        },
+        {
+          name: 'Closable Tabs',
+          code: `<sui-tabs [tabs]="closableTabs" [activeIndex]="activeIndex" (onTabClose)="onTabClose($event)">
+  <!-- Tab content -->
+</sui-tabs>`,
+          description: 'Tabs that can be closed by users'
+        },
+        {
+          name: 'Different Orientations',
+          code: `<sui-tabs [tabs]="tabs" orientation="left">
+  <!-- Tab content -->
+</sui-tabs>`,
+          description: 'Tabs positioned on different sides'
+        }
+      ],
+      props: [
+        {
+          name: 'tabs',
+          type: 'Array<{header: string, content?: any, disabled?: boolean, closable?: boolean, icon?: string}>',
+          default: '[]',
+          description: 'Array of tab objects with header, content, and options',
+          required: true
+        },
+        {
+          name: 'activeIndex',
+          type: 'number',
+          default: '0',
+          description: 'Index of the currently active tab',
+          required: false
+        },
+        {
+          name: 'orientation',
+          type: 'string',
+          default: 'top',
+          description: 'Tab orientation (top, bottom, left, right)',
+          required: false
+        },
+        {
+          name: 'scrollable',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether tabs should be scrollable when they overflow',
+          required: false
+        },
+        {
+          name: 'style',
+          type: 'any',
+          default: '{}',
+          description: 'Inline styles for the tabs container',
+          required: false
+        },
+        {
+          name: 'styleClass',
+          type: 'string',
+          default: '""',
+          description: 'CSS class names for the tabs container',
+          required: false
+        }
+      ],
+      events: [
+        {
+          name: 'onActiveIndexChange',
+          type: 'EventEmitter<number>',
+          description: 'Emitted when the active tab index changes'
+        },
+        {
+          name: 'onTabClose',
+          type: 'EventEmitter<number>',
+          description: 'Emitted when a tab is closed (only for closable tabs)'
+        }
+      ],
+      usage: 'Use tabs to organize content into multiple panels. Perfect for settings pages, dashboards, and any interface that needs to group related content.',
+      tags: ['navigation', 'content', 'layout', 'panels']
     },
     {
       id: 'toggle-switch',
@@ -1841,11 +3126,376 @@ export class AutoCompleteComponent {
       id: 'textarea',
       name: 'Textarea',
       category: 'Form',
-      description: 'Multi-line text input component',
-      examples: [],
-      props: [],
-      usage: 'Use textareas for multi-line text input.',
-      tags: ['form', 'input']
+      description: 'Multi-line text input component with autosize, validation, and customization options',
+      examples: [
+        {
+          name: 'Basic Textarea',
+          code: `<sui-textarea
+  [value]="value"
+  placeholder="Enter your message here..."
+  [rows]="4"
+  (change)="onChange($event)">
+</sui-textarea>`,
+          description: 'Basic textarea with placeholder and rows'
+        },
+        {
+          name: 'Autosize Textarea',
+          code: `<sui-textarea
+  [value]="value"
+  [autosize]="true"
+  [rows]="3"
+  (change)="onChange($event)">
+</sui-textarea>`,
+          description: 'Textarea that automatically adjusts height based on content'
+        },
+        {
+          name: 'Disabled Textarea',
+          code: `<sui-textarea
+  [value]="value"
+  [disabled]="true"
+  [rows]="3">
+</sui-textarea>`,
+          description: 'Disabled textarea that cannot be edited'
+        },
+        {
+          name: 'Different Sizes',
+          code: `<sui-textarea [rows]="2">Small</sui-textarea>
+<sui-textarea [rows]="4">Medium</sui-textarea>
+<sui-textarea [rows]="6">Large</sui-textarea>`,
+          description: 'Textareas with different row counts for various sizes'
+        },
+        {
+          name: 'Form Validation',
+          code: `<sui-textarea
+  [value]="value"
+  placeholder="Enter message (min 10 chars)"
+  [rows]="4"
+  (change)="onChange($event)">
+</sui-textarea>`,
+          description: 'Textarea with validation and error handling'
+        },
+        {
+          name: 'Character Count',
+          code: `<sui-textarea
+  [value]="value"
+  placeholder="Type your message..."
+  [rows]="4"
+  (change)="onChange($event)">
+</sui-textarea>
+<div>{{ value.length }}/100 characters</div>`,
+          description: 'Textarea with character count display'
+        },
+        {
+          name: 'Resizable',
+          code: `<sui-textarea
+  [value]="value"
+  [rows]="4"
+  (change)="onChange($event)">
+</sui-textarea>`,
+          description: 'Textarea that can be resized by the user'
+        },
+        {
+          name: 'Custom Styling',
+          code: `<sui-textarea
+  [value]="value"
+  styleClass="custom-textarea"
+  [rows]="4"
+  (change)="onChange($event)">
+</sui-textarea>`,
+          description: 'Textarea with custom CSS styling'
+        }
+      ],
+      props: [
+        {
+          name: 'value',
+          type: 'string',
+          default: '""',
+          description: 'The value of the textarea',
+          required: false
+        },
+        {
+          name: 'placeholder',
+          type: 'string',
+          default: '""',
+          description: 'Placeholder text shown when textarea is empty',
+          required: false
+        },
+        {
+          name: 'rows',
+          type: 'number',
+          default: '3',
+          description: 'Number of visible text lines',
+          required: false
+        },
+        {
+          name: 'autosize',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the textarea should automatically adjust its height',
+          required: false
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the textarea is disabled',
+          required: false
+        },
+        {
+          name: 'name',
+          type: 'string',
+          default: '""',
+          description: 'Name attribute for the textarea',
+          required: false
+        },
+        {
+          name: 'inputId',
+          type: 'string',
+          default: '""',
+          description: 'ID attribute for the textarea',
+          required: false
+        }
+      ],
+      events: [
+        {
+          name: 'change',
+          type: 'EventEmitter<string>',
+          description: 'Emitted when the textarea value changes'
+        }
+      ],
+      usage: 'Use textareas for multi-line text input such as comments, messages, descriptions, or any content that requires more than a single line. Perfect for forms, feedback systems, and content creation interfaces.',
+      tags: ['form', 'input', 'multiline', 'text', 'validation']
+    },
+    {
+      id: 'tooltip',
+      name: 'Tooltip',
+      category: 'Foundation',
+      description: 'Contextual information component that displays helpful text when users hover, focus, or click on elements',
+      examples: [
+        {
+          name: 'Basic Tooltip',
+          code: `<sui-tooltip [tooltip]="'This is a basic tooltip'">
+  <sui-button variant="primary">Hover me</sui-button>
+</sui-tooltip>`,
+          description: 'Basic tooltip that appears on hover'
+        },
+        {
+          name: 'Different Positions',
+          code: `<!-- Top position -->
+<sui-tooltip [tooltip]="'Tooltip on top'" position="top">
+  <sui-button variant="secondary">Top</sui-button>
+</sui-tooltip>
+
+<!-- Bottom position -->
+<sui-tooltip [tooltip]="'Tooltip on bottom'" position="bottom">
+  <sui-button variant="secondary">Bottom</sui-button>
+</sui-tooltip>
+
+<!-- Left position -->
+<sui-tooltip [tooltip]="'Tooltip on left'" position="left">
+  <sui-button variant="secondary">Left</sui-button>
+</sui-tooltip>
+
+<!-- Right position -->
+<sui-tooltip [tooltip]="'Tooltip on right'" position="right">
+  <sui-button variant="secondary">Right</sui-button>
+</sui-tooltip>`,
+          description: 'Tooltips positioned on different sides of the target element'
+        },
+        {
+          name: 'Theme Variants',
+          code: `<!-- Primary theme -->
+<sui-tooltip [tooltip]="'Primary tooltip'" styleClass="sui-tooltip-primary">
+  <sui-button variant="primary">Primary</sui-button>
+</sui-tooltip>
+
+<!-- Success theme -->
+<sui-tooltip [tooltip]="'Success tooltip'" styleClass="sui-tooltip-success">
+  <sui-button variant="success">Success</sui-button>
+</sui-tooltip>
+
+<!-- Warning theme -->
+<sui-tooltip [tooltip]="'Warning tooltip'" styleClass="sui-tooltip-warning">
+  <sui-button variant="warning">Warning</sui-button>
+</sui-tooltip>
+
+<!-- Error theme -->
+<sui-tooltip [tooltip]="'Error tooltip'" styleClass="sui-tooltip-error">
+  <sui-button variant="danger">Error</sui-button>
+</sui-tooltip>
+
+<!-- Light theme -->
+<sui-tooltip [tooltip]="'Light tooltip'" styleClass="sui-tooltip-light">
+  <sui-button variant="outline">Light</sui-button>
+</sui-tooltip>`,
+          description: 'Tooltips with different color themes'
+        },
+        {
+          name: 'Size Variants',
+          code: `<!-- Small tooltip -->
+<sui-tooltip [tooltip]="'Small tooltip'" styleClass="sui-tooltip-sm">
+  <sui-button variant="secondary" size="sm">Small</sui-button>
+</sui-tooltip>
+
+<!-- Default tooltip -->
+<sui-tooltip [tooltip]="'Default tooltip'">
+  <sui-button variant="secondary">Default</sui-button>
+</sui-tooltip>
+
+<!-- Large tooltip -->
+<sui-tooltip [tooltip]="'Large tooltip with more content'" styleClass="sui-tooltip-lg">
+  <sui-button variant="secondary" size="lg">Large</sui-button>
+</sui-tooltip>`,
+          description: 'Tooltips with different sizes and padding'
+        },
+        {
+          name: 'Long Content',
+          code: `<sui-tooltip [tooltip]="'This is a longer tooltip that demonstrates how the component handles text that might wrap to multiple lines and provides helpful information to users.'" position="top">
+  <sui-button variant="primary">Long Tooltip</sui-button>
+</sui-tooltip>`,
+          description: 'Tooltip with longer text content that wraps to multiple lines'
+        },
+        {
+          name: 'HTML Content',
+          code: `<sui-tooltip [tooltip]="'This tooltip contains <strong>HTML content</strong> and <em>formatting</em>.'" position="top">
+  <sui-button variant="primary">HTML Tooltip</sui-button>
+</sui-tooltip>`,
+          description: 'Tooltip with HTML content and formatting'
+        },
+        {
+          name: 'Interactive Examples',
+          code: `<!-- Hover tooltip -->
+<sui-tooltip [tooltip]="'Hover tooltip'" position="top">
+  <sui-button variant="primary">Hover</sui-button>
+</sui-tooltip>
+
+<!-- Focus tooltip -->
+<sui-tooltip [tooltip]="'Focus tooltip'" position="top">
+  <button class="px-4 py-2 bg-blue-600 text-white rounded">Focus</button>
+</sui-tooltip>`,
+          description: 'Tooltips triggered by different user interactions'
+        },
+        {
+          name: 'Form Integration',
+          code: `<!-- Input with tooltip -->
+<sui-tooltip [tooltip]="'Enter your email address'" position="right">
+  <input type="email" placeholder="Email" class="px-3 py-2 border rounded">
+</sui-tooltip>
+
+<!-- Button with tooltip -->
+<sui-tooltip [tooltip]="'Click to submit the form'" position="top">
+  <sui-button variant="primary">Submit</sui-button>
+</sui-tooltip>`,
+          description: 'Tooltips integrated with form elements for better UX'
+        },
+        {
+          name: 'Disabled State',
+          code: `<sui-tooltip [tooltip]="'This tooltip is disabled'" [disabled]="true">
+  <sui-button variant="secondary" [disabled]="true">Disabled</sui-button>
+</sui-tooltip>`,
+          description: 'Tooltip in disabled state that does not show'
+        },
+        {
+          name: 'Custom Styling',
+          code: `<sui-tooltip 
+  [tooltip]="'Custom styled tooltip'" 
+  position="top"
+  styleClass="sui-tooltip-primary"
+  [style]="{'font-size': '16px', 'border-radius': '12px'}">
+  <sui-button variant="primary">Custom Style</sui-button>
+</sui-tooltip>`,
+          description: 'Tooltip with custom styling and CSS classes'
+        },
+        {
+          name: 'Event Handling',
+          code: `<sui-tooltip 
+  [tooltip]="'Tooltip with events'" 
+  position="top"
+  (onShow)="onTooltipShow()"
+  (onHide)="onTooltipHide()">
+  <sui-button variant="primary">Event Tooltip</sui-button>
+</sui-tooltip>`,
+          description: 'Tooltip with event handlers for show/hide events'
+        },
+        {
+          name: 'Delay Configuration',
+          code: `<!-- Fast tooltip -->
+<sui-tooltip [tooltip]="'Fast tooltip'" [showDelay]="0" [hideDelay]="0">
+  <sui-button variant="secondary">Fast</sui-button>
+</sui-tooltip>
+
+<!-- Delayed tooltip -->
+<sui-tooltip [tooltip]="'Delayed tooltip'" [showDelay]="500" [hideDelay]="200">
+  <sui-button variant="secondary">Delayed</sui-button>
+</sui-tooltip>`,
+          description: 'Tooltips with custom show and hide delays'
+        }
+      ],
+      props: [
+        {
+          name: 'tooltip',
+          type: 'string',
+          default: '""',
+          description: 'The text content to display in the tooltip',
+          required: true
+        },
+        {
+          name: 'position',
+          type: 'string',
+          default: 'top',
+          description: 'Position of the tooltip relative to the target element (top, bottom, left, right)',
+          required: false
+        },
+        {
+          name: 'showDelay',
+          type: 'number',
+          default: '0',
+          description: 'Delay in milliseconds before showing the tooltip',
+          required: false
+        },
+        {
+          name: 'hideDelay',
+          type: 'number',
+          default: '0',
+          description: 'Delay in milliseconds before hiding the tooltip',
+          required: false
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          default: 'false',
+          description: 'Whether the tooltip is disabled and will not show',
+          required: false
+        },
+        {
+          name: 'style',
+          type: 'any',
+          default: '{}',
+          description: 'Inline styles for the tooltip',
+          required: false
+        },
+        {
+          name: 'styleClass',
+          type: 'string',
+          default: '""',
+          description: 'CSS class names for the tooltip (e.g., sui-tooltip-primary, sui-tooltip-sm)',
+          required: false
+        }
+      ],
+      events: [
+        {
+          name: 'onShow',
+          type: 'EventEmitter<void>',
+          description: 'Emitted when the tooltip is shown'
+        },
+        {
+          name: 'onHide',
+          type: 'EventEmitter<void>',
+          description: 'Emitted when the tooltip is hidden'
+        }
+      ],
+      usage: 'Use tooltips to provide contextual information, help text, or additional details about UI elements. Perfect for form fields, buttons, icons, and any interface element that benefits from additional explanation. Tooltips improve user experience by providing guidance without cluttering the interface.',
+      tags: ['tooltip', 'help', 'context', 'information', 'hover', 'focus']
     },
     {
       id: 'toggle-button',

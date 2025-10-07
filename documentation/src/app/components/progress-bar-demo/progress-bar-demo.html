@@ -1,0 +1,263 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Progress Bar') {
+    <div class="progress-demo">
+      <div class="demo-content">
+        <h3>Basic Progress Bar</h3>
+        <p>Standard progress bar showing completion percentage.</p>
+        <div class="progress-container">
+          <sui-progress-bar
+            [value]="basicProgress"
+            [showValue]="true"
+            mode="determinate">
+          </sui-progress-bar>
+          <div class="progress-controls">
+            <input 
+              type="range" 
+              min="0" 
+              max="100" 
+              [value]="basicProgress"
+              (input)="basicProgress = $any($event.target).value"
+              class="progress-slider">
+            <span class="progress-value">{{ basicProgress }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Success Progress Bar') {
+    <div class="progress-demo">
+      <div class="demo-content">
+        <h3>Success Progress Bar</h3>
+        <p>Progress bar indicating successful completion with custom color.</p>
+        <div class="progress-container">
+          <sui-progress-bar
+            [value]="successProgress"
+            [showValue]="true"
+            [color]="'#10b981'"
+            styleClass="success"
+            mode="determinate">
+          </sui-progress-bar>
+          <div class="progress-controls">
+            <input 
+              type="range" 
+              min="0" 
+              max="100" 
+              [value]="successProgress"
+              (input)="successProgress = $any($event.target).value"
+              class="progress-slider">
+            <span class="progress-value">{{ successProgress }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Indeterminate Progress Bar') {
+    <div class="progress-demo">
+      <div class="demo-content">
+        <h3>Indeterminate Progress Bar</h3>
+        <p>Progress bar for operations with unknown duration.</p>
+        <div class="progress-container">
+          <sui-progress-bar
+            mode="indeterminate"
+            [showValue]="false"
+            styleClass="info">
+          </sui-progress-bar>
+          <div class="progress-info">
+            <p>This progress bar is used when the completion time is unknown.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Animated Progress Bar') {
+    <div class="progress-demo">
+      <div class="demo-content">
+        <h3>Animated Progress Bar</h3>
+        <p>Progress bar with animated stripes for visual appeal.</p>
+        <div class="progress-container">
+          <sui-progress-bar
+            [value]="animatedProgress"
+            [showValue]="true"
+            styleClass="animated">
+          </sui-progress-bar>
+          <div class="progress-controls">
+            <input 
+              type="range" 
+              min="0" 
+              max="100" 
+              [value]="animatedProgress"
+              (input)="animatedProgress = $any($event.target).value"
+              class="progress-slider">
+            <span class="progress-value">{{ animatedProgress }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Size Variations') {
+    <div class="progress-demo">
+      <div class="demo-content">
+        <h3>Progress Bar Sizes</h3>
+        <p>Progress bars in different sizes for various use cases.</p>
+        <div class="progress-variants">
+          <div class="variant-item">
+            <h4>Small</h4>
+            <sui-progress-bar
+              [value]="smallProgress"
+              [showValue]="true"
+              styleClass="small">
+            </sui-progress-bar>
+            <input 
+              type="range" 
+              min="0" 
+              max="100" 
+              [value]="smallProgress"
+              (input)="smallProgress = $any($event.target).value"
+              class="progress-slider">
+          </div>
+          
+          <div class="variant-item">
+            <h4>Normal</h4>
+            <sui-progress-bar
+              [value]="normalProgress"
+              [showValue]="true"
+              styleClass="normal">
+            </sui-progress-bar>
+            <input 
+              type="range" 
+              min="0" 
+              max="100" 
+              [value]="normalProgress"
+              (input)="normalProgress = $any($event.target).value"
+              class="progress-slider">
+          </div>
+          
+          <div class="variant-item">
+            <h4>Large</h4>
+            <sui-progress-bar
+              [value]="largeProgress"
+              [showValue]="true"
+              styleClass="large">
+            </sui-progress-bar>
+            <input 
+              type="range" 
+              min="0" 
+              max="100" 
+              [value]="largeProgress"
+              (input)="largeProgress = $any($event.target).value"
+              class="progress-slider">
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Custom Unit Display') {
+    <div class="progress-demo">
+      <div class="demo-content">
+        <h3>Progress Bar with Custom Unit</h3>
+        <p>Progress bar displaying custom units like MB, seconds, etc.</p>
+        <div class="progress-container">
+          <div class="file-upload-example">
+            <div class="file-info">
+              <span class="file-name">document.pdf</span>
+              <span class="file-size">{{ fileSize }} MB / {{ maxFileSize }} MB</span>
+            </div>
+            <sui-progress-bar
+              [value]="(fileSize / maxFileSize) * 100"
+              [showValue]="true"
+              unit="MB"
+              [color]="'#3b82f6'">
+            </sui-progress-bar>
+            <div class="progress-controls">
+              <input 
+                type="range" 
+                min="0" 
+                max="5"
+                step="0.1"
+                [value]="fileSize"
+                (input)="fileSize = parseFloat($any($event.target).value)"
+                class="progress-slider">
+              <span class="progress-value">{{ fileSize.toFixed(1) }} MB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Size Variations') {
+    <div class="progress-demo">
+      <div class="demo-content">
+        <h3>Multiple Progress Bar Types</h3>
+        <p>Different progress bar variants and states.</p>
+        <div class="progress-grid">
+          <div class="progress-item">
+            <h4>Basic</h4>
+            <sui-progress-bar
+              [value]="basicProgress"
+              [showValue]="true">
+            </sui-progress-bar>
+          </div>
+          
+          <div class="progress-item">
+            <h4>Success</h4>
+            <sui-progress-bar
+              [value]="successProgress"
+              [showValue]="true"
+              styleClass="success">
+            </sui-progress-bar>
+          </div>
+          
+          <div class="progress-item">
+            <h4>Warning</h4>
+            <sui-progress-bar
+              [value]="warningProgress"
+              [showValue]="true"
+              styleClass="warning">
+            </sui-progress-bar>
+          </div>
+          
+          <div class="progress-item">
+            <h4>Danger</h4>
+            <sui-progress-bar
+              [value]="dangerProgress"
+              [showValue]="true"
+              styleClass="danger">
+            </sui-progress-bar>
+          </div>
+          
+          <div class="progress-item">
+            <h4>Info</h4>
+            <sui-progress-bar
+              [value]="infoProgress"
+              [showValue]="true"
+              styleClass="info">
+            </sui-progress-bar>
+          </div>
+          
+          <div class="progress-item">
+            <h4>Animated</h4>
+            <sui-progress-bar
+              [value]="animatedProgress"
+              [showValue]="true"
+              styleClass="animated">
+            </sui-progress-bar>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="progress-demo">
+      <div class="demo-content">
+        <h3>Progress Bar Demo</h3>
+        <p>Basic progress bar example.</p>
+        <div class="progress-container">
+          <sui-progress-bar
+            [value]="basicProgress"
+            [showValue]="true">
+          </sui-progress-bar>
+        </div>
+      </div>
+    </div>
+  }
+}

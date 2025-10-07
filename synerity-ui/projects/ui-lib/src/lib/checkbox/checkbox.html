@@ -6,8 +6,10 @@
 		[name]="name"
 		[disabled]="disabled"
 		[checked]="checked"
+		[indeterminate]="indeterminate"
 		(change)="onInputChange($event)"
 		(blur)="onInputBlur()"
 	/>
+	<span *ngIf="label">{{ label }}</span>
 	<ng-content />
 </label>

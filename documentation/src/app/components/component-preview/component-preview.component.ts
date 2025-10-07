@@ -10,11 +10,20 @@ import { AutoCompleteDemoComponent } from '../auto-complete-demo/auto-complete-d
 import { PanelDemoComponent } from '../panel-demo/panel-demo';
 import { MenuDemoComponent } from '../menu-demo/menu-demo';
 import { DialogDemoComponent } from '../dialog-demo/dialog-demo';
+import { CarouselDemoComponent } from '../carousel-demo/carousel-demo';
+import { ToastDemoComponent } from '../toast-demo/toast-demo';
+import { ProgressBarDemoComponent } from '../progress-bar-demo/progress-bar-demo';
+import { CheckboxDemoComponent } from '../checkbox-demo/checkbox-demo';
+import { RadioButtonDemoComponent } from '../radio-button-demo/radio-button-demo';
+import { SelectDemoComponent } from '../select-demo/select-demo';
+import { TabsDemoComponent } from '../tabs-demo/tabs-demo';
+import { TextareaDemoComponent } from '../textarea-demo/textarea-demo';
+import { TooltipDemoComponent } from '../tooltip-demo/tooltip-demo';
 
 @Component({
   selector: 'app-component-preview',
   standalone: true,
-  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent],
+  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent],
   templateUrl: './component-preview.component.html',
   styleUrl: './component-preview.component.scss'
 })

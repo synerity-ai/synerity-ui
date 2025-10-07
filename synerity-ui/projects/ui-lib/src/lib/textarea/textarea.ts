@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, Output, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, Output, ViewChild, ElementRef, AfterViewInit, OnChanges } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -16,18 +16,17 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
     }
   ]
 })
-export class Textarea implements ControlValueAccessor, AfterViewInit {
+export class Textarea implements ControlValueAccessor, AfterViewInit, OnChanges {
   @Input() disabled = false;
   @Input() name = '';
   @Input() inputId = '';
   @Input() placeholder = '';
   @Input() rows = 3;
   @Input() autosize = false;
+  @Input() value = '';
   @Output() change = new EventEmitter<string>();
 
   @ViewChild('ta') textareaRef!: ElementRef<HTMLTextAreaElement>;
-
-  value = '';
 
   private onChange: (val: string) => void = () => {};
   private onTouched: () => void = () => {};
@@ -40,6 +39,12 @@ export class Textarea implements ControlValueAccessor, AfterViewInit {
 
   writeValue(value: string): void {
     this.value = value ?? '';
+    if (this.autosize) {
+      queueMicrotask(() => this.adjustHeight());
+    }
+  }
+
+  ngOnChanges(): void {
     if (this.autosize) {
       queueMicrotask(() => this.adjustHeight());
     }

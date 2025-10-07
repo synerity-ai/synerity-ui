@@ -30,6 +30,30 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/theme-config/theme-config').then(m => m.ThemeConfigComponent)
   },
   {
+    path: 'demo/carousel',
+    loadComponent: () => import('./components/carousel-demo/carousel-demo').then(m => m.CarouselDemoComponent)
+  },
+  {
+    path: 'demo/toast',
+    loadComponent: () => import('./components/toast-demo/toast-demo').then(m => m.ToastDemoComponent)
+  },
+  {
+    path: 'demo/progress-bar',
+    loadComponent: () => import('./components/progress-bar-demo/progress-bar-demo').then(m => m.ProgressBarDemoComponent)
+  },
+  {
+    path: 'demo/checkbox',
+    loadComponent: () => import('./components/checkbox-demo/checkbox-demo').then(m => m.CheckboxDemoComponent)
+  },
+  {
+    path: 'demo/radio-button',
+    loadComponent: () => import('./components/radio-button-demo/radio-button-demo').then(m => m.RadioButtonDemoComponent)
+  },
+  {
+    path: 'demo/select',
+    loadComponent: () => import('./components/select-demo/select-demo').then(m => m.SelectDemoComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

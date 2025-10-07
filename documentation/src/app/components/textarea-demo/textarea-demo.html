@@ -1,0 +1,171 @@
+<!-- Basic Textarea Example -->
+<div *ngIf="currentExample.name === 'Basic Textarea'" class="textarea-demo-example">
+  <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+    <sui-textarea
+      [value]="basicValue"
+      [placeholder]="basicPlaceholder"
+      [rows]="4"
+      (change)="onBasicChange($event)">
+    </sui-textarea>
+  </div>
+  <div class="text-sm text-gray-600">
+    <strong>Current value:</strong> "{{ basicValue }}"
+  </div>
+</div>
+
+<!-- Autosize Textarea Example -->
+<div *ngIf="currentExample.name === 'Autosize Textarea'" class="textarea-demo-example">
+  <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-2">Auto-resizing Textarea</label>
+    <sui-textarea
+      [value]="autosizeValue"
+      [placeholder]="autosizePlaceholder"
+      [autosize]="true"
+      [rows]="3"
+      (change)="onAutosizeChange($event)">
+    </sui-textarea>
+  </div>
+  <div class="text-sm text-gray-600">
+    This textarea automatically adjusts its height as you type more content.
+  </div>
+</div>
+
+<!-- Disabled Textarea Example -->
+<div *ngIf="currentExample.name === 'Disabled Textarea'" class="textarea-demo-example">
+  <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-2">Disabled Textarea</label>
+    <sui-textarea
+      [value]="disabledValue"
+      [placeholder]="disabledPlaceholder"
+      [disabled]="true"
+      [rows]="3">
+    </sui-textarea>
+  </div>
+  <div class="text-sm text-gray-600">
+    This textarea is disabled and cannot be edited.
+  </div>
+</div>
+
+<!-- Different Sizes Example -->
+<div *ngIf="currentExample.name === 'Different Sizes'" class="textarea-demo-example">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <!-- Small -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Small (2 rows)</label>
+      <sui-textarea
+        [value]="smallValue"
+        placeholder="Small textarea"
+        [rows]="2"
+        (change)="onSmallChange($event)">
+      </sui-textarea>
+    </div>
+
+    <!-- Medium -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Medium (4 rows)</label>
+      <sui-textarea
+        [value]="mediumValue"
+        placeholder="Medium textarea"
+        [rows]="4"
+        (change)="onMediumChange($event)">
+      </sui-textarea>
+    </div>
+
+    <!-- Large -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Large (6 rows)</label>
+      <sui-textarea
+        [value]="largeValue"
+        placeholder="Large textarea"
+        [rows]="6"
+        (change)="onLargeChange($event)">
+      </sui-textarea>
+    </div>
+  </div>
+</div>
+
+<!-- Form Validation Example -->
+<div *ngIf="currentExample.name === 'Form Validation'" class="textarea-demo-example">
+  <div class="space-y-4">
+    <!-- Email validation -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+      <sui-textarea
+        [value]="emailValue"
+        placeholder="Enter your email address"
+        [rows]="1"
+        (change)="onEmailChange($event)">
+      </sui-textarea>
+      <div *ngIf="emailError" class="text-sm text-red-600 mt-1">{{ emailError }}</div>
+    </div>
+
+    <!-- Message validation -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Message (min 10 characters)</label>
+      <sui-textarea
+        [value]="messageValue"
+        placeholder="Enter your message (minimum 10 characters)"
+        [rows]="4"
+        (change)="onMessageChange($event)">
+      </sui-textarea>
+      <div *ngIf="messageError" class="text-sm text-red-600 mt-1">{{ messageError }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Character Count Example -->
+<div *ngIf="currentExample.name === 'Character Count'" class="textarea-demo-example">
+  <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-2">
+      Message with Character Count ({{ maxLength }} max)
+    </label>
+    <sui-textarea
+      [value]="charCountValue"
+      placeholder="Type your message here..."
+      [rows]="4"
+      (change)="onCharCountChange($event)">
+    </sui-textarea>
+    <div class="flex justify-between items-center mt-2">
+      <div class="text-sm" [class.text-red-600]="isCharLimitExceeded" [class.text-gray-600]="!isCharLimitExceeded">
+        {{ charCountValue.length }} / {{ maxLength }} characters
+      </div>
+      <div *ngIf="isCharLimitExceeded" class="text-sm text-red-600">
+        Character limit exceeded!
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Resizable Example -->
+<div *ngIf="currentExample.name === 'Resizable'" class="textarea-demo-example">
+  <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-2">Resizable Textarea</label>
+    <sui-textarea
+      [value]="resizableValue"
+      placeholder="This textarea can be resized"
+      [rows]="4"
+      (change)="onResizableChange($event)">
+    </sui-textarea>
+  </div>
+  <div class="text-sm text-gray-600">
+    Drag the bottom-right corner to resize this textarea.
+  </div>
+</div>
+
+<!-- Custom Styling Example -->
+<div *ngIf="currentExample.name === 'Custom Styling'" class="textarea-demo-example">
+  <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-2">Custom Styled Textarea</label>
+    <sui-textarea
+      [value]="customValue"
+      placeholder="This textarea has custom styling"
+      [rows]="4"
+      styleClass="custom-textarea"
+      (change)="onCustomChange($event)">
+    </sui-textarea>
+  </div>
+  <div class="text-sm text-gray-600">
+    This textarea has custom CSS classes applied for styling.
+  </div>
+</div>

@@ -1,4 +1,4 @@
-/* Enterprise Standard Tabs Styling */
+/* Enterprise Standard Tabs Styling with CSS Variables */
 .sui-tabs {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
@@ -8,22 +8,23 @@
     transition: all 0.15s ease-in-out;
 
     &:focus {
-      outline: 2px solid #3b82f6;
+      outline: 2px solid var(--sui-primary-500, #3b82f6);
       outline-offset: -2px;
     }
 
     &-active {
       font-weight: 600;
-      color: #1e40af;
-      border-bottom-color: #1e40af;
+      color: var(--sui-primary-700, #1d4ed8);
+      border-bottom-color: var(--sui-primary-700, #1d4ed8);
     }
 
     &-disabled {
       pointer-events: none;
+      opacity: 0.5;
     }
 
     &:hover:not(.sui-tabs-tab-disabled) {
-      color: #1f2937;
+      color: var(--sui-gray-800, #1f2937);
     }
   }
 

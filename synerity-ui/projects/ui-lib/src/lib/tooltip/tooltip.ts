@@ -73,12 +73,22 @@ export class Tooltip implements AfterViewInit, OnDestroy {
   private show(): void {
     this.visible = true;
     this.onShow.emit();
-    this.updatePosition();
+    // Use setTimeout to ensure DOM is updated before positioning
+    setTimeout(() => {
+      this.updatePosition();
+      this.addShowClass();
+    }, 0);
   }
 
   private hide(): void {
     this.visible = false;
     this.onHide.emit();
+  }
+
+  private addShowClass(): void {
+    if (this.tooltipElement) {
+      this.tooltipElement.nativeElement.classList.add('show');
+    }
   }
 
   private updatePosition(): void {
@@ -125,7 +135,9 @@ export class Tooltip implements AfterViewInit, OnDestroy {
   }
 
   getTooltipClass(): string {
-    return `sui-tooltip sui-tooltip-${this.position} ${this.styleClass}`.trim();
+    const baseClass = `sui-tooltip sui-tooltip-${this.position}`;
+    const showClass = this.visible ? 'show' : '';
+    return `${baseClass} ${showClass} ${this.styleClass}`.trim();
   }
 
   getTooltipStyle(): any {
@@ -134,14 +146,4 @@ export class Tooltip implements AfterViewInit, OnDestroy {
     };
   }
 
-  getArrowClass(): string {
-    const positionClasses = {
-      'top': '-bottom-1 left-1/2 transform -translate-x-1/2',
-      'bottom': '-top-1 left-1/2 transform -translate-x-1/2',
-      'left': '-right-1 top-1/2 transform -translate-y-1/2',
-      'right': '-left-1 top-1/2 transform -translate-y-1/2'
-    };
-
-    return positionClasses[this.position];
-  }
 }

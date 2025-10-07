@@ -1,0 +1,115 @@
+@switch (getCurrentExample().name) {
+  @case ('Success Toast') {
+    <div class="toast-demo">
+      <sui-toast #toastRef position="top-right"></sui-toast>
+      <div class="demo-content">
+        <h3>Success Toast Example</h3>
+        <p>Click the button below to show a success toast notification.</p>
+        <button class="demo-button success" (click)="showSuccessToast()">
+          Show Success Toast
+        </button>
+      </div>
+    </div>
+  }
+  @case ('Info Toast') {
+    <div class="toast-demo">
+      <sui-toast #toastRef position="top-right"></sui-toast>
+      <div class="demo-content">
+        <h3>Info Toast Example</h3>
+        <p>Click the button below to show an informational toast notification.</p>
+        <button class="demo-button info" (click)="showInfoToast()">
+          Show Info Toast
+        </button>
+      </div>
+    </div>
+  }
+  @case ('Warning Toast') {
+    <div class="toast-demo">
+      <sui-toast #toastRef position="top-right"></sui-toast>
+      <div class="demo-content">
+        <h3>Warning Toast Example</h3>
+        <p>Click the button below to show a warning toast notification.</p>
+        <button class="demo-button warning" (click)="showWarningToast()">
+          Show Warning Toast
+        </button>
+      </div>
+    </div>
+  }
+  @case ('Error Toast') {
+    <div class="toast-demo">
+      <sui-toast #toastRef position="top-right"></sui-toast>
+      <div class="demo-content">
+        <h3>Error Toast Example</h3>
+        <p>Click the button below to show an error toast notification.</p>
+        <button class="demo-button error" (click)="showErrorToast()">
+          Show Error Toast
+        </button>
+      </div>
+    </div>
+  }
+  @case ('Persistent Toast') {
+    <div class="toast-demo">
+      <sui-toast #toastRef position="top-right"></sui-toast>
+      <div class="demo-content">
+        <h3>Persistent Toast Example</h3>
+        <p>Click the button below to show a toast that requires manual dismissal.</p>
+        <button class="demo-button info" (click)="showPersistentToast()">
+          Show Persistent Toast
+        </button>
+        <button class="demo-button secondary" (click)="clearAllToasts()">
+          Clear All Toasts
+        </button>
+      </div>
+    </div>
+  }
+  @case ('Non-Closable Toast') {
+    <div class="toast-demo">
+      <sui-toast #toastRef position="top-right"></sui-toast>
+      <div class="demo-content">
+        <h3>Non-Closable Toast Example</h3>
+        <p>Click the button below to show a toast that cannot be manually closed.</p>
+        <button class="demo-button info" (click)="showNonClosableToast()">
+          Show Non-Closable Toast
+        </button>
+      </div>
+    </div>
+  }
+  @case ('Multiple Toast Types') {
+    <div class="toast-demo">
+      <sui-toast #toastRef position="top-right"></sui-toast>
+      <div class="demo-content">
+        <h3>Multiple Toast Types</h3>
+        <p>Click the buttons below to show different types of toast notifications.</p>
+        <div class="toast-buttons">
+          <button class="demo-button success" (click)="showSuccessToast()">
+            Success Toast
+          </button>
+          <button class="demo-button info" (click)="showInfoToast()">
+            Info Toast
+          </button>
+          <button class="demo-button warning" (click)="showWarningToast()">
+            Warning Toast
+          </button>
+          <button class="demo-button error" (click)="showErrorToast()">
+            Error Toast
+          </button>
+        </div>
+        <button class="demo-button secondary" (click)="clearAllToasts()">
+          Clear All Toasts
+        </button>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="toast-demo">
+      <sui-toast #toastRef position="top-right"></sui-toast>
+      <div class="demo-content">
+        <h3>Toast Component Demo</h3>
+        <p>Click the button below to show a basic toast notification.</p>
+        <button class="demo-button info" (click)="showInfoToast()">
+          Show Toast
+        </button>
+      </div>
+    </div>
+  }
+}

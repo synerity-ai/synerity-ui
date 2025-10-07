@@ -1,0 +1,29 @@
+.tabs-demo-example {
+  width: 100%;
+  min-height: 200px;
+}
+
+// Custom styling for better demo presentation
+:host ::ng-deep {
+  .sui-tabs {
+    .sui-tabs-tab {
+      transition: all 0.2s ease-in-out;
+      
+      &:hover:not(.sui-tabs-tab-disabled) {
+        background-color: var(--sui-gray-50, #f9fafb);
+      }
+      
+      &.sui-tabs-tab-active {
+        background-color: var(--sui-white, #ffffff);
+        border-bottom: 2px solid var(--sui-primary-600, #2563eb);
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .tabs-demo-example {
+    min-height: 150px;
+  }
+}

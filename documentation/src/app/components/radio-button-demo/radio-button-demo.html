@@ -1,0 +1,382 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Radio Button') {
+    <div class="radio-demo">
+      <div class="demo-content">
+        <h3>Basic Radio Button</h3>
+        <p>Simple radio buttons with basic functionality.</p>
+        <div class="space-y-4">
+          <div *ngFor="let option of basicOptions" class="flex items-center gap-3">
+            <sui-radio-button 
+              name="basic-group"
+              [value]="option.value"
+              [inputId]="option.id"
+              label="{{ option.label }}"
+              [(ngModel)]="basicSelectedValue"
+              (change)="basicSelectedValue = option.value">
+            </sui-radio-button>
+          </div>
+          <div class="mt-4 p-3 bg-gray-100 rounded">
+            <span class="text-sm text-gray-600">Selected: {{ getSelectedOptionLabel(basicOptions, basicSelectedValue) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Size Variations') {
+    <div class="radio-demo">
+      <div class="demo-content">
+        <h3>Size Variations</h3>
+        <p>Radio buttons available in different sizes.</p>
+        <div class="space-y-6">
+          <div *ngFor="let variant of sizeVariants" class="flex items-center gap-3">
+            <sui-radio-button 
+              name="size-group"
+              [value]="variant.size"
+              [inputId]="'size-' + variant.size"
+              label="{{ variant.label }}"
+              [cssClass]="'radio-' + variant.size"
+              [(ngModel)]="sizeSelectedValue"
+              (change)="sizeSelectedValue = variant.size">
+            </sui-radio-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Color Variants') {
+    <div class="radio-demo">
+      <div class="demo-content">
+        <h3>Color Variants</h3>
+        <p>Radio buttons available in different color themes.</p>
+        <div class="space-y-4">
+          <div *ngFor="let variant of colorVariants" class="flex items-center gap-3">
+            <sui-radio-button 
+              name="color-group"
+              [value]="variant.color"
+              [inputId]="'color-' + variant.color"
+              label="{{ variant.label }}"
+              [cssClass]="'radio-' + variant.color"
+              [(ngModel)]="colorSelectedValue"
+              (change)="colorSelectedValue = variant.color">
+            </sui-radio-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Form Integration') {
+    <div class="radio-demo">
+      <div class="demo-content">
+        <h3>Form Integration</h3>
+        <p>Radio buttons integrated within a form with validation and submission.</p>
+        <form class="space-y-6" (ngSubmit)="submitForm()">
+          <div class="form-group">
+            <h4>Preferred Contact Method</h4>
+            <div class="space-y-2">
+              <sui-radio-button 
+                name="contact"
+                value="email"
+                inputId="contact-email"
+                label="Email"
+                [(ngModel)]="formData.preferredContact"
+                required>
+              </sui-radio-button>
+              <sui-radio-button 
+                name="contact"
+                value="phone"
+                inputId="contact-phone"
+                label="Phone"
+                [(ngModel)]="formData.preferredContact"
+                required>
+              </sui-radio-button>
+              <sui-radio-button 
+                name="contact"
+                value="sms"
+                inputId="contact-sms"
+                label="SMS"
+                [(ngModel)]="formData.preferredContact"
+                required>
+              </sui-radio-button>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <h4>Notification Frequency</h4>
+            <div class="space-y-2">
+              <sui-radio-button 
+                name="notifications"
+                value="instant"
+                inputId="notif-instant"
+                label="Instant"
+                [(ngModel)]="formData.notificationFrequency">
+              </sui-radio-button>
+              <sui-radio-button 
+                name="notifications"
+                value="daily"
+                inputId="notif-daily"
+                label="Daily"
+                [(ngModel)]="formData.notificationFrequency">
+              </sui-radio-button>
+              <sui-radio-button 
+                name="notifications"
+                value="weekly"
+                inputId="notif-weekly"
+                label="Weekly"
+                [(ngModel)]="formData.notificationFrequency">
+              </sui-radio-button>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <sui-button type="submit">Submit Form</sui-button>
+            <sui-button type="button" variant="outline" (click)="resetForm()">Reset</sui-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+  
+  @case ('Survey Example') {
+    <div class="radio-demo">
+      <div class="demo-content">
+        <h3>Survey Example</h3>
+        <p>Interactive survey with progress tracking using radio buttons.</p>
+        <div class="survey-container">
+          <div class="survey-header">
+            <h4>User Experience Survey</h4>
+            <div class="progress-bar">
+              <div class="progress-fill" [style.width.%]="getSurveyProgress()"></div>
+            </div>
+            <span class="progress-text">{{ Math.round(getSurveyProgress()) }}% Complete</span>
+          </div>
+          
+          <form class="survey-form" (ngSubmit)="submitSurvey()">
+            <div class="survey-question">
+              <h5>What is your age range?</h5>
+              <div class="space-y-2">
+                <sui-radio-button 
+                  *ngFor="let option of ageRanges"
+                  name="age-range"
+                  [value]="option.value"
+                  [inputId]="option.id"
+                  [label]="option.label"
+                  [(ngModel)]="surveyData.ageRange">
+                </sui-radio-button>
+              </div>
+            </div>
+            
+            <div class="survey-question">
+              <h5>What is your experience level?</h5>
+              <div class="space-y-2">
+                <div *ngFor="let option of experienceLevels" class="radio-option-with-description">
+                  <sui-radio-button 
+                    name="experience"
+                    [value]="option.value"
+                    [inputId]="option.id"
+                    [label]="option.label"
+                    [(ngModel)]="surveyData.experience">
+                  </sui-radio-button>
+                  <span *ngIf="option.description" class="option-description">{{ option.description }}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="survey-question">
+              <h5>How satisfied are you with our service?</h5>
+              <div class="space-y-2">
+                <sui-radio-button 
+                  *ngFor="let option of satisfactionLevels"
+                  name="satisfaction"
+                  [value]="option.value"
+                  [inputId]="option.id"
+                  [label]="option.label"
+                  [(ngModel)]="surveyData.satisfaction">
+                </sui-radio-button>
+              </div>
+            </div>
+            
+            <div class="survey-question">
+              <h5>Would you recommend us to others?</h5>
+              <div class="space-y-2">
+                <sui-radio-button 
+                  name="recommendation"
+                  value="definitely"
+                  inputId="rec-definitely"
+                  label="Definitely"
+                  [(ngModel)]="surveyData.recommendation">
+                </sui-radio-button>
+                <sui-radio-button 
+                  name="recommendation"
+                  value="probably"
+                  inputId="rec-probably"
+                  label="Probably"
+                  [(ngModel)]="surveyData.recommendation">
+                </sui-radio-button>
+                <sui-radio-button 
+                  name="recommendation"
+                  value="maybe"
+                  inputId="rec-maybe"
+                  label="Maybe"
+                  [(ngModel)]="surveyData.recommendation">
+                </sui-radio-button>
+                <sui-radio-button 
+                  name="recommendation"
+                  value="unlikely"
+                  inputId="rec-unlikely"
+                  label="Unlikely"
+                  [(ngModel)]="surveyData.recommendation">
+                </sui-radio-button>
+              </div>
+            </div>
+            
+            <div class="survey-actions">
+              <sui-button type="submit" [disabled]="!isSurveyComplete()">Submit Survey</sui-button>
+              <sui-button type="button" variant="outline" (click)="resetSurvey()">Reset</sui-button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Settings Panel') {
+    <div class="radio-demo">
+      <div class="demo-content">
+        <h3>Settings Panel</h3>
+        <p>Radio buttons organized in a settings panel layout.</p>
+        <div class="settings-panel">
+          <div class="settings-section">
+            <h4>Language</h4>
+            <div class="settings-options">
+              <sui-radio-button 
+                *ngFor="let option of languages"
+                name="language"
+                [value]="option.value"
+                [inputId]="option.id"
+                [label]="option.label"
+                [(ngModel)]="settings.language">
+              </sui-radio-button>
+            </div>
+          </div>
+          
+          <div class="settings-section">
+            <h4>Currency</h4>
+            <div class="settings-options">
+              <sui-radio-button 
+                *ngFor="let option of currencies"
+                name="currency"
+                [value]="option.value"
+                [inputId]="option.id"
+                [label]="option.label"
+                [(ngModel)]="settings.currency">
+              </sui-radio-button>
+            </div>
+          </div>
+          
+          <div class="settings-section">
+            <h4>Timezone</h4>
+            <div class="settings-options">
+              <sui-radio-button 
+                *ngFor="let option of timezones"
+                name="timezone"
+                [value]="option.value"
+                [inputId]="option.id"
+                [label]="option.label"
+                [(ngModel)]="settings.timezone">
+              </sui-radio-button>
+            </div>
+          </div>
+          
+          <div class="settings-section">
+            <h4>Date Format</h4>
+            <div class="settings-options">
+              <sui-radio-button 
+                *ngFor="let option of dateFormats"
+                name="date-format"
+                [value]="option.value"
+                [inputId]="option.id"
+                [label]="option.label"
+                [(ngModel)]="settings.dateFormat">
+              </sui-radio-button>
+            </div>
+          </div>
+          
+          <div class="settings-summary">
+            <h5>Current Settings:</h5>
+            <div class="settings-preview">
+              <p><strong>Language:</strong> {{ getSelectedOptionLabel(languages, settings.language) }}</p>
+              <p><strong>Currency:</strong> {{ getSelectedOptionLabel(currencies, settings.currency) }}</p>
+              <p><strong>Timezone:</strong> {{ getSelectedOptionLabel(timezones, settings.timezone) }}</p>
+              <p><strong>Date Format:</strong> {{ getSelectedOptionLabel(dateFormats, settings.dateFormat) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Payment Method Selection') {
+    <div class="radio-demo">
+      <div class="demo-content">
+        <h3>Payment Method Selection</h3>
+        <p>Radio buttons for selecting payment methods with descriptions.</p>
+        <div class="payment-container">
+          <div class="payment-methods">
+            <div *ngFor="let method of paymentMethods" class="payment-option">
+              <sui-radio-button 
+                name="payment-method"
+                [value]="method.value"
+                [inputId]="method.id"
+                [label]="method.label"
+                [(ngModel)]="selectedPaymentMethod">
+              </sui-radio-button>
+              <div class="payment-description">
+                <span>{{ method.description }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="payment-summary">
+            <h5>Selected Payment Method:</h5>
+            <div class="selected-payment">
+              <strong>{{ getSelectedOptionLabel(paymentMethods, selectedPaymentMethod) }}</strong>
+              <p class="payment-desc">{{ getSelectedOptionDescription(paymentMethods, selectedPaymentMethod) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @case ('Custom Styling') {
+    <div class="radio-demo">
+      <div class="demo-content">
+        <h3>Custom Styling</h3>
+        <p>Radio buttons with custom styling and effects.</p>
+        <div class="space-y-4">
+          <div *ngFor="let style of customStyles" class="flex items-center gap-3">
+            <sui-radio-button 
+              name="custom-style"
+              [value]="style.style"
+              [inputId]="'style-' + style.style"
+              label="{{ style.label }}"
+              [cssClass]="'radio-' + style.style"
+              [(ngModel)]="customSelectedValue"
+              (change)="customSelectedValue = style.style">
+            </sui-radio-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  @default {
+    <div class="text-center text-gray-500 py-12">
+      <p class="text-lg font-medium">Component preview not available</p>
+      <p class="text-sm text-gray-400 mt-1">Radio Button component will be shown here</p>
+    </div>
+  }
+}

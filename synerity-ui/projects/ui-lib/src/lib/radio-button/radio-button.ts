@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'sui-radio-button',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './radio-button.html',
   styleUrl: './radio-button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,6 +22,8 @@ export class RadioButton implements ControlValueAccessor {
   @Input() disabled = false;
   @Input() value: unknown = null;
   @Input() inputId = '';
+  @Input() label = '';
+  @Input() cssClass = '';
   @Output() change = new EventEmitter<unknown>();
 
   private _modelValue: unknown = null;

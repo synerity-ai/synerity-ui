@@ -6,9 +6,11 @@
   height: calc(100vh - 4rem);
   background-color: var(--sui-gray-50);
   border-right: 1px solid var(--sui-gray-300);
-  overflow-y: auto;
+  overflow: hidden; // Changed from overflow-y: auto to prevent double scrollbars
   transition: all 0.3s ease;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
 }
 
 // Ensure no underlines on any links in sidebar
@@ -21,34 +23,34 @@
 }
 
 // Custom scrollbar styles for sidebar navigation
-.sidebar nav {
+.sidebar-nav {
   scrollbar-width: thin;
-  scrollbar-color: var(--sui-gray-300) var(--sui-gray-100);
+  scrollbar-color: var(--sui-gray-400, #9ca3af) var(--sui-gray-100, #f3f4f6);
+  max-height: calc(100vh - 120px); // Account for header
+  overflow-y: auto;
 }
 
-.sidebar nav::-webkit-scrollbar {
-  width: 6px;
+.sidebar-nav::-webkit-scrollbar {
+  width: 8px;
 }
 
-.sidebar nav::-webkit-scrollbar-track {
-  background: var(--sui-gray-100);
-  border-radius: 3px;
+.sidebar-nav::-webkit-scrollbar-track {
+  background: var(--sui-gray-100, #f3f4f6);
+  border-radius: 4px;
 }
 
-.sidebar nav::-webkit-scrollbar-thumb {
-  background: var(--sui-gray-300);
-  border-radius: 3px;
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: var(--sui-gray-400, #9ca3af);
+  border-radius: 4px;
   transition: background 0.2s ease;
 }
 
-.sidebar nav::-webkit-scrollbar-thumb:hover {
-  background: var(--sui-gray-400);
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: var(--sui-gray-500, #6b7280);
 }
 
-// Ensure proper scrolling behavior
-.sidebar nav {
-  max-height: calc(100vh - 200px); // Account for header and footer
-  overflow-y: auto;
+.sidebar-nav::-webkit-scrollbar-thumb:active {
+  background: var(--sui-gray-600, #4b5563);
 }
 
 .sidebar.collapsed {
@@ -62,8 +64,7 @@
   padding: 1rem;
   border-bottom: 1px solid var(--sui-gray-300);
   background-color: var(--sui-gray-50);
-  position: sticky;
-  top: 0;
+  flex-shrink: 0; // Prevent header from shrinking
   z-index: 10;
 }
 
@@ -266,11 +267,11 @@
 }
 
 .sidebar-footer {
-  position: sticky;
-  bottom: 0;
   padding: 1rem;
-  border-top: 1px solid var(--color-neutral);
+  border-top: 1px solid var(--sui-gray-300);
   background-color: var(--sui-gray-50);
+  flex-shrink: 0; // Prevent footer from shrinking
+  margin-top: auto; // Push footer to bottom
 }
 
 .footer-info {

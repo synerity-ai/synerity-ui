@@ -1,0 +1,34 @@
+.textarea-demo-example {
+  width: 100%;
+  min-height: 200px;
+}
+
+// Custom styling for the custom textarea example
+:host ::ng-deep {
+  .custom-textarea {
+    .sui-textarea-input {
+      border: 2px solid var(--sui-primary-300, #93c5fd);
+      border-radius: 0.75rem;
+      background-color: var(--sui-primary-50, #eff6ff);
+      font-family: 'Courier New', monospace;
+      
+      &:focus {
+        border-color: var(--sui-primary-600, #2563eb);
+        background-color: var(--sui-white, #ffffff);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      }
+      
+      &::placeholder {
+        color: var(--sui-primary-400, #60a5fa);
+        font-style: italic;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .textarea-demo-example {
+    min-height: 150px;
+  }
+}

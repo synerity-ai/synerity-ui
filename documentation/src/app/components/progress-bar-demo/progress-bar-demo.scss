@@ -1,0 +1,227 @@
+.progress-demo {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.demo-content {
+  text-align: left;
+
+  h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  p {
+    margin: 0 0 2rem 0;
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+}
+
+.progress-container {
+  margin-bottom: 2rem;
+}
+
+.progress-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  .progress-slider {
+    flex: 1;
+    height: 0.5rem;
+    background: #e5e7eb;
+    border-radius: 0.25rem;
+    outline: none;
+    cursor: pointer;
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 1rem;
+      height: 1rem;
+      background: #3b82f6;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+      width: 1rem;
+      height: 1rem;
+      background: #3b82f6;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  .progress-value {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    min-width: 3rem;
+    text-align: right;
+  }
+}
+
+.progress-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f3f4f6;
+  border-radius: 0.375rem;
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+}
+
+.progress-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .variant-item {
+    h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .progress-slider {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.file-upload-example {
+  .file-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .file-name {
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .file-size {
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+  }
+}
+
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+
+  .progress-item {
+    h4 {
+      margin: 0 0 1rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #374151;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .progress-demo {
+    padding: 1rem;
+  }
+
+  .demo-content {
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      font-size: 0.875rem;
+    }
+  }
+
+  .progress-variants {
+    gap: 1.5rem;
+  }
+
+  .progress-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .progress-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+
+    .progress-value {
+      text-align: center;
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .demo-content {
+    h3 {
+      color: #f9fafb;
+    }
+
+    p {
+      color: #d1d5db;
+    }
+  }
+
+  .progress-info {
+    background: #374151;
+
+    p {
+      color: #d1d5db;
+    }
+  }
+
+  .variant-item,
+  .progress-item {
+    h4 {
+      color: #f9fafb;
+    }
+  }
+
+  .file-info {
+    .file-name {
+      color: #f9fafb;
+    }
+
+    .file-size {
+      color: #d1d5db;
+    }
+  }
+
+  .progress-controls {
+    .progress-slider {
+      background: #4b5563;
+
+      &::-webkit-slider-thumb {
+        background: #3b82f6;
+      }
+
+      &::-moz-range-thumb {
+        background: #3b82f6;
+      }
+    }
+
+    .progress-value {
+      color: #f9fafb;
+    }
+  }
+}

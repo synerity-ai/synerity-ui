@@ -1,12 +1,16 @@
-<div class="sui-radio-container">
-  <input
-    type="radio"
-    class="sui-radio-input"
-    [id]="inputId"
-    [name]="name"
-    [disabled]="disabled"
-    [checked]="checked"
-    (change)="onInputChange()"
-    (blur)="onInputBlur()"
-  />
-</div>
+<label [class]="'sui-radio-label ' + (cssClass || '')" [attr.for]="inputId">
+  <div class="sui-radio-container">
+    <input
+      type="radio"
+      class="sui-radio-input"
+      [id]="inputId"
+      [name]="name"
+      [disabled]="disabled"
+      [checked]="checked"
+      (change)="onInputChange()"
+      (blur)="onInputBlur()"
+    />
+  </div>
+  <span *ngIf="label">{{ label }}</span>
+  <ng-content />
+</label>
