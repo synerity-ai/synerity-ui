@@ -70,8 +70,8 @@ The standardization plan has been successfully completed for all high-priority c
 | Carousel | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
 | Toast | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
 | Dialog | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Progress Bar | ✅ Complete | ⚠️ Basic | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
-| Accordion | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
+| Progress Bar | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Accordion | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
 | Avatar | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Badge | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Medium |
 | Breadcrumb | ✅ Complete | ❌ None | ⚠️ Needs Theme | ⚠️ Needs Theme | Low |
@@ -190,11 +190,11 @@ Before creating demos, we need to:
 2. **Medium Priority**: Apply theme inheritance to form and layout components
 3. **Low Priority**: Apply theme inheritance to utility and specialized components
 
-## 🚨 CRITICAL: CORRECT PUBLISHING WORKFLOW - NEVER DEVIATE FROM THIS
+## 🚨 CRITICAL: CORRECT ANGULAR LIBRARY PUBLISHING WORKFLOW - NEVER DEVIATE FROM THIS
 
 **⚠️ MUST FOLLOW THIS EXACT PROCESS FOR EVERY COMPONENT:**
 
-### Correct Publishing Workflow (MANDATORY):
+### ✅ CORRECT Angular Library Publishing Workflow (MANDATORY):
 
 ```bash
 # 1. Make changes in library source
@@ -206,46 +206,72 @@ Before creating demos, we need to:
 cd /Users/bhushangadekar/work/study/synerity/synerity-ui
 npm run build:lib
 
-# 3. Publish to npm (from synerity-ui directory - NEVER from dist/ui-lib)
-npm run publish:lib
+# 3. Update version in BOTH package.json files
+# - /synerity-ui/package.json
+# - /synerity-ui/dist/ui-lib/package.json (after build)
 
-# 4. Update documentation to use new version
+# 4. Publish from dist/ui-lib directory (CORRECT approach)
+npm run publish:lib  # This runs: cd dist/ui-lib && npm publish
+
+# 5. Update documentation to use new version
 cd /Users/bhushangadekar/work/study/synerity/documentation
 # Update package.json version
 npm install
 
-# 5. Create demo for that component
+# 6. Create demo for that component
 ```
 
 ### ❌ WRONG WORKFLOW (DO NOT DO THIS):
 ```bash
-# DON'T publish from dist/ui-lib directory
-cd /synerity-ui/dist/ui-lib
-npm publish  # ❌ WRONG!
+# DON'T publish from main directory
+cd /synerity-ui
+npm publish  # ❌ WRONG! This publishes the entire workspace
+
+# DON'T add dist references to main package.json
+# ❌ WRONG! Main package.json should NOT have dist entry points
 ```
 
 ### ✅ CORRECT WORKFLOW:
 ```bash
-# DO publish from synerity-ui directory using the script
+# DO publish from dist/ui-lib directory using the script
 cd /synerity-ui
-npm run publish:lib  # ✅ CORRECT!
+npm run publish:lib  # ✅ CORRECT! This runs: cd dist/ui-lib && npm publish
 ```
 
 ### 📁 Directory Structure:
 - **Source**: `/synerity-ui/projects/ui-lib/src/lib/[component]/`
-- **Build Output**: `/synerity-ui/dist/ui-lib/`
+- **Build Output**: `/synerity-ui/dist/ui-lib/` (contains distributable package)
 - **Publish Command**: `npm run publish:lib` (from synerity-ui directory)
 - **Script**: `"publish:lib": "cd dist/ui-lib && npm publish"`
 
 ### 🔄 Version Management:
-- Library source: `/synerity-ui/package.json` and `/synerity-ui/projects/ui-lib/package.json`
-- Build output: `/synerity-ui/dist/ui-lib/package.json` (auto-generated)
-- Documentation: `/documentation/package.json` (manually updated)
+- **Main package.json**: `/synerity-ui/package.json` (version bump here)
+- **Dist package.json**: `/synerity-ui/dist/ui-lib/package.json` (version bump here too)
+- **Documentation**: `/documentation/package.json` (manually updated)
+
+### 📦 Package.json Structure:
+- **Main package.json**: Clean, no dist references, no entry points
+- **Dist package.json**: Contains proper entry points, exports, and metadata
+- **CSS Exports**: Must include in dist package.json exports:
+  ```json
+  "exports": {
+    "./synerity-ui.css": {
+      "default": "./src/lib/synerity-ui.css"
+    }
+  }
+  ```
 
 ### 📋 For Each Component:
 1. **Library Component**: Update SCSS with CSS variables
-2. **Library Publishing**: `npm run build:lib` → `npm run publish:lib`
-3. **Documentation Integration**: Update version in documentation/package.json
-4. **Demo Creation**: Create comprehensive demo
+2. **Version Bump**: Update version in both main and dist package.json
+3. **Library Publishing**: `npm run build:lib` → `npm run publish:lib`
+4. **Documentation Integration**: Update version in documentation/package.json
+5. **Demo Creation**: Create comprehensive demo
 
-**NEVER PUBLISH FROM DIST/UI-LIB DIRECTORY!**
+### 🎯 Key Points:
+- **Publish from dist/ui-lib**: This is the standard Angular library approach
+- **Dist contains distributable**: Compiled, proper entry points, metadata
+- **Main package.json stays clean**: No dist references or entry points
+- **CSS exports required**: For CSS imports to work in consuming apps
+
+**ALWAYS PUBLISH FROM DIST/UI-LIB DIRECTORY USING THE SCRIPT!**

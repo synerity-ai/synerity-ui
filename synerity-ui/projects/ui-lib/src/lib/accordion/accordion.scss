@@ -1,17 +1,18 @@
 /* Modern Accordion Component Styles */
+/* Uses CSS custom properties for theme inheritance */
 .sui-accordion {
   display: flex;
   flex-direction: column;
   gap: 0;
-  border-radius: 6px;
+  border-radius: var(--sui-accordion-border-radius, 6px);
   overflow: hidden;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  background: #ffffff;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--sui-accordion-box-shadow, 0 1px 2px rgba(0, 0, 0, 0.05));
+  background: var(--sui-accordion-bg, #ffffff);
+  transition: all var(--sui-accordion-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
 
   &-tab {
-    border-bottom: 1px solid #f1f5f9;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: var(--sui-accordion-tab-border-bottom, 1px solid #f1f5f9);
+    transition: all var(--sui-accordion-tab-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
 
     &:last-child {
       border-bottom: none;
@@ -20,10 +21,10 @@
     &-header {
       display: flex;
       align-items: center;
-      padding: 12px 16px;
-      background: #ffffff;
+      padding: var(--sui-accordion-tab-header-padding, 12px 16px);
+      background: var(--sui-accordion-tab-header-bg, #ffffff);
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all var(--sui-accordion-tab-header-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
       user-select: none;
@@ -35,19 +36,19 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        background: var(--sui-accordion-tab-header-hover-gradient, linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%));
         opacity: 0;
-        transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: opacity var(--sui-accordion-tab-header-hover-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 0;
       }
 
       &:hover::before {
-        opacity: 0.03;
+        opacity: var(--sui-accordion-tab-header-hover-opacity, 0.03);
       }
 
       &:focus {
-        outline: 2px solid #3b82f6;
-        outline-offset: 2px;
+        outline: var(--sui-accordion-tab-header-focus-outline, 2px solid #3b82f6);
+        outline-offset: var(--sui-accordion-tab-header-focus-outline-offset, 2px);
 
         &:not(:focus-visible) {
           outline: none;
@@ -55,27 +56,27 @@
       }
 
       &-hover {
-        background: #f8fafc;
-        transform: translateY(-0.5px);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        background: var(--sui-accordion-tab-header-hover-bg, #f8fafc);
+        transform: var(--sui-accordion-tab-header-hover-transform, translateY(-0.5px));
+        box-shadow: var(--sui-accordion-tab-header-hover-box-shadow, 0 2px 8px rgba(0, 0, 0, 0.08));
       }
 
       &-active {
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-        color: #ffffff;
-        box-shadow: 0 2px 12px rgba(59, 130, 246, 0.25);
+        background: var(--sui-accordion-tab-header-active-bg, linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%));
+        color: var(--sui-accordion-tab-header-active-color, #ffffff);
+        box-shadow: var(--sui-accordion-tab-header-active-box-shadow, 0 2px 12px rgba(59, 130, 246, 0.25));
 
         &::before {
           opacity: 0;
         }
 
         .sui-accordion-tab-header-label {
-          color: #ffffff;
-          font-weight: 600;
+          color: var(--sui-accordion-tab-header-active-label-color, #ffffff);
+          font-weight: var(--sui-accordion-tab-header-active-label-font-weight, 600);
         }
 
         .sui-accordion-tab-header-icon {
-          color: #ffffff;
+          color: var(--sui-accordion-tab-header-active-icon-color, #ffffff);
         }
       }
 
@@ -89,25 +90,25 @@
       }
 
       &-label {
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 1.4;
-        color: inherit;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        letter-spacing: -0.01em;
+        font-weight: var(--sui-accordion-tab-header-label-font-weight, 500);
+        font-size: var(--sui-accordion-tab-header-label-font-size, 14px);
+        line-height: var(--sui-accordion-tab-header-label-line-height, 1.4);
+        color: var(--sui-accordion-tab-header-label-color, inherit);
+        transition: all var(--sui-accordion-tab-header-label-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
+        letter-spacing: var(--sui-accordion-tab-header-label-letter-spacing, -0.01em);
       }
 
       &-icon {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 20px;
-        height: 20px;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        color: #64748b;
+        width: var(--sui-accordion-tab-header-icon-size, 20px);
+        height: var(--sui-accordion-tab-header-icon-size, 20px);
+        transition: all var(--sui-accordion-tab-header-icon-transition-duration, 0.2s) cubic-bezier(0.4, 0, 0.2, 1);
+        color: var(--sui-accordion-tab-header-icon-color, #64748b);
 
         &-rotated {
-          transform: rotate(180deg);
+          transform: var(--sui-accordion-tab-header-icon-rotated-transform, rotate(180deg));
         }
       }
     }
@@ -115,34 +116,34 @@
     &-content {
       max-height: 0;
       overflow: hidden;
-      background: #ffffff;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--sui-accordion-tab-content-bg, #ffffff);
+      transition: all var(--sui-accordion-tab-content-transition-duration, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 0;
-      transform: translateY(-5px);
+      transform: var(--sui-accordion-tab-content-collapsed-transform, translateY(-5px));
 
       &-expanded {
-        max-height: 1000px;
+        max-height: var(--sui-accordion-tab-content-expanded-max-height, 1000px);
         opacity: 1;
-        transform: translateY(0);
+        transform: var(--sui-accordion-tab-content-expanded-transform, translateY(0));
       }
 
       &-body {
-        padding: 0 16px;
-        background: #ffffff;
-        border-top: 1px solid rgba(241, 245, 249, 0.8);
+        padding: var(--sui-accordion-tab-content-body-padding, 0 16px);
+        background: var(--sui-accordion-tab-content-body-bg, #ffffff);
+        border-top: var(--sui-accordion-tab-content-body-border-top, 1px solid rgba(241, 245, 249, 0.8));
       }
 
       &-inner {
-        padding: 16px 0;
-        color: #475569;
-        line-height: 1.5;
-        font-size: 13px;
+        padding: var(--sui-accordion-tab-content-inner-padding, 16px 0);
+        color: var(--sui-accordion-tab-content-inner-color, #475569);
+        line-height: var(--sui-accordion-tab-content-inner-line-height, 1.5);
+        font-size: var(--sui-accordion-tab-content-inner-font-size, 13px);
 
         h1, h2, h3, h4, h5, h6 {
-          margin: 0 0 8px 0;
-          color: #1e293b;
-          font-weight: 600;
-          font-size: 14px;
+          margin: var(--sui-accordion-tab-content-heading-margin, 0 0 8px 0);
+          color: var(--sui-accordion-tab-content-heading-color, #1e293b);
+          font-weight: var(--sui-accordion-tab-content-heading-font-weight, 600);
+          font-size: var(--sui-accordion-tab-content-heading-font-size, 14px);
         }
 
         p {
@@ -296,22 +297,123 @@
   }
 }
 
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .sui-accordion {
+    background: var(--sui-accordion-dark-bg, #1f2937);
+    box-shadow: var(--sui-accordion-dark-box-shadow, 0 1px 2px rgba(0, 0, 0, 0.2));
+
+    &-tab {
+      border-bottom: var(--sui-accordion-tab-dark-border-bottom, 1px solid #374151);
+
+      &-header {
+        background: var(--sui-accordion-tab-header-dark-bg, #1f2937);
+
+        &-label {
+          color: var(--sui-accordion-tab-header-label-dark-color, #f9fafb);
+        }
+
+        &-icon {
+          color: var(--sui-accordion-tab-header-icon-dark-color, #9ca3af);
+        }
+
+        &-hover {
+          background: var(--sui-accordion-tab-header-hover-dark-bg, #374151);
+        }
+      }
+
+      &-content {
+        background: var(--sui-accordion-tab-content-dark-bg, #1f2937);
+
+        &-body {
+          background: var(--sui-accordion-tab-content-body-dark-bg, #1f2937);
+          border-top: var(--sui-accordion-tab-content-body-dark-border-top, 1px solid #374151);
+        }
+
+        &-inner {
+          color: var(--sui-accordion-tab-content-inner-dark-color, #d1d5db);
+
+          h1, h2, h3, h4, h5, h6 {
+            color: var(--sui-accordion-tab-content-heading-dark-color, #f9fafb);
+          }
+        }
+      }
+    }
+
+    &-bordered {
+      border: var(--sui-accordion-bordered-dark-border, 1px solid #374151);
+
+      .sui-accordion-tab {
+        border-bottom: var(--sui-accordion-bordered-tab-dark-border-bottom, 1px solid #374151);
+      }
+    }
+
+    &-minimal {
+      .sui-accordion-tab {
+        background: var(--sui-accordion-minimal-tab-dark-bg, #1f2937);
+        border-bottom: var(--sui-accordion-minimal-tab-dark-border-bottom, 1px solid #374151);
+        box-shadow: var(--sui-accordion-minimal-tab-dark-box-shadow, 0 1px 2px rgba(0, 0, 0, 0.2));
+      }
+    }
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .sui-accordion {
+    border: var(--sui-accordion-high-contrast-border, 2px solid currentColor);
+
+    &-tab-header {
+      border: var(--sui-accordion-tab-header-high-contrast-border, 1px solid currentColor);
+      font-weight: var(--sui-accordion-tab-header-high-contrast-font-weight, 600);
+    }
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .sui-accordion {
+    transition: none;
+
+    &-tab {
+      transition: none;
+
+      &-header {
+        transition: none;
+
+        &::before {
+          transition: none;
+        }
+
+        &-label,
+        &-icon {
+          transition: none;
+        }
+      }
+
+      &-content {
+        transition: none;
+      }
+    }
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .sui-accordion-tab-header {
-    padding: 12px 14px;
+    padding: var(--sui-accordion-tab-header-mobile-padding, 12px 14px);
 
     &-label {
-      font-size: 14px;
+      font-size: var(--sui-accordion-tab-header-label-mobile-font-size, 14px);
     }
   }
 
   .sui-accordion-tab-content-body {
-    padding: 0 14px;
+    padding: var(--sui-accordion-tab-content-body-mobile-padding, 0 14px);
   }
 
   .sui-accordion-tab-content-inner {
-    padding: 14px 0;
-    font-size: 13px;
+    padding: var(--sui-accordion-tab-content-inner-mobile-padding, 14px 0);
+    font-size: var(--sui-accordion-tab-content-inner-mobile-font-size, 13px);
   }
 }

@@ -2741,8 +2741,123 @@ export class AutoCompleteComponent {
       name: 'Accordion',
       category: 'Foundation',
       description: 'Collapsible content panels',
-      examples: [],
-      props: [],
+      examples: [
+        {
+          name: 'Basic Accordion',
+          description: 'Simple accordion with single expansion',
+          code: `<sui-accordion [tabs]="basicTabs" [activeIndex]="basicActiveIndex" (onActiveIndexChange)="onBasicActiveIndexChange($event)">
+</sui-accordion>`,
+          tsCode: `basicTabs = [
+  {
+    header: 'Getting Started',
+    content: '<p>Learn the basics of our platform and how to get started with your first project.</p>'
+  },
+  {
+    header: 'Configuration',
+    content: '<p>Configure your settings and preferences to customize your experience.</p>'
+  },
+  {
+    header: 'Privacy & Security',
+    content: '<p>Control your privacy settings and security options.</p>'
+  }
+];
+
+basicActiveIndex: number = 0;
+
+onBasicActiveIndexChange(event: number | number[]): void {
+  this.basicActiveIndex = event as number;
+}`
+        },
+        {
+          name: 'Multiple Expansion',
+          description: 'Accordion that allows multiple panels to be open simultaneously',
+          code: `<sui-accordion [tabs]="multipleTabs" [multiple]="true" [activeIndex]="multipleActiveIndex" (onActiveIndexChange)="onMultipleActiveIndexChange($event)">
+</sui-accordion>`,
+          tsCode: `multipleTabs = [
+  {
+    header: 'Account Settings',
+    content: '<p>Manage your account preferences and personal information.</p>'
+  },
+  {
+    header: 'Notifications',
+    content: '<p>Configure how and when you receive notifications.</p>'
+  },
+  {
+    header: 'Billing',
+    content: '<p>View and manage your billing information and subscription.</p>'
+  }
+];
+
+multipleActiveIndex: number[] = [0, 2];
+
+onMultipleActiveIndexChange(event: number | number[]): void {
+  this.multipleActiveIndex = event as number[];
+}`
+        },
+        {
+          name: 'Bordered Variant',
+          description: 'Accordion with bordered styling for better visual separation',
+          code: `<sui-accordion [tabs]="borderedTabs" variant="bordered" [activeIndex]="borderedActiveIndex" (onActiveIndexChange)="onBorderedActiveIndexChange($event)">
+</sui-accordion>`,
+          tsCode: `borderedTabs = [
+  {
+    header: 'Project Management',
+    content: '<p>Organize and track your projects with our comprehensive project management tools.</p>'
+  },
+  {
+    header: 'Team Collaboration',
+    content: '<p>Work together with your team using our collaboration features.</p>'
+  },
+  {
+    header: 'Analytics & Reporting',
+    content: '<p>Gain insights into your performance with detailed analytics and customizable reports.</p>'
+  }
+];
+
+borderedActiveIndex: number = 1;
+
+onBorderedActiveIndexChange(event: number | number[]): void {
+  this.borderedActiveIndex = event as number;
+}`
+        }
+      ],
+      props: [
+        {
+          name: 'tabs',
+          type: 'AccordionTab[]',
+          required: true,
+          default: '[]',
+          description: 'Array of accordion tab objects with header and content'
+        },
+        {
+          name: 'activeIndex',
+          type: 'number | number[]',
+          required: false,
+          default: '0',
+          description: 'Index of active tab(s). Use number for single expansion, number[] for multiple'
+        },
+        {
+          name: 'multiple',
+          type: 'boolean',
+          required: false,
+          default: 'false',
+          description: 'Allow multiple tabs to be open simultaneously'
+        },
+        {
+          name: 'variant',
+          type: 'string',
+          required: false,
+          default: '"default"',
+          description: 'Visual variant: "default", "bordered", "minimal"'
+        },
+        {
+          name: 'size',
+          type: 'string',
+          required: false,
+          default: '"medium"',
+          description: 'Size variant: "small", "medium", "large"'
+        }
+      ],
       usage: 'Use accordions to organize content in collapsible sections.',
       tags: ['collapsible', 'content']
     },

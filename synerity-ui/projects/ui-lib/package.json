@@ -1,0 +1,29 @@
+{
+  "name": "@synerity/ui",
+  "version": "2.0.54",
+  "description": "Synerity UI Component Library",
+  "keywords": ["angular", "ui", "components", "library"],
+  "author": "Synerity",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synerity/synerity-ui.git"
+  },
+  "peerDependencies": {
+    "@angular/common": "^20.3.0",
+    "@angular/core": "^20.3.0",
+    "@angular/forms": "^20.3.0",
+    "@angular/platform-browser": "^20.3.0",
+    "@angular/router": "^20.3.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "main": "bundles/synerity-ui.umd.js",
+  "module": "fesm2022/synerity-ui.mjs",
+  "es2022": "fesm2022/synerity-ui.mjs",
+  "esm2022": "esm2022/synerity-ui.mjs",
+  "fesm2022": "fesm2022/synerity-ui.mjs",
+  "typings": "index.d.ts",
+  "sideEffects": false
+}

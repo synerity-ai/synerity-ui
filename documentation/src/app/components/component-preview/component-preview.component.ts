@@ -19,11 +19,12 @@ import { SelectDemoComponent } from '../select-demo/select-demo';
 import { TabsDemoComponent } from '../tabs-demo/tabs-demo';
 import { TextareaDemoComponent } from '../textarea-demo/textarea-demo';
 import { TooltipDemoComponent } from '../tooltip-demo/tooltip-demo';
+import { AccordionDemoComponent } from '../accordion-demo/accordion-demo';
 
 @Component({
   selector: 'app-component-preview',
   standalone: true,
-  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent],
+  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent, AccordionDemoComponent],
   templateUrl: './component-preview.component.html',
   styleUrl: './component-preview.component.scss'
 })

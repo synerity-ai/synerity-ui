@@ -1,11 +1,9 @@
 <div class="sui-progress-bar" [class]="getProgressBarClass()" [style]="getProgressBarStyle()">
-  <div class="sui-progress-bar-track">
-    <div 
-      class="sui-progress-bar-fill"
-      [class.sui-progress-bar-indeterminate]="isIndeterminate()"
-      [style]="getProgressStyle()"
-    ></div>
-  </div>
+  <div 
+    class="sui-progress-bar-fill"
+    [class.sui-progress-bar-indeterminate]="isIndeterminate()"
+    [style]="getProgressStyle()"
+  ></div>
   <span 
     *ngIf="showValue && !isIndeterminate()" 
     class="sui-progress-bar-value"

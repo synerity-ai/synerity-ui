@@ -1,0 +1,142 @@
+.accordion-demo {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.demo-content {
+  text-align: left;
+
+  h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  p {
+    margin: 0 0 2rem 0;
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+}
+
+.accordion-container {
+  margin-bottom: 2rem;
+}
+
+.accordion-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .variant-item {
+    h4 {
+      margin: 0 0 1rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #374151;
+    }
+  }
+}
+
+// Custom accordion styling example
+:host ::ng-deep .custom-accordion {
+  --sui-accordion-tab-header-label-font-weight: 600;
+  --sui-accordion-tab-header-label-color: #374151;
+  --sui-accordion-tab-content-inner-color: #4b5563;
+  --sui-accordion-tab-content-inner-line-height: 1.6;
+  
+  .sui-accordion-tab-header {
+    border-radius: 8px;
+    margin-bottom: 4px;
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .sui-accordion-tab-content-inner {
+    h4 {
+      color: #1f2937;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    
+    ul {
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+      
+      li {
+        margin-bottom: 0.25rem;
+        color: #4b5563;
+      }
+    }
+    
+    p {
+      margin-bottom: 0.75rem;
+      color: #4b5563;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .accordion-demo {
+    padding: 1rem;
+  }
+
+  .demo-content {
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      font-size: 0.875rem;
+    }
+  }
+
+  .accordion-variants {
+    gap: 1.5rem;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .demo-content {
+    h3 {
+      color: #f9fafb;
+    }
+
+    p {
+      color: #d1d5db;
+    }
+  }
+
+  .variant-item {
+    h4 {
+      color: #f9fafb;
+    }
+  }
+
+  :host ::ng-deep .custom-accordion {
+    --sui-accordion-tab-header-label-color: #f9fafb;
+    --sui-accordion-tab-content-inner-color: #d1d5db;
+    
+    .sui-accordion-tab-content-inner {
+      h4 {
+        color: #f9fafb;
+      }
+      
+      ul li {
+        color: #d1d5db;
+      }
+      
+      p {
+        color: #d1d5db;
+      }
+    }
+  }
+}
