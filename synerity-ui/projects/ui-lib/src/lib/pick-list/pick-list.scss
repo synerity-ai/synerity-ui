@@ -1,0 +1,78 @@
+// Pick List Component Styles with CSS Variables
+.sui-pick-list {
+  // CSS Variables for Theme Inheritance
+  --sui-pick-list-background: var(--sui-surface, #ffffff);
+  --sui-pick-list-border: var(--sui-border, #e5e7eb);
+  --sui-pick-list-border-radius: var(--sui-radius, 4px);
+  --sui-pick-list-text: var(--sui-text-primary, #1e293b);
+  --sui-pick-list-padding: var(--sui-spacing-4, 1rem);
+  --sui-pick-list-gap: var(--sui-spacing-4, 1rem);
+  --sui-pick-list-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-pick-list-transition: var(--sui-transition, all 0.2s ease);
+  
+  // List variables
+  --sui-pick-list-list-background: var(--sui-surface-secondary, #f8fafc);
+  --sui-pick-list-list-border: var(--sui-border, #e5e7eb);
+  --sui-pick-list-list-min-height: 20rem;
+  
+  // Item variables
+  --sui-pick-list-item-background-hover: var(--sui-surface-hover, #f8fafc);
+  --sui-pick-list-item-background-selected: var(--sui-primary-light, rgba(59, 130, 246, 0.1));
+  --sui-pick-list-item-padding: var(--sui-spacing-2, 0.5rem);
+  
+  // Dark theme variables
+  --sui-pick-list-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-pick-list-dark-border: var(--sui-dark-border, #334155);
+  --sui-pick-list-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-pick-list-dark-list-background: var(--sui-dark-surface-secondary, #0f172a);
+  --sui-pick-list-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
+  
+  // Component styles
+  display: flex;
+  gap: var(--sui-pick-list-gap);
+  padding: var(--sui-pick-list-padding);
+  background: var(--sui-pick-list-background);
+  border: 1px solid var(--sui-pick-list-border);
+  border-radius: var(--sui-pick-list-border-radius);
+  box-shadow: var(--sui-pick-list-shadow);
+  color: var(--sui-pick-list-text);
+  transition: var(--sui-pick-list-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-pick-list {
+    background: var(--sui-pick-list-dark-background);
+    border-color: var(--sui-pick-list-dark-border);
+    color: var(--sui-pick-list-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-pick-list {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-pick-list {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-pick-list {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .sui-pick-list {
+    flex-direction: column;
+  }
+}

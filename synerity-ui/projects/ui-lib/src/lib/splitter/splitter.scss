@@ -1,0 +1,51 @@
+// Splitter Component Styles with CSS Variables
+.sui-splitter {
+  // CSS Variables for Theme Inheritance
+  --sui-splitter-background: var(--sui-surface, #ffffff);
+  --sui-splitter-border: var(--sui-border, #e5e7eb);
+  --sui-splitter-gutter-background: var(--sui-surface-secondary, #f8fafc);
+  --sui-splitter-gutter-background-hover: var(--sui-surface-hover, #e2e8f0);
+  --sui-splitter-gutter-size: 4px;
+  --sui-splitter-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Dark theme variables
+  --sui-splitter-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-splitter-dark-border: var(--sui-dark-border, #334155);
+  --sui-splitter-dark-gutter-background: var(--sui-dark-surface-secondary, #0f172a);
+  --sui-splitter-dark-gutter-background-hover: var(--sui-dark-surface-hover, #334155);
+  
+  // Component styles
+  display: flex;
+  background: var(--sui-splitter-background);
+  border: 1px solid var(--sui-splitter-border);
+  transition: var(--sui-splitter-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-splitter {
+    background: var(--sui-splitter-dark-background);
+    border-color: var(--sui-splitter-dark-border);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-splitter {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-splitter {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-splitter {
+    border: 1px solid #000;
+  }
+}

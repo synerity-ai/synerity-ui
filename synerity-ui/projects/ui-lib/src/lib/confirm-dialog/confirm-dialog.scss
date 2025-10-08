@@ -1,0 +1,70 @@
+// Confirm Dialog Component Styles with CSS Variables
+.sui-confirm-dialog {
+  // CSS Variables for Theme Inheritance
+  --sui-confirm-dialog-background: var(--sui-surface, #ffffff);
+  --sui-confirm-dialog-border: var(--sui-border, #e5e7eb);
+  --sui-confirm-dialog-border-radius: var(--sui-radius-lg, 8px);
+  --sui-confirm-dialog-text: var(--sui-text-primary, #1e293b);
+  --sui-confirm-dialog-padding: var(--sui-spacing-6, 1.5rem);
+  --sui-confirm-dialog-shadow: var(--sui-shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.15));
+  --sui-confirm-dialog-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Backdrop variables
+  --sui-confirm-dialog-backdrop-background: rgba(0, 0, 0, 0.5);
+  --sui-confirm-dialog-backdrop-backdrop-filter: blur(4px);
+  
+  // Icon variables
+  --sui-confirm-dialog-icon-success: var(--sui-success, #22c55e);
+  --sui-confirm-dialog-icon-error: var(--sui-error, #ef4444);
+  --sui-confirm-dialog-icon-warning: var(--sui-warning, #f59e0b);
+  --sui-confirm-dialog-icon-info: var(--sui-info, #3b82f6);
+  
+  // Dark theme variables
+  --sui-confirm-dialog-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-confirm-dialog-dark-border: var(--sui-dark-border, #334155);
+  --sui-confirm-dialog-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  
+  // Component styles
+  display: flex;
+  flex-direction: column;
+  gap: var(--sui-spacing-4, 1rem);
+  padding: var(--sui-confirm-dialog-padding);
+  background: var(--sui-confirm-dialog-background);
+  border: 1px solid var(--sui-confirm-dialog-border);
+  border-radius: var(--sui-confirm-dialog-border-radius);
+  box-shadow: var(--sui-confirm-dialog-shadow);
+  color: var(--sui-confirm-dialog-text);
+  transition: var(--sui-confirm-dialog-transition);
+  max-width: 28rem;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-confirm-dialog {
+    background: var(--sui-confirm-dialog-dark-background);
+    border-color: var(--sui-confirm-dialog-dark-border);
+    color: var(--sui-confirm-dialog-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-confirm-dialog {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-confirm-dialog {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-confirm-dialog {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}

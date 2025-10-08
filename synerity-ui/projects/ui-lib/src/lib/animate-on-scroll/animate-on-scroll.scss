@@ -1,0 +1,15 @@
+// Animate On Scroll Component Styles with CSS Variables
+.sui-animate-on-scroll {
+  // CSS Variables for Theme Inheritance
+  --sui-animate-on-scroll-transition: var(--sui-transition, all 0.6s ease);
+  
+  // Component styles
+  transition: var(--sui-animate-on-scroll-transition);
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-animate-on-scroll {
+    transition: none;
+  }
+}

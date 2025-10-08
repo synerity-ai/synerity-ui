@@ -1,0 +1,71 @@
+// Drawer Component Styles with CSS Variables
+.sui-drawer {
+  // CSS Variables for Theme Inheritance
+  --sui-drawer-background: var(--sui-surface, #ffffff);
+  --sui-drawer-border: var(--sui-border, #e5e7eb);
+  --sui-drawer-text: var(--sui-text-primary, #1e293b);
+  --sui-drawer-padding: var(--sui-spacing-6, 1.5rem);
+  --sui-drawer-shadow: var(--sui-shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.15));
+  --sui-drawer-transition: var(--sui-transition, all 0.3s ease);
+  --sui-drawer-width: 20rem;
+  
+  // Backdrop variables
+  --sui-drawer-backdrop-background: rgba(0, 0, 0, 0.5);
+  --sui-drawer-backdrop-backdrop-filter: blur(4px);
+  
+  // Dark theme variables
+  --sui-drawer-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-drawer-dark-border: var(--sui-dark-border, #334155);
+  --sui-drawer-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  
+  // Component styles
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: var(--sui-drawer-width);
+  padding: var(--sui-drawer-padding);
+  background: var(--sui-drawer-background);
+  border-right: 1px solid var(--sui-drawer-border);
+  box-shadow: var(--sui-drawer-shadow);
+  color: var(--sui-drawer-text);
+  transition: var(--sui-drawer-transition);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-drawer {
+    background: var(--sui-drawer-dark-background);
+    border-color: var(--sui-drawer-dark-border);
+    color: var(--sui-drawer-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-drawer {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-drawer {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-drawer {
+    display: none;
+  }
+}
+
+// Responsive design
+@media (max-width: 640px) {
+  .sui-drawer {
+    width: 100%;
+  }
+}

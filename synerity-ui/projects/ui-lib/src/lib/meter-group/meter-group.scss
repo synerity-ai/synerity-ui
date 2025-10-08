@@ -1,0 +1,63 @@
+// Meter Group Component Styles with CSS Variables
+.sui-meter-group {
+  // CSS Variables for Theme Inheritance
+  --sui-meter-group-background: var(--sui-surface-secondary, #f8fafc);
+  --sui-meter-group-border: var(--sui-border, #e5e7eb);
+  --sui-meter-group-border-radius: var(--sui-radius-full, 9999px);
+  --sui-meter-group-text: var(--sui-text-primary, #1e293b);
+  --sui-meter-group-height: 1.5rem;
+  --sui-meter-group-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-meter-group-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Meter variables
+  --sui-meter-group-meter-background: var(--sui-primary, #3b82f6);
+  --sui-meter-group-meter-transition: width 0.3s ease;
+  
+  // Dark theme variables
+  --sui-meter-group-dark-background: var(--sui-dark-surface-secondary, #0f172a);
+  --sui-meter-group-dark-border: var(--sui-dark-border, #334155);
+  --sui-meter-group-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  
+  // Component styles
+  display: flex;
+  align-items: center;
+  height: var(--sui-meter-group-height);
+  background: var(--sui-meter-group-background);
+  border: 1px solid var(--sui-meter-group-border);
+  border-radius: var(--sui-meter-group-border-radius);
+  box-shadow: var(--sui-meter-group-shadow);
+  color: var(--sui-meter-group-text);
+  transition: var(--sui-meter-group-transition);
+  overflow: hidden;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-meter-group {
+    background: var(--sui-meter-group-dark-background);
+    border-color: var(--sui-meter-group-dark-border);
+    color: var(--sui-meter-group-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-meter-group {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-meter-group {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-meter-group {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}

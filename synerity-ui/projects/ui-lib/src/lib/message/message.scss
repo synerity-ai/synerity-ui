@@ -1,0 +1,58 @@
+// Message Component Styles with CSS Variables
+.sui-message {
+  // CSS Variables for Theme Inheritance
+  --sui-message-border-radius: var(--sui-radius, 4px);
+  --sui-message-padding: var(--sui-spacing-4, 1rem);
+  --sui-message-gap: var(--sui-spacing-3, 0.75rem);
+  --sui-message-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-message-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Severity variables
+  --sui-message-success-background: var(--sui-success-light, #dcfce7);
+  --sui-message-success-border: var(--sui-success, #22c55e);
+  --sui-message-success-text: var(--sui-success-dark, #16a34a);
+  
+  --sui-message-error-background: var(--sui-error-light, #fee2e2);
+  --sui-message-error-border: var(--sui-error, #ef4444);
+  --sui-message-error-text: var(--sui-error-dark, #dc2626);
+  
+  --sui-message-warning-background: var(--sui-warning-light, #fef9c3);
+  --sui-message-warning-border: var(--sui-warning, #f59e0b);
+  --sui-message-warning-text: var(--sui-warning-dark, #d97706);
+  
+  --sui-message-info-background: var(--sui-info-light, #dbeafe);
+  --sui-message-info-border: var(--sui-info, #3b82f6);
+  --sui-message-info-text: var(--sui-info-dark, #1d4ed8);
+  
+  // Component styles
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sui-message-gap);
+  padding: var(--sui-message-padding);
+  border-radius: var(--sui-message-border-radius);
+  border-left: 4px solid;
+  box-shadow: var(--sui-message-shadow);
+  transition: var(--sui-message-transition);
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-message {
+    border-left-width: 6px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-message {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-message {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,68 @@
+// Inplace Component Styles with CSS Variables
+.sui-inplace {
+  // CSS Variables for Theme Inheritance
+  --sui-inplace-background: var(--sui-surface, #ffffff);
+  --sui-inplace-border: var(--sui-border, #e5e7eb);
+  --sui-inplace-border-radius: var(--sui-radius, 4px);
+  --sui-inplace-text: var(--sui-text-primary, #1e293b);
+  --sui-inplace-padding: var(--sui-spacing-2, 0.5rem);
+  --sui-inplace-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Display variables
+  --sui-inplace-display-background-hover: var(--sui-surface-hover, #f8fafc);
+  
+  // Dark theme variables
+  --sui-inplace-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-inplace-dark-border: var(--sui-dark-border, #334155);
+  --sui-inplace-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-inplace-dark-display-background-hover: var(--sui-dark-surface-hover, #334155);
+  
+  // Component styles
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sui-inplace-padding);
+  background: var(--sui-inplace-background);
+  border: 1px solid var(--sui-inplace-border);
+  border-radius: var(--sui-inplace-border-radius);
+  color: var(--sui-inplace-text);
+  transition: var(--sui-inplace-transition);
+  cursor: pointer;
+  
+  &:hover {
+    background: var(--sui-inplace-display-background-hover);
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-inplace {
+    background: var(--sui-inplace-dark-background);
+    border-color: var(--sui-inplace-dark-border);
+    color: var(--sui-inplace-dark-text);
+    
+    &:hover {
+      background: var(--sui-inplace-dark-display-background-hover);
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-inplace {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-inplace {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-inplace {
+    border: 1px solid #000;
+  }
+}

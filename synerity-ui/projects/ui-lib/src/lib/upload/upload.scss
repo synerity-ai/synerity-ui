@@ -1,0 +1,77 @@
+// Upload Component Styles with CSS Variables
+.sui-upload {
+  // CSS Variables for Theme Inheritance
+  --sui-upload-background: var(--sui-surface, #ffffff);
+  --sui-upload-border: var(--sui-border, #e5e7eb);
+  --sui-upload-border-dashed: dashed;
+  --sui-upload-border-radius: var(--sui-radius, 4px);
+  --sui-upload-text: var(--sui-text-primary, #1e293b);
+  --sui-upload-text-secondary: var(--sui-text-secondary, #64748b);
+  --sui-upload-padding: var(--sui-spacing-6, 1.5rem);
+  --sui-upload-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-upload-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Drag over variables
+  --sui-upload-drag-over-background: var(--sui-primary-light, rgba(59, 130, 246, 0.05));
+  --sui-upload-drag-over-border: var(--sui-primary, #3b82f6);
+  
+  // Button variables
+  --sui-upload-button-background: var(--sui-primary, #3b82f6);
+  --sui-upload-button-background-hover: var(--sui-primary-hover, #2563eb);
+  --sui-upload-button-text: var(--sui-text-inverse, #ffffff);
+  
+  // Dark theme variables
+  --sui-upload-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-upload-dark-border: var(--sui-dark-border, #334155);
+  --sui-upload-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  
+  // Component styles
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sui-spacing-3, 0.75rem);
+  padding: var(--sui-upload-padding);
+  background: var(--sui-upload-background);
+  border: 2px var(--sui-upload-border-dashed) var(--sui-upload-border);
+  border-radius: var(--sui-upload-border-radius);
+  box-shadow: var(--sui-upload-shadow);
+  color: var(--sui-upload-text);
+  transition: var(--sui-upload-transition);
+  cursor: pointer;
+  
+  &:hover {
+    background: var(--sui-upload-drag-over-background);
+    border-color: var(--sui-upload-drag-over-border);
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-upload {
+    background: var(--sui-upload-dark-background);
+    border-color: var(--sui-upload-dark-border);
+    color: var(--sui-upload-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-upload {
+    border-width: 3px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-upload {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-upload {
+    display: none;
+  }
+}

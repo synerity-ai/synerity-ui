@@ -1,98 +1,61 @@
+// Context Menu Component Styles with CSS Variables
 .sui-context-menu {
-  @apply absolute bg-white border border-gray-200 rounded-md shadow-lg z-50 min-w-48;
+  // CSS Variables for Theme Inheritance
+  --sui-context-menu-background: var(--sui-surface, #ffffff);
+  --sui-context-menu-border: var(--sui-border, #e5e7eb);
+  --sui-context-menu-border-radius: var(--sui-radius, 4px);
+  --sui-context-menu-text: var(--sui-text-primary, #1e293b);
+  --sui-context-menu-shadow: var(--sui-shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.15));
+  --sui-context-menu-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Item variables
+  --sui-context-menu-item-background-hover: var(--sui-surface-hover, #f8fafc);
+  --sui-context-menu-item-padding: var(--sui-spacing-2, 0.5rem) var(--sui-spacing-3, 0.75rem);
+  
+  // Dark theme variables
+  --sui-context-menu-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-context-menu-dark-border: var(--sui-dark-border, #334155);
+  --sui-context-menu-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-context-menu-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
+  
+  // Component styles
+  display: flex;
+  flex-direction: column;
+  background: var(--sui-context-menu-background);
+  border: 1px solid var(--sui-context-menu-border);
+  border-radius: var(--sui-context-menu-border-radius);
+  box-shadow: var(--sui-context-menu-shadow);
+  color: var(--sui-context-menu-text);
+  transition: var(--sui-context-menu-transition);
+  min-width: 12rem;
+}
 
-  &-list {
-    @apply list-none m-0 p-1;
-  }
-
-  &-item {
-    @apply relative;
-
-    &-content {
-      @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-sm;
-    }
-
-    &:hover &-content {
-      @apply bg-gray-100 text-gray-900;
-    }
-
-    &-disabled &-content {
-      @apply text-gray-400 cursor-not-allowed hover:bg-transparent hover:text-gray-400;
-    }
-
-    &-icon {
-      @apply text-sm w-4 text-center;
-    }
-
-    &-label {
-      @apply flex-1;
-    }
-
-    &-arrow {
-      @apply text-xs text-gray-400;
-    }
-  }
-
-  &-separator {
-    @apply h-px bg-gray-200 my-1 mx-2;
-  }
-
-  &-submenu {
-    @apply absolute left-full top-0 bg-white border border-gray-200 rounded-md shadow-lg z-50 min-w-40 ml-1;
-
-    &-items {
-      @apply py-1;
-    }
-
-    &-item {
-      @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-sm;
-
-      &-icon {
-        @apply text-sm w-4 text-center;
-      }
-
-      &-label {
-        @apply flex-1;
-      }
-
-      &:hover {
-        @apply bg-gray-100 text-gray-900;
-      }
-    }
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-context-menu {
+    background: var(--sui-context-menu-dark-background);
+    border-color: var(--sui-context-menu-dark-border);
+    color: var(--sui-context-menu-dark-text);
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
+// High contrast mode
+@media (prefers-contrast: high) {
   .sui-context-menu {
-    @apply bg-gray-800 border-gray-700;
+    border-width: 2px;
+  }
+}
 
-    &-item-content {
-      @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-context-menu {
+    transition: none;
+  }
+}
 
-      &:hover {
-        @apply bg-gray-700 text-white;
-      }
-    }
-
-    &-item-disabled &-item-content {
-      @apply text-gray-600 hover:bg-transparent hover:text-gray-600;
-    }
-
-    &-separator {
-      @apply bg-gray-700;
-    }
-
-    &-submenu {
-      @apply bg-gray-800 border-gray-700;
-
-      &-item {
-        @apply text-gray-300 hover:bg-gray-700 hover:text-white;
-
-        &:hover {
-          @apply bg-gray-700 text-white;
-        }
-      }
-    }
+// Print styles
+@media print {
+  .sui-context-menu {
+    display: none;
   }
 }

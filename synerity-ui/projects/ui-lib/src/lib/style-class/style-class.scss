@@ -1,0 +1,15 @@
+// Style Class Component Styles with CSS Variables
+.sui-style-class {
+  // CSS Variables for Theme Inheritance
+  --sui-style-class-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Component styles
+  transition: var(--sui-style-class-transition);
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-style-class {
+    transition: none;
+  }
+}

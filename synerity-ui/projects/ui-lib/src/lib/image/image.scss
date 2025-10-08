@@ -1,227 +1,58 @@
+// Image Component Styles with CSS Variables
 .sui-image {
-  @apply relative inline-block;
-
+  // CSS Variables for Theme Inheritance
+  --sui-image-border: var(--sui-border, #e5e7eb);
+  --sui-image-border-radius: var(--sui-radius, 4px);
+  --sui-image-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-image-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Preview variables
+  --sui-image-preview-background: rgba(0, 0, 0, 0.9);
+  --sui-image-preview-backdrop-filter: blur(8px);
+  
+  // Dark theme variables
+  --sui-image-dark-border: var(--sui-dark-border, #334155);
+  
+  // Component styles
+  display: inline-block;
+  border: 1px solid var(--sui-image-border);
+  border-radius: var(--sui-image-border-radius);
+  box-shadow: var(--sui-image-shadow);
+  transition: var(--sui-image-transition);
+  overflow: hidden;
+  
   img {
-    @apply max-w-full h-auto transition-all duration-300 opacity-100;
-    animation: fadeIn 0.3s ease-in-out;
-
-    &[src=""] {
-      @apply opacity-0;
-    }
-
-    &:focus {
-      @apply outline-none ring-2 ring-blue-500 ring-offset-2;
-    }
-
-    &:focus-visible {
-      @apply outline-none ring-2 ring-blue-500 ring-offset-2 rounded;
-    }
-  }
-
-  /* Zoom functionality */
-  &-zoom img {
-    @apply cursor-zoom-in;
-
-    &:hover {
-      @apply transform scale-105;
-    }
-  }
-
-  /* Loading state */
-  &.sui-image-loading img {
-    @apply opacity-0;
-  }
-
-  /* Error state */
-  &-error {
-    @apply border-2 border-red-200 bg-red-50;
-
-    &-placeholder {
-      @apply flex flex-col items-center justify-center p-4 bg-gray-100 border border-gray-200 rounded-lg text-gray-500 min-h-32 transition-colors duration-200;
-
-      &:hover {
-        @apply bg-red-100;
-      }
-
-      &-icon {
-        @apply text-2xl mb-2;
-      }
-
-      &-text {
-        @apply text-sm font-medium;
-      }
-    }
-  }
-
-  /* Placeholder state */
-  &-placeholder {
-    @apply flex flex-col items-center justify-center p-4 bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg text-gray-400 min-h-32;
-
-    &-icon {
-      @apply text-3xl mb-2;
-    }
-
-    &-text {
-      @apply text-sm;
-    }
-  }
-
-  /* Preview functionality */
-  &-preview {
-    @apply fixed inset-0 z-50 bg-black/90 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300;
-    backdrop-filter: blur(8px);
-
-    &-visible {
-      @apply opacity-100 pointer-events-auto;
-      animation: previewFadeIn 0.3s ease-out;
-    }
-
-    &-overlay {
-      @apply w-full h-full flex items-center justify-center p-8 cursor-pointer;
-    }
-
-    &-content {
-      @apply relative max-w-5xl max-h-full cursor-default;
-      cursor: zoom-out;
-    }
-
-    &-image {
-      @apply max-w-full max-h-full object-contain rounded-lg shadow-2xl;
-    }
-
-    &-close {
-      @apply absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center text-xl font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
-
-      &:hover {
-        @apply scale-110;
-      }
-
-      &:focus {
-        @apply outline-none ring-2 ring-blue-500 ring-offset-2;
-      }
-    }
-  }
-
-  /* Custom styling variants */
-  &.rounded img {
-    @apply rounded-lg;
-  }
-
-  &.circle img {
-    @apply rounded-full;
-  }
-
-  &.shadow img {
-    @apply shadow-lg;
-  }
-
-  &.border img {
-    @apply border-solid border-gray-200;
-    border-width: 1px;
-  }
-
-  /* Aspect ratio variants */
-  &.aspect-square img {
-    @apply object-cover;
-    aspect-ratio: 1 / 1;
-  }
-
-  &.aspect-video img {
-    @apply object-cover;
-    aspect-ratio: 16 / 9;
-  }
-
-  &.aspect-4-3 img {
-    @apply object-cover;
-    aspect-ratio: 4 / 3;
-  }
-
-  &.aspect-16-9 img {
-    @apply object-cover;
-    aspect-ratio: 16 / 9;
-  }
-
-  /* Hover effects */
-  &.hover-scale img:hover {
-    @apply transform scale-105;
-  }
-
-  &.hover-shadow img:hover {
-    @apply shadow-xl;
-  }
-
-  &.hover-brightness img:hover {
-    @apply brightness-110;
-  }
-
-  /* Loading skeleton */
-  &.loading img {
-    @apply animate-pulse bg-gray-200;
+    display: block;
+    width: 100%;
+    height: auto;
   }
 }
 
-/* Animation keyframes */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes previewFadeIn {
-  from {
-    opacity: 0;
-    backdrop-filter: blur(0px);
-  }
-  to {
-    opacity: 1;
-    backdrop-filter: blur(8px);
-  }
-}
-
-/* Dark mode support */
+// Dark mode support
 @media (prefers-color-scheme: dark) {
   .sui-image {
-    &-error {
-      @apply border-red-800 bg-red-900/20;
-
-      &-placeholder {
-        @apply bg-gray-800 border-gray-700 text-gray-400;
-      }
-    }
-
-    &-placeholder {
-      @apply bg-gray-800 border-gray-700 text-gray-500;
-    }
-
-    &-preview {
-      @apply bg-black/95;
-    }
+    border-color: var(--sui-image-dark-border);
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+// High contrast mode
+@media (prefers-contrast: high) {
   .sui-image {
-    &-preview {
-      &-overlay {
-        @apply p-4;
-      }
+    border-width: 2px;
+  }
+}
 
-      &-close {
-        @apply top-2 right-2 w-8 h-8 text-lg;
-      }
-    }
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-image {
+    transition: none;
+  }
+}
 
-    &-error-placeholder,
-    &-placeholder {
-      @apply min-h-24 p-3;
-
-      &-icon {
-        @apply text-xl;
-      }
-    }
+// Print styles
+@media print {
+  .sui-image {
+    border: 1px solid #000;
+    box-shadow: none;
   }
 }

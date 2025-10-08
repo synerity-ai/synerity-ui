@@ -1,0 +1,39 @@
+// Ripple Component Styles with CSS Variables
+.sui-ripple {
+  // CSS Variables for Theme Inheritance
+  --sui-ripple-background: rgba(255, 255, 255, 0.3);
+  --sui-ripple-duration: 0.6s;
+  --sui-ripple-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  // Dark theme variables
+  --sui-ripple-dark-background: rgba(0, 0, 0, 0.3);
+  
+  // Component styles
+  position: absolute;
+  border-radius: 50%;
+  background: var(--sui-ripple-background);
+  transform: scale(0);
+  animation: ripple var(--sui-ripple-duration) var(--sui-ripple-timing-function);
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-ripple {
+    background: var(--sui-ripple-dark-background);
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-ripple {
+    animation: none;
+  }
+}

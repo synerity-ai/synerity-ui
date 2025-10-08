@@ -1,0 +1,59 @@
+// Speed Dial Component Styles with CSS Variables
+.sui-speed-dial {
+  // CSS Variables for Theme Inheritance
+  --sui-speed-dial-background: var(--sui-primary, #3b82f6);
+  --sui-speed-dial-background-hover: var(--sui-primary-hover, #2563eb);
+  --sui-speed-dial-text: var(--sui-text-inverse, #ffffff);
+  --sui-speed-dial-size: 3.5rem;
+  --sui-speed-dial-border-radius: 50%;
+  --sui-speed-dial-shadow: var(--sui-shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.15));
+  --sui-speed-dial-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Item variables
+  --sui-speed-dial-item-background: var(--sui-surface, #ffffff);
+  --sui-speed-dial-item-background-hover: var(--sui-surface-hover, #f8fafc);
+  --sui-speed-dial-item-text: var(--sui-text-primary, #1e293b);
+  --sui-speed-dial-item-size: 2.5rem;
+  --sui-speed-dial-item-gap: var(--sui-spacing-2, 0.5rem);
+  
+  // Dark theme variables
+  --sui-speed-dial-dark-item-background: var(--sui-dark-surface, #1e293b);
+  --sui-speed-dial-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
+  --sui-speed-dial-dark-item-text: var(--sui-dark-text-primary, #f1f5f9);
+  
+  // Component styles
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sui-speed-dial-item-gap);
+  z-index: 1000;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-speed-dial {
+    // Dark mode adjustments if needed
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-speed-dial {
+    outline: 2px solid currentColor;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-speed-dial {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-speed-dial {
+    display: none;
+  }
+}

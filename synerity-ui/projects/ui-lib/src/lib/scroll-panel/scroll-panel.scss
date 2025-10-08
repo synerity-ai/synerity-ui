@@ -1,0 +1,60 @@
+// Scroll Panel Component Styles with CSS Variables
+.sui-scroll-panel {
+  // CSS Variables for Theme Inheritance
+  --sui-scroll-panel-background: var(--sui-surface, #ffffff);
+  --sui-scroll-panel-border: var(--sui-border, #e5e7eb);
+  --sui-scroll-panel-border-radius: var(--sui-radius, 4px);
+  --sui-scroll-panel-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-scroll-panel-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Scrollbar variables
+  --sui-scroll-panel-scrollbar-width: 8px;
+  --sui-scroll-panel-scrollbar-track: var(--sui-surface-secondary, #f8fafc);
+  --sui-scroll-panel-scrollbar-thumb: var(--sui-border, #cbd5e1);
+  --sui-scroll-panel-scrollbar-thumb-hover: var(--sui-text-secondary, #94a3b8);
+  
+  // Dark theme variables
+  --sui-scroll-panel-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-scroll-panel-dark-border: var(--sui-dark-border, #334155);
+  --sui-scroll-panel-dark-scrollbar-track: var(--sui-dark-surface-secondary, #0f172a);
+  --sui-scroll-panel-dark-scrollbar-thumb: var(--sui-dark-border, #475569);
+  
+  // Component styles
+  display: block;
+  background: var(--sui-scroll-panel-background);
+  border: 1px solid var(--sui-scroll-panel-border);
+  border-radius: var(--sui-scroll-panel-border-radius);
+  box-shadow: var(--sui-scroll-panel-shadow);
+  transition: var(--sui-scroll-panel-transition);
+  overflow: auto;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-scroll-panel {
+    background: var(--sui-scroll-panel-dark-background);
+    border-color: var(--sui-scroll-panel-dark-border);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-scroll-panel {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-scroll-panel {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-scroll-panel {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}

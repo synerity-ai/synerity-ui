@@ -1,0 +1,58 @@
+// Org Chart Component Styles with CSS Variables
+.sui-org-chart {
+  // CSS Variables for Theme Inheritance
+  --sui-org-chart-background: transparent;
+  --sui-org-chart-text: var(--sui-text-primary, #1e293b);
+  --sui-org-chart-padding: var(--sui-spacing-4, 1rem);
+  --sui-org-chart-gap: var(--sui-spacing-6, 1.5rem);
+  --sui-org-chart-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Node variables
+  --sui-org-chart-node-background: var(--sui-surface, #ffffff);
+  --sui-org-chart-node-border: var(--sui-border, #e5e7eb);
+  --sui-org-chart-node-border-radius: var(--sui-radius, 4px);
+  --sui-org-chart-node-padding: var(--sui-spacing-4, 1rem);
+  --sui-org-chart-node-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-org-chart-node-min-width: 10rem;
+  
+  // Line variables
+  --sui-org-chart-line-color: var(--sui-border, #e5e7eb);
+  --sui-org-chart-line-width: 2px;
+  
+  // Dark theme variables
+  --sui-org-chart-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-org-chart-dark-node-background: var(--sui-dark-surface, #1e293b);
+  --sui-org-chart-dark-node-border: var(--sui-dark-border, #334155);
+  --sui-org-chart-dark-line-color: var(--sui-dark-border, #334155);
+  
+  // Component styles
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sui-org-chart-gap);
+  padding: var(--sui-org-chart-padding);
+  background: var(--sui-org-chart-background);
+  color: var(--sui-org-chart-text);
+  transition: var(--sui-org-chart-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-org-chart {
+    color: var(--sui-org-chart-dark-text);
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-org-chart {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-org-chart {
+    break-inside: avoid;
+  }
+}

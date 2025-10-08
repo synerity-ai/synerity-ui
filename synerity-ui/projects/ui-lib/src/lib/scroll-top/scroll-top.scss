@@ -1,0 +1,58 @@
+// Scroll Top Component Styles with CSS Variables
+.sui-scroll-top {
+  // CSS Variables for Theme Inheritance
+  --sui-scroll-top-background: var(--sui-primary, #3b82f6);
+  --sui-scroll-top-background-hover: var(--sui-primary-hover, #2563eb);
+  --sui-scroll-top-text: var(--sui-text-inverse, #ffffff);
+  --sui-scroll-top-size: 3rem;
+  --sui-scroll-top-border-radius: 50%;
+  --sui-scroll-top-shadow: var(--sui-shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.15));
+  --sui-scroll-top-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Component styles
+  position: fixed;
+  bottom: var(--sui-spacing-6, 1.5rem);
+  right: var(--sui-spacing-6, 1.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sui-scroll-top-size);
+  height: var(--sui-scroll-top-size);
+  background: var(--sui-scroll-top-background);
+  border-radius: var(--sui-scroll-top-border-radius);
+  box-shadow: var(--sui-scroll-top-shadow);
+  color: var(--sui-scroll-top-text);
+  transition: var(--sui-scroll-top-transition);
+  cursor: pointer;
+  z-index: 1000;
+  
+  &:hover {
+    background: var(--sui-scroll-top-background-hover);
+    transform: translateY(-2px);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-scroll-top {
+    outline: 2px solid currentColor;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-scroll-top {
+    transition: none;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .sui-scroll-top {
+    display: none;
+  }
+}

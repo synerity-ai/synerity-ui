@@ -1,0 +1,57 @@
+// Split Button Component Styles with CSS Variables
+.sui-split-button {
+  // CSS Variables for Theme Inheritance
+  --sui-split-button-background: var(--sui-primary, #3b82f6);
+  --sui-split-button-background-hover: var(--sui-primary-hover, #2563eb);
+  --sui-split-button-border: var(--sui-primary, #3b82f6);
+  --sui-split-button-border-radius: var(--sui-radius, 4px);
+  --sui-split-button-text: var(--sui-text-inverse, #ffffff);
+  --sui-split-button-padding: var(--sui-spacing-2, 0.5rem) var(--sui-spacing-4, 1rem);
+  --sui-split-button-gap: 1px;
+  --sui-split-button-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-split-button-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Divider variables
+  --sui-split-button-divider-background: rgba(255, 255, 255, 0.2);
+  --sui-split-button-divider-width: 1px;
+  
+  // Dark theme variables
+  --sui-split-button-dark-divider-background: rgba(0, 0, 0, 0.2);
+  
+  // Component styles
+  display: inline-flex;
+  align-items: stretch;
+  gap: var(--sui-split-button-gap);
+  border-radius: var(--sui-split-button-border-radius);
+  box-shadow: var(--sui-split-button-shadow);
+  overflow: hidden;
+  transition: var(--sui-split-button-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-split-button {
+    // Dark mode adjustments if needed
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-split-button {
+    outline: 2px solid currentColor;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-split-button {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-split-button {
+    box-shadow: none;
+  }
+}

@@ -1,217 +1,70 @@
+// Mega Menu Component Styles with CSS Variables
 .sui-mega-menu {
-  @apply flex items-center bg-white border-b border-gray-200 shadow-sm;
+  // CSS Variables for Theme Inheritance
+  --sui-mega-menu-background: var(--sui-surface, #ffffff);
+  --sui-mega-menu-border: var(--sui-border, #e5e7eb);
+  --sui-mega-menu-border-radius: var(--sui-radius, 4px);
+  --sui-mega-menu-text: var(--sui-text-primary, #1e293b);
+  --sui-mega-menu-padding: var(--sui-spacing-2, 0.5rem);
+  --sui-mega-menu-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-mega-menu-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Item variables
+  --sui-mega-menu-item-background-hover: var(--sui-surface-hover, #f8fafc);
+  --sui-mega-menu-item-padding: var(--sui-spacing-2, 0.5rem) var(--sui-spacing-3, 0.75rem);
+  
+  // Panel variables
+  --sui-mega-menu-panel-background: var(--sui-surface, #ffffff);
+  --sui-mega-menu-panel-border: var(--sui-border, #e5e7eb);
+  --sui-mega-menu-panel-shadow: var(--sui-shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.15));
+  --sui-mega-menu-panel-padding: var(--sui-spacing-6, 1.5rem);
+  
+  // Dark theme variables
+  --sui-mega-menu-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-mega-menu-dark-border: var(--sui-dark-border, #334155);
+  --sui-mega-menu-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-mega-menu-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
+  
+  // Component styles
+  display: flex;
+  align-items: center;
+  gap: var(--sui-spacing-1, 0.25rem);
+  padding: var(--sui-mega-menu-padding);
+  background: var(--sui-mega-menu-background);
+  border: 1px solid var(--sui-mega-menu-border);
+  border-radius: var(--sui-mega-menu-border-radius);
+  box-shadow: var(--sui-mega-menu-shadow);
+  color: var(--sui-mega-menu-text);
+  transition: var(--sui-mega-menu-transition);
+}
 
-  // Container
-  &-container {
-    @apply flex items-center list-none m-0 p-0;
-  }
-
-  // Menu items
-  &-item {
-    @apply relative;
-
-    &-disabled {
-      @apply opacity-50 cursor-not-allowed pointer-events-none;
-    }
-
-    &-content {
-      @apply flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 cursor-pointer transition-colors duration-200;
-
-      &:hover {
-        @apply text-gray-900 bg-gray-50;
-      }
-    }
-
-    &-icon {
-      @apply text-sm;
-    }
-
-    &-label {
-      @apply whitespace-nowrap;
-    }
-
-    &-arrow {
-      @apply text-xs ml-1 transition-transform duration-200;
-
-      svg {
-        @apply w-4 h-4;
-      }
-    }
-
-    &-separator {
-      @apply border-t border-gray-200 my-1;
-    }
-  }
-
-  // Mega submenu
-  &-submenu {
-    @apply absolute top-full left-0 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-96 p-6;
-
-    // Regular items
-    &-items {
-      @apply grid grid-cols-1 gap-2;
-
-      &-item {
-        @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
-
-        &:hover {
-          @apply bg-gray-50 text-gray-900;
-        }
-
-        &-disabled {
-          @apply opacity-50 cursor-not-allowed pointer-events-none;
-
-          &:hover {
-            @apply bg-transparent text-gray-700;
-          }
-        }
-
-        &-icon {
-          @apply text-sm w-4 text-center;
-        }
-
-        &-label {
-          @apply flex-1;
-        }
-      }
-    }
-
-    // Multi-column layout
-    &-columns {
-      @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6;
-
-      &-column {
-        @apply space-y-2;
-
-        &-item {
-          @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
-
-          &:hover {
-            @apply bg-gray-50 text-gray-900;
-          }
-
-          &-disabled {
-            @apply opacity-50 cursor-not-allowed pointer-events-none;
-
-            &:hover {
-              @apply bg-transparent text-gray-700;
-            }
-          }
-
-          &-icon {
-            @apply text-sm w-4 text-center;
-          }
-
-          &-label {
-            @apply flex-1;
-          }
-        }
-      }
-    }
-  }
-
-  // Orientations
-  &-horizontal {
-    @apply flex items-center;
-
-    .sui-mega-menu-submenu {
-      @apply top-full left-0;
-    }
-  }
-
-  &-vertical {
-    @apply flex flex-col;
-
-    .sui-mega-menu-container {
-      @apply flex-col items-stretch;
-    }
-
-    .sui-mega-menu-submenu {
-      @apply left-full top-0;
-    }
-  }
-
-  // Variants
-  &-primary {
-    @apply bg-blue-600 border-blue-700;
-
-    .sui-mega-menu-item-content {
-      @apply text-white hover:text-white hover:bg-blue-700;
-    }
-
-    .sui-mega-menu-submenu {
-      @apply bg-white border-gray-200;
-    }
-  }
-
-  &-dark {
-    @apply bg-gray-800 border-gray-700;
-
-    .sui-mega-menu-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
-    }
-
-    .sui-mega-menu-submenu {
-      @apply bg-gray-800 border-gray-700;
-    }
-
-    .sui-mega-menu-submenu-items-item,
-    .sui-mega-menu-submenu-columns-column-item {
-      @apply text-gray-200 hover:bg-gray-700 hover:text-white;
-    }
-  }
-
-  &-compact {
-    .sui-mega-menu-item-content {
-      @apply px-2 py-2 text-xs;
-    }
-
-    .sui-mega-menu-submenu {
-      @apply min-w-80 p-4;
-    }
-
-    .sui-mega-menu-submenu-items-item,
-    .sui-mega-menu-submenu-columns-column-item {
-      @apply px-2 py-1 text-xs;
-    }
-  }
-
-  &-large {
-    .sui-mega-menu-item-content {
-      @apply px-6 py-4 text-base;
-    }
-
-    .sui-mega-menu-submenu {
-      @apply min-w-[32rem] p-8;
-    }
-
-    .sui-mega-menu-submenu-items-item,
-    .sui-mega-menu-submenu-columns-column-item {
-      @apply px-4 py-3 text-base;
-    }
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-mega-menu {
+    background: var(--sui-mega-menu-dark-background);
+    border-color: var(--sui-mega-menu-dark-border);
+    color: var(--sui-mega-menu-dark-text);
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
+// High contrast mode
+@media (prefers-contrast: high) {
   .sui-mega-menu {
-    @apply bg-gray-800 border-gray-700;
+    border-width: 2px;
+  }
+}
 
-    &-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
-    }
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-mega-menu {
+    transition: none;
+  }
+}
 
-    &-submenu {
-      @apply bg-gray-800 border-gray-700;
-    }
-
-    &-submenu-items-item,
-    &-submenu-columns-column-item {
-      @apply text-gray-200 hover:bg-gray-700 hover:text-white;
-    }
-
-    &-item-separator {
-      @apply border-gray-700;
-    }
+// Print styles
+@media print {
+  .sui-mega-menu {
+    border: 1px solid #000;
+    box-shadow: none;
   }
 }

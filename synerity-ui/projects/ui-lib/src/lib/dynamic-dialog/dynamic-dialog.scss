@@ -1,0 +1,64 @@
+// Dynamic Dialog Component Styles with CSS Variables
+.sui-dynamic-dialog {
+  // CSS Variables for Theme Inheritance
+  --sui-dynamic-dialog-background: var(--sui-surface, #ffffff);
+  --sui-dynamic-dialog-border: var(--sui-border, #e5e7eb);
+  --sui-dynamic-dialog-border-radius: var(--sui-radius-lg, 8px);
+  --sui-dynamic-dialog-text: var(--sui-text-primary, #1e293b);
+  --sui-dynamic-dialog-padding: var(--sui-spacing-6, 1.5rem);
+  --sui-dynamic-dialog-shadow: var(--sui-shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.15));
+  --sui-dynamic-dialog-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Backdrop variables
+  --sui-dynamic-dialog-backdrop-background: rgba(0, 0, 0, 0.5);
+  --sui-dynamic-dialog-backdrop-backdrop-filter: blur(4px);
+  
+  // Dark theme variables
+  --sui-dynamic-dialog-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-dynamic-dialog-dark-border: var(--sui-dark-border, #334155);
+  --sui-dynamic-dialog-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  
+  // Component styles
+  display: flex;
+  flex-direction: column;
+  gap: var(--sui-spacing-4, 1rem);
+  padding: var(--sui-dynamic-dialog-padding);
+  background: var(--sui-dynamic-dialog-background);
+  border: 1px solid var(--sui-dynamic-dialog-border);
+  border-radius: var(--sui-dynamic-dialog-border-radius);
+  box-shadow: var(--sui-dynamic-dialog-shadow);
+  color: var(--sui-dynamic-dialog-text);
+  transition: var(--sui-dynamic-dialog-transition);
+  max-width: 40rem;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-dynamic-dialog {
+    background: var(--sui-dynamic-dialog-dark-background);
+    border-color: var(--sui-dynamic-dialog-dark-border);
+    color: var(--sui-dynamic-dialog-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-dynamic-dialog {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-dynamic-dialog {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-dynamic-dialog {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}

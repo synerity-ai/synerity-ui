@@ -1,0 +1,46 @@
+// Terminal Component Styles with CSS Variables
+.sui-terminal {
+  // CSS Variables for Theme Inheritance
+  --sui-terminal-background: var(--sui-dark-surface, #1e293b);
+  --sui-terminal-border: var(--sui-dark-border, #334155);
+  --sui-terminal-border-radius: var(--sui-radius, 4px);
+  --sui-terminal-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-terminal-padding: var(--sui-spacing-4, 1rem);
+  --sui-terminal-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-terminal-font-family: var(--sui-font-family-monospace, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace);
+  --sui-terminal-font-size: 0.875rem;
+  --sui-terminal-line-height: 1.5;
+  
+  // Prompt variables
+  --sui-terminal-prompt-color: var(--sui-success, #22c55e);
+  
+  // Component styles
+  display: flex;
+  flex-direction: column;
+  gap: var(--sui-spacing-2, 0.5rem);
+  padding: var(--sui-terminal-padding);
+  background: var(--sui-terminal-background);
+  border: 1px solid var(--sui-terminal-border);
+  border-radius: var(--sui-terminal-border-radius);
+  box-shadow: var(--sui-terminal-shadow);
+  color: var(--sui-terminal-text);
+  font-family: var(--sui-terminal-font-family);
+  font-size: var(--sui-terminal-font-size);
+  line-height: var(--sui-terminal-line-height);
+  overflow: auto;
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-terminal {
+    border-width: 2px;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-terminal {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}

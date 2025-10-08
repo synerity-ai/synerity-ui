@@ -1,0 +1,68 @@
+// Order List Component Styles with CSS Variables
+.sui-order-list {
+  // CSS Variables for Theme Inheritance
+  --sui-order-list-background: var(--sui-surface, #ffffff);
+  --sui-order-list-border: var(--sui-border, #e5e7eb);
+  --sui-order-list-border-radius: var(--sui-radius, 4px);
+  --sui-order-list-text: var(--sui-text-primary, #1e293b);
+  --sui-order-list-padding: var(--sui-spacing-4, 1rem);
+  --sui-order-list-gap: var(--sui-spacing-2, 0.5rem);
+  --sui-order-list-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-order-list-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Item variables
+  --sui-order-list-item-background: var(--sui-surface, #ffffff);
+  --sui-order-list-item-background-hover: var(--sui-surface-hover, #f8fafc);
+  --sui-order-list-item-background-selected: var(--sui-primary-light, rgba(59, 130, 246, 0.1));
+  --sui-order-list-item-border: var(--sui-border, #e5e7eb);
+  --sui-order-list-item-padding: var(--sui-spacing-3, 0.75rem);
+  
+  // Dark theme variables
+  --sui-order-list-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-order-list-dark-border: var(--sui-dark-border, #334155);
+  --sui-order-list-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-order-list-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
+  
+  // Component styles
+  display: flex;
+  flex-direction: column;
+  gap: var(--sui-order-list-gap);
+  padding: var(--sui-order-list-padding);
+  background: var(--sui-order-list-background);
+  border: 1px solid var(--sui-order-list-border);
+  border-radius: var(--sui-order-list-border-radius);
+  box-shadow: var(--sui-order-list-shadow);
+  color: var(--sui-order-list-text);
+  transition: var(--sui-order-list-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-order-list {
+    background: var(--sui-order-list-dark-background);
+    border-color: var(--sui-order-list-dark-border);
+    color: var(--sui-order-list-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-order-list {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-order-list {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-order-list {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}

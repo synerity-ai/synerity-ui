@@ -1,0 +1,39 @@
+// Block UI Component Styles with CSS Variables
+.sui-block-ui {
+  // CSS Variables for Theme Inheritance
+  --sui-block-ui-background: rgba(0, 0, 0, 0.5);
+  --sui-block-ui-backdrop-filter: blur(4px);
+  --sui-block-ui-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Spinner variables
+  --sui-block-ui-spinner-color: var(--sui-primary, #3b82f6);
+  --sui-block-ui-spinner-size: 3rem;
+  
+  // Component styles
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sui-block-ui-background);
+  backdrop-filter: var(--sui-block-ui-backdrop-filter);
+  transition: var(--sui-block-ui-transition);
+  z-index: 1000;
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-block-ui {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-block-ui {
+    display: none;
+  }
+}

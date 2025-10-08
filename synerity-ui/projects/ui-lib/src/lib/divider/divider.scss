@@ -1,0 +1,53 @@
+// Divider Component Styles with CSS Variables
+.sui-divider {
+  // CSS Variables for Theme Inheritance
+  --sui-divider-background: var(--sui-border, #e5e7eb);
+  --sui-divider-text: var(--sui-text-secondary, #64748b);
+  --sui-divider-height: 1px;
+  --sui-divider-width: 100%;
+  --sui-divider-margin: var(--sui-spacing-4, 1rem) 0;
+  --sui-divider-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Dark theme variables
+  --sui-divider-dark-background: var(--sui-dark-border, #334155);
+  --sui-divider-dark-text: var(--sui-dark-text-secondary, #94a3b8);
+  
+  // Component styles
+  display: flex;
+  align-items: center;
+  width: var(--sui-divider-width);
+  height: var(--sui-divider-height);
+  margin: var(--sui-divider-margin);
+  background: var(--sui-divider-background);
+  color: var(--sui-divider-text);
+  transition: var(--sui-divider-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-divider {
+    background: var(--sui-divider-dark-background);
+    color: var(--sui-divider-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-divider {
+    height: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-divider {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-divider {
+    background: #000;
+  }
+}

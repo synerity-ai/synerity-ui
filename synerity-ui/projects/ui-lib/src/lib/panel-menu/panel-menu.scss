@@ -1,199 +1,69 @@
+// Panel Menu Component Styles with CSS Variables
 .sui-panel-menu {
-  @apply bg-white border border-gray-200 rounded-lg shadow-sm p-2 w-64;
+  // CSS Variables for Theme Inheritance
+  --sui-panel-menu-background: var(--sui-surface, #ffffff);
+  --sui-panel-menu-border: var(--sui-border, #e5e7eb);
+  --sui-panel-menu-border-radius: var(--sui-radius, 4px);
+  --sui-panel-menu-text: var(--sui-text-primary, #1e293b);
+  --sui-panel-menu-text-secondary: var(--sui-text-secondary, #64748b);
+  --sui-panel-menu-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-panel-menu-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Header variables
+  --sui-panel-menu-header-background: var(--sui-surface-secondary, #f8fafc);
+  --sui-panel-menu-header-background-hover: var(--sui-surface-hover, #e2e8f0);
+  --sui-panel-menu-header-padding: var(--sui-spacing-3, 0.75rem);
+  
+  // Item variables
+  --sui-panel-menu-item-background-hover: var(--sui-surface-hover, #f8fafc);
+  --sui-panel-menu-item-background-active: var(--sui-primary-light, rgba(59, 130, 246, 0.1));
+  --sui-panel-menu-item-padding: var(--sui-spacing-2, 0.5rem) var(--sui-spacing-3, 0.75rem);
+  
+  // Dark theme variables
+  --sui-panel-menu-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-panel-menu-dark-border: var(--sui-dark-border, #334155);
+  --sui-panel-menu-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-panel-menu-dark-header-background: var(--sui-dark-surface-secondary, #0f172a);
+  --sui-panel-menu-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
+  
+  // Component styles
+  display: flex;
+  flex-direction: column;
+  background: var(--sui-panel-menu-background);
+  border: 1px solid var(--sui-panel-menu-border);
+  border-radius: var(--sui-panel-menu-border-radius);
+  box-shadow: var(--sui-panel-menu-shadow);
+  color: var(--sui-panel-menu-text);
+  transition: var(--sui-panel-menu-transition);
+}
 
-  // Container
-  &-container {
-    @apply space-y-1;
-  }
-
-  // Menu items
-  &-item {
-    @apply relative;
-
-    &-disabled {
-      @apply opacity-50 cursor-not-allowed pointer-events-none;
-    }
-
-    &-content {
-      @apply flex items-center justify-between px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
-
-      &:hover {
-        @apply bg-gray-50 text-gray-900;
-      }
-
-      &-expanded {
-        @apply bg-gray-50;
-      }
-    }
-
-    &-label {
-      @apply flex items-center gap-2;
-    }
-
-    &-icon {
-      @apply text-sm;
-    }
-
-    &-arrow {
-      @apply text-xs transition-transform duration-200;
-
-      &-expanded {
-        @apply rotate-90;
-      }
-
-      svg {
-        @apply w-4 h-4;
-      }
-    }
-
-    &-separator {
-      @apply border-t border-gray-200 my-1;
-    }
-  }
-
-  // Submenu
-  &-submenu {
-    @apply ml-4 mt-1 space-y-1 border-l border-gray-200 pl-4;
-
-    &-item {
-      @apply flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 cursor-pointer transition-colors duration-200 rounded-md;
-
-      &:hover {
-        @apply bg-gray-50 text-gray-900;
-      }
-
-      &-disabled {
-        @apply opacity-50 cursor-not-allowed pointer-events-none;
-
-        &:hover {
-          @apply bg-transparent text-gray-600;
-        }
-      }
-
-      &-icon {
-        @apply text-sm;
-      }
-
-      &-label {
-        @apply flex-1;
-      }
-    }
-  }
-
-  // Variants
-  &-primary {
-    @apply border-blue-200 bg-blue-50;
-
-    .sui-panel-menu-item-content {
-      @apply text-blue-700 hover:text-blue-900 hover:bg-blue-100;
-    }
-
-    .sui-panel-menu-item-content-expanded {
-      @apply bg-blue-100;
-    }
-
-    .sui-panel-menu-submenu-item {
-      @apply text-blue-600 hover:bg-blue-100 hover:text-blue-900;
-    }
-
-    .sui-panel-menu-submenu {
-      @apply border-blue-200;
-    }
-  }
-
-  &-dark {
-    @apply bg-gray-800 border-gray-700;
-
-    .sui-panel-menu-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
-    }
-
-    .sui-panel-menu-item-content-expanded {
-      @apply bg-gray-700;
-    }
-
-    .sui-panel-menu-submenu-item {
-      @apply text-gray-300 hover:bg-gray-700 hover:text-white;
-    }
-
-    .sui-panel-menu-submenu {
-      @apply border-gray-600;
-    }
-
-    .sui-panel-menu-item-separator {
-      @apply border-gray-600;
-    }
-  }
-
-  &-compact {
-    @apply p-1 w-56;
-
-    .sui-panel-menu-item-content {
-      @apply px-2 py-1 text-xs;
-    }
-
-    .sui-panel-menu-submenu-item {
-      @apply px-2 py-1 text-xs;
-    }
-
-    .sui-panel-menu-submenu {
-      @apply ml-3 pl-3;
-    }
-  }
-
-  &-large {
-    @apply p-4 w-80;
-
-    .sui-panel-menu-item-content {
-      @apply px-4 py-3 text-base;
-    }
-
-    .sui-panel-menu-submenu-item {
-      @apply px-4 py-3 text-base;
-    }
-
-    .sui-panel-menu-submenu {
-      @apply ml-6 pl-6;
-    }
-  }
-
-  // Width variants
-  &-narrow {
-    @apply w-48;
-  }
-
-  &-wide {
-    @apply w-80;
-  }
-
-  &-full {
-    @apply w-full;
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-panel-menu {
+    background: var(--sui-panel-menu-dark-background);
+    border-color: var(--sui-panel-menu-dark-border);
+    color: var(--sui-panel-menu-dark-text);
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
+// High contrast mode
+@media (prefers-contrast: high) {
   .sui-panel-menu {
-    @apply bg-gray-800 border-gray-700;
+    border-width: 2px;
+  }
+}
 
-    &-item-content {
-      @apply text-gray-200 hover:text-white hover:bg-gray-700;
-    }
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-panel-menu {
+    transition: none;
+  }
+}
 
-    &-item-content-expanded {
-      @apply bg-gray-700;
-    }
-
-    &-submenu-item {
-      @apply text-gray-300 hover:bg-gray-700 hover:text-white;
-    }
-
-    &-submenu {
-      @apply border-gray-600;
-    }
-
-    &-item-separator {
-      @apply border-gray-600;
-    }
+// Print styles
+@media print {
+  .sui-panel-menu {
+    border: 1px solid #000;
+    box-shadow: none;
   }
 }

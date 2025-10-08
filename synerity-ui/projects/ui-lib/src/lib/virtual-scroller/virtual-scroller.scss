@@ -1,0 +1,64 @@
+// Virtual Scroller Component Styles with CSS Variables
+.sui-virtual-scroller {
+  // CSS Variables for Theme Inheritance
+  --sui-virtual-scroller-background: var(--sui-surface, #ffffff);
+  --sui-virtual-scroller-border: var(--sui-border, #e5e7eb);
+  --sui-virtual-scroller-border-radius: var(--sui-radius, 4px);
+  --sui-virtual-scroller-text: var(--sui-text-primary, #1e293b);
+  --sui-virtual-scroller-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-virtual-scroller-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Scrollbar variables
+  --sui-virtual-scroller-scrollbar-width: 8px;
+  --sui-virtual-scroller-scrollbar-track: var(--sui-surface-secondary, #f8fafc);
+  --sui-virtual-scroller-scrollbar-thumb: var(--sui-border, #cbd5e1);
+  --sui-virtual-scroller-scrollbar-thumb-hover: var(--sui-text-secondary, #94a3b8);
+  
+  // Dark theme variables
+  --sui-virtual-scroller-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-virtual-scroller-dark-border: var(--sui-dark-border, #334155);
+  --sui-virtual-scroller-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-virtual-scroller-dark-scrollbar-track: var(--sui-dark-surface-secondary, #0f172a);
+  --sui-virtual-scroller-dark-scrollbar-thumb: var(--sui-dark-border, #475569);
+  
+  // Component styles
+  display: block;
+  background: var(--sui-virtual-scroller-background);
+  border: 1px solid var(--sui-virtual-scroller-border);
+  border-radius: var(--sui-virtual-scroller-border-radius);
+  box-shadow: var(--sui-virtual-scroller-shadow);
+  color: var(--sui-virtual-scroller-text);
+  transition: var(--sui-virtual-scroller-transition);
+  overflow: auto;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-virtual-scroller {
+    background: var(--sui-virtual-scroller-dark-background);
+    border-color: var(--sui-virtual-scroller-dark-border);
+    color: var(--sui-virtual-scroller-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-virtual-scroller {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-virtual-scroller {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-virtual-scroller {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}

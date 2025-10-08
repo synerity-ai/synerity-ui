@@ -1,0 +1,64 @@
+// Fieldset Component Styles with CSS Variables
+.sui-fieldset {
+  // CSS Variables for Theme Inheritance
+  --sui-fieldset-background: var(--sui-surface, #ffffff);
+  --sui-fieldset-border: var(--sui-border, #e5e7eb);
+  --sui-fieldset-border-radius: var(--sui-radius, 4px);
+  --sui-fieldset-text: var(--sui-text-primary, #1e293b);
+  --sui-fieldset-padding: var(--sui-spacing-4, 1rem);
+  --sui-fieldset-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-fieldset-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Legend variables
+  --sui-fieldset-legend-background: var(--sui-surface, #ffffff);
+  --sui-fieldset-legend-text: var(--sui-text-primary, #1e293b);
+  --sui-fieldset-legend-font-weight: 600;
+  --sui-fieldset-legend-padding: 0 var(--sui-spacing-2, 0.5rem);
+  
+  // Dark theme variables
+  --sui-fieldset-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-fieldset-dark-border: var(--sui-dark-border, #334155);
+  --sui-fieldset-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-fieldset-dark-legend-background: var(--sui-dark-surface, #1e293b);
+  
+  // Component styles
+  display: block;
+  background: var(--sui-fieldset-background);
+  border: 1px solid var(--sui-fieldset-border);
+  border-radius: var(--sui-fieldset-border-radius);
+  box-shadow: var(--sui-fieldset-shadow);
+  color: var(--sui-fieldset-text);
+  padding: var(--sui-fieldset-padding);
+  transition: var(--sui-fieldset-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-fieldset {
+    background: var(--sui-fieldset-dark-background);
+    border-color: var(--sui-fieldset-dark-border);
+    color: var(--sui-fieldset-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-fieldset {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-fieldset {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-fieldset {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}

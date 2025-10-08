@@ -1,0 +1,63 @@
+// Timeline Component Styles with CSS Variables
+.sui-timeline {
+  // CSS Variables for Theme Inheritance
+  --sui-timeline-background: transparent;
+  --sui-timeline-text: var(--sui-text-primary, #1e293b);
+  --sui-timeline-text-secondary: var(--sui-text-secondary, #64748b);
+  --sui-timeline-padding: var(--sui-spacing-4, 1rem);
+  --sui-timeline-gap: var(--sui-spacing-4, 1rem);
+  --sui-timeline-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Marker variables
+  --sui-timeline-marker-background: var(--sui-primary, #3b82f6);
+  --sui-timeline-marker-border: var(--sui-surface, #ffffff);
+  --sui-timeline-marker-size: 1rem;
+  --sui-timeline-marker-border-width: 2px;
+  
+  // Line variables
+  --sui-timeline-line-background: var(--sui-border, #e5e7eb);
+  --sui-timeline-line-width: 2px;
+  
+  // Content variables
+  --sui-timeline-content-background: var(--sui-surface, #ffffff);
+  --sui-timeline-content-border: var(--sui-border, #e5e7eb);
+  --sui-timeline-content-border-radius: var(--sui-radius, 4px);
+  --sui-timeline-content-padding: var(--sui-spacing-3, 0.75rem);
+  --sui-timeline-content-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  
+  // Dark theme variables
+  --sui-timeline-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-timeline-dark-line-background: var(--sui-dark-border, #334155);
+  --sui-timeline-dark-content-background: var(--sui-dark-surface, #1e293b);
+  --sui-timeline-dark-content-border: var(--sui-dark-border, #334155);
+  
+  // Component styles
+  display: flex;
+  flex-direction: column;
+  gap: var(--sui-timeline-gap);
+  padding: var(--sui-timeline-padding);
+  background: var(--sui-timeline-background);
+  color: var(--sui-timeline-text);
+  transition: var(--sui-timeline-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-timeline {
+    color: var(--sui-timeline-dark-text);
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-timeline {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-timeline {
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,69 @@
+// Toolbar Component Styles with CSS Variables
+.sui-toolbar {
+  // CSS Variables for Theme Inheritance
+  --sui-toolbar-background: var(--sui-surface, #ffffff);
+  --sui-toolbar-border: var(--sui-border, #e5e7eb);
+  --sui-toolbar-border-radius: var(--sui-radius, 4px);
+  --sui-toolbar-text: var(--sui-text-primary, #1e293b);
+  --sui-toolbar-padding: var(--sui-spacing-3, 0.75rem);
+  --sui-toolbar-gap: var(--sui-spacing-2, 0.5rem);
+  --sui-toolbar-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-toolbar-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Dark theme variables
+  --sui-toolbar-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-toolbar-dark-border: var(--sui-dark-border, #334155);
+  --sui-toolbar-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  
+  // Component styles
+  display: flex;
+  align-items: center;
+  gap: var(--sui-toolbar-gap);
+  padding: var(--sui-toolbar-padding);
+  background: var(--sui-toolbar-background);
+  border: 1px solid var(--sui-toolbar-border);
+  border-radius: var(--sui-toolbar-border-radius);
+  box-shadow: var(--sui-toolbar-shadow);
+  color: var(--sui-toolbar-text);
+  transition: var(--sui-toolbar-transition);
+  flex-wrap: wrap;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-toolbar {
+    background: var(--sui-toolbar-dark-background);
+    border-color: var(--sui-toolbar-dark-border);
+    color: var(--sui-toolbar-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-toolbar {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-toolbar {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-toolbar {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}
+
+// Responsive design
+@media (max-width: 640px) {
+  .sui-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
