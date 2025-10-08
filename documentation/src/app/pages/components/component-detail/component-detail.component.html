@@ -44,7 +44,7 @@
   <!-- Main Content -->
   <div class="space-y-12" *ngIf="component()">
     <!-- Component Preview Section -->
-    <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+    <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-visible">
       <div class="px-8 py-6 border-b border-gray-200" style="background: linear-gradient(to right, var(--sui-primary-50, #eff6ff), var(--sui-secondary-50, #f9fafb));">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-3">
@@ -129,6 +129,43 @@
                 <code class="text-sm font-mono text-gray-500 bg-gray-50 px-2 py-1 rounded">{{ prop.default }}</code>
               </td>
               <td class="px-6 py-4 text-sm text-gray-700 leading-relaxed">{{ prop.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Events Documentation Section -->
+    <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden" *ngIf="componentEvents && componentEvents.length > 0">
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 px-8 py-6 border-b border-gray-200">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900">Events</h2>
+        </div>
+        <p class="text-gray-600 mt-2">Listen to these events for component interactions</p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Event</th>
+              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Type</th>
+              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Description</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-100">
+            <tr *ngFor="let event of componentEvents" class="hover:bg-gray-50/50 transition-colors">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <code class="text-sm font-mono bg-gray-100 px-3 py-1.5 rounded-md border">{{ event.name }}</code>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <code class="text-sm font-mono px-2 py-1 rounded" style="color: var(--sui-primary-600, #2563eb); background-color: var(--sui-primary-50, #eff6ff);">{{ event.type }}</code>
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-700 leading-relaxed">{{ event.description }}</td>
             </tr>
           </tbody>
         </table>

@@ -1,4 +1,4 @@
-<div class="sui-select-wrapper" #dropdown>
+<div class="sui-select-wrapper" [class.size-sm]="size === 'sm'" [class.size-md]="size === 'md'" [class.size-lg]="size === 'lg'" #dropdown>
   <!-- Selected Items Display (for multi-select) -->
   <div *ngIf="multiple && hasValue()" class="selected-items-container">
     <div class="selected-items-grid">

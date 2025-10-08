@@ -82,10 +82,14 @@
   color: var(--color-neutral);
   white-space: pre-wrap;
   word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .code-block code {
   color: inherit;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 // Syntax highlighting

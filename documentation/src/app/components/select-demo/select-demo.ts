@@ -50,15 +50,14 @@ export class SelectDemoComponent {
   basicOptions: SelectOption[] = [
     { label: 'Option 1', value: 'option1' },
     { label: 'Option 2', value: 'option2' },
-    { label: 'Option 3', value: 'option3' },
-    { label: 'Disabled Option', value: 'disabled', disabled: true }
+    { label: 'Option 3', value: 'option3' }
   ];
 
   // Size variations
-  sizeVariants = [
-    { size: 'sm', label: 'Small Select' },
-    { size: 'normal', label: 'Normal Select' },
-    { size: 'lg', label: 'Large Select' }
+  sizeVariants: { size: 'sm' | 'md' | 'lg'; label: string }[] = [
+    { size: 'sm', label: 'Small' },
+    { size: 'md', label: 'Medium' },
+    { size: 'lg', label: 'Large' }
   ];
   sizeSelectedValue: string | null = null;
 

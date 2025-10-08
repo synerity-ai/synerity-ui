@@ -1,323 +1,61 @@
-<div class="rating-demo">
-  <div class="demo-section">
-    <h3>Basic Examples</h3>
-    <p>Simple rating components with different configurations.</p>
-    <div class="demo-grid">
-      <div *ngFor="let rating of basicRatings" class="demo-item">
-        <div class="demo-label">{{ rating.label }}</div>
-        <div class="demo-description">{{ rating.description }}</div>
-        <div class="demo-component">
-          <sui-rating
-            [(ngModel)]="rating.value"
-            [max]="rating.max"
-            [size]="rating.size"
-            [theme]="rating.theme"
-            [color]="rating.color"
-            [disabled]="rating.disabled"
-            [readonly]="rating.readonly"
-            [allowClear]="rating.allowClear"
-            [showValue]="rating.showValue"
-            [animate]="rating.animate"
-            [bounce]="rating.bounce"
-            [glow]="rating.glow"
-            [compact]="rating.compact"
-            [spacious]="rating.spacious"
-            (change)="onRatingChange($event, rating)">
-          </sui-rating>
-        </div>
-        <div class="demo-result">
-          <p><strong>Value:</strong> {{ rating.value }}/{{ rating.max }}</p>
-          <p><strong>Text:</strong> {{ getRatingText(rating.value, rating.max) }}</p>
-        </div>
+@switch (getCurrentExample().name) {
+  @case ('Basic Rating') {
+    <sui-rating [(ngModel)]="basicRating" [max]="5"></sui-rating>
+    <div class="mt-4 text-sm text-gray-600">
+      <p>Value: {{ basicRating }}/5</p>
+    </div>
+  }
+  @case ('Size Variants') {
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-4">
+        <sui-rating size="small" [(ngModel)]="ratingSmall" [max]="5"></sui-rating>
+        <span class="text-sm text-gray-600">Small</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <sui-rating size="medium" [(ngModel)]="ratingMedium" [max]="5"></sui-rating>
+        <span class="text-sm text-gray-600">Medium</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <sui-rating size="large" [(ngModel)]="ratingLarge" [max]="5"></sui-rating>
+        <span class="text-sm text-gray-600">Large</span>
       </div>
     </div>
-  </div>
-
-  <div class="demo-section">
-    <h3>Size Variations</h3>
-    <p>Different sizes for various use cases.</p>
-    <div class="demo-grid">
-      <div *ngFor="let rating of sizeVariants" class="demo-item">
-        <div class="demo-label">{{ rating.label }}</div>
-        <div class="demo-description">{{ rating.description }}</div>
-        <div class="demo-component">
-          <sui-rating
-            [(ngModel)]="rating.value"
-            [max]="rating.max"
-            [size]="rating.size"
-            [theme]="rating.theme"
-            [color]="rating.color"
-            [disabled]="rating.disabled"
-            [readonly]="rating.readonly"
-            [allowClear]="rating.allowClear"
-            [showValue]="rating.showValue"
-            [animate]="rating.animate"
-            [bounce]="rating.bounce"
-            [glow]="rating.glow"
-            [compact]="rating.compact"
-            [spacious]="rating.spacious"
-            (change)="onRatingChange($event, rating)">
-          </sui-rating>
-        </div>
-        <div class="demo-result">
-          <p><strong>Size:</strong> {{ rating.size }}</p>
-        </div>
+  }
+  @case ('Color Variants') {
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-4">
+        <sui-rating color="default" [(ngModel)]="ratingDefault" [max]="5"></sui-rating>
+        <span class="text-sm text-gray-600">Default</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <sui-rating color="primary" [(ngModel)]="ratingPrimary" [max]="5"></sui-rating>
+        <span class="text-sm text-gray-600">Primary</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <sui-rating color="success" [(ngModel)]="ratingSuccess" [max]="5"></sui-rating>
+        <span class="text-sm text-gray-600">Success</span>
       </div>
     </div>
-  </div>
-
-  <div class="demo-section">
-    <h3>Color Variants</h3>
-    <p>Different color themes for various contexts.</p>
-    <div class="demo-grid">
-      <div *ngFor="let rating of colorVariants" class="demo-item">
-        <div class="demo-label">{{ rating.label }}</div>
-        <div class="demo-description">{{ rating.description }}</div>
-        <div class="demo-component">
-          <sui-rating
-            [(ngModel)]="rating.value"
-            [max]="rating.max"
-            [size]="rating.size"
-            [theme]="rating.theme"
-            [color]="rating.color"
-            [disabled]="rating.disabled"
-            [readonly]="rating.readonly"
-            [allowClear]="rating.allowClear"
-            [showValue]="rating.showValue"
-            [animate]="rating.animate"
-            [bounce]="rating.bounce"
-            [glow]="rating.glow"
-            [compact]="rating.compact"
-            [spacious]="rating.spacious"
-            (change)="onRatingChange($event, rating)">
-          </sui-rating>
-        </div>
-        <div class="demo-result">
-          <p><strong>Color:</strong> {{ rating.color }}</p>
-        </div>
-      </div>
+  }
+  @case ('Read-only State') {
+    <sui-rating [readonly]="true" [(ngModel)]="ratingReadonly" [max]="5"></sui-rating>
+    <div class="mt-4 text-sm text-gray-600">
+      <p>This rating is read-only and cannot be changed</p>
     </div>
-  </div>
-
-  <div class="demo-section">
-    <h3>State Examples</h3>
-    <p>Different interaction states and behaviors.</p>
-    <div class="demo-grid">
-      <div *ngFor="let rating of stateExamples" class="demo-item">
-        <div class="demo-label">{{ rating.label }}</div>
-        <div class="demo-description">{{ rating.description }}</div>
-        <div class="demo-component">
-          <sui-rating
-            [(ngModel)]="rating.value"
-            [max]="rating.max"
-            [size]="rating.size"
-            [theme]="rating.theme"
-            [color]="rating.color"
-            [disabled]="rating.disabled"
-            [readonly]="rating.readonly"
-            [allowClear]="rating.allowClear"
-            [showValue]="rating.showValue"
-            [animate]="rating.animate"
-            [bounce]="rating.bounce"
-            [glow]="rating.glow"
-            [compact]="rating.compact"
-            [spacious]="rating.spacious"
-            (change)="onRatingChange($event, rating)">
-          </sui-rating>
-        </div>
-        <div class="demo-result">
-          <p><strong>State:</strong> {{ rating.disabled ? 'Disabled' : rating.readonly ? 'Read Only' : 'Interactive' }}</p>
-        </div>
-      </div>
+  }
+  @case ('Disabled State') {
+    <sui-rating [disabled]="true" [(ngModel)]="ratingDisabled" [max]="5"></sui-rating>
+    <div class="mt-4 text-sm text-gray-600">
+      <p>This rating is disabled</p>
     </div>
-  </div>
-
-  <div class="demo-section">
-    <h3>Animation Effects</h3>
-    <p>Various animation and visual effects.</p>
-    <div class="demo-grid">
-      <div *ngFor="let rating of animationExamples" class="demo-item">
-        <div class="demo-label">{{ rating.label }}</div>
-        <div class="demo-description">{{ rating.description }}</div>
-        <div class="demo-component">
-          <sui-rating
-            [(ngModel)]="rating.value"
-            [max]="rating.max"
-            [size]="rating.size"
-            [theme]="rating.theme"
-            [color]="rating.color"
-            [disabled]="rating.disabled"
-            [readonly]="rating.readonly"
-            [allowClear]="rating.allowClear"
-            [showValue]="rating.showValue"
-            [animate]="rating.animate"
-            [bounce]="rating.bounce"
-            [glow]="rating.glow"
-            [compact]="rating.compact"
-            [spacious]="rating.spacious"
-            (change)="onRatingChange($event, rating)">
-          </sui-rating>
-        </div>
-        <div class="demo-result">
-          <p><strong>Effect:</strong> {{ rating.animate ? 'Pulse' : rating.bounce ? 'Bounce' : rating.glow ? 'Glow' : 'None' }}</p>
-        </div>
-      </div>
+  }
+  @case ('With Value Display') {
+    <sui-rating [(ngModel)]="ratingWithValue" [max]="5" [showValue]="true"></sui-rating>
+    <div class="mt-4 text-sm text-gray-600">
+      <p>Current rating: {{ ratingWithValue }}/5</p>
     </div>
-  </div>
-
-  <div class="demo-section">
-    <h3>Layout Options</h3>
-    <p>Different layout and display options.</p>
-    <div class="demo-grid">
-      <div *ngFor="let rating of layoutExamples" class="demo-item">
-        <div class="demo-label">{{ rating.label }}</div>
-        <div class="demo-description">{{ rating.description }}</div>
-        <div class="demo-component">
-          <sui-rating
-            [(ngModel)]="rating.value"
-            [max]="rating.max"
-            [size]="rating.size"
-            [theme]="rating.theme"
-            [color]="rating.color"
-            [disabled]="rating.disabled"
-            [readonly]="rating.readonly"
-            [allowClear]="rating.allowClear"
-            [showValue]="rating.showValue"
-            [animate]="rating.animate"
-            [bounce]="rating.bounce"
-            [glow]="rating.glow"
-            [compact]="rating.compact"
-            [spacious]="rating.spacious"
-            (change)="onRatingChange($event, rating)">
-          </sui-rating>
-        </div>
-        <div class="demo-result">
-          <p><strong>Layout:</strong> {{ rating.showValue ? 'With Value' : rating.compact ? 'Compact' : rating.spacious ? 'Spacious' : 'Standard' }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="demo-section">
-    <h3>Theme Support</h3>
-    <p>Light and dark theme variations.</p>
-    <div class="demo-grid">
-      <div *ngFor="let rating of themeExamples" class="demo-item">
-        <div class="demo-label">{{ rating.label }}</div>
-        <div class="demo-description">{{ rating.description }}</div>
-        <div class="demo-component">
-          <sui-rating
-            [(ngModel)]="rating.value"
-            [max]="rating.max"
-            [size]="rating.size"
-            [theme]="rating.theme"
-            [color]="rating.color"
-            [disabled]="rating.disabled"
-            [readonly]="rating.readonly"
-            [allowClear]="rating.allowClear"
-            [showValue]="rating.showValue"
-            [animate]="rating.animate"
-            [bounce]="rating.bounce"
-            [glow]="rating.glow"
-            [compact]="rating.compact"
-            [spacious]="rating.spacious"
-            (change)="onRatingChange($event, rating)">
-          </sui-rating>
-        </div>
-        <div class="demo-result">
-          <p><strong>Theme:</strong> {{ rating.theme }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="demo-section">
-    <h3>Real-World Examples</h3>
-    <p>Practical use cases for rating components.</p>
-    <div class="demo-grid">
-      <div class="demo-item">
-        <div class="demo-label">{{ productRating.label }}</div>
-        <div class="demo-description">{{ productRating.description }}</div>
-        <div class="demo-component">
-          <sui-rating
-            [(ngModel)]="productRating.value"
-            [max]="productRating.max"
-            [size]="productRating.size"
-            [theme]="productRating.theme"
-            [color]="productRating.color"
-            [disabled]="productRating.disabled"
-            [readonly]="productRating.readonly"
-            [allowClear]="productRating.allowClear"
-            [showValue]="productRating.showValue"
-            [animate]="productRating.animate"
-            [bounce]="productRating.bounce"
-            [glow]="productRating.glow"
-            [compact]="productRating.compact"
-            [spacious]="productRating.spacious"
-            (change)="onRatingChange($event, productRating)">
-          </sui-rating>
-        </div>
-        <div class="demo-result">
-          <p><strong>Rating:</strong> {{ getRatingText(productRating.value, productRating.max) }}</p>
-          <p><strong>Quality:</strong> {{ getRatingColor(productRating.value, productRating.max) }}</p>
-        </div>
-      </div>
-
-      <div class="demo-item">
-        <div class="demo-label">{{ serviceRating.label }}</div>
-        <div class="demo-description">{{ serviceRating.description }}</div>
-        <div class="demo-component">
-          <sui-rating
-            [(ngModel)]="serviceRating.value"
-            [max]="serviceRating.max"
-            [size]="serviceRating.size"
-            [theme]="serviceRating.theme"
-            [color]="serviceRating.color"
-            [disabled]="serviceRating.disabled"
-            [readonly]="serviceRating.readonly"
-            [allowClear]="serviceRating.allowClear"
-            [showValue]="serviceRating.showValue"
-            [animate]="serviceRating.animate"
-            [bounce]="serviceRating.bounce"
-            [glow]="serviceRating.glow"
-            [compact]="serviceRating.compact"
-            [spacious]="serviceRating.spacious"
-            (change)="onRatingChange($event, serviceRating)">
-          </sui-rating>
-        </div>
-        <div class="demo-result">
-          <p><strong>Service:</strong> {{ getRatingText(serviceRating.value, serviceRating.max) }}</p>
-          <p><strong>Status:</strong> Excellent</p>
-        </div>
-      </div>
-
-      <div class="demo-item">
-        <div class="demo-label">{{ movieRating.label }}</div>
-        <div class="demo-description">{{ movieRating.description }}</div>
-        <div class="demo-component">
-          <sui-rating
-            [(ngModel)]="movieRating.value"
-            [max]="movieRating.max"
-            [size]="movieRating.size"
-            [theme]="movieRating.theme"
-            [color]="movieRating.color"
-            [disabled]="movieRating.disabled"
-            [readonly]="movieRating.readonly"
-            [allowClear]="movieRating.allowClear"
-            [showValue]="movieRating.showValue"
-            [animate]="movieRating.animate"
-            [bounce]="movieRating.bounce"
-            [glow]="movieRating.glow"
-            [compact]="movieRating.compact"
-            [spacious]="movieRating.spacious"
-            (change)="onRatingChange($event, movieRating)">
-          </sui-rating>
-        </div>
-        <div class="demo-result">
-          <p><strong>Review:</strong> {{ getRatingText(movieRating.value, movieRating.max) }}</p>
-          <p><strong>Rating:</strong> {{ movieRating.value }}/{{ movieRating.max }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  }
+  @default {
+    <sui-rating [(ngModel)]="basicRating" [max]="5"></sui-rating>
+  }
+}

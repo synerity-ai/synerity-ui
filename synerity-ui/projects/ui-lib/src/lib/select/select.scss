@@ -621,7 +621,7 @@
 .option-label {
   flex: 1;
   font-size: 14px;
-  color: var(--sui-select-gray-700);
+  color: var(--sui-select-gray-700, #374151) !important;
   line-height: 1.4;
 }
 
@@ -692,6 +692,82 @@
   
   .checkbox {
     border-width: 3px;
+  }
+}
+
+// Size variations
+.sui-select-wrapper.size-sm {
+  .select-trigger {
+    padding: 6px 12px;
+    font-size: 12px;
+    min-height: 32px;
+  }
+  
+  .trigger-text {
+    font-size: 12px;
+  }
+  
+  .option-item {
+    padding: 8px 12px;
+  }
+  
+  .option-label {
+    font-size: 12px;
+  }
+  
+  .search-input {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+.sui-select-wrapper.size-md {
+  .select-trigger {
+    padding: 8px 16px;
+    font-size: 14px;
+    min-height: 40px;
+  }
+  
+  .trigger-text {
+    font-size: 14px;
+  }
+  
+  .option-item {
+    padding: 12px 16px;
+  }
+  
+  .option-label {
+    font-size: 14px;
+  }
+  
+  .search-input {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+.sui-select-wrapper.size-lg {
+  .select-trigger {
+    padding: 12px 20px;
+    font-size: 16px;
+    min-height: 48px;
+  }
+  
+  .trigger-text {
+    font-size: 16px;
+  }
+  
+  .option-item {
+    padding: 16px 20px;
+  }
+  
+  .option-label {
+    font-size: 16px;
+  }
+  
+  .search-input {
+    padding: 14px 20px;
+    font-size: 16px;
   }
 }
 

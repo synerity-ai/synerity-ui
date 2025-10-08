@@ -1,17 +1,46 @@
 @switch (getCurrentExample().name) {
   @case ('Primary Button') {
-    <sui-button variant="primary">Click me</sui-button>
+    <sui-button variant="primary">Primary</sui-button>
   }
   @case ('Secondary Button') {
-    <sui-button variant="secondary">Click me</sui-button>
+    <sui-button variant="secondary">Secondary</sui-button>
   }
   @case ('Outline Button') {
-    <sui-button variant="outline">Click me</sui-button>
+    <sui-button variant="outline">Outline</sui-button>
   }
-  @case ('Disabled Button') {
+  @case ('Ghost Button') {
+    <sui-button variant="ghost">Ghost</sui-button>
+  }
+  @case ('Danger Button') {
+    <sui-button variant="danger">Danger</sui-button>
+  }
+  @case ('Small Size') {
+    <sui-button size="sm">Small</sui-button>
+  }
+  @case ('Medium Size') {
+    <sui-button size="md">Medium</sui-button>
+  }
+  @case ('Large Size') {
+    <sui-button size="lg">Large</sui-button>
+  }
+  @case ('Disabled State') {
     <sui-button [disabled]="true">Disabled</sui-button>
   }
+  @case ('Loading State') {
+    <sui-button [loading]="true">Loading</sui-button>
+  }
+  @case ('Full Width') {
+    <div style="width: 100%; max-width: 400px;">
+      <sui-button [fullWidth]="true">Full Width</sui-button>
+    </div>
+  }
+  @case ('With Icon') {
+    <sui-button icon="pi pi-check">With Icon</sui-button>
+  }
+  @case ('Icon Right') {
+    <sui-button icon="pi pi-arrow-right" iconPosition="right">Next</sui-button>
+  }
   @default {
-    <sui-button variant="primary">Click me</sui-button>
+    <sui-button variant="primary">Primary</sui-button>
   }
 }

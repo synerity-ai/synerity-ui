@@ -1,6 +1,6 @@
 {
   "name": "@synerity/ui",
-  "version": "2.3.0",
+  "version": "2.3.11",
   "description": "Synerity UI Component Library - Enterprise-grade Angular components",
   "homepage": "https://synerity-ai.github.io/synerity-ui/",
   "repository": {
@@ -17,13 +17,14 @@
     "start:demo": "ng serve demo-app",
     "start:rapid": "ng serve rapid --port 4201",
     "build": "ng build",
-    "build:lib": "npm run compile:scss && ng build ui-lib",
+    "build:lib": "npm run compile:scss && ng build ui-lib && node scripts/fix-exports.js",
     "build:demo": "ng build demo-app --configuration production",
     "build:rapid": "ng build rapid --configuration production",
     "build:demo:gh-pages": "ng build demo-app --configuration production --base-href /synerity-ui/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "compile:scss": "node scripts/compile-scss-to-css.js",
+    "fix:exports": "node scripts/fix-exports.js",
     "publish:lib": "cd dist/ui-lib && npm publish",
     "prepublishOnly": "npm run build:lib"
   },

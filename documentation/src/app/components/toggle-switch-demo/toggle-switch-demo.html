@@ -1,365 +1,55 @@
-<div class="demo-section">
-  <div class="demo-group">
-    <div class="demo-label">Basic Toggle Switches</div>
-    <div class="demo-description">Simple toggle switch components with basic functionality.</div>
-    <div class="demo-grid">
-      @for (toggle of basicToggles; track toggle.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ toggle.label }}</div>
-          <div class="demo-description">{{ toggle.description }}</div>
-          <div class="demo-component">
-            <sui-toggle-switch
-              [(ngModel)]="toggle.checked"
-              [size]="toggle.size"
-              [theme]="toggle.theme"
-              [color]="toggle.color"
-              [disabled]="toggle.disabled"
-              [readonly]="toggle.readonly"
-              [loading]="toggle.loading"
-              [showText]="toggle.showText"
-              [onText]="toggle.onText"
-              [offText]="toggle.offText"
-              [label]="toggle.label"
-              [labelPosition]="toggle.labelPosition"
-              [compact]="toggle.compact"
-              [spacious]="toggle.spacious"
-              [animated]="toggle.animated"
-              [bounce]="toggle.bounce"
-              [glow]="toggle.glow"
-              (change)="onToggleChange($event, toggle)">
-            </sui-toggle-switch>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getToggleStatusColor(toggle.checked)">{{ getToggleStatus(toggle.checked) }}</span>
-            <span class="ml-2">{{ getToggleIcon(toggle.checked) }}</span>
-          </div>
-        </div>
-      }
+@switch (getCurrentExample().name) {
+  @case ('Basic Toggle') {
+    <sui-toggle-switch [(ngModel)]="isEnabled"></sui-toggle-switch>
+    <div class="mt-4 text-sm text-gray-600">
+      <p>State: {{ isEnabled ? 'ON' : 'OFF' }}</p>
     </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Size Variations</div>
-    <div class="demo-description">Toggle switch components in different sizes.</div>
-    <div class="demo-grid">
-      @for (toggle of sizeVariants; track toggle.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ toggle.label }}</div>
-          <div class="demo-description">{{ toggle.description }}</div>
-          <div class="demo-component">
-            <sui-toggle-switch
-              [(ngModel)]="toggle.checked"
-              [size]="toggle.size"
-              [theme]="toggle.theme"
-              [color]="toggle.color"
-              [disabled]="toggle.disabled"
-              [readonly]="toggle.readonly"
-              [loading]="toggle.loading"
-              [showText]="toggle.showText"
-              [onText]="toggle.onText"
-              [offText]="toggle.offText"
-              [label]="toggle.label"
-              [labelPosition]="toggle.labelPosition"
-              [compact]="toggle.compact"
-              [spacious]="toggle.spacious"
-              [animated]="toggle.animated"
-              [bounce]="toggle.bounce"
-              [glow]="toggle.glow"
-              (change)="onToggleChange($event, toggle)">
-            </sui-toggle-switch>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getToggleStatusColor(toggle.checked)">{{ getToggleStatus(toggle.checked) }}</span>
-            <span class="ml-2">{{ getToggleIcon(toggle.checked) }}</span>
-          </div>
-        </div>
-      }
+  }
+  @case ('With Labels') {
+    <sui-toggle-switch [(ngModel)]="isEnabledLabels" onLabel="On" offLabel="Off"></sui-toggle-switch>
+    <div class="mt-4 text-sm text-gray-600">
+      <p>State: {{ isEnabledLabels ? 'Enabled' : 'Disabled' }}</p>
     </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Color Themes</div>
-    <div class="demo-description">Toggle switch components with different color themes.</div>
-    <div class="demo-grid">
-      @for (toggle of colorThemes; track toggle.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ toggle.label }}</div>
-          <div class="demo-description">{{ toggle.description }}</div>
-          <div class="demo-component">
-            <sui-toggle-switch
-              [(ngModel)]="toggle.checked"
-              [size]="toggle.size"
-              [theme]="toggle.theme"
-              [color]="toggle.color"
-              [disabled]="toggle.disabled"
-              [readonly]="toggle.readonly"
-              [loading]="toggle.loading"
-              [showText]="toggle.showText"
-              [onText]="toggle.onText"
-              [offText]="toggle.offText"
-              [label]="toggle.label"
-              [labelPosition]="toggle.labelPosition"
-              [compact]="toggle.compact"
-              [spacious]="toggle.spacious"
-              [animated]="toggle.animated"
-              [bounce]="toggle.bounce"
-              [glow]="toggle.glow"
-              (change)="onToggleChange($event, toggle)">
-            </sui-toggle-switch>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getToggleStatusColor(toggle.checked)">{{ getToggleStatus(toggle.checked) }}</span>
-            <span class="ml-2">{{ getToggleIcon(toggle.checked) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Layout Options</div>
-    <div class="demo-description">Toggle switch components with different layout options.</div>
-    <div class="demo-grid">
-      @for (toggle of layoutOptions; track toggle.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ toggle.label }}</div>
-          <div class="demo-description">{{ toggle.description }}</div>
-          <div class="demo-component">
-            <sui-toggle-switch
-              [(ngModel)]="toggle.checked"
-              [size]="toggle.size"
-              [theme]="toggle.theme"
-              [color]="toggle.color"
-              [disabled]="toggle.disabled"
-              [readonly]="toggle.readonly"
-              [loading]="toggle.loading"
-              [showText]="toggle.showText"
-              [onText]="toggle.onText"
-              [offText]="toggle.offText"
-              [label]="toggle.label"
-              [labelPosition]="toggle.labelPosition"
-              [compact]="toggle.compact"
-              [spacious]="toggle.spacious"
-              [animated]="toggle.animated"
-              [bounce]="toggle.bounce"
-              [glow]="toggle.glow"
-              (change)="onToggleChange($event, toggle)">
-            </sui-toggle-switch>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getToggleStatusColor(toggle.checked)">{{ getToggleStatus(toggle.checked) }}</span>
-            <span class="ml-2">{{ getToggleIcon(toggle.checked) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">State Examples</div>
-    <div class="demo-description">Toggle switch components in different states.</div>
-    <div class="demo-grid">
-      @for (toggle of stateExamples; track toggle.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ toggle.label }}</div>
-          <div class="demo-description">{{ toggle.description }}</div>
-          <div class="demo-component">
-            <sui-toggle-switch
-              [(ngModel)]="toggle.checked"
-              [size]="toggle.size"
-              [theme]="toggle.theme"
-              [color]="toggle.color"
-              [disabled]="toggle.disabled"
-              [readonly]="toggle.readonly"
-              [loading]="toggle.loading"
-              [showText]="toggle.showText"
-              [onText]="toggle.onText"
-              [offText]="toggle.offText"
-              [label]="toggle.label"
-              [labelPosition]="toggle.labelPosition"
-              [compact]="toggle.compact"
-              [spacious]="toggle.spacious"
-              [animated]="toggle.animated"
-              [bounce]="toggle.bounce"
-              [glow]="toggle.glow"
-              (change)="onToggleChange($event, toggle)">
-            </sui-toggle-switch>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getToggleStatusColor(toggle.checked)">{{ getToggleStatus(toggle.checked) }}</span>
-            <span class="ml-2">{{ getToggleIcon(toggle.checked) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Animation Effects</div>
-    <div class="demo-description">Toggle switch components with various animation effects.</div>
-    <div class="demo-grid">
-      @for (toggle of animationEffects; track toggle.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ toggle.label }}</div>
-          <div class="demo-description">{{ toggle.description }}</div>
-          <div class="demo-component">
-            <sui-toggle-switch
-              [(ngModel)]="toggle.checked"
-              [size]="toggle.size"
-              [theme]="toggle.theme"
-              [color]="toggle.color"
-              [disabled]="toggle.disabled"
-              [readonly]="toggle.readonly"
-              [loading]="toggle.loading"
-              [showText]="toggle.showText"
-              [onText]="toggle.onText"
-              [offText]="toggle.offText"
-              [label]="toggle.label"
-              [labelPosition]="toggle.labelPosition"
-              [compact]="toggle.compact"
-              [spacious]="toggle.spacious"
-              [animated]="toggle.animated"
-              [bounce]="toggle.bounce"
-              [glow]="toggle.glow"
-              (change)="onToggleChange($event, toggle)">
-            </sui-toggle-switch>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getToggleStatusColor(toggle.checked)">{{ getToggleStatus(toggle.checked) }}</span>
-            <span class="ml-2">{{ getToggleIcon(toggle.checked) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Real-world Examples</div>
-    <div class="demo-description">Practical applications of the toggle switch component.</div>
-    <div class="demo-grid">
-      <div class="demo-item">
-        <div class="demo-label">{{ notificationsToggle.label }}</div>
-        <div class="demo-description">{{ notificationsToggle.description }}</div>
-        <div class="demo-component">
-          <sui-toggle-switch
-            [(ngModel)]="notificationsToggle.checked"
-            [size]="notificationsToggle.size"
-            [theme]="notificationsToggle.theme"
-            [color]="notificationsToggle.color"
-            [disabled]="notificationsToggle.disabled"
-            [readonly]="notificationsToggle.readonly"
-            [loading]="notificationsToggle.loading"
-            [showText]="notificationsToggle.showText"
-            [onText]="notificationsToggle.onText"
-            [offText]="notificationsToggle.offText"
-            [label]="notificationsToggle.label"
-            [labelPosition]="notificationsToggle.labelPosition"
-            [compact]="notificationsToggle.compact"
-            [spacious]="notificationsToggle.spacious"
-            [animated]="notificationsToggle.animated"
-            [bounce]="notificationsToggle.bounce"
-            [glow]="notificationsToggle.glow"
-            (change)="onToggleChange($event, notificationsToggle)">
-          </sui-toggle-switch>
-        </div>
-        <div class="demo-result">
-          <p><strong>Notifications:</strong> <span [class]="getToggleStatusColor(notificationsToggle.checked)">{{ getToggleStatus(notificationsToggle.checked) }}</span></p>
-          <p><strong>Status:</strong> {{ notificationsToggle.checked ? 'You will receive notifications' : 'Notifications are disabled' }}</p>
-        </div>
+  }
+  @case ('Size Variants') {
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-4">
+        <sui-toggle-switch size="small" [(ngModel)]="valueSmall"></sui-toggle-switch>
+        <span class="text-sm text-gray-600">Small - {{ valueSmall ? 'ON' : 'OFF' }}</span>
       </div>
-
-      <div class="demo-item">
-        <div class="demo-label">{{ darkModeToggle.label }}</div>
-        <div class="demo-description">{{ darkModeToggle.description }}</div>
-        <div class="demo-component">
-          <sui-toggle-switch
-            [(ngModel)]="darkModeToggle.checked"
-            [size]="darkModeToggle.size"
-            [theme]="darkModeToggle.theme"
-            [color]="darkModeToggle.color"
-            [disabled]="darkModeToggle.disabled"
-            [readonly]="darkModeToggle.readonly"
-            [loading]="darkModeToggle.loading"
-            [showText]="darkModeToggle.showText"
-            [onText]="darkModeToggle.onText"
-            [offText]="darkModeToggle.offText"
-            [label]="darkModeToggle.label"
-            [labelPosition]="darkModeToggle.labelPosition"
-            [compact]="darkModeToggle.compact"
-            [spacious]="darkModeToggle.spacious"
-            [animated]="darkModeToggle.animated"
-            [bounce]="darkModeToggle.bounce"
-            [glow]="darkModeToggle.glow"
-            (change)="onToggleChange($event, darkModeToggle)">
-          </sui-toggle-switch>
-        </div>
-        <div class="demo-result">
-          <p><strong>Theme:</strong> <span [class]="getToggleStatusColor(darkModeToggle.checked)">{{ getToggleStatus(darkModeToggle.checked) }}</span></p>
-          <p><strong>Mode:</strong> {{ darkModeToggle.checked ? 'Dark theme active' : 'Light theme active' }}</p>
-        </div>
+      <div class="flex items-center gap-4">
+        <sui-toggle-switch size="medium" [(ngModel)]="valueMedium"></sui-toggle-switch>
+        <span class="text-sm text-gray-600">Medium - {{ valueMedium ? 'ON' : 'OFF' }}</span>
       </div>
-
-      <div class="demo-item">
-        <div class="demo-label">{{ autoSaveToggle.label }}</div>
-        <div class="demo-description">{{ autoSaveToggle.description }}</div>
-        <div class="demo-component">
-          <sui-toggle-switch
-            [(ngModel)]="autoSaveToggle.checked"
-            [size]="autoSaveToggle.size"
-            [theme]="autoSaveToggle.theme"
-            [color]="autoSaveToggle.color"
-            [disabled]="autoSaveToggle.disabled"
-            [readonly]="autoSaveToggle.readonly"
-            [loading]="autoSaveToggle.loading"
-            [showText]="autoSaveToggle.showText"
-            [onText]="autoSaveToggle.onText"
-            [offText]="autoSaveToggle.offText"
-            [label]="autoSaveToggle.label"
-            [labelPosition]="autoSaveToggle.labelPosition"
-            [compact]="autoSaveToggle.compact"
-            [spacious]="autoSaveToggle.spacious"
-            [animated]="autoSaveToggle.animated"
-            [bounce]="autoSaveToggle.bounce"
-            [glow]="autoSaveToggle.glow"
-            (change)="onToggleChange($event, autoSaveToggle)">
-          </sui-toggle-switch>
-        </div>
-        <div class="demo-result">
-          <p><strong>Auto Save:</strong> <span [class]="getToggleStatusColor(autoSaveToggle.checked)">{{ getToggleStatus(autoSaveToggle.checked) }}</span></p>
-          <p><strong>Mode:</strong> {{ autoSaveToggle.checked ? 'Changes saved automatically' : 'Manual save required' }}</p>
-        </div>
-      </div>
-
-      <div class="demo-item">
-        <div class="demo-label">{{ wifiToggle.label }}</div>
-        <div class="demo-description">{{ wifiToggle.description }}</div>
-        <div class="demo-component">
-          <sui-toggle-switch
-            [(ngModel)]="wifiToggle.checked"
-            [size]="wifiToggle.size"
-            [theme]="wifiToggle.theme"
-            [color]="wifiToggle.color"
-            [disabled]="wifiToggle.disabled"
-            [readonly]="wifiToggle.readonly"
-            [loading]="wifiToggle.loading"
-            [showText]="wifiToggle.showText"
-            [onText]="wifiToggle.onText"
-            [offText]="wifiToggle.offText"
-            [label]="wifiToggle.label"
-            [labelPosition]="wifiToggle.labelPosition"
-            [compact]="wifiToggle.compact"
-            [spacious]="wifiToggle.spacious"
-            [animated]="wifiToggle.animated"
-            [bounce]="wifiToggle.bounce"
-            [glow]="wifiToggle.glow"
-            (change)="onToggleChange($event, wifiToggle)">
-          </sui-toggle-switch>
-        </div>
-        <div class="demo-result">
-          <p><strong>WiFi:</strong> <span [class]="getToggleStatusColor(wifiToggle.checked)">{{ getToggleStatus(wifiToggle.checked) }}</span></p>
-          <p><strong>Connection:</strong> {{ wifiToggle.checked ? 'Connected to network' : 'Disconnected from network' }}</p>
-        </div>
+      <div class="flex items-center gap-4">
+        <sui-toggle-switch size="large" [(ngModel)]="valueLarge"></sui-toggle-switch>
+        <span class="text-sm text-gray-600">Large - {{ valueLarge ? 'ON' : 'OFF' }}</span>
       </div>
     </div>
-  </div>
-</div>
+  }
+  @case ('Disabled State') {
+    <sui-toggle-switch [disabled]="true" [(ngModel)]="valueDisabled"></sui-toggle-switch>
+    <div class="mt-4 text-sm text-gray-600">
+      <p>This toggle is disabled</p>
+    </div>
+  }
+  @case ('Color Variants') {
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-4">
+        <sui-toggle-switch color="primary" [(ngModel)]="valuePrimary"></sui-toggle-switch>
+        <span class="text-sm text-gray-600">Primary - {{ valuePrimary ? 'ON' : 'OFF' }}</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <sui-toggle-switch color="success" [(ngModel)]="valueSuccess"></sui-toggle-switch>
+        <span class="text-sm text-gray-600">Success - {{ valueSuccess ? 'ON' : 'OFF' }}</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <sui-toggle-switch color="danger" [(ngModel)]="valueDanger"></sui-toggle-switch>
+        <span class="text-sm text-gray-600">Danger - {{ valueDanger ? 'ON' : 'OFF' }}</span>
+      </div>
+    </div>
+  }
+  @default {
+    <sui-toggle-switch [(ngModel)]="isEnabled"></sui-toggle-switch>
+  }
+}

@@ -17,7 +17,7 @@ export class SidebarComponent {
 
   readonly categories: any;
   readonly components: any;
-  readonly libraryVersion = '2.3.0';
+  readonly libraryVersion = '2.3.11';
 
   constructor(private componentDataService: ComponentDataService) {
     this.categories = this.componentDataService.categories;

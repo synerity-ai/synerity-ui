@@ -9,23 +9,68 @@ export const foundationComponents: ComponentModel[] = [
           examples: [
             {
               name: 'Primary Button',
-              code: '<sui-button variant="primary">Click me</sui-button>',
-              description: 'Default primary button'
+              code: '<sui-button variant="primary">Primary</sui-button>',
+              description: 'Default primary button with solid background'
             },
             {
               name: 'Secondary Button',
-              code: '<sui-button variant="secondary">Click me</sui-button>',
-              description: 'Secondary button variant'
+              code: '<sui-button variant="secondary">Secondary</sui-button>',
+              description: 'Secondary button with muted appearance'
             },
             {
               name: 'Outline Button',
-              code: '<sui-button variant="outline">Click me</sui-button>',
-              description: 'Button with outline style'
+              code: '<sui-button variant="outline">Outline</sui-button>',
+              description: 'Button with outline style and transparent background'
             },
             {
-              name: 'Disabled Button',
+              name: 'Ghost Button',
+              code: '<sui-button variant="ghost">Ghost</sui-button>',
+              description: 'Subtle button with no border or background'
+            },
+            {
+              name: 'Danger Button',
+              code: '<sui-button variant="danger">Danger</sui-button>',
+              description: 'Button for destructive actions'
+            },
+            {
+              name: 'Small Size',
+              code: '<sui-button size="sm">Small</sui-button>',
+              description: 'Small button size'
+            },
+            {
+              name: 'Medium Size',
+              code: '<sui-button size="md">Medium</sui-button>',
+              description: 'Medium button size (default)'
+            },
+            {
+              name: 'Large Size',
+              code: '<sui-button size="lg">Large</sui-button>',
+              description: 'Large button size'
+            },
+            {
+              name: 'Disabled State',
               code: '<sui-button [disabled]="true">Disabled</sui-button>',
-              description: 'Disabled button state'
+              description: 'Button in disabled state'
+            },
+            {
+              name: 'Loading State',
+              code: '<sui-button [loading]="true">Loading</sui-button>',
+              description: 'Button showing loading indicator'
+            },
+            {
+              name: 'Full Width',
+              code: '<sui-button [fullWidth]="true">Full Width</sui-button>',
+              description: 'Button that spans the full width of its container'
+            },
+            {
+              name: 'With Icon',
+              code: '<sui-button icon="pi pi-check">With Icon</sui-button>',
+              description: 'Button with icon on the left'
+            },
+            {
+              name: 'Icon Right',
+              code: '<sui-button icon="pi pi-arrow-right" iconPosition="right">Next</sui-button>',
+              description: 'Button with icon on the right'
             }
           ],
         props: [
@@ -84,6 +129,13 @@ export const foundationComponents: ComponentModel[] = [
             default: 'left',
             description: 'Position of the icon (left, right)',
             required: false
+          }
+        ],
+        events: [
+          {
+            name: 'click',
+            type: 'EventEmitter<MouseEvent>',
+            description: 'Emitted when the button is clicked'
           }
         ],
         usage: 'Use buttons for user interactions like submitting forms, navigating, or triggering actions.',
@@ -208,6 +260,18 @@ export const foundationComponents: ComponentModel[] = [
             default: 'false',
             description: 'Whether to remove card borders',
             required: false
+          }
+        ],
+        events: [
+          {
+            name: 'click',
+            type: 'EventEmitter<MouseEvent>',
+            description: 'Emitted when the card is clicked (only if clickable is true)'
+          },
+          {
+            name: 'headerClick',
+            type: 'EventEmitter<MouseEvent>',
+            description: 'Emitted when the card header is clicked'
           }
         ],
         usage: 'Use cards to display related content in a structured format. Cards are versatile containers that can hold various types of content and support different interaction states.',
@@ -376,6 +440,28 @@ export const foundationComponents: ComponentModel[] = [
             required: false
           }
         ],
+        events: [
+          {
+            name: 'blur',
+            type: 'EventEmitter<FocusEvent>',
+            description: 'Emitted when the input loses focus'
+          },
+          {
+            name: 'focus',
+            type: 'EventEmitter<FocusEvent>',
+            description: 'Emitted when the input gains focus'
+          },
+          {
+            name: 'input',
+            type: 'EventEmitter<Event>',
+            description: 'Emitted when the input value changes'
+          },
+          {
+            name: 'clear',
+            type: 'EventEmitter<void>',
+            description: 'Emitted when the clear button is clicked'
+          }
+        ],
         usage: 'Use inputs for text data entry in forms. The input component supports various types, validation states, and interactive features like password toggles and clear buttons.',
         tags: ['form', 'input', 'validation']
       },
@@ -499,6 +585,23 @@ export const foundationComponents: ComponentModel[] = [
             required: false,
             default: '"medium"',
             description: 'Size variant: "small", "medium", "large"'
+          }
+        ],
+        events: [
+          {
+            name: 'onOpen',
+            type: 'EventEmitter<{index: number}>',
+            description: 'Emitted when an accordion tab is opened'
+          },
+          {
+            name: 'onClose',
+            type: 'EventEmitter<{index: number}>',
+            description: 'Emitted when an accordion tab is closed'
+          },
+          {
+            name: 'onActiveIndexChange',
+            type: 'EventEmitter<number | number[]>',
+            description: 'Emitted when the active tab index changes'
           }
         ],
         usage: 'Use accordions to organize content in collapsible sections.',
@@ -736,6 +839,7 @@ export const foundationComponents: ComponentModel[] = [
         required: false
       }
     ],
+    events: [],
     usage: 'Use avatar components to display user profile images, initials, or icons in user interfaces, team displays, user lists, and profile sections.',
     tags: ['profile', 'image', 'user', 'team', 'status', 'display']
   },
@@ -983,20 +1087,11 @@ export const foundationComponents: ComponentModel[] = [
         required: false
       }
     ],
+    events: [],
     usage: 'Use badge components to display status indicators, notification counts, priority levels, and other small pieces of information in user interfaces, navigation bars, lists, and data tables.',
     tags: ['status', 'indicator', 'notification', 'count', 'priority', 'alert']
   },
   {
-        id: 'breadcrumb',
-        name: 'Breadcrumb',
-        category: 'Foundation',
-        description: 'Navigation breadcrumb component',
-        examples: [],
-        props: [],
-        usage: 'Use breadcrumbs to show navigation hierarchy.',
-        tags: ['navigation', 'hierarchy']
-      },
-      {
         id: 'checkbox',
         name: 'Checkbox',
         category: 'Foundation',
@@ -1236,16 +1331,6 @@ export class CheckboxComponent {
         ],
         usage: 'Use checkboxes for multiple selection in forms, settings panels, and interactive lists.',
         tags: ['form', 'input', 'selection', 'interactive']
-      },
-  {
-        id: 'color-picker',
-        name: 'Color Picker',
-        category: 'Foundation',
-        description: 'Color selection component',
-        examples: [],
-        props: [],
-        usage: 'Use color pickers for color selection in forms.',
-        tags: ['form', 'color']
       },
   {
     id: 'date-picker',
@@ -1687,26 +1772,6 @@ export class CheckboxComponent {
     usage: 'Use date picker components for date selection in forms, booking systems, task management, event planning, and any application requiring date input with calendar navigation, time selection, and date range capabilities.',
     tags: ['form', 'date', 'calendar', 'time', 'range', 'booking', 'task', 'event', 'schedule']
   },
-  {
-        id: 'editor',
-        name: 'Editor',
-        category: 'Foundation',
-        description: 'Rich text editor component',
-        examples: [],
-        props: [],
-        usage: 'Use editors for rich text input.',
-        tags: ['form', 'editor']
-      },
-  {
-        id: 'knob',
-        name: 'Knob',
-        category: 'Foundation',
-        description: 'Circular input component',
-        examples: [],
-        props: [],
-        usage: 'Use knobs for circular value input.',
-        tags: ['form', 'input']
-      },
       {
         id: 'radio-button',
         name: 'Radio Button',
@@ -1989,15 +2054,110 @@ export class CheckboxComponent {
         tags: ['form', 'input', 'selection', 'interactive']
       },
   {
-        id: 'rating',
-        name: 'Rating',
-        category: 'Foundation',
-        description: 'Star rating component',
-        examples: [],
-        props: [],
-        usage: 'Use ratings for user feedback and reviews.',
-        tags: ['form', 'rating']
+    id: 'rating',
+    name: 'Rating',
+    category: 'Foundation',
+    description: 'Star rating component for collecting user feedback and displaying ratings',
+    examples: [
+      {
+        name: 'Basic Rating',
+        code: '<sui-rating [(ngModel)]="rating" [max]="5"></sui-rating>',
+        description: 'Simple 5-star rating component'
       },
+      {
+        name: 'Size Variants',
+        code: '<sui-rating size="small" [(ngModel)]="rating1"></sui-rating>\n<sui-rating size="medium" [(ngModel)]="rating2"></sui-rating>\n<sui-rating size="large" [(ngModel)]="rating3"></sui-rating>',
+        description: 'Rating components in different sizes'
+      },
+      {
+        name: 'Color Variants',
+        code: '<sui-rating color="gold" [(ngModel)]="rating1"></sui-rating>\n<sui-rating color="red" [(ngModel)]="rating2"></sui-rating>\n<sui-rating color="blue" [(ngModel)]="rating3"></sui-rating>',
+        description: 'Rating components with different colors'
+      },
+      {
+        name: 'Read-only State',
+        code: '<sui-rating [readonly]="true" [value]="4" [max]="5"></sui-rating>',
+        description: 'Display-only rating for showing existing ratings'
+      },
+      {
+        name: 'Disabled State',
+        code: '<sui-rating [disabled]="true" [value]="3" [max]="5"></sui-rating>',
+        description: 'Disabled rating component'
+      },
+      {
+        name: 'With Value Display',
+        code: '<sui-rating [(ngModel)]="rating" [max]="5" [showValue]="true"></sui-rating>',
+        description: 'Rating with numerical value display'
+      }
+    ],
+    props: [
+      {
+        name: 'value',
+        type: 'number',
+        default: '0',
+        description: 'Current rating value',
+        required: false
+      },
+      {
+        name: 'max',
+        type: 'number',
+        default: '5',
+        description: 'Maximum rating value',
+        required: false
+      },
+      {
+        name: 'size',
+        type: 'string',
+        default: 'medium',
+        description: 'Size of the rating stars (small, medium, large)',
+        required: false
+      },
+      {
+        name: 'color',
+        type: 'string',
+        default: 'gold',
+        description: 'Color theme for the stars',
+        required: false
+      },
+      {
+        name: 'disabled',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the rating is disabled',
+        required: false
+      },
+      {
+        name: 'readonly',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the rating is read-only',
+        required: false
+      },
+      {
+        name: 'showValue',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether to show the numerical value',
+        required: false
+      },
+      {
+        name: 'allowClear',
+        type: 'boolean',
+        default: 'true',
+        description: 'Whether clicking the same star clears the rating',
+        required: false
+      }
+    ],
+    events: [
+      {
+        name: 'change',
+        type: 'EventEmitter<number>',
+        description: 'Emitted when the rating value changes'
+      }
+    ],
+    usage: 'Use rating components for collecting user feedback, product reviews, service ratings, and displaying quality scores.',
+    tags: ['form', 'rating', 'feedback', 'review', 'interactive']
+  },
   {
     id: 'select',
     name: 'Select',
@@ -2364,25 +2524,251 @@ export class CheckboxComponent {
     tags: ['form', 'input', 'selection', 'interactive', 'search', 'multi-select']
   },
   {
-        id: 'select-button',
-        name: 'Select Button',
-        category: 'Foundation',
-        description: 'Button group selection component',
-        examples: [],
-        props: [],
-        usage: 'Use select buttons for multiple choice selection.',
-        tags: ['form', 'input']
+    id: 'select-button',
+    name: 'Select Button',
+    category: 'Foundation',
+    description: 'Button group selection component for choosing between multiple options',
+    examples: [
+      {
+        name: 'Basic Select Button',
+        code: '<sui-select-button [options]="options" [(ngModel)]="selectedValue"></sui-select-button>',
+        description: 'Simple button group for single selection'
       },
+      {
+        name: 'Multiple Selection',
+        code: '<sui-select-button [options]="options" [(ngModel)]="selectedValues" [multiple]="true"></sui-select-button>',
+        description: 'Allow selecting multiple options'
+      },
+      {
+        name: 'Size Variants',
+        code: '<sui-select-button size="small" [options]="options" [(ngModel)]="value1"></sui-select-button>\n<sui-select-button size="medium" [options]="options" [(ngModel)]="value2"></sui-select-button>\n<sui-select-button size="large" [options]="options" [(ngModel)]="value3"></sui-select-button>',
+        description: 'Button groups in different sizes'
+      },
+      {
+        name: 'Disabled State',
+        code: '<sui-select-button [disabled]="true" [options]="options" [value]="selectedValue"></sui-select-button>',
+        description: 'Disabled button group'
+      }
+    ],
+    props: [
+      {
+        name: 'options',
+        type: 'any[]',
+        default: '[]',
+        description: 'Array of options to display',
+        required: true
+      },
+      {
+        name: 'value',
+        type: 'any',
+        default: 'null',
+        description: 'Selected value(s)',
+        required: false
+      },
+      {
+        name: 'multiple',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether multiple selection is allowed',
+        required: false
+      },
+      {
+        name: 'size',
+        type: 'string',
+        default: 'medium',
+        description: 'Size of the buttons (small, medium, large)',
+        required: false
+      },
+      {
+        name: 'disabled',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the component is disabled',
+        required: false
+      }
+    ],
+    events: [
+      {
+        name: 'onChange',
+        type: 'EventEmitter<any>',
+        description: 'Emitted when the selection changes'
+      }
+    ],
+    usage: 'Use select buttons for choosing between a small set of mutually exclusive or multiple options in forms and filters.',
+    tags: ['form', 'selection', 'button', 'toggle', 'interactive']
+  },
   {
-        id: 'slider',
-        name: 'Slider',
-        category: 'Foundation',
-        description: 'Range slider component',
-        examples: [],
-        props: [],
-        usage: 'Use sliders for range value selection.',
-        tags: ['form', 'input']
+    id: 'slider',
+    name: 'Slider',
+    category: 'Foundation',
+    description: 'Range slider component for selecting numeric values',
+    examples: [
+      {
+        name: 'Basic Slider',
+        code: '<sui-slider [(ngModel)]="value" [min]="0" [max]="100"></sui-slider>',
+        description: 'Simple slider for value selection'
       },
+      {
+        name: 'With Steps',
+        code: '<sui-slider [(ngModel)]="value" [min]="0" [max]="100" [step]="10"></sui-slider>',
+        description: 'Slider with defined step increments'
+      },
+      {
+        name: 'Vertical Orientation',
+        code: '<sui-slider [(ngModel)]="value" [vertical]="true" [min]="0" [max]="100"></sui-slider>',
+        description: 'Vertical slider orientation'
+      },
+      {
+        name: 'Disabled State',
+        code: '<sui-slider [disabled]="true" [(ngModel)]="value" [min]="0" [max]="100"></sui-slider>',
+        description: 'Disabled slider'
+      }
+    ],
+    props: [
+      {
+        name: 'value',
+        type: 'number | number[]',
+        default: '0',
+        description: 'Current value or range values',
+        required: false
+      },
+      {
+        name: 'min',
+        type: 'number',
+        default: '0',
+        description: 'Minimum value',
+        required: false
+      },
+      {
+        name: 'max',
+        type: 'number',
+        default: '100',
+        description: 'Maximum value',
+        required: false
+      },
+      {
+        name: 'step',
+        type: 'number',
+        default: '1',
+        description: 'Step increment',
+        required: false
+      },
+      {
+        name: 'vertical',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether to display slider vertically',
+        required: false
+      },
+      {
+        name: 'disabled',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the slider is disabled',
+        required: false
+      }
+    ],
+    events: [
+      {
+        name: 'onChange',
+        type: 'EventEmitter<number | number[]>',
+        description: 'Emitted when the value changes'
+      },
+      {
+        name: 'onSlideEnd',
+        type: 'EventEmitter<number | number[]>',
+        description: 'Emitted when sliding ends'
+      }
+    ],
+    usage: 'Use sliders for selecting numeric values, ranges, volume controls, price filters, and any scenario requiring intuitive value adjustment.',
+    tags: ['form', 'input', 'range', 'numeric', 'interactive']
+  },
+  {
+    id: 'toggle-switch',
+    name: 'Toggle Switch',
+    category: 'Foundation',
+    description: 'Toggle switch component for binary on/off states',
+    examples: [
+      {
+        name: 'Basic Toggle',
+        code: '<sui-toggle-switch [(ngModel)]="isEnabled"></sui-toggle-switch>',
+        description: 'Simple on/off toggle switch'
+      },
+      {
+        name: 'With Labels',
+        code: '<sui-toggle-switch [(ngModel)]="isEnabled" onLabel="On" offLabel="Off"></sui-toggle-switch>',
+        description: 'Toggle with custom on/off labels'
+      },
+      {
+        name: 'Size Variants',
+        code: '<sui-toggle-switch size="small" [(ngModel)]="value1"></sui-toggle-switch>\n<sui-toggle-switch size="medium" [(ngModel)]="value2"></sui-toggle-switch>\n<sui-toggle-switch size="large" [(ngModel)]="value3"></sui-toggle-switch>',
+        description: 'Toggle switches in different sizes'
+      },
+      {
+        name: 'Disabled State',
+        code: '<sui-toggle-switch [disabled]="true" [value]="true"></sui-toggle-switch>',
+        description: 'Disabled toggle switch'
+      },
+      {
+        name: 'Color Variants',
+        code: '<sui-toggle-switch color="primary" [(ngModel)]="value1"></sui-toggle-switch>\n<sui-toggle-switch color="success" [(ngModel)]="value2"></sui-toggle-switch>\n<sui-toggle-switch color="danger" [(ngModel)]="value3"></sui-toggle-switch>',
+        description: 'Toggle switches with different colors'
+      }
+    ],
+    props: [
+      {
+        name: 'value',
+        type: 'boolean',
+        default: 'false',
+        description: 'Current toggle state',
+        required: false
+      },
+      {
+        name: 'size',
+        type: 'string',
+        default: 'medium',
+        description: 'Size of the toggle (small, medium, large)',
+        required: false
+      },
+      {
+        name: 'color',
+        type: 'string',
+        default: 'primary',
+        description: 'Color theme for the toggle',
+        required: false
+      },
+      {
+        name: 'onLabel',
+        type: 'string',
+        default: '""',
+        description: 'Label to show when toggle is on',
+        required: false
+      },
+      {
+        name: 'offLabel',
+        type: 'string',
+        default: '""',
+        description: 'Label to show when toggle is off',
+        required: false
+      },
+      {
+        name: 'disabled',
+        type: 'boolean',
+        default: 'false',
+        description: 'Whether the toggle is disabled',
+        required: false
+      }
+    ],
+    events: [
+      {
+        name: 'onChange',
+        type: 'EventEmitter<boolean>',
+        description: 'Emitted when the toggle state changes'
+      }
+    ],
+    usage: 'Use toggle switches for binary on/off settings, feature toggles, preferences, and any scenario requiring clear state indication.',
+    tags: ['form', 'input', 'toggle', 'switch', 'binary', 'interactive']
+  },
   {
         id: 'tabs',
         name: 'Tabs',
@@ -2477,16 +2863,6 @@ export class CheckboxComponent {
         ],
         usage: 'Use tabs to organize content into multiple panels. Perfect for settings pages, dashboards, and any interface that needs to group related content.',
         tags: ['navigation', 'content', 'layout', 'panels']
-      },
-  {
-        id: 'toggle-switch',
-        name: 'Toggle Switch',
-        category: 'Foundation',
-        description: 'Toggle switch component',
-        examples: [],
-        props: [],
-        usage: 'Use toggle switches for on/off states.',
-        tags: ['form', 'input']
       },
   {
         id: 'tooltip',

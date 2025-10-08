@@ -20,7 +20,7 @@
 
   <!-- Left Icon -->
   <ng-container *ngIf="icon && iconPosition === 'left' && !loading">
-    <span class="sui-button-icon-left" [innerHTML]="icon"></span>
+    <i class="sui-button-icon-left" [ngClass]="icon"></i>
   </ng-container>
 
   <!-- Button Content -->
@@ -28,6 +28,6 @@
 
   <!-- Right Icon -->
   <ng-container *ngIf="icon && iconPosition === 'right' && !loading">
-    <span class="sui-button-icon-right" [innerHTML]="icon"></span>
+    <i class="sui-button-icon-right" [ngClass]="icon"></i>
   </ng-container>
 </button>

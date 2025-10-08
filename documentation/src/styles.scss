@@ -5,6 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import PrimeIcons */
+@import 'primeicons/primeicons.css';
+
 /* Import Synerity UI styles - Components will inherit app theme (import after Tailwind to ensure proper precedence) */
 @import '@synerity/ui/synerity-ui.css';
 
@@ -290,4 +293,75 @@ button {
 .sui-radio-label:has(.sui-radio-input:disabled) {
   color: var(--sui-radio-label-disabled-color, #9ca3af) !important;
   opacity: var(--sui-radio-label-disabled-opacity, 0.75) !important;
+}
+
+/* Select Component Overrides - Ensure proper styling */
+.sui-select-wrapper {
+  .select-trigger {
+    background: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    color: #374151 !important;
+  }
+  
+  .select-trigger:focus {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+  }
+  
+  .trigger-text {
+    color: #374151 !important;
+  }
+  
+  .trigger-text.placeholder {
+    color: #9ca3af !important;
+  }
+  
+  .arrow-icon {
+    color: #6b7280 !important;
+  }
+  
+  .dropdown-panel {
+    background: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  }
+  
+  .option-item {
+    background: transparent !important;
+    color: #374151 !important;
+    padding: 12px 16px !important;
+  }
+  
+  .option-item:hover:not(.disabled) {
+    background: #f9fafb !important;
+    color: #1f2937 !important;
+  }
+  
+  .option-item.disabled {
+    color: #9ca3af !important;
+    background: transparent !important;
+  }
+  
+  .option-label {
+    color: #374151 !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+  }
+  
+  .option-item:hover:not(.disabled) .option-label {
+    color: #1f2937 !important;
+  }
+  
+  .option-item.disabled .option-label {
+    color: #9ca3af !important;
+  }
+  
+  /* Force option text to be dark by default */
+  .option-item:not(.disabled) .option-label {
+    color: #374151 !important;
+  }
+  
+  .option-item:not(.disabled) {
+    color: #374151 !important;
+  }
 }

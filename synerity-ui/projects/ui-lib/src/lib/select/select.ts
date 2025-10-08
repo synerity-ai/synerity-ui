@@ -32,6 +32,7 @@ export class Select implements ControlValueAccessor {
   @Input() searchPlaceholder = 'Search...';
   @Input() noResultsText = 'No results found';
   @Input() loading = false;
+  @Input() size: 'sm' | 'md' | 'lg' = 'md';
   @Output() change = new EventEmitter<unknown>();
 
   @ViewChild('dropdown') dropdown!: ElementRef;

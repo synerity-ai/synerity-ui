@@ -10,12 +10,13 @@
   
   /* Link variables */
   --breadcrumb-link-text: var(--color-text-secondary, #6b7280);
-  --breadcrumb-link-hover: var(--color-text, #374151);
+  --breadcrumb-link-hover: var(--color-primary-600, #2563eb);
+  --breadcrumb-link-hover-bg: var(--color-primary-50, #eff6ff);
   --breadcrumb-link-active: var(--color-primary-500, #3b82f6);
   
   /* Separator variables */
   --breadcrumb-separator-color: var(--color-text-muted, #9ca3af);
-  --breadcrumb-separator-size: var(--breadcrumb-separator-size, 1rem);
+  --breadcrumb-separator-size: 0.75rem;
   
   /* Icon variables */
   --breadcrumb-icon-size: var(--breadcrumb-icon-size, 0.875rem);
@@ -71,12 +72,15 @@
     align-items: center;
     color: var(--breadcrumb-link-text);
     text-decoration: none;
-    transition: var(--breadcrumb-transition);
+    transition: all 0.2s ease-in-out;
     border-radius: var(--radius-sm, 0.125rem);
     outline: none;
+    padding: 0.125rem 0.25rem;
+    margin: -0.125rem -0.25rem;
     
     &:hover {
       color: var(--breadcrumb-link-hover);
+      background-color: var(--breadcrumb-link-hover-bg);
     }
     
     &:focus {
@@ -98,16 +102,35 @@
 
   /* Separator styles */
   .breadcrumb-separator {
-    width: var(--breadcrumb-separator-size);
-    height: var(--breadcrumb-separator-size);
-    color: var(--breadcrumb-separator-color);
-    margin: 0 var(--breadcrumb-spacing);
-    flex-shrink: 0;
+    width: var(--breadcrumb-separator-size) !important;
+    height: var(--breadcrumb-separator-size) !important;
+    color: var(--breadcrumb-separator-color) !important;
+    margin: 0 var(--breadcrumb-spacing) !important;
+    flex-shrink: 0 !important;
     
     svg {
-      width: 100%;
-      height: 100%;
-      fill: currentColor;
+      width: 100% !important;
+      height: 100% !important;
+      fill: currentColor !important;
+    }
+  }
+
+  /* Ultra-specific separator override to prevent app CSS interference */
+  ol li .breadcrumb-separator {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+    min-width: 0.75rem !important;
+    max-width: 0.75rem !important;
+    min-height: 0.75rem !important;
+    max-height: 0.75rem !important;
+    
+    svg {
+      width: 0.75rem !important;
+      height: 0.75rem !important;
+      min-width: 0.75rem !important;
+      max-width: 0.75rem !important;
+      min-height: 0.75rem !important;
+      max-height: 0.75rem !important;
     }
   }
 
@@ -226,16 +249,35 @@
 @media (max-width: 640px) {
   .sui-breadcrumb {
     --breadcrumb-font-size: var(--text-xs, 0.75rem);
-    --breadcrumb-separator-size: var(--breadcrumb-separator-size-mobile, 0.75rem);
+    --breadcrumb-separator-size: 0.6rem;
     --breadcrumb-icon-margin: var(--breadcrumb-icon-margin-mobile, 0.125rem);
     --breadcrumb-spacing: var(--breadcrumb-spacing-mobile, 0.125rem);
     
     font-size: var(--breadcrumb-font-size);
     
     .breadcrumb-separator {
-      width: var(--breadcrumb-separator-size);
-      height: var(--breadcrumb-separator-size);
-      margin: 0 var(--breadcrumb-spacing);
+      width: var(--breadcrumb-separator-size) !important;
+      height: var(--breadcrumb-separator-size) !important;
+      margin: 0 var(--breadcrumb-spacing) !important;
+    }
+
+    /* Mobile ultra-specific separator override */
+    ol li .breadcrumb-separator {
+      width: 0.6rem !important;
+      height: 0.6rem !important;
+      min-width: 0.6rem !important;
+      max-width: 0.6rem !important;
+      min-height: 0.6rem !important;
+      max-height: 0.6rem !important;
+      
+      svg {
+        width: 0.6rem !important;
+        height: 0.6rem !important;
+        min-width: 0.6rem !important;
+        max-width: 0.6rem !important;
+        min-height: 0.6rem !important;
+        max-height: 0.6rem !important;
+      }
     }
     
     .breadcrumb-icon {

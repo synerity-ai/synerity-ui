@@ -30,8 +30,9 @@
               [placeholder]="'Choose ' + variant.label"
               [options]="basicOptions"
               [(ngModel)]="sizeSelectedValue"
-              class="{{ variant.size }}">
+              [size]="variant.size">
             </sui-select>
+            <span class="text-sm text-gray-600">{{ variant.label }}</span>
           </div>
         </div>
       </div>
@@ -137,18 +138,6 @@
               searchPlaceholder="Search skills..."
               [maxDisplayItems]="2">
             </sui-select>
-            <div class="selected-items-display" *ngIf="selectedSkills.length > 0">
-              <h5>Selected Skills ({{ selectedSkills.length }}):</h5>
-              <div class="skills-grid">
-                <div *ngFor="let skill of getSelectedSkills()" class="skill-chip">
-                  <span class="skill-name">{{ skill.label }}</span>
-                  <span class="skill-category">{{ skill.category }}</span>
-                  <span class="skill-level" [style.background-color]="getSkillLevelColor(skill.level)">
-                    {{ skill.level }}
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -175,23 +164,6 @@
               searchPlaceholder="Search products..."
               [maxDisplayItems]="3">
             </sui-select>
-            
-            <div class="selected-products-display" *ngIf="selectedProducts.length > 0">
-              <div class="products-summary">
-                <h5>Selected Products ({{ selectedProducts.length }}):</h5>
-                <div class="total-price">Total: ${{ getTotalPrice() }}</div>
-              </div>
-              
-              <div class="products-grid">
-                <div *ngFor="let product of getSelectedProducts()" class="product-card">
-                  <div class="product-info">
-                    <span class="product-name">{{ product.label }}</span>
-                    <span class="product-category">{{ product.category }}</span>
-                  </div>
-                  <div class="product-price">${{ product.price }}</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

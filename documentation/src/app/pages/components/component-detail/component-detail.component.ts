@@ -61,4 +61,8 @@ export class ComponentDetailComponent implements OnInit, OnDestroy {
   get componentUsage(): string {
     return this.component()?.usage || '';
   }
+
+  get componentEvents(): any[] {
+    return this.component()?.events || [];
+  }
 }
