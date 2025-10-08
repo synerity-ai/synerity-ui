@@ -1,0 +1,72 @@
+// Data View Component Styles with CSS Variables
+.sui-data-view {
+  // CSS Variables for Theme Inheritance
+  --sui-data-view-background: var(--sui-surface, #ffffff);
+  --sui-data-view-border: var(--sui-border, #e5e7eb);
+  --sui-data-view-border-radius: var(--sui-radius, 4px);
+  --sui-data-view-text: var(--sui-text-primary, #1e293b);
+  --sui-data-view-text-secondary: var(--sui-text-secondary, #64748b);
+  --sui-data-view-padding: var(--sui-spacing-4, 1rem);
+  --sui-data-view-gap: var(--sui-spacing-4, 1rem);
+  --sui-data-view-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-data-view-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Header variables
+  --sui-data-view-header-background: var(--sui-surface-secondary, #f8fafc);
+  --sui-data-view-header-border: var(--sui-border, #e5e7eb);
+  --sui-data-view-header-padding: var(--sui-spacing-3, 0.75rem) var(--sui-spacing-4, 1rem);
+  
+  // Item variables
+  --sui-data-view-item-background: var(--sui-surface, #ffffff);
+  --sui-data-view-item-background-hover: var(--sui-surface-hover, #f8fafc);
+  --sui-data-view-item-border: var(--sui-border, #e5e7eb);
+  --sui-data-view-item-padding: var(--sui-spacing-4, 1rem);
+  
+  // Dark theme variables
+  --sui-data-view-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-data-view-dark-border: var(--sui-dark-border, #334155);
+  --sui-data-view-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-data-view-dark-header-background: var(--sui-dark-surface-secondary, #0f172a);
+  --sui-data-view-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
+  
+  // Component styles
+  display: flex;
+  flex-direction: column;
+  background: var(--sui-data-view-background);
+  border: 1px solid var(--sui-data-view-border);
+  border-radius: var(--sui-data-view-border-radius);
+  box-shadow: var(--sui-data-view-shadow);
+  color: var(--sui-data-view-text);
+  transition: var(--sui-data-view-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-data-view {
+    background: var(--sui-data-view-dark-background);
+    border-color: var(--sui-data-view-dark-border);
+    color: var(--sui-data-view-dark-text);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .sui-data-view {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .sui-data-view {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-data-view {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}
