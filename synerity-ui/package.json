@@ -1,6 +1,16 @@
 {
   "name": "@synerity/ui",
-  "version": "2.1.7",
+  "version": "2.1.8",
+  "description": "Synerity UI Component Library - Enterprise-grade Angular components",
+  "homepage": "https://synerity-ai.github.io/synerity-ui/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synerity-ai/synerity-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/synerity-ai/synerity-ui/issues"
+  },
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

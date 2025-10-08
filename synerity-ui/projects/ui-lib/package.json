@@ -5,9 +5,13 @@
   "keywords": ["angular", "ui", "components", "library"],
   "author": "Synerity",
   "license": "MIT",
+  "homepage": "https://synerity-ai.github.io/synerity-ui/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/synerity/synerity-ui.git"
+    "url": "https://github.com/synerity-ai/synerity-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/synerity-ai/synerity-ui/issues"
   },
   "peerDependencies": {
     "@angular/common": "^20.3.0",
