@@ -1,0 +1,156 @@
+<div class="editor-demo">
+  <div class="demo-section">
+    <h3>Basic Editor</h3>
+    <p>Standard rich text editor with full toolbar and formatting capabilities.</p>
+    <sui-editor
+      [value]="basicContent"
+      [height]="'200px'"
+      [showToolbar]="true"
+      [placeholder]="'Start typing your content...'"
+      (onChange)="onContentChange($event, 'Basic')"
+      (onFocus)="onFocus('Basic')"
+      (onBlur)="onBlur('Basic')">
+    </sui-editor>
+    <div class="demo-actions">
+      <button (click)="clearContent()" class="action-btn">Clear Content</button>
+      <button (click)="insertSampleContent()" class="action-btn">Insert Sample</button>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>Size Variants</h3>
+    <p>Different height variants for various use cases.</p>
+    
+    <div class="size-demo">
+      <div class="size-item">
+        <h4>Small (150px)</h4>
+        <sui-editor
+          [value]="smallContent"
+          [height]="'150px'"
+          [showToolbar]="true"
+          [placeholder]="'Small editor...'"
+          (onChange)="onContentChange($event, 'Small')">
+        </sui-editor>
+      </div>
+      
+      <div class="size-item">
+        <h4>Medium (250px)</h4>
+        <sui-editor
+          [value]="mediumContent"
+          [height]="'250px'"
+          [showToolbar]="true"
+          [placeholder]="'Medium editor...'"
+          (onChange)="onContentChange($event, 'Medium')">
+        </sui-editor>
+      </div>
+      
+      <div class="size-item">
+        <h4>Large (400px)</h4>
+        <sui-editor
+          [value]="largeContent"
+          [height]="'400px'"
+          [showToolbar]="true"
+          [placeholder]="'Large editor...'"
+          (onChange)="onContentChange($event, 'Large')">
+        </sui-editor>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>States</h3>
+    <p>Different states of the editor: disabled and readonly.</p>
+    
+    <div class="states-demo">
+      <div class="state-item">
+        <h4>Disabled State</h4>
+        <sui-editor
+          [value]="disabledContent"
+          [height]="'200px'"
+          [disabled]="true"
+          [showToolbar]="true"
+          [placeholder]="'This editor is disabled...'">
+        </sui-editor>
+      </div>
+      
+      <div class="state-item">
+        <h4>Readonly State</h4>
+        <sui-editor
+          [value]="readonlyContent"
+          [height]="'200px'"
+          [readonly]="true"
+          [showToolbar]="false"
+          [placeholder]="'This editor is readonly...'">
+        </sui-editor>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>Custom Styling</h3>
+    <p>Editor with custom CSS variables for different theming.</p>
+    <sui-editor
+      [value]="customContent"
+      [height]="'200px'"
+      [showToolbar]="true"
+      [styleClass]="'custom-editor'"
+      [placeholder]="'Custom styled editor...'"
+      (onChange)="onContentChange($event, 'Custom')">
+    </sui-editor>
+  </div>
+
+  <div class="demo-section">
+    <h3>Dark Theme</h3>
+    <p>Editor with dark theme for dark mode applications.</p>
+    <sui-editor
+      [value]="basicContent"
+      [height]="'200px'"
+      [showToolbar]="true"
+      [theme]="'dark'"
+      [placeholder]="'Dark theme editor...'"
+      (onChange)="onContentChange($event, 'Dark')">
+    </sui-editor>
+  </div>
+
+  <div class="demo-section">
+    <h3>Form Integration</h3>
+    <p>Editor integrated with Angular reactive forms and validation.</p>
+    <div class="form-demo">
+      <sui-editor
+        [value]="formContent"
+        [height]="'200px'"
+        [showToolbar]="true"
+        [placeholder]="'Enter your message...'"
+        (onChange)="onFormContentChange()">
+      </sui-editor>
+      <div class="form-validation" [class.invalid]="!formValid">
+        <span *ngIf="!formValid" class="error-message">Content is required</span>
+        <span *ngIf="formValid" class="success-message">Content is valid</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>Minimal Toolbar</h3>
+    <p>Editor with minimal toolbar for simple formatting needs.</p>
+    <sui-editor
+      [value]="basicContent"
+      [height]="'200px'"
+      [showToolbar]="false"
+      [placeholder]="'Minimal editor without toolbar...'"
+      (onChange)="onContentChange($event, 'Minimal')">
+    </sui-editor>
+  </div>
+
+  <div class="demo-section">
+    <h3>Rich Content Example</h3>
+    <p>Example with pre-populated rich content showcasing all formatting options.</p>
+    <sui-editor
+      [value]="richContentExample"
+      [height]="'300px'"
+      [showToolbar]="true"
+      [placeholder]="'Start with rich content...'"
+      (onChange)="onContentChange($event, 'Rich')">
+    </sui-editor>
+  </div>
+</div>

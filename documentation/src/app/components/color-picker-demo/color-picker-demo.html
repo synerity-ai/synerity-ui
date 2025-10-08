@@ -1,0 +1,251 @@
+<div class="demo-container">
+  <!-- Example 1: Basic Color Picker -->
+  @if (getCurrentExample().name === 'Basic Color Picker') {
+    <div class="demo-section">
+      <h3 class="demo-title">Basic Color Picker</h3>
+      <p class="demo-description">A simple color picker with default styling and preset colors.</p>
+      
+      <div class="demo-example">
+        <div class="color-picker-demo">
+          <sui-color-picker 
+            [value]="selectedColor"
+            (onChange)="onColorChange($event)"
+            (onSelect)="onColorSelect($event)">
+          </sui-color-picker>
+          <div class="color-info">
+            <span class="color-label">Selected Color:</span>
+            <span class="color-value" [style.color]="selectedColor">{{ selectedColor }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 2: Size Variants -->
+  @if (getCurrentExample().name === 'Size Variants') {
+    <div class="demo-section">
+      <h3 class="demo-title">Size Variants</h3>
+      <p class="demo-description">Color pickers in different sizes: small, medium, and large.</p>
+      
+      <div class="demo-example">
+        <div class="size-variants-demo">
+          <div class="size-item">
+            <sui-color-picker 
+              size="small"
+              [value]="selectedColorSmall"
+              (onChange)="onSmallColorChange($event)">
+            </sui-color-picker>
+            <span class="size-label">Small</span>
+          </div>
+          
+          <div class="size-item">
+            <sui-color-picker 
+              size="medium"
+              [value]="selectedColor">
+            </sui-color-picker>
+            <span class="size-label">Medium (Default)</span>
+          </div>
+          
+          <div class="size-item">
+            <sui-color-picker 
+              size="large"
+              [value]="selectedColorLarge"
+              (onChange)="onLargeColorChange($event)">
+            </sui-color-picker>
+            <span class="size-label">Large</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 3: Disabled State -->
+  @if (getCurrentExample().name === 'Disabled State') {
+    <div class="demo-section">
+      <h3 class="demo-title">Disabled State</h3>
+      <p class="demo-description">Color picker in disabled state - cannot be interacted with.</p>
+      
+      <div class="demo-example">
+        <div class="disabled-demo">
+          <sui-color-picker 
+            [disabled]="true"
+            [value]="selectedColorDisabled">
+          </sui-color-picker>
+          <span class="disabled-label">Disabled Color Picker</span>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 4: Inline Mode -->
+  @if (getCurrentExample().name === 'Inline Mode') {
+    <div class="demo-section">
+      <h3 class="demo-title">Inline Mode</h3>
+      <p class="demo-description">Color picker displayed inline without a dropdown panel.</p>
+      
+      <div class="demo-example">
+        <div class="inline-demo">
+          <sui-color-picker 
+            [inline]="true"
+            [value]="selectedColorInline"
+            (onChange)="onInlineColorChange($event)">
+          </sui-color-picker>
+          <div class="inline-info">
+            <span class="color-label">Inline Color Picker:</span>
+            <span class="color-value" [style.color]="selectedColorInline">{{ selectedColorInline }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 5: Custom Styling -->
+  @if (getCurrentExample().name === 'Custom Styling') {
+    <div class="demo-section">
+      <h3 class="demo-title">Custom Styling</h3>
+      <p class="demo-description">Color picker with custom styling using CSS variables.</p>
+      
+      <div class="demo-example">
+        <div class="custom-styling-demo">
+          <sui-color-picker 
+            [value]="selectedColorCustom"
+            styleClass="custom-color-picker"
+            [style]="{
+              '--color-picker-border': '#ec4899',
+              '--color-picker-border-hover': '#be185d',
+              '--color-picker-border-focus': '#be185d',
+              '--color-picker-shadow-focus': '0 0 0 3px rgba(236, 72, 153, 0.1)'
+            }"
+            (onChange)="onCustomColorChange($event)">
+          </sui-color-picker>
+          <div class="custom-info">
+            <span class="color-label">Custom Styled:</span>
+            <span class="color-value" [style.color]="selectedColorCustom">{{ selectedColorCustom }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 6: With Color Information -->
+  @if (getCurrentExample().name === 'With Color Information') {
+    <div class="demo-section">
+      <h3 class="demo-title">With Color Information</h3>
+      <p class="demo-description">Color picker with additional color information display.</p>
+      
+      <div class="demo-example">
+        <div class="color-info-demo">
+          <sui-color-picker 
+            [value]="selectedColor"
+            (onChange)="onColorChange($event)">
+          </sui-color-picker>
+          
+          <div class="color-details">
+            <div class="color-preview" [style.background-color]="selectedColor">
+              <span class="color-name" [style.color]="getContrastColor(selectedColor)">
+                {{ getColorName(selectedColor) }}
+              </span>
+            </div>
+            <div class="color-meta">
+              <div class="meta-item">
+                <span class="meta-label">Hex:</span>
+                <span class="meta-value">{{ selectedColor }}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">RGB:</span>
+                <span class="meta-value">{{ hexToRgb(selectedColor) }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 7: Multiple Color Pickers -->
+  @if (getCurrentExample().name === 'Multiple Color Pickers') {
+    <div class="demo-section">
+      <h3 class="demo-title">Multiple Color Pickers</h3>
+      <p class="demo-description">Multiple color pickers for different purposes in a single interface.</p>
+      
+      <div class="demo-example">
+        <div class="multiple-colors-demo">
+          <div class="color-group">
+            <h4 class="group-title">Theme Colors</h4>
+            <div class="color-row">
+              <div class="color-item">
+                <sui-color-picker size="small" [value]="selectedColor"></sui-color-picker>
+                <span class="color-label">Primary</span>
+              </div>
+              <div class="color-item">
+                <sui-color-picker size="small" [value]="selectedColorSmall"></sui-color-picker>
+                <span class="color-label">Secondary</span>
+              </div>
+              <div class="color-item">
+                <sui-color-picker size="small" [value]="selectedColorLarge"></sui-color-picker>
+                <span class="color-label">Accent</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="color-group">
+            <h4 class="group-title">Background Colors</h4>
+            <div class="color-row">
+              <div class="color-item">
+                <sui-color-picker size="small" [value]="selectedColorCustom"></sui-color-picker>
+                <span class="color-label">Header</span>
+              </div>
+              <div class="color-item">
+                <sui-color-picker size="small" [value]="selectedColorInline"></sui-color-picker>
+                <span class="color-label">Sidebar</span>
+              </div>
+              <div class="color-item">
+                <sui-color-picker size="small" [value]="selectedColorWithPresets"></sui-color-picker>
+                <span class="color-label">Footer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 8: Form Integration -->
+  @if (getCurrentExample().name === 'Form Integration') {
+    <div class="demo-section">
+      <h3 class="demo-title">Form Integration</h3>
+      <p class="demo-description">Color picker integrated with Angular forms for validation and data binding.</p>
+      
+      <div class="demo-example">
+        <div class="form-demo">
+          <form class="color-form">
+            <div class="form-group">
+              <label class="form-label">Brand Color</label>
+              <sui-color-picker 
+                [value]="selectedColor"
+                name="brandColor"
+                required
+                (onChange)="onColorChange($event)">
+              </sui-color-picker>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Accent Color</label>
+              <sui-color-picker 
+                [value]="selectedColorCustom"
+                name="accentColor"
+                size="small"
+                (onChange)="onCustomColorChange($event)">
+              </sui-color-picker>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn-primary" (click)="saveColors()">Save Colors</button>
+              <button type="button" class="btn-secondary" (click)="resetColors()">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  }
+</div>

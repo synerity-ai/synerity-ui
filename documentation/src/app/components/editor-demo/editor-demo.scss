@@ -1,0 +1,149 @@
+.editor-demo {
+  .demo-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+
+    h3 {
+      margin: 0 0 0.5rem 0;
+      color: #374151;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0 0 1rem 0;
+      color: #6b7280;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .demo-actions {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+
+      .action-btn {
+        padding: 0.5rem 1rem;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background: #2563eb;
+        }
+
+        &:active {
+          background: #1d4ed8;
+        }
+      }
+    }
+  }
+
+  .size-demo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .size-item {
+      h4 {
+        margin: 0 0 0.5rem 0;
+        color: #374151;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .states-demo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .state-item {
+      h4 {
+        margin: 0 0 0.5rem 0;
+        color: #374151;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .form-demo {
+    .form-validation {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+
+      .error-message {
+        color: #dc2626;
+        font-weight: 500;
+      }
+
+      .success-message {
+        color: #059669;
+        font-weight: 500;
+      }
+
+      &.invalid {
+        .error-message {
+          display: block;
+        }
+        .success-message {
+          display: none;
+        }
+      }
+
+      &:not(.invalid) {
+        .error-message {
+          display: none;
+        }
+        .success-message {
+          display: block;
+        }
+      }
+    }
+  }
+
+  // Custom editor styling
+  .custom-editor {
+    --sui-editor-background: #fef3c7;
+    --sui-editor-border: #f59e0b;
+    --sui-editor-primary: #d97706;
+    --sui-editor-surface: #fef7cd;
+    --sui-editor-text: #92400e;
+
+    &:focus-within {
+      --sui-editor-border: #d97706;
+      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+    }
+  }
+
+  // Dark theme demo section
+  .demo-section:has(.sui-editor-dark) {
+    background: #1f2937;
+    border-color: #374151;
+
+    h3, h4 {
+      color: #f9fafb;
+    }
+
+    p {
+      color: #d1d5db;
+    }
+  }
+}

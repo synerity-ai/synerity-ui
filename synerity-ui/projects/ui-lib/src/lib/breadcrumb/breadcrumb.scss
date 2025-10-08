@@ -1,60 +1,223 @@
+/* Breadcrumb Component Styles with CSS Variables */
 .sui-breadcrumb {
-  @apply flex items-center space-x-1 text-sm;
+  /* CSS Variables for theming */
+  --breadcrumb-bg: var(--color-bg, #ffffff);
+  --breadcrumb-text: var(--color-text, #374151);
+  --breadcrumb-text-secondary: var(--color-text-secondary, #6b7280);
+  --breadcrumb-text-muted: var(--color-text-muted, #9ca3af);
+  --breadcrumb-text-current: var(--color-text-heading, #111827);
+  --breadcrumb-border: var(--color-border, #e5e7eb);
+  
+  /* Link variables */
+  --breadcrumb-link-text: var(--color-text-secondary, #6b7280);
+  --breadcrumb-link-hover: var(--color-text, #374151);
+  --breadcrumb-link-active: var(--color-primary-500, #3b82f6);
+  
+  /* Separator variables */
+  --breadcrumb-separator-color: var(--color-text-muted, #9ca3af);
+  --breadcrumb-separator-size: var(--breadcrumb-separator-size, 1rem);
+  
+  /* Icon variables */
+  --breadcrumb-icon-size: var(--breadcrumb-icon-size, 0.875rem);
+  --breadcrumb-icon-margin: var(--breadcrumb-icon-margin, 0.25rem);
+  
+  /* Spacing variables */
+  --breadcrumb-spacing: var(--spacing-1, 0.25rem);
+  --breadcrumb-padding: var(--spacing-2, 0.5rem);
+  
+  /* Font variables */
+  --breadcrumb-font-size: var(--text-sm, 0.875rem);
+  --breadcrumb-line-height: var(--leading-5, 1.25rem);
+  --breadcrumb-font-weight: var(--font-normal, 400);
+  --breadcrumb-font-weight-current: var(--font-medium, 500);
+  
+  /* Animation variables */
+  --breadcrumb-transition: var(--breadcrumb-transition, color 0.2s ease-in-out);
+  
+  /* Focus ring variables */
+  --breadcrumb-focus-ring: var(--color-primary-500, #3b82f6);
+  --breadcrumb-focus-ring-offset: var(--color-bg, #ffffff);
 
+  /* Base breadcrumb styles */
+  display: flex;
+  align-items: center;
+  gap: var(--breadcrumb-spacing);
+  font-size: var(--breadcrumb-font-size);
+  line-height: var(--breadcrumb-line-height);
+  font-weight: var(--breadcrumb-font-weight);
+  color: var(--breadcrumb-text);
+  background-color: var(--breadcrumb-bg);
+  padding: var(--breadcrumb-padding) 0;
+
+  /* Ordered list styles */
   ol {
-    @apply flex items-center space-x-1;
+    display: flex;
+    align-items: center;
+    gap: var(--breadcrumb-spacing);
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
+  /* List item styles */
   li {
-    @apply flex items-center;
+    display: flex;
+    align-items: center;
   }
 
+  /* Link styles */
   a {
-    @apply flex items-center text-gray-500 hover:text-gray-700 transition-colors duration-200;
+    display: flex;
+    align-items: center;
+    color: var(--breadcrumb-link-text);
+    text-decoration: none;
+    transition: var(--breadcrumb-transition);
+    border-radius: var(--radius-sm, 0.125rem);
+    outline: none;
+    
+    &:hover {
+      color: var(--breadcrumb-link-hover);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--breadcrumb-focus-ring);
+      outline-offset: 2px;
+    }
+    
+    &:active {
+      color: var(--breadcrumb-link-active);
+    }
   }
 
+  /* Span styles */
   span {
-    @apply flex items-center transition-colors duration-200;
+    display: flex;
+    align-items: center;
+    transition: var(--breadcrumb-transition);
   }
 
+  /* Separator styles */
   .breadcrumb-separator {
-    @apply w-4 h-4 text-gray-400 mx-1;
+    width: var(--breadcrumb-separator-size);
+    height: var(--breadcrumb-separator-size);
+    color: var(--breadcrumb-separator-color);
+    margin: 0 var(--breadcrumb-spacing);
+    flex-shrink: 0;
+    
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
   }
 
+  /* Current item styles */
   .breadcrumb-current {
-    @apply text-gray-900 font-medium;
+    color: var(--breadcrumb-text-current);
+    font-weight: var(--breadcrumb-font-weight-current);
   }
 
+  /* Breadcrumb item styles */
   .breadcrumb-item {
-    @apply text-gray-500 hover:text-gray-700 cursor-pointer;
+    color: var(--breadcrumb-text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-sm, 0.125rem);
+    outline: none;
+    
+    &:hover {
+      color: var(--breadcrumb-link-hover);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--breadcrumb-focus-ring);
+      outline-offset: 2px;
+    }
+    
+    &:active {
+      color: var(--breadcrumb-link-active);
+    }
   }
 
+  /* Disabled state styles */
   .breadcrumb-disabled {
-    @apply opacity-50 cursor-not-allowed pointer-events-none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
   }
 
+  /* Icon styles */
   .breadcrumb-icon {
-    @apply mr-1 text-sm;
+    margin-right: var(--breadcrumb-icon-margin);
+    font-size: var(--breadcrumb-icon-size);
+    line-height: 1;
+  }
+
+  /* Home item styles */
+  .breadcrumb-home {
+    color: var(--breadcrumb-link-text);
+    cursor: pointer;
+    border-radius: var(--radius-sm, 0.125rem);
+    outline: none;
+    
+    &:hover {
+      color: var(--breadcrumb-link-hover);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--breadcrumb-focus-ring);
+      outline-offset: 2px;
+    }
+    
+    &:active {
+      color: var(--breadcrumb-link-active);
+    }
+  }
+
+  /* Navigation accessibility */
+  &[aria-label] {
+    /* Screen reader support */
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    --breadcrumb-link-text: var(--color-text-high-contrast, #000000);
+    --breadcrumb-text-current: var(--color-text-heading-high-contrast, #000000);
+    --breadcrumb-separator-color: var(--color-text-muted-high-contrast, #000000);
+    --breadcrumb-focus-ring: var(--color-primary-high-contrast, #000000);
+    
+    a, .breadcrumb-item, .breadcrumb-home {
+      border: 1px solid transparent;
+      
+      &:hover, &:focus {
+        border-color: var(--breadcrumb-focus-ring);
+      }
+    }
   }
 }
 
 /* Dark mode support */
-@media (prefers-color-scheme: dark) {
+.theme-dark .sui-breadcrumb {
+  --breadcrumb-bg: var(--color-bg-dark, #111827);
+  --breadcrumb-text: var(--color-text-dark, #f9fafb);
+  --breadcrumb-text-secondary: var(--color-text-secondary-dark, #d1d5db);
+  --breadcrumb-text-muted: var(--color-text-muted-dark, #9ca3af);
+  --breadcrumb-text-current: var(--color-text-heading-dark, #ffffff);
+  --breadcrumb-border: var(--color-border-dark, #374151);
+  --breadcrumb-link-text: var(--color-text-secondary-dark, #d1d5db);
+  --breadcrumb-link-hover: var(--color-text-dark, #f9fafb);
+  --breadcrumb-link-active: var(--color-primary-400, #60a5fa);
+  --breadcrumb-separator-color: var(--color-text-muted-dark, #9ca3af);
+  --breadcrumb-focus-ring: var(--color-primary-400, #60a5fa);
+  --breadcrumb-focus-ring-offset: var(--color-bg-dark, #111827);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
   .sui-breadcrumb {
-    a {
-      @apply text-gray-400 hover:text-gray-200;
-    }
+    --breadcrumb-transition: none;
     
-    .breadcrumb-current {
-      @apply text-gray-100;
-    }
-    
-    .breadcrumb-item {
-      @apply text-gray-400 hover:text-gray-200;
-    }
-    
-    .breadcrumb-separator {
-      @apply text-gray-600;
+    a, span, .breadcrumb-item, .breadcrumb-home {
+      transition: none;
     }
   }
 }
@@ -62,14 +225,47 @@
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .sui-breadcrumb {
-    @apply text-xs;
+    --breadcrumb-font-size: var(--text-xs, 0.75rem);
+    --breadcrumb-separator-size: var(--breadcrumb-separator-size-mobile, 0.75rem);
+    --breadcrumb-icon-margin: var(--breadcrumb-icon-margin-mobile, 0.125rem);
+    --breadcrumb-spacing: var(--breadcrumb-spacing-mobile, 0.125rem);
+    
+    font-size: var(--breadcrumb-font-size);
     
     .breadcrumb-separator {
-      @apply w-3 h-3 mx-0.5;
+      width: var(--breadcrumb-separator-size);
+      height: var(--breadcrumb-separator-size);
+      margin: 0 var(--breadcrumb-spacing);
     }
     
     .breadcrumb-icon {
-      @apply mr-0.5;
+      margin-right: var(--breadcrumb-icon-margin);
+    }
+  }
+}
+
+/* Print styles */
+@media print {
+  .sui-breadcrumb {
+    --breadcrumb-bg: transparent;
+    --breadcrumb-text: var(--color-text-print, #000000);
+    --breadcrumb-text-current: var(--color-text-heading-print, #000000);
+    --breadcrumb-separator-color: var(--color-text-muted-print, #000000);
+    
+    background-color: transparent !important;
+    
+    a, .breadcrumb-item, .breadcrumb-home {
+      color: var(--breadcrumb-text) !important;
+      text-decoration: underline;
+    }
+    
+    .breadcrumb-current {
+      color: var(--breadcrumb-text-current) !important;
+      font-weight: bold;
+    }
+    
+    .breadcrumb-separator {
+      color: var(--breadcrumb-separator-color) !important;
     }
   }
 }

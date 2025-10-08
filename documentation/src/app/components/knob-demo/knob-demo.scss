@@ -1,0 +1,221 @@
+.knob-demo {
+  .demo-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+
+    h3 {
+      margin: 0 0 0.5rem 0;
+      color: #374151;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0 0 1rem 0;
+      color: #6b7280;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .demo-actions {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+
+      .action-btn {
+        padding: 0.5rem 1rem;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background: #2563eb;
+        }
+
+        &:active {
+          background: #1d4ed8;
+        }
+      }
+    }
+
+    .demo-info {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 4px;
+      border-left: 4px solid #3b82f6;
+
+      p {
+        margin: 0.25rem 0;
+        font-size: 0.875rem;
+        color: #374151;
+
+        strong {
+          color: #1e293b;
+        }
+      }
+    }
+  }
+
+  .knob-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+  }
+
+  .size-demo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    justify-items: center;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+
+      h4 {
+        margin: 0;
+        color: #374151;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .states-demo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    justify-items: center;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .state-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+
+      h4 {
+        margin: 0;
+        color: #374151;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .color-demo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    justify-items: center;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .color-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+
+      h4 {
+        margin: 0;
+        color: #374151;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .form-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .form-validation {
+      font-size: 0.875rem;
+
+      .error-message {
+        color: #dc2626;
+        font-weight: 500;
+      }
+
+      .success-message {
+        color: #059669;
+        font-weight: 500;
+      }
+
+      &.invalid {
+        .error-message {
+          display: block;
+        }
+        .success-message {
+          display: none;
+        }
+      }
+
+      &:not(.invalid) {
+        .error-message {
+          display: none;
+        }
+        .success-message {
+          display: block;
+        }
+      }
+    }
+  }
+
+  // Custom knob styling examples
+  .demo-section:has(.sui-knob[style*="--sui-knob-primary: #ef4444"]) {
+    border-left: 4px solid #ef4444;
+  }
+
+  .demo-section:has(.sui-knob[style*="--sui-knob-primary: #10b981"]) {
+    border-left: 4px solid #10b981;
+  }
+
+  .demo-section:has(.sui-knob[style*="--sui-knob-primary: #f59e0b"]) {
+    border-left: 4px solid #f59e0b;
+  }
+
+  .demo-section:has(.sui-knob[style*="--sui-knob-primary: #8b5cf6"]) {
+    border-left: 4px solid #8b5cf6;
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .demo-actions {
+      justify-content: center;
+    }
+
+    .demo-actions .action-btn {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}

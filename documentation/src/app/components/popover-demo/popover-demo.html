@@ -1,0 +1,169 @@
+<div class="demo-container">
+  <!-- Example 1: Basic Popover -->
+  @if (getCurrentExample().name === 'Basic Popover') {
+    <div class="demo-section">
+      <h3 class="demo-title">Basic Popover</h3>
+      <p class="demo-description">A simple popover that appears when clicking the trigger button.</p>
+      
+      <div class="demo-example">
+        <sui-popover [visible]="false" position="bottom" [dismissible]="true">
+          <sui-button variant="primary" slot="trigger">
+            Click me
+          </sui-button>
+          <div slot="content">
+            <p>This is a basic popover content. It can contain any HTML content.</p>
+          </div>
+        </sui-popover>
+      </div>
+    </div>
+  }
+
+  <!-- Example 2: Different Positions -->
+  @if (getCurrentExample().name === 'Position Variants') {
+    <div class="demo-section">
+      <h3 class="demo-title">Position Variants</h3>
+      <p class="demo-description">Popover can be positioned in different directions relative to the trigger element.</p>
+      
+      <div class="demo-example">
+        <div class="position-grid">
+          <div class="position-item">
+            <sui-popover [visible]="false" position="top">
+              <sui-button variant="outline" size="sm">Top</sui-button>
+              <div slot="content">Popover on top</div>
+            </sui-popover>
+          </div>
+          
+          <div class="position-item">
+            <sui-popover [visible]="false" position="bottom">
+              <sui-button variant="outline" size="sm">Bottom</sui-button>
+              <div slot="content">Popover on bottom</div>
+            </sui-popover>
+          </div>
+          
+          <div class="position-item">
+            <sui-popover [visible]="false" position="left">
+              <sui-button variant="outline" size="sm">Left</sui-button>
+              <div slot="content">Popover on left</div>
+            </sui-popover>
+          </div>
+          
+          <div class="position-item">
+            <sui-popover [visible]="false" position="right">
+              <sui-button variant="outline" size="sm">Right</sui-button>
+              <div slot="content">Popover on right</div>
+            </sui-popover>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 3: With Close Button -->
+  @if (getCurrentExample().name === 'With Close Button') {
+    <div class="demo-section">
+      <h3 class="demo-title">With Close Button</h3>
+      <p class="demo-description">Popover with a close button in the header for better user experience.</p>
+      
+      <div class="demo-example">
+        <sui-popover [visible]="false" position="bottom" [showCloseIcon]="true">
+          <sui-button variant="secondary">
+            Show Popover
+          </sui-button>
+          <div slot="content">
+            <h4 class="mb-2 font-semibold">Popover Title</h4>
+            <p>This popover has a close button in the header. You can also click outside to dismiss it.</p>
+          </div>
+        </sui-popover>
+      </div>
+    </div>
+  }
+
+  <!-- Example 4: Rich Content -->
+  @if (getCurrentExample().name === 'Rich Content') {
+    <div class="demo-section">
+      <h3 class="demo-title">Rich Content</h3>
+      <p class="demo-description">Popover can contain rich content including forms, lists, and interactive elements.</p>
+      
+      <div class="demo-example">
+        <sui-popover [visible]="false" position="bottom" [showCloseIcon]="true">
+          <sui-button variant="primary">
+            User Menu
+          </sui-button>
+          <div slot="content">
+            <div class="user-menu">
+              <div class="user-info">
+                <div class="avatar">JD</div>
+                <div class="user-details">
+                  <div class="user-name">John Doe</div>
+                  <div class="user-email">john.doe@example.com</div>
+                </div>
+              </div>
+              <div class="menu-divider"></div>
+              <div class="menu-items">
+                <button class="menu-item">Profile Settings</button>
+                <button class="menu-item">Account Settings</button>
+                <button class="menu-item">Billing</button>
+                <div class="menu-divider"></div>
+                <button class="menu-item logout">Sign Out</button>
+              </div>
+            </div>
+          </div>
+        </sui-popover>
+      </div>
+    </div>
+  }
+
+  <!-- Example 5: Event Handling -->
+  @if (getCurrentExample().name === 'Event Handling') {
+    <div class="demo-section">
+      <h3 class="demo-title">Event Handling</h3>
+      <p class="demo-description">Popover provides events for show and hide actions.</p>
+      
+      <div class="demo-example">
+        <sui-popover 
+          [visible]="false" 
+          position="bottom" 
+          (onShow)="onShow()" 
+          (onHide)="onHide()">
+          <sui-button variant="outline">
+            Event Demo
+          </sui-button>
+          <div slot="content">
+            <p>Open the browser console and click this popover to see the events.</p>
+            <p>Events: onShow and onHide are triggered.</p>
+          </div>
+        </sui-popover>
+      </div>
+    </div>
+  }
+
+  <!-- Example 6: Custom Styling -->
+  @if (getCurrentExample().name === 'Custom Styling') {
+    <div class="demo-section">
+      <h3 class="demo-title">Custom Styling</h3>
+      <p class="demo-description">Popover supports custom styling through style and styleClass properties.</p>
+      
+      <div class="demo-example">
+        <sui-popover 
+          [visible]="false" 
+          position="bottom" 
+          styleClass="custom-popover"
+          [style]="{'min-width': '300px', 'max-width': '400px'}">
+          <sui-button variant="primary">
+            Custom Style
+          </sui-button>
+          <div slot="content">
+            <div class="custom-content">
+              <h4 class="custom-title">Custom Styled Popover</h4>
+              <p class="custom-text">This popover has custom styling applied through CSS classes and inline styles.</p>
+              <div class="custom-actions">
+                <sui-button variant="outline" size="sm">Cancel</sui-button>
+                <sui-button variant="primary" size="sm">Confirm</sui-button>
+              </div>
+            </div>
+          </div>
+        </sui-popover>
+      </div>
+    </div>
+  }
+</div>

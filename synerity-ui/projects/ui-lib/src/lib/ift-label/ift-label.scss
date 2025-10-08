@@ -1,0 +1,113 @@
+// IFT Label Component Styles with CSS Variables
+.sui-ift-label {
+  // CSS Variables for Theme Inheritance
+  --sui-ift-label-font-size: var(--sui-font-size, 1rem);
+  --sui-ift-label-font-family: var(--sui-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  --sui-ift-label-font-weight: 500;
+  --sui-ift-label-line-height: 1.5;
+  --sui-ift-label-transition: var(--sui-transition, all 0.2s ease);
+  
+  // True label variables
+  --sui-ift-label-true-color: var(--sui-success, #059669);
+  --sui-ift-label-true-background: var(--sui-success-light, #d1fae5);
+  --sui-ift-label-true-border: var(--sui-success, #059669);
+  
+  // False label variables
+  --sui-ift-label-false-color: var(--sui-error, #dc2626);
+  --sui-ift-label-false-background: var(--sui-error-light, #fee2e2);
+  --sui-ift-label-false-border: var(--sui-error, #dc2626);
+  
+  // Common label variables
+  --sui-ift-label-padding: 0.25rem 0.5rem;
+  --sui-ift-label-border-radius: var(--sui-radius, 4px);
+  --sui-ift-label-border-width: 1px;
+  
+  // Dark theme variables
+  --sui-ift-label-dark-true-color: var(--sui-dark-success, #10b981);
+  --sui-ift-label-dark-true-background: var(--sui-dark-success-light, rgba(16, 185, 129, 0.1));
+  --sui-ift-label-dark-false-color: var(--sui-dark-error, #ef4444);
+  --sui-ift-label-dark-false-background: var(--sui-dark-error-light, rgba(239, 68, 68, 0.1));
+  
+  // Component styles
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--sui-ift-label-font-size);
+  font-family: var(--sui-ift-label-font-family);
+  font-weight: var(--sui-ift-label-font-weight);
+  line-height: var(--sui-ift-label-line-height);
+  transition: var(--sui-ift-label-transition);
+}
+
+// True label styling
+.sui-ift-label-true {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sui-ift-label-padding);
+  color: var(--sui-ift-label-true-color);
+  background: var(--sui-ift-label-true-background);
+  border: var(--sui-ift-label-border-width) solid var(--sui-ift-label-true-border);
+  border-radius: var(--sui-ift-label-border-radius);
+  font-weight: var(--sui-ift-label-font-weight);
+  transition: var(--sui-ift-label-transition);
+}
+
+// False label styling
+.sui-ift-label-false {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sui-ift-label-padding);
+  color: var(--sui-ift-label-false-color);
+  background: var(--sui-ift-label-false-background);
+  border: var(--sui-ift-label-border-width) solid var(--sui-ift-label-false-border);
+  border-radius: var(--sui-ift-label-border-radius);
+  font-weight: var(--sui-ift-label-font-weight);
+  transition: var(--sui-ift-label-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-ift-label-true {
+    color: var(--sui-ift-label-dark-true-color);
+    background: var(--sui-ift-label-dark-true-background);
+    border-color: var(--sui-ift-label-dark-true-color);
+  }
+  
+  .sui-ift-label-false {
+    color: var(--sui-ift-label-dark-false-color);
+    background: var(--sui-ift-label-dark-false-background);
+    border-color: var(--sui-ift-label-dark-false-color);
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .sui-ift-label-true,
+  .sui-ift-label-false {
+    border-width: 2px;
+    font-weight: 600;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .sui-ift-label,
+  .sui-ift-label-true,
+  .sui-ift-label-false {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-ift-label-true {
+    color: #000;
+    background: transparent;
+    border: 1px solid #000;
+  }
+  
+  .sui-ift-label-false {
+    color: #000;
+    background: transparent;
+    border: 1px solid #000;
+  }
+}

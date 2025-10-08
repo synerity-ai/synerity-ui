@@ -1,0 +1,276 @@
+/* Popover Component Styles with CSS Variables */
+.sui-popover {
+  /* CSS Variables for theming */
+  --popover-bg: var(--color-bg-elevated, #ffffff);
+  --popover-border: var(--color-border, #e5e7eb);
+  --popover-text: var(--color-text, #374151);
+  --popover-text-secondary: var(--color-text-secondary, #6b7280);
+  --popover-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+  --popover-radius: var(--radius-lg, 0.5rem);
+  --popover-padding: var(--spacing-4, 1rem);
+  --popover-min-width: var(--popover-min-width, 16rem);
+  --popover-max-width: var(--popover-max-width, 24rem);
+  
+  /* Close button variables */
+  --popover-close-bg: var(--color-bg-hover, #f3f4f6);
+  --popover-close-bg-hover: var(--color-bg-active, #e5e7eb);
+  --popover-close-text: var(--color-text-muted, #9ca3af);
+  --popover-close-text-hover: var(--color-text-secondary, #6b7280);
+  
+  /* Arrow variables */
+  --popover-arrow-bg: var(--popover-bg);
+  --popover-arrow-border: var(--popover-border);
+  
+  /* Focus ring variables */
+  --popover-focus-ring: var(--color-primary-500, #3b82f6);
+  --popover-focus-ring-offset: var(--color-bg, #ffffff);
+
+  /* Base popover styles */
+  background-color: var(--popover-bg);
+  border: 1px solid var(--popover-border);
+  border-radius: var(--popover-radius);
+  box-shadow: var(--popover-shadow);
+  padding: var(--popover-padding);
+  min-width: var(--popover-min-width);
+  max-width: var(--popover-max-width);
+  color: var(--popover-text);
+  position: absolute;
+  z-index: 50;
+
+  /* Typography */
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+
+  /* Animation */
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  
+  /* Content styles */
+  .popover-content {
+    color: var(--popover-text-secondary);
+  }
+
+  /* Header styles */
+  .popover-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    
+    .popover-title {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--popover-text);
+      margin: 0;
+    }
+  }
+
+  /* Close button styles */
+  .popover-close {
+    padding: 0.25rem;
+    color: var(--popover-close-text);
+    background-color: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+    
+    &:hover {
+      color: var(--popover-close-text-hover);
+      background-color: var(--popover-close-bg);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--popover-focus-ring);
+      outline-offset: 2px;
+    }
+    
+    svg {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  }
+
+  /* Arrow styles */
+  .popover-arrow {
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--popover-arrow-bg);
+    border: 1px solid var(--popover-arrow-border);
+    transform: rotate(45deg);
+  }
+
+  /* Position-specific styles */
+  &.sui-popover-top {
+    transform: translateY(-0.5rem);
+    
+    .popover-arrow {
+      bottom: -0.25rem;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      border-top: none;
+      border-left: none;
+    }
+  }
+
+  &.sui-popover-bottom {
+    transform: translateY(0.5rem);
+    
+    .popover-arrow {
+      top: -0.25rem;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      border-bottom: none;
+      border-right: none;
+    }
+  }
+
+  &.sui-popover-left {
+    transform: translateX(-0.5rem);
+    
+    .popover-arrow {
+      right: -0.25rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      border-left: none;
+      border-bottom: none;
+    }
+  }
+
+  &.sui-popover-right {
+    transform: translateX(0.5rem);
+    
+    .popover-arrow {
+      left: -0.25rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      border-right: none;
+      border-top: none;
+    }
+  }
+
+  &.sui-popover-top-left {
+    transform: translateY(-0.5rem);
+    
+    .popover-arrow {
+      bottom: -0.25rem;
+      left: 1rem;
+      transform: rotate(45deg);
+      border-top: none;
+      border-left: none;
+    }
+  }
+
+  &.sui-popover-top-right {
+    transform: translateY(-0.5rem);
+    
+    .popover-arrow {
+      bottom: -0.25rem;
+      right: 1rem;
+      transform: rotate(45deg);
+      border-top: none;
+      border-right: none;
+    }
+  }
+
+  &.sui-popover-bottom-left {
+    transform: translateY(0.5rem);
+    
+    .popover-arrow {
+      top: -0.25rem;
+      left: 1rem;
+      transform: rotate(45deg);
+      border-bottom: none;
+      border-left: none;
+    }
+  }
+
+  &.sui-popover-bottom-right {
+    transform: translateY(0.5rem);
+    
+    .popover-arrow {
+      top: -0.25rem;
+      right: 1rem;
+      transform: rotate(45deg);
+      border-bottom: none;
+      border-right: none;
+    }
+  }
+
+  /* Animation states */
+  &.popover-enter {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  &.popover-enter-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &.popover-exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &.popover-exit-active {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    --popover-min-width: var(--popover-min-width-mobile, 12rem);
+    --popover-max-width: var(--popover-max-width-mobile, 20rem);
+    --popover-padding: var(--spacing-3, 0.75rem);
+    
+    min-width: var(--popover-min-width);
+    max-width: var(--popover-max-width);
+    padding: var(--popover-padding);
+  }
+}
+
+/* Target element styles */
+.sui-popover-target {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  
+  &:focus {
+    outline: 2px solid var(--popover-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Accessibility improvements */
+.sui-popover[aria-hidden="true"] {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sui-popover[aria-hidden="false"] {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .sui-popover {
+    --popover-border: var(--color-border-high-contrast, #000000);
+    --popover-shadow: var(--shadow-lg-high-contrast, 0 0 0 2px #000000);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .sui-popover {
+    transition: none;
+  }
+  
+  .sui-popover .popover-close {
+    transition: none;
+  }
+}

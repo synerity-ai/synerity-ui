@@ -1,0 +1,250 @@
+<div class="knob-demo">
+  <div class="demo-section">
+    <h3>Basic Knob</h3>
+    <p>Standard knob control with default styling and interactive value adjustment.</p>
+    <div class="knob-container">
+      <sui-knob
+        [value]="basicValue"
+        [min]="basicMin"
+        [max]="basicMax"
+        [step]="basicStep"
+        [size]="100"
+        [strokeWidth]="14"
+        [showValue]="true"
+        [showTicks]="true"
+        [tickCount]="12"
+        label="Volume"
+        unit="%"
+        (onChange)="onValueChange($event, 'Basic')">
+      </sui-knob>
+    </div>
+    <div class="demo-actions">
+      <button (click)="resetValue()" class="action-btn">Reset</button>
+      <button (click)="setRandomValue()" class="action-btn">Random</button>
+      <button (click)="setPresetValue(25)" class="action-btn">25%</button>
+      <button (click)="setPresetValue(75)" class="action-btn">75%</button>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>Size Variants</h3>
+    <p>Different size variants for various use cases and screen sizes.</p>
+    <div class="size-demo">
+      <div class="size-item">
+        <h4>Small (80px)</h4>
+        <sui-knob
+          [value]="smallValue"
+          [size]="80"
+          [strokeWidth]="10"
+          [showValue]="true"
+          [showTicks]="false"
+          label="Small"
+          (onChange)="onValueChange($event, 'Small')">
+        </sui-knob>
+      </div>
+      
+      <div class="size-item">
+        <h4>Medium (120px)</h4>
+        <sui-knob
+          [value]="mediumValue"
+          [size]="120"
+          [strokeWidth]="16"
+          [showValue]="true"
+          [showTicks]="true"
+          [tickCount]="8"
+          label="Medium"
+          (onChange)="onValueChange($event, 'Medium')">
+        </sui-knob>
+      </div>
+      
+      <div class="size-item">
+        <h4>Large (160px)</h4>
+        <sui-knob
+          [value]="largeValue"
+          [size]="160"
+          [strokeWidth]="20"
+          [showValue]="true"
+          [showTicks]="true"
+          [tickCount]="16"
+          label="Large"
+          (onChange)="onValueChange($event, 'Large')">
+        </sui-knob>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>States</h3>
+    <p>Different states of the knob: disabled and readonly.</p>
+    <div class="states-demo">
+      <div class="state-item">
+        <h4>Disabled State</h4>
+        <sui-knob
+          [value]="disabledValue"
+          [disabled]="true"
+          [size]="100"
+          [showValue]="true"
+          [showTicks]="true"
+          label="Disabled">
+        </sui-knob>
+      </div>
+      
+      <div class="state-item">
+        <h4>Readonly State</h4>
+        <sui-knob
+          [value]="readonlyValue"
+          [readonly]="true"
+          [size]="100"
+          [showValue]="true"
+          [showTicks]="true"
+          label="Readonly">
+        </sui-knob>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>Custom Range and Step</h3>
+    <p>Knob with custom minimum, maximum, and step values.</p>
+    <div class="knob-container">
+      <sui-knob
+        [value]="customValue"
+        [min]="customMin"
+        [max]="customMax"
+        [step]="customStep"
+        [size]="120"
+        [strokeWidth]="16"
+        [showValue]="true"
+        [showTicks]="true"
+        [tickCount]="10"
+        label="Custom Range"
+        unit="pts"
+        (onChange)="onValueChange($event, 'Custom')">
+      </sui-knob>
+    </div>
+    <div class="demo-info">
+      <p><strong>Range:</strong> {{ customMin }} - {{ customMax }}</p>
+      <p><strong>Step:</strong> {{ customStep }}</p>
+      <p><strong>Current Value:</strong> {{ customValue }}</p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>Color Variants</h3>
+    <p>Knobs with different color themes using CSS variables.</p>
+    <div class="color-demo">
+      <div class="color-item">
+        <h4>Red Theme</h4>
+        <sui-knob
+          [value]="redValue"
+          [size]="100"
+          [style]="getCustomColorStyle('#ef4444')"
+          [showValue]="true"
+          [showTicks]="true"
+          label="Red"
+          (onChange)="onValueChange($event, 'Red')">
+        </sui-knob>
+      </div>
+      
+      <div class="color-item">
+        <h4>Green Theme</h4>
+        <sui-knob
+          [value]="greenValue"
+          [size]="100"
+          [style]="getCustomColorStyle('#10b981')"
+          [showValue]="true"
+          [showTicks]="true"
+          label="Green"
+          (onChange)="onValueChange($event, 'Green')">
+        </sui-knob>
+      </div>
+      
+      <div class="color-item">
+        <h4>Yellow Theme</h4>
+        <sui-knob
+          [value]="yellowValue"
+          [size]="100"
+          [style]="getCustomColorStyle('#f59e0b')"
+          [showValue]="true"
+          [showTicks]="true"
+          label="Yellow"
+          (onChange)="onValueChange($event, 'Yellow')">
+        </sui-knob>
+      </div>
+      
+      <div class="color-item">
+        <h4>Purple Theme</h4>
+        <sui-knob
+          [value]="purpleValue"
+          [size]="100"
+          [style]="getCustomColorStyle('#8b5cf6')"
+          [showValue]="true"
+          [showTicks]="true"
+          label="Purple"
+          (onChange)="onValueChange($event, 'Purple')">
+        </sui-knob>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>Form Integration</h3>
+    <p>Knob integrated with Angular reactive forms and validation.</p>
+    <div class="form-demo">
+      <sui-knob
+        [value]="formValue"
+        [size]="120"
+        [strokeWidth]="16"
+        [showValue]="true"
+        [showTicks]="true"
+        [tickCount]="10"
+        label="Form Control"
+        unit="%"
+        (onChange)="onFormValueChange()">
+      </sui-knob>
+      <div class="form-validation" [class.invalid]="!formValid">
+        <span *ngIf="!formValid" class="error-message">Value must be between 0-100</span>
+        <span *ngIf="formValid" class="success-message">Value is valid</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>Minimal Display</h3>
+    <p>Knob with minimal visual elements for clean interfaces.</p>
+    <div class="knob-container">
+      <sui-knob
+        [value]="basicValue"
+        [size]="100"
+        [strokeWidth]="12"
+        [showValue]="false"
+        [showTicks]="false"
+        label="Minimal"
+        (onChange)="onValueChange($event, 'Minimal')">
+      </sui-knob>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>Animation Example</h3>
+    <p>Knob with animated value changes for smooth transitions.</p>
+    <div class="knob-container">
+      <sui-knob
+        [value]="basicValue"
+        [size]="120"
+        [strokeWidth]="16"
+        [showValue]="true"
+        [showTicks]="true"
+        [tickCount]="12"
+        label="Animated"
+        unit="%"
+        (onChange)="onValueChange($event, 'Animated')">
+      </sui-knob>
+    </div>
+    <div class="demo-actions">
+      <button (click)="animateToValue(0)" class="action-btn">Animate to 0%</button>
+      <button (click)="animateToValue(50)" class="action-btn">Animate to 50%</button>
+      <button (click)="animateToValue(100)" class="action-btn">Animate to 100%</button>
+    </div>
+  </div>
+</div>

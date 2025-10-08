@@ -1,25 +1,56 @@
-// Enterprise Editor Styles
+// Enterprise Editor Styles with CSS Variables
 .sui-editor {
+  // CSS Variables for Theme Inheritance
+  --sui-editor-background: var(--sui-surface, #ffffff);
+  --sui-editor-border: var(--sui-border, #d1d5db);
+  --sui-editor-border-radius: var(--sui-radius, 8px);
+  --sui-editor-text: var(--sui-text-primary, #374151);
+  --sui-editor-text-secondary: var(--sui-text-secondary, #6b7280);
+  --sui-editor-text-muted: var(--sui-text-muted, #9ca3af);
+  --sui-editor-primary: var(--sui-primary, #3b82f6);
+  --sui-editor-primary-hover: var(--sui-primary-hover, #1d4ed8);
+  --sui-editor-primary-light: var(--sui-primary-light, rgba(59, 130, 246, 0.1));
+  --sui-editor-surface: var(--sui-surface-secondary, #f9fafb);
+  --sui-editor-surface-hover: var(--sui-surface-hover, #e5e7eb);
+  --sui-editor-surface-active: var(--sui-surface-active, #d1d5db);
+  --sui-editor-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-editor-shadow-focus: var(--sui-shadow-focus, 0 0 0 3px rgba(59, 130, 246, 0.1));
+  --sui-editor-font-family: var(--sui-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+  --sui-editor-font-size: var(--sui-font-size, 14px);
+  --sui-editor-line-height: var(--sui-line-height, 1.5);
+  --sui-editor-transition: var(--sui-transition, all 0.2s ease);
+  --sui-editor-transition-fast: var(--sui-transition-fast, all 0.15s ease);
+  
+  // Dark theme variables
+  --sui-editor-dark-background: var(--sui-dark-surface, #1f2937);
+  --sui-editor-dark-border: var(--sui-dark-border, #374151);
+  --sui-editor-dark-text: var(--sui-dark-text-primary, #f9fafb);
+  --sui-editor-dark-text-secondary: var(--sui-dark-text-secondary, #9ca3af);
+  --sui-editor-dark-text-muted: var(--sui-dark-text-muted, #6b7280);
+  --sui-editor-dark-surface: var(--sui-dark-surface-secondary, #111827);
+  --sui-editor-dark-surface-hover: var(--sui-dark-surface-hover, #374151);
+  
+  // Component styles
   position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #374151;
+  border: 1px solid var(--sui-editor-border);
+  border-radius: var(--sui-editor-border-radius);
+  background: var(--sui-editor-background);
+  font-family: var(--sui-editor-font-family);
+  font-size: var(--sui-editor-font-size);
+  line-height: var(--sui-editor-line-height);
+  color: var(--sui-editor-text);
   overflow: hidden;
-  transition: all 0.2s ease;
+  transition: var(--sui-editor-transition);
 
   &:hover {
-    border-color: #9ca3af;
+    border-color: var(--sui-editor-text-secondary);
   }
 
   &:focus-within {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: var(--sui-editor-primary);
+    box-shadow: var(--sui-editor-shadow-focus);
   }
 
   // Toolbar
@@ -28,8 +59,8 @@
     align-items: center;
     gap: 1px;
     padding: 8px 12px;
-    background: #f9fafb;
-    border-bottom: 1px solid #e5e7eb;
+    background: var(--sui-editor-surface);
+    border-bottom: 1px solid var(--sui-editor-border);
     flex-wrap: wrap;
 
     &-button {
@@ -42,24 +73,24 @@
       background: transparent;
       border-radius: 4px;
       cursor: pointer;
-      color: #6b7280;
+      color: var(--sui-editor-text-secondary);
       font-size: 14px;
       font-weight: 600;
-      transition: all 0.15s ease;
+      transition: var(--sui-editor-transition-fast);
       position: relative;
 
       &:hover {
-        background: #e5e7eb;
-        color: #374151;
+        background: var(--sui-editor-surface-hover);
+        color: var(--sui-editor-text);
       }
 
       &:active {
-        background: #d1d5db;
+        background: var(--sui-editor-surface-active);
         transform: translateY(1px);
       }
 
       &.active {
-        background: #3b82f6;
+        background: var(--sui-editor-primary);
         color: #ffffff;
       }
 
@@ -124,7 +155,7 @@
     &-separator {
       width: 1px;
       height: 20px;
-      background: #d1d5db;
+      background: var(--sui-editor-border);
       margin: 0 4px;
     }
 
@@ -132,22 +163,22 @@
     &-select {
       height: 32px;
       padding: 0 8px;
-      border: 1px solid #d1d5db;
+      border: 1px solid var(--sui-editor-border);
       border-radius: 4px;
-      background: #ffffff;
-      color: #374151;
+      background: var(--sui-editor-background);
+      color: var(--sui-editor-text);
       font-size: 12px;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: var(--sui-editor-transition-fast);
 
       &:hover {
-        border-color: #9ca3af;
+        border-color: var(--sui-editor-text-muted);
       }
 
       &:focus {
         outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        border-color: var(--sui-editor-primary);
+        box-shadow: var(--sui-editor-primary-light);
       }
     }
   }
@@ -159,15 +190,15 @@
     min-height: 100px;
     outline: none;
     overflow-y: auto;
-    background: #ffffff;
-    color: #374151;
+    background: var(--sui-editor-background);
+    color: var(--sui-editor-text);
     font-size: 14px;
     line-height: 1.6;
 
     // Placeholder styling
     &:empty:before {
       content: attr(placeholder);
-      color: #9ca3af;
+      color: var(--sui-editor-text-muted);
       pointer-events: none;
       position: absolute;
     }
@@ -210,16 +241,16 @@
     blockquote {
       margin: 16px 0;
       padding: 12px 16px;
-      border-left: 4px solid #3b82f6;
-      background: #f8fafc;
+      border-left: 4px solid var(--sui-editor-primary);
+      background: var(--sui-editor-surface);
       border-radius: 0 4px 4px 0;
       font-style: italic;
-      color: #64748b;
+      color: var(--sui-editor-text-secondary);
     }
 
     code {
-      background: #f1f5f9;
-      color: #e11d48;
+      background: var(--sui-editor-surface);
+      color: var(--sui-editor-primary);
       padding: 2px 6px;
       border-radius: 4px;
       font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -246,11 +277,11 @@
     }
 
     a {
-      color: #3b82f6;
+      color: var(--sui-editor-primary);
       text-decoration: underline;
       
       &:hover {
-        color: #1d4ed8;
+        color: var(--sui-editor-primary-hover);
       }
     }
 
@@ -267,32 +298,32 @@
       margin: 16px 0;
       
       th, td {
-        border: 1px solid #e5e7eb;
+        border: 1px solid var(--sui-editor-border);
         padding: 8px 12px;
         text-align: left;
       }
       
       th {
-        background: #f9fafb;
+        background: var(--sui-editor-surface);
         font-weight: 600;
       }
     }
 
     hr {
       border: none;
-      border-top: 1px solid #e5e7eb;
+      border-top: 1px solid var(--sui-editor-border);
       margin: 24px 0;
     }
   }
 
   // States
   &-disabled {
-    background: #f9fafb;
-    border-color: #e5e7eb;
+    background: var(--sui-editor-surface);
+    border-color: var(--sui-editor-border);
     cursor: not-allowed;
     
     .sui-editor-toolbar {
-      background: #f3f4f6;
+      background: var(--sui-editor-surface);
       
       &-button {
         cursor: not-allowed;
@@ -300,14 +331,14 @@
         
         &:hover {
           background: transparent;
-          color: #6b7280;
+          color: var(--sui-editor-text-secondary);
         }
       }
     }
     
     .sui-editor-content {
-      background: #f9fafb;
-      color: #9ca3af;
+      background: var(--sui-editor-surface);
+      color: var(--sui-editor-text-muted);
       cursor: not-allowed;
     }
   }
@@ -318,7 +349,7 @@
     }
     
     .sui-editor-content {
-      background: #f9fafb;
+      background: var(--sui-editor-surface);
       cursor: default;
     }
   }
@@ -326,7 +357,7 @@
   // Focus state
   &:focus-within {
     .sui-editor-toolbar {
-      border-bottom-color: #3b82f6;
+      border-bottom-color: var(--sui-editor-primary);
     }
   }
 
@@ -351,46 +382,46 @@
 
   // Dark theme support
   &.sui-editor-dark {
-    background: #1f2937;
-    border-color: #374151;
-    color: #f9fafb;
+    background: var(--sui-editor-dark-background);
+    border-color: var(--sui-editor-dark-border);
+    color: var(--sui-editor-dark-text);
 
     .sui-editor-toolbar {
-      background: #111827;
-      border-bottom-color: #374151;
+      background: var(--sui-editor-dark-surface);
+      border-bottom-color: var(--sui-editor-dark-border);
       
       &-button {
-        color: #9ca3af;
+        color: var(--sui-editor-dark-text-secondary);
         
         &:hover {
-          background: #374151;
-          color: #f9fafb;
+          background: var(--sui-editor-dark-surface-hover);
+          color: var(--sui-editor-dark-text);
         }
         
         &.active {
-          background: #3b82f6;
+          background: var(--sui-editor-primary);
           color: #ffffff;
         }
       }
     }
 
     .sui-editor-content {
-      background: #1f2937;
-      color: #f9fafb;
+      background: var(--sui-editor-dark-background);
+      color: var(--sui-editor-dark-text);
 
       &:empty:before {
-        color: #6b7280;
+        color: var(--sui-editor-dark-text-muted);
       }
 
       blockquote {
-        background: #111827;
-        border-left-color: #3b82f6;
-        color: #9ca3af;
+        background: var(--sui-editor-dark-surface);
+        border-left-color: var(--sui-editor-primary);
+        color: var(--sui-editor-dark-text-secondary);
       }
 
       code {
-        background: #374151;
-        color: #fbbf24;
+        background: var(--sui-editor-dark-surface-hover);
+        color: var(--sui-editor-primary);
       }
 
       pre {
@@ -400,26 +431,26 @@
 
       table {
         th, td {
-          border-color: #374151;
+          border-color: var(--sui-editor-dark-border);
         }
         
         th {
-          background: #111827;
+          background: var(--sui-editor-dark-surface);
         }
       }
 
       hr {
-        border-top-color: #374151;
+        border-top-color: var(--sui-editor-dark-border);
       }
     }
 
     &.sui-editor-disabled {
-      background: #111827;
-      border-color: #374151;
+      background: var(--sui-editor-dark-surface);
+      border-color: var(--sui-editor-dark-border);
       
       .sui-editor-content {
-        background: #111827;
-        color: #6b7280;
+        background: var(--sui-editor-dark-surface);
+        color: var(--sui-editor-dark-text-muted);
       }
     }
   }

@@ -1,0 +1,81 @@
+// Auto Focus Component Styles with CSS Variables
+.sui-auto-focus {
+  // CSS Variables for Theme Inheritance
+  --sui-auto-focus-outline: var(--sui-outline, 2px solid #3b82f6);
+  --sui-auto-focus-outline-offset: var(--sui-outline-offset, 2px);
+  --sui-auto-focus-border-radius: var(--sui-radius, 4px);
+  --sui-auto-focus-transition: var(--sui-transition, all 0.2s ease);
+  --sui-auto-focus-shadow: var(--sui-shadow-focus, 0 0 0 3px rgba(59, 130, 246, 0.1));
+  --sui-auto-focus-z-index: var(--sui-z-index, 1);
+  
+  // Dark theme variables
+  --sui-auto-focus-dark-outline: var(--sui-dark-outline, 2px solid #60a5fa);
+  --sui-auto-focus-dark-shadow: var(--sui-dark-shadow-focus, 0 0 0 3px rgba(96, 165, 250, 0.2));
+  
+  // Component styles
+  position: relative;
+  display: contents;
+  outline: none;
+  transition: var(--sui-auto-focus-transition);
+  z-index: var(--sui-auto-focus-z-index);
+
+  // Focus styles for accessibility
+  &:focus,
+  &:focus-visible {
+    outline: var(--sui-auto-focus-outline);
+    outline-offset: var(--sui-auto-focus-outline-offset);
+    border-radius: var(--sui-auto-focus-border-radius);
+    box-shadow: var(--sui-auto-focus-shadow);
+  }
+
+  // Ensure focus is visible when auto-focused
+  &.sui-auto-focus-active {
+    outline: var(--sui-auto-focus-outline);
+    outline-offset: var(--sui-auto-focus-outline-offset);
+    border-radius: var(--sui-auto-focus-border-radius);
+    box-shadow: var(--sui-auto-focus-shadow);
+  }
+
+  // Dark theme support
+  @media (prefers-color-scheme: dark) {
+    &:focus,
+    &:focus-visible {
+      outline: var(--sui-auto-focus-dark-outline);
+      box-shadow: var(--sui-auto-focus-dark-shadow);
+    }
+
+    &.sui-auto-focus-active {
+      outline: var(--sui-auto-focus-dark-outline);
+      box-shadow: var(--sui-auto-focus-dark-shadow);
+    }
+  }
+
+  // High contrast mode support
+  @media (prefers-contrast: high) {
+    &:focus,
+    &:focus-visible {
+      outline: 3px solid;
+      outline-offset: 1px;
+    }
+
+    &.sui-auto-focus-active {
+      outline: 3px solid;
+      outline-offset: 1px;
+    }
+  }
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  // Print styles
+  @media print {
+    &:focus,
+    &:focus-visible,
+    &.sui-auto-focus-active {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}

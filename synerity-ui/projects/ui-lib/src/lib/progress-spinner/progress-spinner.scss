@@ -1,0 +1,239 @@
+/* Progress Spinner Component Styles with CSS Variables */
+.sui-progress-spinner {
+  /* CSS Variables for theming */
+  --spinner-color: var(--color-primary-500, #3b82f6);
+  --spinner-color-secondary: var(--color-primary-100, #dbeafe);
+  --spinner-bg: var(--color-bg-elevated, #ffffff);
+  --spinner-border: var(--color-border, #e5e7eb);
+  --spinner-text: var(--color-text-secondary, #6b7280);
+  
+  /* Size variables */
+  --spinner-size-small: var(--spinner-size-small, 20px);
+  --spinner-size-normal: var(--spinner-size-normal, 40px);
+  --spinner-size-large: var(--spinner-size-large, 60px);
+  
+  /* Stroke variables */
+  --spinner-stroke-width: var(--spinner-stroke-width, 2px);
+  --spinner-stroke-width-small: var(--spinner-stroke-width-small, 1.5px);
+  --spinner-stroke-width-large: var(--spinner-stroke-width-large, 3px);
+  
+  /* Animation variables */
+  --spinner-animation-duration: var(--spinner-animation-duration, 2s);
+  --spinner-animation-timing: var(--spinner-animation-timing, linear);
+  --spinner-animation-iteration: var(--spinner-animation-iteration, infinite);
+  
+  /* Base styles */
+  display: inline-block;
+  position: relative;
+  width: var(--spinner-size-normal);
+  height: var(--spinner-size-normal);
+  
+  /* SVG styles */
+  .sui-progress-spinner-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform-origin: center;
+    
+    /* Animation */
+    animation: spin var(--spinner-animation-duration) var(--spinner-animation-timing) var(--spinner-animation-iteration);
+  }
+  
+  /* Circle styles */
+  .sui-progress-spinner-circle {
+    fill: transparent;
+    stroke: var(--spinner-color-secondary);
+    stroke-width: var(--spinner-stroke-width);
+    stroke-linecap: round;
+    stroke-dasharray: var(--spinner-circumference, 100);
+    stroke-dashoffset: var(--spinner-circumference, 100);
+    
+    /* Animated stroke */
+    stroke: var(--spinner-color);
+    animation: dash var(--spinner-animation-duration) var(--spinner-animation-timing) var(--spinner-animation-iteration);
+  }
+}
+
+/* Size variants */
+.sui-progress-spinner-small {
+  width: var(--spinner-size-small);
+  height: var(--spinner-size-small);
+  
+  .sui-progress-spinner-circle {
+    stroke-width: var(--spinner-stroke-width-small);
+  }
+}
+
+.sui-progress-spinner-large {
+  width: var(--spinner-size-large);
+  height: var(--spinner-size-large);
+  
+  .sui-progress-spinner-circle {
+    stroke-width: var(--spinner-stroke-width-large);
+  }
+}
+
+/* Color variants */
+.sui-progress-spinner-primary {
+  --spinner-color: var(--color-primary-500, #3b82f6);
+  --spinner-color-secondary: var(--color-primary-100, #dbeafe);
+}
+
+.sui-progress-spinner-secondary {
+  --spinner-color: var(--color-secondary-500, #6b7280);
+  --spinner-color-secondary: var(--color-secondary-100, #f3f4f6);
+}
+
+.sui-progress-spinner-success {
+  --spinner-color: var(--color-success-500, #10b981);
+  --spinner-color-secondary: var(--color-success-100, #d1fae5);
+}
+
+.sui-progress-spinner-warning {
+  --spinner-color: var(--color-warning-500, #f59e0b);
+  --spinner-color-secondary: var(--color-warning-100, #fef3c7);
+}
+
+.sui-progress-spinner-danger {
+  --spinner-color: var(--color-danger-500, #ef4444);
+  --spinner-color-secondary: var(--color-danger-100, #fee2e2);
+}
+
+.sui-progress-spinner-info {
+  --spinner-color: var(--color-info-500, #06b6d4);
+  --spinner-color-secondary: var(--color-info-100, #cffafe);
+}
+
+/* Animations */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: var(--spinner-circumference, 100);
+  }
+  50% {
+    stroke-dashoffset: calc(var(--spinner-circumference, 100) * 0.25);
+  }
+  100% {
+    stroke-dashoffset: var(--spinner-circumference, 100);
+  }
+}
+
+/* Accessibility improvements */
+.sui-progress-spinner[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+.sui-progress-spinner[aria-hidden="false"] {
+  visibility: visible;
+}
+
+/* Focus styles for accessibility */
+.sui-progress-spinner:focus {
+  outline: 2px solid var(--spinner-color);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .sui-progress-spinner {
+    --spinner-color: var(--color-text, #000000);
+    --spinner-color-secondary: var(--color-border, #000000);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .sui-progress-spinner {
+    --spinner-animation-duration: 0.01s;
+    
+    .sui-progress-spinner-svg {
+      animation: none;
+    }
+    
+    .sui-progress-spinner-circle {
+      animation: none;
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+/* Loading overlay styles */
+.sui-progress-spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-bg-overlay, rgba(255, 255, 255, 0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  
+  .sui-progress-spinner {
+    --spinner-color: var(--color-primary-500, #3b82f6);
+    --spinner-color-secondary: var(--color-primary-100, #dbeafe);
+  }
+}
+
+/* Inline loading styles */
+.sui-progress-spinner-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  .sui-progress-spinner {
+    width: var(--spinner-size-small);
+    height: var(--spinner-size-small);
+    
+    .sui-progress-spinner-circle {
+      stroke-width: var(--spinner-stroke-width-small);
+    }
+  }
+  
+  .spinner-text {
+    color: var(--spinner-text);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+/* Button loading styles */
+.sui-progress-spinner-button {
+  width: 1rem;
+  height: 1rem;
+  
+  .sui-progress-spinner-circle {
+    stroke-width: 1.5px;
+    stroke: currentColor;
+  }
+}
+
+/* Dark mode support */
+.theme-dark .sui-progress-spinner {
+  --spinner-bg: var(--color-bg-elevated-dark, #1f2937);
+  --spinner-border: var(--color-border-dark, #374151);
+  --spinner-text: var(--color-text-secondary-dark, #9ca3af);
+}
+
+.theme-dark .sui-progress-spinner-overlay {
+  background: var(--color-bg-overlay-dark, rgba(0, 0, 0, 0.8));
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .sui-progress-spinner {
+    --spinner-size-normal: var(--spinner-size-normal-mobile, 32px);
+    --spinner-size-large: var(--spinner-size-large-mobile, 48px);
+  }
+}

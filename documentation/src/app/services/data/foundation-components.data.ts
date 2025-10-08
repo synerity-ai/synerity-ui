@@ -2719,4 +2719,520 @@ export class CheckboxComponent {
         usage: 'Use tooltips to provide contextual information, help text, or additional details about UI elements. Perfect for form fields, buttons, icons, and any interface element that benefits from additional explanation. Tooltips improve user experience by providing guidance without cluttering the interface.',
         tags: ['tooltip', 'help', 'context', 'information', 'hover', 'focus']
       },
+  {
+        id: 'breadcrumb',
+        name: 'Breadcrumb',
+        category: 'Foundation',
+        description: 'Navigation breadcrumb component for showing current page hierarchy',
+        examples: [
+          {
+            name: 'Basic Breadcrumb',
+            code: '<sui-breadcrumb \n  [model]="[\n    { label: \'Home\', url: \'#\' },\n    { label: \'Products\', url: \'#\' },\n    { label: \'Electronics\', url: \'#\' },\n    { label: \'Smartphones\' }\n  ]"\n  [home]="{ label: \'Home\', url: \'#\' }"\n  (onItemClick)="onItemClick($event)">\n</sui-breadcrumb>',
+            tsCode: `export class BreadcrumbComponent {
+    onItemClick(event: any): void {
+      console.log('Breadcrumb item clicked:', event);
+    }
+  }`,
+            description: 'Basic breadcrumb navigation showing page hierarchy'
+          },
+          {
+            name: 'With Icons',
+            code: '<sui-breadcrumb \n  [model]="[\n    { label: \'Dashboard\', url: \'#\', icon: \'📊\' },\n    { label: \'Projects\', url: \'#\', icon: \'📁\' },\n    { label: \'Current Project\', icon: \'⚡\' }\n  ]"\n  [home]="{ label: \'🏠 Home\', url: \'#\' }"\n  (onItemClick)="onItemClick($event)">\n</sui-breadcrumb>',
+            description: 'Breadcrumb with icons for better visual representation'
+          },
+          {
+            name: 'With Disabled Items',
+            code: '<sui-breadcrumb \n  [model]="[\n    { label: \'Home\', url: \'#\' },\n    { label: \'Admin Panel\', disabled: true },\n    { label: \'Settings\', url: \'#\' },\n    { label: \'User Management\' }\n  ]"\n  [home]="{ label: \'Home\', url: \'#\' }"\n  (onItemClick)="onItemClick($event)">\n</sui-breadcrumb>',
+            description: 'Breadcrumb with disabled items to prevent navigation'
+          },
+          {
+            name: 'With Commands',
+            code: '<sui-breadcrumb \n  [model]="[\n    { label: \'Home\', command: () => navigateToHome() },\n    { label: \'Products\', command: () => navigateToProducts() },\n    { label: \'Category\', command: () => navigateToCategory() },\n    { label: \'Current Item\' }\n  ]"\n  [home]="{ label: \'Home\', command: () => navigateToHome() }"\n  (onItemClick)="onItemClick($event)">\n</sui-breadcrumb>',
+            tsCode: `export class BreadcrumbComponent {
+    navigateToHome(): void {
+      console.log('Navigating to Home');
+    }
+    
+    navigateToProducts(): void {
+      console.log('Navigating to Products');
+    }
+    
+    navigateToCategory(): void {
+      console.log('Navigating to Category');
+    }
+    
+    onItemClick(event: any): void {
+      console.log('Breadcrumb item clicked:', event);
+    }
+  }`,
+            description: 'Breadcrumb items with custom command functions'
+          },
+          {
+            name: 'Custom Home Item',
+            code: '<sui-breadcrumb \n  [model]="breadcrumbItems"\n  [home]="{ label: \'🏠 Dashboard\', url: \'#\', icon: \'🏠\' }"\n  (onItemClick)="onItemClick($event)">\n</sui-breadcrumb>',
+            description: 'Custom home item with different label and icon'
+          },
+          {
+            name: 'Custom Styling',
+            code: '<sui-breadcrumb \n  [model]="breadcrumbItems"\n  [home]="{ label: \'🏠 Home\', url: \'#\' }"\n  styleClass="custom-breadcrumb"\n  [style]="{\n    \'--breadcrumb-text\': \'#8b5cf6\',\n    \'--breadcrumb-link-hover\': \'#7c3aed\',\n    \'--breadcrumb-separator-color\': \'#a78bfa\'\n  }"\n  (onItemClick)="onItemClick($event)">\n</sui-breadcrumb>',
+            description: 'Custom styled breadcrumb with CSS variables'
+          }
+        ],
+        props: [
+          {
+            name: 'model',
+            type: 'Array<BreadcrumbItem>',
+            default: '[]',
+            description: 'Array of breadcrumb items to display',
+            required: false
+          },
+          {
+            name: 'home',
+            type: 'BreadcrumbItem',
+            default: '{ label: "Home", icon: "🏠" }',
+            description: 'Home item configuration',
+            required: false
+          },
+          {
+            name: 'style',
+            type: 'object',
+            default: '{}',
+            description: 'Inline styles for the breadcrumb',
+            required: false
+          },
+          {
+            name: 'styleClass',
+            type: 'string',
+            default: '""',
+            description: 'CSS class names for custom styling',
+            required: false
+          }
+        ],
+        events: [
+          {
+            name: 'onItemClick',
+            type: 'EventEmitter<{item: BreadcrumbItem, index: number}>',
+            description: 'Emitted when a breadcrumb item is clicked'
+          }
+        ],
+        usage: 'Use breadcrumbs to show users their current location within a website or application hierarchy. They provide a clear path from the current page back to the home page and help users understand the site structure. Perfect for e-commerce sites, documentation, file systems, and any multi-level navigation structure.',
+        tags: ['breadcrumb', 'navigation', 'hierarchy', 'path', 'location', 'navigation']
+      },
+  {
+        id: 'color-picker',
+        name: 'Color Picker',
+        category: 'Foundation',
+        description: 'Interactive color picker component for selecting colors with preset options',
+        examples: [
+          {
+            name: 'Basic Color Picker',
+            code: '<sui-color-picker \n  [(ngModel)]="selectedColor"\n  (onChange)="onColorChange($event)"\n  (onSelect)="onColorSelect($event)">\n</sui-color-picker>',
+            tsCode: `export class ColorPickerComponent {
+    selectedColor = '#3b82f6';
+    
+    onColorChange(color: string): void {
+      console.log('Color changed to:', color);
+    }
+    
+    onColorSelect(color: string): void {
+      console.log('Color selected:', color);
+    }
+  }`,
+            description: 'Basic color picker with default styling and preset colors'
+          },
+          {
+            name: 'Size Variants',
+            code: '<sui-color-picker size="small" [(ngModel)]="color1"></sui-color-picker>\n<sui-color-picker size="medium" [(ngModel)]="color2"></sui-color-picker>\n<sui-color-picker size="large" [(ngModel)]="color3"></sui-color-picker>',
+            description: 'Color pickers in different sizes: small, medium, and large'
+          },
+          {
+            name: 'Disabled State',
+            code: '<sui-color-picker \n  [disabled]="true"\n  [(ngModel)]="selectedColor">\n</sui-color-picker>',
+            description: 'Color picker in disabled state - cannot be interacted with'
+          },
+          {
+            name: 'Inline Mode',
+            code: '<sui-color-picker \n  [inline]="true"\n  [(ngModel)]="selectedColor"\n  (onChange)="onColorChange($event)">\n</sui-color-picker>',
+            description: 'Color picker displayed inline without a dropdown panel'
+          },
+          {
+            name: 'Custom Styling',
+            code: '<sui-color-picker \n  [(ngModel)]="selectedColor"\n  styleClass="custom-color-picker"\n  [style]="{\n    \'--color-picker-border\': \'#ec4899\',\n    \'--color-picker-border-hover\': \'#be185d\',\n    \'--color-picker-shadow-focus\': \'0 0 0 3px rgba(236, 72, 153, 0.1)\'\n  }"\n  (onChange)="onColorChange($event)">\n</sui-color-picker>',
+            description: 'Color picker with custom styling using CSS variables'
+          },
+          {
+            name: 'Form Integration',
+            code: '<form>\n  <div class="form-group">\n    <label>Brand Color</label>\n    <sui-color-picker \n      [(ngModel)]="brandColor"\n      name="brandColor"\n      required>\n    </sui-color-picker>\n  </div>\n</form>',
+            tsCode: `export class ColorPickerComponent {
+    brandColor = '#3b82f6';
+    
+    saveColors(): void {
+      console.log('Brand color:', this.brandColor);
+    }
+  }`,
+            description: 'Color picker integrated with Angular forms for validation'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'string',
+            default: '#000000',
+            description: 'The selected color value in hex format',
+            required: false
+          },
+          {
+            name: 'format',
+            type: 'string',
+            default: 'hex',
+            description: 'Color format: hex, rgb, or hsl',
+            required: false
+          },
+          {
+            name: 'inline',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether to display the color picker inline',
+            required: false
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the color picker is disabled',
+            required: false
+          },
+          {
+            name: 'size',
+            type: 'string',
+            default: 'medium',
+            description: 'Size of the color picker: small, medium, or large',
+            required: false
+          },
+          {
+            name: 'style',
+            type: 'object',
+            default: '{}',
+            description: 'Inline styles for the color picker',
+            required: false
+          },
+          {
+            name: 'styleClass',
+            type: 'string',
+            default: '""',
+            description: 'CSS class names for custom styling',
+            required: false
+          }
+        ],
+        events: [
+          {
+            name: 'onChange',
+            type: 'EventEmitter<string>',
+            description: 'Emitted when the color value changes'
+          },
+          {
+            name: 'onSelect',
+            type: 'EventEmitter<string>',
+            description: 'Emitted when a color is selected'
+          }
+        ],
+        usage: 'Use color pickers to allow users to select colors for themes, branding, customizations, or any color-based input. Perfect for design tools, theme builders, form inputs, and any application that requires color selection. The component supports multiple formats, sizes, and can be integrated with Angular forms.',
+        tags: ['color', 'picker', 'input', 'form', 'theme', 'design']
+      },
+      {
+        id: 'editor',
+        name: 'Editor',
+        category: 'Foundation',
+        description: 'Rich text editor with full formatting capabilities and toolbar',
+        examples: [
+          {
+            name: 'Basic Editor',
+            code: '<sui-editor [value]="content" [height]="\'200px\'" [showToolbar]="true" placeholder="Start typing..."></sui-editor>',
+            description: 'Standard rich text editor with toolbar'
+          },
+          {
+            name: 'Size Variants',
+            code: '<sui-editor [height]="\'150px\'"></sui-editor>\n<sui-editor [height]="\'300px\'"></sui-editor>',
+            description: 'Different height variants for various use cases'
+          },
+          {
+            name: 'Disabled State',
+            code: '<sui-editor [disabled]="true" [value]="content"></sui-editor>',
+            description: 'Editor in disabled state'
+          },
+          {
+            name: 'Readonly State',
+            code: '<sui-editor [readonly]="true" [showToolbar]="false" [value]="content"></sui-editor>',
+            description: 'Editor in readonly mode without toolbar'
+          },
+          {
+            name: 'Dark Theme',
+            code: '<sui-editor [theme]="\'dark\'" [value]="content"></sui-editor>',
+            description: 'Editor with dark theme'
+          },
+          {
+            name: 'Custom Styling',
+            code: '<sui-editor [styleClass]="\'custom-editor\'" [value]="content"></sui-editor>',
+            description: 'Editor with custom CSS variables'
+          },
+          {
+            name: 'Form Integration',
+            code: '<sui-editor [value]="formContent" (onChange)="onContentChange($event)"></sui-editor>',
+            description: 'Editor integrated with Angular forms'
+          },
+          {
+            name: 'Minimal Toolbar',
+            code: '<sui-editor [showToolbar]="false" [value]="content"></sui-editor>',
+            description: 'Editor without toolbar for simple use cases'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'string',
+            default: '',
+            description: 'The content of the editor',
+            required: false
+          },
+          {
+            name: 'placeholder',
+            type: 'string',
+            default: 'Enter text...',
+            description: 'Placeholder text when editor is empty',
+            required: false
+          },
+          {
+            name: 'height',
+            type: 'string',
+            default: '200px',
+            description: 'Height of the editor',
+            required: false
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the editor is disabled',
+            required: false
+          },
+          {
+            name: 'readonly',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the editor is in readonly mode',
+            required: false
+          },
+          {
+            name: 'showToolbar',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to show the formatting toolbar',
+            required: false
+          },
+          {
+            name: 'theme',
+            type: 'string',
+            default: 'light',
+            description: 'Theme of the editor (light, dark)',
+            required: false
+          },
+          {
+            name: 'styleClass',
+            type: 'string',
+            default: '',
+            description: 'Additional CSS classes for custom styling',
+            required: false
+          },
+          {
+            name: 'style',
+            type: 'object',
+            default: '{}',
+            description: 'Inline styles for the editor',
+            required: false
+          }
+        ],
+        events: [
+          {
+            name: 'onChange',
+            type: 'string',
+            description: 'Emitted when the content changes'
+          },
+          {
+            name: 'onFocus',
+            type: 'void',
+            description: 'Emitted when the editor gains focus'
+          },
+          {
+            name: 'onBlur',
+            type: 'void',
+            description: 'Emitted when the editor loses focus'
+          }
+        ],
+        usage: 'Use the Editor component for rich text editing with formatting capabilities. It supports bold, italic, underline, lists, headings, links, and more. Perfect for content creation, comments, and any text input that needs formatting.',
+        tags: ['editor', 'rich-text', 'formatting', 'toolbar', 'content', 'form', 'input']
+      },
+      {
+        id: 'knob',
+        name: 'Knob',
+        category: 'Foundation',
+        description: 'Circular knob control for precise value adjustment with visual feedback',
+        examples: [
+          {
+            name: 'Basic Knob',
+            code: '<sui-knob [value]="value" [min]="0" [max]="100" [size]="100" [showValue]="true"></sui-knob>',
+            description: 'Standard knob control with value display'
+          },
+          {
+            name: 'Size Variants',
+            code: '<sui-knob [size]="80"></sui-knob>\n<sui-knob [size]="160"></sui-knob>',
+            description: 'Different size variants for various use cases'
+          },
+          {
+            name: 'Disabled State',
+            code: '<sui-knob [disabled]="true" [value]="value"></sui-knob>',
+            description: 'Knob in disabled state'
+          },
+          {
+            name: 'Readonly State',
+            code: '<sui-knob [readonly]="true" [value]="value"></sui-knob>',
+            description: 'Knob in readonly mode'
+          },
+          {
+            name: 'Custom Range',
+            code: '<sui-knob [min]="0" [max]="200" [step]="5" [value]="value"></sui-knob>',
+            description: 'Knob with custom minimum, maximum, and step values'
+          },
+          {
+            name: 'Color Variants',
+            code: '<sui-knob [style]="getCustomColorStyle(\'#ef4444\')" [value]="value"></sui-knob>',
+            description: 'Knob with custom color themes'
+          },
+          {
+            name: 'Form Integration',
+            code: '<sui-knob [value]="formValue" (onChange)="onValueChange($event)"></sui-knob>',
+            description: 'Knob integrated with Angular forms'
+          },
+          {
+            name: 'Minimal Display',
+            code: '<sui-knob [showValue]="false" [showTicks]="false" [value]="value"></sui-knob>',
+            description: 'Knob with minimal visual elements'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'number',
+            default: '0',
+            description: 'The current value of the knob',
+            required: false
+          },
+          {
+            name: 'min',
+            type: 'number',
+            default: '0',
+            description: 'Minimum value of the knob',
+            required: false
+          },
+          {
+            name: 'max',
+            type: 'number',
+            default: '100',
+            description: 'Maximum value of the knob',
+            required: false
+          },
+          {
+            name: 'step',
+            type: 'number',
+            default: '1',
+            description: 'Step size for value changes',
+            required: false
+          },
+          {
+            name: 'size',
+            type: 'number',
+            default: '100',
+            description: 'Size of the knob in pixels',
+            required: false
+          },
+          {
+            name: 'strokeWidth',
+            type: 'number',
+            default: '14',
+            description: 'Width of the progress stroke',
+            required: false
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the knob is disabled',
+            required: false
+          },
+          {
+            name: 'readonly',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the knob is in readonly mode',
+            required: false
+          },
+          {
+            name: 'showValue',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to show the value in the center',
+            required: false
+          },
+          {
+            name: 'showTicks',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to show tick marks',
+            required: false
+          },
+          {
+            name: 'tickCount',
+            type: 'number',
+            default: '12',
+            description: 'Number of tick marks to display',
+            required: false
+          },
+          {
+            name: 'label',
+            type: 'string',
+            default: '',
+            description: 'Label text below the knob',
+            required: false
+          },
+          {
+            name: 'unit',
+            type: 'string',
+            default: '',
+            description: 'Unit text displayed with the value',
+            required: false
+          },
+          {
+            name: 'styleClass',
+            type: 'string',
+            default: '',
+            description: 'Additional CSS classes for custom styling',
+            required: false
+          },
+          {
+            name: 'style',
+            type: 'object',
+            default: '{}',
+            description: 'Inline styles for the knob',
+            required: false
+          }
+        ],
+        events: [
+          {
+            name: 'onChange',
+            type: 'number',
+            description: 'Emitted when the value changes'
+          }
+        ],
+        usage: 'Use the Knob component for precise value adjustment in a circular interface. Perfect for volume controls, settings panels, data visualization, and any application requiring smooth value input with visual feedback.',
+        tags: ['knob', 'control', 'circular', 'value', 'input', 'interactive', 'visual']
+      },
 ];

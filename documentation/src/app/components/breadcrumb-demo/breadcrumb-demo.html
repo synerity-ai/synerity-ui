@@ -1,0 +1,141 @@
+<div class="demo-container">
+  <!-- Example 1: Basic Breadcrumb -->
+  @if (getCurrentExample().name === 'Basic Breadcrumb') {
+    <div class="demo-section">
+      <h3 class="demo-title">Basic Breadcrumb</h3>
+      <p class="demo-description">A simple breadcrumb navigation showing the current page hierarchy.</p>
+      
+      <div class="demo-example">
+        <sui-breadcrumb 
+          [model]="basicBreadcrumbItems"
+          [home]="{ label: 'Home', url: '#' }"
+          (onItemClick)="onItemClick($event)">
+        </sui-breadcrumb>
+      </div>
+    </div>
+  }
+
+  <!-- Example 2: With Icons -->
+  @if (getCurrentExample().name === 'With Icons') {
+    <div class="demo-section">
+      <h3 class="demo-title">Breadcrumb with Icons</h3>
+      <p class="demo-description">Breadcrumb navigation with icons for better visual representation.</p>
+      
+      <div class="demo-example">
+        <sui-breadcrumb 
+          [model]="breadcrumbWithIcons"
+          [home]="{ label: '🏠 Home', url: '#' }"
+          (onItemClick)="onItemClick($event)">
+        </sui-breadcrumb>
+      </div>
+    </div>
+  }
+
+  <!-- Example 3: With Disabled Items -->
+  @if (getCurrentExample().name === 'With Disabled Items') {
+    <div class="demo-section">
+      <h3 class="demo-title">Breadcrumb with Disabled Items</h3>
+      <p class="demo-description">Some breadcrumb items can be disabled to prevent navigation.</p>
+      
+      <div class="demo-example">
+        <sui-breadcrumb 
+          [model]="breadcrumbWithDisabled"
+          [home]="{ label: 'Home', url: '#' }"
+          (onItemClick)="onItemClick($event)">
+        </sui-breadcrumb>
+      </div>
+    </div>
+  }
+
+  <!-- Example 4: Long Breadcrumb -->
+  @if (getCurrentExample().name === 'Long Breadcrumb') {
+    <div class="demo-section">
+      <h3 class="demo-title">Long Breadcrumb Navigation</h3>
+      <p class="demo-description">Breadcrumb navigation with many levels, showing responsive behavior.</p>
+      
+      <div class="demo-example">
+        <sui-breadcrumb 
+          [model]="longBreadcrumbItems"
+          [home]="{ label: 'Home', url: '#' }"
+          (onItemClick)="onItemClick($event)">
+        </sui-breadcrumb>
+      </div>
+    </div>
+  }
+
+  <!-- Example 5: With Commands -->
+  @if (getCurrentExample().name === 'With Commands') {
+    <div class="demo-section">
+      <h3 class="demo-title">Breadcrumb with Commands</h3>
+      <p class="demo-description">Breadcrumb items can execute custom commands instead of navigation.</p>
+      
+      <div class="demo-example">
+        <sui-breadcrumb 
+          [model]="breadcrumbWithCommands"
+          [home]="commandHomeItem"
+          (onItemClick)="onItemClick($event)">
+        </sui-breadcrumb>
+      </div>
+    </div>
+  }
+
+  <!-- Example 6: Custom Home Item -->
+  @if (getCurrentExample().name === 'Custom Home Item') {
+    <div class="demo-section">
+      <h3 class="demo-title">Custom Home Item</h3>
+      <p class="demo-description">Customize the home item with different label, icon, and behavior.</p>
+      
+      <div class="demo-example">
+        <sui-breadcrumb 
+          [model]="basicBreadcrumbItems"
+          [home]="customHomeItem"
+          (onItemClick)="onItemClick($event)">
+        </sui-breadcrumb>
+      </div>
+    </div>
+  }
+
+  <!-- Example 7: URL Navigation -->
+  @if (getCurrentExample().name === 'URL Navigation') {
+    <div class="demo-section">
+      <h3 class="demo-title">URL Navigation</h3>
+      <p class="demo-description">Breadcrumb items with URL links for direct navigation.</p>
+      
+      <div class="demo-example">
+        <sui-breadcrumb 
+          [model]="[
+            { label: 'Home', url: '#' },
+            { label: 'Products', url: '#' },
+            { label: 'Electronics', url: '#' },
+            { label: 'Smartphones', url: '#' },
+            { label: 'iPhone 15 Pro' }
+          ]"
+          [home]="{ label: '🏠 Home', url: '#' }"
+          (onItemClick)="onItemClick($event)">
+        </sui-breadcrumb>
+      </div>
+    </div>
+  }
+
+  <!-- Example 8: Custom Styling -->
+  @if (getCurrentExample().name === 'Custom Styling') {
+    <div class="demo-section">
+      <h3 class="demo-title">Custom Styling</h3>
+      <p class="demo-description">Apply custom styling to breadcrumb components using CSS variables and classes.</p>
+      
+      <div class="demo-example">
+        <sui-breadcrumb 
+          [model]="breadcrumbWithIcons"
+          [home]="{ label: '🏠 Home', url: '#' }"
+          styleClass="custom-breadcrumb"
+          [style]="{
+            '--breadcrumb-text': '#8b5cf6',
+            '--breadcrumb-link-hover': '#7c3aed',
+            '--breadcrumb-separator-color': '#a78bfa'
+          }"
+          (onItemClick)="onItemClick($event)">
+        </sui-breadcrumb>
+      </div>
+    </div>
+  }
+</div>

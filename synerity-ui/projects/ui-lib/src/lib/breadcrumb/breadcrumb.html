@@ -1,70 +1,58 @@
 <nav 
-  class="flex items-center space-x-1 text-sm"
+  class="sui-breadcrumb"
   [class]="getBreadcrumbClass()" 
   [style]="getBreadcrumbStyle()"
   aria-label="Breadcrumb"
 >
-  <ol class="flex items-center space-x-1">
-    <li class="flex items-center">
+  <ol>
+    <li>
       <a 
         *ngIf="home.url" 
         [href]="home.url" 
-        class="flex items-center text-gray-500 hover:text-gray-700 transition-colors"
+        class="breadcrumb-home"
         (click)="onHomeClick()"
         [attr.aria-label]="'Go to ' + home.label"
       >
-        <span *ngIf="home.icon" class="mr-1 text-sm">{{ home.icon }}</span>
+        <span *ngIf="home.icon" class="breadcrumb-icon">{{ home.icon }}</span>
         <span>{{ home.label }}</span>
       </a>
       <span 
         *ngIf="!home.url" 
-        class="flex items-center text-gray-500 hover:text-gray-700 cursor-pointer transition-colors"
+        class="breadcrumb-home"
         (click)="onHomeClick()"
         [attr.aria-label]="'Go to ' + home.label"
         role="button"
         tabindex="0"
       >
-        <span *ngIf="home.icon" class="mr-1 text-sm">{{ home.icon }}</span>
+        <span *ngIf="home.icon" class="breadcrumb-icon">{{ home.icon }}</span>
         <span>{{ home.label }}</span>
       </span>
     </li>
     
-    <li *ngFor="let item of model; let i = index" class="flex items-center">
-      <svg class="w-4 h-4 text-gray-400 mx-1" fill="currentColor" viewBox="0 0 20 20">
+    <li *ngFor="let item of model; let i = index">
+      <svg class="breadcrumb-separator" fill="currentColor" viewBox="0 0 20 20">
         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
       </svg>
       <a 
         *ngIf="item.url && !isLastItem(i)" 
         [href]="item.url" 
-        class="flex items-center text-gray-500 hover:text-gray-700 transition-colors"
-        [class.opacity-50]="item.disabled"
-        [class.cursor-not-allowed]="item.disabled"
-        [class.pointer-events-none]="item.disabled"
+        [class]="item.disabled ? 'breadcrumb-disabled' : 'breadcrumb-item'"
         (click)="onItemClickHandler(item, i)"
         [attr.aria-label]="'Go to ' + item.label"
       >
-        <span *ngIf="item.icon" class="mr-1 text-sm">{{ item.icon }}</span>
+        <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
         <span>{{ item.label }}</span>
       </a>
       <span 
         *ngIf="!item.url || isLastItem(i)" 
-        class="flex items-center"
-        [class.text-gray-900]="isLastItem(i)"
-        [class.font-medium]="isLastItem(i)"
-        [class.text-gray-500]="!isLastItem(i)"
-        [class.hover:text-gray-700]="!isLastItem(i)"
-        [class.cursor-pointer]="!isLastItem(i) && !item.disabled"
-        [class.opacity-50]="item.disabled"
-        [class.cursor-not-allowed]="item.disabled"
-        [class.pointer-events-none]="item.disabled"
-        [class.transition-colors]="!isLastItem(i)"
+        [class]="item.disabled ? 'breadcrumb-disabled' : (isLastItem(i) ? 'breadcrumb-current' : 'breadcrumb-item')"
         (click)="!isLastItem(i) && !item.disabled && onItemClickHandler(item, i)"
         [attr.aria-label]="isLastItem(i) ? 'Current page: ' + item.label : 'Go to ' + item.label"
         [attr.aria-current]="isLastItem(i) ? 'page' : null"
         [attr.role]="!isLastItem(i) && !item.disabled ? 'button' : null"
         [attr.tabindex]="!isLastItem(i) && !item.disabled ? '0' : null"
       >
-        <span *ngIf="item.icon" class="mr-1 text-sm">{{ item.icon }}</span>
+        <span *ngIf="item.icon" class="breadcrumb-icon">{{ item.icon }}</span>
         <span>{{ item.label }}</span>
       </span>
     </li>

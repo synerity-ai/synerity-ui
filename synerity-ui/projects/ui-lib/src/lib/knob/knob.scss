@@ -1,16 +1,42 @@
-// Modern Knob Component Styles
+// Modern Knob Component Styles with CSS Variables
 .sui-knob {
+  // CSS Variables for Theme Inheritance
+  --sui-knob-background: var(--sui-surface, #ffffff);
+  --sui-knob-border: var(--sui-border, #e2e8f0);
+  --sui-knob-text: var(--sui-text-primary, #1e293b);
+  --sui-knob-text-secondary: var(--sui-text-secondary, #64748b);
+  --sui-knob-text-muted: var(--sui-text-muted, #94a3b8);
+  --sui-knob-primary: var(--sui-primary, #3b82f6);
+  --sui-knob-primary-hover: var(--sui-primary-hover, #1d4ed8);
+  --sui-knob-primary-light: var(--sui-primary-light, rgba(59, 130, 246, 0.3));
+  --sui-knob-track-background: var(--sui-surface-secondary, #f8fafc);
+  --sui-knob-track-border: var(--sui-border, #cbd5e1);
+  --sui-knob-shadow: var(--sui-shadow, 0 4px 12px rgba(0, 0, 0, 0.1));
+  --sui-knob-shadow-hover: var(--sui-shadow-hover, 0 8px 25px rgba(59, 130, 246, 0.3));
+  --sui-knob-shadow-indicator: var(--sui-shadow-indicator, 0 2px 4px rgba(0, 0, 0, 0.2));
+  --sui-knob-shadow-text: var(--sui-shadow-text, 0 1px 2px rgba(255, 255, 255, 0.8));
+  --sui-knob-transition: var(--sui-transition, all 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+  --sui-knob-transition-fast: var(--sui-transition-fast, all 0.2s ease);
+  --sui-knob-font-family: var(--sui-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  
+  // Dark theme variables
+  --sui-knob-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-knob-dark-text-secondary: var(--sui-dark-text-secondary, #94a3b8);
+  --sui-knob-dark-shadow-text: var(--sui-dark-shadow-text, 0 1px 2px rgba(0, 0, 0, 0.8));
+  
+  // Component styles
   position: relative;
   display: inline-block;
   cursor: pointer;
   user-select: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--sui-knob-transition);
+  font-family: var(--sui-knob-font-family);
   
   &:hover:not(.sui-knob-disabled):not(.sui-knob-readonly) {
     transform: scale(1.05);
     
     .sui-knob-svg {
-      filter: drop-shadow(0 8px 25px rgba(59, 130, 246, 0.3));
+      filter: drop-shadow(var(--sui-knob-shadow-hover));
     }
   }
   
@@ -41,29 +67,29 @@
 }
 
 .sui-knob-svg {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+  transition: var(--sui-knob-transition);
+  filter: drop-shadow(var(--sui-knob-shadow));
 }
 
 .sui-knob-track {
-  transition: all 0.3s ease;
+  transition: var(--sui-knob-transition-fast);
 }
 
 .sui-knob-progress {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--sui-knob-transition);
   stroke-linecap: round;
   transform-origin: center;
   transform: rotate(-90deg);
 }
 
 .sui-knob-indicator {
-  transition: all 0.2s ease;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: var(--sui-knob-transition-fast);
+  filter: drop-shadow(var(--sui-knob-shadow-indicator));
 }
 
 .sui-knob-ticks {
   .sui-knob-tick {
-    transition: all 0.2s ease;
+    transition: var(--sui-knob-transition-fast);
   }
 }
 
@@ -83,16 +109,16 @@
 .sui-knob-value-number {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #1e293b;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  color: var(--sui-knob-text);
+  text-shadow: var(--sui-knob-shadow-text);
   line-height: 1;
 }
 
 .sui-knob-value-unit {
   font-size: 0.625rem;
   font-weight: 500;
-  color: #64748b;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  color: var(--sui-knob-text-secondary);
+  text-shadow: var(--sui-knob-shadow-text);
   line-height: 1;
   margin-top: 1px;
 }
@@ -100,7 +126,7 @@
 .sui-knob-label {
   font-size: 0.75rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--sui-knob-text-secondary);
   text-align: center;
   margin-top: 4px;
   max-width: 100%;
@@ -199,7 +225,7 @@
 
 // Focus styles for accessibility
 .sui-knob:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid var(--sui-knob-primary);
   outline-offset: 2px;
   border-radius: 50%;
 }
@@ -224,17 +250,17 @@
 // Dark mode support
 @media (prefers-color-scheme: dark) {
   .sui-knob-value-number {
-    color: #f1f5f9;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    color: var(--sui-knob-dark-text);
+    text-shadow: var(--sui-knob-dark-shadow-text);
   }
   
   .sui-knob-value-unit {
-    color: #94a3b8;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    color: var(--sui-knob-dark-text-secondary);
+    text-shadow: var(--sui-knob-dark-shadow-text);
   }
   
   .sui-knob-label {
-    color: #94a3b8;
+    color: var(--sui-knob-dark-text-secondary);
   }
 }
 

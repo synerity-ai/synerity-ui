@@ -1,64 +1,272 @@
+/* Overlay Panel Component Styles with CSS Variables */
 .sui-overlay-panel {
-  @apply absolute bg-white border border-gray-200 rounded-lg shadow-lg p-4 min-w-48;
+  /* CSS Variables for theming */
+  --overlay-bg: var(--color-bg-elevated, #ffffff);
+  --overlay-border: var(--color-border, #e5e7eb);
+  --overlay-text: var(--color-text, #374151);
+  --overlay-text-secondary: var(--color-text-secondary, #6b7280);
+  --overlay-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+  --overlay-radius: var(--radius-lg, 0.5rem);
+  --overlay-padding: var(--spacing-4, 1rem);
+  --overlay-min-width: var(--overlay-min-width, 12rem);
+  --overlay-max-width: var(--overlay-max-width, 32rem);
+  --overlay-max-height: var(--overlay-max-height, 80vh);
+  
+  /* Close button variables */
+  --overlay-close-bg: var(--color-bg-hover, #f3f4f6);
+  --overlay-close-bg-hover: var(--color-bg-active, #e5e7eb);
+  --overlay-close-text: var(--color-text-muted, #9ca3af);
+  --overlay-close-text-hover: var(--color-text-secondary, #6b7280);
+  
+  /* Modal overlay variables */
+  --overlay-modal-bg: var(--color-overlay, rgba(0, 0, 0, 0.5));
+  
+  /* Animation variables */
+  --overlay-transition-duration: var(--overlay-transition-duration, 0.2s);
+  --overlay-transition-timing: var(--overlay-transition-timing, ease-out);
+  
+  /* Focus ring variables */
+  --overlay-focus-ring: var(--color-primary-500, #3b82f6);
+  --overlay-focus-ring-offset: var(--color-bg, #ffffff);
+
+  /* Base overlay panel styles */
+  position: absolute;
+  background-color: var(--overlay-bg);
+  border: 1px solid var(--overlay-border);
+  border-radius: var(--overlay-radius);
+  box-shadow: var(--overlay-shadow);
+  padding: var(--overlay-padding);
+  min-width: var(--overlay-min-width);
+  max-width: var(--overlay-max-width);
+  max-height: var(--overlay-max-height);
+  color: var(--overlay-text);
   z-index: 1000;
+  
+  /* Animation */
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  transition: opacity var(--overlay-transition-duration) var(--overlay-transition-timing), 
+              transform var(--overlay-transition-duration) var(--overlay-transition-timing);
+  
+  /* Typography */
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 
-  &-visible {
-    @apply opacity-100;
+  /* Visible state */
+  &.sui-overlay-panel-visible {
+    opacity: 1;
     transform: scale(1);
   }
 
-  &-modal {
-    @apply fixed inset-0 flex items-center justify-center;
-    background-color: rgba(0, 0, 0, 0.5);
+  /* Modal variant */
+  &.sui-overlay-panel-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--overlay-modal-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+    
+    /* Reset panel styles for modal */
+    position: relative;
+    margin: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
   }
 
-  &-content {
-    @apply relative;
+  /* Content wrapper */
+  .sui-overlay-panel-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 
-  &-close {
-    @apply absolute top-0 right-0 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full;
+  /* Close button */
+  .sui-overlay-panel-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--overlay-close-text);
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
     font-size: 1.2rem;
     line-height: 1;
+    transition: all var(--overlay-transition-duration) var(--overlay-transition-timing);
+    outline: none;
+    
+    &:hover {
+      color: var(--overlay-close-text-hover);
+      background-color: var(--overlay-close-bg);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--overlay-focus-ring);
+      outline-offset: 2px;
+    }
+    
+    &:active {
+      background-color: var(--overlay-close-bg-hover);
+    }
   }
 
   /* Size variants */
-  &-small {
-    @apply min-w-32 p-2;
+  &.sui-overlay-panel-small {
+    --overlay-min-width: var(--overlay-min-width-small, 8rem);
+    --overlay-padding: var(--spacing-2, 0.5rem);
+    min-width: var(--overlay-min-width);
+    padding: var(--overlay-padding);
   }
 
-  &-large {
-    @apply min-w-80 p-6;
+  &.sui-overlay-panel-large {
+    --overlay-min-width: var(--overlay-min-width-large, 20rem);
+    --overlay-padding: var(--spacing-6, 1.5rem);
+    min-width: var(--overlay-min-width);
+    padding: var(--overlay-padding);
   }
 
   /* Position variants */
-  &-top {
-    @apply bottom-full mb-2;
+  &.sui-overlay-panel-top {
+    bottom: 100%;
+    margin-bottom: 0.5rem;
   }
 
-  &-bottom {
-    @apply top-full mt-2;
+  &.sui-overlay-panel-bottom {
+    top: 100%;
+    margin-top: 0.5rem;
   }
 
-  &-left {
-    @apply right-full mr-2;
+  &.sui-overlay-panel-left {
+    right: 100%;
+    margin-right: 0.5rem;
   }
 
-  &-right {
-    @apply left-full ml-2;
+  &.sui-overlay-panel-right {
+    left: 100%;
+    margin-left: 0.5rem;
+  }
+
+  /* Animation states */
+  &.overlay-enter {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  &.overlay-enter-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &.overlay-exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &.overlay-exit-active {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  /* Accessibility improvements */
+  &[aria-hidden="true"] {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &[aria-hidden="false"] {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Focus trap support */
+  &:focus-within {
+    outline: none;
   }
 }
 
-/* Dark mode */
-.dark {
-  .sui-overlay-panel {
-    @apply bg-gray-800 border-gray-700;
+/* Dark mode support */
+.theme-dark .sui-overlay-panel {
+  --overlay-bg: var(--color-bg-elevated-dark, #1f2937);
+  --overlay-border: var(--color-border-dark, #374151);
+  --overlay-text: var(--color-text-dark, #f9fafb);
+  --overlay-text-secondary: var(--color-text-secondary-dark, #d1d5db);
+  --overlay-shadow: var(--shadow-lg-dark, 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1));
+  --overlay-modal-bg: var(--color-overlay-dark, rgba(0, 0, 0, 0.7));
+  --overlay-close-bg: var(--color-bg-hover-dark, #374151);
+  --overlay-close-bg-hover: var(--color-bg-active-dark, #4b5563);
+  --overlay-close-text: var(--color-text-muted-dark, #9ca3af);
+  --overlay-close-text-hover: var(--color-text-secondary-dark, #d1d5db);
+  --overlay-focus-ring-offset: var(--color-bg-dark, #111827);
+}
 
-    &-close {
-      @apply text-gray-400 hover:text-gray-200 hover:bg-gray-700;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .sui-overlay-panel {
+    --overlay-border: var(--color-border-high-contrast, #000000);
+    --overlay-shadow: var(--shadow-lg-high-contrast, 0 0 0 2px #000000);
+    
+    .sui-overlay-panel-close {
+      border: 1px solid var(--overlay-border);
+    }
+    
+    .theme-dark & {
+      --overlay-border: var(--color-border-high-contrast-dark, #ffffff);
+      --overlay-shadow: var(--shadow-lg-high-contrast-dark, 0 0 0 2px #ffffff);
+    }
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .sui-overlay-panel {
+    --overlay-transition-duration: 0.01s;
+    transition: none;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .sui-overlay-panel {
+    --overlay-min-width: var(--overlay-min-width-mobile, 10rem);
+    --overlay-max-width: var(--overlay-max-width-mobile, 24rem);
+    --overlay-padding: var(--spacing-3, 0.75rem);
+    
+    min-width: var(--overlay-min-width);
+    max-width: var(--overlay-max-width);
+    padding: var(--overlay-padding);
+    
+    &.sui-overlay-panel-modal {
+      max-width: 95vw;
+      max-height: 95vh;
+    }
+  }
+}
+
+/* Print styles */
+@media print {
+  .sui-overlay-panel {
+    position: static !important;
+    background-color: transparent !important;
+    border: 1px solid var(--color-border-print, #000000) !important;
+    box-shadow: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    
+    .sui-overlay-panel-close {
+      display: none !important;
     }
   }
 }

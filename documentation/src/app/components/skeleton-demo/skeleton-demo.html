@@ -1,0 +1,271 @@
+<div class="demo-container">
+  <!-- Example 1: Basic Skeleton -->
+  @if (getCurrentExample().name === 'Basic Skeleton') {
+    <div class="demo-section">
+      <h3 class="demo-title">Basic Skeleton</h3>
+      <p class="demo-description">A simple skeleton loader to indicate content is loading.</p>
+      
+      <div class="demo-example">
+        <sui-skeleton></sui-skeleton>
+      </div>
+    </div>
+  }
+
+  <!-- Example 2: Size Variants -->
+  @if (getCurrentExample().name === 'Size Variants') {
+    <div class="demo-section">
+      <h3 class="demo-title">Size Variants</h3>
+      <p class="demo-description">Skeleton loaders come in four different sizes.</p>
+      
+      <div class="demo-example">
+        <div class="size-grid">
+          <div class="size-item">
+            <sui-skeleton size="small"></sui-skeleton>
+            <span class="size-label">Small</span>
+          </div>
+          
+          <div class="size-item">
+            <sui-skeleton size="medium"></sui-skeleton>
+            <span class="size-label">Medium</span>
+          </div>
+          
+          <div class="size-item">
+            <sui-skeleton size="large"></sui-skeleton>
+            <span class="size-label">Large</span>
+          </div>
+          
+          <div class="size-item">
+            <sui-skeleton size="xlarge"></sui-skeleton>
+            <span class="size-label">Extra Large</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 3: Color Variants -->
+  @if (getCurrentExample().name === 'Color Variants') {
+    <div class="demo-section">
+      <h3 class="demo-title">Color Variants</h3>
+      <p class="demo-description">Skeleton loaders support different color themes.</p>
+      
+      <div class="demo-example">
+        <div class="color-grid">
+          <div class="color-item">
+            <sui-skeleton variant="default"></sui-skeleton>
+            <span class="color-label">Default</span>
+          </div>
+          
+          <div class="color-item">
+            <sui-skeleton variant="primary"></sui-skeleton>
+            <span class="color-label">Primary</span>
+          </div>
+          
+          <div class="color-item">
+            <sui-skeleton variant="secondary"></sui-skeleton>
+            <span class="color-label">Secondary</span>
+          </div>
+          
+          <div class="color-item">
+            <sui-skeleton variant="success"></sui-skeleton>
+            <span class="color-label">Success</span>
+          </div>
+          
+          <div class="color-item">
+            <sui-skeleton variant="warning"></sui-skeleton>
+            <span class="color-label">Warning</span>
+          </div>
+          
+          <div class="color-item">
+            <sui-skeleton variant="danger"></sui-skeleton>
+            <span class="color-label">Danger</span>
+          </div>
+          
+          <div class="color-item">
+            <sui-skeleton variant="info"></sui-skeleton>
+            <span class="color-label">Info</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 4: Shape Variants -->
+  @if (getCurrentExample().name === 'Shape Variants') {
+    <div class="demo-section">
+      <h3 class="demo-title">Shape Variants</h3>
+      <p class="demo-description">Skeleton loaders can have different shapes for various content types.</p>
+      
+      <div class="demo-example">
+        <div class="shape-grid">
+          <div class="shape-item">
+            <sui-skeleton shape="default"></sui-skeleton>
+            <span class="shape-label">Default</span>
+          </div>
+          
+          <div class="shape-item">
+            <sui-skeleton shape="circle" size="large"></sui-skeleton>
+            <span class="shape-label">Circle</span>
+          </div>
+          
+          <div class="shape-item">
+            <sui-skeleton shape="rounded" size="large"></sui-skeleton>
+            <span class="shape-label">Rounded</span>
+          </div>
+          
+          <div class="shape-item">
+            <sui-skeleton shape="square" size="large"></sui-skeleton>
+            <span class="shape-label">Square</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 5: Animation Types -->
+  @if (getCurrentExample().name === 'Animation Types') {
+    <div class="demo-section">
+      <h3 class="demo-title">Animation Types</h3>
+      <p class="demo-description">Different animation styles for skeleton loaders.</p>
+      
+      <div class="demo-example">
+        <div class="animation-grid">
+          <div class="animation-item">
+            <sui-skeleton animationType="loading" size="large"></sui-skeleton>
+            <span class="animation-label">Loading (Shimmer)</span>
+          </div>
+          
+          <div class="animation-item">
+            <sui-skeleton animationType="pulse" size="large"></sui-skeleton>
+            <span class="animation-label">Pulse</span>
+          </div>
+          
+          <div class="animation-item">
+            <sui-skeleton animationType="fade" size="large"></sui-skeleton>
+            <span class="animation-label">Fade</span>
+          </div>
+          
+          <div class="animation-item">
+            <sui-skeleton [animation]="false" size="large"></sui-skeleton>
+            <span class="animation-label">No Animation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 6: Content Types -->
+  @if (getCurrentExample().name === 'Content Types') {
+    <div class="demo-section">
+      <h3 class="demo-title">Content Types</h3>
+      <p class="demo-description">Predefined skeleton types for common content patterns.</p>
+      
+      <div class="demo-example">
+        <div class="content-types">
+          <div class="content-type">
+            <h4>Text Content</h4>
+            <sui-skeleton type="title"></sui-skeleton>
+            <sui-skeleton type="subtitle"></sui-skeleton>
+            <sui-skeleton type="text"></sui-skeleton>
+            <sui-skeleton type="caption"></sui-skeleton>
+          </div>
+          
+          <div class="content-type">
+            <h4>UI Components</h4>
+            <sui-skeleton type="button"></sui-skeleton>
+            <sui-skeleton type="input"></sui-skeleton>
+            <sui-skeleton type="avatar"></sui-skeleton>
+          </div>
+          
+          <div class="content-type">
+            <h4>Layout Components</h4>
+            <sui-skeleton type="card"></sui-skeleton>
+            <sui-skeleton type="list-item"></sui-skeleton>
+            <sui-skeleton type="table-row"></sui-skeleton>
+            <sui-skeleton type="grid-item"></sui-skeleton>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 7: Real-world Example -->
+  @if (getCurrentExample().name === 'Real-world Example') {
+    <div class="demo-section">
+      <h3 class="demo-title">Real-world Example</h3>
+      <p class="demo-description">A realistic card layout using skeleton loaders.</p>
+      
+      <div class="demo-example">
+        <div class="card-example">
+          @if (isLoading) {
+            <div class="card-skeleton">
+              <sui-skeleton type="avatar" shape="circle"></sui-skeleton>
+              <div class="card-content">
+                <sui-skeleton type="title"></sui-skeleton>
+                <sui-skeleton type="subtitle"></sui-skeleton>
+                <sui-skeleton type="text"></sui-skeleton>
+                <sui-skeleton type="text"></sui-skeleton>
+                <sui-skeleton type="text" width="60%"></sui-skeleton>
+              </div>
+            </div>
+          } @else {
+            <div class="card-content">
+              <div class="avatar">JD</div>
+              <h3>John Doe</h3>
+              <p class="subtitle">Software Engineer</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            </div>
+          }
+          
+          <button (click)="simulateLoading()" class="demo-button">
+            {{ isLoading ? 'Loading...' : 'Reload' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Example 8: Custom Styling -->
+  @if (getCurrentExample().name === 'Custom Styling') {
+    <div class="demo-section">
+      <h3 class="demo-title">Custom Styling</h3>
+      <p class="demo-description">Skeleton loaders support custom styling and dimensions.</p>
+      
+      <div class="demo-example">
+        <div class="custom-examples">
+          <div class="custom-item">
+            <sui-skeleton 
+              width="200px" 
+              height="100px" 
+              borderRadius="12px"
+              variant="primary">
+            </sui-skeleton>
+            <span>Custom Dimensions & Colors</span>
+          </div>
+          
+          <div class="custom-item">
+            <sui-skeleton 
+              width="150px" 
+              height="40px" 
+              [style]="{'--skeleton-bg': '#8b5cf6', '--skeleton-bg-secondary': '#a78bfa'}"
+              styleClass="custom-purple">
+            </sui-skeleton>
+            <span>Custom CSS Variables</span>
+          </div>
+          
+          <div class="custom-item">
+            <sui-skeleton 
+              width="100%" 
+              height="60px" 
+              borderRadius="0"
+              variant="warning"
+              animationType="pulse">
+            </sui-skeleton>
+            <span>Custom Animation & Shape</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

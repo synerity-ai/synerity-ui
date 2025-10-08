@@ -902,6 +902,33 @@ button.sui-button.sui-button-danger:hover:not(:disabled),
 /* Tree Select Component Styles - Imported from component-specific file */
 @import './tree-select/tree-select.scss';
 
+/* Popover Component Styles - Imported from component-specific file */
+@import './popover/popover.scss';
+
+/* Progress Spinner Component Styles - Imported from component-specific file */
+@import './progress-spinner/progress-spinner.scss';
+
+/* Skeleton Component Styles - Imported from component-specific file */
+@import './skeleton/skeleton.scss';
+
+/* Overlay Panel Component Styles - Imported from component-specific file */
+@import './overlay-panel/overlay-panel.scss';
+
+/* Breadcrumb Component Styles - Imported from component-specific file */
+@import './breadcrumb/breadcrumb.scss';
+
+/* Color Picker Component Styles - Imported from component-specific file */
+@import './color-picker/color-picker.scss';
+
+/* Editor Component Styles */
+@import './editor/editor.scss';
+
+/* Knob Component Styles */
+@import './knob/knob.scss';
+
+/* Auto Focus Component Styles */
+@import './auto-focus/auto-focus.scss';
+
 /* Ensure Synerity UI components inherit proper styling */
 .sui-button {
   font-family: inherit;

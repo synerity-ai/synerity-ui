@@ -1,0 +1,114 @@
+.demo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.demo-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-card);
+}
+
+.demo-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: 0.5rem;
+}
+
+.demo-description {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.demo-example {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 80px;
+  padding: 1rem;
+  border: 1px dashed var(--color-border-light);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-light);
+  gap: 1rem;
+}
+
+/* Custom breadcrumb styling example */
+.custom-breadcrumb {
+  --breadcrumb-font-size: 1rem;
+  --breadcrumb-font-weight-current: 600;
+  --breadcrumb-spacing: 0.5rem;
+  --breadcrumb-padding: 0.75rem 0;
+  
+  padding: var(--breadcrumb-padding);
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  
+  ol {
+    padding: 0 1rem;
+  }
+  
+  .breadcrumb-current {
+    background: var(--color-primary-100);
+    color: var(--color-primary-700);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: var(--breadcrumb-font-weight-current);
+  }
+  
+  .breadcrumb-item:hover {
+    background: var(--color-primary-50);
+    color: var(--color-primary-600);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .demo-example {
+    min-height: 60px;
+    padding: 0.5rem;
+  }
+  
+  .custom-breadcrumb {
+    --breadcrumb-font-size: 0.875rem;
+    --breadcrumb-spacing: 0.25rem;
+    --breadcrumb-padding: 0.5rem 0;
+    
+    ol {
+      padding: 0 0.5rem;
+    }
+  }
+}
+
+/* Dark mode adjustments */
+.theme-dark {
+  .demo-title {
+    color: var(--color-text-heading-dark, #f9fafb);
+  }
+  
+  .demo-description {
+    color: var(--color-text-secondary-dark, #d1d5db);
+  }
+  
+  .custom-breadcrumb {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    border-color: var(--color-border-dark);
+    
+    .breadcrumb-current {
+      background: var(--color-primary-900);
+      color: var(--color-primary-200);
+    }
+    
+    .breadcrumb-item:hover {
+      background: var(--color-primary-800);
+      color: var(--color-primary-300);
+    }
+  }
+}

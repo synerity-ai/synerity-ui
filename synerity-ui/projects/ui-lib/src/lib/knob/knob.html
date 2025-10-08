@@ -10,13 +10,13 @@
       <!-- Background circle with gradient -->
       <defs>
         <linearGradient id="trackGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+          <stop offset="0%" style="stop-color:var(--sui-knob-track-background, #f8fafc);stop-opacity:1" />
+          <stop offset="100%" style="stop-color:var(--sui-knob-border, #e2e8f0);stop-opacity:1" />
         </linearGradient>
         <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-          <stop offset="50%" style="stop-color:#1d4ed8;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+          <stop offset="0%" style="stop-color:var(--sui-knob-primary, #3b82f6);stop-opacity:1" />
+          <stop offset="50%" style="stop-color:var(--sui-knob-primary-hover, #1d4ed8);stop-opacity:1" />
+          <stop offset="100%" style="stop-color:var(--sui-knob-primary-hover, #1e40af);stop-opacity:1" />
         </linearGradient>
         <filter id="glow">
           <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -33,7 +33,7 @@
         cy="50"
         r="42"
         fill="url(#trackGradient)"
-        stroke="#cbd5e1"
+        [attr.stroke]="'var(--sui-knob-track-border, #cbd5e1)'"
         [attr.stroke-width]="strokeWidth * 0.3"
         class="sui-knob-track"
       />
@@ -56,8 +56,8 @@
         cx="50"
         cy="50"
         r="3"
-        fill="#ffffff"
-        stroke="#3b82f6"
+        [attr.fill]="'var(--sui-knob-background, #ffffff)'"
+        [attr.stroke]="'var(--sui-knob-primary, #3b82f6)'"
         stroke-width="1"
         class="sui-knob-indicator"
         [style]="getIndicatorStyle()"
@@ -70,7 +70,7 @@
               [attr.y1]="tick.y1" 
               [attr.x2]="tick.x2" 
               [attr.y2]="tick.y2" 
-              stroke="#64748b" 
+              [attr.stroke]="'var(--sui-knob-text-muted, #64748b)'"
               stroke-width="0.5" 
               class="sui-knob-tick" />
       </g>

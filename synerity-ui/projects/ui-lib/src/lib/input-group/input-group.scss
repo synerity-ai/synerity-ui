@@ -1,0 +1,204 @@
+// Input Group Component Styles with CSS Variables
+.sui-input-group {
+  // CSS Variables for Theme Inheritance
+  --sui-input-group-gap: var(--sui-spacing-2, 0.5rem);
+  --sui-input-group-border-radius: var(--sui-radius, 4px);
+  --sui-input-group-background: var(--sui-surface, #ffffff);
+  --sui-input-group-border: var(--sui-border, #e5e7eb);
+  --sui-input-group-border-width: 1px;
+  --sui-input-group-padding: var(--sui-spacing-3, 0.75rem);
+  --sui-input-group-transition: var(--sui-transition, all 0.2s ease);
+  --sui-input-group-shadow: var(--sui-shadow, 0 1px 2px rgba(0, 0, 0, 0.05));
+  --sui-input-group-shadow-focus: var(--sui-shadow-focus, 0 0 0 3px rgba(59, 130, 246, 0.1));
+  
+  // Size-specific variables
+  --sui-input-group-padding-small: var(--sui-spacing-2, 0.5rem);
+  --sui-input-group-padding-normal: var(--sui-spacing-3, 0.75rem);
+  --sui-input-group-padding-large: var(--sui-spacing-4, 1rem);
+  --sui-input-group-font-size-small: 0.875rem;
+  --sui-input-group-font-size-normal: 1rem;
+  --sui-input-group-font-size-large: 1.125rem;
+  
+  // Disabled state variables
+  --sui-input-group-background-disabled: var(--sui-surface-disabled, #f9fafb);
+  --sui-input-group-border-disabled: var(--sui-border-disabled, #d1d5db);
+  --sui-input-group-opacity-disabled: 0.6;
+  --sui-input-group-cursor-disabled: not-allowed;
+  
+  // Dark theme variables
+  --sui-input-group-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-input-group-dark-border: var(--sui-dark-border, #334155);
+  --sui-input-group-dark-background-disabled: var(--sui-dark-surface-disabled, #0f172a);
+  --sui-input-group-dark-border-disabled: var(--sui-dark-border-disabled, #1e293b);
+  
+  // Component styles
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  position: relative;
+  background: var(--sui-input-group-background);
+  border: var(--sui-input-group-border-width) solid var(--sui-input-group-border);
+  border-radius: var(--sui-input-group-border-radius);
+  transition: var(--sui-input-group-transition);
+  box-shadow: var(--sui-input-group-shadow);
+  
+  // Remove borders from child elements to create seamless group
+  ::ng-deep > * {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    flex: 1;
+    
+    &:first-child {
+      border-top-left-radius: var(--sui-input-group-border-radius) !important;
+      border-bottom-left-radius: var(--sui-input-group-border-radius) !important;
+    }
+    
+    &:last-child {
+      border-top-right-radius: var(--sui-input-group-border-radius) !important;
+      border-bottom-right-radius: var(--sui-input-group-border-radius) !important;
+    }
+  }
+  
+  // Add dividers between elements
+  ::ng-deep > *:not(:last-child) {
+    border-right: var(--sui-input-group-border-width) solid var(--sui-input-group-border) !important;
+  }
+  
+  // Focus state
+  &:focus-within {
+    border-color: var(--sui-primary, #3b82f6);
+    box-shadow: var(--sui-input-group-shadow-focus);
+    outline: none;
+  }
+  
+  // Hover state
+  &:hover:not(.sui-input-group-disabled) {
+    border-color: var(--sui-primary-light, #93c5fd);
+  }
+}
+
+// Size variants
+.sui-input-group-small {
+  padding: var(--sui-input-group-padding-small);
+  font-size: var(--sui-input-group-font-size-small);
+  
+  ::ng-deep > * {
+    font-size: var(--sui-input-group-font-size-small) !important;
+    padding: var(--sui-input-group-padding-small) !important;
+  }
+}
+
+.sui-input-group-normal {
+  padding: var(--sui-input-group-padding-normal);
+  font-size: var(--sui-input-group-font-size-normal);
+  
+  ::ng-deep > * {
+    font-size: var(--sui-input-group-font-size-normal) !important;
+    padding: var(--sui-input-group-padding-normal) !important;
+  }
+}
+
+.sui-input-group-large {
+  padding: var(--sui-input-group-padding-large);
+  font-size: var(--sui-input-group-font-size-large);
+  
+  ::ng-deep > * {
+    font-size: var(--sui-input-group-font-size-large) !important;
+    padding: var(--sui-input-group-padding-large) !important;
+  }
+}
+
+// Disabled state
+.sui-input-group-disabled {
+  background: var(--sui-input-group-background-disabled);
+  border-color: var(--sui-input-group-border-disabled);
+  opacity: var(--sui-input-group-opacity-disabled);
+  cursor: var(--sui-input-group-cursor-disabled);
+  pointer-events: none;
+  
+  ::ng-deep > * {
+    cursor: var(--sui-input-group-cursor-disabled) !important;
+    pointer-events: none !important;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-input-group {
+    background: var(--sui-input-group-dark-background);
+    border-color: var(--sui-input-group-dark-border);
+  }
+  
+  .sui-input-group-disabled {
+    background: var(--sui-input-group-dark-background-disabled);
+    border-color: var(--sui-input-group-dark-border-disabled);
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .sui-input-group {
+    border-width: 2px;
+    
+    &:focus-within {
+      outline: 3px solid;
+      outline-offset: 2px;
+    }
+  }
+  
+  ::ng-deep > *:not(:last-child) {
+    border-right-width: 2px !important;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .sui-input-group {
+    transition: none;
+  }
+  
+  ::ng-deep > * {
+    transition: none !important;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-input-group {
+    border: 1px solid #000;
+    box-shadow: none;
+    
+    &:focus-within {
+      box-shadow: none;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .sui-input-group {
+    flex-direction: column;
+    
+    ::ng-deep > * {
+      border-radius: 0 !important;
+      
+      &:first-child {
+        border-top-left-radius: var(--sui-input-group-border-radius) !important;
+        border-top-right-radius: var(--sui-input-group-border-radius) !important;
+        border-bottom-left-radius: 0 !important;
+      }
+      
+      &:last-child {
+        border-top-right-radius: 0 !important;
+        border-bottom-left-radius: var(--sui-input-group-border-radius) !important;
+        border-bottom-right-radius: var(--sui-input-group-border-radius) !important;
+      }
+    }
+    
+    ::ng-deep > *:not(:last-child) {
+      border-right: none !important;
+      border-bottom: var(--sui-input-group-border-width) solid var(--sui-input-group-border) !important;
+    }
+  }
+}

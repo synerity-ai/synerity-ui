@@ -1,38 +1,55 @@
-// IconField Component Styles
+// Icon Field Component Styles with CSS Variables
 .sui-icon-field {
+  // CSS Variables for Theme Inheritance
+  --sui-icon-field-icon-color: var(--sui-text-secondary, #6b7280);
+  --sui-icon-field-icon-color-focus: var(--sui-primary, #3b82f6);
+  --sui-icon-field-icon-color-disabled: var(--sui-text-muted, #9ca3af);
+  --sui-icon-field-icon-opacity-disabled: 0.6;
+  --sui-icon-field-icon-size-small: 14px;
+  --sui-icon-field-icon-size-normal: 16px;
+  --sui-icon-field-icon-size-large: 18px;
+  --sui-icon-field-padding-small: 36px;
+  --sui-icon-field-padding-normal: 40px;
+  --sui-icon-field-padding-large: 44px;
+  --sui-icon-field-icon-position-left: 12px;
+  --sui-icon-field-icon-position-right: 12px;
+  --sui-icon-field-z-index: 10;
+  --sui-icon-field-transition: var(--sui-transition, all 0.2s ease);
+  
+  // Dark theme variables
+  --sui-icon-field-dark-icon-color: var(--sui-dark-text-secondary, #94a3b8);
+  --sui-icon-field-dark-icon-color-focus: var(--sui-dark-primary, #60a5fa);
+  --sui-icon-field-dark-icon-color-disabled: var(--sui-dark-text-muted, #64748b);
+  
+  // Component styles
   display: block;
   position: relative;
   width: 100%;
-  
-  // Ensure the container doesn't overflow
   overflow: hidden;
-  
-  // CSS Custom Properties for dynamic padding
-  --icon-padding: 40px;
-  --icon-position: left;
   
   &.sui-icon-field-left {
     .sui-icon-field-icon {
       position: absolute;
-      left: 12px;
-      z-index: 10;
+      left: var(--sui-icon-field-icon-position-left);
+      z-index: var(--sui-icon-field-z-index);
       pointer-events: none;
       top: 50%;
       transform: translateY(-50%);
+      transition: var(--sui-icon-field-transition);
     }
   }
   
   &.sui-icon-field-right {
     .sui-icon-field-icon {
       position: absolute;
-      right: 12px;
-      z-index: 10;
+      right: var(--sui-icon-field-icon-position-right);
+      z-index: var(--sui-icon-field-z-index);
       pointer-events: none;
       top: 50%;
       transform: translateY(-50%);
+      transition: var(--sui-icon-field-transition);
     }
     
-    // Try to position the icon relative to the input field
     ::ng-deep .relative {
       position: relative;
     }
@@ -46,222 +63,264 @@
 
 // Global styles for IconField input padding - using maximum specificity
 .sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep .relative input {
-  padding-left: 40px !important;
+  padding-left: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep .relative input {
-  padding-right: 40px !important;
+  padding-right: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep .relative input {
-  padding-left: 36px !important;
+  padding-left: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep .relative input {
-  padding-right: 36px !important;
+  padding-right: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep .relative input {
-  padding-left: 44px !important;
+  padding-left: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep .relative input {
-  padding-right: 44px !important;
+  padding-right: var(--sui-icon-field-padding-large) !important;
 }
 
 // Fallback selectors for different input types - Normal size
 .sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="text"] {
-  padding-left: 40px !important;
+  padding-left: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="email"] {
-  padding-left: 40px !important;
+  padding-left: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="password"] {
-  padding-left: 40px !important;
+  padding-left: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="search"] {
-  padding-left: 40px !important;
+  padding-left: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="tel"] {
-  padding-left: 40px !important;
+  padding-left: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-normal ::ng-deep input[type="url"] {
-  padding-left: 40px !important;
+  padding-left: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="text"] {
-  padding-right: 40px !important;
+  padding-right: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="email"] {
-  padding-right: 40px !important;
+  padding-right: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="password"] {
-  padding-right: 40px !important;
+  padding-right: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="search"] {
-  padding-right: 40px !important;
+  padding-right: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="tel"] {
-  padding-right: 40px !important;
+  padding-right: var(--sui-icon-field-padding-normal) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-normal ::ng-deep input[type="url"] {
-  padding-right: 40px !important;
+  padding-right: var(--sui-icon-field-padding-normal) !important;
 }
 
 // Fallback selectors for different input types - Small size
 .sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="text"] {
-  padding-left: 36px !important;
+  padding-left: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="email"] {
-  padding-left: 36px !important;
+  padding-left: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="password"] {
-  padding-left: 36px !important;
+  padding-left: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="search"] {
-  padding-left: 36px !important;
+  padding-left: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="tel"] {
-  padding-left: 36px !important;
+  padding-left: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-small ::ng-deep input[type="url"] {
-  padding-left: 36px !important;
+  padding-left: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="text"] {
-  padding-right: 36px !important;
+  padding-right: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="email"] {
-  padding-right: 36px !important;
+  padding-right: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="password"] {
-  padding-right: 36px !important;
+  padding-right: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="search"] {
-  padding-right: 36px !important;
+  padding-right: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="tel"] {
-  padding-right: 36px !important;
+  padding-right: var(--sui-icon-field-padding-small) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-small ::ng-deep input[type="url"] {
-  padding-right: 36px !important;
+  padding-right: var(--sui-icon-field-padding-small) !important;
 }
 
 // Fallback selectors for different input types - Large size
 .sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="text"] {
-  padding-left: 44px !important;
+  padding-left: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="email"] {
-  padding-left: 44px !important;
+  padding-left: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="password"] {
-  padding-left: 44px !important;
+  padding-left: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="search"] {
-  padding-left: 44px !important;
+  padding-left: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="tel"] {
-  padding-left: 44px !important;
+  padding-left: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-left.sui-icon-field-large ::ng-deep input[type="url"] {
-  padding-left: 44px !important;
+  padding-left: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="text"] {
-  padding-right: 44px !important;
+  padding-right: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="email"] {
-  padding-right: 44px !important;
+  padding-right: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="password"] {
-  padding-right: 44px !important;
+  padding-right: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="search"] {
-  padding-right: 44px !important;
+  padding-right: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="tel"] {
-  padding-right: 44px !important;
+  padding-right: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field.sui-icon-field-right.sui-icon-field-large ::ng-deep input[type="url"] {
-  padding-right: 44px !important;
+  padding-right: var(--sui-icon-field-padding-large) !important;
 }
 
 .sui-icon-field-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6b7280;
-  font-size: 16px;
+  color: var(--sui-icon-field-icon-color);
+  font-size: var(--sui-icon-field-icon-size-normal);
+  transition: var(--sui-icon-field-transition);
   
   &.sui-icon-field-icon-small {
-    font-size: 14px;
+    font-size: var(--sui-icon-field-icon-size-small);
   }
   
   &.sui-icon-field-icon-normal {
-    font-size: 16px;
+    font-size: var(--sui-icon-field-icon-size-normal);
   }
   
   &.sui-icon-field-icon-large {
-    font-size: 18px;
+    font-size: var(--sui-icon-field-icon-size-large);
   }
 }
 
 // Size variants
 .sui-icon-field-small {
   .sui-icon-field-icon {
-    font-size: 14px;
+    font-size: var(--sui-icon-field-icon-size-small);
   }
 }
 
 .sui-icon-field-normal {
   .sui-icon-field-icon {
-    font-size: 16px;
+    font-size: var(--sui-icon-field-icon-size-normal);
   }
 }
 
 .sui-icon-field-large {
   .sui-icon-field-icon {
-    font-size: 18px;
+    font-size: var(--sui-icon-field-icon-size-large);
   }
 }
 
 // Focus state
 .sui-icon-field:focus-within .sui-icon-field-icon {
-  color: #3b82f6;
+  color: var(--sui-icon-field-icon-color-focus);
 }
 
 // Disabled state
 .sui-icon-field:has(input:disabled) .sui-icon-field-icon {
-  color: #9ca3af;
-  opacity: 0.6;
+  color: var(--sui-icon-field-icon-color-disabled);
+  opacity: var(--sui-icon-field-icon-opacity-disabled);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-icon-field-icon {
+    color: var(--sui-icon-field-dark-icon-color);
+  }
+  
+  .sui-icon-field:focus-within .sui-icon-field-icon {
+    color: var(--sui-icon-field-dark-icon-color-focus);
+  }
+  
+  .sui-icon-field:has(input:disabled) .sui-icon-field-icon {
+    color: var(--sui-icon-field-dark-icon-color-disabled);
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .sui-icon-field-icon {
+    font-weight: 600;
+  }
+  
+  .sui-icon-field:focus-within .sui-icon-field-icon {
+    outline: 2px solid;
+    outline-offset: 2px;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .sui-icon-field-icon {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-icon-field-icon {
+    color: #000;
+  }
 }

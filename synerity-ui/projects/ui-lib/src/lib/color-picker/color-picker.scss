@@ -1,185 +1,271 @@
+/* Color Picker Component Styles with CSS Variables */
 .sui-color-picker {
+  /* CSS Variables for theming */
+  --color-picker-bg: var(--color-bg, #ffffff);
+  --color-picker-bg-hover: var(--color-bg-hover, #f3f4f6);
+  --color-picker-bg-disabled: var(--color-bg-disabled, #f9fafb);
+  --color-picker-border: var(--color-border, #d1d5db);
+  --color-picker-border-hover: var(--color-border-hover, #9ca3af);
+  --color-picker-border-focus: var(--color-primary-500, #3b82f6);
+  --color-picker-text: var(--color-text, #374151);
+  --color-picker-text-muted: var(--color-text-muted, #9ca3af);
+  --color-picker-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  --color-picker-shadow-hover: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06));
+  --color-picker-shadow-focus: var(--shadow-focus, 0 0 0 3px rgba(59, 130, 246, 0.1));
+  --color-picker-radius: var(--radius-md, 8px);
+  --color-picker-radius-sm: var(--radius-sm, 6px);
+  --color-picker-radius-xs: var(--radius-xs, 4px);
+  
+  /* Size variables */
+  --color-picker-size-small: 32px;
+  --color-picker-size-medium: 40px;
+  --color-picker-size-large: 48px;
+  --color-picker-icon-small: 14px;
+  --color-picker-icon-medium: 16px;
+  --color-picker-icon-large: 18px;
+  
+  /* Spacing variables */
+  --color-picker-spacing-xs: var(--spacing-1, 4px);
+  --color-picker-spacing-sm: var(--spacing-2, 8px);
+  --color-picker-spacing-md: var(--spacing-3, 12px);
+  --color-picker-spacing-lg: var(--spacing-4, 16px);
+  
+  /* Animation variables */
+  --color-picker-transition: var(--transition-all, all 0.15s ease);
+  --color-picker-transition-transform: var(--transition-transform, transform 0.15s ease);
+  
+  /* Panel variables */
+  --color-picker-panel-bg: var(--color-bg-elevated, #ffffff);
+  --color-picker-panel-border: var(--color-border, #d1d5db);
+  --color-picker-panel-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+  --color-picker-panel-min-width: 280px;
+  --color-picker-panel-z-index: 50;
+  
+  /* Input variables */
+  --color-picker-input-height: 40px;
+  --color-picker-input-border: var(--color-border, #d1d5db);
+  --color-picker-input-radius: var(--radius-sm, 6px);
+  
+  /* Preset variables */
+  --color-picker-preset-size: 24px;
+  --color-picker-preset-gap: var(--color-picker-spacing-sm, 8px);
+  --color-picker-preset-border: var(--color-border, #d1d5db);
+  --color-picker-preset-border-hover: var(--color-primary-500, #3b82f6);
+  --color-picker-preset-radius: var(--radius-xs, 4px);
+  
+  /* Inline panel variables */
+  --color-picker-inline-bg: var(--color-bg-light, #f9fafb);
+  --color-picker-inline-border: var(--color-border-light, #e5e7eb);
+  
+  /* Checkerboard pattern variables */
+  --color-picker-checker-color: var(--color-border, #d1d5db);
+  --color-picker-checker-size: 8px;
+
+  /* Base styles */
   position: relative;
   display: inline-block;
 }
 
-// Size variants
+/* Size variants */
 .sui-color-picker-small {
   .sui-color-picker-trigger {
-    width: 32px;
-    height: 32px;
+    width: var(--color-picker-size-small);
+    height: var(--color-picker-size-small);
   }
   
   .sui-color-picker-icon svg {
-    width: 14px;
-    height: 14px;
+    width: var(--color-picker-icon-small);
+    height: var(--color-picker-icon-small);
   }
 }
 
 .sui-color-picker-medium {
   .sui-color-picker-trigger {
-    width: 40px;
-    height: 40px;
+    width: var(--color-picker-size-medium);
+    height: var(--color-picker-size-medium);
   }
   
   .sui-color-picker-icon svg {
-    width: 16px;
-    height: 16px;
+    width: var(--color-picker-icon-medium);
+    height: var(--color-picker-icon-medium);
   }
 }
 
 .sui-color-picker-large {
   .sui-color-picker-trigger {
-    width: 48px;
-    height: 48px;
+    width: var(--color-picker-size-large);
+    height: var(--color-picker-size-large);
   }
   
   .sui-color-picker-icon svg {
-    width: 18px;
-    height: 18px;
+    width: var(--color-picker-icon-large);
+    height: var(--color-picker-icon-large);
   }
 }
 
+/* Trigger styles */
 .sui-color-picker-trigger {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 2px solid #d1d5db;
-  border-radius: 8px;
+  width: var(--color-picker-size-medium);
+  height: var(--color-picker-size-medium);
+  border: 2px solid var(--color-picker-border);
+  border-radius: var(--color-picker-radius);
   cursor: pointer;
-  background-color: #ffffff;
-  transition: all 0.15s ease;
+  background-color: var(--color-picker-bg);
+  transition: var(--color-picker-transition);
   overflow: hidden;
+  outline: none;
 
   &:hover {
-    border-color: #9ca3af;
+    border-color: var(--color-picker-border-hover);
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--color-picker-shadow-hover);
   }
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--color-picker-shadow);
   }
 
   &:focus-within {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: var(--color-picker-border-focus);
+    box-shadow: var(--color-picker-shadow-focus);
   }
 }
 
+/* Preview styles */
 .sui-color-picker-preview {
   position: absolute;
   top: 2px;
   left: 2px;
   right: 2px;
   bottom: 2px;
-  border-radius: 6px;
+  border-radius: var(--color-picker-radius-sm);
   border: 1px solid rgba(255, 255, 255, 0.3);
   background-image: 
-    linear-gradient(45deg, #ccc 25%, transparent 25%), 
-    linear-gradient(-45deg, #ccc 25%, transparent 25%), 
-    linear-gradient(45deg, transparent 75%, #ccc 75%), 
-    linear-gradient(-45deg, transparent 75%, #ccc 75%);
-  background-size: 8px 8px;
+    linear-gradient(45deg, var(--color-picker-checker-color) 25%, transparent 25%), 
+    linear-gradient(-45deg, var(--color-picker-checker-color) 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, var(--color-picker-checker-color) 75%), 
+    linear-gradient(-45deg, transparent 75%, var(--color-picker-checker-color) 75%);
+  background-size: var(--color-picker-checker-size) var(--color-picker-checker-size);
   background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
-  
-  /* The selected color will be applied via inline style and will override this background */
-  /* This checkerboard pattern serves as a fallback for transparent colors */
 }
 
+/* Icon styles */
 .sui-color-picker-icon {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--color-picker-text-muted);
   pointer-events: none;
   z-index: 1;
   
   svg {
-    width: 16px;
-    height: 16px;
+    width: var(--color-picker-icon-medium);
+    height: var(--color-picker-icon-medium);
   }
 }
 
+/* Panel styles */
 .sui-color-picker-panel {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  z-index: 50;
-  margin-top: 4px;
-  padding: 16px;
-  background: white;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  min-width: 280px;
+  z-index: var(--color-picker-panel-z-index);
+  margin-top: var(--color-picker-spacing-xs);
+  padding: var(--color-picker-spacing-lg);
+  background: var(--color-picker-panel-bg);
+  border: 1px solid var(--color-picker-panel-border);
+  border-radius: var(--color-picker-radius);
+  box-shadow: var(--color-picker-panel-shadow);
+  min-width: var(--color-picker-panel-min-width);
 }
 
+/* Input styles */
 .sui-color-picker-input-native {
   width: 100%;
-  height: 40px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  height: var(--color-picker-input-height);
+  border: 1px solid var(--color-picker-input-border);
+  border-radius: var(--color-picker-input-radius);
   cursor: pointer;
-  margin-bottom: 12px;
+  margin-bottom: var(--color-picker-spacing-md);
+  background-color: var(--color-picker-bg);
+  transition: var(--color-picker-transition);
+
+  &:hover {
+    border-color: var(--color-picker-border-hover);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-picker-border-focus);
+    box-shadow: var(--color-picker-shadow-focus);
+  }
 
   &::-webkit-color-swatch-wrapper {
     padding: 0;
-    border-radius: 4px;
+    border-radius: var(--color-picker-radius-xs);
     overflow: hidden;
   }
 
   &::-webkit-color-swatch {
     border: none;
-    border-radius: 4px;
+    border-radius: var(--color-picker-radius-xs);
   }
 }
 
+/* Presets styles */
 .sui-color-picker-presets {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  gap: 8px;
+  gap: var(--color-picker-preset-gap);
 }
 
 .sui-color-picker-preset {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  border: 1px solid #d1d5db;
+  width: var(--color-picker-preset-size);
+  height: var(--color-picker-preset-size);
+  border-radius: var(--color-picker-preset-radius);
+  border: 1px solid var(--color-picker-preset-border);
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: var(--color-picker-transition-transform);
 
   &:hover {
     transform: scale(1.1);
-    border-color: #3b82f6;
+    border-color: var(--color-picker-preset-border-hover);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-picker-preset-border-hover);
+    box-shadow: var(--color-picker-shadow-focus);
   }
 }
 
+/* Inline panel styles */
 .sui-color-picker-inline-panel {
-  margin-top: 12px;
-  padding: 16px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
+  margin-top: var(--color-picker-spacing-md);
+  padding: var(--color-picker-spacing-lg);
+  background: var(--color-picker-inline-bg);
+  border: 1px solid var(--color-picker-inline-border);
+  border-radius: var(--color-picker-radius-sm);
 }
 
+/* Disabled state styles */
 .sui-color-picker-disabled {
   .sui-color-picker-trigger {
     opacity: 0.5;
     cursor: not-allowed;
-    background-color: #f9fafb;
+    background-color: var(--color-picker-bg-disabled);
     
     &:hover {
       transform: none;
       box-shadow: none;
-      border-color: #d1d5db;
+      border-color: var(--color-picker-border);
     }
   }
 
@@ -204,6 +290,7 @@
   }
 }
 
+/* Inline variant styles */
 .sui-color-picker-inline {
   .sui-color-picker-trigger {
     border: none;
@@ -214,6 +301,90 @@
       transform: none;
       box-shadow: none;
     }
+  }
+}
+
+/* Dark mode support */
+.theme-dark .sui-color-picker {
+  --color-picker-bg: var(--color-bg-dark, #1f2937);
+  --color-picker-bg-hover: var(--color-bg-hover-dark, #374151);
+  --color-picker-bg-disabled: var(--color-bg-disabled-dark, #111827);
+  --color-picker-border: var(--color-border-dark, #374151);
+  --color-picker-border-hover: var(--color-border-hover-dark, #4b5563);
+  --color-picker-border-focus: var(--color-primary-400, #60a5fa);
+  --color-picker-text: var(--color-text-dark, #f9fafb);
+  --color-picker-text-muted: var(--color-text-muted-dark, #9ca3af);
+  --color-picker-shadow-focus: var(--shadow-focus-dark, 0 0 0 3px rgba(96, 165, 250, 0.1));
+  --color-picker-panel-bg: var(--color-bg-elevated-dark, #1f2937);
+  --color-picker-panel-border: var(--color-border-dark, #374151);
+  --color-picker-panel-shadow: var(--shadow-lg-dark, 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1));
+  --color-picker-input-border: var(--color-border-dark, #374151);
+  --color-picker-preset-border: var(--color-border-dark, #374151);
+  --color-picker-preset-border-hover: var(--color-primary-400, #60a5fa);
+  --color-picker-inline-bg: var(--color-bg-light-dark, #111827);
+  --color-picker-inline-border: var(--color-border-light-dark, #374151);
+  --color-picker-checker-color: var(--color-border-dark, #374151);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .sui-color-picker {
+    --color-picker-border: var(--color-border-high-contrast, #000000);
+    --color-picker-border-focus: var(--color-primary-high-contrast, #000000);
+    --color-picker-preset-border: var(--color-border-high-contrast, #000000);
+    --color-picker-preset-border-hover: var(--color-primary-high-contrast, #000000);
+    --color-picker-shadow-focus: var(--shadow-focus-high-contrast, 0 0 0 2px #000000);
+    
+    .sui-color-picker-trigger,
+    .sui-color-picker-input-native,
+    .sui-color-picker-preset {
+      border-width: 2px;
+    }
+    
+    .theme-dark & {
+      --color-picker-border: var(--color-border-high-contrast-dark, #ffffff);
+      --color-picker-border-focus: var(--color-primary-high-contrast-dark, #ffffff);
+      --color-picker-preset-border: var(--color-border-high-contrast-dark, #ffffff);
+      --color-picker-preset-border-hover: var(--color-primary-high-contrast-dark, #ffffff);
+      --color-picker-shadow-focus: var(--shadow-focus-high-contrast-dark, 0 0 0 2px #ffffff);
+    }
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .sui-color-picker {
+    --color-picker-transition: none;
+    --color-picker-transition-transform: none;
+    
+    .sui-color-picker-trigger,
+    .sui-color-picker-preset,
+    .sui-color-picker-input-native {
+      transition: none;
+    }
+    
+    .sui-color-picker-trigger:hover {
+      transform: none;
+    }
+    
+    .sui-color-picker-preset:hover {
+      transform: none;
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .sui-color-picker {
+    --color-picker-size-small: 28px;
+    --color-picker-size-medium: 36px;
+    --color-picker-size-large: 44px;
+    --color-picker-icon-small: 12px;
+    --color-picker-icon-medium: 14px;
+    --color-picker-icon-large: 16px;
+    --color-picker-panel-min-width: 260px;
+    --color-picker-preset-size: 20px;
+    --color-picker-spacing-lg: var(--color-picker-spacing-md);
   }
 }
 
@@ -230,4 +401,26 @@
 
 :host-context(.overflow-auto) {
   overflow: visible !important;
+}
+
+/* Print styles */
+@media print {
+  .sui-color-picker {
+    --color-picker-bg: transparent;
+    --color-picker-border: var(--color-border-print, #000000);
+    --color-picker-shadow: none;
+    --color-picker-shadow-hover: none;
+    --color-picker-shadow-focus: none;
+    --color-picker-panel-shadow: none;
+    
+    .sui-color-picker-panel {
+      position: static !important;
+      box-shadow: none !important;
+      border: 1px solid var(--color-border-print, #000000) !important;
+    }
+    
+    .sui-color-picker-trigger:hover {
+      transform: none !important;
+    }
+  }
 }

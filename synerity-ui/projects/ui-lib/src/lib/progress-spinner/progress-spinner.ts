@@ -12,15 +12,19 @@ export class ProgressSpinner {
   @Input() fill = 'transparent';
   @Input() animationDuration = '2s';
   @Input() size: 'small' | 'normal' | 'large' = 'normal';
+  @Input() color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' = 'primary';
   @Input() style: any = {};
   @Input() styleClass = '';
 
   getSpinnerClass(): string {
-    return `sui-progress-spinner sui-progress-spinner-${this.size} ${this.styleClass}`.trim();
+    const sizeClass = `sui-progress-spinner-${this.size}`;
+    const colorClass = this.color !== 'primary' ? `sui-progress-spinner-${this.color}` : '';
+    return `sui-progress-spinner ${sizeClass} ${colorClass} ${this.styleClass}`.trim();
   }
 
   getSpinnerStyle(): any {
     return {
+      '--spinner-circumference': `${this.getCircumference()}`,
       ...this.style
     };
   }

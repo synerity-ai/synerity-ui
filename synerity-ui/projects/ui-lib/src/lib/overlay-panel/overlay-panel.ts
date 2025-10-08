@@ -21,6 +21,8 @@ export class OverlayPanel implements OnInit, OnDestroy {
   @Input() autoZIndex = true;
   @Input() showTransitionOptions = '225ms ease-out';
   @Input() hideTransitionOptions = '195ms ease-in';
+  @Input() size: 'small' | 'normal' | 'large' = 'normal';
+  @Input() position: 'top' | 'bottom' | 'left' | 'right' | null = null;
 
   @Output() onShow = new EventEmitter<void>();
   @Output() onHide = new EventEmitter<void>();
@@ -87,7 +89,34 @@ export class OverlayPanel implements OnInit, OnDestroy {
   }
 
   getOverlayPanelClass(): string {
-    return `sui-overlay-panel ${this.visible ? 'sui-overlay-panel-visible' : ''} ${this.modal ? 'sui-overlay-panel-modal' : ''} ${this.styleClass}`.trim();
+    let classes = 'sui-overlay-panel';
+    
+    // Visibility state
+    if (this.visible) {
+      classes += ' sui-overlay-panel-visible';
+    }
+    
+    // Modal variant
+    if (this.modal) {
+      classes += ' sui-overlay-panel-modal';
+    }
+    
+    // Size variant
+    if (this.size !== 'normal') {
+      classes += ` sui-overlay-panel-${this.size}`;
+    }
+    
+    // Position variant
+    if (this.position) {
+      classes += ` sui-overlay-panel-${this.position}`;
+    }
+    
+    // Custom class
+    if (this.styleClass) {
+      classes += ` ${this.styleClass}`;
+    }
+    
+    return classes.trim();
   }
 
   getOverlayPanelStyle(): any {

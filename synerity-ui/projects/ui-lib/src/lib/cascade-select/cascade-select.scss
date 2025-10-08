@@ -1,0 +1,180 @@
+// Cascade Select Component Styles with CSS Variables
+.sui-cascade-select {
+  // CSS Variables for Theme Inheritance
+  --sui-cascade-select-gap: var(--sui-spacing-2, 0.5rem);
+  --sui-cascade-select-background: var(--sui-surface, #ffffff);
+  --sui-cascade-select-border: var(--sui-border, #e5e7eb);
+  --sui-cascade-select-border-radius: var(--sui-radius, 4px);
+  --sui-cascade-select-text: var(--sui-text-primary, #1e293b);
+  --sui-cascade-select-text-placeholder: var(--sui-text-muted, #9ca3af);
+  --sui-cascade-select-padding: var(--sui-spacing-2, 0.5rem) var(--sui-spacing-3, 0.75rem);
+  --sui-cascade-select-font-size: 1rem;
+  --sui-cascade-select-font-family: var(--sui-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  --sui-cascade-select-line-height: 1.5;
+  --sui-cascade-select-transition: var(--sui-transition, all 0.2s ease);
+  --sui-cascade-select-shadow: var(--sui-shadow, 0 1px 2px rgba(0, 0, 0, 0.05));
+  --sui-cascade-select-shadow-focus: var(--sui-shadow-focus, 0 0 0 3px rgba(59, 130, 246, 0.1));
+  --sui-cascade-select-primary: var(--sui-primary, #3b82f6);
+  --sui-cascade-select-primary-hover: var(--sui-primary-hover, #2563eb);
+  
+  // Disabled state variables
+  --sui-cascade-select-background-disabled: var(--sui-surface-disabled, #f9fafb);
+  --sui-cascade-select-border-disabled: var(--sui-border-disabled, #d1d5db);
+  --sui-cascade-select-text-disabled: var(--sui-text-disabled, #9ca3af);
+  --sui-cascade-select-opacity-disabled: 0.6;
+  --sui-cascade-select-cursor-disabled: not-allowed;
+  
+  // Dark theme variables
+  --sui-cascade-select-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-cascade-select-dark-border: var(--sui-dark-border, #334155);
+  --sui-cascade-select-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-cascade-select-dark-text-placeholder: var(--sui-dark-text-muted, #64748b);
+  --sui-cascade-select-dark-background-disabled: var(--sui-dark-surface-disabled, #0f172a);
+  --sui-cascade-select-dark-border-disabled: var(--sui-dark-border-disabled, #1e293b);
+  
+  // Component styles
+  display: flex;
+  gap: var(--sui-cascade-select-gap);
+  align-items: center;
+  flex-wrap: wrap;
+  
+  .cascade-select-dropdown {
+    flex: 1;
+    min-width: 150px;
+    padding: var(--sui-cascade-select-padding);
+    font-size: var(--sui-cascade-select-font-size);
+    font-family: var(--sui-cascade-select-font-family);
+    line-height: var(--sui-cascade-select-line-height);
+    color: var(--sui-cascade-select-text);
+    background: var(--sui-cascade-select-background);
+    border: 1px solid var(--sui-cascade-select-border);
+    border-radius: var(--sui-cascade-select-border-radius);
+    transition: var(--sui-cascade-select-transition);
+    box-shadow: var(--sui-cascade-select-shadow);
+    cursor: pointer;
+    outline: none;
+    
+    // Hover state
+    &:hover:not(:disabled) {
+      border-color: var(--sui-cascade-select-primary);
+    }
+    
+    // Focus state
+    &:focus {
+      border-color: var(--sui-cascade-select-primary);
+      box-shadow: var(--sui-cascade-select-shadow-focus);
+      outline: none;
+    }
+    
+    // Disabled state
+    &:disabled {
+      background: var(--sui-cascade-select-background-disabled);
+      border-color: var(--sui-cascade-select-border-disabled);
+      color: var(--sui-cascade-select-text-disabled);
+      cursor: var(--sui-cascade-select-cursor-disabled);
+      opacity: var(--sui-cascade-select-opacity-disabled);
+    }
+    
+    // Placeholder styling
+    option:disabled {
+      color: var(--sui-cascade-select-text-placeholder);
+    }
+    
+    // Option styling
+    option {
+      padding: var(--sui-cascade-select-padding);
+      color: var(--sui-cascade-select-text);
+      background: var(--sui-cascade-select-background);
+    }
+    
+    option:hover {
+      background: var(--sui-cascade-select-primary);
+      color: #ffffff;
+    }
+  }
+  
+  // Disabled state for the container
+  &.sui-cascade-select-disabled {
+    opacity: var(--sui-cascade-select-opacity-disabled);
+    pointer-events: none;
+    
+    .cascade-select-dropdown {
+      cursor: var(--sui-cascade-select-cursor-disabled);
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-cascade-select {
+    .cascade-select-dropdown {
+      background: var(--sui-cascade-select-dark-background);
+      border-color: var(--sui-cascade-select-dark-border);
+      color: var(--sui-cascade-select-dark-text);
+      
+      &:disabled {
+        background: var(--sui-cascade-select-dark-background-disabled);
+        border-color: var(--sui-cascade-select-dark-border-disabled);
+      }
+      
+      option:disabled {
+        color: var(--sui-cascade-select-dark-text-placeholder);
+      }
+      
+      option {
+        background: var(--sui-cascade-select-dark-background);
+        color: var(--sui-cascade-select-dark-text);
+      }
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .sui-cascade-select {
+    .cascade-select-dropdown {
+      border-width: 2px;
+      
+      &:focus {
+        outline: 3px solid;
+        outline-offset: 2px;
+      }
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .sui-cascade-select {
+    .cascade-select-dropdown {
+      transition: none;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .sui-cascade-select {
+    .cascade-select-dropdown {
+      border: 1px solid #000;
+      box-shadow: none;
+      
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .sui-cascade-select {
+    flex-direction: column;
+    align-items: stretch;
+    
+    .cascade-select-dropdown {
+      width: 100%;
+      min-width: 100%;
+    }
+  }
+}

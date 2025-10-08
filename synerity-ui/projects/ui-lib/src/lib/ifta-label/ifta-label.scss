@@ -1,0 +1,137 @@
+// IFTA Label Component Styles with CSS Variables
+.sui-ifta-label {
+  // CSS Variables for Theme Inheritance
+  --sui-ifta-label-font-size: var(--sui-font-size, 1rem);
+  --sui-ifta-label-font-family: var(--sui-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  --sui-ifta-label-font-weight: 500;
+  --sui-ifta-label-line-height: 1.5;
+  --sui-ifta-label-transition: var(--sui-transition, all 0.2s ease);
+  
+  // True label variables
+  --sui-ifta-label-true-color: var(--sui-success, #059669);
+  --sui-ifta-label-true-background: var(--sui-success-light, #d1fae5);
+  --sui-ifta-label-true-border: var(--sui-success, #059669);
+  
+  // False label variables
+  --sui-ifta-label-false-color: var(--sui-error, #dc2626);
+  --sui-ifta-label-false-background: var(--sui-error-light, #fee2e2);
+  --sui-ifta-label-false-border: var(--sui-error, #dc2626);
+  
+  // Alt label variables
+  --sui-ifta-label-alt-color: var(--sui-warning, #f59e0b);
+  --sui-ifta-label-alt-background: var(--sui-warning-light, #fef3c7);
+  --sui-ifta-label-alt-border: var(--sui-warning, #f59e0b);
+  
+  // Common label variables
+  --sui-ifta-label-padding: 0.25rem 0.5rem;
+  --sui-ifta-label-border-radius: var(--sui-radius, 4px);
+  --sui-ifta-label-border-width: 1px;
+  
+  // Dark theme variables
+  --sui-ifta-label-dark-true-color: var(--sui-dark-success, #10b981);
+  --sui-ifta-label-dark-true-background: var(--sui-dark-success-light, rgba(16, 185, 129, 0.1));
+  --sui-ifta-label-dark-false-color: var(--sui-dark-error, #ef4444);
+  --sui-ifta-label-dark-false-background: var(--sui-dark-error-light, rgba(239, 68, 68, 0.1));
+  --sui-ifta-label-dark-alt-color: var(--sui-dark-warning, #fbbf24);
+  --sui-ifta-label-dark-alt-background: var(--sui-dark-warning-light, rgba(251, 191, 36, 0.1));
+  
+  // Component styles
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--sui-ifta-label-font-size);
+  font-family: var(--sui-ifta-label-font-family);
+  font-weight: var(--sui-ifta-label-font-weight);
+  line-height: var(--sui-ifta-label-line-height);
+  transition: var(--sui-ifta-label-transition);
+}
+
+// True label styling
+.sui-ifta-label-true {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sui-ifta-label-padding);
+  color: var(--sui-ifta-label-true-color);
+  background: var(--sui-ifta-label-true-background);
+  border: var(--sui-ifta-label-border-width) solid var(--sui-ifta-label-true-border);
+  border-radius: var(--sui-ifta-label-border-radius);
+  font-weight: var(--sui-ifta-label-font-weight);
+  transition: var(--sui-ifta-label-transition);
+}
+
+// False label styling
+.sui-ifta-label-false {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sui-ifta-label-padding);
+  color: var(--sui-ifta-label-false-color);
+  background: var(--sui-ifta-label-false-background);
+  border: var(--sui-ifta-label-border-width) solid var(--sui-ifta-label-false-border);
+  border-radius: var(--sui-ifta-label-border-radius);
+  font-weight: var(--sui-ifta-label-font-weight);
+  transition: var(--sui-ifta-label-transition);
+}
+
+// Alt label styling
+.sui-ifta-label-alt {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sui-ifta-label-padding);
+  color: var(--sui-ifta-label-alt-color);
+  background: var(--sui-ifta-label-alt-background);
+  border: var(--sui-ifta-label-border-width) solid var(--sui-ifta-label-alt-border);
+  border-radius: var(--sui-ifta-label-border-radius);
+  font-weight: var(--sui-ifta-label-font-weight);
+  transition: var(--sui-ifta-label-transition);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-ifta-label-true {
+    color: var(--sui-ifta-label-dark-true-color);
+    background: var(--sui-ifta-label-dark-true-background);
+    border-color: var(--sui-ifta-label-dark-true-color);
+  }
+  
+  .sui-ifta-label-false {
+    color: var(--sui-ifta-label-dark-false-color);
+    background: var(--sui-ifta-label-dark-false-background);
+    border-color: var(--sui-ifta-label-dark-false-color);
+  }
+  
+  .sui-ifta-label-alt {
+    color: var(--sui-ifta-label-dark-alt-color);
+    background: var(--sui-ifta-label-dark-alt-background);
+    border-color: var(--sui-ifta-label-dark-alt-color);
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .sui-ifta-label-true,
+  .sui-ifta-label-false,
+  .sui-ifta-label-alt {
+    border-width: 2px;
+    font-weight: 600;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .sui-ifta-label,
+  .sui-ifta-label-true,
+  .sui-ifta-label-false,
+  .sui-ifta-label-alt {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-ifta-label-true,
+  .sui-ifta-label-false,
+  .sui-ifta-label-alt {
+    color: #000;
+    background: transparent;
+    border: 1px solid #000;
+  }
+}
