@@ -1,0 +1,157 @@
+// Input OTP Component Styles with CSS Variables
+.sui-input-otp {
+  // CSS Variables for Theme Inheritance
+  --sui-input-otp-gap: var(--sui-spacing-2, 0.5rem);
+  --sui-input-otp-background: var(--sui-surface, #ffffff);
+  --sui-input-otp-border: var(--sui-border, #e5e7eb);
+  --sui-input-otp-border-radius: var(--sui-radius, 4px);
+  --sui-input-otp-text: var(--sui-text-primary, #1e293b);
+  --sui-input-otp-padding: var(--sui-spacing-3, 0.75rem);
+  --sui-input-otp-font-size: 1.25rem;
+  --sui-input-otp-font-family: var(--sui-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace);
+  --sui-input-otp-font-weight: 600;
+  --sui-input-otp-line-height: 1.5;
+  --sui-input-otp-transition: var(--sui-transition, all 0.2s ease);
+  --sui-input-otp-shadow: var(--sui-shadow, 0 1px 2px rgba(0, 0, 0, 0.05));
+  --sui-input-otp-shadow-focus: var(--sui-shadow-focus, 0 0 0 3px rgba(59, 130, 246, 0.1));
+  --sui-input-otp-primary: var(--sui-primary, #3b82f6);
+  --sui-input-otp-primary-hover: var(--sui-primary-hover, #2563eb);
+  --sui-input-otp-width: 3rem;
+  --sui-input-otp-height: 3rem;
+  
+  // Disabled state variables
+  --sui-input-otp-background-disabled: var(--sui-surface-disabled, #f9fafb);
+  --sui-input-otp-border-disabled: var(--sui-border-disabled, #d1d5db);
+  --sui-input-otp-text-disabled: var(--sui-text-disabled, #9ca3af);
+  --sui-input-otp-opacity-disabled: 0.6;
+  --sui-input-otp-cursor-disabled: not-allowed;
+  
+  // Dark theme variables
+  --sui-input-otp-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-input-otp-dark-border: var(--sui-dark-border, #334155);
+  --sui-input-otp-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-input-otp-dark-background-disabled: var(--sui-dark-surface-disabled, #0f172a);
+  --sui-input-otp-dark-border-disabled: var(--sui-dark-border-disabled, #1e293b);
+  
+  // Component styles
+  display: flex;
+  gap: var(--sui-input-otp-gap);
+  align-items: center;
+  justify-content: center;
+  
+  // Disabled state
+  &.sui-input-otp-disabled {
+    opacity: var(--sui-input-otp-opacity-disabled);
+    pointer-events: none;
+  }
+}
+
+.sui-input-otp-digit {
+  width: var(--sui-input-otp-width);
+  height: var(--sui-input-otp-height);
+  padding: var(--sui-input-otp-padding);
+  font-size: var(--sui-input-otp-font-size);
+  font-family: var(--sui-input-otp-font-family);
+  font-weight: var(--sui-input-otp-font-weight);
+  line-height: var(--sui-input-otp-line-height);
+  color: var(--sui-input-otp-text);
+  background: var(--sui-input-otp-background);
+  border: 2px solid var(--sui-input-otp-border);
+  border-radius: var(--sui-input-otp-border-radius);
+  transition: var(--sui-input-otp-transition);
+  box-shadow: var(--sui-input-otp-shadow);
+  outline: none;
+  text-align: center;
+  caret-color: var(--sui-input-otp-primary);
+  
+  // Hover state
+  &:hover:not(:disabled) {
+    border-color: var(--sui-input-otp-primary-hover);
+  }
+  
+  // Focus state
+  &:focus {
+    border-color: var(--sui-input-otp-primary);
+    box-shadow: var(--sui-input-otp-shadow-focus);
+    outline: none;
+    transform: scale(1.05);
+  }
+  
+  // Disabled state
+  &:disabled {
+    background: var(--sui-input-otp-background-disabled);
+    border-color: var(--sui-input-otp-border-disabled);
+    color: var(--sui-input-otp-text-disabled);
+    cursor: var(--sui-input-otp-cursor-disabled);
+  }
+  
+  // Filled state (has value)
+  &:not(:placeholder-shown) {
+    border-color: var(--sui-input-otp-primary);
+    background: var(--sui-input-otp-background);
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-input-otp-digit {
+    background: var(--sui-input-otp-dark-background);
+    border-color: var(--sui-input-otp-dark-border);
+    color: var(--sui-input-otp-dark-text);
+    
+    &:disabled {
+      background: var(--sui-input-otp-dark-background-disabled);
+      border-color: var(--sui-input-otp-dark-border-disabled);
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .sui-input-otp-digit {
+    border-width: 3px;
+    font-weight: 700;
+    
+    &:focus {
+      outline: 3px solid;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .sui-input-otp-digit {
+    transition: none;
+    
+    &:focus {
+      transform: none;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .sui-input-otp-digit {
+    border: 2px solid #000;
+    box-shadow: none;
+    
+    &:focus {
+      box-shadow: none;
+      transform: none;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .sui-input-otp {
+    gap: calc(var(--sui-input-otp-gap) * 0.75);
+  }
+  
+  .sui-input-otp-digit {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+}

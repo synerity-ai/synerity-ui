@@ -1,0 +1,130 @@
+// Input Mask Component Styles with CSS Variables
+.sui-input-mask {
+  // CSS Variables for Theme Inheritance
+  --sui-input-mask-background: var(--sui-surface, #ffffff);
+  --sui-input-mask-border: var(--sui-border, #e5e7eb);
+  --sui-input-mask-border-radius: var(--sui-radius, 4px);
+  --sui-input-mask-text: var(--sui-text-primary, #1e293b);
+  --sui-input-mask-text-placeholder: var(--sui-text-muted, #9ca3af);
+  --sui-input-mask-padding: var(--sui-spacing-2, 0.5rem) var(--sui-spacing-3, 0.75rem);
+  --sui-input-mask-font-size: 1rem;
+  --sui-input-mask-font-family: var(--sui-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace);
+  --sui-input-mask-line-height: 1.5;
+  --sui-input-mask-transition: var(--sui-transition, all 0.2s ease);
+  --sui-input-mask-shadow: var(--sui-shadow, 0 1px 2px rgba(0, 0, 0, 0.05));
+  --sui-input-mask-shadow-focus: var(--sui-shadow-focus, 0 0 0 3px rgba(59, 130, 246, 0.1));
+  --sui-input-mask-primary: var(--sui-primary, #3b82f6);
+  --sui-input-mask-primary-hover: var(--sui-primary-hover, #2563eb);
+  
+  // Disabled state variables
+  --sui-input-mask-background-disabled: var(--sui-surface-disabled, #f9fafb);
+  --sui-input-mask-border-disabled: var(--sui-border-disabled, #d1d5db);
+  --sui-input-mask-text-disabled: var(--sui-text-disabled, #9ca3af);
+  --sui-input-mask-opacity-disabled: 0.6;
+  --sui-input-mask-cursor-disabled: not-allowed;
+  
+  // Dark theme variables
+  --sui-input-mask-dark-background: var(--sui-dark-surface, #1e293b);
+  --sui-input-mask-dark-border: var(--sui-dark-border, #334155);
+  --sui-input-mask-dark-text: var(--sui-dark-text-primary, #f1f5f9);
+  --sui-input-mask-dark-text-placeholder: var(--sui-dark-text-muted, #64748b);
+  --sui-input-mask-dark-background-disabled: var(--sui-dark-surface-disabled, #0f172a);
+  --sui-input-mask-dark-border-disabled: var(--sui-dark-border-disabled, #1e293b);
+  
+  // Component styles
+  width: 100%;
+  padding: var(--sui-input-mask-padding);
+  font-size: var(--sui-input-mask-font-size);
+  font-family: var(--sui-input-mask-font-family);
+  line-height: var(--sui-input-mask-line-height);
+  color: var(--sui-input-mask-text);
+  background: var(--sui-input-mask-background);
+  border: 1px solid var(--sui-input-mask-border);
+  border-radius: var(--sui-input-mask-border-radius);
+  transition: var(--sui-input-mask-transition);
+  box-shadow: var(--sui-input-mask-shadow);
+  outline: none;
+  letter-spacing: 0.05em;
+  
+  // Placeholder styling
+  &::placeholder {
+    color: var(--sui-input-mask-text-placeholder);
+    opacity: 1;
+  }
+  
+  // Hover state
+  &:hover:not(:disabled) {
+    border-color: var(--sui-input-mask-primary-hover);
+  }
+  
+  // Focus state
+  &:focus {
+    border-color: var(--sui-input-mask-primary);
+    box-shadow: var(--sui-input-mask-shadow-focus);
+    outline: none;
+  }
+  
+  // Disabled state
+  &:disabled,
+  &.sui-input-mask-disabled {
+    background: var(--sui-input-mask-background-disabled);
+    border-color: var(--sui-input-mask-border-disabled);
+    color: var(--sui-input-mask-text-disabled);
+    cursor: var(--sui-input-mask-cursor-disabled);
+    opacity: var(--sui-input-mask-opacity-disabled);
+    
+    &::placeholder {
+      color: var(--sui-input-mask-text-disabled);
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sui-input-mask {
+    background: var(--sui-input-mask-dark-background);
+    border-color: var(--sui-input-mask-dark-border);
+    color: var(--sui-input-mask-dark-text);
+    
+    &::placeholder {
+      color: var(--sui-input-mask-dark-text-placeholder);
+    }
+    
+    &:disabled,
+    &.sui-input-mask-disabled {
+      background: var(--sui-input-mask-dark-background-disabled);
+      border-color: var(--sui-input-mask-dark-border-disabled);
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .sui-input-mask {
+    border-width: 2px;
+    
+    &:focus {
+      outline: 3px solid;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .sui-input-mask {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .sui-input-mask {
+    border: 1px solid #000;
+    box-shadow: none;
+    
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
