@@ -213,17 +213,6 @@
   }
 }
 
-// Dark theme
-.sui-select-button-dark {
-  --sui-select-button-group-bg: #1f2937;
-  --sui-select-button-group-border: 1px solid #374151;
-  --sui-select-button-group-hover-border: #4b5563;
-  --sui-select-button-color: #d1d5db;
-  --sui-select-button-hover-bg: rgba(255, 255, 255, 0.1);
-  --sui-select-button-hover-color: #f3f4f6;
-  --sui-select-button-focus-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-}
-
 // Component elements
 .sui-select-button-label {
   display: block;

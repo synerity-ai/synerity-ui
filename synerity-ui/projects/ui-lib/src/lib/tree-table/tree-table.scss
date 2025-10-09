@@ -19,13 +19,6 @@
   --sui-tree-table-row-padding: var(--sui-spacing-3, 0.75rem);
   --sui-tree-table-row-indent: var(--sui-spacing-6, 1.5rem);
   
-  // Dark theme variables
-  --sui-tree-table-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-tree-table-dark-border: var(--sui-dark-border, #334155);
-  --sui-tree-table-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  --sui-tree-table-dark-header-background: var(--sui-dark-surface-secondary, #0f172a);
-  --sui-tree-table-dark-row-background-hover: var(--sui-dark-surface-hover, #334155);
-  
   // Component styles
   display: flex;
   flex-direction: column;
@@ -36,15 +29,6 @@
   color: var(--sui-tree-table-text);
   transition: var(--sui-tree-table-transition);
   overflow: auto;
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-tree-table {
-    background: var(--sui-tree-table-dark-background);
-    border-color: var(--sui-tree-table-dark-border);
-    color: var(--sui-tree-table-dark-text);
-  }
 }
 
 // High contrast mode

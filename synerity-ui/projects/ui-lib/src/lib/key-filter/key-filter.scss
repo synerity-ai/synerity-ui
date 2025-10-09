@@ -23,14 +23,6 @@
   --sui-key-filter-opacity-disabled: 0.6;
   --sui-key-filter-cursor-disabled: not-allowed;
   
-  // Dark theme variables
-  --sui-key-filter-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-key-filter-dark-border: var(--sui-dark-border, #334155);
-  --sui-key-filter-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  --sui-key-filter-dark-text-placeholder: var(--sui-dark-text-muted, #64748b);
-  --sui-key-filter-dark-background-disabled: var(--sui-dark-surface-disabled, #0f172a);
-  --sui-key-filter-dark-border-disabled: var(--sui-dark-border-disabled, #1e293b);
-  
   // Component styles
   width: 100%;
   padding: var(--sui-key-filter-padding);
@@ -74,25 +66,6 @@
     
     &::placeholder {
       color: var(--sui-key-filter-text-disabled);
-    }
-  }
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-key-filter {
-    background: var(--sui-key-filter-dark-background);
-    border-color: var(--sui-key-filter-dark-border);
-    color: var(--sui-key-filter-dark-text);
-    
-    &::placeholder {
-      color: var(--sui-key-filter-dark-text-placeholder);
-    }
-    
-    &:disabled,
-    &.sui-key-filter-disabled {
-      background: var(--sui-key-filter-dark-background-disabled);
-      border-color: var(--sui-key-filter-dark-border-disabled);
     }
   }
 }

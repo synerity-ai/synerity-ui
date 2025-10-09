@@ -41,13 +41,7 @@
 }
 
 // Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-data-view {
-    background: var(--sui-data-view-dark-background);
-    border-color: var(--sui-data-view-dark-border);
-    color: var(--sui-data-view-dark-text);
-  }
-}
+// Dark mode support removed - light theme only
 
 // High contrast mode
 @media (prefers-contrast: high) {

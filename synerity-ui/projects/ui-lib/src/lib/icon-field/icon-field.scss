@@ -285,19 +285,7 @@
 }
 
 // Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-icon-field-icon {
-    color: var(--sui-icon-field-dark-icon-color);
-  }
-  
-  .sui-icon-field:focus-within .sui-icon-field-icon {
-    color: var(--sui-icon-field-dark-icon-color-focus);
-  }
-  
-  .sui-icon-field:has(input:disabled) .sui-icon-field-icon {
-    color: var(--sui-icon-field-dark-icon-color-disabled);
-  }
-}
+// Dark mode support removed - light theme only
 
 // High contrast mode support
 @media (prefers-contrast: high) {

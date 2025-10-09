@@ -13,12 +13,6 @@
   --sui-scroll-panel-scrollbar-thumb: var(--sui-border, #cbd5e1);
   --sui-scroll-panel-scrollbar-thumb-hover: var(--sui-text-secondary, #94a3b8);
   
-  // Dark theme variables
-  --sui-scroll-panel-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-scroll-panel-dark-border: var(--sui-dark-border, #334155);
-  --sui-scroll-panel-dark-scrollbar-track: var(--sui-dark-surface-secondary, #0f172a);
-  --sui-scroll-panel-dark-scrollbar-thumb: var(--sui-dark-border, #475569);
-  
   // Component styles
   display: block;
   background: var(--sui-scroll-panel-background);
@@ -27,14 +21,6 @@
   box-shadow: var(--sui-scroll-panel-shadow);
   transition: var(--sui-scroll-panel-transition);
   overflow: auto;
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-scroll-panel {
-    background: var(--sui-scroll-panel-dark-background);
-    border-color: var(--sui-scroll-panel-dark-border);
-  }
 }
 
 // High contrast mode

@@ -54,19 +54,6 @@
     --sui-rating-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  &-dark {
-    --sui-rating-bg: #1f2937;
-    --sui-rating-border: #4b5563;
-    --sui-rating-text: #f9fafb;
-    --sui-rating-text-secondary: #d1d5db;
-    --sui-rating-star-empty: #4b5563;
-    --sui-rating-star-filled: #fbbf24;
-    --sui-rating-star-hover: #f59e0b;
-    --sui-rating-star-active: #d97706;
-    --sui-rating-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    --sui-rating-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.3);
-  }
-
   // Star Container
   &-container {
     display: flex;
@@ -361,13 +348,6 @@
     --sui-rating-star-filled: #000000;
     --sui-rating-star-hover: #000000;
     --sui-rating-star-active: #000000;
-  }
-
-  .sui-rating-dark {
-    --sui-rating-star-empty: #ffffff;
-    --sui-rating-star-filled: #ffffff;
-    --sui-rating-star-hover: #ffffff;
-    --sui-rating-star-active: #ffffff;
   }
 }
 

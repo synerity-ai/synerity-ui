@@ -72,33 +72,6 @@
     --sui-input-number-button-border-disabled: #e5e7eb;
   }
 
-  &-dark {
-    --sui-input-number-bg: #1f2937;
-    --sui-input-number-bg-hover: #374151;
-    --sui-input-number-bg-focus: #1f2937;
-    --sui-input-number-bg-disabled: #111827;
-    --sui-input-number-text-color: #f9fafb;
-    --sui-input-number-text-color-placeholder: #9ca3af;
-    --sui-input-number-text-color-disabled: #6b7280;
-    --sui-input-number-border: #4b5563;
-    --sui-input-number-border-hover: #6b7280;
-    --sui-input-number-border-focus: #60a5fa;
-    --sui-input-number-border-error: #f87171;
-    --sui-input-number-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    --sui-input-number-shadow-focus: 0 0 0 3px rgba(96, 165, 250, 0.1);
-    --sui-input-number-shadow-error: 0 0 0 3px rgba(248, 113, 113, 0.1);
-    --sui-input-number-button-bg: #374151;
-    --sui-input-number-button-bg-hover: #4b5563;
-    --sui-input-number-button-bg-active: #6b7280;
-    --sui-input-number-button-bg-disabled: #111827;
-    --sui-input-number-button-color: #f9fafb;
-    --sui-input-number-button-color-hover: #ffffff;
-    --sui-input-number-button-color-disabled: #6b7280;
-    --sui-input-number-button-border: #4b5563;
-    --sui-input-number-button-border-hover: #6b7280;
-    --sui-input-number-button-border-disabled: #374151;
-  }
-
   // Color Variants
   &-primary {
     --sui-input-number-border-focus: #3b82f6;
@@ -459,13 +432,6 @@
     --sui-input-number-border-focus: #000000;
     --sui-input-number-text-color: #000000;
     --sui-input-number-button-color: #000000;
-  }
-
-  .sui-input-number-dark {
-    --sui-input-number-border: #ffffff;
-    --sui-input-number-border-focus: #ffffff;
-    --sui-input-number-text-color: #ffffff;
-    --sui-input-number-button-color: #ffffff;
   }
 }
 

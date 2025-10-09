@@ -19,12 +19,6 @@
   --sui-mega-menu-panel-shadow: var(--sui-shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.15));
   --sui-mega-menu-panel-padding: var(--sui-spacing-6, 1.5rem);
   
-  // Dark theme variables
-  --sui-mega-menu-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-mega-menu-dark-border: var(--sui-dark-border, #334155);
-  --sui-mega-menu-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  --sui-mega-menu-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
-  
   // Component styles
   display: flex;
   align-items: center;
@@ -36,15 +30,6 @@
   box-shadow: var(--sui-mega-menu-shadow);
   color: var(--sui-mega-menu-text);
   transition: var(--sui-mega-menu-transition);
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-mega-menu {
-    background: var(--sui-mega-menu-dark-background);
-    border-color: var(--sui-mega-menu-dark-border);
-    color: var(--sui-mega-menu-dark-text);
-  }
 }
 
 // High contrast mode

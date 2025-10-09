@@ -105,29 +105,7 @@
 }
 
 // Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-cascade-select {
-    .cascade-select-dropdown {
-      background: var(--sui-cascade-select-dark-background);
-      border-color: var(--sui-cascade-select-dark-border);
-      color: var(--sui-cascade-select-dark-text);
-      
-      &:disabled {
-        background: var(--sui-cascade-select-dark-background-disabled);
-        border-color: var(--sui-cascade-select-dark-border-disabled);
-      }
-      
-      option:disabled {
-        color: var(--sui-cascade-select-dark-text-placeholder);
-      }
-      
-      option {
-        background: var(--sui-cascade-select-dark-background);
-        color: var(--sui-cascade-select-dark-text);
-      }
-    }
-  }
-}
+// Dark mode support removed - light theme only
 
 // High contrast mode support
 @media (prefers-contrast: high) {

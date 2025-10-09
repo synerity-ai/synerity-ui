@@ -20,11 +20,6 @@
   --sui-upload-button-background-hover: var(--sui-primary-hover, #2563eb);
   --sui-upload-button-text: var(--sui-text-inverse, #ffffff);
   
-  // Dark theme variables
-  --sui-upload-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-upload-dark-border: var(--sui-dark-border, #334155);
-  --sui-upload-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  
   // Component styles
   display: flex;
   flex-direction: column;
@@ -43,15 +38,6 @@
   &:hover {
     background: var(--sui-upload-drag-over-background);
     border-color: var(--sui-upload-drag-over-border);
-  }
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-upload {
-    background: var(--sui-upload-dark-background);
-    border-color: var(--sui-upload-dark-border);
-    color: var(--sui-upload-dark-text);
   }
 }
 

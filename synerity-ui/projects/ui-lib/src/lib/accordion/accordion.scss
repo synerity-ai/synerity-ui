@@ -297,66 +297,7 @@
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .sui-accordion {
-    background: var(--sui-accordion-dark-bg, #1f2937);
-    box-shadow: var(--sui-accordion-dark-box-shadow, 0 1px 2px rgba(0, 0, 0, 0.2));
-
-    &-tab {
-      border-bottom: var(--sui-accordion-tab-dark-border-bottom, 1px solid #374151);
-
-      &-header {
-        background: var(--sui-accordion-tab-header-dark-bg, #1f2937);
-
-        &-label {
-          color: var(--sui-accordion-tab-header-label-dark-color, #f9fafb);
-        }
-
-        &-icon {
-          color: var(--sui-accordion-tab-header-icon-dark-color, #9ca3af);
-        }
-
-        &-hover {
-          background: var(--sui-accordion-tab-header-hover-dark-bg, #374151);
-        }
-      }
-
-      &-content {
-        background: var(--sui-accordion-tab-content-dark-bg, #1f2937);
-
-        &-body {
-          background: var(--sui-accordion-tab-content-body-dark-bg, #1f2937);
-          border-top: var(--sui-accordion-tab-content-body-dark-border-top, 1px solid #374151);
-        }
-
-        &-inner {
-          color: var(--sui-accordion-tab-content-inner-dark-color, #d1d5db);
-
-          h1, h2, h3, h4, h5, h6 {
-            color: var(--sui-accordion-tab-content-heading-dark-color, #f9fafb);
-          }
-        }
-      }
-    }
-
-    &-bordered {
-      border: var(--sui-accordion-bordered-dark-border, 1px solid #374151);
-
-      .sui-accordion-tab {
-        border-bottom: var(--sui-accordion-bordered-tab-dark-border-bottom, 1px solid #374151);
-      }
-    }
-
-    &-minimal {
-      .sui-accordion-tab {
-        background: var(--sui-accordion-minimal-tab-dark-bg, #1f2937);
-        border-bottom: var(--sui-accordion-minimal-tab-dark-border-bottom, 1px solid #374151);
-        box-shadow: var(--sui-accordion-minimal-tab-dark-box-shadow, 0 1px 2px rgba(0, 0, 0, 0.2));
-      }
-    }
-  }
-}
+/* Dark mode support removed - light theme only */
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {

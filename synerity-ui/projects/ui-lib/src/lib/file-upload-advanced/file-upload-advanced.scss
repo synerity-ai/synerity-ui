@@ -25,13 +25,6 @@
   --sui-file-upload-advanced-file-border: var(--sui-border, #e5e7eb);
   --sui-file-upload-advanced-file-padding: var(--sui-spacing-3, 0.75rem);
   
-  // Dark theme variables
-  --sui-file-upload-advanced-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-file-upload-advanced-dark-border: var(--sui-dark-border, #334155);
-  --sui-file-upload-advanced-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  --sui-file-upload-advanced-dark-drop-zone-background: var(--sui-dark-surface-secondary, #0f172a);
-  --sui-file-upload-advanced-dark-file-background: var(--sui-dark-surface-secondary, #0f172a);
-  
   // Component styles
   display: flex;
   flex-direction: column;
@@ -43,15 +36,6 @@
   box-shadow: var(--sui-file-upload-advanced-shadow);
   color: var(--sui-file-upload-advanced-text);
   transition: var(--sui-file-upload-advanced-transition);
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-file-upload-advanced {
-    background: var(--sui-file-upload-advanced-dark-background);
-    border-color: var(--sui-file-upload-advanced-dark-border);
-    color: var(--sui-file-upload-advanced-dark-text);
-  }
 }
 
 // High contrast mode

@@ -22,12 +22,6 @@
   --sui-ift-label-border-radius: var(--sui-radius, 4px);
   --sui-ift-label-border-width: 1px;
   
-  // Dark theme variables
-  --sui-ift-label-dark-true-color: var(--sui-dark-success, #10b981);
-  --sui-ift-label-dark-true-background: var(--sui-dark-success-light, rgba(16, 185, 129, 0.1));
-  --sui-ift-label-dark-false-color: var(--sui-dark-error, #ef4444);
-  --sui-ift-label-dark-false-background: var(--sui-dark-error-light, rgba(239, 68, 68, 0.1));
-  
   // Component styles
   display: inline-flex;
   align-items: center;
@@ -62,21 +56,6 @@
   border-radius: var(--sui-ift-label-border-radius);
   font-weight: var(--sui-ift-label-font-weight);
   transition: var(--sui-ift-label-transition);
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-ift-label-true {
-    color: var(--sui-ift-label-dark-true-color);
-    background: var(--sui-ift-label-dark-true-background);
-    border-color: var(--sui-ift-label-dark-true-color);
-  }
-  
-  .sui-ift-label-false {
-    color: var(--sui-ift-label-dark-false-color);
-    background: var(--sui-ift-label-dark-false-background);
-    border-color: var(--sui-ift-label-dark-false-color);
-  }
 }
 
 // High contrast mode support

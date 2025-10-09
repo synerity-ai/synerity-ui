@@ -37,18 +37,7 @@
   }
 
   // Dark theme support
-  @media (prefers-color-scheme: dark) {
-    &:focus,
-    &:focus-visible {
-      outline: var(--sui-auto-focus-dark-outline);
-      box-shadow: var(--sui-auto-focus-dark-shadow);
-    }
-
-    &.sui-auto-focus-active {
-      outline: var(--sui-auto-focus-dark-outline);
-      box-shadow: var(--sui-auto-focus-dark-shadow);
-    }
-  }
+  // Dark mode support removed - light theme only
 
   // High contrast mode support
   @media (prefers-contrast: high) {

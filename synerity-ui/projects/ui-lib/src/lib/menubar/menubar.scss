@@ -16,12 +16,6 @@
   --sui-menubar-item-padding: var(--sui-spacing-2, 0.5rem) var(--sui-spacing-3, 0.75rem);
   --sui-menubar-item-border-radius: var(--sui-radius, 4px);
   
-  // Dark theme variables
-  --sui-menubar-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-menubar-dark-border: var(--sui-dark-border, #334155);
-  --sui-menubar-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  --sui-menubar-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
-  
   // Component styles
   display: flex;
   align-items: center;
@@ -33,15 +27,6 @@
   box-shadow: var(--sui-menubar-shadow);
   color: var(--sui-menubar-text);
   transition: var(--sui-menubar-transition);
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-menubar {
-    background: var(--sui-menubar-dark-background);
-    border-color: var(--sui-menubar-dark-border);
-    color: var(--sui-menubar-dark-text);
-  }
 }
 
 // High contrast mode

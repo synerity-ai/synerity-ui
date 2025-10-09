@@ -10,11 +10,6 @@
   --sui-toolbar-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
   --sui-toolbar-transition: var(--sui-transition, all 0.2s ease);
   
-  // Dark theme variables
-  --sui-toolbar-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-toolbar-dark-border: var(--sui-dark-border, #334155);
-  --sui-toolbar-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  
   // Component styles
   display: flex;
   align-items: center;
@@ -27,15 +22,6 @@
   color: var(--sui-toolbar-text);
   transition: var(--sui-toolbar-transition);
   flex-wrap: wrap;
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-toolbar {
-    background: var(--sui-toolbar-dark-background);
-    border-color: var(--sui-toolbar-dark-border);
-    color: var(--sui-toolbar-dark-text);
-  }
 }
 
 // High contrast mode

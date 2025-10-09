@@ -219,17 +219,6 @@
   }
 }
 
-/* Dark mode support */
-.theme-dark .sui-progress-spinner {
-  --spinner-bg: var(--color-bg-elevated-dark, #1f2937);
-  --spinner-border: var(--color-border-dark, #374151);
-  --spinner-text: var(--color-text-secondary-dark, #9ca3af);
-}
-
-.theme-dark .sui-progress-spinner-overlay {
-  background: var(--color-bg-overlay-dark, rgba(0, 0, 0, 0.8));
-}
-
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .sui-progress-spinner {

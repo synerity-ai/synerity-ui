@@ -664,21 +664,7 @@
 }
 
 // Dark mode support
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sui-select-white: #1f2937;
-    --sui-select-gray-50: #374151;
-    --sui-select-gray-100: #4b5563;
-    --sui-select-gray-200: #6b7280;
-    --sui-select-gray-300: #9ca3af;
-    --sui-select-gray-400: #d1d5db;
-    --sui-select-gray-500: #e5e7eb;
-    --sui-select-gray-600: #f3f4f6;
-    --sui-select-gray-700: #f9fafb;
-    --sui-select-gray-800: #ffffff;
-    --sui-select-gray-900: #ffffff;
-  }
-}
+// Dark mode support removed - light theme only
 
 // High contrast mode support
 @media (prefers-contrast: high) {

@@ -23,14 +23,6 @@
   --sui-input-mask-opacity-disabled: 0.6;
   --sui-input-mask-cursor-disabled: not-allowed;
   
-  // Dark theme variables
-  --sui-input-mask-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-input-mask-dark-border: var(--sui-dark-border, #334155);
-  --sui-input-mask-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  --sui-input-mask-dark-text-placeholder: var(--sui-dark-text-muted, #64748b);
-  --sui-input-mask-dark-background-disabled: var(--sui-dark-surface-disabled, #0f172a);
-  --sui-input-mask-dark-border-disabled: var(--sui-dark-border-disabled, #1e293b);
-  
   // Component styles
   width: 100%;
   padding: var(--sui-input-mask-padding);
@@ -75,25 +67,6 @@
     
     &::placeholder {
       color: var(--sui-input-mask-text-disabled);
-    }
-  }
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-input-mask {
-    background: var(--sui-input-mask-dark-background);
-    border-color: var(--sui-input-mask-dark-border);
-    color: var(--sui-input-mask-dark-text);
-    
-    &::placeholder {
-      color: var(--sui-input-mask-dark-text-placeholder);
-    }
-    
-    &:disabled,
-    &.sui-input-mask-disabled {
-      background: var(--sui-input-mask-dark-background-disabled);
-      border-color: var(--sui-input-mask-dark-border-disabled);
     }
   }
 }

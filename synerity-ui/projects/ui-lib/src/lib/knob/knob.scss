@@ -248,21 +248,7 @@
 }
 
 // Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-knob-value-number {
-    color: var(--sui-knob-dark-text);
-    text-shadow: var(--sui-knob-dark-shadow-text);
-  }
-  
-  .sui-knob-value-unit {
-    color: var(--sui-knob-dark-text-secondary);
-    text-shadow: var(--sui-knob-dark-shadow-text);
-  }
-  
-  .sui-knob-label {
-    color: var(--sui-knob-dark-text-secondary);
-  }
-}
+// Dark mode support removed - light theme only
 
 // Responsive adjustments
 @media (max-width: 768px) {

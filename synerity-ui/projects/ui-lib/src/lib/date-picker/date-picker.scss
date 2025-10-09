@@ -132,7 +132,7 @@
     }
   }
   
-  // Theme Variants
+  // Light Theme Only (Dark mode removed)
   &-light {
     --sui-bg-primary: #ffffff;
     --sui-bg-secondary: #f9fafb;
@@ -147,21 +147,22 @@
     --sui-border-focus: #3b82f6;
     --sui-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
-  
-  &-dark {
-    --sui-bg-primary: #1f2937;
-    --sui-bg-secondary: #374151;
-    --sui-bg-hover: #4b5563;
-    --sui-bg-selected: #3b82f6;
-    --sui-bg-today: #1e40af;
-    --sui-text-primary: #f9fafb;
-    --sui-text-secondary: #d1d5db;
-    --sui-text-disabled: #6b7280;
-    --sui-text-selected: #ffffff;
-    --sui-border-primary: #4b5563;
-    --sui-border-focus: #3b82f6;
-    --sui-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-  }
+}
+
+// Calendar-specific light theme (for dynamically created calendars)
+.sui-date-picker-calendar-light {
+  --sui-bg-primary: #ffffff;
+  --sui-bg-secondary: #f9fafb;
+  --sui-bg-hover: #f3f4f6;
+  --sui-bg-selected: #3b82f6;
+  --sui-bg-today: #dbeafe;
+  --sui-text-primary: #374151;
+  --sui-text-secondary: #6b7280;
+  --sui-text-disabled: #9ca3af;
+  --sui-text-selected: #ffffff;
+  --sui-border-primary: #d1d5db;
+  --sui-border-focus: #3b82f6;
+  --sui-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 // Trigger Element
@@ -669,12 +670,6 @@
     --sui-border-primary: #000000;
     --sui-text-primary: #000000;
     --sui-text-secondary: #000000;
-  }
-  
-  .sui-date-picker-dark {
-    --sui-border-primary: #ffffff;
-    --sui-text-primary: #ffffff;
-    --sui-text-secondary: #ffffff;
   }
 }
 

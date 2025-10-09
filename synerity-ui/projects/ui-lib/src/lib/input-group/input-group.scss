@@ -124,17 +124,7 @@
 }
 
 // Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-input-group {
-    background: var(--sui-input-group-dark-background);
-    border-color: var(--sui-input-group-dark-border);
-  }
-  
-  .sui-input-group-disabled {
-    background: var(--sui-input-group-dark-background-disabled);
-    border-color: var(--sui-input-group-dark-border-disabled);
-  }
-}
+// Dark mode support removed - light theme only
 
 // High contrast mode support
 @media (prefers-contrast: high) {

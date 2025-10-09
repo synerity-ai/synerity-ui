@@ -218,22 +218,6 @@
   }
 }
 
-/* Dark mode support */
-.theme-dark .sui-breadcrumb {
-  --breadcrumb-bg: var(--color-bg-dark, #111827);
-  --breadcrumb-text: var(--color-text-dark, #f9fafb);
-  --breadcrumb-text-secondary: var(--color-text-secondary-dark, #d1d5db);
-  --breadcrumb-text-muted: var(--color-text-muted-dark, #9ca3af);
-  --breadcrumb-text-current: var(--color-text-heading-dark, #ffffff);
-  --breadcrumb-border: var(--color-border-dark, #374151);
-  --breadcrumb-link-text: var(--color-text-secondary-dark, #d1d5db);
-  --breadcrumb-link-hover: var(--color-text-dark, #f9fafb);
-  --breadcrumb-link-active: var(--color-primary-400, #60a5fa);
-  --breadcrumb-separator-color: var(--color-text-muted-dark, #9ca3af);
-  --breadcrumb-focus-ring: var(--color-primary-400, #60a5fa);
-  --breadcrumb-focus-ring-offset: var(--color-bg-dark, #111827);
-}
-
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .sui-breadcrumb {

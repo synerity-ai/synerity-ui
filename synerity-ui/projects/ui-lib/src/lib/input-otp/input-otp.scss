@@ -26,13 +26,6 @@
   --sui-input-otp-opacity-disabled: 0.6;
   --sui-input-otp-cursor-disabled: not-allowed;
   
-  // Dark theme variables
-  --sui-input-otp-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-input-otp-dark-border: var(--sui-dark-border, #334155);
-  --sui-input-otp-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  --sui-input-otp-dark-background-disabled: var(--sui-dark-surface-disabled, #0f172a);
-  --sui-input-otp-dark-border-disabled: var(--sui-dark-border-disabled, #1e293b);
-  
   // Component styles
   display: flex;
   gap: var(--sui-input-otp-gap);
@@ -89,20 +82,6 @@
   &:not(:placeholder-shown) {
     border-color: var(--sui-input-otp-primary);
     background: var(--sui-input-otp-background);
-  }
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-input-otp-digit {
-    background: var(--sui-input-otp-dark-background);
-    border-color: var(--sui-input-otp-dark-border);
-    color: var(--sui-input-otp-dark-text);
-    
-    &:disabled {
-      background: var(--sui-input-otp-dark-background-disabled);
-      border-color: var(--sui-input-otp-dark-border-disabled);
-    }
   }
 }
 

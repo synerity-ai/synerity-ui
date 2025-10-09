@@ -78,35 +78,7 @@
   }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .sui-badge {
-    &-info {
-      --sui-badge-info-bg: #1e3a8a;
-      --sui-badge-info-color: #93c5fd;
-    }
-
-    &-success {
-      --sui-badge-success-bg: #166534;
-      --sui-badge-success-color: #86efac;
-    }
-
-    &-warning {
-      --sui-badge-warning-bg: #92400e;
-      --sui-badge-warning-color: #fcd34d;
-    }
-
-    &-danger {
-      --sui-badge-danger-bg: #991b1b;
-      --sui-badge-danger-color: #fca5a5;
-    }
-
-    &-contrast {
-      --sui-badge-contrast-bg: #f9fafb;
-      --sui-badge-contrast-color: #1f2937;
-    }
-  }
-}
+/* Dark mode support removed - light theme only */
 
 /* Light Mode Variables */
 :root {

@@ -21,15 +21,6 @@
   --sui-editor-transition: var(--sui-transition, all 0.2s ease);
   --sui-editor-transition-fast: var(--sui-transition-fast, all 0.15s ease);
   
-  // Dark theme variables
-  --sui-editor-dark-background: var(--sui-dark-surface, #1f2937);
-  --sui-editor-dark-border: var(--sui-dark-border, #374151);
-  --sui-editor-dark-text: var(--sui-dark-text-primary, #f9fafb);
-  --sui-editor-dark-text-secondary: var(--sui-dark-text-secondary, #9ca3af);
-  --sui-editor-dark-text-muted: var(--sui-dark-text-muted, #6b7280);
-  --sui-editor-dark-surface: var(--sui-dark-surface-secondary, #111827);
-  --sui-editor-dark-surface-hover: var(--sui-dark-surface-hover, #374151);
-  
   // Component styles
   position: relative;
   display: flex;
@@ -377,81 +368,6 @@
     &-content {
       padding: 8px 12px;
       font-size: 16px; // Prevent zoom on iOS
-    }
-  }
-
-  // Dark theme support
-  &.sui-editor-dark {
-    background: var(--sui-editor-dark-background);
-    border-color: var(--sui-editor-dark-border);
-    color: var(--sui-editor-dark-text);
-
-    .sui-editor-toolbar {
-      background: var(--sui-editor-dark-surface);
-      border-bottom-color: var(--sui-editor-dark-border);
-      
-      &-button {
-        color: var(--sui-editor-dark-text-secondary);
-        
-        &:hover {
-          background: var(--sui-editor-dark-surface-hover);
-          color: var(--sui-editor-dark-text);
-        }
-        
-        &.active {
-          background: var(--sui-editor-primary);
-          color: #ffffff;
-        }
-      }
-    }
-
-    .sui-editor-content {
-      background: var(--sui-editor-dark-background);
-      color: var(--sui-editor-dark-text);
-
-      &:empty:before {
-        color: var(--sui-editor-dark-text-muted);
-      }
-
-      blockquote {
-        background: var(--sui-editor-dark-surface);
-        border-left-color: var(--sui-editor-primary);
-        color: var(--sui-editor-dark-text-secondary);
-      }
-
-      code {
-        background: var(--sui-editor-dark-surface-hover);
-        color: var(--sui-editor-primary);
-      }
-
-      pre {
-        background: #000000;
-        color: #e5e7eb;
-      }
-
-      table {
-        th, td {
-          border-color: var(--sui-editor-dark-border);
-        }
-        
-        th {
-          background: var(--sui-editor-dark-surface);
-        }
-      }
-
-      hr {
-        border-top-color: var(--sui-editor-dark-border);
-      }
-    }
-
-    &.sui-editor-disabled {
-      background: var(--sui-editor-dark-surface);
-      border-color: var(--sui-editor-dark-border);
-      
-      .sui-editor-content {
-        background: var(--sui-editor-dark-surface);
-        color: var(--sui-editor-dark-text-muted);
-      }
     }
   }
 }

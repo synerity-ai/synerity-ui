@@ -16,11 +16,6 @@
   --sui-speed-dial-item-size: 2.5rem;
   --sui-speed-dial-item-gap: var(--sui-spacing-2, 0.5rem);
   
-  // Dark theme variables
-  --sui-speed-dial-dark-item-background: var(--sui-dark-surface, #1e293b);
-  --sui-speed-dial-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
-  --sui-speed-dial-dark-item-text: var(--sui-dark-text-primary, #f1f5f9);
-  
   // Component styles
   position: fixed;
   display: flex;
@@ -28,13 +23,6 @@
   align-items: center;
   gap: var(--sui-speed-dial-item-gap);
   z-index: 1000;
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-speed-dial {
-    // Dark mode adjustments if needed
-  }
 }
 
 // High contrast mode

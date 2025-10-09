@@ -90,10 +90,7 @@
   color: var(--sui-primary-600, #2563eb);
 }
 
-/* Dark theme support */
-.theme-dark .sui-card-loading-overlay {
-  background-color: rgba(0, 0, 0, 0.75);
-}
+/* Dark theme support removed - light theme only */
 
 @keyframes spin {
   from {

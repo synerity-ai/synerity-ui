@@ -1,6 +1,6 @@
 {
   "name": "@synerity/ui",
-  "version": "2.0.54",
+  "version": "2.6.0",
   "description": "Synerity UI Component Library",
   "keywords": ["angular", "ui", "components", "library"],
   "author": "Synerity",
@@ -29,5 +29,20 @@
   "esm2022": "esm2022/synerity-ui.mjs",
   "fesm2022": "fesm2022/synerity-ui.mjs",
   "typings": "index.d.ts",
-  "sideEffects": false
+  "sideEffects": false,
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/synerity-ui.mjs"
+    },
+    "./synerity-ui.css": {
+      "default": "./src/lib/synerity-ui.css"
+    }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
 }

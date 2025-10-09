@@ -34,13 +34,7 @@
 }
 
 // Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-drawer {
-    background: var(--sui-drawer-dark-background);
-    border-color: var(--sui-drawer-dark-border);
-    color: var(--sui-drawer-dark-text);
-  }
-}
+// Dark mode support removed - light theme only
 
 // High contrast mode
 @media (prefers-contrast: high) {

@@ -33,13 +33,7 @@
 }
 
 // Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-dynamic-dialog {
-    background: var(--sui-dynamic-dialog-dark-background);
-    border-color: var(--sui-dynamic-dialog-dark-border);
-    color: var(--sui-dynamic-dialog-dark-text);
-  }
-}
+// Dark mode support removed - light theme only
 
 // High contrast mode
 @media (prefers-contrast: high) {

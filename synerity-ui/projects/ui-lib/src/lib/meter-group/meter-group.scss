@@ -13,11 +13,6 @@
   --sui-meter-group-meter-background: var(--sui-primary, #3b82f6);
   --sui-meter-group-meter-transition: width 0.3s ease;
   
-  // Dark theme variables
-  --sui-meter-group-dark-background: var(--sui-dark-surface-secondary, #0f172a);
-  --sui-meter-group-dark-border: var(--sui-dark-border, #334155);
-  --sui-meter-group-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  
   // Component styles
   display: flex;
   align-items: center;
@@ -29,15 +24,6 @@
   color: var(--sui-meter-group-text);
   transition: var(--sui-meter-group-transition);
   overflow: hidden;
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-meter-group {
-    background: var(--sui-meter-group-dark-background);
-    border-color: var(--sui-meter-group-dark-border);
-    color: var(--sui-meter-group-dark-text);
-  }
 }
 
 // High contrast mode

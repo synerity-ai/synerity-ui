@@ -27,14 +27,6 @@
   --sui-ifta-label-border-radius: var(--sui-radius, 4px);
   --sui-ifta-label-border-width: 1px;
   
-  // Dark theme variables
-  --sui-ifta-label-dark-true-color: var(--sui-dark-success, #10b981);
-  --sui-ifta-label-dark-true-background: var(--sui-dark-success-light, rgba(16, 185, 129, 0.1));
-  --sui-ifta-label-dark-false-color: var(--sui-dark-error, #ef4444);
-  --sui-ifta-label-dark-false-background: var(--sui-dark-error-light, rgba(239, 68, 68, 0.1));
-  --sui-ifta-label-dark-alt-color: var(--sui-dark-warning, #fbbf24);
-  --sui-ifta-label-dark-alt-background: var(--sui-dark-warning-light, rgba(251, 191, 36, 0.1));
-  
   // Component styles
   display: inline-flex;
   align-items: center;
@@ -82,27 +74,6 @@
   border-radius: var(--sui-ifta-label-border-radius);
   font-weight: var(--sui-ifta-label-font-weight);
   transition: var(--sui-ifta-label-transition);
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-ifta-label-true {
-    color: var(--sui-ifta-label-dark-true-color);
-    background: var(--sui-ifta-label-dark-true-background);
-    border-color: var(--sui-ifta-label-dark-true-color);
-  }
-  
-  .sui-ifta-label-false {
-    color: var(--sui-ifta-label-dark-false-color);
-    background: var(--sui-ifta-label-dark-false-background);
-    border-color: var(--sui-ifta-label-dark-false-color);
-  }
-  
-  .sui-ifta-label-alt {
-    color: var(--sui-ifta-label-dark-alt-color);
-    background: var(--sui-ifta-label-dark-alt-background);
-    border-color: var(--sui-ifta-label-dark-alt-color);
-  }
 }
 
 // High contrast mode support

@@ -237,36 +237,7 @@
   color: var(--sui-radio-label-disabled-color, #9ca3af); /* text-gray-400 */
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .sui-radio-input {
-    background-color: var(--sui-radio-dark-bg, #374151); /* bg-gray-700 */
-    border-color: var(--sui-radio-dark-border-color, #6b7280); /* border-gray-500 */
-    color: var(--sui-radio-dark-color, #60a5fa); /* text-blue-400 */
-  }
-
-  .sui-radio-input:checked {
-    background-color: var(--sui-radio-dark-checked-bg, #3b82f6); /* bg-blue-500 */
-    border-color: var(--sui-radio-dark-checked-border-color, #3b82f6); /* border-blue-500 */
-  }
-
-  .sui-radio-container.radio-enhanced .sui-radio-input {
-    background-color: var(--sui-radio-dark-enhanced-bg, #1f2937); /* bg-gray-800 */
-    border-color: var(--sui-radio-dark-enhanced-border-color, #6b7280); /* border-gray-500 */
-  }
-
-  .sui-radio-label {
-    color: var(--sui-radio-dark-label-color, #f9fafb); /* text-gray-100 */
-  }
-
-  .sui-radio-label:hover {
-    color: var(--sui-radio-dark-label-hover-color, #ffffff); /* text-white */
-  }
-
-  .sui-radio-text {
-    color: var(--sui-radio-dark-text-color, #f9fafb); /* text-gray-100 */
-  }
-}
+/* Dark mode support removed - light theme only */
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {

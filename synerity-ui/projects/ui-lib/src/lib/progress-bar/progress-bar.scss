@@ -189,23 +189,7 @@
 }
 
 /* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .sui-progress-bar {
-    background-color: var(--sui-progress-bar-dark-bg, #374151); /* bg-gray-700 */
-
-    &-label {
-      color: var(--sui-progress-bar-dark-label-color, #d1d5db); /* text-gray-300 */
-    }
-
-    &-percentage {
-      color: var(--sui-progress-bar-dark-percentage-color, #9ca3af); /* text-gray-400 */
-    }
-
-    &-steps .sui-progress-bar-step {
-      background-color: var(--sui-progress-bar-dark-step-bg, #374151); /* bg-gray-700 */
-    }
-  }
-}
+// Dark mode support removed - light theme only
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {

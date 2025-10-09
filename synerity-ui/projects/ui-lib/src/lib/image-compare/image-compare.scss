@@ -17,9 +17,6 @@
   --sui-image-compare-line-background: var(--sui-primary, #3b82f6);
   --sui-image-compare-line-width: 2px;
   
-  // Dark theme variables
-  --sui-image-compare-dark-border: var(--sui-dark-border, #334155);
-  
   // Component styles
   position: relative;
   display: inline-block;
@@ -28,13 +25,6 @@
   box-shadow: var(--sui-image-compare-shadow);
   transition: var(--sui-image-compare-transition);
   overflow: hidden;
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-image-compare {
-    border-color: var(--sui-image-compare-dark-border);
-  }
 }
 
 // High contrast mode

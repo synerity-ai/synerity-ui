@@ -15,11 +15,6 @@
   --sui-dock-item-size: 3rem;
   --sui-dock-item-border-radius: var(--sui-radius, 4px);
   
-  // Dark theme variables
-  --sui-dock-dark-background: var(--sui-dark-surface, rgba(30, 41, 59, 0.9));
-  --sui-dock-dark-border: var(--sui-dark-border, #334155);
-  --sui-dock-dark-item-background-hover: var(--sui-dark-surface-hover, #334155);
-  
   // Component styles
   display: flex;
   align-items: center;
@@ -31,14 +26,6 @@
   box-shadow: var(--sui-dock-shadow);
   backdrop-filter: var(--sui-dock-backdrop-filter);
   transition: var(--sui-dock-transition);
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-dock {
-    background: var(--sui-dock-dark-background);
-    border-color: var(--sui-dock-dark-border);
-  }
 }
 
 // High contrast mode

@@ -20,13 +20,6 @@
   --sui-galleria-nav-background-hover: rgba(0, 0, 0, 0.7);
   --sui-galleria-nav-text: #ffffff;
   
-  // Dark theme variables
-  --sui-galleria-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-galleria-dark-border: var(--sui-dark-border, #334155);
-  --sui-galleria-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  --sui-galleria-dark-thumbnail-background: var(--sui-dark-surface-secondary, #0f172a);
-  --sui-galleria-dark-thumbnail-background-hover: var(--sui-dark-surface-hover, #334155);
-  
   // Component styles
   display: flex;
   flex-direction: column;
@@ -37,15 +30,6 @@
   box-shadow: var(--sui-galleria-shadow);
   color: var(--sui-galleria-text);
   transition: var(--sui-galleria-transition);
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-galleria {
-    background: var(--sui-galleria-dark-background);
-    border-color: var(--sui-galleria-dark-border);
-    color: var(--sui-galleria-dark-text);
-  }
 }
 
 // High contrast mode

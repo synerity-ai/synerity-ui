@@ -89,101 +89,101 @@ The standardization plan has been successfully completed for all high-priority c
 
 ## Component Demo Status
 
-| Component | Library Status | Demo Status | SCSS Status | CSS Status | Priority |
-|-----------|----------------|-------------|-------------|------------|----------|
-| Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Card | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Input | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Auto Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Table | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Panel | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Carousel | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Toast | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Dialog | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Progress Bar | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Accordion | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Avatar | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Badge | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Breadcrumb | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Checkbox | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Color Picker | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Date Picker | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Editor | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Knob | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Radio Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Rating | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Select | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Select Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Slider | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Tabs | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Toggle Switch | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Auto Focus | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Cascade Select | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Chip | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Float Label | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Icon Field | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| IFT Label | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| IFTA Label | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Input Group | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Input Mask | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Input Number | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Input OTP | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Key Filter | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Listbox | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Password | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Textarea | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Toggle Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Tree Select | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Data View | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Order List | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Paginator | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Pick List | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Tree | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Tree Table | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Timeline | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Upload | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Meter Group | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Org Chart | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Virtual Scroller | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Divider | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Fieldset | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Fluid | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Splitter | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Stepper | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Toolbar | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Context Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Dock | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Menubar | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Mega Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Panel Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Tiered Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Galleria | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Image | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Image Compare | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| File Upload Advanced | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Confirm Dialog | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Confirm Popup | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Message | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Block UI | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Captcha | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Drawer | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Dynamic Dialog | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Overlay Panel | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Popover | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Tooltip | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
-| Progress Spinner | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Skeleton | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Animate On Scroll | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Focus Trap | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Inplace | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Ripple | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Scroll Panel | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Scroll Top | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Speed Dial | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Split Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
-| Style Class | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
-| Terminal | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Component | Library Status | Demo Status | SCSS Status | CSS Status | Dark Mode Removed | Priority |
+|-----------|----------------|-------------|-------------|------------|-------------------|----------|
+| Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | High |
+| Card | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
+| Input | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | High |
+| Auto Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Table | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | High |
+| Panel | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Carousel | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Toast | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Dialog | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | High |
+| Progress Bar | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Accordion | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Avatar | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Badge | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Breadcrumb | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Checkbox | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
+| Color Picker | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Date Picker | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Editor | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Knob | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Radio Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
+| Rating | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Select | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | High |
+| Select Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Slider | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Tabs | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | High |
+| Toggle Switch | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Auto Focus | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Cascade Select | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Chip | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Float Label | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Icon Field | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| IFT Label | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| IFTA Label | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Input Group | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Input Mask | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Input Number | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Input OTP | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Key Filter | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Listbox | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Password | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Textarea | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | High |
+| Toggle Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Tree Select | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Data View | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Order List | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Paginator | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Pick List | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Tree | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Tree Table | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Timeline | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Upload | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Meter Group | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Org Chart | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Virtual Scroller | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Divider | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Fieldset | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Fluid | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | Medium |
+| Splitter | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Stepper | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Toolbar | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Context Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Dock | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Menubar | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Mega Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Panel Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Tiered Menu | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Galleria | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Image | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Image Compare | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| File Upload Advanced | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Confirm Dialog | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Confirm Popup | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Message | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | Medium |
+| Block UI | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | Low |
+| Captcha | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Drawer | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Dynamic Dialog | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Overlay Panel | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Popover | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | Medium |
+| Tooltip | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | High |
+| Progress Spinner | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Skeleton | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Animate On Scroll | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | Low |
+| Focus Trap | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Inplace | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Ripple | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Scroll Panel | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Scroll Top | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | Low |
+| Speed Dial | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Low |
+| Split Button | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | Medium |
+| Style Class | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | Low |
+| Terminal | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Complete | ✅ N/A (No Dark Mode) | Low |
 
 ## Status Legend
 - ✅ Complete: Fully implemented with examples

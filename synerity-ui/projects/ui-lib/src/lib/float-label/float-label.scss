@@ -211,98 +211,6 @@
   }
 }
 
-// Dark theme support
-.theme-dark {
-  .sui-float-label {
-    color: var(--sui-float-label-dark-color, #f9fafb);
-    
-    .sui-float-label-text {
-      color: var(--sui-float-label-dark-text-color, #9ca3af);
-      background: var(--sui-float-label-dark-text-bg, transparent);
-    }
-    
-    &.sui-float-label-focused {
-      .sui-float-label-text {
-        color: var(--sui-float-label-dark-focused-text-color, #60a5fa);
-        background: var(--sui-float-label-dark-focused-text-bg, #1f2937);
-      }
-    }
-    
-    &.sui-float-label-required {
-      .sui-float-label-text {
-        color: var(--sui-float-label-dark-required-text-color, #f9fafb);
-      }
-      
-      &.sui-float-label-focused {
-        .sui-float-label-text {
-          color: var(--sui-float-label-dark-required-focused-text-color, #60a5fa);
-        }
-      }
-    }
-    
-    &.sui-float-label-error {
-      .sui-float-label-text {
-        color: var(--sui-float-label-dark-error-text-color, #fca5a5);
-      }
-      
-      &.sui-float-label-focused {
-        .sui-float-label-text {
-          color: var(--sui-float-label-dark-error-focused-text-color, #fca5a5);
-          background: var(--sui-float-label-dark-error-focused-text-bg, #7f1d1d);
-        }
-      }
-    }
-    
-    &.sui-float-label-success {
-      .sui-float-label-text {
-        color: var(--sui-float-label-dark-success-text-color, #6ee7b7);
-      }
-      
-      &.sui-float-label-focused {
-        .sui-float-label-text {
-          color: var(--sui-float-label-dark-success-focused-text-color, #6ee7b7);
-          background: var(--sui-float-label-dark-success-focused-text-bg, #064e3b);
-        }
-      }
-    }
-    
-    &.sui-float-label-warning {
-      .sui-float-label-text {
-        color: var(--sui-float-label-dark-warning-text-color, #fbbf24);
-      }
-      
-      &.sui-float-label-focused {
-        .sui-float-label-text {
-          color: var(--sui-float-label-dark-warning-focused-text-color, #fbbf24);
-          background: var(--sui-float-label-dark-warning-focused-text-bg, #78350f);
-        }
-      }
-    }
-    
-    &.sui-float-label-disabled {
-      .sui-float-label-text {
-        color: var(--sui-float-label-dark-disabled-text-color, #6b7280);
-      }
-    }
-    
-    .sui-float-label-helper {
-      color: var(--sui-float-label-dark-helper-color, #9ca3af);
-      
-      &.sui-float-label-helper-error {
-        color: var(--sui-float-label-dark-helper-error-color, #fca5a5);
-      }
-      
-      &.sui-float-label-helper-success {
-        color: var(--sui-float-label-dark-helper-success-color, #6ee7b7);
-      }
-      
-      &.sui-float-label-helper-warning {
-        color: var(--sui-float-label-dark-helper-warning-color, #fbbf24);
-      }
-    }
-  }
-}
-
 // High contrast mode support
 @media (prefers-contrast: high) {
   .sui-float-label {
@@ -315,20 +223,6 @@
       .sui-float-label-text {
         border: var(--sui-float-label-high-contrast-focused-text-border, 2px solid currentColor);
         background: var(--sui-float-label-high-contrast-focused-text-bg, #ffffff);
-      }
-    }
-  }
-  
-  .theme-dark {
-    .sui-float-label {
-      .sui-float-label-text {
-        background: var(--sui-float-label-dark-high-contrast-text-bg, #000000);
-      }
-      
-      &.sui-float-label-focused {
-        .sui-float-label-text {
-          background: var(--sui-float-label-dark-high-contrast-focused-text-bg, #000000);
-        }
       }
     }
   }

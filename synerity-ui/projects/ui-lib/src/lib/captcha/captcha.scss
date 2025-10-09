@@ -8,10 +8,6 @@
   --sui-captcha-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
   --sui-captcha-transition: var(--sui-transition, all 0.2s ease);
   
-  // Dark theme variables
-  --sui-captcha-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-captcha-dark-border: var(--sui-dark-border, #334155);
-  
   // Component styles
   display: inline-flex;
   align-items: center;
@@ -22,14 +18,6 @@
   border-radius: var(--sui-captcha-border-radius);
   box-shadow: var(--sui-captcha-shadow);
   transition: var(--sui-captcha-transition);
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-captcha {
-    background: var(--sui-captcha-dark-background);
-    border-color: var(--sui-captcha-dark-border);
-  }
 }
 
 // High contrast mode

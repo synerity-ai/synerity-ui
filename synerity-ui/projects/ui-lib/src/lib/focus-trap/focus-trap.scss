@@ -5,20 +5,10 @@
   --sui-focus-trap-outline-offset: 2px;
   --sui-focus-trap-transition: var(--sui-transition, all 0.2s ease);
   
-  // Dark theme variables
-  --sui-focus-trap-dark-outline-color: var(--sui-dark-primary, #60a5fa);
-  
   // Component styles
   outline-color: var(--sui-focus-trap-outline-color);
   outline-offset: var(--sui-focus-trap-outline-offset);
   transition: var(--sui-focus-trap-transition);
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-focus-trap {
-    outline-color: var(--sui-focus-trap-dark-outline-color);
-  }
 }
 
 // Reduced motion

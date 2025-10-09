@@ -197,21 +197,6 @@
   }
 }
 
-/* Dark mode support */
-.theme-dark .sui-overlay-panel {
-  --overlay-bg: var(--color-bg-elevated-dark, #1f2937);
-  --overlay-border: var(--color-border-dark, #374151);
-  --overlay-text: var(--color-text-dark, #f9fafb);
-  --overlay-text-secondary: var(--color-text-secondary-dark, #d1d5db);
-  --overlay-shadow: var(--shadow-lg-dark, 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1));
-  --overlay-modal-bg: var(--color-overlay-dark, rgba(0, 0, 0, 0.7));
-  --overlay-close-bg: var(--color-bg-hover-dark, #374151);
-  --overlay-close-bg-hover: var(--color-bg-active-dark, #4b5563);
-  --overlay-close-text: var(--color-text-muted-dark, #9ca3af);
-  --overlay-close-text-hover: var(--color-text-secondary-dark, #d1d5db);
-  --overlay-focus-ring-offset: var(--color-bg-dark, #111827);
-}
-
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .sui-overlay-panel {
@@ -220,11 +205,6 @@
     
     .sui-overlay-panel-close {
       border: 1px solid var(--overlay-border);
-    }
-    
-    .theme-dark & {
-      --overlay-border: var(--color-border-high-contrast-dark, #ffffff);
-      --overlay-shadow: var(--shadow-lg-high-contrast-dark, 0 0 0 2px #ffffff);
     }
   }
 }

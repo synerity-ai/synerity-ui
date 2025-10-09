@@ -326,28 +326,6 @@
   }
 }
 
-/* Dark mode support */
-.theme-dark .sui-skeleton {
-  --skeleton-bg: var(--color-bg-skeleton-dark, #374151);
-  --skeleton-bg-secondary: var(--color-bg-skeleton-secondary-dark, #4b5563);
-  --skeleton-bg-animated: var(--color-bg-skeleton-animated-dark, #374151);
-
-  &.sui-skeleton-animated {
-    background: linear-gradient(90deg, 
-      var(--skeleton-bg-animated) 25%, 
-      var(--skeleton-bg-secondary) 50%, 
-      var(--skeleton-bg-animated) 75%);
-    background-size: 200% 100%;
-
-    &.sui-skeleton-loading::after {
-      background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 255, 255, 0.1) 50%, 
-        transparent 100%);
-    }
-  }
-}
-
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .sui-skeleton-animated,
@@ -373,18 +351,6 @@
         var(--color-bg-high-contrast-dark, #9ca3af) 50%, 
         var(--color-bg-high-contrast-light, #d1d5db) 75%);
       background-size: 200% 100%;
-    }
-
-    .theme-dark & {
-      border-color: var(--color-border-high-contrast-dark, #ffffff);
-      
-      &.sui-skeleton-animated {
-        background: linear-gradient(90deg, 
-          var(--color-bg-high-contrast-dark-light, #4b5563) 25%, 
-          var(--color-bg-high-contrast-dark-dark, #6b7280) 50%, 
-          var(--color-bg-high-contrast-dark-light, #4b5563) 75%);
-        background-size: 200% 100%;
-      }
     }
   }
 }

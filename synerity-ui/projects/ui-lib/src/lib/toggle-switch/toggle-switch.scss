@@ -52,23 +52,6 @@
     --sui-toggle-switch-focus-ring: rgba(16, 185, 129, 0.2);
   }
 
-  &-dark {
-    --sui-toggle-switch-bg: #1f2937;
-    --sui-toggle-switch-bg-off: #4b5563;
-    --sui-toggle-switch-bg-on: #10b981;
-    --sui-toggle-switch-thumb-bg: #ffffff;
-    --sui-toggle-switch-thumb-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    --sui-toggle-switch-text-color: #f9fafb;
-    --sui-toggle-switch-text-color-off: #d1d5db;
-    --sui-toggle-switch-text-color-on: #34d399;
-    --sui-toggle-switch-border: #6b7280;
-    --sui-toggle-switch-border-off: #6b7280;
-    --sui-toggle-switch-border-on: #10b981;
-    --sui-toggle-switch-disabled: #6b7280;
-    --sui-toggle-switch-disabled-bg: #374151;
-    --sui-toggle-switch-focus-ring: rgba(16, 185, 129, 0.3);
-  }
-
   // Color Variants
   &-primary {
     --sui-toggle-switch-bg-on: #3b82f6;
@@ -350,17 +333,6 @@
     --sui-toggle-switch-text-color: #000000;
     --sui-toggle-switch-text-color-off: #000000;
     --sui-toggle-switch-text-color-on: #000000;
-  }
-
-  .sui-toggle-switch-dark {
-    --sui-toggle-switch-bg-off: #ffffff;
-    --sui-toggle-switch-bg-on: #ffffff;
-    --sui-toggle-switch-thumb-bg: #000000;
-    --sui-toggle-switch-border-off: #ffffff;
-    --sui-toggle-switch-border-on: #ffffff;
-    --sui-toggle-switch-text-color: #ffffff;
-    --sui-toggle-switch-text-color-off: #ffffff;
-    --sui-toggle-switch-text-color-on: #ffffff;
   }
 }
 

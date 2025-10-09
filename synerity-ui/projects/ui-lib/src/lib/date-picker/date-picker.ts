@@ -92,7 +92,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
   @Input() required = false;
   @Input() variant: 'dropdown' | 'inline' | 'range' = 'dropdown';
   @Input() size: 'normal' | 'compact' = 'normal';
-  @Input() theme: 'light' | 'dark' = 'light';
+  // Theme removed - only light theme supported to avoid OS dark mode conflicts
   
   // Date Constraints
   @Input() minDate: Date | null = null;
@@ -574,7 +574,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
       'sui-date-picker',
       `sui-date-picker-${this.size}`,
       `sui-date-picker-${this.variant}`,
-      `sui-date-picker-${this.theme}`
+      'sui-date-picker-light' // Hardcoded to light theme
     ];
     
     if (this.disabled) classes.push('sui-date-picker-disabled');
@@ -591,7 +591,7 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
   }
 
   getCalendarClass(): string {
-    return `sui-date-picker-calendar sui-date-picker-calendar-${this.variant} sui-date-picker-calendar-${this.size} sui-date-picker-calendar-${this.theme}`;
+    return `sui-date-picker-calendar sui-date-picker-calendar-${this.variant} sui-date-picker-calendar-${this.size} sui-date-picker-calendar-light`;
   }
 
   getCalendarStyle(): any {
@@ -624,32 +624,33 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
       calendarWidth = 280; // Inline width
     }
     
-    // Calculate optimal position
-    let top = triggerRect.bottom + window.scrollY + 8;
-    let left = triggerRect.left + window.scrollX;
+    // Calculate optimal position (FIXED: position:fixed is relative to viewport, not document)
+    // DO NOT add window.scrollY/scrollX - they break fixed positioning
+    let top = triggerRect.bottom + 8;
+    let left = triggerRect.left;
     
     // Check if calendar would go off screen vertically
-    const wouldGoOffBottom = top + calendarHeight > viewportHeight + window.scrollY;
-    const wouldGoOffTop = triggerRect.top + window.scrollY - calendarHeight - 8 < window.scrollY;
+    const wouldGoOffBottom = top + calendarHeight > viewportHeight;
+    const spaceAbove = triggerRect.top;
     
     // Priority: Show month/year navigation buttons
     // If there's not enough space below, position above the trigger
-    if (wouldGoOffBottom && !wouldGoOffTop) {
-      top = triggerRect.top + window.scrollY - calendarHeight - 8;
-    } else if (wouldGoOffBottom && wouldGoOffTop) {
+    if (wouldGoOffBottom && spaceAbove >= calendarHeight + 8) {
+      top = triggerRect.top - calendarHeight - 8;
+    } else if (wouldGoOffBottom && spaceAbove < calendarHeight + 8) {
       // If it would go off both top and bottom, center it vertically
       const availableHeight = viewportHeight - 20; // Leave 20px margin
-      top = window.scrollY + (viewportHeight - Math.min(calendarHeight, availableHeight)) / 2;
+      top = (viewportHeight - Math.min(calendarHeight, availableHeight)) / 2;
     }
     
     // Check if calendar would go off screen horizontally
-    if (left + calendarWidth > viewportWidth + window.scrollX) {
-      left = viewportWidth + window.scrollX - calendarWidth - 16;
+    if (left + calendarWidth > viewportWidth) {
+      left = viewportWidth - calendarWidth - 16;
     }
     
     // Ensure calendar doesn't go off the left edge
-    if (left < window.scrollX + 16) {
-      left = window.scrollX + 16;
+    if (left < 16) {
+      left = 16;
     }
     
     return {
@@ -1229,9 +1230,11 @@ export class DatePicker implements ControlValueAccessor, OnDestroy, OnInit, OnCh
   }
 
   private positionCalendar(): void {
-    // This method is called after the calendar is rendered
-    // The actual positioning is handled by getCalendarStyle()
-    this.cdr.detectChanges();
+    // Update calendar position when scrolling or resizing
+    if (this.calendarElement && this.isOpen) {
+      const styles = this.getCalendarStyle();
+      Object.assign(this.calendarElement.style, styles);
+    }
   }
 
   private bindEventListeners(): void {

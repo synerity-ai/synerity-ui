@@ -66,22 +66,6 @@
     --sui-chip-remove-color-hover: #374151;
   }
 
-  &-dark {
-    --sui-chip-bg: #374151;
-    --sui-chip-bg-hover: #4b5563;
-    --sui-chip-bg-active: #6b7280;
-    --sui-chip-text-color: #f9fafb;
-    --sui-chip-text-color-hover: #ffffff;
-    --sui-chip-border: #4b5563;
-    --sui-chip-border-hover: #6b7280;
-    --sui-chip-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    --sui-chip-shadow-hover: 0 1px 3px rgba(0, 0, 0, 0.2);
-    --sui-chip-remove-bg: #4b5563;
-    --sui-chip-remove-bg-hover: #6b7280;
-    --sui-chip-remove-color: #d1d5db;
-    --sui-chip-remove-color-hover: #f9fafb;
-  }
-
   // Color Variants
   &-primary {
     --sui-chip-bg: #dbeafe;
@@ -373,12 +357,6 @@
     --sui-chip-border: #000000;
     --sui-chip-text-color: #000000;
     --sui-chip-remove-color: #000000;
-  }
-
-  .sui-chip-dark {
-    --sui-chip-border: #ffffff;
-    --sui-chip-text-color: #ffffff;
-    --sui-chip-remove-color: #ffffff;
   }
 }
 

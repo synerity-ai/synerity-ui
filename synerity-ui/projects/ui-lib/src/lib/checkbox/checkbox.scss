@@ -212,25 +212,7 @@
   border-color: var(--sui-checkbox-gradient-border-color, transparent); /* border-transparent */
 }
 
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-checkbox input[type="checkbox"] {
-    background-color: var(--sui-checkbox-dark-bg, #374151); /* bg-gray-700 */
-    border-color: var(--sui-checkbox-dark-border-color, #6b7280); /* border-gray-500 */
-    color: var(--sui-checkbox-dark-color, #60a5fa); /* text-blue-400 */
-  }
-
-  .sui-checkbox input[type="checkbox"]:checked,
-  .sui-checkbox input[type="checkbox"]:indeterminate {
-    background-color: var(--sui-checkbox-dark-checked-bg, #3b82f6); /* bg-blue-500 */
-    border-color: var(--sui-checkbox-dark-checked-border-color, #3b82f6); /* border-blue-500 */
-  }
-
-  .sui-checkbox.checkbox-enhanced input[type="checkbox"] {
-    background-color: var(--sui-checkbox-dark-enhanced-bg, #1f2937); /* bg-gray-800 */
-    border-color: var(--sui-checkbox-dark-enhanced-border-color, #6b7280); /* border-gray-500 */
-  }
-}
+// Dark mode support removed - light theme only
 
 // High contrast mode support
 @media (prefers-contrast: high) {

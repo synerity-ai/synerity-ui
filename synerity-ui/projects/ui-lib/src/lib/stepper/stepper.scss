@@ -25,12 +25,6 @@
   --sui-stepper-line-background-completed: var(--sui-success, #22c55e);
   --sui-stepper-line-height: 2px;
   
-  // Dark theme variables
-  --sui-stepper-dark-background: var(--sui-dark-surface, #1e293b);
-  --sui-stepper-dark-border: var(--sui-dark-border, #334155);
-  --sui-stepper-dark-text: var(--sui-dark-text-primary, #f1f5f9);
-  --sui-stepper-dark-step-background: var(--sui-dark-surface-secondary, #0f172a);
-  
   // Component styles
   display: flex;
   flex-direction: column;
@@ -42,15 +36,6 @@
   box-shadow: var(--sui-stepper-shadow);
   color: var(--sui-stepper-text);
   transition: var(--sui-stepper-transition);
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-stepper {
-    background: var(--sui-stepper-dark-background);
-    border-color: var(--sui-stepper-dark-border);
-    color: var(--sui-stepper-dark-text);
-  }
 }
 
 // High contrast mode

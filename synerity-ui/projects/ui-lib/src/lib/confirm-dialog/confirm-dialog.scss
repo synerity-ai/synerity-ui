@@ -39,13 +39,7 @@
 }
 
 // Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-confirm-dialog {
-    background: var(--sui-confirm-dialog-dark-background);
-    border-color: var(--sui-confirm-dialog-dark-border);
-    color: var(--sui-confirm-dialog-dark-text);
-  }
-}
+// Dark mode support removed - light theme only
 
 // High contrast mode
 @media (prefers-contrast: high) {

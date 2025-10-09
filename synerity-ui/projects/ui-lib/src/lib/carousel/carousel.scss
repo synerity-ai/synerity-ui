@@ -257,25 +257,7 @@
 }
 
 /* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .sui-carousel {
-    &-indicator {
-      background-color: var(--color-gray-600, #4b5563);
-
-      &:hover {
-        background-color: var(--color-gray-500, #6b7280);
-      }
-
-      &-active {
-        background-color: var(--color-primary-light, #93c5fd);
-      }
-    }
-
-    &-caption {
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    }
-  }
-}
+// Dark mode support removed - light theme only
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

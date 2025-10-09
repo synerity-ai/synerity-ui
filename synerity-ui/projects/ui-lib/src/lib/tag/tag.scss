@@ -256,35 +256,6 @@
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .sui-tag {
-    &-info {
-      @apply bg-blue-900/30 text-blue-300 border-blue-700;
-    }
-
-    &-success {
-      @apply bg-green-900/30 text-green-300 border-green-700;
-    }
-
-    &-warning {
-      @apply bg-yellow-900/30 text-yellow-300 border-yellow-700;
-    }
-
-    &-danger {
-      @apply bg-red-900/30 text-red-300 border-red-700;
-    }
-
-    &-contrast {
-      @apply bg-gray-800 text-gray-300 border-gray-600;
-    }
-
-    &-remove {
-      @apply hover:bg-white/10;
-    }
-  }
-}
-
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .sui-tag {

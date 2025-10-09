@@ -76,30 +76,6 @@
     --sui-listbox-scrollbar-thumb-hover: #94a3b8;
   }
 
-  &-dark {
-    --sui-listbox-bg: #1f2937;
-    --sui-listbox-bg-hover: #374151;
-    --sui-listbox-bg-active: #4b5563;
-    --sui-listbox-bg-selected: #1e3a8a;
-    --sui-listbox-bg-disabled: #111827;
-    --sui-listbox-text-color: #f9fafb;
-    --sui-listbox-text-color-hover: #ffffff;
-    --sui-listbox-text-color-active: #ffffff;
-    --sui-listbox-text-color-selected: #60a5fa;
-    --sui-listbox-text-color-disabled: #6b7280;
-    --sui-listbox-border: #4b5563;
-    --sui-listbox-border-hover: #6b7280;
-    --sui-listbox-border-focus: #60a5fa;
-    --sui-listbox-border-error: #f87171;
-    --sui-listbox-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    --sui-listbox-shadow-focus: 0 0 0 3px rgba(96, 165, 250, 0.1);
-    --sui-listbox-shadow-error: 0 0 0 3px rgba(248, 113, 113, 0.1);
-    --sui-listbox-divider: #374151;
-    --sui-listbox-scrollbar-track: #1e293b;
-    --sui-listbox-scrollbar-thumb: #475569;
-    --sui-listbox-scrollbar-thumb-hover: #64748b;
-  }
-
   // Color Variants
   &-primary {
     --sui-listbox-border-focus: #3b82f6;
@@ -550,13 +526,6 @@
     --sui-listbox-border-focus: #000000;
     --sui-listbox-text-color: #000000;
     --sui-listbox-text-color-selected: #000000;
-  }
-
-  .sui-listbox-dark {
-    --sui-listbox-border: #ffffff;
-    --sui-listbox-border-focus: #ffffff;
-    --sui-listbox-text-color: #ffffff;
-    --sui-listbox-text-color-selected: #ffffff;
   }
 }
 

@@ -33,13 +33,7 @@
 }
 
 // Dark mode support
-@media (prefers-color-scheme: dark) {
-  .sui-fieldset {
-    background: var(--sui-fieldset-dark-background);
-    border-color: var(--sui-fieldset-dark-border);
-    color: var(--sui-fieldset-dark-text);
-  }
-}
+// Dark mode support removed - light theme only
 
 // High contrast mode
 @media (prefers-contrast: high) {

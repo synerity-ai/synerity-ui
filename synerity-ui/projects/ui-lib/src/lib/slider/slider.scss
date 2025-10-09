@@ -71,22 +71,6 @@
     --sui-slider-shadow-active: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-  &-dark {
-    --sui-slider-bg: #1f2937;
-    --sui-slider-track-bg: #4b5563;
-    --sui-slider-track-fill: #3b82f6;
-    --sui-slider-thumb-bg: #ffffff;
-    --sui-slider-thumb-border: #3b82f6;
-    --sui-slider-thumb-hover: #2563eb;
-    --sui-slider-thumb-active: #1d4ed8;
-    --sui-slider-text: #f9fafb;
-    --sui-slider-text-secondary: #d1d5db;
-    --sui-slider-disabled: #6b7280;
-    --sui-slider-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    --sui-slider-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.3);
-    --sui-slider-shadow-active: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
   // Color Variants
   &-primary {
     --sui-slider-track-fill: #3b82f6;
@@ -528,16 +512,6 @@
     --sui-slider-thumb-active: #000000;
     --sui-slider-text: #000000;
     --sui-slider-text-secondary: #000000;
-  }
-
-  .sui-slider-dark {
-    --sui-slider-track-bg: #ffffff;
-    --sui-slider-track-fill: #ffffff;
-    --sui-slider-thumb-border: #ffffff;
-    --sui-slider-thumb-hover: #ffffff;
-    --sui-slider-thumb-active: #ffffff;
-    --sui-slider-text: #ffffff;
-    --sui-slider-text-secondary: #ffffff;
   }
 }
 

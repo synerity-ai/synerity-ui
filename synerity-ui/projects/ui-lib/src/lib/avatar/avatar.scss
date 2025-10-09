@@ -121,22 +121,7 @@
 }
 
 /* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .sui-avatar {
-    --sui-avatar-bg-color: #4b5563;
-    --sui-avatar-color: #f9fafb;
-    --sui-avatar-border: 2px solid #374151;
-    --sui-avatar-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  }
-
-  .sui-avatar-status {
-    --sui-avatar-status-border: 2px solid #374151;
-  }
-
-  .sui-avatar-group .sui-avatar {
-    --sui-avatar-group-border: 2px solid #374151;
-  }
-}
+// Dark mode support removed - light theme only
 
 /* Light Mode Variables */
 :root {
