@@ -1,251 +1,101 @@
 @switch (getCurrentExample().name) {
   @case ('Basic Select') {
-    <div class="select-demo">
-      <div class="demo-content">
-        <h3>Basic Select</h3>
-        <p>Simple select component with basic functionality and placeholder.</p>
-        <div class="space-y-4">
-          <sui-select
-            placeholder="Choose an option"
-            [options]="basicOptions"
-            [(ngModel)]="basicSelectedValue"
-            [clearable]="true">
-          </sui-select>
-          <div class="mt-4 p-3 bg-gray-100 rounded">
-            <span class="text-sm text-gray-600">Selected: {{ getSelectedOptionLabel(basicOptions, basicSelectedValue || '') }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <sui-select
+      placeholder="Choose an option"
+      [options]="basicOptions"
+      [(ngModel)]="selectedValue">
+    </sui-select>
+  }
+  @case ('With Clearable') {
+    <sui-select
+      placeholder="Select with clear button"
+      [options]="basicOptions"
+      [(ngModel)]="selectedValue"
+      [clearable]="true">
+    </sui-select>
+  }
+  @case ('Disabled') {
+    <sui-select
+      placeholder="Disabled select"
+      [options]="basicOptions"
+      [(ngModel)]="selectedValue"
+      [disabled]="true">
+    </sui-select>
+  }
+  @case ('Small Size') {
+    <sui-select
+      placeholder="Small select"
+      [options]="basicOptions"
+      [(ngModel)]="selectedValue"
+      size="sm">
+    </sui-select>
+  }
+  @case ('Medium Size') {
+    <sui-select
+      placeholder="Medium select"
+      [options]="basicOptions"
+      [(ngModel)]="selectedValue"
+      size="md">
+    </sui-select>
+  }
+  @case ('Large Size') {
+    <sui-select
+      placeholder="Large select"
+      [options]="basicOptions"
+      [(ngModel)]="selectedValue"
+      size="lg">
+    </sui-select>
   }
   
-  @case ('Size Variations') {
-    <div class="select-demo">
-      <div class="demo-content">
-        <h3>Size Variations</h3>
-        <p>Select components available in different sizes.</p>
-        <div class="space-y-6">
-          <div *ngFor="let variant of sizeVariants" class="flex items-center gap-3">
-            <sui-select
-              [placeholder]="'Choose ' + variant.label"
-              [options]="basicOptions"
-              [(ngModel)]="sizeSelectedValue"
-              [size]="variant.size">
-            </sui-select>
-            <span class="text-sm text-gray-600">{{ variant.label }}</span>
-          </div>
-        </div>
-      </div>
+  @case ('With Search') {
+    <sui-select
+      placeholder="Search countries..."
+      [options]="countries"
+      [(ngModel)]="selectedValue"
+      [searchable]="true"
+      searchPlaceholder="Type to search...">
+    </sui-select>
+  }
+  @case ('Multi-Select') {
+    <sui-select
+      placeholder="Select multiple options"
+      [options]="skills"
+      [(ngModel)]="multiSelectedValue"
+      [multiple]="true"
+      [maxDisplayItems]="2">
+    </sui-select>
+  }
+  @case ('Multi with Search') {
+    <sui-select
+      placeholder="Select skills"
+      [options]="skills"
+      [(ngModel)]="multiSelectedValue"
+      [multiple]="true"
+      [searchable]="true"
+      [selectAll]="true"
+      searchPlaceholder="Search skills..."
+      [maxDisplayItems]="2">
+    </sui-select>
+  }
+  @case ('Loading State') {
+    <div class="w-full max-w-md">
+      <sui-select
+        placeholder="Loading data..."
+        [options]="countries"
+        [(ngModel)]="selectedValue"
+        [loading]="true">
+      </sui-select>
     </div>
   }
-  
-  @case ('Form Integration') {
-    <div class="select-demo">
-      <div class="demo-content">
-        <h3>Form Integration</h3>
-        <p>Select components integrated within a form with validation and dependent fields.</p>
-        <form class="space-y-6" (ngSubmit)="submitForm()">
-          <div class="form-group">
-            <label class="form-label">Country</label>
-            <sui-select
-              placeholder="Select your country"
-              [options]="countries"
-              [(ngModel)]="formData.country"
-              name="country"
-              inputId="country"
-              (change)="onCountryChange()"
-              [loading]="isLoadingCountries"
-              required>
-            </sui-select>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label">City</label>
-            <sui-select
-              placeholder="Select your city"
-              [options]="getCitiesForCountry()"
-              [(ngModel)]="formData.city"
-              name="city"
-              inputId="city"
-              [disabled]="!formData.country"
-              [loading]="isLoadingCities"
-              required>
-            </sui-select>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label">Language</label>
-            <sui-select
-              placeholder="Select your language"
-              [options]="languages"
-              [(ngModel)]="formData.language"
-              name="language"
-              inputId="language"
-              required>
-            </sui-select>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label">Timezone</label>
-            <sui-select
-              placeholder="Select your timezone"
-              [options]="timezones"
-              [(ngModel)]="formData.timezone"
-              name="timezone"
-              inputId="timezone"
-              required>
-            </sui-select>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label">Currency</label>
-            <sui-select
-              placeholder="Select your currency"
-              [options]="currencies"
-              [(ngModel)]="formData.currency"
-              name="currency"
-              inputId="currency"
-              required>
-            </sui-select>
-          </div>
-          
-          <div class="form-actions">
-            <sui-button type="submit" [disabled]="!formData.country || !formData.city || !formData.language">Submit Form</sui-button>
-            <sui-button type="button" variant="outline" (click)="resetForm()">Reset</sui-button>
-          </div>
-        </form>
-      </div>
-    </div>
-  }
-  
-  @case ('Multi-Select with Search') {
-    <div class="select-demo">
-      <div class="demo-content">
-        <h3>Multi-Select with Search</h3>
-        <p>Multi-select component with search functionality and select all options.</p>
-        <div class="space-y-6">
-          <div class="form-group">
-            <label class="form-label">Skills</label>
-            <sui-select
-              placeholder="Select your skills"
-              [options]="skills"
-              [(ngModel)]="selectedSkills"
-              [multiple]="true"
-              [searchable]="true"
-              [selectAll]="true"
-              name="skills"
-              inputId="skills"
-              searchPlaceholder="Search skills..."
-              [maxDisplayItems]="2">
-            </sui-select>
-          </div>
-        </div>
-      </div>
-    </div>
-  }
-  
-  @case ('Product Selection') {
-    <div class="select-demo">
-      <div class="demo-content">
-        <h3>Product Selection</h3>
-        <p>Multi-select component for product selection with pricing information.</p>
-        <div class="space-y-6">
-          <div class="form-group">
-            <label class="form-label">Products</label>
-            <sui-select
-              placeholder="Select products"
-              [options]="products"
-              [(ngModel)]="selectedProducts"
-              [multiple]="true"
-              [searchable]="true"
-              [selectAll]="true"
-              name="products"
-              inputId="products"
-              searchPlaceholder="Search products..."
-              [maxDisplayItems]="3">
-            </sui-select>
-          </div>
-        </div>
-      </div>
-    </div>
-  }
-  
-  @case ('Loading States') {
-    <div class="select-demo">
-      <div class="demo-content">
-        <h3>Loading States</h3>
-        <p>Select components with loading states for async data.</p>
-        <div class="space-y-6">
-          <div class="form-group">
-            <label class="form-label">Countries (Loading)</label>
-            <sui-select
-              placeholder="Loading countries..."
-              [options]="countries"
-              [(ngModel)]="selectedCountry"
-              [loading]="isLoadingCountries"
-              name="countries-loading"
-              inputId="countries-loading">
-            </sui-select>
-            <sui-button (click)="loadCountries()" size="sm" variant="outline">
-              {{ isLoadingCountries ? 'Loading...' : 'Load Countries' }}
-            </sui-button>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label">Cities (Loading)</label>
-            <sui-select
-              placeholder="Loading cities..."
-              [options]="getCitiesForCountry()"
-              [(ngModel)]="selectedCity"
-              [loading]="isLoadingCities"
-              name="cities-loading"
-              inputId="cities-loading">
-            </sui-select>
-            <sui-button (click)="loadCities()" size="sm" variant="outline">
-              {{ isLoadingCities ? 'Loading...' : 'Load Cities' }}
-            </sui-button>
-          </div>
-        </div>
-      </div>
-    </div>
-  }
-  
-  @case ('Custom Styling') {
-    <div class="select-demo">
-      <div class="demo-content">
-        <h3>Custom Styling</h3>
-        <p>Select components with custom styling and effects.</p>
-        <div class="space-y-4">
-          <sui-select
-            placeholder="Enhanced Select"
-            [options]="customOptions"
-            [(ngModel)]="customSelectedValue"
-            [clearable]="true"
-            class="enhanced">
-          </sui-select>
-          
-          <sui-select
-            placeholder="Searchable Select"
-            [options]="languages"
-            [(ngModel)]="formData.language"
-            [searchable]="true"
-            searchPlaceholder="Search languages..."
-            class="searchable">
-          </sui-select>
-          
-          <sui-select
-            placeholder="Multi-Select with Custom Display"
-            [options]="skills"
-            [(ngModel)]="selectedSkills"
-            [multiple]="true"
-            [searchable]="true"
-            [selectAll]="true"
-            [maxDisplayItems]="1"
-            [showSelectedCount]="true"
-            class="multi-select">
-          </sui-select>
-        </div>
-      </div>
+  @case ('With Label') {
+    <div class="w-full max-w-md">
+      <label class="block text-sm font-semibold text-gray-700 mb-2">Country</label>
+      <sui-select
+        placeholder="Select your country"
+        [options]="countries"
+        [(ngModel)]="selectedValue"
+        [clearable]="true">
+      </sui-select>
     </div>
   }
   

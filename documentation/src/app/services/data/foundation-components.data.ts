@@ -850,204 +850,122 @@ export const foundationComponents: ComponentModel[] = [
     description: 'Small status indicator component for displaying counts, status, and notifications',
     examples: [
       {
-        name: 'Basic Badge',
-        description: 'Simple badge components with different severity levels and text content',
-        code: `<sui-badge
-  value="New"
-  severity="info"
-  size="normal">
-</sui-badge>
-
-<sui-badge
-  value="Success"
-  severity="success"
-  size="normal">
-</sui-badge>
-
-<sui-badge
-  value="Warning"
-  severity="warning"
-  size="normal">
-</sui-badge>
-
-<sui-badge
-  value="Error"
-  severity="danger"
-  size="normal">
-</sui-badge>`,
-        tsCode: `export class BadgeComponent {
-  basicBadges = [
-    { value: 'New', severity: 'info' },
-    { value: 'Success', severity: 'success' },
-    { value: 'Warning', severity: 'warning' },
-    { value: 'Error', severity: 'danger' }
-  ];
-}`
+        name: 'Info Badge',
+        description: 'Badge with info severity (blue)',
+        code: `<sui-badge value="New" severity="info"></sui-badge>`
       },
       {
-        name: 'Size Variations',
-        description: 'Badge components available in different sizes',
-        code: `<sui-badge
-  value="Small"
-  severity="info"
-  size="small">
-</sui-badge>
-
-<sui-badge
-  value="Normal"
-  severity="info"
-  size="normal">
-</sui-badge>
-
-<sui-badge
-  value="Large"
-  severity="info"
-  size="large">
-</sui-badge>`
+        name: 'Success Badge',
+        description: 'Badge with success severity (green)',
+        code: `<sui-badge value="Success" severity="success"></sui-badge>`
       },
       {
-        name: 'Dot Indicators',
-        description: 'Badge components without text content, used as status indicators',
-        code: `<sui-badge
-  severity="info"
-  size="normal"
-  styleClass="sui-badge-dot">
-</sui-badge>
-
-<sui-badge
-  severity="success"
-  size="normal"
-  styleClass="sui-badge-dot">
-</sui-badge>
-
-<sui-badge
-  severity="warning"
-  size="normal"
-  styleClass="sui-badge-dot">
-</sui-badge>
-
-<sui-badge
-  severity="danger"
-  size="normal"
-  styleClass="sui-badge-dot">
-</sui-badge>`
+        name: 'Warning Badge',
+        description: 'Badge with warning severity (orange)',
+        code: `<sui-badge value="Warning" severity="warning"></sui-badge>`
       },
       {
-        name: 'Notifications',
-        description: 'Badge components used in notification systems to show message counts and types',
-        code: `<div class="notification-item">
-  <div class="notification-header">
-    <h5>New Message</h5>
-    <sui-badge
-      value="3"
-      severity="info"
-      size="small">
-    </sui-badge>
-  </div>
-  <p>You have received a new message from John Doe</p>
-</div>
-
-<div class="notification-item">
-  <div class="notification-header">
-    <h5>Task Completed</h5>
-    <sui-badge
-      value="1"
-      severity="success"
-      size="small">
-    </sui-badge>
-  </div>
-  <p>Your project has been successfully completed</p>
-</div>`,
-        tsCode: `export class BadgeComponent {
-  notifications = [
-    {
-      title: 'New Message',
-      message: 'You have received a new message from John Doe',
-      type: 'info',
-      count: 3
-    },
-    {
-      title: 'Task Completed',
-      message: 'Your project has been successfully completed',
-      type: 'success',
-      count: 1
-    }
-  ];
-}`
+        name: 'Danger Badge',
+        description: 'Badge with danger severity (red)',
+        code: `<sui-badge value="Error" severity="danger"></sui-badge>`
       },
       {
-        name: 'Status Indicators',
-        description: 'Badge components used to show user status and activity counts',
-        code: `<div class="status-item">
-  <div class="status-info">
-    <div class="status-dot online"></div>
-    <span class="status-name">John Doe</span>
-    <span class="status-label">Online</span>
-  </div>
-  <sui-badge
-    value="2"
-    severity="info"
-    size="small">
-  </sui-badge>
-</div>
-
-<div class="status-item">
-  <div class="status-info">
-    <div class="status-dot busy"></div>
-    <span class="status-name">Jane Smith</span>
-    <span class="status-label">Busy</span>
-  </div>
-  <sui-badge
-    value="5"
-    severity="info"
-    size="small">
-  </sui-badge>
+        name: 'Contrast Badge',
+        description: 'Badge with contrast severity (gray)',
+        code: `<sui-badge value="Contrast" severity="contrast"></sui-badge>`
+      },
+      {
+        name: 'Small Size',
+        description: 'Badge with small size',
+        code: `<sui-badge value="Small" severity="info" size="small"></sui-badge>`
+      },
+      {
+        name: 'Normal Size',
+        description: 'Badge with normal size (default)',
+        code: `<sui-badge value="Normal" severity="info" size="normal"></sui-badge>`
+      },
+      {
+        name: 'Large Size',
+        description: 'Badge with large size',
+        code: `<sui-badge value="Large" severity="info" size="large"></sui-badge>`
+      },
+      {
+        name: 'Number Badge',
+        description: 'Badge displaying a numeric value',
+        code: `<sui-badge [value]="5" severity="info"></sui-badge>`
+      },
+      {
+        name: 'Large Number',
+        description: 'Badge displaying a large number',
+        code: `<sui-badge [value]="99" severity="danger"></sui-badge>`
+      },
+      {
+        name: 'Dot Info',
+        description: 'Dot indicator with info severity',
+        code: `<sui-badge severity="info" styleClass="sui-badge-dot"></sui-badge>`
+      },
+      {
+        name: 'Dot Success',
+        description: 'Dot indicator with success severity',
+        code: `<sui-badge severity="success" styleClass="sui-badge-dot"></sui-badge>`
+      },
+      {
+        name: 'Dot Warning',
+        description: 'Dot indicator with warning severity',
+        code: `<sui-badge severity="warning" styleClass="sui-badge-dot"></sui-badge>`
+      },
+      {
+        name: 'Dot Danger',
+        description: 'Dot indicator with danger severity',
+        code: `<sui-badge severity="danger" styleClass="sui-badge-dot"></sui-badge>`
+      },
+      {
+        name: 'With Icon',
+        description: 'Badge displayed alongside text',
+        code: `<div class="flex items-center gap-3">
+  <span class="text-gray-700 font-medium">Messages</span>
+  <sui-badge [value]="12" severity="danger" size="small"></sui-badge>
 </div>`
       },
       {
-        name: 'Task Management',
-        description: 'Badge components used in task management systems to show priority and status',
-        code: `<div class="task-item">
-  <div class="task-header">
-    <h5>Design new homepage</h5>
-    <div class="task-badges">
-      <sui-badge
-        value="High"
-        severity="info"
-        size="small"
-        [style]="{'background-color': '#f59e0b', 'color': 'white'}">
-      </sui-badge>
-      <sui-badge
-        value="in-progress"
-        severity="info"
-        size="small"
-        [style]="{'background-color': '#3b82f6', 'color': 'white'}">
-      </sui-badge>
-    </div>
+        name: 'Notification Badge',
+        description: 'Badge positioned on an icon',
+        code: `<div class="relative inline-block">
+  <button class="p-3 bg-gray-100 rounded-lg">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+    </svg>
+  </button>
+  <div class="absolute -top-1 -right-1">
+    <sui-badge [value]="5" severity="danger" size="small"></sui-badge>
   </div>
-  <div class="task-meta">
-    <span>Assigned to: Alice</span>
+</div>`
+      },
+      {
+        name: 'User Status',
+        description: 'Badge showing user status',
+        code: `<div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+  <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+    JD
   </div>
-</div>`,
-        tsCode: `export class BadgeComponent {
-  tasks = [
-    {
-      title: 'Design new homepage',
-      priority: 'high',
-      status: 'in-progress',
-      assignee: 'Alice'
-    }
-  ];
-  
-  getPriorityColor(priority: string): string {
-    switch (priority) {
-      case 'high': return '#f59e0b';
-      case 'medium': return '#3b82f6';
-      case 'low': return '#6b7280';
-      default: return '#6b7280';
-    }
-  }
-}`
+  <div class="flex-1">
+    <div class="font-medium text-gray-900">John Doe</div>
+    <div class="text-sm text-gray-500">Software Engineer</div>
+  </div>
+  <sui-badge value="Online" severity="success" size="small"></sui-badge>
+</div>`
+      },
+      {
+        name: 'Multiple Badges',
+        description: 'Multiple badges as tags',
+        code: `<div class="flex flex-wrap gap-2">
+  <sui-badge value="React" severity="info" size="small"></sui-badge>
+  <sui-badge value="TypeScript" severity="info" size="small"></sui-badge>
+  <sui-badge value="Angular" severity="danger" size="small"></sui-badge>
+  <sui-badge value="Vue" severity="success" size="small"></sui-badge>
+  <sui-badge value="Node.js" severity="warning" size="small"></sui-badge>
+</div>`
       }
     ],
     props: [

@@ -163,208 +163,126 @@ export const formComponents: ComponentModel[] = [
           examples: [
             {
               name: 'Basic Select',
-              code: '<sui-select\n  placeholder="Choose an option"\n  [options]="options"\n  [(ngModel)]="selectedValue"\n  clearable="true">\n</sui-select>',
-              description: 'Simple select component with basic functionality'
+              code: `<sui-select
+  placeholder="Choose an option"
+  [options]="basicOptions"
+  [(ngModel)]="selectedValue">
+</sui-select>`,
+              description: 'Simple select with placeholder'
             },
             {
-              name: 'Size Variations',
-              code: '<div class="space-y-2">\n  <sui-select placeholder="Small Select" [options]="options" class="sm"></sui-select>\n  <sui-select placeholder="Normal Select" [options]="options" class="normal"></sui-select>\n  <sui-select placeholder="Large Select" [options]="options" class="lg"></sui-select>\n</div>',
-              description: 'Select components in different sizes'
+              name: 'With Clearable',
+              code: `<sui-select
+  placeholder="Select with clear button"
+  [options]="basicOptions"
+  [(ngModel)]="selectedValue"
+  [clearable]="true">
+</sui-select>`,
+              description: 'Select with clear button'
             },
             {
-              name: 'Form Integration',
-              code: `
-        // In your component
-        formData = {
-          country: '',
-          city: '',
-          language: '',
-          timezone: '',
-          currency: ''
-        };
-  
-        countries = [
-          { label: 'United States', value: 'us' },
-          { label: 'Canada', value: 'ca' },
-          { label: 'United Kingdom', value: 'uk' }
-        ];
-  
-        onCountryChange(): void {
-          this.formData.city = ''; // Reset city when country changes
-        }
-  
-        // In your template
-        <form (ngSubmit)="submitForm()">
-          <div class="form-group">
-            <label class="form-label">Country</label>
-            <sui-select
-              placeholder="Select your country"
-              [options]="countries"
-              [(ngModel)]="formData.country"
-              (change)="onCountryChange()"
-              required>
-            </sui-select>
-          </div>
-          
-          <sui-button type="submit">Submit Form</sui-button>
-        </form>
-              `,
-              tsCode: `
-        // In your component
-        formData = {
-          country: '',
-          city: '',
-          language: '',
-          timezone: '',
-          currency: ''
-        };
-  
-        countries = [
-          { label: 'United States', value: 'us' },
-          { label: 'Canada', value: 'ca' },
-          { label: 'United Kingdom', value: 'uk' }
-        ];
-  
-        onCountryChange(): void {
-          this.formData.city = ''; // Reset city when country changes
-        }
-              `,
-              description: 'Select components integrated within a form with dependent fields'
+              name: 'Disabled',
+              code: `<sui-select
+  placeholder="Disabled select"
+  [options]="basicOptions"
+  [(ngModel)]="selectedValue"
+  [disabled]="true">
+</sui-select>`,
+              description: 'Disabled select component'
             },
             {
-              name: 'Multi-Select with Search',
-              code: `
-        // In your component
-        selectedSkills: string[] = [];
-        
-        skills = [
-          { label: 'JavaScript', value: 'js' },
-          { label: 'TypeScript', value: 'ts' },
-          { label: 'Angular', value: 'angular' },
-          { label: 'React', value: 'react' },
-          { label: 'Node.js', value: 'node' }
-        ];
-  
-        // In your template
-        <sui-select
-          placeholder="Select your skills"
-          [options]="skills"
-          [(ngModel)]="selectedSkills"
-          [multiple]="true"
-          [searchable]="true"
-          [selectAll]="true"
-          searchPlaceholder="Search skills..."
-          [maxDisplayItems]="2">
-        </sui-select>
-              `,
-              tsCode: `
-        // In your component
-        selectedSkills: string[] = [];
-        
-        skills = [
-          { label: 'JavaScript', value: 'js' },
-          { label: 'TypeScript', value: 'ts' },
-          { label: 'Angular', value: 'angular' },
-          { label: 'React', value: 'react' },
-          { label: 'Node.js', value: 'node' }
-        ];
-              `,
-              description: 'Multi-select component with search functionality and select all options'
+              name: 'Small Size',
+              code: `<sui-select
+  placeholder="Small select"
+  [options]="basicOptions"
+  [(ngModel)]="selectedValue"
+  size="sm">
+</sui-select>`,
+              description: 'Small size select'
             },
             {
-              name: 'Product Selection',
-              code: `
-        // In your component
-        selectedProducts: string[] = [];
-        
-        products = [
-          { label: 'MacBook Pro', value: 'macbook', category: 'Electronics', price: 2499 },
-          { label: 'iPhone 15', value: 'iphone', category: 'Electronics', price: 799 },
-          { label: 'iPad Air', value: 'ipad', category: 'Electronics', price: 599 }
-        ];
-  
-        getTotalPrice(): number {
-          return this.getSelectedProducts().reduce((total, product) => total + product.price, 0);
-        }
-  
-        // In your template
-        <sui-select
-          placeholder="Select products"
-          [options]="products"
-          [(ngModel)]="selectedProducts"
-          [multiple]="true"
-          [searchable]="true"
-          [selectAll]="true"
-          searchPlaceholder="Search products..."
-          [maxDisplayItems]="3">
-        </sui-select>
-        
-        <div *ngIf="selectedProducts.length > 0">
-          <h5>Selected Products (&#123;&#123; selectedProducts.length &#125;&#125;):</h5>
-          <div>Total: $&#123;&#123; getTotalPrice() &#125;&#125;</div>
-        </div>
-              `,
-              tsCode: `
-        // In your component
-        selectedProducts: string[] = [];
-        
-        products = [
-          { label: 'MacBook Pro', value: 'macbook', category: 'Electronics', price: 2499 },
-          { label: 'iPhone 15', value: 'iphone', category: 'Electronics', price: 799 },
-          { label: 'iPad Air', value: 'ipad', category: 'Electronics', price: 599 }
-        ];
-  
-        getTotalPrice(): number {
-          return this.getSelectedProducts().reduce((total, product) => total + product.price, 0);
-        }
-              `,
-              description: 'Multi-select component for product selection with pricing information'
+              name: 'Medium Size',
+              code: `<sui-select
+  placeholder="Medium select"
+  [options]="basicOptions"
+  [(ngModel)]="selectedValue"
+  size="md">
+</sui-select>`,
+              description: 'Medium size select (default)'
             },
             {
-              name: 'Loading States',
-              code: `
-        // In your component
-        isLoadingCountries = false;
-        isLoadingCities = false;
-  
-        loadCountries(): void {
-          this.isLoadingCountries = true;
-          // Simulate API call
-          setTimeout(() => {
-            this.isLoadingCountries = false;
-          }, 2000);
-        }
-  
-        // In your template
-        <sui-select
-          placeholder="Loading countries..."
-          [options]="countries"
-          [(ngModel)]="selectedCountry"
-          [loading]="isLoadingCountries">
-        </sui-select>
-        
-        <sui-button (click)="loadCountries()">
-          {{ isLoadingCountries ? 'Loading...' : 'Load Countries' }}
-        </sui-button>
-              `,
-              tsCode: `
-        // In your component
-        isLoadingCountries = false;
-  
-        loadCountries(): void {
-          this.isLoadingCountries = true;
-          // Simulate API call
-          setTimeout(() => {
-            this.isLoadingCountries = false;
-          }, 2000);
-        }
-              `,
-              description: 'Select components with loading states for async data'
+              name: 'Large Size',
+              code: `<sui-select
+  placeholder="Large select"
+  [options]="basicOptions"
+  [(ngModel)]="selectedValue"
+  size="lg">
+</sui-select>`,
+              description: 'Large size select'
             },
             {
-              name: 'Custom Styling',
-              code: '<div class="space-y-2">\n  <sui-select placeholder="Enhanced Select" [options]="options" clearable="true" class="enhanced"></sui-select>\n  <sui-select placeholder="Searchable Select" [options]="options" [searchable]="true" class="searchable"></sui-select>\n  <sui-select placeholder="Multi-Select" [options]="options" [multiple]="true" [searchable]="true" [selectAll]="true" class="multi-select"></sui-select>\n</div>',
-              description: 'Select components with custom styling and effects'
+              name: 'With Search',
+              code: `<sui-select
+  placeholder="Search countries..."
+  [options]="countries"
+  [(ngModel)]="selectedValue"
+  [searchable]="true"
+  searchPlaceholder="Type to search...">
+</sui-select>`,
+              description: 'Select with search functionality'
+            },
+            {
+              name: 'Multi-Select',
+              code: `<sui-select
+  placeholder="Select multiple options"
+  [options]="skills"
+  [(ngModel)]="multiSelectedValue"
+  [multiple]="true"
+  [maxDisplayItems]="2">
+</sui-select>`,
+              tsCode: `selectedValue: string | null = null;
+multiSelectedValue: string[] = [];`,
+              description: 'Multiple selection support'
+            },
+            {
+              name: 'Multi with Search',
+              code: `<sui-select
+  placeholder="Select skills"
+  [options]="skills"
+  [(ngModel)]="multiSelectedValue"
+  [multiple]="true"
+  [searchable]="true"
+  [selectAll]="true"
+  searchPlaceholder="Search skills..."
+  [maxDisplayItems]="2">
+</sui-select>`,
+              tsCode: `multiSelectedValue: string[] = [];`,
+              description: 'Multi-select with search and select all'
+            },
+            {
+              name: 'Loading State',
+              code: `<sui-select
+  placeholder="Loading data..."
+  [options]="countries"
+  [(ngModel)]="selectedValue"
+  [loading]="true">
+</sui-select>`,
+              description: 'Select with loading indicator'
+            },
+            {
+              name: 'With Label',
+              code: `<div class="w-full max-w-md">
+  <label class="block text-sm font-semibold text-gray-700 mb-2">
+    Country
+  </label>
+  <sui-select
+    placeholder="Select your country"
+    [options]="countries"
+    [(ngModel)]="selectedValue"
+    [clearable]="true">
+  </sui-select>
+</div>`,
+              description: 'Select with form label'
             }
           ],
           props: [
