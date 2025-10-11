@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, Output, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, Output, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -46,12 +46,15 @@ export class Select implements ControlValueAccessor {
   private onChange: (val: unknown) => void = () => {};
   private onTouched: () => void = () => {};
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   writeValue(obj: unknown): void {
     if (this.multiple) {
       this.value = Array.isArray(obj) ? obj : [];
     } else {
       this.value = obj;
     }
+    this.cdr.markForCheck();
   }
 
   registerOnChange(fn: (val: unknown) => void): void {
@@ -106,6 +109,7 @@ export class Select implements ControlValueAccessor {
   onSearchInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.searchTerm = input.value ?? '';
+    this.cdr.markForCheck();
   }
 
   clearSelection(): void {
@@ -113,6 +117,7 @@ export class Select implements ControlValueAccessor {
     this.value = this.multiple ? [] : null;
     this.onChange(this.value);
     this.change.emit(this.value);
+    this.cdr.markForCheck();
   }
 
   get filteredOptions(): Array<{ label: string; value: unknown; disabled?: boolean }> {
@@ -144,12 +149,14 @@ export class Select implements ControlValueAccessor {
     if (this.isOpen && this.searchable) {
       setTimeout(() => this.searchInput?.nativeElement?.focus(), 0);
     }
+    this.cdr.markForCheck();
   }
 
   closeDropdown(): void {
     this.isOpen = false;
     this.focusedIndex = -1;
     this.onTouched();
+    this.cdr.markForCheck();
   }
 
   onOptionClick(option: { label: string; value: unknown; disabled?: boolean }): void {
@@ -175,6 +182,7 @@ export class Select implements ControlValueAccessor {
     
     this.onChange(this.value);
     this.change.emit(this.value);
+    this.cdr.markForCheck();
   }
 
   removeSelectedItem(value: unknown): void {
@@ -185,6 +193,7 @@ export class Select implements ControlValueAccessor {
       this.value.splice(index, 1);
       this.onChange(this.value);
       this.change.emit(this.value);
+      this.cdr.markForCheck();
     }
   }
 
@@ -195,6 +204,7 @@ export class Select implements ControlValueAccessor {
     this.value = availableOptions.map(opt => opt.value);
     this.onChange(this.value);
     this.change.emit(this.value);
+    this.cdr.markForCheck();
   }
 
   clearAllOptions(): void {
@@ -203,6 +213,7 @@ export class Select implements ControlValueAccessor {
     this.value = [];
     this.onChange(this.value);
     this.change.emit(this.value);
+    this.cdr.markForCheck();
   }
 
   get selectedOptions(): Array<{ label: string; value: unknown; disabled?: boolean }> {
@@ -255,10 +266,12 @@ export class Select implements ControlValueAccessor {
       case 'ArrowDown':
         event.preventDefault();
         this.focusedIndex = Math.min(this.focusedIndex + 1, this.filteredOptions.length - 1);
+        this.cdr.markForCheck();
         break;
       case 'ArrowUp':
         event.preventDefault();
         this.focusedIndex = Math.max(this.focusedIndex - 1, -1);
+        this.cdr.markForCheck();
         break;
       case 'Enter':
         event.preventDefault();

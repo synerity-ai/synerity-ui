@@ -119,32 +119,3 @@
     max-width: 100%;
   }
 }
-
-// Dark theme support
-@media (prefers-color-scheme: dark) {
-  .demo-group {
-    background-color: #1f2937;
-    border-color: #374151;
-  }
-  
-  .demo-item {
-    background-color: #111827;
-    border-color: #4b5563;
-  }
-  
-  .demo-label {
-    color: #f9fafb;
-  }
-  
-  .demo-description {
-    color: #d1d5db;
-  }
-  
-  .demo-result {
-    color: #e5e7eb;
-    
-    strong {
-      color: #f9fafb;
-    }
-  }
-}

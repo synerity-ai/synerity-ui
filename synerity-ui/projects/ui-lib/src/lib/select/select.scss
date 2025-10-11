@@ -38,7 +38,7 @@
   position: relative;
   display: inline-block;
   width: 100%;
-  max-width: 400px;
+  max-width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
@@ -129,7 +129,7 @@
 
 .select-trigger {
   width: 100%;
-  min-height: 44px;
+  min-height: 38px;
   padding: 0;
   background: var(--sui-select-white);
   border: 2px solid var(--sui-select-gray-300);
@@ -194,8 +194,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
-  min-height: 44px;
+  padding: 8px 12px;
+  min-height: 38px;
 }
 
 .trigger-text {
@@ -322,18 +322,9 @@
   align-items: center;
 }
 
-.search-icon {
-  position: absolute;
-  left: 12px;
-  width: 16px;
-  height: 16px;
-  color: var(--sui-select-gray-400);
-  z-index: 1;
-}
-
 .search-input {
   width: 100%;
-  padding: 10px 12px 10px 40px;
+  padding: 10px 12px;
   background: #ffffff !important;
   border: 1px solid #d1d5db !important;
   border-radius: 0.375rem !important;
@@ -684,34 +675,40 @@
 // Size variations
 .sui-select-wrapper.size-sm {
   .select-trigger {
-    padding: 6px 12px;
-    font-size: 12px;
+    min-height: 32px;
+  }
+  
+  .trigger-content {
+    padding: 6px 10px;
     min-height: 32px;
   }
   
   .trigger-text {
-    font-size: 12px;
+    font-size: 13px;
   }
   
   .option-item {
-    padding: 8px 12px;
+    padding: 6px 10px;
   }
   
   .option-label {
-    font-size: 12px;
+    font-size: 13px;
   }
   
   .search-input {
-    padding: 8px 12px;
-    font-size: 12px;
+    padding: 6px 10px;
+    font-size: 13px;
   }
 }
 
 .sui-select-wrapper.size-md {
   .select-trigger {
-    padding: 8px 16px;
-    font-size: 14px;
-    min-height: 40px;
+    min-height: 38px;
+  }
+  
+  .trigger-content {
+    padding: 8px 12px;
+    min-height: 38px;
   }
   
   .trigger-text {
@@ -719,7 +716,7 @@
   }
   
   .option-item {
-    padding: 12px 16px;
+    padding: 8px 12px;
   }
   
   .option-label {
@@ -727,33 +724,36 @@
   }
   
   .search-input {
-    padding: 10px 16px;
+    padding: 8px 12px;
     font-size: 14px;
   }
 }
 
 .sui-select-wrapper.size-lg {
   .select-trigger {
-    padding: 12px 20px;
-    font-size: 16px;
-    min-height: 48px;
+    min-height: 44px;
+  }
+  
+  .trigger-content {
+    padding: 10px 14px;
+    min-height: 44px;
   }
   
   .trigger-text {
-    font-size: 16px;
+    font-size: 15px;
   }
   
   .option-item {
-    padding: 16px 20px;
+    padding: 10px 14px;
   }
   
   .option-label {
-    font-size: 16px;
+    font-size: 15px;
   }
   
   .search-input {
-    padding: 14px 20px;
-    font-size: 16px;
+    padding: 10px 14px;
+    font-size: 15px;
   }
 }
 

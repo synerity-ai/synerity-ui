@@ -1,194 +1,301 @@
-/* Input Text Component Styles */
-.sui-input-text {
-  position: relative;
-  display: block;
+/* Input Text Component Styles - Enhanced */
+.sui-input-text-container {
   width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
 
-  input {
-    width: 100%;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: #111827;
-    background-color: #ffffff;
-    transition: all 0.2s ease-in-out;
-    outline: none;
+.sui-input-text-label {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--sui-gray-700, #374151);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
 
-    &:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  .sui-input-text-required {
+    color: var(--sui-danger-500, #ef4444);
+    margin-left: 0.125rem;
+    font-weight: 700;
+  }
+}
+
+.sui-input-text-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sui-input-text {
+  width: 100%;
+  border: 2px solid var(--sui-gray-300, #d1d5db);
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--sui-gray-900, #111827);
+  background-color: var(--sui-white, #ffffff);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+
+  &::placeholder {
+    color: var(--sui-gray-400, #9ca3af);
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover:not(:disabled):not(:read-only) {
+    border-color: var(--sui-gray-400, #9ca3af);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+  }
+
+  &:focus {
+    border-color: var(--sui-primary-500, #3b82f6);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12),
+                0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    background-color: var(--sui-white, #ffffff);
+
+    &::placeholder {
+      opacity: 0.6;
     }
-
-    &:disabled {
-      background-color: #f9fafb;
-      color: #6b7280;
-      cursor: not-allowed;
-    }
-
-    &:read-only {
-      background-color: #f9fafb;
-      cursor: default;
-    }
   }
 
-  /* Input Text Sizes */
-  &-small input {
-    padding: 0.375rem 0.5rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
+  &:disabled {
+    background-color: var(--sui-gray-50, #f9fafb);
+    border-color: var(--sui-gray-200, #e5e7eb);
+    color: var(--sui-gray-500, #6b7280);
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
   }
 
-  &-normal input {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+  &:read-only {
+    background-color: var(--sui-gray-50, #f9fafb);
+    border-color: var(--sui-gray-200, #e5e7eb);
+    cursor: default;
+    box-shadow: none;
   }
+}
 
-  &-large input {
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
+/* Input Sizes */
+.sui-input-text-sm {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  border-radius: 0.375rem;
+  line-height: 1.4;
+}
 
-  /* Input Text Variants */
-  &-filled input {
-    background-color: #f3f4f6;
+.sui-input-text-md {
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  border-radius: 0.5rem;
+  line-height: 1.5;
+}
+
+.sui-input-text-lg {
+  padding: 0.875rem 1.125rem;
+  font-size: 1rem;
+  border-radius: 0.625rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Input Variants */
+.sui-input-text-filled {
+  background-color: var(--sui-gray-100, #f3f4f6);
+  border-color: transparent;
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+  &:hover:not(:disabled):not(:read-only) {
+    background-color: var(--sui-gray-200, #e5e7eb);
     border-color: transparent;
   }
 
-  &-outlined input {
-    background-color: transparent;
-    border-color: #d1d5db;
+  &:focus {
+    background-color: var(--sui-white, #ffffff);
+    border-color: var(--sui-primary-500, #3b82f6);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12),
+                inset 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+}
+
+.sui-input-text-outlined {
+  background-color: transparent;
+  border-width: 2px;
+  border-color: var(--sui-gray-300, #d1d5db);
+
+  &:focus {
+    background-color: var(--sui-white, #ffffff);
+  }
+}
+
+.sui-input-text-default {
+  // Default styles already applied
+}
+
+/* Validation States */
+.sui-input-text-valid {
+  border-color: var(--sui-success-500, #10b981);
+  background-color: rgba(16, 185, 129, 0.02);
+
+  &:focus {
+    border-color: var(--sui-success-600, #059669);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12),
+                0 1px 3px 0 rgba(0, 0, 0, 0.1);
   }
 
-  /* Input Text States */
-  &-valid input {
-    border-color: #10b981;
+  &:hover:not(:disabled):not(:read-only) {
+    border-color: var(--sui-success-600, #059669);
+  }
+}
 
-    &:focus {
-      border-color: #10b981;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-    }
+.sui-input-text-invalid {
+  border-color: var(--sui-danger-500, #ef4444);
+  background-color: rgba(239, 68, 68, 0.02);
+
+  &:focus {
+    border-color: var(--sui-danger-600, #dc2626);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12),
+                0 1px 3px 0 rgba(0, 0, 0, 0.1);
   }
 
-  &-invalid input {
-    border-color: #ef4444;
+  &:hover:not(:disabled):not(:read-only) {
+    border-color: var(--sui-danger-600, #dc2626);
+  }
+}
 
-    &:focus {
-      border-color: #ef4444;
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-    }
+/* Prefix & Suffix */
+.sui-input-text-prefix,
+.sui-input-text-suffix {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sui-input-text-prefix {
+  left: 0.875rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--sui-gray-500, #6b7280);
+
+  & + .sui-input-text {
+    padding-left: 2.5rem;
+  }
+}
+
+.sui-input-text-suffix {
+  right: 0.875rem;
+  pointer-events: auto;
+}
+
+.sui-input-text-suffix-text {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--sui-gray-500, #6b7280);
+}
+
+/* Clear Button & Password Toggle */
+.sui-input-text-clear,
+.sui-input-text-password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0.375rem;
+  color: var(--sui-gray-500, #6b7280);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2.5;
   }
 
-  /* Input Text with Label */
-  &-label {
-    display: block;
-    font-size: 0.875rem;
+  &:hover {
+    color: var(--sui-gray-700, #374151);
+    background-color: var(--sui-gray-100, #f3f4f6);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+    background-color: var(--sui-gray-200, #e5e7eb);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--sui-primary-500, #3b82f6);
+    outline-offset: 2px;
+  }
+}
+
+/* Adjust input padding when suffix elements exist */
+.sui-input-text-wrapper:has(.sui-input-text-clear) .sui-input-text,
+.sui-input-text-wrapper:has(.sui-input-text-password-toggle) .sui-input-text {
+  padding-right: 2.75rem;
+}
+
+.sui-input-text-wrapper:has(.sui-input-text-suffix-text) .sui-input-text {
+  padding-right: 3rem;
+}
+
+/* Helper Text & Error Messages */
+.sui-input-text-helper {
+  display: block;
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--sui-gray-600, #4b5563);
+  font-weight: 400;
+  transition: color 0.2s ease;
+
+  &.sui-input-text-error {
+    color: var(--sui-danger-600, #dc2626);
     font-weight: 500;
-    color: #374151;
-    margin-bottom: 0.25rem;
   }
+}
 
-  &-required &-label::after {
-    content: ' *';
-    color: #ef4444;
+/* Disabled State for Container */
+.sui-input-text-disabled {
+  .sui-input-text-label {
+    color: var(--sui-gray-500, #6b7280);
+    opacity: 0.7;
   }
+}
 
-  /* Input Text with Helper Text */
-  &-helper {
-    margin-top: 0.25rem;
-    font-size: 0.75rem;
-    color: #6b7280;
+/* Read-only State for Container */
+.sui-input-text-readonly {
+  .sui-input-text-label {
+    color: var(--sui-gray-600, #4b5563);
   }
+}
 
-  &-error {
-    margin-top: 0.25rem;
-    font-size: 0.75rem;
-    color: #ef4444;
+/* Focus-within enhancement for wrapper */
+.sui-input-text-wrapper:focus-within {
+  .sui-input-text-prefix,
+  .sui-input-text-suffix-text {
+    color: var(--sui-primary-600, #2563eb);
   }
+}
 
-  /* Input Text with Icon */
-  &-icon {
-    position: relative;
+/* Animations */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
 
-    input {
-      padding-left: 2.5rem;
-    }
-
-    &-prefix {
-      position: absolute;
-      left: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #6b7280;
-      pointer-events: none;
-    }
-
-    &-suffix {
-      position: absolute;
-      right: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #6b7280;
-      pointer-events: none;
-    }
-  }
-
-  /* Input Text with Clear Button */
-  &-clearable {
-    position: relative;
-
-    input {
-      padding-right: 2.5rem;
-    }
-
-    &-clear {
-      position: absolute;
-      right: 0.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #6b7280;
-      cursor: pointer;
-      padding: 0.25rem;
-      border-radius: 0.25rem;
-      transition: all 0.2s ease-in-out;
-
-      &:hover {
-        color: #374151;
-        background-color: #f3f4f6;
-      }
-    }
-  }
-
-  /* Input Text with Password Toggle */
-  &-password {
-    position: relative;
-
-    input {
-      padding-right: 2.5rem;
-    }
-
-    &-toggle {
-      position: absolute;
-      right: 0.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #6b7280;
-      cursor: pointer;
-      padding: 0.25rem;
-      border-radius: 0.25rem;
-      transition: all 0.2s ease-in-out;
-
-      &:hover {
-        color: #374151;
-        background-color: #f3f4f6;
-      }
-    }
-  }
+.sui-input-text-invalid:focus {
+  animation: shake 0.3s ease-in-out;
 }

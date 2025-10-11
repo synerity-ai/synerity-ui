@@ -23,11 +23,11 @@
     
     <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
       <div class="w-full min-h-[120px]"
-           [class.flex]="componentName !== 'Carousel' && componentName !== 'Progress Bar'"
-           [class.flex-wrap]="componentName !== 'Carousel' && componentName !== 'Progress Bar'"
-           [class.gap-6]="componentName !== 'Carousel' && componentName !== 'Progress Bar'"
-           [class.items-center]="componentName !== 'Carousel' && componentName !== 'Progress Bar'"
-           [class.justify-center]="componentName !== 'Carousel' && componentName !== 'Progress Bar'">
+           [class.flex]="componentName !== 'Carousel' && componentName !== 'Progress Bar' && componentName !== 'Select'"
+           [class.flex-wrap]="componentName !== 'Carousel' && componentName !== 'Progress Bar' && componentName !== 'Select'"
+           [class.gap-6]="componentName !== 'Carousel' && componentName !== 'Progress Bar' && componentName !== 'Select'"
+           [class.items-center]="componentName !== 'Carousel' && componentName !== 'Progress Bar' && componentName !== 'Select'"
+           [class.justify-center]="componentName !== 'Carousel' && componentName !== 'Progress Bar' && componentName !== 'Select'">
         <!-- Render actual Synerity UI components -->
         @switch (componentName) {
           @case ('Button') {

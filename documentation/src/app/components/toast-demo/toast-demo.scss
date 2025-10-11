@@ -136,16 +136,3 @@
     }
   }
 }
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .demo-content {
-    h3 {
-      color: #f9fafb;
-    }
-
-    p {
-      color: #d1d5db;
-    }
-  }
-}
