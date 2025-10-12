@@ -1,0 +1,104 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Order List') {
+    <div class="flex justify-center p-4">
+      <div class="w-full max-w-md">
+        <sui-order-list
+          [value]="basicTasks"
+          header="Task Priority List"
+          (onReorder)="onReorder($event)"
+          (onSelectionChange)="onSelectionChange($event)">
+        </sui-order-list>
+        <div class="mt-4 text-center">
+          <button (click)="resetOrder()" 
+                  class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
+            Reset Order
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('With Filter') {
+    <div class="flex justify-center p-4">
+      <div class="w-full max-w-md">
+        <sui-order-list
+          [value]="features"
+          header="Features Backlog"
+          [filter]="true"
+          filterPlaceholder="Search features..."
+          (onReorder)="onReorder($event)">
+        </sui-order-list>
+      </div>
+    </div>
+  }
+  @case ('Without Header') {
+    <div class="flex justify-center p-4">
+      <div class="w-full max-w-md">
+        <sui-order-list
+          [value]="products"
+          (onReorder)="onReorder($event)"
+          (onSelectionChange)="onSelectionChange($event)">
+        </sui-order-list>
+      </div>
+    </div>
+  }
+  @case ('Custom Height') {
+    <div class="flex justify-center p-4">
+      <div class="w-full max-w-md">
+        <sui-order-list
+          [value]="features"
+          header="Feature List"
+          [listStyle]="{ 'max-height': '300px', 'overflow-y': 'auto' }"
+          [filter]="true"
+          (onReorder)="onReorder($event)">
+        </sui-order-list>
+      </div>
+    </div>
+  }
+  @case ('With Selection Tracking') {
+    <div class="flex justify-center p-4">
+      <div class="w-full max-w-md">
+        <sui-order-list
+          [value]="priorityTasks"
+          header="Priority Tasks"
+          (onReorder)="onReorder($event)"
+          (onSelectionChange)="onSelectionChange($event)">
+        </sui-order-list>
+        <div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <h4 class="font-semibold text-gray-900 mb-2">Selected Tasks</h4>
+          @if (selectedItems.length === 0) {
+            <p class="text-sm text-gray-500">No tasks selected</p>
+          } @else {
+            <ul class="space-y-1">
+              @for (item of selectedItems; track item.id) {
+                <li class="text-sm text-gray-700">• {{ item.label }}</li>
+              }
+            </ul>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Empty State') {
+    <div class="flex justify-center p-4">
+      <div class="w-full max-w-md">
+        <sui-order-list
+          [value]="emptyList"
+          header="Empty List"
+          [filter]="true"
+          filterPlaceholder="Search...">
+        </sui-order-list>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="flex justify-center p-4">
+      <div class="w-full max-w-md">
+        <sui-order-list
+          [value]="basicTasks"
+          header="Tasks"
+          (onReorder)="onReorder($event)">
+        </sui-order-list>
+      </div>
+    </div>
+  }
+}

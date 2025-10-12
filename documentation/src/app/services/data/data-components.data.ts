@@ -591,11 +591,221 @@ export const dataComponents: ComponentModel[] = [
         id: 'order-list',
         name: 'Order List',
         category: 'Data',
-        description: 'Reorderable list component',
-        examples: [],
-        props: [],
-        usage: 'Use order lists for reorderable items.',
-        tags: ['data', 'list']
+        description: 'Interactive list component for reordering items with drag controls, selection, and filtering capabilities',
+        examples: [
+          {
+            name: 'Basic Order List',
+            code: `<sui-order-list
+  [value]="basicTasks"
+  header="Task Priority List"
+  (onReorder)="onReorder($event)"
+  (onSelectionChange)="onSelectionChange($event)">
+</sui-order-list>`,
+            tsCode: `export class OrderListComponent {
+  basicTasks = [
+    { id: 1, label: 'Complete project proposal' },
+    { id: 2, label: 'Review pull requests' },
+    { id: 3, label: 'Update documentation' },
+    { id: 4, label: 'Fix reported bugs' },
+    { id: 5, label: 'Deploy to production' }
+  ];
+
+  onReorder(event: any): void {
+    console.log('List reordered:', event);
+  }
+
+  onSelectionChange(items: any[]): void {
+    console.log('Selected items:', items);
+  }
+}`,
+            description: 'Basic reorderable list with header and event handlers'
+          },
+          {
+            name: 'With Filter',
+            code: `<sui-order-list
+  [value]="features"
+  header="Features Backlog"
+  [filter]="true"
+  filterPlaceholder="Search features..."
+  (onReorder)="onReorder($event)">
+</sui-order-list>`,
+            tsCode: `export class OrderListComponent {
+  features = [
+    { id: 1, label: 'User authentication' },
+    { id: 2, label: 'Dashboard analytics' },
+    { id: 3, label: 'File upload system' },
+    { id: 4, label: 'Email notifications' },
+    { id: 5, label: 'Search functionality' }
+  ];
+
+  onReorder(event: any): void {
+    console.log('List reordered:', event);
+  }
+}`,
+            description: 'Order list with built-in search filter'
+          },
+          {
+            name: 'Without Header',
+            code: `<sui-order-list
+  [value]="products"
+  (onReorder)="onReorder($event)"
+  (onSelectionChange)="onSelectionChange($event)">
+</sui-order-list>`,
+            tsCode: `export class OrderListComponent {
+  products = [
+    { id: 1, label: 'Laptop - $1,299' },
+    { id: 2, label: 'Wireless Mouse - $29' },
+    { id: 3, label: 'Mechanical Keyboard - $149' },
+    { id: 4, label: 'Monitor 27" - $399' }
+  ];
+
+  onReorder(event: any): void {
+    console.log('List reordered:', event);
+  }
+
+  onSelectionChange(items: any[]): void {
+    console.log('Selected items:', items);
+  }
+}`,
+            description: 'Minimal order list without header'
+          },
+          {
+            name: 'Custom Height',
+            code: `<sui-order-list
+  [value]="features"
+  header="Feature List"
+  [listStyle]="{ 'max-height': '300px', 'overflow-y': 'auto' }"
+  [filter]="true"
+  (onReorder)="onReorder($event)">
+</sui-order-list>`,
+            tsCode: `export class OrderListComponent {
+  features = [
+    { id: 1, label: 'User authentication' },
+    { id: 2, label: 'Dashboard analytics' },
+    { id: 3, label: 'File upload system' },
+    { id: 4, label: 'Email notifications' },
+    { id: 5, label: 'Search functionality' },
+    { id: 6, label: 'Export to PDF' },
+    { id: 7, label: 'Multi-language support' },
+    { id: 8, label: 'Dark mode toggle' }
+  ];
+
+  onReorder(event: any): void {
+    console.log('List reordered:', event);
+  }
+}`,
+            description: 'Order list with custom height and scrolling'
+          },
+          {
+            name: 'With Selection Tracking',
+            code: `<sui-order-list
+  [value]="priorityTasks"
+  header="Priority Tasks"
+  (onReorder)="onReorder($event)"
+  (onSelectionChange)="onSelectionChange($event)">
+</sui-order-list>
+
+<div class="mt-4 p-4 bg-gray-50 rounded-lg">
+  <h4 class="font-semibold mb-2">Selected Tasks</h4>
+  <ul>
+    <li *ngFor="let item of selectedItems">{{ item.label }}</li>
+  </ul>
+</div>`,
+            tsCode: `export class OrderListComponent {
+  priorityTasks = [
+    { id: 1, label: 'Critical bug fix', priority: 'high' },
+    { id: 2, label: 'Client meeting preparation', priority: 'high' },
+    { id: 3, label: 'Code review', priority: 'medium' },
+    { id: 4, label: 'Update readme', priority: 'low' }
+  ];
+
+  selectedItems: any[] = [];
+
+  onReorder(event: any): void {
+    console.log('List reordered:', event);
+  }
+
+  onSelectionChange(items: any[]): void {
+    this.selectedItems = items;
+    console.log('Selected items:', items);
+  }
+}`,
+            description: 'Order list with selection tracking display'
+          },
+          {
+            name: 'Empty State',
+            code: `<sui-order-list
+  [value]="emptyList"
+  header="Empty List"
+  [filter]="true"
+  filterPlaceholder="Search...">
+</sui-order-list>`,
+            tsCode: `export class OrderListComponent {
+  emptyList: any[] = [];
+}`,
+            description: 'Order list showing empty state'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'any[]',
+            default: '[]',
+            description: 'Array of items to display in the list',
+            required: true
+          },
+          {
+            name: 'header',
+            type: 'string',
+            default: '""',
+            description: 'Header text to display above the list',
+            required: false
+          },
+          {
+            name: 'listStyle',
+            type: 'any',
+            default: '{}',
+            description: 'Custom styles to apply to the list container',
+            required: false
+          },
+          {
+            name: 'dragdrop',
+            type: 'boolean',
+            default: 'false',
+            description: 'Enable drag and drop reordering',
+            required: false
+          },
+          {
+            name: 'filter',
+            type: 'boolean',
+            default: 'false',
+            description: 'Enable search filter',
+            required: false
+          },
+          {
+            name: 'filterPlaceholder',
+            type: 'string',
+            default: '"Search"',
+            description: 'Placeholder text for filter input',
+            required: false
+          },
+          {
+            name: 'onReorder',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback fired when items are reordered',
+            required: false
+          },
+          {
+            name: 'onSelectionChange',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback fired when item selection changes',
+            required: false
+          }
+        ],
+        usage: 'Use order lists for reorderable items with up/down controls. Supports filtering, selection, and custom styling. Perfect for task management, priority lists, and drag-free reordering.',
+        tags: ['data', 'list', 'reorder', 'sortable', 'filter', 'selection']
       },
   {
         id: 'paginator',
