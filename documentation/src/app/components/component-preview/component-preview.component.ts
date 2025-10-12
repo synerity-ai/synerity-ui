@@ -47,11 +47,12 @@ import { TimelineDemo } from '../timeline-demo/timeline-demo';
 import { UploadDemo } from '../upload-demo/upload-demo';
 import { MeterGroupDemo } from '../meter-group-demo/meter-group-demo';
 import { OrgChartDemo } from '../org-chart-demo/org-chart-demo';
+import { VirtualScrollerDemo } from '../virtual-scroller-demo/virtual-scroller-demo';
 
 @Component({
   selector: 'app-component-preview',
   standalone: true,
-  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, SelectButtonDemoComponent, AvatarDemoComponent, BadgeDemoComponent, DatePickerDemoComponent, RatingDemoComponent, ToggleSwitchDemoComponent, ChipDemoComponent, InputNumberDemoComponent, PasswordDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent, PopoverDemo, ProgressSpinnerDemo, SkeletonDemo, OverlayPanelDemo, BreadcrumbDemo, ColorPickerDemo, EditorDemo, KnobDemo, AccordionDemoComponent, DataViewDemo, OrderListDemo, PaginatorDemo, PickListDemo, TreeDemo, TreeTableDemo, TimelineDemo, UploadDemo, MeterGroupDemo, OrgChartDemo],
+  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, SelectButtonDemoComponent, AvatarDemoComponent, BadgeDemoComponent, DatePickerDemoComponent, RatingDemoComponent, ToggleSwitchDemoComponent, ChipDemoComponent, InputNumberDemoComponent, PasswordDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent, PopoverDemo, ProgressSpinnerDemo, SkeletonDemo, OverlayPanelDemo, BreadcrumbDemo, ColorPickerDemo, EditorDemo, KnobDemo, AccordionDemoComponent, DataViewDemo, OrderListDemo, PaginatorDemo, PickListDemo, TreeDemo, TreeTableDemo, TimelineDemo, UploadDemo, MeterGroupDemo, OrgChartDemo, VirtualScrollerDemo],
   templateUrl: './component-preview.component.html',
   styleUrl: './component-preview.component.scss'
 })

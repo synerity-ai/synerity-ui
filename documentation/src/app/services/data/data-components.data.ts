@@ -2931,10 +2931,282 @@ export const dataComponents: ComponentModel[] = [
         id: 'virtual-scroller',
         name: 'Virtual Scroller',
         category: 'Data',
-        description: 'Virtual scrolling component',
-        examples: [],
-        props: [],
-        usage: 'Use virtual scrollers for large data sets.',
-        tags: ['data', 'performance']
+        description: 'High-performance virtual scrolling component that renders only visible items for large datasets, improving performance and reducing memory usage',
+        examples: [
+          {
+            name: 'Basic Virtual Scroller',
+            code: `<sui-virtual-scroller
+  [value]="items"
+  [itemSize]="60"
+  scrollHeight="400px"
+  (onScroll)="onScroll($event)"
+  (onScrollIndexChange)="onScrollIndexChange($event)">
+  @for (item of items; track item.id) {
+    <div class="p-4 border-b">
+      <h4>{{ item.name }}</h4>
+      <p>{{ item.description }}</p>
+    </div>
+  }
+</sui-virtual-scroller>`,
+            tsCode: `export class VirtualScrollerComponent {
+  items: any[] = [];
+
+  constructor() {
+    this.items = Array.from({ length: 100 }, (_, i) => ({
+      id: i + 1,
+      name: \`Item \${i + 1}\`,
+      description: \`Description for item \${i + 1}\`
+    }));
+  }
+
+  onScroll(event: any): void {
+    console.log('Scroll event:', event);
+  }
+
+  onScrollIndexChange(event: any): void {
+    console.log('Scroll index changed:', event);
+  }
+}`,
+            description: 'Basic virtual scroller with 100 items'
+          },
+          {
+            name: 'Large Dataset',
+            code: `<sui-virtual-scroller
+  [value]="largeDataset"
+  [itemSize]="50"
+  scrollHeight="500px"
+  (onScrollIndexChange)="onScrollIndexChange($event)">
+  @for (item of largeDataset; track item.id) {
+    <div class="p-3 border-b flex justify-between">
+      <span>{{ item.name }}</span>
+      <span>Value: {{ item.value }}</span>
+    </div>
+  }
+</sui-virtual-scroller>`,
+            tsCode: `export class VirtualScrollerComponent {
+  largeDataset: any[] = [];
+
+  constructor() {
+    this.largeDataset = Array.from({ length: 10000 }, (_, i) => ({
+      id: i + 1,
+      name: \`Record \${i + 1}\`,
+      value: Math.floor(Math.random() * 1000)
+    }));
+  }
+
+  onScrollIndexChange(event: any): void {
+    console.log('Visible range:', event);
+  }
+}`,
+            description: 'Virtual scroller efficiently handling 10,000 items'
+          },
+          {
+            name: 'With Lazy Loading',
+            code: `<sui-virtual-scroller
+  [value]="products"
+  [itemSize]="70"
+  scrollHeight="400px"
+  [lazy]="true"
+  [delay]="250"
+  (onLazyLoad)="onLazyLoad($event)">
+  @for (product of products; track product.id) {
+    <div class="p-4 border-b">
+      <div class="flex justify-between">
+        <div>
+          <h4>{{ product.name }}</h4>
+          <span>{{ product.category }}</span>
+        </div>
+        <span>\${{ product.price }}</span>
+      </div>
+    </div>
+  }
+</sui-virtual-scroller>`,
+            tsCode: `export class VirtualScrollerComponent {
+  products: any[] = [];
+
+  constructor() {
+    this.products = Array.from({ length: 500 }, (_, i) => ({
+      id: i + 1,
+      name: \`Product \${i + 1}\`,
+      price: (Math.random() * 100 + 10).toFixed(2),
+      category: ['Electronics', 'Clothing', 'Food', 'Books'][i % 4]
+    }));
+  }
+
+  onLazyLoad(event: any): void {
+    console.log('Lazy load triggered:', event);
+    // Load more data here
+  }
+}`,
+            description: 'Virtual scroller with lazy loading enabled'
+          },
+          {
+            name: 'Custom Item Height',
+            code: `<sui-virtual-scroller
+  [value]="messages"
+  [itemSize]="80"
+  scrollHeight="400px">
+  @for (message of messages; track message.id) {
+    <div class="p-4 border-b flex gap-3">
+      <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white">
+        {{ message.user.charAt(0) }}
+      </div>
+      <div class="flex-1">
+        <div class="flex justify-between">
+          <span>{{ message.user }}</span>
+          <span>{{ message.timestamp }}</span>
+        </div>
+        <p>{{ message.message }}</p>
+      </div>
+    </div>
+  }
+</sui-virtual-scroller>`,
+            tsCode: `export class VirtualScrollerComponent {
+  messages: any[] = [];
+
+  constructor() {
+    this.messages = Array.from({ length: 1000 }, (_, i) => ({
+      id: i + 1,
+      user: \`User \${(i % 10) + 1}\`,
+      message: \`This is message number \${i + 1}\`,
+      timestamp: new Date(Date.now() - i * 60000).toLocaleTimeString()
+    }));
+  }
+}`,
+            description: 'Virtual scroller with custom 80px item height'
+          },
+          {
+            name: 'Compact List',
+            code: `<sui-virtual-scroller
+  [value]="items"
+  [itemSize]="40"
+  scrollHeight="300px">
+  @for (item of items; track item.id) {
+    <div class="px-4 py-2 border-b flex justify-between">
+      <span>{{ item.name }}</span>
+      <span>ID: {{ item.id }}</span>
+    </div>
+  }
+</sui-virtual-scroller>`,
+            tsCode: `export class VirtualScrollerComponent {
+  items: any[] = [];
+
+  constructor() {
+    this.items = Array.from({ length: 100 }, (_, i) => ({
+      id: i + 1,
+      name: \`Item \${i + 1}\`,
+      description: \`Description for item \${i + 1}\`
+    }));
+  }
+}`,
+            description: 'Compact virtual scroller with 40px item height'
+          },
+          {
+            name: 'Tall Container',
+            code: `<sui-virtual-scroller
+  [value]="products"
+  [itemSize]="60"
+  scrollHeight="600px">
+  @for (product of products; track product.id) {
+    <div class="p-3 border-b">
+      <div class="flex justify-between">
+        <div>
+          <h4>{{ product.name }}</h4>
+          <span>{{ product.category }}</span>
+        </div>
+        <span>\${{ product.price }}</span>
+      </div>
+    </div>
+  }
+</sui-virtual-scroller>`,
+            tsCode: `export class VirtualScrollerComponent {
+  products: any[] = [];
+
+  constructor() {
+    this.products = Array.from({ length: 500 }, (_, i) => ({
+      id: i + 1,
+      name: \`Product \${i + 1}\`,
+      price: (Math.random() * 100 + 10).toFixed(2),
+      category: ['Electronics', 'Clothing', 'Food', 'Books'][i % 4]
+    }));
+  }
+}`,
+            description: 'Virtual scroller with tall 600px container'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'any[]',
+            default: '[]',
+            description: 'Array of items to be rendered virtually',
+            required: true
+          },
+          {
+            name: 'itemSize',
+            type: 'number',
+            default: '50',
+            description: 'Height (vertical) or width (horizontal) of each item in pixels',
+            required: false
+          },
+          {
+            name: 'scrollHeight',
+            type: 'string',
+            default: '"200px"',
+            description: 'Height of the scrollable viewport',
+            required: false
+          },
+          {
+            name: 'scrollWidth',
+            type: 'string',
+            default: '"100%"',
+            description: 'Width of the scrollable viewport',
+            required: false
+          },
+          {
+            name: 'orientation',
+            type: '"vertical" | "horizontal"',
+            default: '"vertical"',
+            description: 'Scroll orientation',
+            required: false
+          },
+          {
+            name: 'lazy',
+            type: 'boolean',
+            default: 'false',
+            description: 'Enable lazy loading of data',
+            required: false
+          },
+          {
+            name: 'delay',
+            type: 'number',
+            default: '0',
+            description: 'Delay in milliseconds before triggering lazy load event',
+            required: false
+          },
+          {
+            name: 'onLazyLoad',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback fired when lazy loading is triggered. Returns {first, last} indices.',
+            required: false
+          },
+          {
+            name: 'onScroll',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback fired on scroll. Returns {scrollTop, scrollLeft}.',
+            required: false
+          },
+          {
+            name: 'onScrollIndexChange',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback fired when visible range changes. Returns {first, last} indices.',
+            required: false
+          }
+        ],
+        usage: 'Use virtual scrollers for rendering large datasets (1000+ items) efficiently. Only visible items are rendered in the DOM, dramatically improving performance and reducing memory usage. Perfect for long lists, tables, chat histories, logs, and any scenario with large amounts of scrollable data. Supports lazy loading for infinite scroll patterns.',
+        tags: ['data', 'performance', 'scroll', 'virtualization', 'large-dataset', 'optimization']
       },
 ];

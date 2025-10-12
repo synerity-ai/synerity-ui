@@ -3,16 +3,16 @@
   // CSS Variables for Theme Inheritance
   --sui-virtual-scroller-background: var(--sui-surface, #ffffff);
   --sui-virtual-scroller-border: var(--sui-border, #e5e7eb);
-  --sui-virtual-scroller-border-radius: var(--sui-radius, 4px);
+  --sui-virtual-scroller-border-radius: var(--sui-radius, 8px);
   --sui-virtual-scroller-text: var(--sui-text-primary, #1e293b);
-  --sui-virtual-scroller-shadow: var(--sui-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --sui-virtual-scroller-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   --sui-virtual-scroller-transition: var(--sui-transition, all 0.2s ease);
   
   // Scrollbar variables
-  --sui-virtual-scroller-scrollbar-width: 8px;
-  --sui-virtual-scroller-scrollbar-track: var(--sui-surface-secondary, #f8fafc);
+  --sui-virtual-scroller-scrollbar-width: 10px;
+  --sui-virtual-scroller-scrollbar-track: var(--sui-surface-secondary, #f1f5f9);
   --sui-virtual-scroller-scrollbar-thumb: var(--sui-border, #cbd5e1);
-  --sui-virtual-scroller-scrollbar-thumb-hover: var(--sui-text-secondary, #94a3b8);
+  --sui-virtual-scroller-scrollbar-thumb-hover: #94a3b8;
   
   // Component styles
   display: block;
@@ -23,19 +23,168 @@
   color: var(--sui-virtual-scroller-text);
   transition: var(--sui-virtual-scroller-transition);
   overflow: auto;
+  position: relative;
+  
+  // Custom scrollbar styling
+  &::-webkit-scrollbar {
+    width: var(--sui-virtual-scroller-scrollbar-width);
+    height: var(--sui-virtual-scroller-scrollbar-width);
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--sui-virtual-scroller-scrollbar-track);
+    border-radius: var(--sui-virtual-scroller-border-radius);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--sui-virtual-scroller-scrollbar-thumb);
+    border-radius: var(--sui-virtual-scroller-border-radius);
+    transition: background 0.2s ease;
+    
+    &:hover {
+      background: var(--sui-virtual-scroller-scrollbar-thumb-hover);
+    }
+  }
+  
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: var(--sui-virtual-scroller-scrollbar-thumb) var(--sui-virtual-scroller-scrollbar-track);
+  
+  // Focus state
+  &:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+}
+
+// Content container
+.sui-virtual-scroller-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+// Content horizontal
+.sui-virtual-scroller-content-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+// Individual items
+.sui-virtual-scroller-item {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  
+  // Ensure proper rendering
+  will-change: transform;
+  contain: layout style paint;
+}
+
+// Horizontal item
+.sui-virtual-scroller-item-horizontal {
+  height: 100% !important;
+  width: auto !important;
+}
+
+// Horizontal orientation
+.sui-virtual-scroller-horizontal {
+  overflow-x: auto;
+  overflow-y: hidden;
+  
+  .sui-virtual-scroller-content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: auto;
+  }
+}
+
+// Loading state
+.sui-virtual-scroller-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  
+  &::after {
+    content: '';
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid #e5e7eb;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: sui-virtual-scroller-spin 0.8s linear infinite;
+  }
+}
+
+@keyframes sui-virtual-scroller-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Empty state
+.sui-virtual-scroller-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: #64748b;
+  
+  .sui-virtual-scroller-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+  
+  .sui-virtual-scroller-empty-message {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+// Smooth scrolling
+.sui-virtual-scroller-smooth {
+  scroll-behavior: smooth;
+}
+
+// Compact mode
+.sui-virtual-scroller-compact {
+  --sui-virtual-scroller-scrollbar-width: 6px;
 }
 
 // High contrast mode
 @media (prefers-contrast: high) {
   .sui-virtual-scroller {
     border-width: 2px;
+    border-color: #000;
+  }
+  
+  .sui-virtual-scroller::-webkit-scrollbar-thumb {
+    background: #000;
   }
 }
 
 // Reduced motion
 @media (prefers-reduced-motion: reduce) {
-  .sui-virtual-scroller {
+  .sui-virtual-scroller,
+  .sui-virtual-scroller-item {
     transition: none;
+    will-change: auto;
+  }
+  
+  .sui-virtual-scroller-smooth {
+    scroll-behavior: auto;
+  }
+  
+  @keyframes sui-virtual-scroller-spin {
+    to {
+      transform: rotate(0deg);
+    }
   }
 }
 
@@ -44,5 +193,23 @@
   .sui-virtual-scroller {
     border: 1px solid #000;
     box-shadow: none;
+    overflow: visible !important;
+    height: auto !important;
+  }
+  
+  .sui-virtual-scroller-content {
+    height: auto !important;
+  }
+  
+  .sui-virtual-scroller-item {
+    position: static !important;
+    page-break-inside: avoid;
+  }
+}
+
+// Responsive
+@media (max-width: 640px) {
+  .sui-virtual-scroller {
+    --sui-virtual-scroller-scrollbar-width: 8px;
   }
 }
