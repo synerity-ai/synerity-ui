@@ -823,7 +823,7 @@ export const dataComponents: ComponentModel[] = [
 </sui-paginator>`,
             tsCode: `export class PaginatorComponent {
   totalRecords = 120;
-  rows = 10;
+  rows = 5;
   first = 0;
 
   onPageChange(event: any): void {
@@ -851,7 +851,7 @@ export const dataComponents: ComponentModel[] = [
 </sui-paginator>`,
             tsCode: `export class PaginatorComponent {
   totalRecords = 120;
-  rows = 10;
+  rows = 5;
 
   onPageChange(event: any): void {
     console.log('Page changed:', event);

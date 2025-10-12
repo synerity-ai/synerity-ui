@@ -33,7 +33,7 @@ export class PaginatorDemo {
   
   // Basic pagination
   totalRecords = 120;
-  rows = 10;
+  rows = 5;
   first = 0;
   currentPage = 0;
 
