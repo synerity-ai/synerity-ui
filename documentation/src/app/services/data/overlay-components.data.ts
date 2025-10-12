@@ -411,8 +411,6 @@ export const overlayComponents: ComponentModel[] = [
         tags: ['overlay', 'panel', 'contextual', 'floating', 'menu']
       },
   {
-  {
-  {
         id: 'popover',
         name: 'Popover',
         category: 'Overlay',

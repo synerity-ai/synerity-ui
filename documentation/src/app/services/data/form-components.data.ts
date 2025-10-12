@@ -155,8 +155,6 @@ export const formComponents: ComponentModel[] = [
         usage: 'Use auto complete for input fields where users need to select from a predefined list of options. Supports both string arrays and object arrays with label/value pairs.',
         tags: ['form', 'input', 'dropdown', 'autocomplete', 'search', 'selection']
       },
-  {
-      {
       {
         id: 'chip',
         name: 'Chip',
@@ -1082,7 +1080,6 @@ export const formComponents: ComponentModel[] = [
         tags: ['form', 'input']
       },
   {
-  {
         id: 'float-label',
         name: 'Float Label',
         category: 'Form',
@@ -1143,7 +1140,6 @@ export const formComponents: ComponentModel[] = [
         tags: ['form', 'input']
       },
   {
-  {
         id: 'input-otp',
         name: 'Input OTP',
         category: 'Form',
@@ -1163,8 +1159,6 @@ export const formComponents: ComponentModel[] = [
         usage: 'Use key filters to restrict input characters.',
         tags: ['form', 'input']
       },
-  {
-  {
   {
         id: 'textarea',
         name: 'Textarea',
