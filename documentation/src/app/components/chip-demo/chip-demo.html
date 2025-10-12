@@ -1,391 +1,196 @@
-<div class="demo-section">
-  <div class="demo-group">
-    <div class="demo-label">Basic Chips</div>
-    <div class="demo-description">Simple chip components with basic functionality.</div>
-    <div class="demo-grid">
-      @for (chip of basicChips; track chip.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ chip.label }}</div>
-          <div class="demo-description">{{ chip.description }}</div>
-          <div class="demo-component">
+@switch (getCurrentExample().name) {
+  @case ('Basic Chip') {
+    <div class="p-4">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          @for (chip of basicChips; track chip.label) {
+            <div class="p-4 border border-gray-200 rounded-lg">
+              <div class="flex flex-col gap-3">
+                <sui-chip
+                  [label]="chip.label"
+                  [removable]="chip.removable"
+                  [clickable]="chip.clickable"
+                  (onRemove)="onChipRemove(chip)"
+                  (onClick)="onChipClick(chip)">
+                </sui-chip>
+                <div class="text-sm text-gray-600">{{ chip.description }}</div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Size Variations') {
+    <div class="p-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex flex-wrap gap-6 items-center justify-center">
+          @for (chip of sizeVariants; track chip.label) {
+            <div class="flex flex-col items-center gap-2">
+              <sui-chip
+                [label]="chip.label"
+                [size]="chip.size"
+                [removable]="chip.removable">
+              </sui-chip>
+              <span class="text-xs text-gray-500">{{ chip.size }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Color Themes') {
+    <div class="p-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex flex-wrap gap-4 justify-center">
+          @for (chip of colorThemes; track chip.label) {
             <sui-chip
               [label]="chip.label"
-              [icon]="chip.icon"
-              [image]="chip.image"
-              [removable]="chip.removable"
-              [disabled]="chip.disabled"
-              [clickable]="chip.clickable"
-              [size]="chip.size"
-              [theme]="chip.theme"
               [color]="chip.color"
-              [variant]="chip.variant"
-              [compact]="chip.compact"
-              [spacious]="chip.spacious"
-              [rounded]="chip.rounded"
-              [square]="chip.square"
-              [animated]="chip.animated"
-              [bounce]="chip.bounce"
-              [glow]="chip.glow"
-              (onRemove)="onChipRemove(chip)"
-              (onClick)="onChipClick(chip)">
+              [removable]="chip.removable">
             </sui-chip>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Variant Styles') {
+    <div class="p-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          @for (chip of variantStyles; track chip.label) {
+            <div class="flex flex-col items-center gap-2">
+              <sui-chip
+                [label]="chip.label"
+                [color]="chip.color"
+                [variant]="chip.variant"
+                [removable]="chip.removable">
+              </sui-chip>
+              <span class="text-xs text-gray-500">{{ chip.variant }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Interactive Features') {
+    <div class="p-4">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 class="font-semibold text-blue-900 mb-3">Removable Chips</h3>
+            <div class="flex flex-wrap gap-3">
+              <sui-chip label="Removable" [removable]="true" (onRemove)="onChipRemove($event)"></sui-chip>
+              <sui-chip label="With Icon" icon="👤" [removable]="true" (onRemove)="onChipRemove($event)"></sui-chip>
+              <sui-chip label="Colored" color="primary" [removable]="true" (onRemove)="onChipRemove($event)"></sui-chip>
+            </div>
           </div>
-          <div class="demo-result">
-            Status: <span [class]="getChipStatusColor(chip)">{{ getChipStatus(chip) }}</span>
+
+          <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+            <h3 class="font-semibold text-green-900 mb-3">Clickable Chips</h3>
+            <div class="flex flex-wrap gap-3">
+              <sui-chip label="Clickable" [clickable]="true" (onClick)="onChipClick($event)"></sui-chip>
+              <sui-chip label="With Icon" icon="📧" [clickable]="true" color="success" (onClick)="onChipClick($event)"></sui-chip>
+              <sui-chip label="Interactive" [clickable]="true" color="warning" (onClick)="onChipClick($event)"></sui-chip>
+            </div>
+          </div>
+
+          <div class="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+            <h3 class="font-semibold text-purple-900 mb-3">With Images</h3>
+            <div class="flex flex-wrap gap-3">
+              @for (chip of iconImageExamples; track chip.label) {
+                <sui-chip
+                  [label]="chip.label"
+                  [icon]="chip.icon"
+                  [image]="chip.image"
+                  [color]="chip.color"
+                  [removable]="chip.removable"
+                  (onRemove)="onChipRemove(chip)">
+                </sui-chip>
+              }
+            </div>
           </div>
         </div>
-      }
+      </div>
     </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Size Variations</div>
-    <div class="demo-description">Chip components in different sizes.</div>
-    <div class="demo-grid">
-      @for (chip of sizeVariants; track chip.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ chip.label }}</div>
-          <div class="demo-description">{{ chip.description }}</div>
-          <div class="demo-component">
-            <sui-chip
-              [label]="chip.label"
-              [icon]="chip.icon"
-              [image]="chip.image"
-              [removable]="chip.removable"
-              [disabled]="chip.disabled"
-              [clickable]="chip.clickable"
-              [size]="chip.size"
-              [theme]="chip.theme"
-              [color]="chip.color"
-              [variant]="chip.variant"
-              [compact]="chip.compact"
-              [spacious]="chip.spacious"
-              [rounded]="chip.rounded"
-              [square]="chip.square"
-              [animated]="chip.animated"
-              [bounce]="chip.bounce"
-              [glow]="chip.glow"
-              (onRemove)="onChipRemove(chip)"
-              (onClick)="onChipClick(chip)">
-            </sui-chip>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getChipStatusColor(chip)">{{ getChipStatus(chip) }}</span>
-          </div>
+  }
+  @case ('Animation Effects') {
+    <div class="p-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex flex-wrap gap-6 justify-center">
+          @for (chip of animationEffects; track chip.label) {
+            <div class="flex flex-col items-center gap-2">
+              <sui-chip
+                [label]="chip.label"
+                [color]="chip.color"
+                [animated]="chip.animated"
+                [bounce]="chip.bounce"
+                [glow]="chip.glow"
+                [clickable]="chip.clickable"
+                [removable]="chip.removable"
+                (onClick)="onChipClick(chip)">
+              </sui-chip>
+              <span class="text-xs text-gray-500">Hover to see effect</span>
+            </div>
+          }
         </div>
-      }
+      </div>
     </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Color Themes</div>
-    <div class="demo-description">Chip components with different color themes.</div>
-    <div class="demo-grid">
-      @for (chip of colorThemes; track chip.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ chip.label }}</div>
-          <div class="demo-description">{{ chip.description }}</div>
-          <div class="demo-component">
-            <sui-chip
-              [label]="chip.label"
-              [icon]="chip.icon"
-              [image]="chip.image"
-              [removable]="chip.removable"
-              [disabled]="chip.disabled"
-              [clickable]="chip.clickable"
-              [size]="chip.size"
-              [theme]="chip.theme"
-              [color]="chip.color"
-              [variant]="chip.variant"
-              [compact]="chip.compact"
-              [spacious]="chip.spacious"
-              [rounded]="chip.rounded"
-              [square]="chip.square"
-              [animated]="chip.animated"
-              [bounce]="chip.bounce"
-              [glow]="chip.glow"
-              (onRemove)="onChipRemove(chip)"
-              (onClick)="onChipClick(chip)">
-            </sui-chip>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getChipStatusColor(chip)">{{ getChipStatus(chip) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Variant Styles</div>
-    <div class="demo-description">Chip components with different visual variants.</div>
-    <div class="demo-grid">
-      @for (chip of variantStyles; track chip.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ chip.label }}</div>
-          <div class="demo-description">{{ chip.description }}</div>
-          <div class="demo-component">
-            <sui-chip
-              [label]="chip.label"
-              [icon]="chip.icon"
-              [image]="chip.image"
-              [removable]="chip.removable"
-              [disabled]="chip.disabled"
-              [clickable]="chip.clickable"
-              [size]="chip.size"
-              [theme]="chip.theme"
-              [color]="chip.color"
-              [variant]="chip.variant"
-              [compact]="chip.compact"
-              [spacious]="chip.spacious"
-              [rounded]="chip.rounded"
-              [square]="chip.square"
-              [animated]="chip.animated"
-              [bounce]="chip.bounce"
-              [glow]="chip.glow"
-              (onRemove)="onChipRemove(chip)"
-              (onClick)="onChipClick(chip)">
-            </sui-chip>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getChipStatusColor(chip)">{{ getChipStatus(chip) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Layout Options</div>
-    <div class="demo-description">Chip components with different layout options.</div>
-    <div class="demo-grid">
-      @for (chip of layoutOptions; track chip.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ chip.label }}</div>
-          <div class="demo-description">{{ chip.description }}</div>
-          <div class="demo-component">
-            <sui-chip
-              [label]="chip.label"
-              [icon]="chip.icon"
-              [image]="chip.image"
-              [removable]="chip.removable"
-              [disabled]="chip.disabled"
-              [clickable]="chip.clickable"
-              [size]="chip.size"
-              [theme]="chip.theme"
-              [color]="chip.color"
-              [variant]="chip.variant"
-              [compact]="chip.compact"
-              [spacious]="chip.spacious"
-              [rounded]="chip.rounded"
-              [square]="chip.square"
-              [animated]="chip.animated"
-              [bounce]="chip.bounce"
-              [glow]="chip.glow"
-              (onRemove)="onChipRemove(chip)"
-              (onClick)="onChipClick(chip)">
-            </sui-chip>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getChipStatusColor(chip)">{{ getChipStatus(chip) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">State Examples</div>
-    <div class="demo-description">Chip components in different states.</div>
-    <div class="demo-grid">
-      @for (chip of stateExamples; track chip.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ chip.label }}</div>
-          <div class="demo-description">{{ chip.description }}</div>
-          <div class="demo-component">
-            <sui-chip
-              [label]="chip.label"
-              [icon]="chip.icon"
-              [image]="chip.image"
-              [removable]="chip.removable"
-              [disabled]="chip.disabled"
-              [clickable]="chip.clickable"
-              [size]="chip.size"
-              [theme]="chip.theme"
-              [color]="chip.color"
-              [variant]="chip.variant"
-              [compact]="chip.compact"
-              [spacious]="chip.spacious"
-              [rounded]="chip.rounded"
-              [square]="chip.square"
-              [animated]="chip.animated"
-              [bounce]="chip.bounce"
-              [glow]="chip.glow"
-              (onRemove)="onChipRemove(chip)"
-              (onClick)="onChipClick(chip)">
-            </sui-chip>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getChipStatusColor(chip)">{{ getChipStatus(chip) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Animation Effects</div>
-    <div class="demo-description">Chip components with various animation effects.</div>
-    <div class="demo-grid">
-      @for (chip of animationEffects; track chip.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ chip.label }}</div>
-          <div class="demo-description">{{ chip.description }}</div>
-          <div class="demo-component">
-            <sui-chip
-              [label]="chip.label"
-              [icon]="chip.icon"
-              [image]="chip.image"
-              [removable]="chip.removable"
-              [disabled]="chip.disabled"
-              [clickable]="chip.clickable"
-              [size]="chip.size"
-              [theme]="chip.theme"
-              [color]="chip.color"
-              [variant]="chip.variant"
-              [compact]="chip.compact"
-              [spacious]="chip.spacious"
-              [rounded]="chip.rounded"
-              [square]="chip.square"
-              [animated]="chip.animated"
-              [bounce]="chip.bounce"
-              [glow]="chip.glow"
-              (onRemove)="onChipRemove(chip)"
-              (onClick)="onChipClick(chip)">
-            </sui-chip>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getChipStatusColor(chip)">{{ getChipStatus(chip) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Icon and Image Examples</div>
-    <div class="demo-description">Chip components with icons and images.</div>
-    <div class="demo-grid">
-      @for (chip of iconImageExamples; track chip.label) {
-        <div class="demo-item">
-          <div class="demo-label">{{ chip.label }}</div>
-          <div class="demo-description">{{ chip.description }}</div>
-          <div class="demo-component">
-            <sui-chip
-              [label]="chip.label"
-              [icon]="chip.icon"
-              [image]="chip.image"
-              [removable]="chip.removable"
-              [disabled]="chip.disabled"
-              [clickable]="chip.clickable"
-              [size]="chip.size"
-              [theme]="chip.theme"
-              [color]="chip.color"
-              [variant]="chip.variant"
-              [compact]="chip.compact"
-              [spacious]="chip.spacious"
-              [rounded]="chip.rounded"
-              [square]="chip.square"
-              [animated]="chip.animated"
-              [bounce]="chip.bounce"
-              [glow]="chip.glow"
-              (onRemove)="onChipRemove(chip)"
-              (onClick)="onChipClick(chip)">
-            </sui-chip>
-          </div>
-          <div class="demo-result">
-            Status: <span [class]="getChipStatusColor(chip)">{{ getChipStatus(chip) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div class="demo-group">
-    <div class="demo-label">Real-world Examples</div>
-    <div class="demo-description">Practical applications of the chip component.</div>
-    <div class="demo-grid">
-      <div class="demo-item">
-        <div class="demo-label">Tag System</div>
-        <div class="demo-description">Tags for categorizing content or skills.</div>
-        <div class="demo-component">
-          <div class="chip-group">
+  }
+  @case ('Tag System') {
+    <div class="p-4">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Programming Skills</h3>
+          <div class="flex flex-wrap gap-2">
             @for (chip of tagChips; track chip.label) {
               <sui-chip
                 [label]="chip.label"
-                [icon]="chip.icon"
-                [image]="chip.image"
-                [removable]="chip.removable"
-                [disabled]="chip.disabled"
-                [clickable]="chip.clickable"
-                [size]="chip.size"
-                [theme]="chip.theme"
                 [color]="chip.color"
                 [variant]="chip.variant"
+                [size]="chip.size"
+                [removable]="chip.removable"
+                [clickable]="chip.clickable"
                 [compact]="chip.compact"
-                [spacious]="chip.spacious"
-                [rounded]="chip.rounded"
-                [square]="chip.square"
                 [animated]="chip.animated"
-                [bounce]="chip.bounce"
-                [glow]="chip.glow"
                 (onRemove)="onChipRemove(chip)"
                 (onClick)="onChipClick(chip)">
               </sui-chip>
             }
           </div>
         </div>
-        <div class="demo-result">
-          <p><strong>Tags:</strong> Programming languages and frameworks</p>
-          <p><strong>Usage:</strong> Skill tags, content categorization</p>
-        </div>
-      </div>
 
-      <div class="demo-item">
-        <div class="demo-label">Filter Chips</div>
-        <div class="demo-description">Active filters in search or product listings.</div>
-        <div class="demo-component">
-          <div class="chip-group">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Active Filters</h3>
+          <div class="flex flex-wrap gap-2">
             @for (chip of filterChips; track chip.label) {
               <sui-chip
                 [label]="chip.label"
-                [icon]="chip.icon"
-                [image]="chip.image"
-                [removable]="chip.removable"
-                [disabled]="chip.disabled"
-                [clickable]="chip.clickable"
-                [size]="chip.size"
-                [theme]="chip.theme"
                 [color]="chip.color"
                 [variant]="chip.variant"
-                [compact]="chip.compact"
-                [spacious]="chip.spacious"
-                [rounded]="chip.rounded"
-                [square]="chip.square"
-                [animated]="chip.animated"
-                [bounce]="chip.bounce"
-                [glow]="chip.glow"
-                (onRemove)="onChipRemove(chip)"
-                (onClick)="onChipClick(chip)">
+                [removable]="chip.removable"
+                (onRemove)="onChipRemove(chip)">
               </sui-chip>
             }
           </div>
-        </div>
-        <div class="demo-result">
-          <p><strong>Filters:</strong> Active search filters</p>
-          <p><strong>Usage:</strong> E-commerce, search results, data filtering</p>
+          <p class="text-sm text-gray-600 mt-3">Click ✕ to remove filters</p>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  }
+  @default {
+    <div class="p-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex flex-wrap gap-4">
+          @for (chip of basicChips; track chip.label) {
+            <sui-chip
+              [label]="chip.label"
+              [removable]="chip.removable"
+              [clickable]="chip.clickable">
+            </sui-chip>
+          }
+        </div>
+      </div>
+    </div>
+  }
+}
