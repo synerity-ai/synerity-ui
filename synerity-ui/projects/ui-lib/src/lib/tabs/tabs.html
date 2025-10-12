@@ -1,15 +1,29 @@
-<div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm" [class]="styleClass" [style]="getTabsStyle()">
+<div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm" 
+     [class]="styleClass" 
+     [style]="getTabsStyle()"
+     [class.flex]="orientation === 'left' || orientation === 'right'"
+     [class.flex-row]="orientation === 'left'"
+     [class.flex-row-reverse]="orientation === 'right'">
+  
   <!-- Tab Navigation -->
-  <div class="border-b border-gray-200 bg-gray-50" 
+  <div class="bg-gray-50" 
+       [class.border-b]="orientation === 'top'"
+       [class.border-r]="orientation === 'left'"
+       [class.border-l]="orientation === 'right'"
+       [class.border-gray-200]="true"
        [class.flex]="orientation === 'top' || orientation === 'bottom'"
        [class.flex-col]="orientation === 'left' || orientation === 'right'"
-       [class.flex-row]="orientation === 'top' || orientation === 'bottom'">
+       [class.flex-row]="orientation === 'top' || orientation === 'bottom'"
+       [class.min-w-[200px]]="orientation === 'left' || orientation === 'right'">
     
     <div 
       *ngFor="let tab of tabs; let i = index" 
-      class="relative flex items-center px-6 py-4 text-sm font-medium transition-colors duration-200 cursor-pointer border-b-2"
-      [class.border-primary-600]="isTabActive(i)"
-      [class.text-primary-700]="isTabActive(i)"
+      class="relative flex items-center px-6 py-4 text-sm font-medium transition-colors duration-200 cursor-pointer"
+      [class.border-b-2]="orientation === 'top' || orientation === 'bottom'"
+      [class.border-l-4]="orientation === 'left'"
+      [class.border-r-4]="orientation === 'right'"
+      [class.!border-blue-600]="isTabActive(i)"
+      [class.!text-blue-700]="isTabActive(i)"
       [class.bg-white]="isTabActive(i)"
       [class.border-transparent]="!isTabActive(i)"
       [class.text-gray-600]="!isTabActive(i)"
@@ -41,7 +55,9 @@
   </div>
   
   <!-- Tab Content -->
-  <div *ngIf="tabs[activeIndex]" class="p-6 bg-white">
+  <div *ngIf="tabs[activeIndex]" 
+       class="p-6 bg-white"
+       [class.flex-1]="orientation === 'left' || orientation === 'right'">
     <ng-content></ng-content>
   </div>
 </div>

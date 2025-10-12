@@ -13,6 +13,10 @@ import { Knob } from '@synerity/ui';
 export class KnobDemo {
   @Input() currentExample: any;
 
+  getCurrentExample() {
+    return this.currentExample || { name: 'Basic Knob' };
+  }
+
   // Basic Knob
   basicValue = 50;
   basicMin = 0;

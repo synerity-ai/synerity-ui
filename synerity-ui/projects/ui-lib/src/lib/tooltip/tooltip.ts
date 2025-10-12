@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -26,6 +26,8 @@ export class Tooltip implements AfterViewInit, OnDestroy {
   private showTimeout: any;
   private hideTimeout: any;
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngAfterViewInit(): void {
     if (this.targetElement) {
       this.setupEventListeners();
@@ -34,6 +36,7 @@ export class Tooltip implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.clearTimeouts();
+    this.removeEventListeners();
   }
 
   private setupEventListeners(): void {
@@ -43,6 +46,16 @@ export class Tooltip implements AfterViewInit, OnDestroy {
     target.addEventListener('mouseleave', this.onMouseLeave.bind(this));
     target.addEventListener('focus', this.onFocus.bind(this));
     target.addEventListener('blur', this.onBlur.bind(this));
+  }
+
+  private removeEventListeners(): void {
+    const target = this.targetElement?.nativeElement;
+    if (!target) return;
+    
+    target.removeEventListener('mouseenter', this.onMouseEnter.bind(this));
+    target.removeEventListener('mouseleave', this.onMouseLeave.bind(this));
+    target.removeEventListener('focus', this.onFocus.bind(this));
+    target.removeEventListener('blur', this.onBlur.bind(this));
   }
 
   private onMouseEnter(): void {
@@ -72,16 +85,31 @@ export class Tooltip implements AfterViewInit, OnDestroy {
 
   private show(): void {
     this.visible = true;
+    this.cdr.markForCheck();
     this.onShow.emit();
     // Use setTimeout to ensure DOM is updated before positioning
     setTimeout(() => {
       this.updatePosition();
       this.addShowClass();
+      this.setupTooltipListeners();
     }, 0);
+  }
+
+  private setupTooltipListeners(): void {
+    if (!this.tooltipElement) return;
+    
+    const tooltip = this.tooltipElement.nativeElement;
+    tooltip.addEventListener('mouseenter', () => {
+      this.clearTimeouts();
+    });
+    tooltip.addEventListener('mouseleave', () => {
+      this.hide();
+    });
   }
 
   private hide(): void {
     this.visible = false;
+    this.cdr.markForCheck();
     this.onHide.emit();
   }
 
@@ -95,32 +123,48 @@ export class Tooltip implements AfterViewInit, OnDestroy {
     if (!this.tooltipElement || !this.targetElement) return;
     
     const targetRect = this.targetElement.nativeElement.getBoundingClientRect();
-    const tooltipRect = this.tooltipElement.nativeElement.getBoundingClientRect();
+    const tooltipEl = this.tooltipElement.nativeElement;
+    const tooltipRect = tooltipEl.getBoundingClientRect();
     
     let top = 0;
     let left = 0;
     
+    const spacing = 12; // Space between target and tooltip
+    
     switch (this.position) {
       case 'top':
-        top = targetRect.top - tooltipRect.height - 8;
+        top = targetRect.top - tooltipRect.height - spacing;
         left = targetRect.left + (targetRect.width - tooltipRect.width) / 2;
         break;
       case 'bottom':
-        top = targetRect.bottom + 8;
+        top = targetRect.bottom + spacing;
         left = targetRect.left + (targetRect.width - tooltipRect.width) / 2;
         break;
       case 'left':
         top = targetRect.top + (targetRect.height - tooltipRect.height) / 2;
-        left = targetRect.left - tooltipRect.width - 8;
+        left = targetRect.left - tooltipRect.width - spacing;
         break;
       case 'right':
         top = targetRect.top + (targetRect.height - tooltipRect.height) / 2;
-        left = targetRect.right + 8;
+        left = targetRect.right + spacing;
         break;
     }
     
-    this.tooltipElement.nativeElement.style.top = `${top}px`;
-    this.tooltipElement.nativeElement.style.left = `${left}px`;
+    // Ensure tooltip stays within viewport
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    if (left < 8) left = 8;
+    if (left + tooltipRect.width > viewportWidth - 8) {
+      left = viewportWidth - tooltipRect.width - 8;
+    }
+    if (top < 8) top = 8;
+    if (top + tooltipRect.height > viewportHeight - 8) {
+      top = viewportHeight - tooltipRect.height - 8;
+    }
+    
+    tooltipEl.style.top = `${top}px`;
+    tooltipEl.style.left = `${left}px`;
   }
 
   private clearTimeouts(): void {

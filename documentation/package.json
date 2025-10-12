@@ -28,7 +28,7 @@
     "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
-    "@synerity/ui": "^2.7.5",
+    "@synerity/ui": "^3.0.5",
     "@types/prismjs": "^1.26.5",
     "primeicons": "^7.0.0",
     "prismjs": "^1.30.0",

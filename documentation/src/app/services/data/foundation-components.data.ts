@@ -2516,92 +2516,6 @@ export class CheckboxComponent {
     tags: ['form', 'selection', 'button', 'toggle', 'interactive']
   },
   {
-    id: 'slider',
-    name: 'Slider',
-    category: 'Foundation',
-    description: 'Range slider component for selecting numeric values',
-    examples: [
-      {
-        name: 'Basic Slider',
-        code: '<sui-slider [(ngModel)]="value" [min]="0" [max]="100"></sui-slider>',
-        description: 'Simple slider for value selection'
-      },
-      {
-        name: 'With Steps',
-        code: '<sui-slider [(ngModel)]="value" [min]="0" [max]="100" [step]="10"></sui-slider>',
-        description: 'Slider with defined step increments'
-      },
-      {
-        name: 'Vertical Orientation',
-        code: '<sui-slider [(ngModel)]="value" [vertical]="true" [min]="0" [max]="100"></sui-slider>',
-        description: 'Vertical slider orientation'
-      },
-      {
-        name: 'Disabled State',
-        code: '<sui-slider [disabled]="true" [(ngModel)]="value" [min]="0" [max]="100"></sui-slider>',
-        description: 'Disabled slider'
-      }
-    ],
-    props: [
-      {
-        name: 'value',
-        type: 'number | number[]',
-        default: '0',
-        description: 'Current value or range values',
-        required: false
-      },
-      {
-        name: 'min',
-        type: 'number',
-        default: '0',
-        description: 'Minimum value',
-        required: false
-      },
-      {
-        name: 'max',
-        type: 'number',
-        default: '100',
-        description: 'Maximum value',
-        required: false
-      },
-      {
-        name: 'step',
-        type: 'number',
-        default: '1',
-        description: 'Step increment',
-        required: false
-      },
-      {
-        name: 'vertical',
-        type: 'boolean',
-        default: 'false',
-        description: 'Whether to display slider vertically',
-        required: false
-      },
-      {
-        name: 'disabled',
-        type: 'boolean',
-        default: 'false',
-        description: 'Whether the slider is disabled',
-        required: false
-      }
-    ],
-    events: [
-      {
-        name: 'onChange',
-        type: 'EventEmitter<number | number[]>',
-        description: 'Emitted when the value changes'
-      },
-      {
-        name: 'onSlideEnd',
-        type: 'EventEmitter<number | number[]>',
-        description: 'Emitted when sliding ends'
-      }
-    ],
-    usage: 'Use sliders for selecting numeric values, ranges, volume controls, price filters, and any scenario requiring intuitive value adjustment.',
-    tags: ['form', 'input', 'range', 'numeric', 'interactive']
-  },
-  {
     id: 'toggle-switch',
     name: 'Toggle Switch',
     category: 'Foundation',
@@ -3373,42 +3287,113 @@ export class CheckboxComponent {
         examples: [
           {
             name: 'Basic Knob',
-            code: '<sui-knob [value]="value" [min]="0" [max]="100" [size]="100" [showValue]="true"></sui-knob>',
+            code: '<sui-knob\n  [value]="basicValue"\n  [min]="0"\n  [max]="100"\n  [step]="1"\n  [size]="100"\n  [strokeWidth]="14"\n  [showValue]="true"\n  [showTicks]="true"\n  [tickCount]="12"\n  label="Volume"\n  unit="%"\n  (onChange)="onValueChange($event)"\n></sui-knob>',
+            tsCode: `export class KnobComponent {
+  basicValue = 50;
+
+  onValueChange(value: number): void {
+    console.log('Value changed:', value);
+    this.basicValue = value;
+  }
+
+  resetValue(): void {
+    this.basicValue = 50;
+  }
+
+  setRandomValue(): void {
+    this.basicValue = Math.floor(Math.random() * 101);
+  }
+}`,
             description: 'Standard knob control with value display'
           },
           {
             name: 'Size Variants',
-            code: '<sui-knob [size]="80"></sui-knob>\n<sui-knob [size]="160"></sui-knob>',
+            code: '<sui-knob [value]="smallValue" [size]="80"></sui-knob>\n<sui-knob [value]="mediumValue" [size]="120"></sui-knob>\n<sui-knob [value]="largeValue" [size]="160"></sui-knob>',
+            tsCode: `export class KnobComponent {
+  smallValue = 25;
+  mediumValue = 75;
+  largeValue = 60;
+}`,
             description: 'Different size variants for various use cases'
           },
           {
             name: 'Disabled State',
-            code: '<sui-knob [disabled]="true" [value]="value"></sui-knob>',
+            code: '<sui-knob\n  [value]="disabledValue"\n  [disabled]="true"\n  [size]="100"\n  [showValue]="true"\n  [showTicks]="true"\n  label="Disabled"\n></sui-knob>',
+            tsCode: `export class KnobComponent {
+  disabledValue = 30;
+}`,
             description: 'Knob in disabled state'
           },
           {
             name: 'Readonly State',
-            code: '<sui-knob [readonly]="true" [value]="value"></sui-knob>',
+            code: '<sui-knob\n  [value]="readonlyValue"\n  [readonly]="true"\n  [size]="100"\n  [showValue]="true"\n  [showTicks]="true"\n  label="Readonly"\n></sui-knob>',
+            tsCode: `export class KnobComponent {
+  readonlyValue = 80;
+}`,
             description: 'Knob in readonly mode'
           },
           {
             name: 'Custom Range',
-            code: '<sui-knob [min]="0" [max]="200" [step]="5" [value]="value"></sui-knob>',
+            code: '<sui-knob\n  [value]="customValue"\n  [min]="customMin"\n  [max]="customMax"\n  [step]="customStep"\n  [size]="120"\n  [strokeWidth]="16"\n  [showValue]="true"\n  [showTicks]="true"\n  [tickCount]="10"\n  label="Custom Range"\n  unit="pts"\n></sui-knob>',
+            tsCode: `export class KnobComponent {
+  customValue = 45;
+  customMin = 0;
+  customMax = 200;
+  customStep = 5;
+}`,
             description: 'Knob with custom minimum, maximum, and step values'
           },
           {
             name: 'Color Variants',
-            code: '<sui-knob [style]="getCustomColorStyle(\'#ef4444\')" [value]="value"></sui-knob>',
+            code: '<sui-knob\n  [value]="redValue"\n  [size]="100"\n  [style]="getCustomColorStyle(\'#ef4444\')"\n  [showValue]="true"\n  [showTicks]="true"\n  label="Red"\n></sui-knob>',
+            tsCode: `export class KnobComponent {
+  redValue = 40;
+  greenValue = 70;
+  yellowValue = 85;
+  purpleValue = 55;
+
+  getCustomColorStyle(color: string): any {
+    return {
+      '--sui-knob-primary': color,
+      '--sui-knob-primary-hover': this.darkenColor(color, 0.2)
+    };
+  }
+
+  private darkenColor(color: string, amount: number): string {
+    const colors: { [key: string]: string } = {
+      '#ef4444': '#dc2626',
+      '#10b981': '#059669',
+      '#f59e0b': '#d97706',
+      '#8b5cf6': '#7c3aed'
+    };
+    return colors[color] || color;
+  }
+}`,
             description: 'Knob with custom color themes'
           },
           {
             name: 'Form Integration',
-            code: '<sui-knob [value]="formValue" (onChange)="onValueChange($event)"></sui-knob>',
+            code: '<sui-knob\n  [value]="formValue"\n  [size]="120"\n  [strokeWidth]="16"\n  [showValue]="true"\n  [showTicks]="true"\n  [tickCount]="10"\n  label="Form Control"\n  unit="%"\n  (onChange)="onFormValueChange()"\n></sui-knob>',
+            tsCode: `export class KnobComponent {
+  formValue = 65;
+  formValid = true;
+
+  onFormValueChange(): void {
+    this.validateForm();
+  }
+
+  validateForm(): void {
+    this.formValid = this.formValue >= 0 && this.formValue <= 100;
+  }
+}`,
             description: 'Knob integrated with Angular forms'
           },
           {
             name: 'Minimal Display',
-            code: '<sui-knob [showValue]="false" [showTicks]="false" [value]="value"></sui-knob>',
+            code: '<sui-knob\n  [value]="basicValue"\n  [size]="100"\n  [strokeWidth]="12"\n  [showValue]="false"\n  [showTicks]="false"\n  label="Minimal"\n></sui-knob>',
+            tsCode: `export class KnobComponent {
+  basicValue = 50;
+}`,
             description: 'Knob with minimal visual elements'
           }
         ],

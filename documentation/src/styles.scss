@@ -5,6 +5,67 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fix Tailwind's aggressive reset on range inputs */
+@layer base {
+  input[type="range"] {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    height: 24px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  input[type="range"]::-webkit-slider-track {
+    -webkit-appearance: none !important;
+    background: #e5e7eb !important;
+    height: 6px !important;
+    border-radius: 3px !important;
+    width: 100% !important;
+    border: none !important;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 20px !important;
+    height: 20px !important;
+    background: white !important;
+    border: 2px solid #3b82f6 !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    margin-top: -7px !important;
+  }
+
+  input[type="range"]::-moz-range-track {
+    background: #e5e7eb !important;
+    height: 6px !important;
+    border-radius: 3px !important;
+    border: none !important;
+    width: 100% !important;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 16px !important;
+    height: 16px !important;
+    background: white !important;
+    border: 2px solid #3b82f6 !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    border: none !important;
+  }
+
+  input[type="range"]::-moz-range-progress {
+    background: #3b82f6 !important;
+    height: 6px !important;
+    border-radius: 3px !important;
+  }
+}
+
 /* Import PrimeIcons */
 @import 'primeicons/primeicons.css';
 
@@ -364,4 +425,77 @@ button {
   .option-item:not(.disabled) {
     color: #374151 !important;
   }
+}
+
+/* CRITICAL FIX: Force range input track visibility - HIGHEST PRIORITY */
+input[type="range"].sui-slider-input,
+.sui-slider input[type="range"],
+input[type="range"] {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: transparent !important;
+  width: 100% !important;
+  height: 24px !important;
+  outline: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+input[type="range"].sui-slider-input::-webkit-slider-track,
+.sui-slider input[type="range"]::-webkit-slider-track,
+input[type="range"]::-webkit-slider-track {
+  -webkit-appearance: none !important;
+  width: 100% !important;
+  height: 6px !important;
+  background-color: #e5e7eb !important;
+  background-image: none !important;
+  border-radius: 3px !important;
+  border: none !important;
+}
+
+input[type="range"].sui-slider-input::-webkit-slider-thumb,
+.sui-slider input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  background: #ffffff !important;
+  border: 2px solid #3b82f6 !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  margin-top: -7px !important;
+}
+
+input[type="range"].sui-slider-input::-moz-range-track,
+.sui-slider input[type="range"]::-moz-range-track,
+input[type="range"]::-moz-range-track {
+  width: 100% !important;
+  height: 6px !important;
+  background: #e5e7eb !important;
+  border-radius: 3px !important;
+  border: none !important;
+}
+
+input[type="range"].sui-slider-input::-moz-range-thumb,
+.sui-slider input[type="range"]::-moz-range-thumb,
+input[type="range"]::-moz-range-thumb {
+  width: 16px !important;
+  height: 16px !important;
+  background: #ffffff !important;
+  border: 2px solid #3b82f6 !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+}
+
+input[type="range"].sui-slider-input::-moz-range-progress,
+.sui-slider input[type="range"]::-moz-range-progress,
+input[type="range"]::-moz-range-progress {
+  height: 6px !important;
+  background: #3b82f6 !important;
+  border-radius: 3px !important;
 }

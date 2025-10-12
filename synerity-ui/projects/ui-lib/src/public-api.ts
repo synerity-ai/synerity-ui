@@ -30,7 +30,6 @@ export * from './lib/radio-button/radio-button';
 export * from './lib/rating/rating';
 export * from './lib/select/select';
 export * from './lib/select-button/select-button';
-export * from './lib/slider/slider';
 export * from './lib/textarea/textarea';
 export * from './lib/toggle-button/toggle-button';
 export * from './lib/toggle-switch/toggle-switch';

@@ -5,21 +5,21 @@
 }
 
 .sui-tooltip {
-  position: absolute;
-  z-index: 50;
+  position: fixed;
+  z-index: 9999;
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  color: var(--sui-white, #ffffff);
-  background-color: var(--sui-gray-900, #111827);
+  color: #ffffff;
+  background-color: #111827;
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   max-width: 20rem;
   word-wrap: break-word;
   opacity: 0;
   transform: scale(0.95);
-  transition: all 0.15s ease-in-out;
-  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: auto;
 }
 
 .sui-tooltip.show {
@@ -27,82 +27,16 @@
   transform: scale(1);
 }
 
-/* Position variants */
-.sui-tooltip-top {
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-8px) scale(0.95);
-  margin-bottom: 8px;
-}
-
-.sui-tooltip-top.show {
-  transform: translateX(-50%) translateY(0) scale(1);
-}
-
-.sui-tooltip-bottom {
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(8px) scale(0.95);
-  margin-top: 8px;
-}
-
-.sui-tooltip-bottom.show {
-  transform: translateX(-50%) translateY(0) scale(1);
-}
-
-.sui-tooltip-left {
-  right: 100%;
-  top: 50%;
-  transform: translateY(-50%) translateX(-8px) scale(0.95);
-  margin-right: 8px;
-}
-
-.sui-tooltip-left.show {
-  transform: translateY(-50%) translateX(0) scale(1);
-}
-
-.sui-tooltip-right {
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%) translateX(8px) scale(0.95);
-  margin-left: 8px;
-}
-
-.sui-tooltip-right.show {
-  transform: translateY(-50%) translateX(0) scale(1);
-}
+/* Position variants - using fixed positioning, JS handles exact placement */
 
 /* Arrow styles */
 .sui-tooltip-arrow {
   position: absolute;
   width: 8px;
   height: 8px;
-  background-color: var(--sui-gray-900, #111827);
+  background-color: #111827;
   transform: rotate(45deg);
-}
-
-.sui-tooltip-top .sui-tooltip-arrow {
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-}
-
-.sui-tooltip-bottom .sui-tooltip-arrow {
-  top: -4px;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-}
-
-.sui-tooltip-left .sui-tooltip-arrow {
-  right: -4px;
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.sui-tooltip-right .sui-tooltip-arrow {
-  left: -4px;
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
+  display: none; /* Simplified - no arrow for now */
 }
 
 /* Content wrapper */
