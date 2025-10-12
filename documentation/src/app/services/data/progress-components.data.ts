@@ -94,40 +94,6 @@ export const progressComponents: ComponentModel[] = [
           tags: ['progress', 'indicator', 'completion', 'loading', 'feedback']
         },
   {
-        id: 'progress-bar',
-        name: 'Progress Bar',
-        category: 'Progress',
-        description: 'Progress bar component for showing completion status',
-        examples: [
-          {
-            name: 'Basic Progress Bar',
-            code: '<sui-progress-bar [value]="50"></sui-progress-bar>',
-            description: 'Basic progress bar at 50%'
-          }
-        ],
-        props: [
-          {
-            name: 'value',
-            type: 'number',
-            default: '0',
-            description: 'Progress value (0-100)',
-            required: true
-          }
-        ],
-        usage: 'Use progress bars to show completion status of operations.',
-        tags: ['progress', 'loading', 'status']
-      },
-  {
-        id: 'progress-spinner',
-        name: 'Progress Spinner',
-        category: 'Progress',
-        description: 'Loading spinner component',
-        examples: [],
-        props: [],
-        usage: 'Use progress spinners for loading states.',
-        tags: ['progress', 'loading']
-      },
-  {
         id: 'skeleton',
         name: 'Skeleton',
         category: 'Progress',

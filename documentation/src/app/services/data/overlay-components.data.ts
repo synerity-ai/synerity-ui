@@ -215,30 +215,6 @@ export const overlayComponents: ComponentModel[] = [
         tags: ['overlay', 'modal', 'dialog', 'popup', 'form']
       },
   {
-        id: 'dialog',
-        name: 'Dialog',
-        category: 'Overlay',
-        description: 'Modal dialog component',
-        examples: [
-          {
-            name: 'Basic Dialog',
-            code: '<sui-dialog header="Dialog Title" [visible]="showDialog">Dialog content</sui-dialog>',
-            description: 'Basic modal dialog'
-          }
-        ],
-        props: [
-          {
-            name: 'visible',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether dialog is visible',
-            required: true
-          }
-        ],
-        usage: 'Use dialogs to display modal content and forms.',
-        tags: ['modal', 'dialog', 'overlay']
-      },
-  {
         id: 'block-ui',
         name: 'Block UI',
         category: 'Overlay',
@@ -435,25 +411,7 @@ export const overlayComponents: ComponentModel[] = [
         tags: ['overlay', 'panel', 'contextual', 'floating', 'menu']
       },
   {
-        id: 'popover',
-        name: 'Popover',
-        category: 'Overlay',
-        description: 'Popover component',
-        examples: [],
-        props: [],
-        usage: 'Use popovers for contextual information.',
-        tags: ['overlay', 'popover']
-      },
   {
-        id: 'tooltip',
-        name: 'Tooltip',
-        category: 'Overlay',
-        description: 'Tooltip component',
-        examples: [],
-        props: [],
-        usage: 'Use tooltips for helpful hints.',
-        tags: ['overlay', 'tooltip']
-      },
   {
         id: 'popover',
         name: 'Popover',
