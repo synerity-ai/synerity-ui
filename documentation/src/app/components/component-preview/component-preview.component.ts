@@ -40,11 +40,12 @@ import { SelectButtonDemoComponent } from '../select-button-demo/select-button-d
 import { DataViewDemo } from '../data-view-demo/data-view-demo';
 import { OrderListDemo } from '../order-list-demo/order-list-demo';
 import { PaginatorDemo } from '../paginator-demo/paginator-demo';
+import { PickListDemo } from '../pick-list-demo/pick-list-demo';
 
 @Component({
   selector: 'app-component-preview',
   standalone: true,
-  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, SelectButtonDemoComponent, AvatarDemoComponent, BadgeDemoComponent, DatePickerDemoComponent, RatingDemoComponent, ToggleSwitchDemoComponent, ChipDemoComponent, InputNumberDemoComponent, PasswordDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent, PopoverDemo, ProgressSpinnerDemo, SkeletonDemo, OverlayPanelDemo, BreadcrumbDemo, ColorPickerDemo, EditorDemo, KnobDemo, AccordionDemoComponent, DataViewDemo, OrderListDemo, PaginatorDemo],
+  imports: [CommonModule, Button, ButtonDemo, CardDemo, InputDemo, TableDemoComponent, AutoCompleteDemoComponent, PanelDemoComponent, MenuDemoComponent, DialogDemoComponent, CarouselDemoComponent, ToastDemoComponent, ProgressBarDemoComponent, CheckboxDemoComponent, RadioButtonDemoComponent, SelectDemoComponent, SelectButtonDemoComponent, AvatarDemoComponent, BadgeDemoComponent, DatePickerDemoComponent, RatingDemoComponent, ToggleSwitchDemoComponent, ChipDemoComponent, InputNumberDemoComponent, PasswordDemoComponent, TabsDemoComponent, TextareaDemoComponent, TooltipDemoComponent, PopoverDemo, ProgressSpinnerDemo, SkeletonDemo, OverlayPanelDemo, BreadcrumbDemo, ColorPickerDemo, EditorDemo, KnobDemo, AccordionDemoComponent, DataViewDemo, OrderListDemo, PaginatorDemo, PickListDemo],
   templateUrl: './component-preview.component.html',
   styleUrl: './component-preview.component.scss'
 })

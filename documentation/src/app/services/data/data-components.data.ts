@@ -1031,11 +1031,301 @@ export const dataComponents: ComponentModel[] = [
         id: 'pick-list',
         name: 'Pick List',
         category: 'Data',
-        description: 'Dual list selection component',
-        examples: [],
-        props: [],
-        usage: 'Use pick lists for dual list selection.',
-        tags: ['data', 'selection']
+        description: 'Dual list component for transferring items between source and target lists with filtering and selection support',
+        examples: [
+          {
+            name: 'Basic Pick List',
+            code: `<sui-pick-list
+  [source]="sourceSkills"
+  [target]="targetSkills"
+  sourceHeader="Available Skills"
+  targetHeader="Your Skills"
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)"
+  (onMoveAllToTarget)="onMoveAllToTarget($event)"
+  (onMoveAllToSource)="onMoveAllToSource($event)">
+</sui-pick-list>`,
+            tsCode: `export class PickListComponent {
+  sourceSkills = [
+    { id: 1, name: 'JavaScript' },
+    { id: 2, name: 'TypeScript' },
+    { id: 3, name: 'Python' },
+    { id: 4, name: 'Java' },
+    { id: 5, name: 'C++' }
+  ];
+  targetSkills = [];
+
+  onMoveToTarget(event: any): void {
+    console.log('Moved to target:', event);
+  }
+
+  onMoveToSource(event: any): void {
+    console.log('Moved to source:', event);
+  }
+
+  onMoveAllToTarget(event: any): void {
+    console.log('Moved all to target:', event);
+  }
+
+  onMoveAllToSource(event: any): void {
+    console.log('Moved all to source:', event);
+  }
+}`,
+            description: 'Basic dual list with transfer controls'
+          },
+          {
+            name: 'With Filter',
+            code: `<sui-pick-list
+  [source]="sourceMembers"
+  [target]="targetMembers"
+  sourceHeader="All Team Members"
+  targetHeader="Project Team"
+  [filter]="true"
+  filterPlaceholder="Search members..."
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)">
+</sui-pick-list>`,
+            tsCode: `export class PickListComponent {
+  sourceMembers = [
+    { id: 1, name: 'Alice Johnson' },
+    { id: 2, name: 'Bob Smith' },
+    { id: 3, name: 'Charlie Brown' },
+    { id: 4, name: 'Diana Prince' }
+  ];
+  targetMembers = [];
+
+  onMoveToTarget(event: any): void {
+    console.log('Moved to target:', event);
+  }
+
+  onMoveToSource(event: any): void {
+    console.log('Moved to source:', event);
+  }
+}`,
+            description: 'Pick list with search filtering enabled'
+          },
+          {
+            name: 'Without Filter',
+            code: `<sui-pick-list
+  [source]="sourceCities"
+  [target]="targetCities"
+  sourceHeader="Available Cities"
+  targetHeader="Selected Cities"
+  [filter]="false"
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)">
+</sui-pick-list>`,
+            tsCode: `export class PickListComponent {
+  sourceCities = [
+    { id: 1, name: 'New York' },
+    { id: 2, name: 'Los Angeles' },
+    { id: 3, name: 'Chicago' },
+    { id: 4, name: 'Houston' }
+  ];
+  targetCities = [];
+
+  onMoveToTarget(event: any): void {
+    console.log('Moved to target:', event);
+  }
+
+  onMoveToSource(event: any): void {
+    console.log('Moved to source:', event);
+  }
+}`,
+            description: 'Pick list without filter functionality'
+          },
+          {
+            name: 'Pre-populated',
+            code: `<sui-pick-list
+  [source]="sourceFeatures"
+  [target]="targetFeatures"
+  sourceHeader="Available Features"
+  targetHeader="Enabled Features"
+  [filter]="true"
+  filterPlaceholder="Search features..."
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)">
+</sui-pick-list>`,
+            tsCode: `export class PickListComponent {
+  sourceFeatures = [
+    { id: 1, name: 'User Management' },
+    { id: 2, name: 'Email Notifications' },
+    { id: 3, name: 'Export to PDF' }
+  ];
+  targetFeatures = [
+    { id: 4, name: 'Dashboard Analytics' },
+    { id: 5, name: 'Search Functionality' },
+    { id: 6, name: 'File Upload' }
+  ];
+
+  onMoveToTarget(event: any): void {
+    console.log('Moved to target:', event);
+  }
+
+  onMoveToSource(event: any): void {
+    console.log('Moved to source:', event);
+  }
+}`,
+            description: 'Pick list with both source and target pre-populated'
+          },
+          {
+            name: 'With Categories',
+            code: `<sui-pick-list
+  [source]="sourceProducts"
+  [target]="targetProducts"
+  sourceHeader="Product Catalog"
+  targetHeader="Shopping Cart"
+  [filter]="true"
+  filterPlaceholder="Search products..."
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)">
+</sui-pick-list>`,
+            tsCode: `export class PickListComponent {
+  sourceProducts = [
+    { id: 1, name: 'Laptop', category: 'Electronics' },
+    { id: 2, name: 'Mouse', category: 'Electronics' },
+    { id: 3, name: 'Desk Chair', category: 'Furniture' },
+    { id: 4, name: 'Notebook', category: 'Stationery' }
+  ];
+  targetProducts = [];
+
+  onMoveToTarget(event: any): void {
+    console.log('Moved to target:', event);
+  }
+
+  onMoveToSource(event: any): void {
+    console.log('Moved to source:', event);
+  }
+}`,
+            description: 'Pick list with categorized items'
+          },
+          {
+            name: 'Minimal Style',
+            code: `<sui-pick-list
+  [source]="sourceTags"
+  [target]="targetTags"
+  sourceHeader="Available Tags"
+  targetHeader="Active Tags"
+  [filter]="false"
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)">
+</sui-pick-list>`,
+            tsCode: `export class PickListComponent {
+  sourceTags = [
+    { id: 1, name: 'urgent' },
+    { id: 2, name: 'important' },
+    { id: 3, name: 'low-priority' },
+    { id: 4, name: 'bug' },
+    { id: 5, name: 'feature' }
+  ];
+  targetTags = [];
+
+  onMoveToTarget(event: any): void {
+    console.log('Moved to target:', event);
+  }
+
+  onMoveToSource(event: any): void {
+    console.log('Moved to source:', event);
+  }
+}`,
+            description: 'Minimal pick list for simple tag selection'
+          }
+        ],
+        props: [
+          {
+            name: 'source',
+            type: 'any[]',
+            default: '[]',
+            description: 'Array of items in the source list',
+            required: true
+          },
+          {
+            name: 'target',
+            type: 'any[]',
+            default: '[]',
+            description: 'Array of items in the target list',
+            required: true
+          },
+          {
+            name: 'sourceHeader',
+            type: 'string',
+            default: '"Available"',
+            description: 'Header text for source list',
+            required: false
+          },
+          {
+            name: 'targetHeader',
+            type: 'string',
+            default: '"Selected"',
+            description: 'Header text for target list',
+            required: false
+          },
+          {
+            name: 'filter',
+            type: 'boolean',
+            default: 'true',
+            description: 'Enable search filter for both lists',
+            required: false
+          },
+          {
+            name: 'filterPlaceholder',
+            type: 'string',
+            default: '"Search"',
+            description: 'Placeholder text for filter inputs',
+            required: false
+          },
+          {
+            name: 'dragdrop',
+            type: 'boolean',
+            default: 'false',
+            description: 'Enable drag and drop functionality',
+            required: false
+          },
+          {
+            name: 'showSourceControls',
+            type: 'boolean',
+            default: 'true',
+            description: 'Show buttons to move items to target',
+            required: false
+          },
+          {
+            name: 'showTargetControls',
+            type: 'boolean',
+            default: 'true',
+            description: 'Show buttons to move items to source',
+            required: false
+          },
+          {
+            name: 'onMoveToTarget',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when items are moved to target list',
+            required: false
+          },
+          {
+            name: 'onMoveToSource',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when items are moved to source list',
+            required: false
+          },
+          {
+            name: 'onMoveAllToTarget',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when all items are moved to target',
+            required: false
+          },
+          {
+            name: 'onMoveAllToSource',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when all items are moved to source',
+            required: false
+          }
+        ],
+        usage: 'Use pick lists for dual list selection where users need to move items between available and selected lists. Perfect for role assignments, feature selection, and permission management.',
+        tags: ['data', 'selection', 'dual-list', 'transfer', 'picklist']
       },
   {
         id: 'tree',

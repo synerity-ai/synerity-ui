@@ -1,0 +1,102 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Pick List') {
+    <div class="p-4">
+      <div class="flex flex-col items-center gap-4">
+        <sui-pick-list
+          [source]="sourceSkills"
+          [target]="targetSkills"
+          sourceHeader="Available Skills"
+          targetHeader="Your Skills"
+          (onMoveToTarget)="onMoveToTarget($event)"
+          (onMoveToSource)="onMoveToSource($event)"
+          (onMoveAllToTarget)="onMoveAllToTarget($event)"
+          (onMoveAllToSource)="onMoveAllToSource($event)">
+        </sui-pick-list>
+        <button (click)="resetSkills()" 
+                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
+          Reset
+        </button>
+      </div>
+    </div>
+  }
+  @case ('With Filter') {
+    <div class="p-4">
+      <sui-pick-list
+        [source]="sourceMembers"
+        [target]="targetMembers"
+        sourceHeader="All Team Members"
+        targetHeader="Project Team"
+        [filter]="true"
+        filterPlaceholder="Search members..."
+        (onMoveToTarget)="onMoveToTarget($event)"
+        (onMoveToSource)="onMoveToSource($event)">
+      </sui-pick-list>
+    </div>
+  }
+  @case ('Without Filter') {
+    <div class="p-4">
+      <sui-pick-list
+        [source]="sourceCities"
+        [target]="targetCities"
+        sourceHeader="Available Cities"
+        targetHeader="Selected Cities"
+        [filter]="false"
+        (onMoveToTarget)="onMoveToTarget($event)"
+        (onMoveToSource)="onMoveToSource($event)">
+      </sui-pick-list>
+    </div>
+  }
+  @case ('Pre-populated') {
+    <div class="p-4">
+      <sui-pick-list
+        [source]="sourceFeatures"
+        [target]="targetFeatures"
+        sourceHeader="Available Features"
+        targetHeader="Enabled Features"
+        [filter]="true"
+        filterPlaceholder="Search features..."
+        (onMoveToTarget)="onMoveToTarget($event)"
+        (onMoveToSource)="onMoveToSource($event)">
+      </sui-pick-list>
+    </div>
+  }
+  @case ('With Categories') {
+    <div class="p-4">
+      <sui-pick-list
+        [source]="sourceProducts"
+        [target]="targetProducts"
+        sourceHeader="Product Catalog"
+        targetHeader="Shopping Cart"
+        [filter]="true"
+        filterPlaceholder="Search products..."
+        (onMoveToTarget)="onMoveToTarget($event)"
+        (onMoveToSource)="onMoveToSource($event)">
+      </sui-pick-list>
+    </div>
+  }
+  @case ('Minimal Style') {
+    <div class="p-4">
+      <sui-pick-list
+        [source]="sourceTags"
+        [target]="targetTags"
+        sourceHeader="Available Tags"
+        targetHeader="Active Tags"
+        [filter]="false"
+        (onMoveToTarget)="onMoveToTarget($event)"
+        (onMoveToSource)="onMoveToSource($event)">
+      </sui-pick-list>
+    </div>
+  }
+  @default {
+    <div class="p-4">
+      <sui-pick-list
+        [source]="sourceSkills"
+        [target]="targetSkills"
+        sourceHeader="Available"
+        targetHeader="Selected"
+        (onMoveToTarget)="onMoveToTarget($event)"
+        (onMoveToSource)="onMoveToSource($event)">
+      </sui-pick-list>
+    </div>
+  }
+}
