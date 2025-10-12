@@ -1,0 +1,88 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Org Chart') {
+    <div class="p-4">
+      <div class="max-w-6xl mx-auto overflow-x-auto">
+        <sui-org-chart
+          [value]="companyOrg"
+          (onNodeSelect)="onNodeSelect($event)"
+          (onNodeExpand)="onNodeExpand($event)"
+          (onNodeCollapse)="onNodeCollapse($event)">
+        </sui-org-chart>
+      </div>
+    </div>
+  }
+  @case ('With Selection') {
+    <div class="p-4">
+      <div class="max-w-6xl mx-auto overflow-x-auto space-y-4">
+        <sui-org-chart
+          [value]="companyOrg"
+          selectionMode="single"
+          (onNodeSelect)="onNodeSelect($event)">
+        </sui-org-chart>
+        @if (selectedNodes.length > 0) {
+          <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h4 class="font-semibold text-blue-900 mb-1">Selected:</h4>
+            <p class="text-sm text-blue-800">{{ selectedNodes[0].label }}</p>
+            @if (selectedNodes[0].data) {
+              <p class="text-sm text-blue-800">{{ selectedNodes[0].data.name }} - {{ selectedNodes[0].data.title }}</p>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  }
+  @case ('Small Team') {
+    <div class="p-4">
+      <div class="max-w-4xl mx-auto overflow-x-auto">
+        <sui-org-chart
+          [value]="smallTeam"
+          (onNodeSelect)="onNodeSelect($event)">
+        </sui-org-chart>
+      </div>
+    </div>
+  }
+  @case ('Department Structure') {
+    <div class="p-4">
+      <div class="max-w-6xl mx-auto overflow-x-auto">
+        <sui-org-chart
+          [value]="departments"
+          (onNodeExpand)="onNodeExpand($event)"
+          (onNodeCollapse)="onNodeCollapse($event)">
+        </sui-org-chart>
+      </div>
+    </div>
+  }
+  @case ('Collapsed by Default') {
+    <div class="p-4">
+      <div class="max-w-6xl mx-auto overflow-x-auto">
+        <sui-org-chart
+          [value]="collapsedOrg"
+          [collapsible]="true"
+          (onNodeExpand)="onNodeExpand($event)"
+          (onNodeCollapse)="onNodeCollapse($event)">
+        </sui-org-chart>
+      </div>
+    </div>
+  }
+  @case ('Not Collapsible') {
+    <div class="p-4">
+      <div class="max-w-6xl mx-auto overflow-x-auto">
+        <sui-org-chart
+          [value]="companyOrg"
+          [collapsible]="false"
+          (onNodeSelect)="onNodeSelect($event)">
+        </sui-org-chart>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-4">
+      <div class="max-w-6xl mx-auto overflow-x-auto">
+        <sui-org-chart
+          [value]="companyOrg"
+          (onNodeSelect)="onNodeSelect($event)">
+        </sui-org-chart>
+      </div>
+    </div>
+  }
+}

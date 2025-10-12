@@ -2667,11 +2667,265 @@ export const dataComponents: ComponentModel[] = [
         id: 'org-chart',
         name: 'Org Chart',
         category: 'Data',
-        description: 'Organization chart component',
-        examples: [],
-        props: [],
-        usage: 'Use org charts for organizational structure display.',
-        tags: ['data', 'chart']
+        description: 'Organization chart component for displaying hierarchical structures with expandable nodes, selection, and custom node types',
+        examples: [
+          {
+            name: 'Basic Org Chart',
+            code: `<sui-org-chart
+  [value]="companyOrg"
+  (onNodeSelect)="onNodeSelect($event)"
+  (onNodeExpand)="onNodeExpand($event)"
+  (onNodeCollapse)="onNodeCollapse($event)">
+</sui-org-chart>`,
+            tsCode: `export class OrgChartComponent {
+  companyOrg = [
+    {
+      key: '0',
+      label: 'CEO',
+      data: { name: 'John Smith', title: 'Chief Executive Officer' },
+      type: 'executive',
+      expanded: true,
+      children: [
+        {
+          key: '0-0',
+          label: 'CTO',
+          data: { name: 'Jane Doe', title: 'Chief Technology Officer' },
+          type: 'executive',
+          children: [
+            { key: '0-0-0', label: 'Engineering Manager' }
+          ]
+        },
+        {
+          key: '0-1',
+          label: 'CFO',
+          data: { name: 'Mike Davis', title: 'Chief Financial Officer' },
+          type: 'executive'
+        }
+      ]
+    }
+  ];
+
+  onNodeSelect(node: any): void {
+    console.log('Node selected:', node);
+  }
+
+  onNodeExpand(node: any): void {
+    console.log('Node expanded:', node);
+  }
+
+  onNodeCollapse(node: any): void {
+    console.log('Node collapsed:', node);
+  }
+}`,
+            description: 'Basic organization chart with hierarchical structure'
+          },
+          {
+            name: 'With Selection',
+            code: `<sui-org-chart
+  [value]="companyOrg"
+  selectionMode="single"
+  (onNodeSelect)="onNodeSelect($event)">
+</sui-org-chart>`,
+            tsCode: `export class OrgChartComponent {
+  companyOrg = [
+    {
+      key: '0',
+      label: 'CEO',
+      expanded: true,
+      children: [
+        { key: '0-0', label: 'CTO' },
+        { key: '0-1', label: 'CFO' }
+      ]
+    }
+  ];
+
+  onNodeSelect(node: any): void {
+    console.log('Node selected:', node);
+  }
+}`,
+            description: 'Org chart with node selection enabled'
+          },
+          {
+            name: 'Small Team',
+            code: `<sui-org-chart
+  [value]="smallTeam"
+  (onNodeSelect)="onNodeSelect($event)">
+</sui-org-chart>`,
+            tsCode: `export class OrgChartComponent {
+  smallTeam = [
+    {
+      key: '0',
+      label: 'Founder',
+      data: { name: 'Alex Johnson' },
+      expanded: true,
+      children: [
+        { key: '0-0', label: 'Lead Developer', data: { name: 'Sam Taylor' } },
+        { key: '0-1', label: 'Designer', data: { name: 'Jordan Lee' } }
+      ]
+    }
+  ];
+
+  onNodeSelect(node: any): void {
+    console.log('Node selected:', node);
+  }
+}`,
+            description: 'Simple org chart for small team structure'
+          },
+          {
+            name: 'Department Structure',
+            code: `<sui-org-chart
+  [value]="departments"
+  (onNodeExpand)="onNodeExpand($event)"
+  (onNodeCollapse)="onNodeCollapse($event)">
+</sui-org-chart>`,
+            tsCode: `export class OrgChartComponent {
+  departments = [
+    {
+      key: '0',
+      label: 'Engineering',
+      data: { employees: 25 },
+      type: 'department',
+      expanded: true,
+      children: [
+        { key: '0-0', label: 'Frontend', data: { employees: 8 }, type: 'team' },
+        { key: '0-1', label: 'Backend', data: { employees: 10 }, type: 'team' }
+      ]
+    }
+  ];
+
+  onNodeExpand(node: any): void {
+    console.log('Node expanded:', node);
+  }
+
+  onNodeCollapse(node: any): void {
+    console.log('Node collapsed:', node);
+  }
+}`,
+            description: 'Org chart showing department structure with employee counts'
+          },
+          {
+            name: 'Collapsed by Default',
+            code: `<sui-org-chart
+  [value]="collapsedOrg"
+  [collapsible]="true"
+  (onNodeExpand)="onNodeExpand($event)"
+  (onNodeCollapse)="onNodeCollapse($event)">
+</sui-org-chart>`,
+            tsCode: `export class OrgChartComponent {
+  collapsedOrg = [
+    {
+      key: '0',
+      label: 'CEO',
+      expanded: false,
+      children: [
+        { key: '0-0', label: 'CTO' },
+        { key: '0-1', label: 'CFO' }
+      ]
+    }
+  ];
+
+  onNodeExpand(node: any): void {
+    console.log('Node expanded:', node);
+  }
+
+  onNodeCollapse(node: any): void {
+    console.log('Node collapsed:', node);
+  }
+}`,
+            description: 'Org chart with nodes collapsed initially'
+          },
+          {
+            name: 'Not Collapsible',
+            code: `<sui-org-chart
+  [value]="companyOrg"
+  [collapsible]="false"
+  (onNodeSelect)="onNodeSelect($event)">
+</sui-org-chart>`,
+            tsCode: `export class OrgChartComponent {
+  companyOrg = [
+    {
+      key: '0',
+      label: 'CEO',
+      expanded: true,
+      children: [
+        {
+          key: '0-0',
+          label: 'CTO',
+          children: [
+            { key: '0-0-0', label: 'Engineering Manager' }
+          ]
+        }
+      ]
+    }
+  ];
+
+  onNodeSelect(node: any): void {
+    console.log('Node selected:', node);
+  }
+}`,
+            description: 'Org chart with expand/collapse disabled'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'OrgNode[]',
+            default: '[]',
+            description: 'Array of organization nodes. Each node has: key, label, data, children, expanded, type',
+            required: true
+          },
+          {
+            name: 'selectionMode',
+            type: '"single" | "multiple" | null',
+            default: 'null',
+            description: 'Selection mode for nodes',
+            required: false
+          },
+          {
+            name: 'collapsible',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether nodes can be expanded/collapsed',
+            required: false
+          },
+          {
+            name: 'orientation',
+            type: '"vertical" | "horizontal"',
+            default: '"vertical"',
+            description: 'Layout orientation of the chart',
+            required: false
+          },
+          {
+            name: 'onNodeSelect',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is selected',
+            required: false
+          },
+          {
+            name: 'onNodeUnselect',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is unselected',
+            required: false
+          },
+          {
+            name: 'onNodeExpand',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is expanded',
+            required: false
+          },
+          {
+            name: 'onNodeCollapse',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is collapsed',
+            required: false
+          }
+        ],
+        usage: 'Use org charts for displaying organizational hierarchies, team structures, company org charts, and department breakdowns. Supports expand/collapse, node selection, and custom node types for visual differentiation.',
+        tags: ['data', 'chart', 'organization', 'hierarchy', 'tree', 'structure']
       },
   {
         id: 'virtual-scroller',
