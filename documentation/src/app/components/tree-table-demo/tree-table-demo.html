@@ -1,0 +1,100 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Tree Table') {
+    <div class="p-4">
+      <sui-tree-table
+        [value]="fileSystem"
+        [columns]="fileColumns"
+        (onNodeExpand)="onNodeExpand($event)"
+        (onNodeCollapse)="onNodeCollapse($event)">
+      </sui-tree-table>
+    </div>
+  }
+  @case ('With Sorting') {
+    <div class="p-4">
+      <sui-tree-table
+        [value]="fileSystem"
+        [columns]="fileColumns"
+        (onSort)="onSort($event)"
+        (onNodeExpand)="onNodeExpand($event)">
+      </sui-tree-table>
+    </div>
+  }
+  @case ('Single Selection') {
+    <div class="p-4 space-y-4">
+      <sui-tree-table
+        [value]="organization"
+        [columns]="orgColumns"
+        selectionMode="single"
+        (onNodeSelect)="onNodeSelect($event)"
+        (onSelectionChange)="onSelectionChange($event)">
+      </sui-tree-table>
+      @if (selectedNodes.length > 0) {
+        <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <h4 class="font-semibold text-blue-900 mb-1">Selected:</h4>
+          <p class="text-sm text-blue-800">{{ selectedNodes[0].data.name }} - {{ selectedNodes[0].data.title }}</p>
+        </div>
+      }
+    </div>
+  }
+  @case ('Multiple Selection') {
+    <div class="p-4 space-y-4">
+      <sui-tree-table
+        [value]="organization"
+        [columns]="orgColumns"
+        selectionMode="multiple"
+        (onSelectionChange)="onSelectionChange($event)">
+      </sui-tree-table>
+      @if (selectedNodes.length > 0) {
+        <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <h4 class="font-semibold text-blue-900 mb-2">Selected ({{ selectedNodes.length }}):</h4>
+          <ul class="space-y-1">
+            @for (node of selectedNodes; track node.key) {
+              <li class="text-sm text-blue-800">• {{ node.data.name }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  }
+  @case ('With Checkbox') {
+    <div class="p-4 space-y-4">
+      <sui-tree-table
+        [value]="products"
+        [columns]="productColumns"
+        selectionMode="checkbox"
+        (onSelectionChange)="onSelectionChange($event)">
+      </sui-tree-table>
+      @if (selectedNodes.length > 0) {
+        <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+          <h4 class="font-semibold text-green-900 mb-2">Selected Products:</h4>
+          <div class="flex flex-wrap gap-2">
+            @for (node of selectedNodes; track node.key) {
+              <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                {{ node.data.name }}
+              </span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+  @case ('Collapsed by Default') {
+    <div class="p-4">
+      <sui-tree-table
+        [value]="collapsedData"
+        [columns]="fileColumns"
+        (onNodeExpand)="onNodeExpand($event)"
+        (onNodeCollapse)="onNodeCollapse($event)">
+      </sui-tree-table>
+    </div>
+  }
+  @default {
+    <div class="p-4">
+      <sui-tree-table
+        [value]="fileSystem"
+        [columns]="fileColumns"
+        (onNodeExpand)="onNodeExpand($event)">
+      </sui-tree-table>
+    </div>
+  }
+}

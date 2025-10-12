@@ -1644,11 +1644,340 @@ export const dataComponents: ComponentModel[] = [
         id: 'tree-table',
         name: 'Tree Table',
         category: 'Data',
-        description: 'Tree table component',
-        examples: [],
-        props: [],
-        usage: 'Use tree tables for hierarchical tabular data.',
-        tags: ['data', 'table']
+        description: 'Hierarchical table component for displaying nested data with expand/collapse, sorting, and selection capabilities in a tabular format',
+        examples: [
+          {
+            name: 'Basic Tree Table',
+            code: `<sui-tree-table
+  [value]="fileSystem"
+  [columns]="fileColumns"
+  (onNodeExpand)="onNodeExpand($event)"
+  (onNodeCollapse)="onNodeCollapse($event)">
+</sui-tree-table>`,
+            tsCode: `export class TreeTableComponent {
+  fileColumns = [
+    { field: 'name', header: 'Name', sortable: true },
+    { field: 'size', header: 'Size', sortable: true },
+    { field: 'type', header: 'Type', sortable: false },
+    { field: 'modified', header: 'Modified', sortable: true }
+  ];
+
+  fileSystem = [
+    {
+      key: '0',
+      data: { name: 'Documents', size: '75 MB', type: 'Folder', modified: '2024-01-15' },
+      expanded: true,
+      children: [
+        {
+          key: '0-0',
+          data: { name: 'Work', size: '50 MB', type: 'Folder', modified: '2024-01-14' },
+          children: [
+            { key: '0-0-0', data: { name: 'Project.docx', size: '2.4 MB', type: 'Document', modified: '2024-01-10' } }
+          ]
+        }
+      ]
+    }
+  ];
+
+  onNodeExpand(node: any): void {
+    console.log('Node expanded:', node);
+  }
+
+  onNodeCollapse(node: any): void {
+    console.log('Node collapsed:', node);
+  }
+}`,
+            description: 'Basic hierarchical table with file system data'
+          },
+          {
+            name: 'With Sorting',
+            code: `<sui-tree-table
+  [value]="fileSystem"
+  [columns]="fileColumns"
+  (onSort)="onSort($event)"
+  (onNodeExpand)="onNodeExpand($event)">
+</sui-tree-table>`,
+            tsCode: `export class TreeTableComponent {
+  fileColumns = [
+    { field: 'name', header: 'Name', sortable: true },
+    { field: 'size', header: 'Size', sortable: true },
+    { field: 'modified', header: 'Modified', sortable: true }
+  ];
+
+  fileSystem = [
+    {
+      key: '0',
+      data: { name: 'Documents', size: '75 MB', modified: '2024-01-15' },
+      expanded: true,
+      children: [
+        { key: '0-0', data: { name: 'Project.docx', size: '2.4 MB', modified: '2024-01-10' } }
+      ]
+    }
+  ];
+
+  onSort(event: any): void {
+    console.log('Sort:', event);
+  }
+
+  onNodeExpand(node: any): void {
+    console.log('Node expanded:', node);
+  }
+}`,
+            description: 'Tree table with sortable columns'
+          },
+          {
+            name: 'Single Selection',
+            code: `<sui-tree-table
+  [value]="organization"
+  [columns]="orgColumns"
+  selectionMode="single"
+  (onNodeSelect)="onNodeSelect($event)"
+  (onSelectionChange)="onSelectionChange($event)">
+</sui-tree-table>`,
+            tsCode: `export class TreeTableComponent {
+  orgColumns = [
+    { field: 'name', header: 'Employee', sortable: true },
+    { field: 'title', header: 'Title' },
+    { field: 'department', header: 'Department' }
+  ];
+
+  organization = [
+    {
+      key: '0',
+      data: { name: 'John Doe', title: 'CEO', department: 'Executive' },
+      expanded: true,
+      children: [
+        { key: '0-0', data: { name: 'Jane Smith', title: 'CTO', department: 'Technology' } }
+      ]
+    }
+  ];
+
+  onNodeSelect(node: any): void {
+    console.log('Node selected:', node);
+  }
+
+  onSelectionChange(nodes: any[]): void {
+    console.log('Selection changed:', nodes);
+  }
+}`,
+            description: 'Tree table with single row selection'
+          },
+          {
+            name: 'Multiple Selection',
+            code: `<sui-tree-table
+  [value]="organization"
+  [columns]="orgColumns"
+  selectionMode="multiple"
+  (onSelectionChange)="onSelectionChange($event)">
+</sui-tree-table>`,
+            tsCode: `export class TreeTableComponent {
+  orgColumns = [
+    { field: 'name', header: 'Employee' },
+    { field: 'title', header: 'Title' },
+    { field: 'email', header: 'Email' }
+  ];
+
+  organization = [
+    {
+      key: '0',
+      data: { name: 'John Doe', title: 'CEO', email: 'john@company.com' },
+      expanded: true,
+      children: [
+        { key: '0-0', data: { name: 'Jane Smith', title: 'CTO', email: 'jane@company.com' } }
+      ]
+    }
+  ];
+
+  onSelectionChange(nodes: any[]): void {
+    console.log('Selected nodes:', nodes);
+  }
+}`,
+            description: 'Tree table with multiple row selection'
+          },
+          {
+            name: 'With Checkbox',
+            code: `<sui-tree-table
+  [value]="products"
+  [columns]="productColumns"
+  selectionMode="checkbox"
+  (onSelectionChange)="onSelectionChange($event)">
+</sui-tree-table>`,
+            tsCode: `export class TreeTableComponent {
+  productColumns = [
+    { field: 'name', header: 'Product', sortable: true },
+    { field: 'price', header: 'Price', sortable: true },
+    { field: 'stock', header: 'Stock', sortable: true }
+  ];
+
+  products = [
+    {
+      key: '0',
+      data: { name: 'Electronics', price: '-', stock: '-' },
+      expanded: true,
+      children: [
+        {
+          key: '0-0',
+          data: { name: 'Computers', price: '-', stock: '-' },
+          children: [
+            { key: '0-0-0', data: { name: 'Laptop', price: '$1,299', stock: '25' } }
+          ]
+        }
+      ]
+    }
+  ];
+
+  onSelectionChange(nodes: any[]): void {
+    console.log('Selected nodes:', nodes);
+  }
+}`,
+            description: 'Tree table with checkbox selection'
+          },
+          {
+            name: 'Collapsed by Default',
+            code: `<sui-tree-table
+  [value]="collapsedData"
+  [columns]="fileColumns"
+  (onNodeExpand)="onNodeExpand($event)"
+  (onNodeCollapse)="onNodeCollapse($event)">
+</sui-tree-table>`,
+            tsCode: `export class TreeTableComponent {
+  fileColumns = [
+    { field: 'name', header: 'Name' },
+    { field: 'size', header: 'Size' },
+    { field: 'type', header: 'Type' }
+  ];
+
+  collapsedData = [
+    {
+      key: '0',
+      data: { name: 'Documents', size: '75 MB', type: 'Folder' },
+      expanded: false,
+      children: [
+        { key: '0-0', data: { name: 'Work', size: '50 MB', type: 'Folder' } }
+      ]
+    }
+  ];
+
+  onNodeExpand(node: any): void {
+    console.log('Node expanded:', node);
+  }
+
+  onNodeCollapse(node: any): void {
+    console.log('Node collapsed:', node);
+  }
+}`,
+            description: 'Tree table with all nodes collapsed initially'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'TreeTableNode[]',
+            default: '[]',
+            description: 'Array of tree table nodes. Each node should have: key, data (object with column values), children, expanded',
+            required: true
+          },
+          {
+            name: 'columns',
+            type: 'Column[]',
+            default: '[]',
+            description: 'Array of column definitions with field, header, sortable properties',
+            required: true
+          },
+          {
+            name: 'selectionMode',
+            type: '"single" | "multiple" | "checkbox" | null',
+            default: 'null',
+            description: 'Selection mode for table rows',
+            required: false
+          },
+          {
+            name: 'metaKeySelection',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to use meta key for multiple selection',
+            required: false
+          },
+          {
+            name: 'propagateSelectionUp',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether selection propagates to parent nodes',
+            required: false
+          },
+          {
+            name: 'propagateSelectionDown',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether selection propagates to child nodes',
+            required: false
+          },
+          {
+            name: 'sortField',
+            type: 'string',
+            default: '""',
+            description: 'Current sort field',
+            required: false
+          },
+          {
+            name: 'sortOrder',
+            type: '"asc" | "desc"',
+            default: '"asc"',
+            description: 'Current sort order',
+            required: false
+          },
+          {
+            name: 'emptyMessage',
+            type: 'string',
+            default: '"No records found"',
+            description: 'Message to display when no data',
+            required: false
+          },
+          {
+            name: 'onNodeSelect',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is selected',
+            required: false
+          },
+          {
+            name: 'onNodeUnselect',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is unselected',
+            required: false
+          },
+          {
+            name: 'onNodeExpand',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is expanded',
+            required: false
+          },
+          {
+            name: 'onNodeCollapse',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is collapsed',
+            required: false
+          },
+          {
+            name: 'onSort',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when column is sorted',
+            required: false
+          },
+          {
+            name: 'onSelectionChange',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when selection changes',
+            required: false
+          }
+        ],
+        usage: 'Use tree tables for displaying hierarchical data in tabular format. Perfect for file explorers, organizational structures, product categories with details, and nested data that needs columnar display with sorting.',
+        tags: ['data', 'table', 'tree', 'hierarchy', 'nested', 'sortable']
       },
   {
         id: 'timeline',
