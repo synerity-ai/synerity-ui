@@ -2513,11 +2513,155 @@ export const dataComponents: ComponentModel[] = [
         id: 'meter-group',
         name: 'Meter Group',
         category: 'Data',
-        description: 'Meter group component',
-        examples: [],
-        props: [],
-        usage: 'Use meter groups for grouped meter displays.',
-        tags: ['data', 'meter']
+        description: 'Grouped meter component for displaying multiple progress/usage metrics in a single horizontal bar with custom colors and labels',
+        examples: [
+          {
+            name: 'Basic Meter Group',
+            code: `<sui-meter-group [value]="storageMeters"></sui-meter-group>`,
+            tsCode: `export class MeterGroupComponent {
+  storageMeters = [
+    { label: 'Documents', value: 25, color: '#3b82f6', icon: '📄' },
+    { label: 'Photos', value: 40, color: '#10b981', icon: '📷' },
+    { label: 'Videos', value: 20, color: '#f59e0b', icon: '🎥' },
+    { label: 'Other', value: 15, color: '#6b7280', icon: '📦' }
+  ];
+}`,
+            description: 'Basic meter group showing storage usage by type'
+          },
+          {
+            name: 'With Icons',
+            code: `<sui-meter-group 
+  [value]="budgetMeters" 
+  [showValue]="true" 
+  [showLabel]="true">
+</sui-meter-group>`,
+            tsCode: `export class MeterGroupComponent {
+  budgetMeters = [
+    { label: 'Marketing', value: 35, color: '#8b5cf6', icon: '📢' },
+    { label: 'Development', value: 40, color: '#3b82f6', icon: '💻' },
+    { label: 'Operations', value: 15, color: '#10b981', icon: '⚙️' },
+    { label: 'Research', value: 10, color: '#f59e0b', icon: '🔬' }
+  ];
+}`,
+            description: 'Meter group with icons and labels'
+          },
+          {
+            name: 'Without Labels',
+            code: `<sui-meter-group 
+  [value]="simpleMeters" 
+  [showLabel]="false" 
+  [showValue]="false">
+</sui-meter-group>`,
+            tsCode: `export class MeterGroupComponent {
+  simpleMeters = [
+    { value: 40, color: '#3b82f6' },
+    { value: 30, color: '#10b981' },
+    { value: 30, color: '#f59e0b' }
+  ];
+}`,
+            description: 'Simple meter group without labels or values'
+          },
+          {
+            name: 'CPU Usage',
+            code: `<sui-meter-group [value]="cpuMeters"></sui-meter-group>`,
+            tsCode: `export class MeterGroupComponent {
+  cpuMeters = [
+    { label: 'System', value: 30, color: '#3b82f6' },
+    { label: 'User', value: 45, color: '#10b981' },
+    { label: 'Idle', value: 25, color: '#e5e7eb' }
+  ];
+}`,
+            description: 'Meter group showing CPU utilization breakdown'
+          },
+          {
+            name: 'Memory Distribution',
+            code: `<sui-meter-group [value]="memoryMeters" [showValue]="true"></sui-meter-group>`,
+            tsCode: `export class MeterGroupComponent {
+  memoryMeters = [
+    { label: 'Used', value: 65, color: '#ef4444' },
+    { label: 'Cached', value: 20, color: '#f59e0b' },
+    { label: 'Available', value: 15, color: '#10b981' }
+  ];
+}`,
+            description: 'Meter group showing memory distribution'
+          },
+          {
+            name: 'Task Progress',
+            code: `<sui-meter-group 
+  [value]="taskMeters" 
+  [showLabel]="true" 
+  [showValue]="true">
+</sui-meter-group>`,
+            tsCode: `export class MeterGroupComponent {
+  taskMeters = [
+    { label: 'Completed', value: 75, color: '#10b981', icon: '✓' },
+    { label: 'In Progress', value: 20, color: '#3b82f6', icon: '⟳' },
+    { label: 'Pending', value: 5, color: '#f59e0b', icon: '○' }
+  ];
+}`,
+            description: 'Meter group showing task completion status'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'MeterItem[]',
+            default: '[]',
+            description: 'Array of meter items. Each item has: label, value, color, icon',
+            required: true
+          },
+          {
+            name: 'min',
+            type: 'number',
+            default: '0',
+            description: 'Minimum value for calculations',
+            required: false
+          },
+          {
+            name: 'max',
+            type: 'number',
+            default: '100',
+            description: 'Maximum value for calculations',
+            required: false
+          },
+          {
+            name: 'showValue',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to display values',
+            required: false
+          },
+          {
+            name: 'showLabel',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to display labels',
+            required: false
+          },
+          {
+            name: 'orientation',
+            type: '"horizontal" | "vertical"',
+            default: '"horizontal"',
+            description: 'Layout orientation of meter group',
+            required: false
+          },
+          {
+            name: 'style',
+            type: 'any',
+            default: '{}',
+            description: 'Inline styles for the component',
+            required: false
+          },
+          {
+            name: 'styleClass',
+            type: 'string',
+            default: '""',
+            description: 'CSS class for styling',
+            required: false
+          }
+        ],
+        usage: 'Use meter groups for displaying multiple related metrics in a single bar chart. Perfect for storage usage, resource allocation, task distribution, budget breakdowns, and any data that needs to show parts of a whole.',
+        tags: ['data', 'meter', 'progress', 'chart', 'metrics', 'usage']
       },
   {
         id: 'org-chart',

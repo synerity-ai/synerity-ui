@@ -1,0 +1,116 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Meter Group') {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto space-y-4">
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Storage Usage</h3>
+          <sui-meter-group [value]="storageMeters"></sui-meter-group>
+          <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+            @for (meter of storageMeters; track meter.label) {
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full" [style.backgroundColor]="meter.color"></div>
+                <span class="text-sm text-gray-600">{{ meter.label }}: {{ meter.value }}GB</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('With Icons') {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto space-y-4">
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Budget Allocation</h3>
+          <sui-meter-group [value]="budgetMeters" [showValue]="true" [showLabel]="true"></sui-meter-group>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            @for (meter of budgetMeters; track meter.label) {
+              <div class="flex items-center gap-2">
+                <span class="text-lg">{{ meter.icon }}</span>
+                <span class="text-sm font-medium text-gray-900">{{ meter.label }}</span>
+                <span class="text-sm text-gray-600">{{ meter.value }}%</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Without Labels') {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Simple Progress</h3>
+          <sui-meter-group [value]="simpleMeters" [showLabel]="false" [showValue]="false"></sui-meter-group>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('CPU Usage') {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">CPU Utilization</h3>
+          <sui-meter-group [value]="cpuMeters"></sui-meter-group>
+          <div class="mt-4 flex justify-between text-sm">
+            @for (meter of cpuMeters; track meter.label) {
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full" [style.backgroundColor]="meter.color"></div>
+                <span class="text-gray-600">{{ meter.label }}: {{ meter.value }}%</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Memory Distribution') {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Memory (8 GB Total)</h3>
+          <sui-meter-group [value]="memoryMeters" [showValue]="true"></sui-meter-group>
+          <div class="mt-4 space-y-2">
+            @for (meter of memoryMeters; track meter.label) {
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full" [style.backgroundColor]="meter.color"></div>
+                  <span class="text-sm font-medium text-gray-900">{{ meter.label }}</span>
+                </div>
+                <span class="text-sm text-gray-600">{{ (meter.value / 100 * 8).toFixed(1) }} GB ({{ meter.value }}%)</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Task Progress') {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Project Tasks</h3>
+          <sui-meter-group [value]="taskMeters" [showLabel]="true" [showValue]="true"></sui-meter-group>
+          <div class="mt-4 grid grid-cols-3 gap-4">
+            @for (meter of taskMeters; track meter.label) {
+              <div class="text-center p-3 bg-gray-50 rounded-lg">
+                <div class="text-2xl mb-1">{{ meter.icon }}</div>
+                <div class="text-sm font-semibold text-gray-900">{{ meter.value }}%</div>
+                <div class="text-xs text-gray-600">{{ meter.label }}</div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <sui-meter-group [value]="storageMeters"></sui-meter-group>
+        </div>
+      </div>
+    </div>
+  }
+}
