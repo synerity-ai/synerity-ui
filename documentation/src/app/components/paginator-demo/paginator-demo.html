@@ -1,22 +1,43 @@
 @switch (getCurrentExample().name) {
   @case ('Basic Paginator') {
     <div class="p-4 space-y-4">
-      <div class="bg-white rounded-lg border border-gray-200 p-4">
-        <h4 class="text-sm font-medium text-gray-700 mb-3">Sample Data Table</h4>
-        <div class="space-y-2 mb-4">
-          @for (item of [1,2,3,4,5,6,7,8,9,10]; track item) {
-            <div class="flex items-center justify-between p-3 bg-gray-50 rounded border border-gray-100">
-              <span class="text-sm text-gray-900">Item {{ first + item }}</span>
-              <span class="text-xs text-gray-500">Record {{ first + item }} of {{ totalRecords }}</span>
-            </div>
-          }
+      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (product of displayedProducts; track product.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">#{{ product.id }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ product.name }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ product.category }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">\${{ product.price }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ product.stock }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                  <span [class]="'px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ' + getStatusClass(product.status)">
+                    {{ product.status }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <div class="border-t border-gray-200 bg-gray-50 px-4 py-3">
+          <sui-paginator
+            [totalRecords]="totalRecords"
+            [rows]="rows"
+            [rowsPerPageOptions]="[5, 10, 20, 30]"
+            (onPageChange)="onPageChange($event)">
+          </sui-paginator>
         </div>
-        <sui-paginator
-          [totalRecords]="totalRecords"
-          [rows]="rows"
-          [rowsPerPageOptions]="[5, 10, 20, 30]"
-          (onPageChange)="onPageChange($event)">
-        </sui-paginator>
       </div>
       <div class="text-center text-sm text-gray-600">
         {{ currentPageInfo }}
@@ -25,89 +46,212 @@
   }
   @case ('With Page Report') {
     <div class="p-4">
-      <div class="bg-white rounded-lg border border-gray-200 p-4">
-        <sui-paginator
-          [totalRecords]="totalRecords"
-          [rows]="rows"
-          [showCurrentPageReport]="true"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-          (onPageChange)="onPageChange($event)">
-        </sui-paginator>
+      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (product of displayedProducts; track product.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ product.name }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ product.category }}</td>
+                <td class="px-6 py-4 text-sm text-gray-900">\${{ product.price }}</td>
+                <td class="px-6 py-4 text-sm">
+                  <span [class]="'px-2 py-1 text-xs rounded-full ' + getStatusClass(product.status)">
+                    {{ product.status }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <div class="border-t border-gray-200 bg-gray-50 px-4 py-3">
+          <sui-paginator
+            [totalRecords]="totalRecords"
+            [rows]="rows"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            (onPageChange)="onPageChange($event)">
+          </sui-paginator>
+        </div>
       </div>
     </div>
   }
   @case ('Large Dataset') {
     <div class="p-4 space-y-4">
-      <div class="bg-white rounded-lg border border-gray-200 p-4">
-        <h4 class="text-sm font-medium text-gray-700 mb-3">1000 Records Dataset</h4>
-        <div class="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
+      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div class="bg-blue-50 border-b border-blue-200 p-4">
           <p class="text-sm text-blue-900">
-            <strong>Current Page:</strong> {{ Math.floor(largeFirst / largeRows) + 1 }} of {{ Math.ceil(largeTotalRecords / largeRows) }}
+            <strong>Current Page:</strong> {{ largeCurrentPage + 1 }} of {{ Math.ceil(largeTotalRecords / largeRows) }}
           </p>
           <p class="text-sm text-blue-900 mt-1">
             <strong>Viewing:</strong> Records {{ largeFirst + 1 }} - {{ Math.min(largeFirst + largeRows, largeTotalRecords) }}
           </p>
         </div>
-        <sui-paginator
-          [totalRecords]="largeTotalRecords"
-          [rows]="largeRows"
-          [pageLinkSize]="7"
-          [rowsPerPageOptions]="[25, 50, 100, 200]"
-          [showCurrentPageReport]="true"
-          currentPageReportTemplate="Page {currentPage} of {totalPages}"
-          (onPageChange)="onLargePageChange($event)">
-        </sui-paginator>
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (product of displayedLargeProducts; track product.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 text-sm text-gray-900">#{{ product.id }}</td>
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ product.name }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ product.category }}</td>
+                <td class="px-6 py-4 text-sm text-gray-900">\${{ product.price }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <div class="border-t border-gray-200 bg-gray-50 px-4 py-3">
+          <sui-paginator
+            [totalRecords]="largeTotalRecords"
+            [rows]="largeRows"
+            [pageLinkSize]="7"
+            [rowsPerPageOptions]="[25, 50, 100, 200]"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="Page {currentPage} of {totalPages}"
+            (onPageChange)="onLargePageChange($event)">
+          </sui-paginator>
+        </div>
       </div>
     </div>
   }
   @case ('Custom Page Sizes') {
     <div class="p-4">
-      <div class="bg-white rounded-lg border border-gray-200 p-4">
-        <sui-paginator
-          [totalRecords]="totalRecords"
-          [rows]="customRows"
-          [rowsPerPageOptions]="customRowsPerPageOptions"
-          [showCurrentPageReport]="true"
-          currentPageReportTemplate="{first}-{last} of {totalRecords} items"
-          (onPageChange)="onCustomPageChange($event)">
-        </sui-paginator>
+      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stock</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (product of displayedCustomProducts; track product.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ product.name }}</td>
+                <td class="px-6 py-4 text-sm text-gray-900">\${{ product.price }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ product.stock }} units</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <div class="border-t border-gray-200 bg-gray-50 px-4 py-3">
+          <sui-paginator
+            [totalRecords]="customTotalRecords"
+            [rows]="customRows"
+            [rowsPerPageOptions]="customRowsPerPageOptions"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="{first}-{last} of {totalRecords} items"
+            (onPageChange)="onCustomPageChange($event)">
+          </sui-paginator>
+        </div>
       </div>
     </div>
   }
   @case ('Without Row Options') {
     <div class="p-4">
-      <div class="bg-white rounded-lg border border-gray-200 p-4">
-        <sui-paginator
-          [totalRecords]="totalRecords"
-          [rows]="rows"
-          [showRowsPerPageOptions]="false"
-          (onPageChange)="onPageChange($event)">
-        </sui-paginator>
+      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (product of displayedProducts; track product.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ product.name }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ product.category }}</td>
+                <td class="px-6 py-4 text-sm text-gray-900">\${{ product.price }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <div class="border-t border-gray-200 bg-gray-50 px-4 py-3">
+          <sui-paginator
+            [totalRecords]="totalRecords"
+            [rows]="rows"
+            [showRowsPerPageOptions]="false"
+            (onPageChange)="onPageChange($event)">
+          </sui-paginator>
+        </div>
       </div>
     </div>
   }
   @case ('Minimal Style') {
     <div class="p-4">
-      <div class="bg-white rounded-lg border border-gray-200 p-4">
-        <sui-paginator
-          [totalRecords]="totalRecords"
-          [rows]="minimalRows"
-          [showFirstLastIcon]="false"
-          [showRowsPerPageOptions]="false"
-          [pageLinkSize]="3"
-          (onPageChange)="onMinimalPageChange($event)">
-        </sui-paginator>
+      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (product of displayedMinimalProducts; track product.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ product.name }}</td>
+                <td class="px-6 py-4 text-sm text-gray-900">\${{ product.price }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <div class="border-t border-gray-200 bg-gray-50 px-4 py-3">
+          <sui-paginator
+            [totalRecords]="minimalTotalRecords"
+            [rows]="minimalRows"
+            [showFirstLastIcon]="false"
+            [showRowsPerPageOptions]="false"
+            [pageLinkSize]="3"
+            (onPageChange)="onMinimalPageChange($event)">
+          </sui-paginator>
+        </div>
       </div>
     </div>
   }
   @default {
     <div class="p-4">
-      <div class="bg-white rounded-lg border border-gray-200 p-4">
-        <sui-paginator
-          [totalRecords]="totalRecords"
-          [rows]="rows"
-          (onPageChange)="onPageChange($event)">
-        </sui-paginator>
+      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (product of displayedProducts; track product.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ product.name }}</td>
+                <td class="px-6 py-4 text-sm text-gray-900">\${{ product.price }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <div class="border-t border-gray-200 bg-gray-50 px-4 py-3">
+          <sui-paginator
+            [totalRecords]="totalRecords"
+            [rows]="rows"
+            (onPageChange)="onPageChange($event)">
+          </sui-paginator>
+        </div>
       </div>
     </div>
   }
