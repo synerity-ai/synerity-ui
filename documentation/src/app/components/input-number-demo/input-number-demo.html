@@ -1,214 +1,189 @@
 @switch (getCurrentExample().name) {
   @case ('Basic Input Number') {
-    <div class="p-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          @for (input of basicInputNumbers; track input.label) {
-            <div class="p-4 border border-gray-200 rounded-lg">
-              <sui-input-number
-                [(ngModel)]="input.value"
-                [min]="input.min"
-                [max]="input.max"
-                [step]="input.step"
-                [placeholder]="input.placeholder"
-                [showButtons]="input.showButtons"
-                [label]="input.label"
-                [helperText]="input.helperText">
-              </sui-input-number>
-              <div class="mt-3 text-sm text-gray-600">{{ input.description }}</div>
-              <div class="mt-2 text-sm font-medium text-blue-600">Value: {{ input.value }}</div>
-            </div>
-          }
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <sui-input-number
+          [(ngModel)]="basicInputNumbers[0].value"
+          [showButtons]="true"
+          label="Quantity"
+          placeholder="Enter quantity"
+          helperText="Use +/- buttons or type a number">
+        </sui-input-number>
+
+        <div class="text-center text-sm text-gray-600 mt-4">
+          Current value: <span class="font-semibold text-blue-600">{{ basicInputNumbers[0].value }}</span>
         </div>
       </div>
     </div>
   }
   @case ('Size Variations') {
-    <div class="p-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="flex flex-col gap-6 items-center">
-          @for (input of sizeVariants; track input.label) {
-            <div class="w-full max-w-md">
-              <sui-input-number
-                [(ngModel)]="input.value"
-                [min]="input.min"
-                [max]="input.max"
-                [showButtons]="input.showButtons"
-                [size]="input.size"
-                [label]="input.label">
-              </sui-input-number>
-              <div class="mt-2 text-center text-sm text-gray-600">{{ input.description }}</div>
-            </div>
-          }
-        </div>
-      </div>
-    </div>
-  }
-  @case ('Color Themes') {
-    <div class="p-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="flex flex-col gap-4">
-          @for (input of colorThemes; track input.label) {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-8">
+        @for (input of sizeVariants; track input.label) {
+          <div>
             <sui-input-number
               [(ngModel)]="input.value"
               [min]="input.min"
               [max]="input.max"
-              [showButtons]="input.showButtons"
-              [color]="input.color"
+              [showButtons]="true"
+              [size]="input.size"
               [label]="input.label">
             </sui-input-number>
-          }
-        </div>
+            <div class="mt-2 text-xs text-gray-500 text-center">Size: {{ input.size }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+  @case ('Color Themes') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        @for (input of colorThemes.slice(0, 5); track input.label) {
+          <sui-input-number
+            [(ngModel)]="input.value"
+            [min]="input.min"
+            [max]="input.max"
+            [showButtons]="true"
+            [color]="input.color"
+            [label]="input.label">
+          </sui-input-number>
+        }
       </div>
     </div>
   }
   @case ('With Constraints') {
-    <div class="p-4">
-      <div class="max-w-4xl mx-auto space-y-6">
-        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+    <div class="p-8">
+      <div class="max-w-lg mx-auto space-y-8">
+        <div class="p-6 bg-gray-50 rounded-lg">
           <sui-input-number
             [(ngModel)]="ageInput.value"
             [min]="ageInput.min"
             [max]="ageInput.max"
-            [step]="ageInput.step"
             [showButtons]="true"
-            [label]="ageInput.label"
-            [helperText]="ageInput.helperText">
+            label="Age"
+            helperText="Must be between 13 and 120">
           </sui-input-number>
-          <div class="mt-3 text-sm text-gray-700">
-            <strong>Constraints:</strong> Min: {{ ageInput.min }}, Max: {{ ageInput.max }}
+          <div class="mt-3 text-sm text-gray-600">
+            Range: {{ ageInput.min }} - {{ ageInput.max }} years
           </div>
         </div>
 
-        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div class="p-6 bg-gray-50 rounded-lg">
           <sui-input-number
             [(ngModel)]="priceInput.value"
             [min]="priceInput.min"
             [max]="priceInput.max"
             [step]="priceInput.step"
             [showButtons]="true"
-            [color]="priceInput.color"
-            [icon]="priceInput.icon"
-            [label]="priceInput.label"
-            [helperText]="priceInput.helperText">
+            color="success"
+            icon="$"
+            label="Price"
+            helperText="Enter price in dollars">
           </sui-input-number>
-          <div class="mt-3 text-sm text-gray-700">
-            <strong>Value:</strong> ${{ priceInput.value?.toFixed(2) }} | <strong>Step:</strong> {{ priceInput.step }}
+          <div class="mt-3 text-sm text-gray-600">
+            Step: ${{ priceInput.step }} | Value: ${{ priceInput.value?.toFixed(2) }}
           </div>
         </div>
 
-        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div class="p-6 bg-gray-50 rounded-lg">
           <sui-input-number
             [(ngModel)]="ratingInput.value"
             [min]="ratingInput.min"
             [max]="ratingInput.max"
-            [step]="ratingInput.step"
             [showButtons]="true"
-            [color]="ratingInput.color"
-            [icon]="ratingInput.icon"
-            [label]="ratingInput.label"
-            [helperText]="ratingInput.helperText">
+            color="warning"
+            icon="⭐"
+            label="Rating"
+            helperText="Rate from 1 to 5 stars">
           </sui-input-number>
-          <div class="mt-3 text-sm text-gray-700">
-            <strong>Rating:</strong> {{ ratingInput.value }}/5 stars
+          <div class="mt-3 text-sm text-gray-600">
+            {{ ratingInput.value }}/5 stars
           </div>
         </div>
       </div>
     </div>
   }
   @case ('State Examples') {
-    <div class="p-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          @for (input of stateExamples; track input.label) {
-            <div class="p-4 border border-gray-200 rounded-lg">
-              <sui-input-number
-                [(ngModel)]="input.value"
-                [min]="input.min"
-                [max]="input.max"
-                [showButtons]="input.showButtons"
-                [disabled]="input.disabled"
-                [readonly]="input.readonly"
-                [loading]="input.loading"
-                [label]="input.label"
-                [helperText]="input.helperText">
-              </sui-input-number>
-              <div class="mt-3 text-sm text-gray-600">{{ input.description }}</div>
-              <div class="mt-2 text-sm font-medium" [class]="getInputStatusColor(input)">
-                Status: {{ getInputStatus(input) }}
-              </div>
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-8">
+        @for (input of stateExamples; track input.label) {
+          <div>
+            <sui-input-number
+              [(ngModel)]="input.value"
+              [min]="input.min"
+              [max]="input.max"
+              [showButtons]="input.showButtons"
+              [disabled]="input.disabled"
+              [readonly]="input.readonly"
+              [loading]="input.loading"
+              [label]="input.label"
+              [helperText]="input.helperText">
+            </sui-input-number>
+            <div class="mt-2 text-sm" [class]="getInputStatusColor(input)">
+              {{ input.description }}
             </div>
-          }
-        </div>
+          </div>
+        }
       </div>
     </div>
   }
   @case ('Layout Options') {
-    <div class="p-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          @for (input of layoutOptions; track input.label) {
-            <div class="p-4 border border-gray-200 rounded-lg">
-              <sui-input-number
-                [(ngModel)]="input.value"
-                [min]="input.min"
-                [max]="input.max"
-                [showButtons]="input.showButtons"
-                [compact]="input.compact"
-                [spacious]="input.spacious"
-                [icon]="input.icon"
-                [label]="input.label"
-                [helperText]="input.helperText">
-              </sui-input-number>
-              <div class="mt-3 text-sm text-gray-600">{{ input.description }}</div>
-            </div>
-          }
-        </div>
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-8">
+        @for (input of layoutOptions; track input.label) {
+          <sui-input-number
+            [(ngModel)]="input.value"
+            [min]="input.min"
+            [max]="input.max"
+            [showButtons]="input.showButtons"
+            [compact]="input.compact"
+            [spacious]="input.spacious"
+            [icon]="input.icon"
+            [label]="input.label"
+            [helperText]="input.helperText">
+          </sui-input-number>
+        }
       </div>
     </div>
   }
   @case ('Animation Effects') {
-    <div class="p-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          @for (input of animationEffects; track input.label) {
-            <div class="p-4 border border-gray-200 rounded-lg">
-              <sui-input-number
-                [(ngModel)]="input.value"
-                [min]="input.min"
-                [max]="input.max"
-                [showButtons]="input.showButtons"
-                [color]="input.color"
-                [animated]="input.animated"
-                [bounce]="input.bounce"
-                [glow]="input.glow"
-                [label]="input.label"
-                [helperText]="input.helperText">
-              </sui-input-number>
-              <div class="mt-3 text-sm text-gray-600">{{ input.description }}</div>
-              <div class="mt-2 text-xs text-gray-500">Hover to see effects</div>
-            </div>
-          }
-        </div>
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-8">
+        @for (input of animationEffects; track input.label) {
+          <div>
+            <sui-input-number
+              [(ngModel)]="input.value"
+              [min]="input.min"
+              [max]="input.max"
+              [showButtons]="true"
+              [color]="input.color"
+              [animated]="input.animated"
+              [bounce]="input.bounce"
+              [glow]="input.glow"
+              [label]="input.label"
+              [helperText]="input.helperText">
+            </sui-input-number>
+            <div class="mt-2 text-xs text-center text-gray-500">Hover to see {{ input.label.toLowerCase() }} effect</div>
+          </div>
+        }
       </div>
     </div>
   }
   @case ('E-commerce Form') {
-    <div class="p-4">
-      <div class="max-w-2xl mx-auto">
-        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm space-y-6">
+    <div class="p-8">
+      <div class="max-w-lg mx-auto">
+        <div class="p-8 bg-white border border-gray-200 rounded-xl shadow-sm space-y-6">
           <h3 class="text-xl font-bold text-gray-900 mb-6">Product Configuration</h3>
           
           <sui-input-number
             [(ngModel)]="quantityInput.value"
             [min]="quantityInput.min"
             [max]="quantityInput.max"
-            [step]="quantityInput.step"
             [showButtons]="true"
-            [color]="quantityInput.color"
-            [animated]="quantityInput.animated"
-            [label]="quantityInput.label"
-            [helperText]="quantityInput.helperText">
+            color="primary"
+            [animated]="true"
+            label="Quantity"
+            helperText="Select quantity (1-99)">
           </sui-input-number>
 
           <sui-input-number
@@ -217,16 +192,19 @@
             [max]="priceInput.max"
             [step]="priceInput.step"
             [showButtons]="true"
-            [color]="priceInput.color"
-            [icon]="priceInput.icon"
-            [label]="priceInput.label"
-            [helperText]="priceInput.helperText">
+            color="success"
+            icon="$"
+            label="Unit Price"
+            helperText="Enter price per item">
           </sui-input-number>
 
-          <div class="pt-4 border-t border-gray-200">
-            <div class="flex justify-between text-lg font-semibold">
-              <span>Total:</span>
+          <div class="pt-6 border-t border-gray-200">
+            <div class="flex justify-between items-center text-xl font-bold">
+              <span class="text-gray-700">Total:</span>
               <span class="text-blue-600">${{ ((priceInput.value || 0) * (quantityInput.value || 0)).toFixed(2) }}</span>
+            </div>
+            <div class="mt-2 text-sm text-gray-500 text-right">
+              {{ quantityInput.value }} × ${{ priceInput.value?.toFixed(2) }}
             </div>
           </div>
         </div>
@@ -234,17 +212,14 @@
     </div>
   }
   @default {
-    <div class="p-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          @for (input of basicInputNumbers; track input.label) {
-            <sui-input-number
-              [(ngModel)]="input.value"
-              [showButtons]="input.showButtons"
-              [label]="input.label">
-            </sui-input-number>
-          }
-        </div>
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <sui-input-number
+          [(ngModel)]="basicInputNumbers[0].value"
+          [showButtons]="true"
+          label="Number Input"
+          placeholder="Enter a number">
+        </sui-input-number>
       </div>
     </div>
   }
