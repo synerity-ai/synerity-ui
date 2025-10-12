@@ -811,11 +811,221 @@ export const dataComponents: ComponentModel[] = [
         id: 'paginator',
         name: 'Paginator',
         category: 'Data',
-        description: 'Pagination component',
-        examples: [],
-        props: [],
-        usage: 'Use paginators for data pagination.',
-        tags: ['data', 'navigation']
+        description: 'Pagination component for navigating through large datasets with customizable page sizes and navigation controls',
+        examples: [
+          {
+            name: 'Basic Paginator',
+            code: `<sui-paginator
+  [totalRecords]="totalRecords"
+  [rows]="rows"
+  [rowsPerPageOptions]="[5, 10, 20, 30]"
+  (onPageChange)="onPageChange($event)">
+</sui-paginator>`,
+            tsCode: `export class PaginatorComponent {
+  totalRecords = 120;
+  rows = 10;
+  first = 0;
+
+  onPageChange(event: any): void {
+    console.log('Page changed:', event);
+    this.first = event.first;
+    this.rows = event.rows;
+  }
+
+  get currentPageInfo(): string {
+    const start = this.first + 1;
+    const end = Math.min(this.first + this.rows, this.totalRecords);
+    return \`Showing \${start}-\${end} of \${this.totalRecords} records\`;
+  }
+}`,
+            description: 'Basic pagination with page size options'
+          },
+          {
+            name: 'With Page Report',
+            code: `<sui-paginator
+  [totalRecords]="totalRecords"
+  [rows]="rows"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  (onPageChange)="onPageChange($event)">
+</sui-paginator>`,
+            tsCode: `export class PaginatorComponent {
+  totalRecords = 120;
+  rows = 10;
+
+  onPageChange(event: any): void {
+    console.log('Page changed:', event);
+  }
+}`,
+            description: 'Paginator with custom page report template'
+          },
+          {
+            name: 'Large Dataset',
+            code: `<sui-paginator
+  [totalRecords]="1000"
+  [rows]="25"
+  [pageLinkSize]="7"
+  [rowsPerPageOptions]="[25, 50, 100, 200]"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Page {currentPage} of {totalPages}"
+  (onPageChange)="onPageChange($event)">
+</sui-paginator>`,
+            tsCode: `export class PaginatorComponent {
+  largeTotalRecords = 1000;
+  largeRows = 25;
+  largeFirst = 0;
+
+  onPageChange(event: any): void {
+    console.log('Large page changed:', event);
+    this.largeFirst = event.first;
+    this.largeRows = event.rows;
+  }
+}`,
+            description: 'Pagination for large datasets with more page links'
+          },
+          {
+            name: 'Custom Page Sizes',
+            code: `<sui-paginator
+  [totalRecords]="totalRecords"
+  [rows]="15"
+  [rowsPerPageOptions]="[10, 15, 25, 50, 100]"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="{first}-{last} of {totalRecords} items"
+  (onPageChange)="onPageChange($event)">
+</sui-paginator>`,
+            tsCode: `export class PaginatorComponent {
+  totalRecords = 120;
+  customRows = 15;
+  customFirst = 0;
+  customRowsPerPageOptions = [10, 15, 25, 50, 100];
+
+  onPageChange(event: any): void {
+    this.customFirst = event.first;
+    this.customRows = event.rows;
+  }
+}`,
+            description: 'Custom page size options for flexible pagination'
+          },
+          {
+            name: 'Without Row Options',
+            code: `<sui-paginator
+  [totalRecords]="totalRecords"
+  [rows]="rows"
+  [showRowsPerPageOptions]="false"
+  (onPageChange)="onPageChange($event)">
+</sui-paginator>`,
+            tsCode: `export class PaginatorComponent {
+  totalRecords = 120;
+  rows = 10;
+
+  onPageChange(event: any): void {
+    console.log('Page changed:', event);
+  }
+}`,
+            description: 'Paginator without rows per page dropdown'
+          },
+          {
+            name: 'Minimal Style',
+            code: `<sui-paginator
+  [totalRecords]="totalRecords"
+  [rows]="20"
+  [showFirstLastIcon]="false"
+  [showRowsPerPageOptions]="false"
+  [pageLinkSize]="3"
+  (onPageChange)="onPageChange($event)">
+</sui-paginator>`,
+            tsCode: `export class PaginatorComponent {
+  totalRecords = 120;
+  minimalRows = 20;
+
+  onPageChange(event: any): void {
+    console.log('Minimal page changed:', event);
+  }
+}`,
+            description: 'Minimal paginator without first/last buttons and row options'
+          }
+        ],
+        props: [
+          {
+            name: 'rows',
+            type: 'number',
+            default: '10',
+            description: 'Number of rows to display per page',
+            required: false
+          },
+          {
+            name: 'totalRecords',
+            type: 'number',
+            default: '0',
+            description: 'Total number of records in the dataset',
+            required: true
+          },
+          {
+            name: 'pageLinkSize',
+            type: 'number',
+            default: '5',
+            description: 'Number of page links to display',
+            required: false
+          },
+          {
+            name: 'rowsPerPageOptions',
+            type: 'number[]',
+            default: '[5, 10, 20, 30]',
+            description: 'Array of options for rows per page dropdown',
+            required: false
+          },
+          {
+            name: 'showCurrentPageReport',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether to display current page report',
+            required: false
+          },
+          {
+            name: 'currentPageReportTemplate',
+            type: 'string',
+            default: '"({currentPage} of {totalPages})"',
+            description: 'Template string for current page report. Supports {currentPage}, {totalPages}, {first}, {last}, {totalRecords}',
+            required: false
+          },
+          {
+            name: 'showFirstLastIcon',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to display first and last page buttons',
+            required: false
+          },
+          {
+            name: 'showPageLinks',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to display page number links',
+            required: false
+          },
+          {
+            name: 'showRowsPerPageOptions',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to display rows per page dropdown',
+            required: false
+          },
+          {
+            name: 'alwaysShow',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to show paginator even when there is only one page',
+            required: false
+          },
+          {
+            name: 'onPageChange',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback fired when page changes. Returns {first, rows, page, pageCount}',
+            required: false
+          }
+        ],
+        usage: 'Use paginators for navigating through large datasets. Supports customizable page sizes, page reports, and navigation controls. Perfect for tables, lists, and data grids.',
+        tags: ['data', 'navigation', 'pagination', 'paging', 'table']
       },
   {
         id: 'pick-list',

@@ -1,0 +1,114 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Paginator') {
+    <div class="p-4 space-y-4">
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <h4 class="text-sm font-medium text-gray-700 mb-3">Sample Data Table</h4>
+        <div class="space-y-2 mb-4">
+          @for (item of [1,2,3,4,5,6,7,8,9,10]; track item) {
+            <div class="flex items-center justify-between p-3 bg-gray-50 rounded border border-gray-100">
+              <span class="text-sm text-gray-900">Item {{ first + item }}</span>
+              <span class="text-xs text-gray-500">Record {{ first + item }} of {{ totalRecords }}</span>
+            </div>
+          }
+        </div>
+        <sui-paginator
+          [totalRecords]="totalRecords"
+          [rows]="rows"
+          [rowsPerPageOptions]="[5, 10, 20, 30]"
+          (onPageChange)="onPageChange($event)">
+        </sui-paginator>
+      </div>
+      <div class="text-center text-sm text-gray-600">
+        {{ currentPageInfo }}
+      </div>
+    </div>
+  }
+  @case ('With Page Report') {
+    <div class="p-4">
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <sui-paginator
+          [totalRecords]="totalRecords"
+          [rows]="rows"
+          [showCurrentPageReport]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          (onPageChange)="onPageChange($event)">
+        </sui-paginator>
+      </div>
+    </div>
+  }
+  @case ('Large Dataset') {
+    <div class="p-4 space-y-4">
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <h4 class="text-sm font-medium text-gray-700 mb-3">1000 Records Dataset</h4>
+        <div class="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
+          <p class="text-sm text-blue-900">
+            <strong>Current Page:</strong> {{ Math.floor(largeFirst / largeRows) + 1 }} of {{ Math.ceil(largeTotalRecords / largeRows) }}
+          </p>
+          <p class="text-sm text-blue-900 mt-1">
+            <strong>Viewing:</strong> Records {{ largeFirst + 1 }} - {{ Math.min(largeFirst + largeRows, largeTotalRecords) }}
+          </p>
+        </div>
+        <sui-paginator
+          [totalRecords]="largeTotalRecords"
+          [rows]="largeRows"
+          [pageLinkSize]="7"
+          [rowsPerPageOptions]="[25, 50, 100, 200]"
+          [showCurrentPageReport]="true"
+          currentPageReportTemplate="Page {currentPage} of {totalPages}"
+          (onPageChange)="onLargePageChange($event)">
+        </sui-paginator>
+      </div>
+    </div>
+  }
+  @case ('Custom Page Sizes') {
+    <div class="p-4">
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <sui-paginator
+          [totalRecords]="totalRecords"
+          [rows]="customRows"
+          [rowsPerPageOptions]="customRowsPerPageOptions"
+          [showCurrentPageReport]="true"
+          currentPageReportTemplate="{first}-{last} of {totalRecords} items"
+          (onPageChange)="onCustomPageChange($event)">
+        </sui-paginator>
+      </div>
+    </div>
+  }
+  @case ('Without Row Options') {
+    <div class="p-4">
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <sui-paginator
+          [totalRecords]="totalRecords"
+          [rows]="rows"
+          [showRowsPerPageOptions]="false"
+          (onPageChange)="onPageChange($event)">
+        </sui-paginator>
+      </div>
+    </div>
+  }
+  @case ('Minimal Style') {
+    <div class="p-4">
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <sui-paginator
+          [totalRecords]="totalRecords"
+          [rows]="minimalRows"
+          [showFirstLastIcon]="false"
+          [showRowsPerPageOptions]="false"
+          [pageLinkSize]="3"
+          (onPageChange)="onMinimalPageChange($event)">
+        </sui-paginator>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-4">
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <sui-paginator
+          [totalRecords]="totalRecords"
+          [rows]="rows"
+          (onPageChange)="onPageChange($event)">
+        </sui-paginator>
+      </div>
+    </div>
+  }
+}
