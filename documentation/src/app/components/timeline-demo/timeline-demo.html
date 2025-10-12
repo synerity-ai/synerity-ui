@@ -1,0 +1,84 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Timeline') {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto">
+        <sui-timeline
+          [value]="projectEvents"
+          align="left"
+          layout="vertical"
+          (onEventClick)="onEventClick($event)">
+        </sui-timeline>
+      </div>
+    </div>
+  }
+  @case ('With Icons') {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto">
+        <sui-timeline
+          [value]="orderEvents"
+          align="left"
+          layout="vertical"
+          (onEventClick)="onEventClick($event)">
+        </sui-timeline>
+      </div>
+    </div>
+  }
+  @case ('Right Aligned') {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto">
+        <sui-timeline
+          [value]="projectEvents"
+          align="right"
+          layout="vertical"
+          (onEventClick)="onEventClick($event)">
+        </sui-timeline>
+      </div>
+    </div>
+  }
+  @case ('Alternate') {
+    <div class="p-4">
+      <div class="max-w-4xl mx-auto">
+        <sui-timeline
+          [value]="alternateEvents"
+          align="alternate"
+          layout="vertical"
+          (onEventClick)="onEventClick($event)">
+        </sui-timeline>
+      </div>
+    </div>
+  }
+  @case ('Horizontal') {
+    <div class="p-4">
+      <div class="max-w-5xl mx-auto">
+        <sui-timeline
+          [value]="horizontalEvents"
+          layout="horizontal"
+          (onEventClick)="onEventClick($event)">
+        </sui-timeline>
+      </div>
+    </div>
+  }
+  @case ('Activity Log') {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto">
+        <sui-timeline
+          [value]="activityEvents"
+          align="left"
+          layout="vertical"
+          (onEventClick)="onEventClick($event)">
+        </sui-timeline>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-4">
+      <div class="max-w-3xl mx-auto">
+        <sui-timeline
+          [value]="simpleEvents"
+          align="left"
+          layout="vertical">
+        </sui-timeline>
+      </div>
+    </div>
+  }
+}

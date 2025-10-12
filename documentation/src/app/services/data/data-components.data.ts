@@ -1983,11 +1983,277 @@ export const dataComponents: ComponentModel[] = [
         id: 'timeline',
         name: 'Timeline',
         category: 'Data',
-        description: 'Timeline component',
-        examples: [],
-        props: [],
-        usage: 'Use timelines for chronological data display.',
-        tags: ['data', 'timeline']
+        description: 'Timeline component for displaying chronological events with various layouts, status indicators, and custom icons',
+        examples: [
+          {
+            name: 'Basic Timeline',
+            code: `<sui-timeline
+  [value]="projectEvents"
+  align="left"
+  layout="vertical"
+  (onEventClick)="onEventClick($event)">
+</sui-timeline>`,
+            tsCode: `export class TimelineComponent {
+  projectEvents = [
+    {
+      status: 'completed',
+      content: 'Project kickoff meeting completed',
+      date: 'January 15, 2024'
+    },
+    {
+      status: 'completed',
+      content: 'Requirements gathering and analysis done',
+      date: 'January 22, 2024'
+    },
+    {
+      status: 'success',
+      content: 'Development phase in progress',
+      date: 'February 12, 2024'
+    },
+    {
+      status: 'warning',
+      content: 'Testing and QA scheduled',
+      date: 'March 1, 2024'
+    }
+  ];
+
+  onEventClick(event: any): void {
+    console.log('Event clicked:', event);
+  }
+}`,
+            description: 'Basic vertical timeline with status-based styling'
+          },
+          {
+            name: 'With Icons',
+            code: `<sui-timeline
+  [value]="orderEvents"
+  align="left"
+  layout="vertical"
+  (onEventClick)="onEventClick($event)">
+</sui-timeline>`,
+            tsCode: `export class TimelineComponent {
+  orderEvents = [
+    {
+      status: 'completed',
+      icon: '📦',
+      content: 'Order placed successfully',
+      date: '10:00 AM'
+    },
+    {
+      status: 'completed',
+      icon: '✓',
+      content: 'Payment confirmed',
+      date: '10:05 AM'
+    },
+    {
+      status: 'success',
+      icon: '🚚',
+      content: 'Out for delivery',
+      date: '2:00 PM'
+    },
+    {
+      status: 'warning',
+      icon: '📍',
+      content: 'Expected delivery',
+      date: '5:00 PM'
+    }
+  ];
+
+  onEventClick(event: any): void {
+    console.log('Event clicked:', event);
+  }
+}`,
+            description: 'Timeline with custom icons for each event'
+          },
+          {
+            name: 'Right Aligned',
+            code: `<sui-timeline
+  [value]="projectEvents"
+  align="right"
+  layout="vertical"
+  (onEventClick)="onEventClick($event)">
+</sui-timeline>`,
+            tsCode: `export class TimelineComponent {
+  projectEvents = [
+    {
+      status: 'completed',
+      content: 'Project kickoff meeting completed',
+      date: 'January 15, 2024'
+    },
+    {
+      status: 'success',
+      content: 'Development phase in progress',
+      date: 'February 12, 2024'
+    }
+  ];
+
+  onEventClick(event: any): void {
+    console.log('Event clicked:', event);
+  }
+}`,
+            description: 'Timeline with content aligned to the right'
+          },
+          {
+            name: 'Alternate',
+            code: `<sui-timeline
+  [value]="alternateEvents"
+  align="alternate"
+  layout="vertical"
+  (onEventClick)="onEventClick($event)">
+</sui-timeline>`,
+            tsCode: `export class TimelineComponent {
+  alternateEvents = [
+    {
+      status: 'completed',
+      icon: '🎯',
+      content: 'Project planning completed',
+      date: 'Week 1'
+    },
+    {
+      status: 'completed',
+      icon: '💻',
+      content: 'Development started',
+      date: 'Week 2'
+    },
+    {
+      status: 'success',
+      icon: '🚀',
+      content: 'Beta release deployed',
+      date: 'Week 6'
+    },
+    {
+      status: 'warning',
+      icon: '📊',
+      content: 'Final testing pending',
+      date: 'Week 8'
+    }
+  ];
+
+  onEventClick(event: any): void {
+    console.log('Event clicked:', event);
+  }
+}`,
+            description: 'Timeline with alternating left/right content'
+          },
+          {
+            name: 'Horizontal',
+            code: `<sui-timeline
+  [value]="horizontalEvents"
+  layout="horizontal"
+  (onEventClick)="onEventClick($event)">
+</sui-timeline>`,
+            tsCode: `export class TimelineComponent {
+  horizontalEvents = [
+    {
+      status: 'completed',
+      content: 'Registered',
+      date: 'Step 1'
+    },
+    {
+      status: 'completed',
+      content: 'Verified',
+      date: 'Step 2'
+    },
+    {
+      status: 'success',
+      content: 'In Progress',
+      date: 'Step 3'
+    },
+    {
+      status: 'warning',
+      content: 'Review',
+      date: 'Step 4'
+    }
+  ];
+
+  onEventClick(event: any): void {
+    console.log('Event clicked:', event);
+  }
+}`,
+            description: 'Horizontal timeline for step-by-step processes'
+          },
+          {
+            name: 'Activity Log',
+            code: `<sui-timeline
+  [value]="activityEvents"
+  align="left"
+  layout="vertical"
+  (onEventClick)="onEventClick($event)">
+</sui-timeline>`,
+            tsCode: `export class TimelineComponent {
+  activityEvents = [
+    {
+      status: 'success',
+      icon: '👤',
+      content: 'User logged in',
+      date: '2 minutes ago'
+    },
+    {
+      status: 'completed',
+      icon: '📝',
+      content: 'Document uploaded',
+      date: '15 minutes ago'
+    },
+    {
+      status: 'warning',
+      icon: '⚠️',
+      content: 'Password change required',
+      date: '3 hours ago'
+    },
+    {
+      status: 'error',
+      icon: '❌',
+      content: 'Login failed',
+      date: '5 hours ago'
+    }
+  ];
+
+  onEventClick(event: any): void {
+    console.log('Event clicked:', event);
+  }
+}`,
+            description: 'Timeline showing user activity log with various status types'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'TimelineEvent[]',
+            default: '[]',
+            description: 'Array of timeline events. Each event can have: status, content, date, icon, color',
+            required: true
+          },
+          {
+            name: 'align',
+            type: '"left" | "right" | "alternate"',
+            default: '"left"',
+            description: 'Alignment of timeline content',
+            required: false
+          },
+          {
+            name: 'layout',
+            type: '"vertical" | "horizontal"',
+            default: '"vertical"',
+            description: 'Layout orientation of timeline',
+            required: false
+          },
+          {
+            name: 'dataKey',
+            type: 'string',
+            default: '""',
+            description: 'Unique identifier field for events',
+            required: false
+          },
+          {
+            name: 'onEventClick',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when an event is clicked',
+            required: false
+          }
+        ],
+        usage: 'Use timelines for displaying chronological events, project milestones, order tracking, activity logs, and process steps. Supports vertical/horizontal layouts, left/right/alternate alignment, and custom icons.',
+        tags: ['data', 'timeline', 'chronological', 'events', 'milestones', 'history']
       },
   {
         id: 'upload',
