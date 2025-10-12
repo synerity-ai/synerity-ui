@@ -334,11 +334,258 @@ export const dataComponents: ComponentModel[] = [
         id: 'data-view',
         name: 'Data View',
         category: 'Data',
-        description: 'Data display component',
-        examples: [],
-        props: [],
-        usage: 'Use data views for displaying data collections.',
-        tags: ['data', 'display']
+        description: 'Flexible data display component with list and grid layouts, custom templates, and pagination support',
+        examples: [
+          {
+            name: 'List Layout',
+            code: `<sui-data-view [value]="products" layout="list">
+  <ng-template let-product>
+    <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg">
+      <div class="text-4xl">{{ product.image }}</div>
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold">{{ product.name }}</h3>
+        <p class="text-sm text-gray-600">{{ product.description }}</p>
+        <span class="text-xl font-bold text-blue-600">\${{ product.price }}</span>
+      </div>
+    </div>
+  </ng-template>
+</sui-data-view>`,
+            tsCode: `export class DataViewComponent {
+  products = [
+    {
+      id: 1,
+      name: 'Wireless Headphones',
+      description: 'Premium noise-cancelling wireless headphones',
+      price: 299.99,
+      image: '🎧'
+    },
+    {
+      id: 2,
+      name: 'Smart Watch',
+      description: 'Fitness tracking smartwatch with GPS',
+      price: 199.99,
+      image: '⌚'
+    }
+  ];
+}`,
+            description: 'Display data in a vertical list layout with custom item templates'
+          },
+          {
+            name: 'Grid Layout',
+            code: `<sui-data-view [value]="products" layout="grid">
+  <ng-template let-product>
+    <div class="border border-gray-200 rounded-lg p-4">
+      <div class="text-5xl text-center mb-3">{{ product.image }}</div>
+      <h3 class="text-lg font-semibold text-center">{{ product.name }}</h3>
+      <p class="text-sm text-gray-600 text-center">{{ product.description }}</p>
+      <div class="text-xl font-bold text-blue-600 text-center">\${{ product.price }}</div>
+    </div>
+  </ng-template>
+</sui-data-view>`,
+            tsCode: `export class DataViewComponent {
+  products = [
+    { id: 1, name: 'Wireless Headphones', description: 'Premium headphones', price: 299.99, image: '🎧' },
+    { id: 2, name: 'Smart Watch', description: 'Fitness tracker', price: 199.99, image: '⌚' },
+    { id: 3, name: 'Laptop Backpack', description: 'Water-resistant backpack', price: 49.99, image: '🎒' }
+  ];
+}`,
+            description: 'Display data in a responsive grid layout'
+          },
+          {
+            name: 'With Pagination',
+            code: `<sui-data-view 
+  [value]="largeDataset" 
+  [layout]="currentLayout"
+  [paginator]="true"
+  [rows]="6"
+  [first]="currentPage"
+  (onPage)="onPageChange($event)">
+  <ng-template let-product>
+    <div class="border rounded-lg p-4">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <span>\${{ product.price }}</span>
+    </div>
+  </ng-template>
+</sui-data-view>`,
+            tsCode: `export class DataViewComponent {
+  largeDataset: Product[] = [];
+  currentLayout: 'list' | 'grid' = 'list';
+  currentPage = 0;
+
+  constructor() {
+    // Generate large dataset
+    for (let i = 0; i < 20; i++) {
+      this.largeDataset.push({
+        id: i + 1,
+        name: \`Product \${i + 1}\`,
+        description: \`Description for product \${i + 1}\`,
+        price: Math.floor(Math.random() * 500) + 50
+      });
+    }
+  }
+
+  onPageChange(event: any): void {
+    this.currentPage = event.first;
+    console.log('Page changed:', event);
+  }
+
+  toggleLayout(): void {
+    this.currentLayout = this.currentLayout === 'list' ? 'grid' : 'list';
+  }
+}`,
+            description: 'Data view with pagination for large datasets'
+          },
+          {
+            name: 'Empty State',
+            code: `<sui-data-view 
+  [value]="emptyData" 
+  layout="list"
+  emptyMessage="No products found. Please try again later.">
+</sui-data-view>`,
+            tsCode: `export class DataViewComponent {
+  emptyData: any[] = [];
+}`,
+            description: 'Display empty state when no data is available'
+          },
+          {
+            name: 'Compact List',
+            code: `<sui-data-view [value]="products" layout="list">
+  <ng-template let-product>
+    <div class="flex items-center justify-between p-3 border-b hover:bg-gray-50">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">{{ product.image }}</span>
+        <div>
+          <h4 class="font-medium">{{ product.name }}</h4>
+          <p class="text-xs text-gray-500">{{ product.category }}</p>
+        </div>
+      </div>
+      <div class="text-right">
+        <div class="font-bold">\${{ product.price }}</div>
+        <div class="text-xs text-gray-500">{{ product.stock }} units</div>
+      </div>
+    </div>
+  </ng-template>
+</sui-data-view>`,
+            tsCode: `export class DataViewComponent {
+  products = [
+    { id: 1, name: 'Wireless Headphones', price: 299.99, category: 'Electronics', stock: 25, image: '🎧' },
+    { id: 2, name: 'Smart Watch', price: 199.99, category: 'Electronics', stock: 15, image: '⌚' }
+  ];
+}`,
+            description: 'Compact list layout for displaying data in a condensed format'
+          },
+          {
+            name: 'Card Grid',
+            code: `<sui-data-view [value]="products" layout="grid">
+  <ng-template let-product>
+    <div class="bg-white border rounded-xl p-6 hover:shadow-xl transition-all">
+      <div class="flex justify-between items-start mb-4">
+        <div class="text-5xl">{{ product.image }}</div>
+        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+          {{ product.category }}
+        </span>
+      </div>
+      <h3 class="text-xl font-bold mb-2">{{ product.name }}</h3>
+      <p class="text-sm text-gray-600 mb-4">{{ product.description }}</p>
+      <div class="flex justify-between items-center">
+        <span class="text-2xl font-bold text-blue-600">\${{ product.price }}</span>
+        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</sui-data-view>`,
+            tsCode: `export class DataViewComponent {
+  products = [
+    { 
+      id: 1, 
+      name: 'Wireless Headphones', 
+      description: 'Premium noise-cancelling wireless headphones',
+      price: 299.99, 
+      category: 'Electronics',
+      image: '🎧' 
+    }
+  ];
+}`,
+            description: 'Rich card-based grid layout with actions'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'any[]',
+            default: '[]',
+            description: 'Array of data to display',
+            required: false
+          },
+          {
+            name: 'layout',
+            type: '"list" | "grid"',
+            default: '"list"',
+            description: 'Layout mode for displaying data',
+            required: false
+          },
+          {
+            name: 'paginator',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether to enable pagination',
+            required: false
+          },
+          {
+            name: 'rows',
+            type: 'number',
+            default: '0',
+            description: 'Number of rows to display per page',
+            required: false
+          },
+          {
+            name: 'first',
+            type: 'number',
+            default: '0',
+            description: 'Index of the first row to display',
+            required: false
+          },
+          {
+            name: 'totalRecords',
+            type: 'number',
+            default: '0',
+            description: 'Total number of records for pagination',
+            required: false
+          },
+          {
+            name: 'emptyMessage',
+            type: 'string',
+            default: '"No records found"',
+            description: 'Message to display when no data is available',
+            required: false
+          },
+          {
+            name: 'itemTemplate',
+            type: 'TemplateRef<any>',
+            default: 'null',
+            description: 'Template for rendering each item',
+            required: false
+          },
+          {
+            name: 'onPage',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback to invoke when page changes',
+            required: false
+          },
+          {
+            name: 'onLazyLoad',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback to invoke for lazy loading',
+            required: false
+          }
+        ],
+        usage: 'Use data views for displaying data collections in flexible list or grid layouts. Supports custom templates, pagination, and empty states for versatile data presentation.',
+        tags: ['data', 'display', 'list', 'grid', 'pagination', 'template']
       },
   {
         id: 'order-list',

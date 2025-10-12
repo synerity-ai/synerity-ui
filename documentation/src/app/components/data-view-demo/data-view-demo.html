@@ -1,0 +1,152 @@
+@switch (getCurrentExample().name) {
+  @case ('List Layout') {
+    <div class="p-4">
+      <sui-data-view [value]="products" layout="list">
+        <ng-template let-product>
+          <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+            <div class="text-4xl">{{ product.image }}</div>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-gray-900">{{ product.name }}</h3>
+              <p class="text-sm text-gray-600 mt-1">{{ product.description }}</p>
+              <div class="flex items-center gap-4 mt-2">
+                <span class="text-xl font-bold text-blue-600">${{ product.price }}</span>
+                <span class="text-sm text-gray-500">{{ getRatingStars(product.rating) }} ({{ product.rating }})</span>
+                <span class="text-sm text-gray-500">Stock: {{ product.stock }}</span>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </sui-data-view>
+    </div>
+  }
+  @case ('Grid Layout') {
+    <div class="p-4">
+      <sui-data-view [value]="products" layout="grid">
+        <ng-template let-product>
+          <div class="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
+            <div class="text-5xl text-center mb-3">{{ product.image }}</div>
+            <h3 class="text-lg font-semibold text-gray-900 text-center">{{ product.name }}</h3>
+            <p class="text-sm text-gray-600 mt-2 text-center line-clamp-2">{{ product.description }}</p>
+            <div class="mt-3 text-center">
+              <span class="text-xl font-bold text-blue-600">${{ product.price }}</span>
+            </div>
+            <div class="mt-2 text-center text-sm text-gray-500">
+              {{ getRatingStars(product.rating) }} ({{ product.rating }})
+            </div>
+            <div class="mt-2 text-center">
+              <span class="inline-block px-2 py-1 text-xs rounded-full" 
+                    [class.bg-green-100]="product.stock > 30"
+                    [class.text-green-800]="product.stock > 30"
+                    [class.bg-yellow-100]="product.stock <= 30 && product.stock > 10"
+                    [class.text-yellow-800]="product.stock <= 30 && product.stock > 10"
+                    [class.bg-red-100]="product.stock <= 10"
+                    [class.text-red-800]="product.stock <= 10">
+                {{ product.stock }} in stock
+              </span>
+            </div>
+          </div>
+        </ng-template>
+      </sui-data-view>
+    </div>
+  }
+  @case ('With Pagination') {
+    <div class="p-4">
+      <div class="mb-4 flex justify-end">
+        <button (click)="toggleLayout()" 
+                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+          Switch to {{ currentLayout === 'list' ? 'Grid' : 'List' }} View
+        </button>
+      </div>
+      <sui-data-view 
+        [value]="largeDataset" 
+        [layout]="currentLayout"
+        [paginator]="true"
+        [rows]="6"
+        [first]="currentPage"
+        (onPage)="onPageChange($event)">
+        <ng-template let-product>
+          <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <div class="text-3xl">{{ product.image }}</div>
+              <div class="flex-1">
+                <h3 class="font-semibold text-gray-900">{{ product.name }}</h3>
+                <p class="text-sm text-gray-600">{{ product.description }}</p>
+                <div class="flex items-center gap-3 mt-1">
+                  <span class="font-bold text-blue-600">${{ product.price }}</span>
+                  <span class="text-xs text-gray-500">{{ product.category }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </sui-data-view>
+    </div>
+  }
+  @case ('Empty State') {
+    <div class="p-4">
+      <sui-data-view 
+        [value]="emptyData" 
+        layout="list"
+        emptyMessage="No products found. Please try again later.">
+      </sui-data-view>
+    </div>
+  }
+  @case ('Compact List') {
+    <div class="p-4">
+      <sui-data-view [value]="products" layout="list">
+        <ng-template let-product>
+          <div class="flex items-center justify-between p-3 border-b border-gray-200 hover:bg-gray-50">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">{{ product.image }}</span>
+              <div>
+                <h4 class="font-medium text-gray-900">{{ product.name }}</h4>
+                <p class="text-xs text-gray-500">{{ product.category }}</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="font-bold text-gray-900">${{ product.price }}</div>
+              <div class="text-xs text-gray-500">{{ product.stock }} units</div>
+            </div>
+          </div>
+        </ng-template>
+      </sui-data-view>
+    </div>
+  }
+  @case ('Card Grid') {
+    <div class="p-4">
+      <sui-data-view [value]="products" layout="grid">
+        <ng-template let-product>
+          <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-xl transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <div class="text-5xl">{{ product.image }}</div>
+              <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                {{ product.category }}
+              </span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ product.name }}</h3>
+            <p class="text-sm text-gray-600 mb-4 line-clamp-2">{{ product.description }}</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-blue-600">${{ product.price }}</span>
+              <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </sui-data-view>
+    </div>
+  }
+  @default {
+    <div class="p-4">
+      <sui-data-view [value]="products" layout="list">
+        <ng-template let-product>
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <h3 class="font-semibold">{{ product.name }}</h3>
+            <p class="text-sm text-gray-600">{{ product.description }}</p>
+            <span class="font-bold">${{ product.price }}</span>
+          </div>
+        </ng-template>
+      </sui-data-view>
+    </div>
+  }
+}
