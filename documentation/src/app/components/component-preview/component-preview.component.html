@@ -156,6 +156,9 @@
                         @case ('Timeline') {
                           <app-timeline-demo [currentExample]="getCurrentExample()"></app-timeline-demo>
                         }
+                        @case ('Upload') {
+                          <app-upload-demo [currentExample]="getCurrentExample()"></app-upload-demo>
+                        }
                  @default {
             <!-- Fallback for other components -->
             <div class="text-center text-gray-500 py-12">

@@ -2259,11 +2259,255 @@ export const dataComponents: ComponentModel[] = [
         id: 'upload',
         name: 'Upload',
         category: 'Data',
-        description: 'File upload component',
-        examples: [],
-        props: [],
-        usage: 'Use uploads for file upload functionality.',
-        tags: ['data', 'upload']
+        description: 'File upload component with drag-and-drop support, file validation, progress tracking, and multiple file handling',
+        examples: [
+          {
+            name: 'Basic Upload',
+            code: `<sui-upload
+  (onUpload)="onUpload($event)"
+  (onSelect)="onSelect($event)"
+  (onRemove)="onRemove($event)">
+</sui-upload>`,
+            tsCode: `export class UploadComponent {
+  onUpload(event: any): void {
+    console.log('Files uploaded:', event);
+  }
+
+  onSelect(event: any): void {
+    console.log('Files selected:', event);
+  }
+
+  onRemove(event: any): void {
+    console.log('File removed:', event);
+  }
+}`,
+            description: 'Basic file upload with drag-and-drop support'
+          },
+          {
+            name: 'Multiple Files',
+            code: `<sui-upload
+  [multiple]="true"
+  (onUpload)="onUpload($event)"
+  (onSelect)="onSelect($event)"
+  (onRemove)="onRemove($event)">
+</sui-upload>`,
+            tsCode: `export class UploadComponent {
+  onUpload(event: any): void {
+    console.log('Files uploaded:', event);
+  }
+
+  onSelect(event: any): void {
+    console.log('Files selected:', event);
+  }
+
+  onRemove(event: any): void {
+    console.log('File removed:', event);
+  }
+}`,
+            description: 'Upload multiple files at once'
+          },
+          {
+            name: 'Image Only',
+            code: `<sui-upload
+  [multiple]="true"
+  accept="image/*"
+  (onUpload)="onUpload($event)"
+  (onSelect)="onSelect($event)"
+  (onError)="onError($event)">
+</sui-upload>`,
+            tsCode: `export class UploadComponent {
+  onUpload(event: any): void {
+    console.log('Images uploaded:', event);
+  }
+
+  onSelect(event: any): void {
+    console.log('Images selected:', event);
+  }
+
+  onError(event: any): void {
+    console.error('Upload error:', event);
+    alert(\`Error: \${event.error}\`);
+  }
+}`,
+            description: 'Accept only image files (jpg, png, gif, etc.)'
+          },
+          {
+            name: 'With File Size Limit',
+            code: `<sui-upload
+  [multiple]="true"
+  [maxFileSize]="5242880"
+  (onUpload)="onUpload($event)"
+  (onSelect)="onSelect($event)"
+  (onError)="onError($event)">
+</sui-upload>`,
+            tsCode: `export class UploadComponent {
+  onUpload(event: any): void {
+    console.log('Files uploaded:', event);
+  }
+
+  onSelect(event: any): void {
+    console.log('Files selected:', event);
+  }
+
+  onError(event: any): void {
+    console.error('Upload error:', event);
+    alert(\`Error: \${event.error}\`);
+  }
+}`,
+            description: 'Limit file size to 5 MB (5,242,880 bytes)'
+          },
+          {
+            name: 'Auto Upload',
+            code: `<sui-upload
+  [multiple]="true"
+  [auto]="true"
+  (onUpload)="onUpload($event)"
+  (onSelect)="onSelect($event)"
+  (onProgress)="onProgress($event)">
+</sui-upload>`,
+            tsCode: `export class UploadComponent {
+  onUpload(event: any): void {
+    console.log('Files uploaded:', event);
+  }
+
+  onSelect(event: any): void {
+    console.log('Files selected:', event);
+  }
+
+  onProgress(event: any): void {
+    console.log('Upload progress:', event);
+  }
+}`,
+            description: 'Automatically upload files when selected'
+          },
+          {
+            name: 'Documents Only',
+            code: `<sui-upload
+  [multiple]="true"
+  accept=".pdf,.doc,.docx,.xls,.xlsx"
+  (onUpload)="onUpload($event)"
+  (onSelect)="onSelect($event)"
+  (onError)="onError($event)">
+</sui-upload>`,
+            tsCode: `export class UploadComponent {
+  onUpload(event: any): void {
+    console.log('Documents uploaded:', event);
+  }
+
+  onSelect(event: any): void {
+    console.log('Documents selected:', event);
+  }
+
+  onError(event: any): void {
+    console.error('Upload error:', event);
+    alert(\`Error: \${event.error}\`);
+  }
+}`,
+            description: 'Accept only document files (PDF, Word, Excel)'
+          }
+        ],
+        props: [
+          {
+            name: 'multiple',
+            type: 'boolean',
+            default: 'false',
+            description: 'Allow multiple file selection',
+            required: false
+          },
+          {
+            name: 'accept',
+            type: 'string',
+            default: '""',
+            description: 'Accepted file types (e.g., "image/*", ".pdf,.doc")',
+            required: false
+          },
+          {
+            name: 'maxFileSize',
+            type: 'number',
+            default: '0',
+            description: 'Maximum file size in bytes (0 = no limit)',
+            required: false
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Disable the upload component',
+            required: false
+          },
+          {
+            name: 'auto',
+            type: 'boolean',
+            default: 'false',
+            description: 'Automatically upload files when selected',
+            required: false
+          },
+          {
+            name: 'customUpload',
+            type: 'boolean',
+            default: 'false',
+            description: 'Use custom upload logic instead of built-in',
+            required: false
+          },
+          {
+            name: 'style',
+            type: 'any',
+            default: '{}',
+            description: 'Inline styles for the component',
+            required: false
+          },
+          {
+            name: 'styleClass',
+            type: 'string',
+            default: '""',
+            description: 'CSS class for styling',
+            required: false
+          },
+          {
+            name: 'onUpload',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when files are uploaded',
+            required: false
+          },
+          {
+            name: 'onBeforeUpload',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback before upload starts',
+            required: false
+          },
+          {
+            name: 'onProgress',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback for upload progress updates',
+            required: false
+          },
+          {
+            name: 'onError',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when upload error occurs',
+            required: false
+          },
+          {
+            name: 'onSelect',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when files are selected',
+            required: false
+          },
+          {
+            name: 'onRemove',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a file is removed',
+            required: false
+          }
+        ],
+        usage: 'Use upload component for file upload functionality with drag-and-drop support. Supports file validation (type and size), multiple files, auto-upload, and custom upload handlers. Perfect for forms, profile pictures, document management, and bulk file uploads.',
+        tags: ['data', 'upload', 'file', 'drag-drop', 'form']
       },
   {
         id: 'meter-group',

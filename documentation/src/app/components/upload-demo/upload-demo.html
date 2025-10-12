@@ -1,0 +1,97 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Upload') {
+    <div class="p-4">
+      <div class="max-w-2xl mx-auto">
+        <sui-upload
+          (onUpload)="onUpload($event)"
+          (onSelect)="onSelect($event)"
+          (onRemove)="onRemove($event)">
+        </sui-upload>
+      </div>
+    </div>
+  }
+  @case ('Multiple Files') {
+    <div class="p-4">
+      <div class="max-w-2xl mx-auto">
+        <sui-upload
+          [multiple]="true"
+          (onUpload)="onUpload($event)"
+          (onSelect)="onSelect($event)"
+          (onRemove)="onRemove($event)">
+        </sui-upload>
+      </div>
+    </div>
+  }
+  @case ('Image Only') {
+    <div class="p-4">
+      <div class="max-w-2xl mx-auto">
+        <sui-upload
+          [multiple]="true"
+          accept="image/*"
+          (onUpload)="onUpload($event)"
+          (onSelect)="onSelect($event)"
+          (onError)="onError($event)">
+        </sui-upload>
+      </div>
+    </div>
+  }
+  @case ('With File Size Limit') {
+    <div class="p-4">
+      <div class="max-w-2xl mx-auto">
+        <div class="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <p class="text-sm text-blue-900">
+            <strong>Maximum file size:</strong> 5 MB (5,242,880 bytes)
+          </p>
+        </div>
+        <sui-upload
+          [multiple]="true"
+          [maxFileSize]="5242880"
+          (onUpload)="onUpload($event)"
+          (onSelect)="onSelect($event)"
+          (onError)="onError($event)">
+        </sui-upload>
+      </div>
+    </div>
+  }
+  @case ('Auto Upload') {
+    <div class="p-4">
+      <div class="max-w-2xl mx-auto space-y-4">
+        <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+          <p class="text-sm text-green-900">
+            Files will be automatically uploaded when selected
+          </p>
+        </div>
+        <sui-upload
+          [multiple]="true"
+          [auto]="true"
+          (onUpload)="onUpload($event)"
+          (onSelect)="onSelect($event)"
+          (onProgress)="onProgress($event)">
+        </sui-upload>
+      </div>
+    </div>
+  }
+  @case ('Documents Only') {
+    <div class="p-4">
+      <div class="max-w-2xl mx-auto">
+        <sui-upload
+          [multiple]="true"
+          accept=".pdf,.doc,.docx,.xls,.xlsx"
+          (onUpload)="onUpload($event)"
+          (onSelect)="onSelect($event)"
+          (onError)="onError($event)">
+        </sui-upload>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-4">
+      <div class="max-w-2xl mx-auto">
+        <sui-upload
+          (onUpload)="onUpload($event)"
+          (onSelect)="onSelect($event)">
+        </sui-upload>
+      </div>
+    </div>
+  }
+}
