@@ -1331,11 +1331,314 @@ export const dataComponents: ComponentModel[] = [
         id: 'tree',
         name: 'Tree',
         category: 'Data',
-        description: 'Tree structure component',
-        examples: [],
-        props: [],
-        usage: 'Use trees for hierarchical data display.',
-        tags: ['data', 'hierarchy']
+        description: 'Hierarchical tree component for displaying nested data structures with expand/collapse, selection, and filtering capabilities',
+        examples: [
+          {
+            name: 'Basic Tree',
+            code: `<sui-tree
+  [value]="fileSystem"
+  (onNodeSelect)="onNodeSelect($event)"
+  (onNodeExpand)="onNodeExpand($event)"
+  (onNodeCollapse)="onNodeCollapse($event)">
+</sui-tree>`,
+            tsCode: `export class TreeComponent {
+  fileSystem = [
+    {
+      key: '0',
+      label: 'Documents',
+      expanded: true,
+      children: [
+        {
+          key: '0-0',
+          label: 'Work',
+          children: [
+            { key: '0-0-0', label: 'Project.docx' },
+            { key: '0-0-1', label: 'Report.pdf' }
+          ]
+        },
+        { key: '0-1', label: 'Personal' }
+      ]
+    },
+    {
+      key: '1',
+      label: 'Pictures',
+      children: [
+        { key: '1-0', label: 'Vacation.jpg' },
+        { key: '1-1', label: 'Family.png' }
+      ]
+    }
+  ];
+
+  onNodeSelect(node: any): void {
+    console.log('Node selected:', node);
+  }
+
+  onNodeExpand(node: any): void {
+    console.log('Node expanded:', node);
+  }
+
+  onNodeCollapse(node: any): void {
+    console.log('Node collapsed:', node);
+  }
+}`,
+            description: 'Basic tree structure with expandable nodes'
+          },
+          {
+            name: 'Single Selection',
+            code: `<sui-tree
+  [value]="singleSelectionTree"
+  selectionMode="single"
+  (onNodeSelect)="onNodeSelect($event)"
+  (onSelectionChange)="onSelectionChange($event)">
+</sui-tree>`,
+            tsCode: `export class TreeComponent {
+  singleSelectionTree = [
+    {
+      key: '0',
+      label: 'Documents',
+      expanded: true,
+      children: [
+        { key: '0-0', label: 'Work' },
+        { key: '0-1', label: 'Personal' }
+      ]
+    }
+  ];
+
+  onNodeSelect(node: any): void {
+    console.log('Node selected:', node);
+  }
+
+  onSelectionChange(nodes: any[]): void {
+    console.log('Selection changed:', nodes);
+  }
+}`,
+            description: 'Tree with single node selection'
+          },
+          {
+            name: 'Multiple Selection',
+            code: `<sui-tree
+  [value]="multipleSelectionTree"
+  selectionMode="multiple"
+  (onSelectionChange)="onSelectionChange($event)">
+</sui-tree>`,
+            tsCode: `export class TreeComponent {
+  multipleSelectionTree = [
+    {
+      key: '0',
+      label: 'CEO',
+      expanded: true,
+      children: [
+        {
+          key: '0-0',
+          label: 'CTO',
+          children: [
+            { key: '0-0-0', label: 'Engineering Manager' }
+          ]
+        },
+        { key: '0-1', label: 'CFO' }
+      ]
+    }
+  ];
+
+  onSelectionChange(nodes: any[]): void {
+    console.log('Selected nodes:', nodes);
+  }
+}`,
+            description: 'Tree with multiple node selection'
+          },
+          {
+            name: 'With Checkbox',
+            code: `<sui-tree
+  [value]="checkboxTree"
+  selectionMode="checkbox"
+  (onSelectionChange)="onSelectionChange($event)">
+</sui-tree>`,
+            tsCode: `export class TreeComponent {
+  checkboxTree = [
+    {
+      key: '0',
+      label: 'Electronics',
+      children: [
+        { key: '0-0', label: 'Computers' },
+        { key: '0-1', label: 'Phones' }
+      ]
+    },
+    {
+      key: '1',
+      label: 'Clothing',
+      children: [
+        { key: '1-0', label: 'Men' },
+        { key: '1-1', label: 'Women' }
+      ]
+    }
+  ];
+
+  onSelectionChange(nodes: any[]): void {
+    console.log('Selected nodes:', nodes);
+  }
+}`,
+            description: 'Tree with checkbox selection for multi-select'
+          },
+          {
+            name: 'With Filter',
+            code: `<sui-tree
+  [value]="filterTree"
+  [filter]="true"
+  filterPlaceholder="Search files and folders..."
+  (onNodeSelect)="onNodeSelect($event)">
+</sui-tree>`,
+            tsCode: `export class TreeComponent {
+  filterTree = [
+    {
+      key: '0',
+      label: 'Documents',
+      expanded: true,
+      children: [
+        { key: '0-0', label: 'Work' },
+        { key: '0-1', label: 'Personal' }
+      ]
+    }
+  ];
+
+  onNodeSelect(node: any): void {
+    console.log('Node selected:', node);
+  }
+}`,
+            description: 'Tree with search filter to find nodes'
+          },
+          {
+            name: 'Collapsed by Default',
+            code: `<sui-tree
+  [value]="categories"
+  (onNodeExpand)="onNodeExpand($event)"
+  (onNodeCollapse)="onNodeCollapse($event)">
+</sui-tree>`,
+            tsCode: `export class TreeComponent {
+  categories = [
+    {
+      key: '0',
+      label: 'Electronics',
+      children: [
+        { key: '0-0', label: 'Computers' },
+        { key: '0-1', label: 'Phones' }
+      ]
+    },
+    {
+      key: '1',
+      label: 'Clothing',
+      children: [
+        { key: '1-0', label: 'Men' },
+        { key: '1-1', label: 'Women' }
+      ]
+    }
+  ];
+
+  onNodeExpand(node: any): void {
+    console.log('Node expanded:', node);
+  }
+
+  onNodeCollapse(node: any): void {
+    console.log('Node collapsed:', node);
+  }
+}`,
+            description: 'Tree with all nodes collapsed by default'
+          }
+        ],
+        props: [
+          {
+            name: 'value',
+            type: 'TreeNode[]',
+            default: '[]',
+            description: 'Array of tree nodes. Each node should have: key, label, data, children, expanded',
+            required: true
+          },
+          {
+            name: 'selectionMode',
+            type: '"single" | "multiple" | "checkbox" | null',
+            default: 'null',
+            description: 'Selection mode for tree nodes',
+            required: false
+          },
+          {
+            name: 'metaKeySelection',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to use meta key for multiple selection',
+            required: false
+          },
+          {
+            name: 'propagateSelectionUp',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether selection propagates to parent nodes',
+            required: false
+          },
+          {
+            name: 'propagateSelectionDown',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether selection propagates to child nodes',
+            required: false
+          },
+          {
+            name: 'filter',
+            type: 'boolean',
+            default: 'false',
+            description: 'Enable search filter for nodes',
+            required: false
+          },
+          {
+            name: 'filterPlaceholder',
+            type: 'string',
+            default: '"Search"',
+            description: 'Placeholder text for filter input',
+            required: false
+          },
+          {
+            name: 'filterBy',
+            type: 'string',
+            default: '"label"',
+            description: 'Node property to filter by',
+            required: false
+          },
+          {
+            name: 'onNodeSelect',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is selected',
+            required: false
+          },
+          {
+            name: 'onNodeUnselect',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is unselected',
+            required: false
+          },
+          {
+            name: 'onNodeExpand',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is expanded',
+            required: false
+          },
+          {
+            name: 'onNodeCollapse',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when a node is collapsed',
+            required: false
+          },
+          {
+            name: 'onSelectionChange',
+            type: 'EventEmitter<any>',
+            default: '-',
+            description: 'Callback when selection changes, returns array of selected nodes',
+            required: false
+          }
+        ],
+        usage: 'Use trees for displaying hierarchical data structures like file systems, organization charts, category trees, and navigation menus. Supports expand/collapse, selection, and filtering.',
+        tags: ['data', 'hierarchy', 'tree', 'nested', 'expandable', 'collapsible']
       },
   {
         id: 'tree-table',
