@@ -4296,11 +4296,11 @@
 .sui-float-label .sui-float-label-text {
   position: absolute;
   top: 50%;
-  left: 12px;
+  left: 14px;
   transform: translateY(-50%);
   font-size: 0.9375rem;
   font-weight: 400;
-  color: #6b7280;
+  color: #9ca3af;
   background: transparent;
   padding: 0 4px;
   pointer-events: none;
@@ -4342,26 +4342,6 @@
   border-color: #3b82f6;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
-.sui-float-label ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text, .sui-float-label ::ng-deep textarea:not(:-moz-placeholder) + .sui-float-label-text {
-  top: -8px;
-  left: 8px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #3b82f6;
-  background: #ffffff;
-  transform: translateY(0);
-}
-.sui-float-label ::ng-deep input:focus + .sui-float-label-text, .sui-float-label ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text,
-.sui-float-label ::ng-deep textarea:focus + .sui-float-label-text,
-.sui-float-label ::ng-deep textarea:not(:placeholder-shown) + .sui-float-label-text {
-  top: -8px;
-  left: 8px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #3b82f6;
-  background: #ffffff;
-  transform: translateY(0);
-}
 .sui-float-label ::ng-deep input:disabled,
 .sui-float-label ::ng-deep textarea:disabled {
   background: #f9fafb;
@@ -4370,13 +4350,14 @@
   cursor: not-allowed;
 }
 .sui-float-label.sui-float-label-focused .sui-float-label-text {
-  top: -8px;
-  left: 8px;
+  top: 0;
+  left: 10px;
+  transform: translateY(-50%);
   font-size: 0.75rem;
   font-weight: 600;
   color: #3b82f6;
   background: #ffffff;
-  transform: translateY(0);
+  padding: 0 4px;
 }
 .sui-float-label.sui-float-label-error ::ng-deep input,
 .sui-float-label.sui-float-label-error ::ng-deep textarea {
@@ -4387,15 +4368,7 @@
   border-color: #ef4444;
   box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
-.sui-float-label.sui-float-label-error ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text, .sui-float-label.sui-float-label-error ::ng-deep textarea:not(:-moz-placeholder) + .sui-float-label-text {
-  color: #ef4444;
-}
-.sui-float-label.sui-float-label-error ::ng-deep input:focus + .sui-float-label-text, .sui-float-label.sui-float-label-error ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text,
-.sui-float-label.sui-float-label-error ::ng-deep textarea:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-error ::ng-deep textarea:not(:placeholder-shown) + .sui-float-label-text {
-  color: #ef4444;
-}
-.sui-float-label.sui-float-label-error .sui-float-label-text {
+.sui-float-label.sui-float-label-error.sui-float-label-focused .sui-float-label-text {
   color: #ef4444;
 }
 .sui-float-label.sui-float-label-success ::ng-deep input,
@@ -4407,15 +4380,7 @@
   border-color: #10b981;
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
-.sui-float-label.sui-float-label-success ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text, .sui-float-label.sui-float-label-success ::ng-deep textarea:not(:-moz-placeholder) + .sui-float-label-text {
-  color: #10b981;
-}
-.sui-float-label.sui-float-label-success ::ng-deep input:focus + .sui-float-label-text, .sui-float-label.sui-float-label-success ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text,
-.sui-float-label.sui-float-label-success ::ng-deep textarea:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-success ::ng-deep textarea:not(:placeholder-shown) + .sui-float-label-text {
-  color: #10b981;
-}
-.sui-float-label.sui-float-label-success .sui-float-label-text {
+.sui-float-label.sui-float-label-success.sui-float-label-focused .sui-float-label-text {
   color: #10b981;
 }
 .sui-float-label.sui-float-label-warning ::ng-deep input,
@@ -4427,57 +4392,33 @@
   border-color: #f59e0b;
   box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
-.sui-float-label.sui-float-label-warning ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text, .sui-float-label.sui-float-label-warning ::ng-deep textarea:not(:-moz-placeholder) + .sui-float-label-text {
+.sui-float-label.sui-float-label-warning.sui-float-label-focused .sui-float-label-text {
   color: #f59e0b;
 }
-.sui-float-label.sui-float-label-warning ::ng-deep input:focus + .sui-float-label-text, .sui-float-label.sui-float-label-warning ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text,
-.sui-float-label.sui-float-label-warning ::ng-deep textarea:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-warning ::ng-deep textarea:not(:placeholder-shown) + .sui-float-label-text {
-  color: #f59e0b;
-}
-.sui-float-label.sui-float-label-warning .sui-float-label-text {
-  color: #f59e0b;
+.sui-float-label.sui-float-label-sm .sui-float-label-text {
+  font-size: 0.875rem;
+  left: 12px;
 }
 .sui-float-label.sui-float-label-sm ::ng-deep input,
 .sui-float-label.sui-float-label-sm ::ng-deep textarea {
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
 }
-.sui-float-label.sui-float-label-sm .sui-float-label-text {
-  font-size: 0.875rem;
-  left: 10px;
-}
-.sui-float-label.sui-float-label-sm ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text {
-  top: -6px;
-  left: 6px;
+.sui-float-label.sui-float-label-sm.sui-float-label-focused .sui-float-label-text {
+  left: 8px;
   font-size: 0.6875rem;
 }
-.sui-float-label.sui-float-label-sm.sui-float-label-focused .sui-float-label-text,
-.sui-float-label.sui-float-label-sm ::ng-deep input:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-sm ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text {
-  top: -6px;
-  left: 6px;
-  font-size: 0.6875rem;
+.sui-float-label.sui-float-label-lg .sui-float-label-text {
+  font-size: 1rem;
+  left: 16px;
 }
 .sui-float-label.sui-float-label-lg ::ng-deep input,
 .sui-float-label.sui-float-label-lg ::ng-deep textarea {
   padding: 0.75rem 1rem;
   font-size: 1rem;
 }
-.sui-float-label.sui-float-label-lg .sui-float-label-text {
-  font-size: 1rem;
-  left: 14px;
-}
-.sui-float-label.sui-float-label-lg ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text {
-  top: -10px;
-  left: 10px;
-  font-size: 0.8125rem;
-}
-.sui-float-label.sui-float-label-lg.sui-float-label-focused .sui-float-label-text,
-.sui-float-label.sui-float-label-lg ::ng-deep input:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-lg ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text {
-  top: -10px;
-  left: 10px;
+.sui-float-label.sui-float-label-lg.sui-float-label-focused .sui-float-label-text {
+  left: 12px;
   font-size: 0.8125rem;
 }
 .sui-float-label.sui-float-label-disabled {
@@ -4512,18 +4453,11 @@
 }
 .sui-float-label.sui-float-label-rtl .sui-float-label-text {
   left: auto;
-  right: 12px;
+  right: 14px;
   text-align: right;
 }
-.sui-float-label.sui-float-label-rtl ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text {
-  left: auto;
-  right: 8px;
-}
-.sui-float-label.sui-float-label-rtl.sui-float-label-focused .sui-float-label-text,
-.sui-float-label.sui-float-label-rtl ::ng-deep input:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-rtl ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text {
-  left: auto;
-  right: 8px;
+.sui-float-label.sui-float-label-rtl.sui-float-label-focused .sui-float-label-text {
+  right: 10px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -15339,11 +15273,11 @@ video {
 .sui-float-label .sui-float-label-text {
   position: absolute;
   top: 50%;
-  left: 12px;
+  left: 14px;
   transform: translateY(-50%);
   font-size: 0.9375rem;
   font-weight: 400;
-  color: #6b7280;
+  color: #9ca3af;
   background: transparent;
   padding: 0 4px;
   pointer-events: none;
@@ -15385,26 +15319,6 @@ video {
   border-color: #3b82f6;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
-.sui-float-label ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text, .sui-float-label ::ng-deep textarea:not(:-moz-placeholder) + .sui-float-label-text {
-  top: -8px;
-  left: 8px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #3b82f6;
-  background: #ffffff;
-  transform: translateY(0);
-}
-.sui-float-label ::ng-deep input:focus + .sui-float-label-text, .sui-float-label ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text,
-.sui-float-label ::ng-deep textarea:focus + .sui-float-label-text,
-.sui-float-label ::ng-deep textarea:not(:placeholder-shown) + .sui-float-label-text {
-  top: -8px;
-  left: 8px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #3b82f6;
-  background: #ffffff;
-  transform: translateY(0);
-}
 .sui-float-label ::ng-deep input:disabled,
 .sui-float-label ::ng-deep textarea:disabled {
   background: #f9fafb;
@@ -15413,13 +15327,14 @@ video {
   cursor: not-allowed;
 }
 .sui-float-label.sui-float-label-focused .sui-float-label-text {
-  top: -8px;
-  left: 8px;
+  top: 0;
+  left: 10px;
+  transform: translateY(-50%);
   font-size: 0.75rem;
   font-weight: 600;
   color: #3b82f6;
   background: #ffffff;
-  transform: translateY(0);
+  padding: 0 4px;
 }
 .sui-float-label.sui-float-label-error ::ng-deep input,
 .sui-float-label.sui-float-label-error ::ng-deep textarea {
@@ -15430,15 +15345,7 @@ video {
   border-color: #ef4444;
   box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
-.sui-float-label.sui-float-label-error ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text, .sui-float-label.sui-float-label-error ::ng-deep textarea:not(:-moz-placeholder) + .sui-float-label-text {
-  color: #ef4444;
-}
-.sui-float-label.sui-float-label-error ::ng-deep input:focus + .sui-float-label-text, .sui-float-label.sui-float-label-error ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text,
-.sui-float-label.sui-float-label-error ::ng-deep textarea:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-error ::ng-deep textarea:not(:placeholder-shown) + .sui-float-label-text {
-  color: #ef4444;
-}
-.sui-float-label.sui-float-label-error .sui-float-label-text {
+.sui-float-label.sui-float-label-error.sui-float-label-focused .sui-float-label-text {
   color: #ef4444;
 }
 .sui-float-label.sui-float-label-success ::ng-deep input,
@@ -15450,15 +15357,7 @@ video {
   border-color: #10b981;
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
-.sui-float-label.sui-float-label-success ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text, .sui-float-label.sui-float-label-success ::ng-deep textarea:not(:-moz-placeholder) + .sui-float-label-text {
-  color: #10b981;
-}
-.sui-float-label.sui-float-label-success ::ng-deep input:focus + .sui-float-label-text, .sui-float-label.sui-float-label-success ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text,
-.sui-float-label.sui-float-label-success ::ng-deep textarea:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-success ::ng-deep textarea:not(:placeholder-shown) + .sui-float-label-text {
-  color: #10b981;
-}
-.sui-float-label.sui-float-label-success .sui-float-label-text {
+.sui-float-label.sui-float-label-success.sui-float-label-focused .sui-float-label-text {
   color: #10b981;
 }
 .sui-float-label.sui-float-label-warning ::ng-deep input,
@@ -15470,57 +15369,33 @@ video {
   border-color: #f59e0b;
   box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
-.sui-float-label.sui-float-label-warning ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text, .sui-float-label.sui-float-label-warning ::ng-deep textarea:not(:-moz-placeholder) + .sui-float-label-text {
+.sui-float-label.sui-float-label-warning.sui-float-label-focused .sui-float-label-text {
   color: #f59e0b;
 }
-.sui-float-label.sui-float-label-warning ::ng-deep input:focus + .sui-float-label-text, .sui-float-label.sui-float-label-warning ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text,
-.sui-float-label.sui-float-label-warning ::ng-deep textarea:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-warning ::ng-deep textarea:not(:placeholder-shown) + .sui-float-label-text {
-  color: #f59e0b;
-}
-.sui-float-label.sui-float-label-warning .sui-float-label-text {
-  color: #f59e0b;
+.sui-float-label.sui-float-label-sm .sui-float-label-text {
+  font-size: 0.875rem;
+  left: 12px;
 }
 .sui-float-label.sui-float-label-sm ::ng-deep input,
 .sui-float-label.sui-float-label-sm ::ng-deep textarea {
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
 }
-.sui-float-label.sui-float-label-sm .sui-float-label-text {
-  font-size: 0.875rem;
-  left: 10px;
-}
-.sui-float-label.sui-float-label-sm ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text {
-  top: -6px;
-  left: 6px;
+.sui-float-label.sui-float-label-sm.sui-float-label-focused .sui-float-label-text {
+  left: 8px;
   font-size: 0.6875rem;
 }
-.sui-float-label.sui-float-label-sm.sui-float-label-focused .sui-float-label-text,
-.sui-float-label.sui-float-label-sm ::ng-deep input:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-sm ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text {
-  top: -6px;
-  left: 6px;
-  font-size: 0.6875rem;
+.sui-float-label.sui-float-label-lg .sui-float-label-text {
+  font-size: 1rem;
+  left: 16px;
 }
 .sui-float-label.sui-float-label-lg ::ng-deep input,
 .sui-float-label.sui-float-label-lg ::ng-deep textarea {
   padding: 0.75rem 1rem;
   font-size: 1rem;
 }
-.sui-float-label.sui-float-label-lg .sui-float-label-text {
-  font-size: 1rem;
-  left: 14px;
-}
-.sui-float-label.sui-float-label-lg ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text {
-  top: -10px;
-  left: 10px;
-  font-size: 0.8125rem;
-}
-.sui-float-label.sui-float-label-lg.sui-float-label-focused .sui-float-label-text,
-.sui-float-label.sui-float-label-lg ::ng-deep input:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-lg ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text {
-  top: -10px;
-  left: 10px;
+.sui-float-label.sui-float-label-lg.sui-float-label-focused .sui-float-label-text {
+  left: 12px;
   font-size: 0.8125rem;
 }
 .sui-float-label.sui-float-label-disabled {
@@ -15555,18 +15430,11 @@ video {
 }
 .sui-float-label.sui-float-label-rtl .sui-float-label-text {
   left: auto;
-  right: 12px;
+  right: 14px;
   text-align: right;
 }
-.sui-float-label.sui-float-label-rtl ::ng-deep input:not(:-moz-placeholder) + .sui-float-label-text {
-  left: auto;
-  right: 8px;
-}
-.sui-float-label.sui-float-label-rtl.sui-float-label-focused .sui-float-label-text,
-.sui-float-label.sui-float-label-rtl ::ng-deep input:focus + .sui-float-label-text,
-.sui-float-label.sui-float-label-rtl ::ng-deep input:not(:placeholder-shown) + .sui-float-label-text {
-  left: auto;
-  right: 8px;
+.sui-float-label.sui-float-label-rtl.sui-float-label-focused .sui-float-label-text {
+  right: 10px;
 }
 
 @media (prefers-reduced-motion: reduce) {

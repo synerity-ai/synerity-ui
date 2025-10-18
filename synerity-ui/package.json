@@ -1,6 +1,6 @@
 {
   "name": "@synerity/ui",
-  "version": "2.6.0",
+  "version": "3.0.28",
   "description": "Synerity UI Component Library - Enterprise-grade Angular components",
   "homepage": "https://synerity-ai.github.io/synerity-ui/",
   "repository": {
@@ -47,7 +47,7 @@
     "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
-    "@synerity/ui": "^2.0.66",
+    "@synerity/ui": "^3.0.28",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
