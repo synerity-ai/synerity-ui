@@ -1,97 +1,40 @@
-<div [class]="getComponentClass()">
+<div [class]="getContainerClass()">
   <!-- Label -->
-  <label *ngIf="label" class="sui-listbox-label" [for]="getComponentId()">{{ label }}</label>
-  
-  <!-- Listbox Container -->
+  <label *ngIf="label" 
+         class="sui-listbox-label">
+    {{ label }}
+  </label>
+
+  <!-- Listbox -->
   <ul
     role="listbox"
     tabindex="0"
-    [id]="getComponentId()"
-    [attr.aria-label]="getAriaLabel()"
-    [attr.aria-describedby]="getAriaDescribedBy()"
+    [attr.aria-label]="label"
     [attr.aria-multiselectable]="multiSelect"
-    (keydown)="onKeyDown($event)"
-    (focus)="onFocusEvent()"
     (blur)="onBlurEvent()"
-    [class]="getContainerClass()"
-    [style]="getContainerStyle()"
-  >
+    [class]="getListboxClass()">
+    
     <!-- Empty State -->
-    <li *ngIf="!hasOptions" class="sui-listbox-empty">
-      <div class="sui-listbox-empty-icon">{{ emptyIcon }}</div>
-      <div class="sui-listbox-empty-text">{{ emptyText }}</div>
-      <div class="sui-listbox-empty-description">{{ emptyDescription }}</div>
+    <li *ngIf="options.length === 0" class="sui-listbox-empty">
+      No options available
     </li>
 
-    <!-- Grouped Options -->
-    <ng-container *ngIf="showGroups && groups.length > 0; else simpleOptions">
-      <ng-container *ngFor="let group of getGroupedOptions()">
-        <li class="sui-listbox-group-header">{{ group.label }}</li>
-        <li
-          *ngFor="let opt of group.options; let i = index"
-          role="option"
-          [attr.aria-selected]="isSelected(opt)"
-          [attr.aria-disabled]="opt.disabled"
-          (click)="select(opt, i)"
-          [class]="getItemClass(opt, i)"
-        >
-          <!-- Icon -->
-          <span *ngIf="opt.icon" class="sui-listbox-item-icon">{{ opt.icon }}</span>
-          
-          <!-- Content -->
-          <div class="sui-listbox-item-content">
-            <div *ngIf="opt.description; else simpleLabel" class="sui-listbox-item-with-description">
-              <div class="sui-listbox-item-label">{{ opt.label }}</div>
-              <div class="sui-listbox-item-description">{{ opt.description }}</div>
-            </div>
-            <ng-template #simpleLabel>
-              <span class="sui-listbox-item-label">{{ opt.label }}</span>
-            </ng-template>
-          </div>
-          
-          <!-- Badge -->
-          <span *ngIf="opt.badge" class="sui-listbox-item-badge">{{ opt.badge }}</span>
-        </li>
-      </ng-container>
-    </ng-container>
-
-    <!-- Simple Options -->
-    <ng-template #simpleOptions>
-      <li
-        *ngFor="let opt of allOptions; let i = index"
-        role="option"
-        [attr.aria-selected]="isSelected(opt)"
-        [attr.aria-disabled]="opt.disabled"
-        (click)="select(opt, i)"
-        [class]="getItemClass(opt, i)"
-      >
-        <!-- Icon -->
-        <span *ngIf="opt.icon" class="sui-listbox-item-icon">{{ opt.icon }}</span>
-        
-        <!-- Content -->
-        <div class="sui-listbox-item-content">
-          <div *ngIf="opt.description; else simpleLabel" class="sui-listbox-item-with-description">
-            <div class="sui-listbox-item-label">{{ opt.label }}</div>
-            <div class="sui-listbox-item-description">{{ opt.description }}</div>
-          </div>
-          <ng-template #simpleLabel>
-            <span class="sui-listbox-item-label">{{ opt.label }}</span>
-          </ng-template>
-        </div>
-        
-        <!-- Badge -->
-        <span *ngIf="opt.badge" class="sui-listbox-item-badge">{{ opt.badge }}</span>
-      </li>
-    </ng-template>
+    <!-- Options -->
+    <li
+      *ngFor="let opt of options"
+      role="option"
+      [attr.aria-selected]="isSelected(opt)"
+      [attr.aria-disabled]="opt.disabled"
+      (click)="select(opt)"
+      [class]="getItemClass(opt)">
+      {{ opt.label }}
+    </li>
   </ul>
-  
-  <!-- Helper Text -->
-  <div *ngIf="helperText && !hasError" [id]="getComponentId() + '-helper'" class="sui-listbox-helper">
-    {{ helperText }}
-  </div>
-  
-  <!-- Error Text -->
-  <div *ngIf="errorText || hasError" [id]="getComponentId() + '-error'" class="sui-listbox-helper sui-listbox-error-text">
-    {{ errorText || 'Invalid selection' }}
+
+  <!-- Helper Text / Error Message -->
+  <div *ngIf="errorText || helperText" 
+       class="sui-listbox-helper"
+       [class.sui-listbox-error]="errorText || hasError">
+    {{ errorText || helperText }}
   </div>
 </div>

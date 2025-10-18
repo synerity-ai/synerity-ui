@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 
@@ -67,12 +67,15 @@ export class TreeSelect implements ControlValueAccessor {
   private onChange: (val: unknown) => void = () => {};
   private onTouched: () => void = () => {};
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   writeValue(val: unknown): void { 
     if (this.multiple) {
       this.values = Array.isArray(val) ? val : [];
     } else {
       this.value = val ?? null; 
     }
+    this.cdr.markForCheck();
   }
   
   registerOnChange(fn: (val: unknown) => void): void { this.onChange = fn; }
@@ -87,6 +90,7 @@ export class TreeSelect implements ControlValueAccessor {
     } else {
       this.onBlur.emit();
     }
+    this.cdr.markForCheck();
   }
 
   select(item: TreeSelectNode): void {
@@ -100,6 +104,7 @@ export class TreeSelect implements ControlValueAccessor {
       } else {
         this.onCollapse.emit(item);
       }
+      this.cdr.markForCheck();
       return;
     }
 
@@ -121,6 +126,7 @@ export class TreeSelect implements ControlValueAccessor {
     }
     
     this.onSelect.emit(item);
+    this.cdr.markForCheck();
   }
 
   clear(): void {
@@ -135,6 +141,7 @@ export class TreeSelect implements ControlValueAccessor {
       this.onChange(this.value);
       this.change.emit(this.value);
     }
+    this.cdr.markForCheck();
   }
 
   onBlurEvent(): void {

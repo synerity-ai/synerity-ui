@@ -1,0 +1,122 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic OTP Input') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <div class="text-center mb-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Enter Verification Code</h3>
+          <p class="text-sm text-gray-600">We sent a 6-digit code to your email</p>
+        </div>
+        <sui-input-otp
+          [(ngModel)]="otpValue"
+          [length]="6"
+          (complete)="onOtpComplete($event)">
+        </sui-input-otp>
+        <p class="mt-4 text-sm text-center text-gray-600">
+          Code: <span class="font-mono font-semibold text-blue-600">{{ otpValue || '------' }}</span>
+        </p>
+      </div>
+    </div>
+  }
+  @case ('Different Lengths') {
+    <div class="p-8">
+      <div class="max-w-2xl mx-auto space-y-8">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-3 text-center">4-Digit PIN</label>
+          <sui-input-otp
+            [(ngModel)]="shortOtpValue"
+            [length]="4">
+          </sui-input-otp>
+          <p class="mt-2 text-sm text-center text-gray-600">
+            PIN: <span class="font-mono font-semibold">{{ shortOtpValue || '----' }}</span>
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-3 text-center">6-Digit Code</label>
+          <sui-input-otp
+            [(ngModel)]="otpValue"
+            [length]="6">
+          </sui-input-otp>
+          <p class="mt-2 text-sm text-center text-gray-600">
+            Code: <span class="font-mono font-semibold">{{ otpValue || '------' }}</span>
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-3 text-center">8-Digit Code</label>
+          <sui-input-otp
+            [(ngModel)]="longOtpValue"
+            [length]="8">
+          </sui-input-otp>
+          <p class="mt-2 text-sm text-center text-gray-600">
+            Code: <span class="font-mono font-semibold">{{ longOtpValue || '--------' }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Alphanumeric OTP') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <div class="text-center mb-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Alphanumeric Code</h3>
+          <p class="text-sm text-gray-600">Enter the 6-character code (letters and numbers)</p>
+        </div>
+        <sui-input-otp
+          [(ngModel)]="alphaOtpValue"
+          [length]="6"
+          [numericOnly]="false"
+          inputType="text">
+        </sui-input-otp>
+        <p class="mt-4 text-sm text-center text-gray-600">
+          Code: <span class="font-mono font-semibold text-purple-600">{{ alphaOtpValue || '------' }}</span>
+        </p>
+      </div>
+    </div>
+  }
+  @case ('Two-Factor Authentication') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <div class="p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-3xl">🔒</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Two-Factor Authentication</h3>
+            <p class="text-sm text-gray-600">Enter the 6-digit verification code from your authenticator app</p>
+          </div>
+          
+          <sui-input-otp
+            [(ngModel)]="otpValue"
+            [length]="6"
+            (complete)="onOtpComplete($event)">
+          </sui-input-otp>
+          
+          <div class="mt-6 text-center">
+            <p class="text-sm text-gray-500">
+              Entered: <span class="font-mono font-bold text-blue-600">{{ otpValue || '------' }}</span>
+            </p>
+          </div>
+
+          <button class="w-full mt-6 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors" [disabled]="otpValue.length !== 6">
+            Verify Code
+          </button>
+          
+          <p class="mt-4 text-center text-sm text-gray-500">
+            Didn't receive a code? <button class="text-blue-600 hover:underline">Resend</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <sui-input-otp
+          [(ngModel)]="otpValue"
+          [length]="6">
+        </sui-input-otp>
+      </div>
+    </div>
+  }
+}

@@ -1,0 +1,112 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Cascade Select') {
+    <div class="p-8">
+      <div class="max-w-2xl mx-auto">
+        <div class="mb-4">
+          <label class="block text-sm font-semibold text-gray-700 mb-3">Product Category</label>
+          <p class="text-sm text-gray-600 mb-4">Select category → subcategory → item</p>
+        </div>
+        
+        <sui-cascade-select
+          [options]="basicCascade.options"
+          [levelsPlaceholder]="basicCascade.levelsPlaceholder"
+          [(ngModel)]="basicCascade.value"
+          [name]="basicCascade.name">
+        </sui-cascade-select>
+        
+        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+          <div class="text-sm text-gray-700">
+            <span class="font-semibold">Selected:</span>
+            <span class="ml-2 text-blue-600 font-medium">{{ basicCascade.value || 'None' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Two Levels') {
+    <div class="p-8">
+      <div class="max-w-2xl mx-auto">
+        <div class="mb-4">
+          <label class="block text-sm font-semibold text-gray-700 mb-3">Location</label>
+          <p class="text-sm text-gray-600 mb-4">Select country → city</p>
+        </div>
+        
+        <sui-cascade-select
+          [options]="twoLevels.options"
+          [levelsPlaceholder]="twoLevels.levelsPlaceholder"
+          [(ngModel)]="twoLevels.value"
+          [name]="twoLevels.name">
+        </sui-cascade-select>
+        
+        <div class="mt-6 p-4 bg-green-50 rounded-lg">
+          <div class="text-sm text-gray-700">
+            <span class="font-semibold">Selected:</span>
+            <span class="ml-2 text-green-600 font-medium">{{ twoLevels.value || 'None' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('With Disabled State') {
+    <div class="p-8">
+      <div class="max-w-2xl mx-auto">
+        <div class="mb-4">
+          <label class="block text-sm font-semibold text-gray-700 mb-3">Disabled Cascade Select</label>
+          <p class="text-sm text-gray-600 mb-4">Cascade select cannot be interacted with</p>
+        </div>
+        
+        <sui-cascade-select
+          [options]="disabledCascade.options"
+          [levelsPlaceholder]="disabledCascade.levelsPlaceholder"
+          [(ngModel)]="disabledCascade.value"
+          [disabled]="true"
+          [name]="disabledCascade.name">
+        </sui-cascade-select>
+        
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+          <div class="text-sm text-gray-500">
+            <span class="font-semibold">Status:</span>
+            <span class="ml-2">Disabled</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Product Categories') {
+    <div class="p-8">
+      <div class="max-w-2xl mx-auto">
+        <div class="mb-4">
+          <label class="block text-sm font-semibold text-gray-700 mb-3">Product Selection</label>
+          <p class="text-sm text-gray-600 mb-4">E-commerce product category navigation</p>
+        </div>
+        
+        <sui-cascade-select
+          [options]="productCascade.options"
+          [levelsPlaceholder]="productCascade.levelsPlaceholder"
+          [(ngModel)]="productCascade.value"
+          [name]="productCascade.name">
+        </sui-cascade-select>
+        
+        <div class="mt-6 p-4 bg-purple-50 rounded-lg">
+          <div class="text-sm text-gray-700">
+            <span class="font-semibold">Selected Product:</span>
+            <span class="ml-2 text-purple-600 font-medium">{{ productCascade.value || 'None' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-8">
+      <div class="max-w-2xl mx-auto">
+        <label class="block text-sm font-semibold text-gray-700 mb-3">Cascade Select</label>
+        <sui-cascade-select
+          [options]="basicCascade.options"
+          [levelsPlaceholder]="basicCascade.levelsPlaceholder"
+          [(ngModel)]="basicCascade.value"
+          [name]="basicCascade.name">
+        </sui-cascade-select>
+      </div>
+    </div>
+  }
+}

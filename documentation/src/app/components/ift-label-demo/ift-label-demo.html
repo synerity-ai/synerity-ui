@@ -1,0 +1,159 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic IFT Label') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm font-semibold text-gray-700">Status:</span>
+            <sui-toggle-switch [(ngModel)]="isActive"></sui-toggle-switch>
+          </div>
+          <div class="text-center">
+            <sui-ift-label
+              [condition]="isActive"
+              trueLabel="✓ Active"
+              falseLabel="✗ Inactive"
+              [styleClass]="isActive ? 'text-green-600 font-semibold' : 'text-gray-500 font-semibold'">
+            </sui-ift-label>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Status Indicators') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm font-semibold text-gray-700">Connection:</span>
+            <sui-toggle-switch [(ngModel)]="isOnline"></sui-toggle-switch>
+          </div>
+          <div class="text-center">
+            <sui-ift-label
+              [condition]="isOnline"
+              trueLabel="🟢 Online"
+              falseLabel="🔴 Offline"
+              [styleClass]="isOnline ? 'text-green-600 text-lg font-bold' : 'text-red-600 text-lg font-bold'">
+            </sui-ift-label>
+          </div>
+        </div>
+
+        <div class="p-6 bg-white border border-gray-200 rounded-lg">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm font-semibold text-gray-700">Account Type:</span>
+            <sui-toggle-switch [(ngModel)]="isPremium"></sui-toggle-switch>
+          </div>
+          <div class="text-center">
+            <sui-ift-label
+              [condition]="isPremium"
+              trueLabel="⭐ Premium Member"
+              falseLabel="Basic Member"
+              [styleClass]="isPremium ? 'text-amber-600 text-lg font-bold' : 'text-gray-600 text-lg'">
+            </sui-ift-label>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Permission Labels') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm font-semibold text-gray-700">Feature Enabled:</span>
+            <sui-toggle-switch [(ngModel)]="isEnabled"></sui-toggle-switch>
+          </div>
+          <div class="text-center">
+            <sui-ift-label
+              [condition]="isEnabled"
+              trueLabel="Enabled"
+              falseLabel="Disabled"
+              [styleClass]="isEnabled ? 'text-blue-600 font-semibold' : 'text-gray-400'">
+            </sui-ift-label>
+          </div>
+        </div>
+
+        <div class="p-6 bg-white border border-gray-200 rounded-lg">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm font-semibold text-gray-700">Access Permission:</span>
+            <sui-toggle-switch [(ngModel)]="hasPermission"></sui-toggle-switch>
+          </div>
+          <div class="text-center">
+            <sui-ift-label
+              [condition]="hasPermission"
+              trueLabel="🔓 Access Granted"
+              falseLabel="🔒 Access Denied"
+              [styleClass]="hasPermission ? 'text-green-600 text-lg font-semibold' : 'text-red-600 text-lg font-semibold'">
+            </sui-ift-label>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Form Validation') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <div class="p-6 bg-white border border-gray-200 rounded-xl shadow-sm space-y-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Settings</h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <div class="font-semibold text-gray-900">Notifications</div>
+                <div class="text-sm text-gray-600">
+                  <sui-ift-label
+                    [condition]="isActive"
+                    trueLabel="You will receive notifications"
+                    falseLabel="Notifications are disabled">
+                  </sui-ift-label>
+                </div>
+              </div>
+              <sui-toggle-switch [(ngModel)]="isActive"></sui-toggle-switch>
+            </div>
+
+            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <div class="font-semibold text-gray-900">Premium Features</div>
+                <div class="text-sm text-gray-600">
+                  <sui-ift-label
+                    [condition]="isPremium"
+                    trueLabel="All features unlocked"
+                    falseLabel="Upgrade to unlock all features">
+                  </sui-ift-label>
+                </div>
+              </div>
+              <sui-toggle-switch [(ngModel)]="isPremium"></sui-toggle-switch>
+            </div>
+
+            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <div class="font-semibold text-gray-900">Admin Access</div>
+                <div class="text-sm text-gray-600">
+                  <sui-ift-label
+                    [condition]="hasPermission"
+                    trueLabel="Full admin privileges"
+                    falseLabel="Standard user access">
+                  </sui-ift-label>
+                </div>
+              </div>
+              <sui-toggle-switch [(ngModel)]="hasPermission"></sui-toggle-switch>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <div class="flex items-center justify-between">
+          <sui-toggle-switch [(ngModel)]="isActive"></sui-toggle-switch>
+          <sui-ift-label
+            [condition]="isActive"
+            trueLabel="Active"
+            falseLabel="Inactive">
+          </sui-ift-label>
+        </div>
+      </div>
+    </div>
+  }
+}

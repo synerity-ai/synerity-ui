@@ -581,60 +581,68 @@ export const formComponents: ComponentModel[] = [
         id: 'password',
         name: 'Password',
         category: 'Form',
-        description: 'Interactive password input component with toggle visibility, strength indicator, and accessibility features',
+        description: 'Interactive password input component with toggle visibility and clean, simple design matching input-text styles',
         examples: [
           {
             name: 'Basic Password',
-            code: '<sui-password\n  [(ngModel)]="password"\n  [label]="\'Password\'"\n  [placeholder]="\'Enter password\'">\n</sui-password>',
+            code: '<sui-password\n  [(ngModel)]="password"\n  label="Password"\n  placeholder="Enter password">\n</sui-password>',
             description: 'Simple password input with toggle visibility'
           },
           {
             name: 'Size Variations',
-            code: '<div class="space-y-4">\n  <sui-password [(ngModel)]="password" size="small" [label]="\'Small\'"></sui-password>\n  <sui-password [(ngModel)]="password" size="medium" [label]="\'Medium\'"></sui-password>\n  <sui-password [(ngModel)]="password" size="large" [label]="\'Large\'"></sui-password>\n</div>',
+            code: '<div class="space-y-4">\n  <sui-password [(ngModel)]="password" size="sm" label="Small"></sui-password>\n  <sui-password [(ngModel)]="password" size="md" label="Medium"></sui-password>\n  <sui-password [(ngModel)]="password" size="lg" label="Large"></sui-password>\n</div>',
             description: 'Password input components in different sizes'
           },
           {
-            name: 'Color Themes',
-            code: '<div class="space-y-4">\n  <sui-password [(ngModel)]="password" color="default" [label]="\'Default\'"></sui-password>\n  <sui-password [(ngModel)]="password" color="primary" [label]="\'Primary\'"></sui-password>\n  <sui-password [(ngModel)]="password" color="success" [label]="\'Success\'"></sui-password>\n  <sui-password [(ngModel)]="password" color="warning" [label]="\'Warning\'"></sui-password>\n  <sui-password [(ngModel)]="password" color="danger" [label]="\'Danger\'"></sui-password>\n</div>',
-            description: 'Password input components with different color themes'
-          },
-          {
             name: 'With Constraints',
-            code: '<div class="space-y-4">\n  <sui-password [(ngModel)]="password" [minLength]="8" [label]="\'Password\'" [helperText]="\'Must be at least 8 characters\'"></sui-password>\n  <sui-password [(ngModel)]="password" [maxLength]="50" [label]="\'Password\'" [helperText]="\'Must be no more than 50 characters\'"></sui-password>\n  <sui-password [(ngModel)]="password" [minLength]="8" [maxLength]="50" [label]="\'Password\'" [helperText]="\'8-50 characters required\'"></sui-password>\n</div>',
+            code: '<div class="space-y-4">\n  <sui-password [(ngModel)]="password" [minLength]="8" label="Password" helperText="Must be at least 8 characters"></sui-password>\n  <sui-password [(ngModel)]="password" [maxLength]="50" label="Password" helperText="Must be no more than 50 characters"></sui-password>\n  <sui-password [(ngModel)]="password" [minLength]="8" [maxLength]="50" label="Password" helperText="8-50 characters required"></sui-password>\n</div>',
             description: 'Password inputs with min/max length constraints'
           },
           {
             name: 'State Examples',
-            code: '<div class="space-y-4">\n  <sui-password [(ngModel)]="password" [label]="\'Interactive\'"></sui-password>\n  <sui-password [(ngModel)]="password" [readonly]="true" [label]="\'Read-only\'"></sui-password>\n  <sui-password [(ngModel)]="password" [disabled]="true" [label]="\'Disabled\'"></sui-password>\n  <sui-password [(ngModel)]="password" [loading]="true" [label]="\'Loading\'"></sui-password>\n</div>',
+            code: '<div class="space-y-4">\n  <sui-password [(ngModel)]="password" label="Interactive"></sui-password>\n  <sui-password [(ngModel)]="password" [readonly]="true" label="Read-only"></sui-password>\n  <sui-password [(ngModel)]="password" [disabled]="true" label="Disabled"></sui-password>\n</div>',
             description: 'Password input components in different states'
           },
           {
-            name: 'Layout Options',
-            code: '<div class="space-y-4">\n  <sui-password [(ngModel)]="password" [compact]="true" [label]="\'Compact\'"></sui-password>\n  <sui-password [(ngModel)]="password" [spacious]="true" [label]="\'Spacious\'"></sui-password>\n  <sui-password [(ngModel)]="password" icon="🔒" [label]="\'With Icon\'"></sui-password>\n  <sui-password [(ngModel)]="password" [toggleMask]="false" [label]="\'No Toggle\'"></sui-password>\n</div>',
-            description: 'Password input components with different layout options'
-          },
-          {
-            name: 'Animation Effects',
-            code: '<div class="space-y-4">\n  <sui-password [(ngModel)]="password" [animated]="true" [label]="\'Animated\'"></sui-password>\n  <sui-password [(ngModel)]="password" [bounce]="true" [label]="\'Bounce\'"></sui-password>\n  <sui-password [(ngModel)]="password" [glow]="true" [label]="\'Glow\'"></sui-password>\n  <sui-password [(ngModel)]="password" [animated]="true" [bounce]="true" [glow]="true" [label]="\'All Effects\'"></sui-password>\n</div>',
-            description: 'Password input components with various animation effects'
-          },
-          {
-            name: 'With Strength Indicator',
-            code: '<div class="space-y-4">\n  <sui-password\n    [(ngModel)]="password"\n    [label]="\'Password\'"\n    [minLength]="8"\n    [showStrength]="true"\n    [helperText]="\'Must be at least 8 characters with mixed case, numbers, and symbols\'">\n  </sui-password>\n</div>',
-            description: 'Password input with strength indicator'
-          },
-          {
-            name: 'Login Form',
-            code: '<div class="login-form">\n  <h3>User Login</h3>\n  <sui-password\n    [(ngModel)]="password"\n    [label]="\'Password\'"\n    [placeholder]="\'Enter your password\'"\n    [helperText]="\'Enter your account password\'"\n    icon="🔒"\n    color="primary"\n    [animated]="true">\n  </sui-password>\n</div>',
-            description: 'Login form password input'
+            name: 'Registration Form',
+            code: '<div class="space-y-6">\n  <sui-password\n    [(ngModel)]="password"\n    label="Password"\n    [minLength]="8"\n    helperText="Minimum 8 characters required">\n  </sui-password>\n  <sui-password\n    [(ngModel)]="confirmPassword"\n    label="Confirm Password"\n    helperText="Re-enter your password">\n  </sui-password>\n</div>',
+            description: 'Registration form with password and confirmation'
           }
         ],
         props: [
           {
-            name: 'value',
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the input is disabled',
+            required: false
+          },
+          {
+            name: 'readonly',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the input is read-only',
+            required: false
+          },
+          {
+            name: 'name',
             type: 'string',
             default: "''",
-            description: 'Current value of the password input',
+            description: 'Name attribute for the input',
+            required: false
+          },
+          {
+            name: 'inputId',
+            type: 'string',
+            default: 'auto-generated',
+            description: 'ID for the input element',
+            required: false
+          },
+          {
+            name: 'placeholder',
+            type: 'string',
+            default: "''",
+            description: 'Placeholder text for the input',
             required: false
           },
           {
@@ -652,66 +660,17 @@ export const formComponents: ComponentModel[] = [
             required: false
           },
           {
-            name: 'placeholder',
-            type: 'string',
-            default: "''",
-            description: 'Placeholder text for the input',
-            required: false
-          },
-          {
-            name: 'disabled',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether the input is disabled',
-            required: false
-          },
-          {
-            name: 'readonly',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether the input is read-only',
-            required: false
-          },
-          {
-            name: 'loading',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether the input is in loading state',
-            required: false
-          },
-          {
             name: 'toggleMask',
             type: 'boolean',
             default: 'true',
-            description: 'Whether to show the toggle visibility button',
-            required: false
-          },
-          {
-            name: 'showStrength',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to show password strength indicator',
+            description: 'Whether to show the Show/Hide toggle button',
             required: false
           },
           {
             name: 'size',
-            type: "'small' | 'medium' | 'large'",
-            default: "'medium'",
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
             description: 'Size of the input component',
-            required: false
-          },
-          {
-            name: 'theme',
-            type: "'light' | 'dark'",
-            default: "'light'",
-            description: 'Theme variant',
-            required: false
-          },
-          {
-            name: 'color',
-            type: "'default' | 'primary' | 'success' | 'warning' | 'danger' | 'purple' | 'pink'",
-            default: "'default'",
-            description: 'Color theme for the input',
             required: false
           },
           {
@@ -734,62 +693,6 @@ export const formComponents: ComponentModel[] = [
             default: "''",
             description: 'Error text displayed below the input',
             required: false
-          },
-          {
-            name: 'icon',
-            type: 'string',
-            default: "''",
-            description: 'Icon or emoji to display in the input',
-            required: false
-          },
-          {
-            name: 'compact',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to use compact spacing',
-            required: false
-          },
-          {
-            name: 'spacious',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to use spacious spacing',
-            required: false
-          },
-          {
-            name: 'animated',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to show smooth animations',
-            required: false
-          },
-          {
-            name: 'bounce',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to show bounce animation on button hover',
-            required: false
-          },
-          {
-            name: 'glow',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to show glow effect on focus',
-            required: false
-          },
-          {
-            name: 'ariaLabel',
-            type: 'string',
-            default: "''",
-            description: 'Accessibility label for the input',
-            required: false
-          },
-          {
-            name: 'ariaDescribedBy',
-            type: 'string | null',
-            default: 'null',
-            description: 'ID of element that describes the input',
-            required: false
           }
         ],
         events: [
@@ -811,57 +714,27 @@ export const formComponents: ComponentModel[] = [
         id: 'listbox',
         name: 'Listbox',
         category: 'Form',
-        description: 'Interactive listbox component with single/multi-select, grouping, icons, badges, and accessibility features',
+        description: 'Interactive listbox component with single/multi-select and clean, simple design',
         examples: [
           {
             name: 'Basic Listbox',
-            code: '<sui-listbox\n  [options]="options"\n  [(ngModel)]="selectedValue"\n  [label]="\'Select Option\'">\n</sui-listbox>',
+            code: '<sui-listbox\n  [options]="options"\n  [(ngModel)]="selectedValue"\n  label="Select Option">\n</sui-listbox>',
             description: 'Simple listbox with basic options'
           },
           {
             name: 'Size Variations',
-            code: '<div class="space-y-4">\n  <sui-listbox [options]="options" size="small" [label]="\'Small\'"></sui-listbox>\n  <sui-listbox [options]="options" size="medium" [label]="\'Medium\'"></sui-listbox>\n  <sui-listbox [options]="options" size="large" [label]="\'Large\'"></sui-listbox>\n</div>',
+            code: '<div class="space-y-4">\n  <sui-listbox [options]="options" size="sm" label="Small"></sui-listbox>\n  <sui-listbox [options]="options" size="md" label="Medium"></sui-listbox>\n  <sui-listbox [options]="options" size="lg" label="Large"></sui-listbox>\n</div>',
             description: 'Listbox components in different sizes'
           },
           {
-            name: 'Color Themes',
-            code: '<div class="space-y-4">\n  <sui-listbox [options]="options" color="default" [label]="\'Default\'"></sui-listbox>\n  <sui-listbox [options]="options" color="primary" [label]="\'Primary\'"></sui-listbox>\n  <sui-listbox [options]="options" color="success" [label]="\'Success\'"></sui-listbox>\n  <sui-listbox [options]="options" color="warning" [label]="\'Warning\'"></sui-listbox>\n  <sui-listbox [options]="options" color="danger" [label]="\'Danger\'"></sui-listbox>\n</div>',
-            description: 'Listbox components with different color themes'
-          },
-          {
-            name: 'With Icons and Badges',
-            code: '<sui-listbox\n  [options]="optionsWithIcons"\n  [(ngModel)]="selectedValue"\n  [label]="\'Options with Icons\'">\n</sui-listbox>',
-            description: 'Listbox with icons and badges for each option'
-          },
-          {
-            name: 'Multi-Select',
-            code: '<sui-listbox\n  [options]="options"\n  [multiSelect]="true"\n  [(ngModel)]="selectedValues"\n  [label]="\'Select Multiple\'">\n</sui-listbox>',
-            description: 'Multi-select listbox for selecting multiple options'
-          },
-          {
-            name: 'Grouped Options',
-            code: '<sui-listbox\n  [groups]="groupedOptions"\n  [showGroups]="true"\n  [(ngModel)]="selectedValue"\n  [label]="\'Grouped Options\'">\n</sui-listbox>',
-            description: 'Listbox with grouped options organized by categories'
-          },
-          {
             name: 'State Examples',
-            code: '<div class="space-y-4">\n  <sui-listbox [options]="options" [label]="\'Interactive\'"></sui-listbox>\n  <sui-listbox [options]="options" [disabled]="true" [label]="\'Disabled\'"></sui-listbox>\n  <sui-listbox [options]="options" [loading]="true" [label]="\'Loading\'"></sui-listbox>\n</div>',
+            code: '<div class="space-y-4">\n  <sui-listbox [options]="options" label="Interactive"></sui-listbox>\n  <sui-listbox [options]="options" [disabled]="true" label="Disabled"></sui-listbox>\n</div>',
             description: 'Listbox components in different states'
           },
           {
-            name: 'Layout Options',
-            code: '<div class="space-y-4">\n  <sui-listbox [options]="options" [compact]="true" [label]="\'Compact\'"></sui-listbox>\n  <sui-listbox [options]="options" [spacious]="true" [label]="\'Spacious\'"></sui-listbox>\n  <sui-listbox [options]="options" [maxHeight]="\'8rem\'" [label]="\'Limited Height\'"></sui-listbox>\n</div>',
-            description: 'Listbox components with different layout options'
-          },
-          {
-            name: 'Animation Effects',
-            code: '<div class="space-y-4">\n  <sui-listbox [options]="options" [animated]="true" [label]="\'Animated\'"></sui-listbox>\n  <sui-listbox [options]="options" [bounce]="true" [label]="\'Bounce\'"></sui-listbox>\n  <sui-listbox [options]="options" [glow]="true" [label]="\'Glow\'"></sui-listbox>\n</div>',
-            description: 'Listbox components with various animation effects'
-          },
-          {
-            name: 'Country Selector',
-            code: '<sui-listbox\n  [options]="countryOptions"\n  [(ngModel)]="selectedCountry"\n  [label]="\'Country\'"\n  [helperText]="\'Select your country\'"\n  [maxHeight]="\'10rem\'"\n  [animated]="true"\n  color="primary">\n</sui-listbox>',
-            description: 'Country selection for user registration'
+            name: 'Multi-Select',
+            code: '<sui-listbox\n  [options]="options"\n  [multiSelect]="true"\n  [(ngModel)]="selectedValues"\n  label="Select Multiple">\n</sui-listbox>',
+            description: 'Multi-select listbox for selecting multiple options'
           }
         ],
         props: [
@@ -873,24 +746,10 @@ export const formComponents: ComponentModel[] = [
             required: false
           },
           {
-            name: 'groups',
-            type: 'ListboxGroup[]',
-            default: '[]',
-            description: 'Array of option groups for grouped display',
-            required: false
-          },
-          {
             name: 'disabled',
             type: 'boolean',
             default: 'false',
             description: 'Whether the listbox is disabled',
-            required: false
-          },
-          {
-            name: 'loading',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether the listbox is in loading state',
             required: false
           },
           {
@@ -901,31 +760,10 @@ export const formComponents: ComponentModel[] = [
             required: false
           },
           {
-            name: 'showGroups',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to display options in groups',
-            required: false
-          },
-          {
             name: 'size',
-            type: "'small' | 'medium' | 'large'",
-            default: "'medium'",
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
             description: 'Size of the listbox component',
-            required: false
-          },
-          {
-            name: 'theme',
-            type: "'light' | 'dark'",
-            default: "'light'",
-            description: 'Theme variant',
-            required: false
-          },
-          {
-            name: 'color',
-            type: "'default' | 'primary' | 'success' | 'warning' | 'danger' | 'purple' | 'pink'",
-            default: "'default'",
-            description: 'Color theme for the listbox',
             required: false
           },
           {
@@ -948,90 +786,6 @@ export const formComponents: ComponentModel[] = [
             default: "''",
             description: 'Error text displayed below the listbox',
             required: false
-          },
-          {
-            name: 'placeholder',
-            type: 'string',
-            default: "'Select an option'",
-            description: 'Placeholder text when no option is selected',
-            required: false
-          },
-          {
-            name: 'emptyText',
-            type: 'string',
-            default: "'No options available'",
-            description: 'Text displayed when no options are available',
-            required: false
-          },
-          {
-            name: 'emptyDescription',
-            type: 'string',
-            default: "'Try adjusting your search or filters'",
-            description: 'Description text for empty state',
-            required: false
-          },
-          {
-            name: 'emptyIcon',
-            type: 'string',
-            default: "'📋'",
-            description: 'Icon displayed in empty state',
-            required: false
-          },
-          {
-            name: 'compact',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to use compact spacing',
-            required: false
-          },
-          {
-            name: 'spacious',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to use spacious spacing',
-            required: false
-          },
-          {
-            name: 'animated',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to show smooth animations',
-            required: false
-          },
-          {
-            name: 'bounce',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to show bounce animation on hover',
-            required: false
-          },
-          {
-            name: 'glow',
-            type: 'boolean',
-            default: 'false',
-            description: 'Whether to show glow effect on focus',
-            required: false
-          },
-          {
-            name: 'maxHeight',
-            type: 'string',
-            default: "''",
-            description: 'Maximum height of the listbox container',
-            required: false
-          },
-          {
-            name: 'ariaLabel',
-            type: 'string',
-            default: "''",
-            description: 'Accessibility label for the listbox',
-            required: false
-          },
-          {
-            name: 'ariaDescribedBy',
-            type: 'string | null',
-            default: 'null',
-            description: 'ID of element that describes the listbox',
-            required: false
           }
         ],
         events: [
@@ -1043,121 +797,306 @@ export const formComponents: ComponentModel[] = [
           {
             name: 'onSelect',
             type: 'EventEmitter<ListboxOption>',
-            description: 'Emitted when an option is selected'
-          },
-          {
-            name: 'onFocus',
-            type: 'EventEmitter<number>',
-            description: 'Emitted when an option receives focus'
-          },
-          {
-            name: 'onBlur',
-            type: 'EventEmitter<void>',
-            description: 'Emitted when the listbox loses focus'
+            description: 'Emitted when an option is selected (single-select only)'
           }
         ],
-        usage: 'Use listbox components for single or multi-select scenarios, option selection, category filtering, and any situation where you need to display a list of selectable items. Supports keyboard navigation, grouping, icons, badges, and accessibility features.',
-        tags: ['listbox', 'select', 'form', 'control', 'interactive', 'accessibility', 'multi-select', 'grouping', 'options']
+        usage: 'Use listbox components for single or multi-select scenarios, option selection, and any situation where you need to display a list of selectable items with clean, simple styling.',
+        tags: ['listbox', 'select', 'form', 'control', 'interactive', 'accessibility', 'multi-select']
       },
-  {
+      {
         id: 'auto-focus',
         name: 'Auto Focus',
         category: 'Form',
-        description: 'Automatic focus management',
-        examples: [],
+        description: 'Directive that automatically focuses an input element when the component loads',
+        examples: [
+          {
+            name: 'Basic Auto Focus',
+            code: '<sui-auto-focus>\n  <sui-input-text\n    [(ngModel)]="value"\n    label="Auto-focused Input"\n    placeholder="This input has auto focus">\n  </sui-input-text>\n</sui-auto-focus>',
+            description: 'Input field with automatic focus on load'
+          }
+        ],
         props: [],
-        usage: 'Use auto focus for automatic focus management.',
-        tags: ['form', 'focus']
+        usage: 'Use the suiAutoFocus directive on any input element to automatically focus it when the component loads. Useful for forms and search fields.',
+        tags: ['form', 'focus', 'directive', 'accessibility']
       },
   {
         id: 'cascade-select',
         name: 'Cascade Select',
         category: 'Form',
-        description: 'Hierarchical selection component',
-        examples: [],
+        description: 'Hierarchical selection component for nested categories',
+        examples: [
+          {
+            name: 'Basic Cascade Select',
+            code: '<sui-cascade-select\n  [options]="options"\n  [levelsPlaceholder]="[\'Category\', \'Subcategory\', \'Item\']"\n  [(ngModel)]="selectedValue"\n  name="category">\n</sui-cascade-select>',
+            description: 'Hierarchical selection with multiple dropdown levels'
+          },
+          {
+            name: 'Two Levels',
+            code: '<sui-cascade-select\n  [options]="locationOptions"\n  [levelsPlaceholder]="[\'Country\', \'City\']"\n  [(ngModel)]="selectedLocation"\n  name="location">\n</sui-cascade-select>',
+            description: 'Cascade select with two hierarchy levels'
+          },
+          {
+            name: 'With Disabled State',
+            code: '<sui-cascade-select\n  [options]="options"\n  [levelsPlaceholder]="[\'Category\', \'Subcategory\']"\n  [(ngModel)]="selectedValue"\n  [disabled]="true"\n  name="category">\n</sui-cascade-select>',
+            description: 'Cascade select in disabled state'
+          },
+          {
+            name: 'Product Categories',
+            code: '<sui-cascade-select\n  [options]="productCategories"\n  [levelsPlaceholder]="[\'Department\', \'Category\', \'Product\']"\n  [(ngModel)]="selectedProduct"\n  name="product">\n</sui-cascade-select>',
+            description: 'Product category selection for e-commerce'
+          }
+        ],
         props: [],
-        usage: 'Use cascade selects for hierarchical data selection.',
-        tags: ['form', 'input']
+        usage: 'Use cascade select for hierarchical data selection like categories, locations, or organizational structures.',
+        tags: ['form', 'select', 'hierarchical', 'dropdown']
       },
   {
         id: 'float-label',
         name: 'Float Label',
         category: 'Form',
-        description: 'Floating label input component',
-        examples: [],
+        description: 'Floating label input component for modern form styling',
+        examples: [
+          {
+            name: 'Basic Float Label',
+            code: '<sui-float-label label="Email Address" for="email">\n  <input type="email" id="email" placeholder="Enter your email">\n</sui-float-label>',
+            description: 'Basic float label with email input'
+          },
+          {
+            name: 'Size Variations',
+            code: '<sui-float-label label="Small" size="sm" for="input-sm">\n  <input type="text" id="input-sm">\n</sui-float-label>',
+            description: 'Float labels in small, medium, and large sizes'
+          },
+          {
+            name: 'With States',
+            code: '<sui-float-label label="Error State" state="error" errorText="This field is required" for="error">\n  <input type="text" id="error">\n</sui-float-label>',
+            description: 'Float labels with error, success, and warning states'
+          },
+          {
+            name: 'Contact Form',
+            code: '<sui-float-label label="Full Name" required animated for="name">\n  <input type="text" id="name">\n</sui-float-label>',
+            description: 'Complete contact form with animated float labels'
+          }
+        ],
         props: [],
-        usage: 'Use float labels for modern input styling.',
-        tags: ['form', 'input']
+        usage: 'Use float labels for modern input styling with smooth label animations.',
+        tags: ['form', 'input', 'label', 'animation']
       },
   {
         id: 'icon-field',
         name: 'Icon Field',
         category: 'Form',
-        description: 'Input with icon component',
-        examples: [],
+        description: 'Input wrapper component that adds icons to input fields',
+        examples: [
+          {
+            name: 'Basic Icon Field',
+            code: '<sui-icon-field icon="🔍" position="left">\n  <sui-input-text placeholder="Search..."></sui-input-text>\n</sui-icon-field>',
+            description: 'Input field with icon on the left'
+          },
+          {
+            name: 'Icon Positions',
+            code: '<sui-icon-field icon="✓" position="right">\n  <sui-input-text placeholder="Phone"></sui-input-text>\n</sui-icon-field>',
+            description: 'Icon can be positioned left or right'
+          },
+          {
+            name: 'Different Sizes',
+            code: '<sui-icon-field icon="🔍" size="small">\n  <sui-input-text size="sm"></sui-input-text>\n</sui-icon-field>',
+            description: 'Small, normal, and large sizes'
+          },
+          {
+            name: 'Form Example',
+            code: '<sui-icon-field icon="📧" position="left">\n  <sui-input-text placeholder="Email"></sui-input-text>\n</sui-icon-field>',
+            description: 'Complete form with icon fields'
+          }
+        ],
         props: [],
-        usage: 'Use icon fields for inputs with icons.',
-        tags: ['form', 'input']
+        usage: 'Use icon fields to add visual context to input fields like search, email, password, etc.',
+        tags: ['form', 'input', 'icon', 'wrapper']
       },
   {
         id: 'ift-label',
         name: 'IFT Label',
         category: 'Form',
-        description: 'Input field with label component',
-        examples: [],
+        description: 'Conditional label component that displays different labels based on a condition',
+        examples: [
+          {
+            name: 'Basic IFT Label',
+            code: '<sui-ift-label\n  [condition]="isActive"\n  trueLabel="✓ Active"\n  falseLabel="✗ Inactive">\n</sui-ift-label>',
+            description: 'Simple conditional label showing active/inactive states'
+          },
+          {
+            name: 'Status Indicators',
+            code: '<sui-ift-label\n  [condition]="isOnline"\n  trueLabel="🟢 Online"\n  falseLabel="🔴 Offline">\n</sui-ift-label>',
+            description: 'Status labels with icons and colors'
+          },
+          {
+            name: 'Permission Labels',
+            code: '<sui-ift-label\n  [condition]="hasPermission"\n  trueLabel="🔓 Access Granted"\n  falseLabel="🔒 Access Denied">\n</sui-ift-label>',
+            description: 'Permission status with lock icons'
+          },
+          {
+            name: 'Form Validation',
+            code: '<sui-ift-label\n  [condition]="isPremium"\n  trueLabel="All features unlocked"\n  falseLabel="Upgrade to unlock">\n</sui-ift-label>',
+            description: 'Settings form with conditional descriptions'
+          }
+        ],
         props: [],
-        usage: 'Use IFT labels for labeled input fields.',
-        tags: ['form', 'input']
+        usage: 'Use IFT Label for conditional text display based on boolean conditions - perfect for status indicators, permissions, and dynamic labels.',
+        tags: ['form', 'label', 'conditional', 'status']
       },
   {
         id: 'ifta-label',
         name: 'IFTA Label',
         category: 'Form',
-        description: 'Input field with text area label component',
-        examples: [],
+        description: 'If-Then-Else-Alt conditional label with three-way condition support',
+        examples: [
+          {
+            name: 'Basic IFTA Label',
+            code: '<sui-ifta-label\n  [condition]="isActive"\n  trueLabel="✓ Active"\n  falseLabel="✗ Inactive"\n  altLabel="⚠ Unknown">\n</sui-ifta-label>',
+            description: 'Conditional label with alternative state'
+          },
+          {
+            name: 'Verification Status',
+            code: '<sui-ifta-label\n  [condition]="isVerified"\n  trueLabel="✓ Verified"\n  falseLabel="⚠ Pending"\n  altLabel="✗ Failed">\n</sui-ifta-label>',
+            description: 'Account verification with three states'
+          },
+          {
+            name: 'Access Control',
+            code: '<sui-ifta-label\n  [condition]="hasAccess"\n  trueLabel="🔓 Full Access"\n  falseLabel="🔒 Restricted"\n  altLabel="⚠ Limited">\n</sui-ifta-label>',
+            description: 'Access control with multiple states'
+          },
+          {
+            name: 'Payment Status',
+            code: '<sui-ifta-label\n  [condition]="isPaid"\n  trueLabel="✓ Paid"\n  falseLabel="⚠ Unpaid"\n  altLabel="❌ Failed">\n</sui-ifta-label>',
+            description: 'Payment status with multiple conditions'
+          }
+        ],
         props: [],
-        usage: 'Use IFTA labels for labeled text areas.',
-        tags: ['form', 'input']
+        usage: 'Use IFTA Label when you need to display three different states based on a condition - extends IFT Label with an alternative label option.',
+        tags: ['form', 'label', 'conditional', 'status', 'three-state']
       },
   {
         id: 'input-group',
         name: 'Input Group',
         category: 'Form',
-        description: 'Grouped input component',
-        examples: [],
+        description: 'Wrapper component for grouping input fields with prefixes and suffixes',
+        examples: [
+          {
+            name: 'Basic Input Group',
+            code: '<sui-input-group>\n  <span>@</span>\n  <sui-input-text placeholder="username"></sui-input-text>\n</sui-input-group>',
+            description: 'Input with prefix addon'
+          },
+          {
+            name: 'With Prefix & Suffix',
+            code: '<sui-input-group>\n  <span>https://</span>\n  <sui-input-text placeholder="example"></sui-input-text>\n  <span>.com</span>\n</sui-input-group>',
+            description: 'Input with both prefix and suffix'
+          },
+          {
+            name: 'Different Sizes',
+            code: '<sui-input-group size="small">\n  <span>$</span>\n  <sui-input-text></sui-input-text>\n</sui-input-group>',
+            description: 'Small, normal, and large input groups'
+          },
+          {
+            name: 'Form Examples',
+            code: '<sui-input-group>\n  <span>📧</span>\n  <sui-input-text placeholder="email"></sui-input-text>\n  <span>@domain.com</span>\n</sui-input-group>',
+            description: 'Real-world form with input groups'
+          }
+        ],
         props: [],
-        usage: 'Use input groups for related input fields.',
-        tags: ['form', 'input']
+        usage: 'Use input groups to add prefixes, suffixes, or addons to input fields - perfect for URLs, prices, usernames, etc.',
+        tags: ['form', 'input', 'wrapper', 'addon']
       },
   {
         id: 'input-mask',
         name: 'Input Mask',
         category: 'Form',
-        description: 'Masked input component',
-        examples: [],
+        description: 'Input component with format masking for structured data entry',
+        examples: [
+          {
+            name: 'Phone Number Mask',
+            code: '<sui-input-mask\n  mask="(999) 999-9999"\n  placeholder="(555) 123-4567">\n</sui-input-mask>',
+            description: 'Phone number with formatting'
+          },
+          {
+            name: 'Date Mask',
+            code: '<sui-input-mask\n  mask="99/99/9999"\n  placeholder="MM/DD/YYYY">\n</sui-input-mask>',
+            description: 'Date input with mask format'
+          },
+          {
+            name: 'SSN Mask',
+            code: '<sui-input-mask\n  mask="999-99-9999"\n  placeholder="123-45-6789">\n</sui-input-mask>',
+            description: 'Social Security Number format'
+          },
+          {
+            name: 'Credit Card Mask',
+            code: '<sui-input-mask\n  mask="9999 9999 9999 9999"\n  placeholder="Card number">\n</sui-input-mask>',
+            description: 'Payment form with card masks'
+          }
+        ],
         props: [],
-        usage: 'Use input masks for formatted input.',
-        tags: ['form', 'input']
+        usage: 'Use input mask for formatted data entry like phone numbers, dates, SSN, credit cards. Mask: 9=digit, A=letter, *=alphanumeric.',
+        tags: ['form', 'input', 'mask', 'format', 'validation']
       },
   {
         id: 'input-otp',
         name: 'Input OTP',
         category: 'Form',
-        description: 'One-time password input component',
-        examples: [],
+        description: 'One-time password input with auto-focus and paste support',
+        examples: [
+          {
+            name: 'Basic OTP Input',
+            code: '<sui-input-otp\n  [(ngModel)]="otpValue"\n  [length]="6"\n  (complete)="onComplete($event)">\n</sui-input-otp>',
+            description: '6-digit verification code input'
+          },
+          {
+            name: 'Different Lengths',
+            code: '<sui-input-otp [length]="4"></sui-input-otp>\n<sui-input-otp [length]="6"></sui-input-otp>\n<sui-input-otp [length]="8"></sui-input-otp>',
+            description: '4, 6, and 8-digit OTP inputs'
+          },
+          {
+            name: 'Alphanumeric OTP',
+            code: '<sui-input-otp\n  [length]="6"\n  [numericOnly]="false"\n  inputType="text">\n</sui-input-otp>',
+            description: 'Alphanumeric verification code'
+          },
+          {
+            name: 'Two-Factor Authentication',
+            code: '<sui-input-otp\n  [(ngModel)]="code"\n  [length]="6"\n  (complete)="verify($event)">\n</sui-input-otp>',
+            description: 'Complete 2FA verification flow'
+          }
+        ],
         props: [],
-        usage: 'Use OTP inputs for verification codes.',
-        tags: ['form', 'input']
+        usage: 'Use OTP inputs for two-factor authentication, email verification, and security codes. Supports auto-focus, paste, and completion events.',
+        tags: ['form', 'input', 'otp', 'verification', 'security', '2fa']
       },
   {
         id: 'key-filter',
         name: 'Key Filter',
         category: 'Form',
-        description: 'Keyboard input filter component',
-        examples: [],
+        description: 'Input component that filters keyboard input to allow only specific characters',
+        examples: [
+          {
+            name: 'Integer Only',
+            code: '<sui-key-filter\n  pattern="int"\n  placeholder="Digits only">\n</sui-key-filter>',
+            description: 'Only allows digits 0-9'
+          },
+          {
+            name: 'Pattern Types',
+            code: '<sui-key-filter pattern="int"></sui-key-filter>\n<sui-key-filter pattern="num"></sui-key-filter>\n<sui-key-filter pattern="alpha"></sui-key-filter>\n<sui-key-filter pattern="alphanum"></sui-key-filter>',
+            description: 'Built-in patterns: int, num, alpha, alphanum'
+          },
+          {
+            name: 'Custom Pattern',
+            code: '<sui-key-filter\n  pattern="[A-Fa-f0-9]"\n  placeholder="Hex only">\n</sui-key-filter>',
+            description: 'Custom regex pattern for hex values'
+          },
+          {
+            name: 'Form Validation',
+            code: '<sui-key-filter\n  pattern="alphanum"\n  placeholder="Username">\n</sui-key-filter>',
+            description: 'Registration form with filtered inputs'
+          }
+        ],
         props: [],
-        usage: 'Use key filters to restrict input characters.',
-        tags: ['form', 'input']
+        usage: 'Use key filter to restrict user input to specific character types - integers, numbers, letters, alphanumeric, or custom regex patterns.',
+        tags: ['form', 'input', 'filter', 'validation', 'pattern']
       },
   {
         id: 'textarea',
@@ -1523,28 +1462,23 @@ export const formComponents: ComponentModel[] = [
         examples: [
           {
             name: 'Basic Tree Select',
-            code: '<sui-tree-select\n  [options]="options"\n  [(ngModel)]="selectedValue"\n  [label]="\'Select Option\'">\n</sui-tree-select>',
-            description: 'Simple tree select with hierarchical options'
+            code: '<sui-tree-select\n  [options]="options"\n  [(ngModel)]="selectedValue"\n  placeholder="Select a folder...">\n</sui-tree-select>',
+            description: 'Simple hierarchical selection'
           },
           {
-            name: 'Size Variations',
-            code: '<div class="space-y-4">\n  <sui-tree-select [options]="options" size="small" [label]="\'Small\'"></sui-tree-select>\n  <sui-tree-select [options]="options" size="medium" [label]="\'Medium\'"></sui-tree-select>\n  <sui-tree-select [options]="options" size="large" [label]="\'Large\'"></sui-tree-select>\n</div>',
-            description: 'Tree select components in different sizes'
+            name: 'Multi-Select Tree',
+            code: '<sui-tree-select\n  [options]="options"\n  [(ngModel)]="selectedValues"\n  [multiple]="true"\n  placeholder="Select technologies...">\n</sui-tree-select>',
+            description: 'Multi-select with tree structure'
           },
           {
-            name: 'Color Themes',
-            code: '<div class="space-y-4">\n  <sui-tree-select [options]="options" color="default" [label]="\'Default\'"></sui-tree-select>\n  <sui-tree-select [options]="options" color="primary" [label]="\'Primary\'"></sui-tree-select>\n  <sui-tree-select [options]="options" color="success" [label]="\'Success\'"></sui-tree-select>\n  <sui-tree-select [options]="options" color="warning" [label]="\'Warning\'"></sui-tree-select>\n  <sui-tree-select [options]="options" color="danger" [label]="\'Danger\'"></sui-tree-select>\n</div>',
-            description: 'Tree select components with different color themes'
+            name: 'Searchable Tree',
+            code: '<sui-tree-select\n  [options]="options"\n  [(ngModel)]="selectedValue"\n  [searchable]="true"\n  [clearable]="true"\n  placeholder="Search and select...">\n</sui-tree-select>',
+            description: 'Tree with search and clear functionality'
           },
           {
-            name: 'Multi-Select with Search',
-            code: '<sui-tree-select\n  [options]="options"\n  [multiple]="true"\n  [searchable]="true"\n  [clearable]="true"\n  [(ngModel)]="selectedValues"\n  [label]="\'Multi-Select with Search\'">\n</sui-tree-select>',
-            description: 'Multi-select tree with search functionality'
-          },
-          {
-            name: 'With Icons and Descriptions',
-            code: '<sui-tree-select\n  [options]="optionsWithIcons"\n  [(ngModel)]="selectedValue"\n  [label]="\'Options with Icons\'">\n</sui-tree-select>',
-            description: 'Tree select with icons and descriptions for each option'
+            name: 'Product Categories',
+            code: '<sui-tree-select\n  [options]="categories"\n  [(ngModel)]="selected"\n  [multiple]="true"\n  [searchable]="true">\n</sui-tree-select>',
+            description: 'E-commerce category selection'
           },
           {
             name: 'State Examples',

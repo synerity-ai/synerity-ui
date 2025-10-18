@@ -1,0 +1,134 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Icon Field') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Search</label>
+          <sui-icon-field icon="🔍" position="left">
+            <sui-input-text
+              [(ngModel)]="searchValue"
+              placeholder="Search...">
+            </sui-input-text>
+          </sui-icon-field>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+          <sui-icon-field icon="📧" position="left">
+            <sui-input-text
+              [(ngModel)]="emailValue"
+              placeholder="Enter email">
+            </sui-input-text>
+          </sui-icon-field>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Icon Positions') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Left Icon</label>
+          <sui-icon-field icon="👤" position="left">
+            <sui-input-text
+              [(ngModel)]="usernameValue"
+              placeholder="Username">
+            </sui-input-text>
+          </sui-icon-field>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Right Icon</label>
+          <sui-icon-field icon="✓" position="right">
+            <sui-input-text
+              [(ngModel)]="phoneValue"
+              placeholder="Phone number">
+            </sui-input-text>
+          </sui-icon-field>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Different Sizes') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Small</label>
+          <sui-icon-field icon="🔍" position="left" size="small">
+            <sui-input-text
+              [(ngModel)]="searchValue"
+              size="sm"
+              placeholder="Small search">
+            </sui-input-text>
+          </sui-icon-field>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Normal</label>
+          <sui-icon-field icon="🔍" position="left" size="normal">
+            <sui-input-text
+              [(ngModel)]="searchValue"
+              placeholder="Normal search">
+            </sui-input-text>
+          </sui-icon-field>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Large</label>
+          <sui-icon-field icon="🔍" position="left" size="large">
+            <sui-input-text
+              [(ngModel)]="searchValue"
+              size="lg"
+              placeholder="Large search">
+            </sui-input-text>
+          </sui-icon-field>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Form Example') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <div class="p-6 bg-white border border-gray-200 rounded-xl shadow-sm space-y-5">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Sign In</h3>
+          
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+            <sui-icon-field icon="📧" position="left">
+              <sui-input-text
+                [(ngModel)]="emailValue"
+                placeholder="your@email.com">
+              </sui-input-text>
+            </sui-icon-field>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+            <sui-icon-field icon="🔒" position="left">
+              <sui-input-text
+                [(ngModel)]="passwordValue"
+                placeholder="Enter password">
+              </sui-input-text>
+            </sui-icon-field>
+          </div>
+
+          <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+            Sign In
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <sui-icon-field icon="🔍" position="left">
+          <sui-input-text
+            [(ngModel)]="searchValue"
+            placeholder="Search...">
+          </sui-input-text>
+        </sui-icon-field>
+      </div>
+    </div>
+  }
+}

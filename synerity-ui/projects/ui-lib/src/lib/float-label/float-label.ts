@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, ViewChild, ElementRef, HostListener, forwardRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewChild, ElementRef, AfterViewInit, forwardRef, OnDestroy } from '@angular/core';
 import { NgIf, CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -17,7 +17,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class FloatLabel implements ControlValueAccessor {
+export class FloatLabel implements ControlValueAccessor, AfterViewInit, OnDestroy {
   @Input() label = '';
   @Input() for = '';
   @Input() required = false;
@@ -44,36 +44,64 @@ export class FloatLabel implements ControlValueAccessor {
   value: any = '';
   private onChange: (val: any) => void = () => {};
   private onTouched: () => void = () => {};
+  private inputListeners: (() => void)[] = [];
 
-  @HostListener('focus')
-  onFocus(): void {
-    if (!this.disabled) {
-      this.isFocused = true;
-    }
+  constructor(
+    private elementRef: ElementRef,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngAfterViewInit(): void {
+    // Find the input element within the ng-content
+    setTimeout(() => {
+      const input = this.elementRef.nativeElement.querySelector('input, textarea');
+      if (input) {
+        // Add focus listener
+        const focusListener = () => {
+          if (!this.disabled) {
+            this.isFocused = true;
+            this.cdr.markForCheck();
+          }
+        };
+        input.addEventListener('focus', focusListener);
+        this.inputListeners.push(() => input.removeEventListener('focus', focusListener));
+
+        // Add blur listener
+        const blurListener = () => {
+          this.isFocused = false;
+          this.checkValue(input);
+          this.onTouched();
+          this.cdr.markForCheck();
+        };
+        input.addEventListener('blur', blurListener);
+        this.inputListeners.push(() => input.removeEventListener('blur', blurListener));
+
+        // Add input listener
+        const inputListener = () => {
+          if (!this.disabled) {
+            this.value = input.value;
+            this.onChange(this.value);
+            this.checkValue(input);
+            this.cdr.markForCheck();
+          }
+        };
+        input.addEventListener('input', inputListener);
+        this.inputListeners.push(() => input.removeEventListener('input', inputListener));
+
+        // Check initial value
+        this.checkValue(input);
+        this.cdr.markForCheck();
+      }
+    });
   }
 
-  @HostListener('blur')
-  onBlur(): void {
-    this.isFocused = false;
-    this.checkValue();
-    this.onTouched();
+  ngOnDestroy(): void {
+    // Clean up event listeners
+    this.inputListeners.forEach(cleanup => cleanup());
   }
 
-  @HostListener('input', ['$event'])
-  onInput(event: Event): void {
-    if (!this.disabled) {
-      const target = event.target as HTMLInputElement;
-      this.value = target.value;
-      this.onChange(this.value);
-      this.checkValue();
-    }
-  }
-
-  private checkValue(): void {
-    if (this.inputElement) {
-      const input = this.inputElement.nativeElement;
-      this.hasValue = input.value && input.value.length > 0;
-    }
+  private checkValue(input: HTMLInputElement | HTMLTextAreaElement): void {
+    this.hasValue = !!(input.value && input.value.length > 0);
   }
 
   getFloatLabelClass(): string {
@@ -184,10 +212,15 @@ export class FloatLabel implements ControlValueAccessor {
   // ControlValueAccessor implementation
   writeValue(val: any): void {
     this.value = val ?? '';
-    if (this.inputElement) {
-      this.inputElement.nativeElement.value = this.value;
-      this.checkValue();
-    }
+    // Update hasValue when value is set programmatically
+    setTimeout(() => {
+      const input = this.elementRef.nativeElement.querySelector('input, textarea');
+      if (input) {
+        input.value = this.value;
+        this.checkValue(input);
+        this.cdr.markForCheck();
+      }
+    });
   }
 
   registerOnChange(fn: (val: any) => void): void {
@@ -200,5 +233,6 @@ export class FloatLabel implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    this.cdr.markForCheck();
   }
 }

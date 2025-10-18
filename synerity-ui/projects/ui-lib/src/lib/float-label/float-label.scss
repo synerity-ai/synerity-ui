@@ -1,229 +1,222 @@
-// FloatLabel Component Styles
+// Float Label Component - Material Design Style
 .sui-float-label {
   position: relative;
-  display: inline-block;
-  width: var(--sui-float-label-width, 100%);
-  margin: var(--sui-float-label-margin, 0);
-  padding: var(--sui-float-label-padding, 0);
-  font-family: var(--sui-float-label-font-family, inherit);
-  font-size: var(--sui-float-label-font-size, 14px);
-  line-height: var(--sui-float-label-line-height, 1.4);
-  color: var(--sui-float-label-color, #374151);
-  background: var(--sui-float-label-bg, transparent);
-  border-radius: var(--sui-float-label-border-radius, 0);
-  transition: var(--sui-float-label-transition, all 0.2s cubic-bezier(0.4, 0, 0.2, 1));
-  
-  // Label text styling
+  display: block;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+
+  // Label text - starts as placeholder inside input
   .sui-float-label-text {
     position: absolute;
-    top: var(--sui-float-label-text-top, 50%);
-    left: var(--sui-float-label-text-left, 12px);
-    transform: var(--sui-float-label-text-transform, translateY(-50%));
-    font-size: var(--sui-float-label-text-font-size, 14px);
-    font-weight: var(--sui-float-label-text-font-weight, 400);
-    line-height: var(--sui-float-label-text-line-height, 1.4);
-    color: var(--sui-float-label-text-color, #6b7280);
-    background: var(--sui-float-label-text-bg, transparent);
-    padding: var(--sui-float-label-text-padding, 0 4px);
-    margin: var(--sui-float-label-text-margin, 0);
-    pointer-events: var(--sui-float-label-text-pointer-events, none);
-    transition: var(--sui-float-label-text-transition, all 0.2s cubic-bezier(0.4, 0, 0.2, 1));
-    white-space: var(--sui-float-label-text-white-space, nowrap);
-    overflow: var(--sui-float-label-text-overflow, hidden);
-    text-overflow: var(--sui-float-label-text-text-overflow, ellipsis);
-    max-width: var(--sui-float-label-text-max-width, calc(100% - 24px));
-    z-index: var(--sui-float-label-text-z-index, 1);
-    
-    // Required mark styling
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: #9ca3af;
+    background: transparent;
+    padding: 0 4px;
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    z-index: 1;
+
     .sui-float-label-required-mark {
-      color: var(--sui-float-label-required-color, #dc2626);
-      font-weight: var(--sui-float-label-required-font-weight, 600);
-      margin-left: var(--sui-float-label-required-margin-left, 2px);
+      color: #dc2626;
+      margin-left: 2px;
     }
   }
-  
-  // Focused state
+
+  // Input styling (targets the slotted input)
+  ::ng-deep input,
+  ::ng-deep textarea {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+    color: #111827;
+    background: #ffffff;
+    border: 2px solid #d1d5db;
+    border-radius: 0.5rem;
+    outline: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:hover:not(:disabled) {
+      border-color: #9ca3af;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    &:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    &:disabled {
+      background: #f9fafb;
+      border-color: #e5e7eb;
+      color: #9ca3af;
+      cursor: not-allowed;
+    }
+  }
+
+  // Focused or has value - label floats to top border
   &.sui-float-label-focused {
     .sui-float-label-text {
-      top: var(--sui-float-label-focused-text-top, -8px);
-      left: var(--sui-float-label-focused-text-left, 8px);
-      font-size: var(--sui-float-label-focused-text-font-size, 12px);
-      font-weight: var(--sui-float-label-focused-text-font-weight, 500);
-      color: var(--sui-float-label-focused-text-color, #3b82f6);
-      background: var(--sui-float-label-focused-text-bg, #ffffff);
-      transform: var(--sui-float-label-focused-text-transform, translateY(0));
-      z-index: var(--sui-float-label-focused-text-z-index, 2);
-      
-      .sui-float-label-required-mark {
-        color: var(--sui-float-label-focused-required-color, #dc2626);
-      }
+      top: 0;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #3b82f6;
+      background: #ffffff;
+      padding: 0 4px;
     }
   }
-  
-  // Required state
-  &.sui-float-label-required {
-    .sui-float-label-text {
-      color: var(--sui-float-label-required-text-color, #374151);
-    }
-    
-    &.sui-float-label-focused {
-      .sui-float-label-text {
-        color: var(--sui-float-label-required-focused-text-color, #3b82f6);
-      }
-    }
-  }
-  
+
   // Error state
   &.sui-float-label-error {
-    .sui-float-label-text {
-      color: var(--sui-float-label-error-text-color, #dc2626);
-    }
-    
-    &.sui-float-label-focused {
-      .sui-float-label-text {
-        color: var(--sui-float-label-error-focused-text-color, #dc2626);
-        background: var(--sui-float-label-error-focused-text-bg, #fef2f2);
+    ::ng-deep input,
+    ::ng-deep textarea {
+      border-color: #ef4444;
+      
+      &:focus {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
       }
     }
+
+    &.sui-float-label-focused .sui-float-label-text {
+      color: #ef4444;
+    }
   }
-  
+
   // Success state
   &.sui-float-label-success {
-    .sui-float-label-text {
-      color: var(--sui-float-label-success-text-color, #059669);
-    }
-    
-    &.sui-float-label-focused {
-      .sui-float-label-text {
-        color: var(--sui-float-label-success-focused-text-color, #059669);
-        background: var(--sui-float-label-success-focused-text-bg, #f0fdf4);
+    ::ng-deep input,
+    ::ng-deep textarea {
+      border-color: #10b981;
+      
+      &:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
       }
     }
+
+    &.sui-float-label-focused .sui-float-label-text {
+      color: #10b981;
+    }
   }
-  
+
   // Warning state
   &.sui-float-label-warning {
-    .sui-float-label-text {
-      color: var(--sui-float-label-warning-text-color, #d97706);
-    }
-    
-    &.sui-float-label-focused {
-      .sui-float-label-text {
-        color: var(--sui-float-label-warning-focused-text-color, #d97706);
-        background: var(--sui-float-label-warning-focused-text-bg, #fffbeb);
+    ::ng-deep input,
+    ::ng-deep textarea {
+      border-color: #f59e0b;
+      
+      &:focus {
+        border-color: #f59e0b;
+        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
       }
     }
-  }
-  
-  // Disabled state
-  &.sui-float-label-disabled {
-    opacity: var(--sui-float-label-disabled-opacity, 0.6);
-    cursor: var(--sui-float-label-disabled-cursor, not-allowed);
-    pointer-events: var(--sui-float-label-disabled-pointer-events, none);
-    
-    .sui-float-label-text {
-      color: var(--sui-float-label-disabled-text-color, #9ca3af);
+
+    &.sui-float-label-focused .sui-float-label-text {
+      color: #f59e0b;
     }
   }
-  
+
   // Size variations
   &.sui-float-label-sm {
-    font-size: var(--sui-float-label-sm-font-size, 12px);
-    
     .sui-float-label-text {
-      font-size: var(--sui-float-label-sm-text-font-size, 12px);
-      top: var(--sui-float-label-sm-text-top, 50%);
-      left: var(--sui-float-label-sm-text-left, 10px);
-      
-      &.sui-float-label-focused {
-        top: var(--sui-float-label-sm-focused-text-top, -6px);
-        left: var(--sui-float-label-sm-focused-text-left, 6px);
-        font-size: var(--sui-float-label-sm-focused-text-font-size, 10px);
-      }
+      font-size: 0.875rem;
+      left: 12px;
+    }
+
+    ::ng-deep input,
+    ::ng-deep textarea {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    &.sui-float-label-focused .sui-float-label-text {
+      left: 8px;
+      font-size: 0.6875rem;
     }
   }
-  
+
   &.sui-float-label-lg {
-    font-size: var(--sui-float-label-lg-font-size, 16px);
-    
     .sui-float-label-text {
-      font-size: var(--sui-float-label-lg-text-font-size, 16px);
-      top: var(--sui-float-label-lg-text-top, 50%);
-      left: var(--sui-float-label-lg-text-left, 16px);
-      
-      &.sui-float-label-focused {
-        top: var(--sui-float-label-lg-focused-text-top, -10px);
-        left: var(--sui-float-label-lg-focused-text-left, 12px);
-        font-size: var(--sui-float-label-lg-focused-text-font-size, 14px);
-      }
+      font-size: 1rem;
+      left: 16px;
+    }
+
+    ::ng-deep input,
+    ::ng-deep textarea {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+    }
+
+    &.sui-float-label-focused .sui-float-label-text {
+      left: 12px;
+      font-size: 0.8125rem;
     }
   }
-  
-  // Animation variations
+
+  // Disabled state
+  &.sui-float-label-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .sui-float-label-text {
+      color: #9ca3af;
+    }
+  }
+
+  // Helper text
+  .sui-float-label-helper {
+    display: block;
+    margin-top: 0.375rem;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: #6b7280;
+    transition: color 0.2s ease;
+
+    &.sui-float-label-helper-error {
+      color: #dc2626;
+      font-weight: 500;
+    }
+
+    &.sui-float-label-helper-success {
+      color: #059669;
+      font-weight: 500;
+    }
+
+    &.sui-float-label-helper-warning {
+      color: #d97706;
+      font-weight: 500;
+    }
+  }
+
+  // Animated transition
   &.sui-float-label-animated {
     .sui-float-label-text {
-      transition: var(--sui-float-label-animated-text-transition, all 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
-  
-  &.sui-float-label-bounce {
-    .sui-float-label-text {
-      transition: var(--sui-float-label-bounce-text-transition, all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55));
-    }
-  }
-  
+
   // RTL support
   &.sui-float-label-rtl {
     .sui-float-label-text {
       left: auto;
-      right: var(--sui-float-label-rtl-text-right, 12px);
-      text-align: var(--sui-float-label-rtl-text-text-align, right);
+      right: 14px;
+      text-align: right;
     }
-    
-    &.sui-float-label-focused {
-      .sui-float-label-text {
-        left: auto;
-        right: var(--sui-float-label-rtl-focused-text-right, 8px);
-      }
-    }
-  }
-  
-  // Helper text styling
-  .sui-float-label-helper {
-    margin-top: var(--sui-float-label-helper-margin-top, 4px);
-    font-size: var(--sui-float-label-helper-font-size, 12px);
-    line-height: var(--sui-float-label-helper-line-height, 1.4);
-    color: var(--sui-float-label-helper-color, #6b7280);
-    padding: var(--sui-float-label-helper-padding, 0);
-    transition: var(--sui-float-label-helper-transition, color 0.2s ease);
-    
-    &.sui-float-label-helper-error {
-      color: var(--sui-float-label-helper-error-color, #dc2626);
-    }
-    
-    &.sui-float-label-helper-success {
-      color: var(--sui-float-label-helper-success-color, #059669);
-    }
-    
-    &.sui-float-label-helper-warning {
-      color: var(--sui-float-label-helper-warning-color, #d97706);
-    }
-  }
-}
 
-// High contrast mode support
-@media (prefers-contrast: high) {
-  .sui-float-label {
-    .sui-float-label-text {
-      border: var(--sui-float-label-high-contrast-text-border, 1px solid currentColor);
-      background: var(--sui-float-label-high-contrast-text-bg, #ffffff);
-    }
-    
-    &.sui-float-label-focused {
-      .sui-float-label-text {
-        border: var(--sui-float-label-high-contrast-focused-text-border, 2px solid currentColor);
-        background: var(--sui-float-label-high-contrast-focused-text-bg, #ffffff);
-      }
+    &.sui-float-label-focused .sui-float-label-text {
+      right: 10px;
     }
   }
 }
@@ -231,10 +224,8 @@
 // Reduced motion support
 @media (prefers-reduced-motion: reduce) {
   .sui-float-label {
-    transition: var(--sui-float-label-reduced-motion-transition, none);
-    
     .sui-float-label-text {
-      transition: var(--sui-float-label-reduced-motion-text-transition, none);
+      transition: none;
     }
   }
 }

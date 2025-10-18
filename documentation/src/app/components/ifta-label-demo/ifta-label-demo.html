@@ -1,0 +1,130 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic IFTA Label') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm font-semibold text-gray-700">Toggle Status:</span>
+            <sui-toggle-switch [(ngModel)]="isActive"></sui-toggle-switch>
+          </div>
+          <div class="text-center">
+            <sui-ifta-label
+              [condition]="isActive"
+              trueLabel="✓ Active Status"
+              falseLabel="✗ Inactive Status"
+              altLabel="⚠ Alternative Status"
+              [styleClass]="isActive ? 'text-green-600 font-semibold text-lg' : 'text-gray-500 font-semibold text-lg'">
+            </sui-ifta-label>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Verification Status') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm font-semibold text-gray-700">Account Verified:</span>
+            <sui-toggle-switch [(ngModel)]="isVerified"></sui-toggle-switch>
+          </div>
+          <div class="text-center p-4 rounded-lg" [class]="isVerified ? 'bg-green-50' : 'bg-yellow-50'">
+            <sui-ifta-label
+              [condition]="isVerified"
+              trueLabel="✓ Verified Account"
+              falseLabel="⚠ Pending Verification"
+              altLabel="✗ Verification Failed"
+              [styleClass]="isVerified ? 'text-green-700 font-bold text-lg' : 'text-yellow-700 font-bold text-lg'">
+            </sui-ifta-label>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Access Control') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm font-semibold text-gray-700">Grant Access:</span>
+            <sui-toggle-switch [(ngModel)]="hasAccess"></sui-toggle-switch>
+          </div>
+          <div class="text-center p-4 rounded-lg" [class]="hasAccess ? 'bg-blue-50' : 'bg-red-50'">
+            <sui-ifta-label
+              [condition]="hasAccess"
+              trueLabel="🔓 Full Access Granted"
+              falseLabel="🔒 Access Restricted"
+              altLabel="⚠ Limited Access"
+              [styleClass]="hasAccess ? 'text-blue-700 font-bold text-lg' : 'text-red-700 font-bold text-lg'">
+            </sui-ifta-label>
+            <p class="text-sm mt-2" [class]="hasAccess ? 'text-blue-600' : 'text-red-600'">
+              <sui-ifta-label
+                [condition]="hasAccess"
+                trueLabel="You can access all features and settings"
+                falseLabel="Please contact administrator for access">
+              </sui-ifta-label>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Payment Status') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <div class="p-6 bg-white border border-gray-200 rounded-xl shadow-sm space-y-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Subscription Status</h3>
+          
+          <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div class="flex-1">
+              <div class="font-semibold text-gray-900 mb-2">Payment Status</div>
+              <sui-ifta-label
+                [condition]="isPaid"
+                trueLabel="✓ Paid - Your subscription is active"
+                falseLabel="⚠ Unpaid - Please update payment method"
+                altLabel="❌ Payment Failed"
+                [styleClass]="isPaid ? 'text-green-600 text-sm' : 'text-orange-600 text-sm'">
+              </sui-ifta-label>
+            </div>
+            <sui-toggle-switch [(ngModel)]="isPaid"></sui-toggle-switch>
+          </div>
+
+          <div class="mt-4 p-4 rounded-lg" [class]="isPaid ? 'bg-green-50' : 'bg-orange-50'">
+            <div class="text-center">
+              <div class="text-2xl mb-2">
+                <sui-ifta-label
+                  [condition]="isPaid"
+                  trueLabel="🎉"
+                  falseLabel="⚠️">
+                </sui-ifta-label>
+              </div>
+              <div class="font-bold text-lg">
+                <sui-ifta-label
+                  [condition]="isPaid"
+                  trueLabel="Premium Active"
+                  falseLabel="Action Required"
+                  [styleClass]="isPaid ? 'text-green-700' : 'text-orange-700'">
+                </sui-ifta-label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <div class="flex items-center justify-between">
+          <sui-toggle-switch [(ngModel)]="isActive"></sui-toggle-switch>
+          <sui-ifta-label
+            [condition]="isActive"
+            trueLabel="Active"
+            falseLabel="Inactive"
+            altLabel="Unknown">
+          </sui-ifta-label>
+        </div>
+      </div>
+    </div>
+  }
+}

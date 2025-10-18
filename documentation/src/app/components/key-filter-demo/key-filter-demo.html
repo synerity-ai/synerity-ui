@@ -1,0 +1,143 @@
+@switch (getCurrentExample().name) {
+  @case ('Integer Only') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Age (Integers only)</label>
+        <sui-key-filter
+          [(ngModel)]="intValue"
+          pattern="int"
+          placeholder="Enter age (digits only)"
+          name="age">
+        </sui-key-filter>
+        <p class="mt-2 text-sm text-gray-600">Only digits 0-9 are allowed</p>
+      </div>
+    </div>
+  }
+  @case ('Pattern Types') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Numbers (int)</label>
+          <sui-key-filter
+            [(ngModel)]="intValue"
+            pattern="int"
+            placeholder="0-9 only"
+            name="int">
+          </sui-key-filter>
+          <p class="mt-1 text-sm text-gray-500">Allows: 0-9</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Decimal Numbers (num)</label>
+          <sui-key-filter
+            [(ngModel)]="numValue"
+            pattern="num"
+            placeholder="0-9, +, -, ."
+            name="num">
+          </sui-key-filter>
+          <p class="mt-1 text-sm text-gray-500">Allows: 0-9, +, -, .</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Letters Only (alpha)</label>
+          <sui-key-filter
+            [(ngModel)]="alphaValue"
+            pattern="alpha"
+            placeholder="A-Z only"
+            name="alpha">
+          </sui-key-filter>
+          <p class="mt-1 text-sm text-gray-500">Allows: A-Z, a-z</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Alphanumeric (alphanum)</label>
+          <sui-key-filter
+            [(ngModel)]="alphanumValue"
+            pattern="alphanum"
+            placeholder="A-Z, 0-9"
+            name="alphanum">
+          </sui-key-filter>
+          <p class="mt-1 text-sm text-gray-500">Allows: A-Z, a-z, 0-9</p>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Custom Pattern') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Hex Color Code</label>
+        <sui-key-filter
+          [(ngModel)]="hexValue"
+          pattern="[A-Fa-f0-9]"
+          placeholder="Enter hex value (0-9, A-F)"
+          name="hex">
+        </sui-key-filter>
+        <p class="mt-2 text-sm text-gray-600">
+          Custom pattern: Only allows hexadecimal characters (0-9, A-F)
+        </p>
+        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+          <p class="text-sm font-mono text-gray-700">
+            Value: <span class="text-blue-600 font-bold">{{ hexValue || 'empty' }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('Form Validation') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <div class="p-6 bg-white border border-gray-200 rounded-xl shadow-sm space-y-5">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Registration Form</h3>
+          
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Username (alphanumeric)</label>
+            <sui-key-filter
+              [(ngModel)]="alphanumValue"
+              pattern="alphanum"
+              placeholder="Only letters and numbers"
+              name="username">
+            </sui-key-filter>
+            <p class="mt-1 text-xs text-gray-500">Value: {{ alphanumValue || 'empty' }}</p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Age (integers only)</label>
+            <sui-key-filter
+              [(ngModel)]="intValue"
+              pattern="int"
+              placeholder="Enter your age"
+              name="age">
+            </sui-key-filter>
+            <p class="mt-1 text-xs text-gray-500">Value: {{ intValue || 'empty' }}</p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name (letters only)</label>
+            <sui-key-filter
+              [(ngModel)]="alphaValue"
+              pattern="alpha"
+              placeholder="Letters only"
+              name="name">
+            </sui-key-filter>
+            <p class="mt-1 text-xs text-gray-500">Value: {{ alphaValue || 'empty' }}</p>
+          </div>
+
+          <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+            Register
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <sui-key-filter
+          [(ngModel)]="intValue"
+          pattern="int"
+          placeholder="Enter digits only">
+        </sui-key-filter>
+      </div>
+    </div>
+  }
+}

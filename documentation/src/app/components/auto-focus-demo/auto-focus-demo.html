@@ -1,0 +1,42 @@
+@switch (getCurrentExample().name) {
+  @case ('Basic Auto Focus') {
+    <div class="p-8">
+      <div class="max-w-md mx-auto space-y-6">
+        <p class="text-sm text-gray-600 text-center mb-4">The auto-focus component automatically focuses when rendered</p>
+        
+        <sui-auto-focus>
+          <sui-input-text
+            [(ngModel)]="value1"
+            label="Auto-focused Input"
+            placeholder="This input receives auto focus">
+          </sui-input-text>
+        </sui-auto-focus>
+
+        <sui-input-text
+          [(ngModel)]="value2"
+          label="Second Input"
+          placeholder="Regular input">
+        </sui-input-text>
+
+        <sui-input-text
+          [(ngModel)]="value3"
+          label="Third Input"
+          placeholder="Regular input">
+        </sui-input-text>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="p-8">
+      <div class="max-w-md mx-auto">
+        <sui-auto-focus>
+          <sui-input-text
+            [(ngModel)]="value1"
+            label="Auto-focused Input"
+            placeholder="This input has auto focus">
+          </sui-input-text>
+        </sui-auto-focus>
+      </div>
+    </div>
+  }
+}
